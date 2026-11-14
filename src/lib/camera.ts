@@ -1,7 +1,7 @@
 import { geoAzimuthalEqualArea, geoInterpolate, geoCentroid, GeoProjection } from 'd3-geo';
 import { Easing, interpolate } from 'remotion';
 import type { Camera, GeoData, LonLat } from './types';
-import { W } from './theme';
+import { W, isFocus, isOutline } from './theme';
 
 /** Camera state: rotation centre (lon/lat), scale, and pixel offset of that centre from the map anchor. */
 export type CamState = { center: LonLat; scale: number; off: [number, number] };
@@ -10,7 +10,7 @@ const ANCHOR: [number, number] = [W / 2, (MAP_BOX.top + MAP_BOX.bottom) / 2];
 
 export function resolveCamera(cam: Camera, geo: GeoData): CamState {
   if (cam.fit) {
-    const feats = geo.features.filter((f) => (cam.fit === 'SOVIET' ? (f.properties as any)?.soviet : f.id === cam.fit));
+    const feats = geo.features.filter((f) => (cam.fit === 'SOVIET' || cam.fit === 'FOCUS' ? isFocus(f) && !isOutline(f) : f.id === cam.fit));
     const fc = { type: 'FeatureCollection', features: feats } as any;
     const c = geoCentroid(fc) as LonLat;
     const pad = (cam.pad ?? 0.04) * W;

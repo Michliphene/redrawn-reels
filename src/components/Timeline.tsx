@@ -2,11 +2,11 @@ import React from 'react';
 import { interpolate, Easing } from 'remotion';
 import type { TimedAction } from '../lib/types';
 import { dateToNum } from '../lib/schedule';
-import { theme, REPUBLIC_COLORS } from '../lib/theme';
+import { theme, PALETTE } from '../lib/theme';
 
 /** Horizontal "frise": year ticks, one dot per dated event (coloured when it happens), animated cursor. */
-export const Timeline: React.FC<{ from: string; to: string; dates: { t: number; date: string }[]; actions: TimedAction[]; t: number; y?: number }> =
-  ({ from, to, dates, actions, t, y = 1700 }) => {
+export const Timeline: React.FC<{ from: string; to: string; step?: number; dates: { t: number; date: string }[]; actions: TimedAction[]; t: number; y?: number }> =
+  ({ from, to, step = 1, dates, actions, t, y = 1700 }) => {
     const x0 = 90, x1 = 990, a = dateToNum(from), b = dateToNum(to);
     const X = (d: string) => x0 + ((dateToNum(d) - a) / (b - a)) * (x1 - x0);
     // cursor: eases from previous date to current one over 0.8s
@@ -17,7 +17,7 @@ export const Timeline: React.FC<{ from: string; to: string; dates: { t: number; 
       cx = interpolate(t, [dates[i].t, dates[i].t + 0.8], [prev, X(dates[i].date)], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
     }
     const years: string[] = [];
-    for (let yy = +from.slice(0, 4); yy <= +to.slice(0, 4); yy++) years.push(`${yy}-01-01`);
+    for (let yy = +from.slice(0, 4); yy <= +to.slice(0, 4); yy += step) years.push(`${yy}-01-01`);
     const events = actions.filter((x) => x.type === 'declare') as Extract<TimedAction, { type: 'declare' }>[];
     const beatDate = (e: (typeof events)[number]) => e.date ?? [...dates].reverse().find((d) => d.t <= e.t + 0.01)?.date ?? from;
     return (
@@ -33,7 +33,11 @@ export const Timeline: React.FC<{ from: string; to: string; dates: { t: number; 
         {events.map((e, i) => {
           const on = t >= e.t;
           const r = on ? interpolate(t, [e.t, e.t + 0.3], [16, 9], { extrapolateRight: 'clamp' }) : 6;
-          return <circle key={i} cx={X(beatDate(e))} cy={60} r={r} fill={on ? REPUBLIC_COLORS[e.id] : '#3A4560'} stroke="#0B1120" strokeWidth={2} />;
+          return <circle key={i} cx={X(beatDate(e))} cy={60} r={r} fill={on ? (PALETTE.ids[e.id] ?? theme.accent) : '#3A4560'} stroke="#0B1120" strokeWidth={2} />;
+        })}
+        {!events.length && dates.map((d, i) => {
+          const on = t >= d.t;
+          return <circle key={`d${i}`} cx={X(d.date)} cy={60} r={on ? 9 : 6} fill={on ? theme.accent : '#3A4560'} stroke="#0B1120" strokeWidth={2} />;
         })}
         <circle cx={cx} cy={60} r={12} fill={theme.text} />
       </svg>

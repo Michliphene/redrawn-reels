@@ -16,6 +16,8 @@ import { FlagSwap } from './components/FlagSwap';
 import { Counter } from './components/Counter';
 import { Fx } from './components/Fx';
 import { Sfx } from './components/Sfx';
+import { BigNumbers, Archives, Callouts, GeoTexts } from './components/Overlays';
+import { setPalette } from './lib/theme';
 
 // self-hosted font (OFL) so renders never depend on the network
 const fontWait = delayRender('Montserrat');
@@ -25,6 +27,7 @@ new FontFace('Montserrat', `url(${staticFile('fonts/Montserrat-VF.ttf')})`, { we
 export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit> }> = ({ episodeId, spec, timings, geo, credits }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
+  setPalette(spec!.palette);
   const sched = useMemo(() => schedule(spec!, timings!), [spec, timings]);
   const camKeys = useMemo(() => sched.cameras.map((c) => ({ t: c.t, dur: c.cam.dur ?? 1.1, state: resolveCamera(c.cam, geo!) })), [sched, geo]);
   // camera shake on impacts (coup, dissolution) + punch-in on the very first frames (hook)
@@ -43,16 +46,20 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       <MapLayer geo={geo!} projection={projection} t={t} actions={sched.actions} />
       {/* readability gradients for top text and bottom captions */}
       <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(11,17,32,0.9) 0%, rgba(11,17,32,0) 18%, rgba(11,17,32,0) 62%, rgba(11,17,32,0.92) 78%)' }} />
-      <Labels geo={geo!} projection={projection} t={t} actions={sched.actions} end={end} />
+      <GeoTexts t={t} actions={sched.actions} projection={projection} />
+      <Labels geo={geo!} projection={projection} t={t} actions={sched.actions} end={end} legend={spec!.legend ?? true} />
       <Units projection={projection} t={t} actions={sched.actions} />
       <FlagSwap t={t} actions={sched.actions} />
+      <Archives t={t} actions={sched.actions} />
       <Portraits t={t} actions={sched.actions} credits={credits ?? {}} />
+      <Callouts t={t} actions={sched.actions} />
+      <BigNumbers t={t} actions={sched.actions} />
       <Fx />
-      <Counter t={t} actions={sched.actions} total={15} from={hookEnd} />
+      {spec!.counter !== false && <Counter t={t} actions={sched.actions} total={spec!.counter?.total ?? 15} label={spec!.counter?.label} from={hookEnd} />}
       <Brand series={spec!.series} title={spec!.title} t={t} titleUntil={hookEnd} />
       {t > hookEnd && t < lastBeatStart && <DateBadge dates={sched.dates} t={t} />}
       <Captions timings={timings!} t={t} />
-      <Timeline from={spec!.timeline.from} to={spec!.timeline.to} dates={sched.dates} actions={sched.actions} t={t} />
+      <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />
       <Sfx actions={sched.actions} />
       <Audio src={staticFile(`episodes/${episodeId}/voice.wav`)} />
       <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />

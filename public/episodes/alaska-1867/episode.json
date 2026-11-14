@@ -1,0 +1,547 @@
+{
+ "id": "alaska-1867",
+ "series": "REDRAWN",
+ "title": "How Alaska became American",
+ "data": "data/alaska1867.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {
+   "Stoeckl": "Steckle",
+   "Tlingit": "Klinkit"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  }
+ },
+ "timeline": {
+  "from": "1860-01-01",
+  "to": "1960-01-01",
+  "step": 20
+ },
+ "palette": {
+  "start": "#B5302F",
+  "startStroke": "#E06A5E",
+  "ids": {
+   "ALASKA": "#3C6FB4"
+  },
+  "static": {
+   "USA48": "#2F5A94"
+  }
+ },
+ "counter": false,
+ "legend": false,
+ "beats": [
+  {
+   "id": "hook",
+   "say": "{$7.2 million.|Seven point two million dollars.} That's what America paid for all of this.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.12
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 7200000,
+     "prefix": "$",
+     "label": "FOR ALL OF THIS?",
+     "coins": true,
+     "dur": 0.9,
+     "hold": 2.6,
+     "y": 1080
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "ALASKA"
+     ],
+     "atWord": "all"
+    }
+   ]
+  },
+  {
+   "id": "russian",
+   "say": "In {1867|eighteen sixty-seven}, this was Russian America: a fur-trading colony, over {4,000 miles|four thousand miles} from Saint Petersburg.",
+   "camera": {
+    "center": [
+     -70.6,
+     82
+    ],
+    "span": 105
+   },
+   "date": "1867",
+   "actions": [
+    {
+     "type": "label",
+     "text": "Russian America",
+     "at": [
+      -152,
+      64.5
+     ],
+     "size": "md",
+     "hold": 2.6,
+     "atWord": "Russian"
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -135.33,
+       57.05
+      ],
+      [
+       30.31,
+       59.94
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 8,
+     "dur": 1.6,
+     "hold": 4.2,
+     "label": "≈ 4,300 miles",
+     "labelAt": [
+      -40,
+      86
+     ],
+     "atWord": "fur-trading"
+    },
+    {
+     "type": "marker",
+     "text": "Saint Petersburg",
+     "at": [
+      30.31,
+      59.94
+     ],
+     "atWord": "Saint",
+     "hold": 2.4
+    },
+    {
+     "type": "marker",
+     "text": "Sitka",
+     "at": [
+      -135.33,
+      57.05
+     ],
+     "atWord": "colony",
+     "hold": 3.2
+    }
+   ]
+  },
+  {
+   "id": "why",
+   "say": "Historians point to two reasons Russia sold: money troubles after the Crimean War, and fear that Britain could simply take it.",
+   "camera": {
+    "center": [
+     -138,
+     60
+    ],
+    "span": 46
+   },
+   "date": "1867",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Crimean War",
+     "sub": "1853–1856 · costly defeat",
+     "y": 1040,
+     "hold": 2.2,
+     "atWord": "money"
+    },
+    {
+     "type": "region",
+     "text": "British North America",
+     "at": [
+      -116,
+      61
+     ],
+     "hold": 3.6,
+     "atWord": "Britain"
+    },
+    {
+     "type": "units",
+     "kind": "troops",
+     "at": [
+      -128,
+      57
+     ],
+     "offset": [
+      0,
+      150
+     ],
+     "approach": [
+      260,
+      0
+     ],
+     "count": 5,
+     "size": 50,
+     "color": "#9E1B1B",
+     "atWord": "Britain",
+     "hold": 2.4,
+     "caption": "British threat?"
+    }
+   ]
+  },
+  {
+   "id": "sign",
+   "say": "On March 30, after an all-night session, Secretary of State William Seward signs the treaty with Russia's envoy, Eduard de Stoeckl.",
+   "camera": {
+    "center": [
+     -112,
+     52
+    ],
+    "span": 70
+   },
+   "date": "1867-03-30",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Washington",
+     "at": [
+      -77.04,
+      38.9
+     ],
+     "atWord": "March",
+     "hold": 6
+    },
+    {
+     "type": "archive",
+     "src": "assets/images/treaty_signing.jpg",
+     "caption": "Signing the Alaska Treaty, March 30, 1867",
+     "credit": "19th-century painting · Library of Congress",
+     "y": 690,
+     "w": 840,
+     "hold": 3.0,
+     "focus": "45% 45%",
+     "atWord": "all-night"
+    },
+    {
+     "type": "portrait",
+     "key": "seward",
+     "name": "William Seward",
+     "role": "U.S. Secretary of State",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "focus": "58% 32%",
+     "zoom": 2.2,
+     "atWord": "Seward",
+     "hold": 3.2
+    },
+    {
+     "type": "portrait",
+     "key": "stoeckl",
+     "name": "Eduard de Stoeckl",
+     "role": "Russian envoy",
+     "side": "right",
+     "y": 360,
+     "small": true,
+     "focus": "48% 32%",
+     "zoom": 2.0,
+     "atWord": "envoy",
+     "hold": 2.6
+    }
+   ]
+  },
+  {
+   "id": "acre",
+   "say": "About two cents an acre.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.1
+   },
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 2,
+     "suffix": "¢",
+     "label": "PER ACRE (≈ 1.9¢)",
+     "coins": true,
+     "dur": 0.6,
+     "hold": 2.0,
+     "y": 1080
+    }
+   ]
+  },
+  {
+   "id": "folly",
+   "say": "Some critics mock the deal. But the famous label, Seward's Folly, is largely a later myth.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "“Seward’s Folly”",
+     "sub": "most 1867 papers were supportive or neutral",
+     "y": 1040,
+     "hold": 3.6,
+     "stamp": "LATER MYTH",
+     "stampWord": "myth",
+     "atWord": "famous"
+    }
+   ]
+  },
+  {
+   "id": "senate",
+   "say": "The Senate approves it, thirty-seven to two.",
+   "date": "1867-04-09",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "37 – 2",
+     "sub": "U.S. Senate · April 9, 1867",
+     "y": 1040,
+     "hold": 2.2,
+     "atWord": "Senate"
+    }
+   ]
+  },
+  {
+   "id": "transfer",
+   "say": "October 18, Sitka: the Russian flag comes down, and the American flag goes up.",
+   "camera": {
+    "center": [
+     -135.3,
+     57.5
+    ],
+    "span": 16
+   },
+   "date": "1867-10-18",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Sitka",
+     "at": [
+      -135.33,
+      57.05
+     ],
+     "atWord": "Sitka",
+     "hold": 3.6
+    },
+    {
+     "type": "declare",
+     "id": "ALASKA",
+     "atWord": "American",
+     "noLabel": true
+    }
+   ]
+  },
+  {
+   "id": "natives",
+   "say": "But Alaska's Native peoples, there for thousands of years, are never consulted.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "actions": [
+    {
+     "type": "region",
+     "text": "Iñupiat",
+     "at": [
+      -156,
+      69.3
+     ],
+     "atWord": "Native",
+     "hold": 3.4
+    },
+    {
+     "type": "region",
+     "text": "Athabascan",
+     "at": [
+      -148,
+      65
+     ],
+     "atWord": "Native",
+     "hold": 3.4
+    },
+    {
+     "type": "region",
+     "text": "Yup'ik",
+     "at": [
+      -161,
+      61.2
+     ],
+     "atWord": "peoples",
+     "hold": 3.2
+    },
+    {
+     "type": "region",
+     "text": "Unangan (Aleut)",
+     "at": [
+      -163,
+      54.6
+     ],
+     "atWord": "peoples",
+     "hold": 3.2
+    },
+    {
+     "type": "region",
+     "text": "Alutiiq",
+     "at": [
+      -153,
+      57.6
+     ],
+     "atWord": "there",
+     "hold": 3.0
+    },
+    {
+     "type": "region",
+     "text": "Tlingit",
+     "at": [
+      -134.5,
+      58.2
+     ],
+     "atWord": "there",
+     "hold": 3.0
+    },
+    {
+     "type": "callout",
+     "text": "Approximate traditional areas",
+     "y": 1150,
+     "hold": 2.6,
+     "atWord": "thousands",
+     "size": 34
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "say": "Then come the gold rushes. Then oil.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "date": "1880",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Juneau · gold 1880",
+     "at": [
+      -134.42,
+      58.3
+     ],
+     "atWord": "gold",
+     "hold": 1.8
+    },
+    {
+     "type": "marker",
+     "text": "Nome · gold 1899",
+     "at": [
+      -165.41,
+      64.5
+     ],
+     "atWord": "rushes",
+     "hold": 1.8
+    },
+    {
+     "type": "date",
+     "date": "1899",
+     "atWord": "rushes"
+    },
+    {
+     "type": "marker",
+     "text": "Prudhoe Bay · oil 1968",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "atWord": "oil",
+     "hold": 1.8
+    },
+    {
+     "type": "date",
+     "date": "1968",
+     "atWord": "oil"
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -148.34,
+       70.26
+      ],
+      [
+       -147.72,
+       64.84
+      ],
+      [
+       -146.35,
+       61.13
+      ]
+     ],
+     "color": "#E8E8E8",
+     "width": 6,
+     "dur": 1.2,
+     "hold": 1.3,
+     "label": "Pipeline, 1977 (simplified)",
+     "labelAt": [
+      -140,
+      66
+     ],
+     "atWord": "oil"
+    }
+   ]
+  },
+  {
+   "id": "state",
+   "say": "In {1959|nineteen fifty-nine}, Alaska becomes the 49th state, more than twice the size of Texas.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06
+   },
+   "date": "1959-01-03",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "49th state",
+     "sub": "January 3, 1959",
+     "y": 1120,
+     "hold": 1.8,
+     "atWord": "49th"
+    },
+    {
+     "type": "ghost",
+     "id": "TEXAS_GHOST",
+     "atWord": "Texas",
+     "hold": 2.6
+    },
+    {
+     "type": "region",
+     "text": "Texas, same scale",
+     "at": [
+      -151,
+      63.5
+     ],
+     "atWord": "Texas",
+     "hold": 2.4
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "All of it, bought for…",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.12
+   },
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "ALASKA"
+     ],
+     "atWord": "All"
+    }
+   ]
+  }
+ ]
+}

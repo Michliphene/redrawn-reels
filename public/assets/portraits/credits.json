@@ -1,9 +1,51 @@
 {
- "gorbachev": {"file": "Mikhail Gorbachev in the White House Library (3x4 cropped).jpg", "artist": "White House Photographic Office (Reagan Library)", "license": "Public domain", "date": "1987-12-08"},
- "yeltsin": {"file": "Boris Yeltsin (3x4 close cropped).jpg", "artist": "Presidential Press and Information Office", "license": "CC BY 4.0", "date": "ca. 1991-1994"},
- "yeltsin_1991": {"file": "Boris Yeltsin waves.jpg", "artist": "Press Service of the President of Russia", "license": "CC BY 4.0", "date": "1991-08-22"},
- "landsbergis": {"file": "Vytautas Landsbergis and Algirdas Brazauskas (March 1990).jpg", "artist": "Algirdas Sabaliauskas, Lithuanian Central State Archives", "license": "CC BY 4.0", "date": "1990-03"},
- "kravchuk": {"file": "Leonid Kravchuk in 1992.jpg", "artist": "European Commission", "license": "CC BY 4.0", "date": "1992-09-14"},
- "shushkevich": {"file": "Stanislav Shushkevich 1991 (cropped).jpg", "artist": "Yuriy Ivanov / RIA Novosti", "license": "CC BY-SA 3.0", "date": "1991-12-08"},
- "nazarbayev": {"file": "Nazarbayev Inauguration 1991 (cropped).jpg", "artist": "Egemen Qazaqstan archive", "license": "CC BY-SA 4.0", "date": "1991-12-10"}
+ "gorbachev": {
+  "file": "Mikhail Gorbachev in the White House Library (3x4 cropped).jpg",
+  "artist": "White House Photographic Office (Reagan Library)",
+  "license": "Public domain",
+  "date": "1987-12-08"
+ },
+ "yeltsin": {
+  "file": "Boris Yeltsin (3x4 close cropped).jpg",
+  "artist": "Presidential Press and Information Office",
+  "license": "CC BY 4.0",
+  "date": "ca. 1991-1994"
+ },
+ "yeltsin_1991": {
+  "file": "Boris Yeltsin waves.jpg",
+  "artist": "Press Service of the President of Russia",
+  "license": "CC BY 4.0",
+  "date": "1991-08-22"
+ },
+ "landsbergis": {
+  "file": "Vytautas Landsbergis and Algirdas Brazauskas (March 1990).jpg",
+  "artist": "Algirdas Sabaliauskas, Lithuanian Central State Archives",
+  "license": "CC BY 4.0",
+  "date": "1990-03"
+ },
+ "kravchuk": {
+  "file": "Leonid Kravchuk in 1992.jpg",
+  "artist": "European Commission",
+  "license": "CC BY 4.0",
+  "date": "1992-09-14"
+ },
+ "shushkevich": {
+  "file": "Stanislav Shushkevich 1991 (cropped).jpg",
+  "artist": "Yuriy Ivanov / RIA Novosti",
+  "license": "CC BY-SA 3.0",
+  "date": "1991-12-08"
+ },
+ "nazarbayev": {
+  "file": "Nazarbayev Inauguration 1991 (cropped).jpg",
+  "artist": "Egemen Qazaqstan archive",
+  "license": "CC BY-SA 4.0",
+  "date": "1991-12-10"
+ },
+ "seward": {
+  "file": "LOC cwpb 04948 — Portrait of Secretary of State William H. Seward",
+  "artist": "Brady's National Photographic Portrait Galleries (Library of Congress)",
+  "license": "No known restrictions",
+  "date": "1860-1865",
+  "page": "https://www.loc.gov/pictures/item/2018666383/"
+ }
 }

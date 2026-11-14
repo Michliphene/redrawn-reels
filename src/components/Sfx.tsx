@@ -12,7 +12,9 @@ export const Sfx: React.FC<{ actions: TimedAction[] }> = ({ actions }) => {
     if (a.type === 'portrait' && a.stampAt != null) cues.push({ t: a.stampAt, f: 'stamp', v: 0.8 });
     if (a.type === 'units' && a.kind !== 'crowd') cues.push({ t: a.t, f: 'rumble', v: 0.7 });
     if (a.type === 'dissolve' || a.type === 'shake') cues.push({ t: a.t, f: 'boom', v: 0.6 });
-    if (a.type === 'flagSwap') cues.push({ t: a.t, f: 'whoosh', v: 0.4 });
+    if (a.type === 'flagSwap' || a.type === 'archive' || a.type === 'path') cues.push({ t: a.t, f: 'whoosh', v: 0.4 });
+    if (a.type === 'bigNumber' || a.type === 'callout' || a.type === 'ghost') cues.push({ t: a.t, f: 'pop', v: 0.5 });
+    if (a.type === 'callout' && a.stampAt != null) cues.push({ t: a.stampAt, f: 'stamp', v: 0.8 });
   }
   return (
     <>

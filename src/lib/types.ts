@@ -14,11 +14,19 @@ export type Action =
   | { type: 'portrait'; key: string; name: string; role: string; side?: 'left' | 'right' | 'center'; col?: number; row?: number; y?: number;
       small?: boolean; focus?: string; zoom?: number; ring?: string; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; atWord?: string }
   | { type: 'flagSwap'; from: string; to: string; x?: number; hold?: number; caption?: string; atWord?: string }
-  | { type: 'shake'; amount?: number; atWord?: string };
+  | { type: 'shake'; amount?: number; atWord?: string }
+  | { type: 'ghost'; id: string; label?: string; color?: string; hold?: number; atWord?: string }
+  | { type: 'path'; coords: LonLat[]; color?: string; width?: number; dur?: number; hold?: number; label?: string; labelAt?: LonLat; atWord?: string }
+  | { type: 'bigNumber'; value: number; prefix?: string; suffix?: string; decimals?: number; label?: string; y?: number; dur?: number; hold?: number; coins?: boolean; atWord?: string }
+  | { type: 'archive'; src: string; caption: string; credit: string; y?: number; w?: number; hold?: number; focus?: string; atWord?: string }
+  | { type: 'callout'; text: string; sub?: string; size?: number; y?: number; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; atWord?: string }
+  | { type: 'region'; text: string; at: LonLat; hold?: number; atWord?: string };
 export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[] };
 export type EpisodeSpec = {
   id: string; series: string; title: string; data: string;
-  timeline: { from: string; to: string }; beats: Beat[];
+  timeline: { from: string; to: string; step?: number }; beats: Beat[];
+  palette?: { start?: string; startStroke?: string; ids?: Record<string, string>; static?: Record<string, string> };
+  counter?: { label: string; total: number } | false; legend?: boolean;
 };
 export type Word = { w: string; start: number; end: number };
 export type Timings = { duration: number; beats: { id: string; start: number; end: number; words: Word[] }[] };

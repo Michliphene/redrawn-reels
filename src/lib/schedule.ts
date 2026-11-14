@@ -24,7 +24,7 @@ export function schedule(spec: EpisodeSpec, timings: Timings) {
       };
       const extra: Record<string, number> = {};
       if (a.type === 'units' && a.retreatWord) extra.retreatAt = wordT(a.retreatWord);
-      if (a.type === 'portrait' && a.stampWord) extra.stampAt = wordT(a.stampWord);
+      if ((a.type === 'portrait' || a.type === 'callout') && a.stampWord) extra.stampAt = wordT(a.stampWord);
       actions.push({ ...a, ...extra, t, beat: b.id } as TimedAction);
       if (a.type === 'date') dates.push({ t, date: a.date });
       if (a.type === 'declare' && a.date) dates.push({ t, date: a.date });
@@ -37,5 +37,5 @@ export type Schedule = ReturnType<typeof schedule>;
 
 export const dateToNum = (d: string) => {
   const [y, m, day] = d.split('-').map(Number);
-  return Date.UTC(y, m - 1, day);
+  return Date.UTC(y, (m || 7) - 1, day || 1); // year-only dates sit mid-year
 };

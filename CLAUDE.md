@@ -29,11 +29,22 @@ the owner talks to you in **French**.
    - actions (all accept `atWord` = fire on that spoken word): `declare` (+`flag`, `flagNote`, `date`), `pulse`,
      `label` (+`flag`), `marker`, `date`, `dissolve`, `allLabels`, `units` (tanks/troops/crowd, `offset`, `approach`,
      `retreatWord`, `caption`), `portrait` (`key`, `name`, `role`, `side`, `stampWord`), `flagSwap`, `shake`.
+   - More actions: `bigNumber` (rolling number + `coins`), `archive` (image card: `src`, `caption`, `credit`),
+     `callout` (big text, `size`, `stamp`+`stampWord`), `region` (italic approximate-area label), `path`
+     (`coords` LineString, drawn progressively; 2 points = great-circle arc; `label`/`labelAt`), `ghost`
+     (show a hidden feature, e.g. size comparison), `declare.noLabel`.
+   - Episode-level: `palette` {start, startStroke, ids, static}, `counter` ({label,total} or false), `legend`,
+     `timeline.step` (years). Focus features use `properties.focus: true` (+ `FOCUS_OUTLINE`); camera `{fit:"FOCUS"}`.
+     Dates may be `YYYY` (year only) or `YYYY-MM-DD`.
    - `voice.respell` for ElevenLabs pronunciation fixes (captions keep real spelling).
 5. **Assets**: flags → `public/assets/flags/<code>.svg` (`flag-icons` for modern; period flags from Commons or drawn,
    note the year on screen if not the flag in use at that date). Portraits → `public/assets/portraits/<key>.jpg`
    + entry in `credits.json`. Missing assets are skipped at render (never fatal).
    Commons is heavily rate-limited from cloud sessions: `scripts/fetch_queue.sh` (1 req/min) or download locally.
+   **Library of Congress works well** (US 19th–20th c. photos, mostly "no known restrictions"):
+   `python3 scripts/loc_search.py "<query>"`, then curl `https://tile.loc.gov/.../<id>v.jpg` (v = medium size).
+   **Do not use Higgsfield** (owner's choice). Any AI illustration must be clearly labelled, never a fake
+   "archive" photo or a real person's face.
 6. **Render**: `pipeline/render.sh <id>` → `out/<id>.mp4` (TTS → timings → music → Remotion → −14 LUFS).
    Check stills first: `npx remotion still src/index.ts Episode out/f.jpg --frame=N --props='{"episodeId":"<id>"}' --scale=0.5`
 7. **Review**: write `docs/REVIEW_<id>.md` (accuracy, map, rhythm, English, pronunciation, oversimplification,
