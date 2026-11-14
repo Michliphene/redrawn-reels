@@ -1,0 +1,732 @@
+{
+ "duration": 55.255,
+ "engine": "elevenlabs",
+ "beats": [
+  {
+   "id": "hook",
+   "start": 0.25,
+   "end": 3.013,
+   "words": [
+    {
+     "w": "The",
+     "start": 0.25,
+     "end": 0.401
+    },
+    {
+     "w": "largest",
+     "start": 0.459,
+     "end": 0.772
+    },
+    {
+     "w": "country",
+     "start": 0.819,
+     "end": 1.109
+    },
+    {
+     "w": "on",
+     "start": 1.156,
+     "end": 1.237
+    },
+    {
+     "w": "Earth",
+     "start": 1.283,
+     "end": 1.481
+    },
+    {
+     "w": "fell",
+     "start": 1.527,
+     "end": 1.701
+    },
+    {
+     "w": "apart",
+     "start": 1.748,
+     "end": 1.991
+    },
+    {
+     "w": "in",
+     "start": 2.026,
+     "end": 2.084
+    },
+    {
+     "w": "under",
+     "start": 2.131,
+     "end": 2.293
+    },
+    {
+     "w": "two",
+     "start": 2.34,
+     "end": 2.479
+    },
+    {
+     "w": "years.",
+     "start": 2.537,
+     "end": 3.013
+    }
+   ]
+  },
+  {
+   "id": "ltu",
+   "start": 3.293,
+   "end": 8.008,
+   "words": [
+    {
+     "w": "March",
+     "start": 3.293,
+     "end": 3.583
+    },
+    {
+     "w": "1990:",
+     "start": 3.606,
+     "end": 4.512
+    },
+    {
+     "w": "Lithuania",
+     "start": 4.792,
+     "end": 5.396
+    },
+    {
+     "w": "goes",
+     "start": 5.442,
+     "end": 5.605
+    },
+    {
+     "w": "first,",
+     "start": 5.651,
+     "end": 6.104
+    },
+    {
+     "w": "declaring",
+     "start": 6.29,
+     "end": 6.673
+    },
+    {
+     "w": "its",
+     "start": 6.719,
+     "end": 6.836
+    },
+    {
+     "w": "independence",
+     "start": 6.894,
+     "end": 7.462
+    },
+    {
+     "w": "restored.",
+     "start": 7.497,
+     "end": 8.008
+    }
+   ]
+  },
+  {
+   "id": "vilnius",
+   "start": 8.288,
+   "end": 16.254,
+   "words": [
+    {
+     "w": "Moscow",
+     "start": 8.288,
+     "end": 8.775
+    },
+    {
+     "w": "refuses.",
+     "start": 8.88,
+     "end": 9.553
+    },
+    {
+     "w": "In",
+     "start": 9.833,
+     "end": 9.96
+    },
+    {
+     "w": "January",
+     "start": 10.03,
+     "end": 10.773
+    },
+    {
+     "w": "1991,",
+     "start": 10.924,
+     "end": 11.621
+    },
+    {
+     "w": "Soviet",
+     "start": 11.841,
+     "end": 12.236
+    },
+    {
+     "w": "troops",
+     "start": 12.271,
+     "end": 12.538
+    },
+    {
+     "w": "attack",
+     "start": 12.584,
+     "end": 12.851
+    },
+    {
+     "w": "the",
+     "start": 12.909,
+     "end": 12.979
+    },
+    {
+     "w": "TV",
+     "start": 13.025,
+     "end": 13.246
+    },
+    {
+     "w": "tower",
+     "start": 13.385,
+     "end": 13.675
+    },
+    {
+     "w": "in",
+     "start": 13.722,
+     "end": 13.792
+    },
+    {
+     "w": "Vilnius.",
+     "start": 13.838,
+     "end": 14.419
+    },
+    {
+     "w": "Fourteen",
+     "start": 14.699,
+     "end": 15.186
+    },
+    {
+     "w": "civilians",
+     "start": 15.244,
+     "end": 15.709
+    },
+    {
+     "w": "die.",
+     "start": 15.767,
+     "end": 16.254
+    }
+   ]
+  },
+  {
+   "id": "geo",
+   "start": 16.498,
+   "end": 17.833,
+   "words": [
+    {
+     "w": "In",
+     "start": 16.498,
+     "end": 16.626
+    },
+    {
+     "w": "April,",
+     "start": 16.684,
+     "end": 17.021
+    },
+    {
+     "w": "Georgia",
+     "start": 17.055,
+     "end": 17.346
+    },
+    {
+     "w": "follows.",
+     "start": 17.392,
+     "end": 17.833
+    }
+   ]
+  },
+  {
+   "id": "coup",
+   "start": 18.113,
+   "end": 22.283,
+   "words": [
+    {
+     "w": "Then,",
+     "start": 18.113,
+     "end": 18.31
+    },
+    {
+     "w": "in",
+     "start": 18.334,
+     "end": 18.403
+    },
+    {
+     "w": "August,",
+     "start": 18.461,
+     "end": 18.903
+    },
+    {
+     "w": "hardliners",
+     "start": 18.984,
+     "end": 19.437
+    },
+    {
+     "w": "try",
+     "start": 19.471,
+     "end": 19.599
+    },
+    {
+     "w": "to",
+     "start": 19.646,
+     "end": 19.692
+    },
+    {
+     "w": "overthrow",
+     "start": 19.738,
+     "end": 20.075
+    },
+    {
+     "w": "Gorbachev.",
+     "start": 20.122,
+     "end": 20.679
+    },
+    {
+     "w": "The",
+     "start": 20.959,
+     "end": 21.064
+    },
+    {
+     "w": "coup",
+     "start": 21.11,
+     "end": 21.261
+    },
+    {
+     "w": "fails",
+     "start": 21.307,
+     "end": 21.54
+    },
+    {
+     "w": "in",
+     "start": 21.586,
+     "end": 21.632
+    },
+    {
+     "w": "three",
+     "start": 21.667,
+     "end": 21.853
+    },
+    {
+     "w": "days.",
+     "start": 21.888,
+     "end": 22.283
+    }
+   ]
+  },
+  {
+   "id": "baltics",
+   "start": 22.526,
+   "end": 24.686,
+   "words": [
+    {
+     "w": "Estonia",
+     "start": 22.526,
+     "end": 22.979
+    },
+    {
+     "w": "and",
+     "start": 23.002,
+     "end": 23.072
+    },
+    {
+     "w": "Latvia",
+     "start": 23.119,
+     "end": 23.49
+    },
+    {
+     "w": "break",
+     "start": 23.537,
+     "end": 23.734
+    },
+    {
+     "w": "away",
+     "start": 23.78,
+     "end": 23.943
+    },
+    {
+     "w": "in",
+     "start": 23.966,
+     "end": 24.013
+    },
+    {
+     "w": "the",
+     "start": 24.047,
+     "end": 24.117
+    },
+    {
+     "w": "chaos.",
+     "start": 24.152,
+     "end": 24.686
+    }
+   ]
+  },
+  {
+   "id": "wave",
+   "start": 24.93,
+   "end": 31.013,
+   "words": [
+    {
+     "w": "Within",
+     "start": 24.93,
+     "end": 25.197
+    },
+    {
+     "w": "ten",
+     "start": 25.255,
+     "end": 25.452
+    },
+    {
+     "w": "days:",
+     "start": 25.51,
+     "end": 25.951
+    },
+    {
+     "w": "Ukraine,",
+     "start": 26.056,
+     "end": 26.625
+    },
+    {
+     "w": "Belarus,",
+     "start": 26.776,
+     "end": 27.379
+    },
+    {
+     "w": "Moldova,",
+     "start": 27.449,
+     "end": 28.145
+    },
+    {
+     "w": "Azerbaijan,",
+     "start": 28.296,
+     "end": 29.179
+    },
+    {
+     "w": "Kyrgyzstan,",
+     "start": 29.33,
+     "end": 30.05
+    },
+    {
+     "w": "Uzbekistan.",
+     "start": 30.235,
+     "end": 31.013
+    }
+   ]
+  },
+  {
+   "id": "autumn",
+   "start": 31.293,
+   "end": 34.265,
+   "words": [
+    {
+     "w": "By",
+     "start": 31.293,
+     "end": 31.432
+    },
+    {
+     "w": "October:",
+     "start": 31.479,
+     "end": 31.897
+    },
+    {
+     "w": "Tajikistan,",
+     "start": 31.931,
+     "end": 32.732
+    },
+    {
+     "w": "Armenia,",
+     "start": 32.883,
+     "end": 33.441
+    },
+    {
+     "w": "Turkmenistan.",
+     "start": 33.487,
+     "end": 34.265
+    }
+   ]
+  },
+  {
+   "id": "belavezha",
+   "start": 34.545,
+   "end": 39.456,
+   "words": [
+    {
+     "w": "December",
+     "start": 34.545,
+     "end": 34.939
+    },
+    {
+     "w": "8:",
+     "start": 34.998,
+     "end": 35.346
+    },
+    {
+     "w": "Russia,",
+     "start": 35.566,
+     "end": 35.88
+    },
+    {
+     "w": "Ukraine",
+     "start": 35.938,
+     "end": 36.321
+    },
+    {
+     "w": "and",
+     "start": 36.356,
+     "end": 36.437
+    },
+    {
+     "w": "Belarus",
+     "start": 36.484,
+     "end": 36.948
+    },
+    {
+     "w": "sign",
+     "start": 37.087,
+     "end": 37.32
+    },
+    {
+     "w": "the",
+     "start": 37.354,
+     "end": 37.424
+    },
+    {
+     "w": "Belavezha",
+     "start": 37.47,
+     "end": 38.817
+    },
+    {
+     "w": "Accords.",
+     "start": 38.887,
+     "end": 39.456
+    }
+   ]
+  },
+  {
+   "id": "noexist",
+   "start": 39.736,
+   "end": 42.07,
+   "words": [
+    {
+     "w": "The",
+     "start": 39.736,
+     "end": 39.841
+    },
+    {
+     "w": "Soviet",
+     "start": 39.887,
+     "end": 40.178
+    },
+    {
+     "w": "Union,",
+     "start": 40.247,
+     "end": 40.48
+    },
+    {
+     "w": "they",
+     "start": 40.503,
+     "end": 40.596
+    },
+    {
+     "w": "declare,",
+     "start": 40.642,
+     "end": 41.048
+    },
+    {
+     "w": "no",
+     "start": 41.106,
+     "end": 41.211
+    },
+    {
+     "w": "longer",
+     "start": 41.269,
+     "end": 41.513
+    },
+    {
+     "w": "exists.",
+     "start": 41.559,
+     "end": 42.07
+    }
+   ]
+  },
+  {
+   "id": "kaz",
+   "start": 42.35,
+   "end": 45.6,
+   "words": [
+    {
+     "w": "Kazakhstan",
+     "start": 42.35,
+     "end": 43.0
+    },
+    {
+     "w": "is",
+     "start": 43.058,
+     "end": 43.139
+    },
+    {
+     "w": "the",
+     "start": 43.185,
+     "end": 43.255
+    },
+    {
+     "w": "last",
+     "start": 43.313,
+     "end": 43.534
+    },
+    {
+     "w": "to",
+     "start": 43.568,
+     "end": 43.626
+    },
+    {
+     "w": "declare,",
+     "start": 43.673,
+     "end": 44.172
+    },
+    {
+     "w": "on",
+     "start": 44.416,
+     "end": 44.567
+    },
+    {
+     "w": "December",
+     "start": 44.613,
+     "end": 45.008
+    },
+    {
+     "w": "16.",
+     "start": 45.066,
+     "end": 45.6
+    }
+   ]
+  },
+  {
+   "id": "kremlin",
+   "start": 45.88,
+   "end": 50.933,
+   "words": [
+    {
+     "w": "December",
+     "start": 45.88,
+     "end": 46.251
+    },
+    {
+     "w": "25:",
+     "start": 46.298,
+     "end": 46.867
+    },
+    {
+     "w": "Gorbachev",
+     "start": 47.147,
+     "end": 47.623
+    },
+    {
+     "w": "resigns.",
+     "start": 47.682,
+     "end": 48.297
+    },
+    {
+     "w": "The",
+     "start": 48.577,
+     "end": 48.693
+    },
+    {
+     "w": "Soviet",
+     "start": 48.774,
+     "end": 49.157
+    },
+    {
+     "w": "flag",
+     "start": 49.203,
+     "end": 49.529
+    },
+    {
+     "w": "comes",
+     "start": 49.587,
+     "end": 49.807
+    },
+    {
+     "w": "down",
+     "start": 49.854,
+     "end": 50.074
+    },
+    {
+     "w": "over",
+     "start": 50.144,
+     "end": 50.33
+    },
+    {
+     "w": "the",
+     "start": 50.376,
+     "end": 50.446
+    },
+    {
+     "w": "Kremlin.",
+     "start": 50.481,
+     "end": 50.933
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "start": 51.213,
+   "end": 55.255,
+   "words": [
+    {
+     "w": "Fifteen",
+     "start": 51.213,
+     "end": 51.666
+    },
+    {
+     "w": "countries",
+     "start": 51.736,
+     "end": 52.095
+    },
+    {
+     "w": "from",
+     "start": 52.13,
+     "end": 52.281
+    },
+    {
+     "w": "one.",
+     "start": 52.351,
+     "end": 52.688
+    },
+    {
+     "w": "And",
+     "start": 52.968,
+     "end": 53.096
+    },
+    {
+     "w": "even",
+     "start": 53.154,
+     "end": 53.316
+    },
+    {
+     "w": "on",
+     "start": 53.363,
+     "end": 53.455
+    },
+    {
+     "w": "its",
+     "start": 53.502,
+     "end": 53.618
+    },
+    {
+     "w": "own,",
+     "start": 53.664,
+     "end": 53.955
+    },
+    {
+     "w": "Russia",
+     "start": 54.106,
+     "end": 54.384
+    },
+    {
+     "w": "is",
+     "start": 54.442,
+     "end": 54.524
+    },
+    {
+     "w": "still…",
+     "start": 54.57,
+     "end": 55.255
+    }
+   ]
+  }
+ ]
+}

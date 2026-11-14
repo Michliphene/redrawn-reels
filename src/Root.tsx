@@ -1,0 +1,37 @@
+import React from 'react';
+import { Composition, staticFile } from 'remotion';
+import { Episode } from './Episode';
+import type { EpisodeProps } from './lib/types';
+import { W, H, FPS } from './lib/theme';
+
+const getJson = async (p: string) => (await fetch(staticFile(p))).json();
+
+export const Root: React.FC = () => (
+  <Composition
+    id="Episode"
+    component={Episode as any}
+    width={W} height={H} fps={FPS} durationInFrames={FPS * 60}
+    defaultProps={{ episodeId: 'ussr-1991' } as EpisodeProps}
+    calculateMetadata={async ({ props }) => {
+      const p = props as EpisodeProps;
+      const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
+      const timings = await getJson(`episodes/${p.episodeId}/timings.json`);
+      const geo = await getJson(spec.data);
+      const credits = await getJson('assets/portraits/credits.json').catch(() => ({}));
+      // only keep portrait cues whose image actually exists (pipeline never breaks on a missing asset)
+      const keys = [...new Set(spec.beats.flatMap((b: any) => (b.actions ?? []).filter((a: any) => a.type === 'portrait').map((a: any) => a.key)))] as string[];
+      const ok = new Set<string>();
+      await Promise.all(keys.map(async (k) => { const r = await fetch(staticFile(`assets/portraits/${k}.jpg`)); if (r.ok && (await r.blob()).size > 1000) ok.add(k); }));
+      for (const b of spec.beats) b.actions = (b.actions ?? []).filter((a: any) => a.type !== 'portrait' || ok.has(a.key));
+      // same for flags: drop a flag reference whose SVG is missing (and the flag swap if one side is missing)
+      const codes = [...new Set(spec.beats.flatMap((b: any) => b.actions.flatMap((a: any) => [a.flag, a.from, a.to].filter(Boolean))))] as string[];
+      const okF = new Set<string>();
+      await Promise.all(codes.map(async (c) => { const r = await fetch(staticFile(`assets/flags/${c}.svg`)); if (r.ok && (await r.text()).includes('<svg')) okF.add(c); }));
+      for (const b of spec.beats) {
+        b.actions = b.actions.filter((a: any) => a.type !== 'flagSwap' || (okF.has(a.from) && okF.has(a.to)));
+        for (const a of b.actions) if (a.flag && !okF.has(a.flag)) delete a.flag;
+      }
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits } };
+    }}
+  />
+);

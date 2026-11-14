@@ -1,0 +1,610 @@
+{
+ "id": "ussr-1991",
+ "series": "REDRAWN",
+ "title": "How 1 country became 15",
+ "data": "data/ussr1991.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Belavezha": "Byeh-lah-VYEH-zha"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "1990-01-01",
+  "to": "1992-01-01"
+ },
+ "lexicon": {
+  "Gorbachev": "ɡˈɔːɹbətʃˌɔf",
+  "Belavezha": "bˌɛləvˈɛʒə",
+  "Kazakhstan": "kˌæzəkstˈɑːn",
+  "Kyrgyzstan": "kˈɪɹɡɪstˌæn"
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "The largest country on Earth fell apart in under two years.",
+   "camera": {
+    "fit": "SOVIET"
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "label",
+     "text": "USSR",
+     "at": [
+      92,
+      62
+     ],
+     "size": "xl",
+     "hold": 2.6,
+     "flag": "su"
+    }
+   ]
+  },
+  {
+   "id": "ltu",
+   "say": "{March 1990|March, nineteen ninety}: Lithuania goes first, declaring its independence restored.",
+   "camera": {
+    "center": [
+     24.5,
+     56.5
+    ],
+    "span": 14
+   },
+   "date": "1990-03-11",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "LTU",
+     "atWord": "Lithuania",
+     "flag": "lt"
+    },
+    {
+     "type": "portrait",
+     "key": "landsbergis",
+     "name": "Vytautas Landsbergis",
+     "role": "Head of Lithuania's parliament",
+     "side": "left",
+     "y": 930,
+     "atWord": "goes",
+     "hold": 3.4
+    }
+   ]
+  },
+  {
+   "id": "vilnius",
+   "say": "Moscow refuses. In {January 1991|January, ninety-one}, Soviet troops attack the TV tower in Vilnius. Fourteen civilians die.",
+   "camera": {
+    "center": [
+     25.0,
+     54.85
+    ],
+    "span": 6
+   },
+   "date": "1991-01-13",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Vilnius",
+     "at": [
+      25.28,
+      54.69
+     ],
+     "atWord": "Moscow",
+     "hold": 7.5
+    },
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      25.28,
+      54.69
+     ],
+     "approach": [
+      330,
+      -160
+     ],
+     "count": 3,
+     "size": 72,
+     "atWord": "Soviet",
+     "hold": 5,
+     "caption": "Soviet troops",
+     "offset": [
+      230,
+      -150
+     ]
+    },
+    {
+     "type": "units",
+     "kind": "troops",
+     "at": [
+      25.28,
+      54.69
+     ],
+     "approach": [
+      330,
+      220
+     ],
+     "count": 7,
+     "size": 58,
+     "atWord": "troops",
+     "hold": 4.6,
+     "offset": [
+      250,
+      90
+     ]
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      25.28,
+      54.69
+     ],
+     "count": 18,
+     "spread": 120,
+     "size": 46,
+     "atWord": "TV",
+     "hold": 4.2,
+     "caption": "Unarmed civilians",
+     "offset": [
+      -170,
+      40
+     ]
+    },
+    {
+     "type": "shake",
+     "amount": 8,
+     "atWord": "attack"
+    },
+    {
+     "type": "label",
+     "text": "14 killed",
+     "at": [
+      25.28,
+      54.45
+     ],
+     "size": "md",
+     "atWord": "Fourteen",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "geo",
+   "say": "In April, Georgia follows.",
+   "camera": {
+    "center": [
+     44.5,
+     41.8
+    ],
+    "span": 13
+   },
+   "date": "1991-04-09",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "GEO",
+     "atWord": "Georgia",
+     "flag": "ge-1990"
+    }
+   ]
+  },
+  {
+   "id": "coup",
+   "say": "Then, in August, hardliners try to overthrow Gorbachev. The coup fails in three days.",
+   "camera": {
+    "center": [
+     37.4,
+     55.5
+    ],
+    "span": 12
+   },
+   "date": "1991-08-19",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Moscow",
+     "at": [
+      37.62,
+      55.75
+     ],
+     "atWord": "August",
+     "hold": 5
+    },
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      37.62,
+      55.75
+     ],
+     "approach": [
+      -360,
+      330
+     ],
+     "count": 3,
+     "size": 72,
+     "atWord": "hardliners",
+     "retreatWord": "fails",
+     "hold": 4.6,
+     "caption": "Tanks enter Moscow",
+     "offset": [
+      -230,
+      -120
+     ]
+    },
+    {
+     "type": "shake",
+     "amount": 10,
+     "atWord": "overthrow"
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      37.62,
+      55.75
+     ],
+     "count": 18,
+     "spread": 120,
+     "size": 46,
+     "atWord": "Gorbachev",
+     "hold": 3.8,
+     "caption": "Crowds defend parliament",
+     "offset": [
+      230,
+      110
+     ]
+    },
+    {
+     "type": "portrait",
+     "key": "gorbachev",
+     "name": "Mikhail Gorbachev",
+     "role": "Soviet leader · held in Crimea",
+     "side": "right",
+     "y": 360,
+     "small": true,
+     "atWord": "overthrow",
+     "hold": 2.6
+    },
+    {
+     "type": "portrait",
+     "key": "yeltsin",
+     "name": "Boris Yeltsin",
+     "role": "Russia's president · led the resistance",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "atWord": "fails",
+     "hold": 2.8
+    },
+    {
+     "type": "date",
+     "date": "1991-08-21",
+     "atWord": "fails"
+    }
+   ]
+  },
+  {
+   "id": "baltics",
+   "say": "Estonia and Latvia break away in the chaos.",
+   "camera": {
+    "center": [
+     25,
+     57.6
+    ],
+    "span": 13
+   },
+   "date": "1991-08-20",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "EST",
+     "atWord": "Estonia",
+     "flag": "ee"
+    },
+    {
+     "type": "declare",
+     "id": "LVA",
+     "atWord": "Latvia",
+     "date": "1991-08-21",
+     "flag": "lv"
+    }
+   ]
+  },
+  {
+   "id": "wave",
+   "say": "Within ten days: Ukraine, Belarus, Moldova, Azerbaijan, Kyrgyzstan, Uzbekistan.",
+   "camera": {
+    "center": [
+     47,
+     50
+    ],
+    "span": 58
+   },
+   "date": "1991-08-24",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "UKR",
+     "atWord": "Ukraine",
+     "flag": "ua"
+    },
+    {
+     "type": "declare",
+     "id": "BLR",
+     "atWord": "Belarus",
+     "date": "1991-08-25",
+     "flag": "by-1991",
+     "flagNote": "1991 flag"
+    },
+    {
+     "type": "declare",
+     "id": "MDA",
+     "atWord": "Moldova",
+     "date": "1991-08-27",
+     "flag": "md"
+    },
+    {
+     "type": "declare",
+     "id": "AZE",
+     "atWord": "Azerbaijan",
+     "date": "1991-08-30",
+     "flag": "az"
+    },
+    {
+     "type": "declare",
+     "id": "KGZ",
+     "atWord": "Kyrgyzstan",
+     "date": "1991-08-31",
+     "flag": "kg",
+     "flagNote": "flag from 1992"
+    },
+    {
+     "type": "declare",
+     "id": "UZB",
+     "atWord": "Uzbekistan",
+     "date": "1991-08-31",
+     "flag": "uz"
+    }
+   ]
+  },
+  {
+   "id": "autumn",
+   "say": "By October: Tajikistan, Armenia, Turkmenistan.",
+   "camera": {
+    "center": [
+     62,
+     41
+    ],
+    "span": 40
+   },
+   "date": "1991-09-09",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "TJK",
+     "atWord": "Tajikistan",
+     "flag": "tj",
+     "flagNote": "flag from 1992"
+    },
+    {
+     "type": "declare",
+     "id": "ARM",
+     "atWord": "Armenia",
+     "date": "1991-09-23",
+     "flag": "am"
+    },
+    {
+     "type": "declare",
+     "id": "TKM",
+     "atWord": "Turkmenistan",
+     "date": "1991-10-27",
+     "flag": "tm",
+     "flagNote": "today's flag"
+    }
+   ]
+  },
+  {
+   "id": "belavezha",
+   "say": "{December 8|December eighth}: Russia, Ukraine and Belarus sign the Belavezha Accords.",
+   "camera": {
+    "center": [
+     33,
+     52
+    ],
+    "span": 34
+   },
+   "date": "1991-12-08",
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "RUS"
+     ],
+     "atWord": "Russia"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "UKR"
+     ],
+     "atWord": "Ukraine"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "BLR"
+     ],
+     "atWord": "Belarus"
+    },
+    {
+     "type": "portrait",
+     "key": "yeltsin",
+     "name": "Boris Yeltsin",
+     "role": "Russia",
+     "side": "center",
+     "col": -1,
+     "y": 930,
+     "small": true,
+     "atWord": "Russia",
+     "hold": 4.4
+    },
+    {
+     "type": "portrait",
+     "key": "kravchuk",
+     "name": "Leonid Kravchuk",
+     "role": "Ukraine",
+     "side": "center",
+     "col": 0,
+     "y": 930,
+     "small": true,
+     "atWord": "Ukraine",
+     "hold": 4.0,
+     "ring": "#F2C14E"
+    },
+    {
+     "type": "portrait",
+     "key": "shushkevich",
+     "name": "Stanislav Shushkevich",
+     "role": "Belarus",
+     "side": "center",
+     "col": 1,
+     "y": 930,
+     "small": true,
+     "atWord": "Belarus",
+     "hold": 3.6,
+     "ring": "#7FB77E"
+    }
+   ]
+  },
+  {
+   "id": "noexist",
+   "say": "The Soviet Union, they declare, no longer exists.",
+   "camera": {
+    "fit": "SOVIET",
+    "pad": 0.1
+   },
+   "actions": [
+    {
+     "type": "dissolve",
+     "atWord": "exists"
+    }
+   ]
+  },
+  {
+   "id": "kaz",
+   "say": "Kazakhstan is the last to declare, on {December 16|December sixteenth}.",
+   "camera": {
+    "center": [
+     67,
+     48
+    ],
+    "span": 34
+   },
+   "date": "1991-12-16",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "KAZ",
+     "atWord": "Kazakhstan",
+     "flag": "kz",
+     "flagNote": "flag from 1992"
+    },
+    {
+     "type": "portrait",
+     "key": "nazarbayev",
+     "name": "Nursultan Nazarbayev",
+     "role": "Kazakhstan's president",
+     "side": "right",
+     "y": 930,
+     "small": true,
+     "atWord": "last",
+     "hold": 2.8,
+     "ring": "#56CFE1"
+    }
+   ]
+  },
+  {
+   "id": "kremlin",
+   "say": "{December 25|December twenty-fifth}: Gorbachev resigns. The Soviet flag comes down over the Kremlin.",
+   "camera": {
+    "center": [
+     37.62,
+     55.75
+    ],
+    "span": 22
+   },
+   "date": "1991-12-25",
+   "actions": [
+    {
+     "type": "portrait",
+     "key": "gorbachev",
+     "name": "Mikhail Gorbachev",
+     "role": "Last Soviet leader",
+     "side": "left",
+     "y": 400,
+     "atWord": "Gorbachev",
+     "stamp": "RESIGNED",
+     "stampWord": "resigns",
+     "hold": 4.6
+    },
+    {
+     "type": "flagSwap",
+     "from": "su",
+     "to": "ru",
+     "x": 690,
+     "atWord": "flag",
+     "caption": "The Kremlin, 25 Dec 1991",
+     "hold": 4.2
+    },
+    {
+     "type": "marker",
+     "text": "Kremlin",
+     "at": [
+      37.62,
+      55.75
+     ],
+     "atWord": "Kremlin",
+     "hold": 1.8
+    },
+    {
+     "type": "declare",
+     "id": "RUS",
+     "atWord": "Kremlin",
+     "flag": "ru"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "Fifteen countries from one. And even on its own, Russia is still…",
+   "camera": {
+    "fit": "SOVIET",
+    "pad": 0.02
+   },
+   "actions": [
+    {
+     "type": "allLabels",
+     "atWord": "Fifteen"
+    }
+   ]
+  }
+ ]
+}
