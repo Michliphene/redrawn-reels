@@ -54,4 +54,4 @@
 - M. A. Hill, "The Myth of Seward's Folly", Western Historical Quarterly 50 (2019): 43–64.
 
 ## Pinned comment (EN)
-Sources: Treaty of Cession (1867); Library of Congress; M. A. Hill, "The Myth of Seward's Folly" (WHQ, 2019). Photos: Brady studio / Library of Congress (no known restrictions). Native peoples' areas are approximate. Price per acre and distance computed from public-domain map data.
+Sources: Treaty of Cession (1867); Library of Congress; M. A. Hill, "The Myth of Seward's Folly" (Western Historical Quarterly, 2019); Alaska Dept. of Environmental Conservation (Prudhoe Bay fact sheet). Photos: Brady studio / Library of Congress (no known restrictions). Native peoples' areas are approximate; flags at Sitka are stylised. Price per acre and distance computed from public-domain map data.

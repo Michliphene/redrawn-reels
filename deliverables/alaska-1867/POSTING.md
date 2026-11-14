@@ -5,7 +5,7 @@ Covers: `cover_9x16.png` (TikTok / Shorts = frame 0) · `cover_3x4.jpg` (Instagr
 
 ## Caption (all platforms)
 Russia sold Alaska to the US for $7.2 million. That's about 2 cents an acre.
-The 1867 Alaska Purchase on a map: Russian America, Seward's treaty, the 37–2 Senate vote and the "Seward's Folly" myth.
+The 1867 Alaska Purchase on a map: Russian America, Seward's treaty, the 37–2 Senate vote, the "Seward's Folly" myth, the gold rushes, statehood in 1959 and Prudhoe Bay oil.
 REDRAWN ep. 2 — map history in under a minute. Sources in the pinned comment.
 
 **Hashtags (5):** #AlaskaPurchase #history #maps #geography #alaska
