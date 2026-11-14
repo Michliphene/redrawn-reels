@@ -18,13 +18,15 @@ import { Fx } from './components/Fx';
 import { Sfx } from './components/Sfx';
 import { BigNumbers, Archives, Callouts, GeoTexts } from './components/Overlays';
 import { setPalette } from './lib/theme';
+import { Stickers, Chapters, Pointers } from './components/Stickers';
+import { Locator } from './components/Locator';
 
 // self-hosted font (OFL) so renders never depend on the network
 const fontWait = delayRender('Montserrat');
 new FontFace('Montserrat', `url(${staticFile('fonts/Montserrat-VF.ttf')})`, { weight: '100 900' }).load()
   .then((f) => { document.fonts.add(f); continueRender(fontWait); });
 
-export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit> }> = ({ episodeId, spec, timings, geo, credits }) => {
+export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit> }> = ({ episodeId, spec, timings, geo, credits, lottieKeys }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   setPalette(spec!.palette);
@@ -52,10 +54,14 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       <FlagSwap t={t} actions={sched.actions} />
       <Archives t={t} actions={sched.actions} />
       <Portraits t={t} actions={sched.actions} credits={credits ?? {}} />
+      <Pointers t={t} actions={sched.actions} projection={projection} />
+      <Stickers t={t} actions={sched.actions} projection={projection} lottieKeys={lottieKeys ?? []} />
       <Callouts t={t} actions={sched.actions} />
       <BigNumbers t={t} actions={sched.actions} />
       <Fx />
       {spec!.counter !== false && <Counter t={t} actions={sched.actions} total={spec!.counter?.total ?? 15} label={spec!.counter?.label} from={hookEnd} />}
+      {spec!.locator && t > hookEnd && <Locator geo={geo!} cam={cam} t={t} />}
+      {t > hookEnd && <Chapters t={t} actions={sched.actions} lottieKeys={lottieKeys ?? []} />}
       <Brand series={spec!.series} title={spec!.title} t={t} titleUntil={hookEnd} />
       {t > hookEnd && t < lastBeatStart && <DateBadge dates={sched.dates} t={t} />}
       <Captions timings={timings!} t={t} />

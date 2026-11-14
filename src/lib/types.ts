@@ -20,17 +20,20 @@ export type Action =
   | { type: 'bigNumber'; value: number; prefix?: string; suffix?: string; decimals?: number; label?: string; y?: number; dur?: number; hold?: number; coins?: boolean; atWord?: string }
   | { type: 'archive'; src: string; caption: string; credit: string; y?: number; w?: number; hold?: number; focus?: string; atWord?: string }
   | { type: 'callout'; text: string; sub?: string; size?: number; y?: number; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; atWord?: string }
-  | { type: 'region'; text: string; at: LonLat; hold?: number; atWord?: string };
+  | { type: 'region'; text: string; at: LonLat; hold?: number; atWord?: string }
+  | { type: 'sticker'; emoji: string; at?: LonLat; dx?: number; dy?: number; x?: number; y?: number; size?: number; tilt?: number; text?: string; hold?: number; atWord?: string }
+  | { type: 'chapter'; emoji: string; text: string; atWord?: string }
+  | { type: 'pointer'; at: LonLat; text: string; from?: [number, number]; hold?: number; atWord?: string };
 export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[] };
 export type EpisodeSpec = {
   id: string; series: string; title: string; data: string;
   timeline: { from: string; to: string; step?: number }; beats: Beat[];
   palette?: { start?: string; startStroke?: string; ids?: Record<string, string>; static?: Record<string, string> };
-  counter?: { label: string; total: number } | false; legend?: boolean;
+  counter?: { label: string; total: number } | false; legend?: boolean; locator?: boolean;
 };
 export type Word = { w: string; start: number; end: number };
 export type Timings = { duration: number; beats: { id: string; start: number; end: number; words: Word[] }[] };
 export type GeoData = FeatureCollection & { features: (Omit<Feature, "id"> & { id: string })[] };
-export type EpisodeProps = { episodeId: string; spec?: EpisodeSpec; timings?: Timings; geo?: GeoData };
+export type EpisodeProps = { episodeId: string; spec?: EpisodeSpec; timings?: Timings; geo?: GeoData; lottieKeys?: string[] };
 /** an action resolved to an absolute time in seconds */
 export type TimedAction = Action & { t: number; beat: string };

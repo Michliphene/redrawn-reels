@@ -68,6 +68,20 @@
       "ALASKA"
      ],
      "atWord": "all"
+    },
+    {
+     "type": "pointer",
+     "at": [
+      -150,
+      65
+     ],
+     "text": "THIS IS ALASKA",
+     "from": [
+      230,
+      -230
+     ],
+     "atWord": "all",
+     "hold": 2.0
     }
    ]
   },
@@ -136,6 +150,45 @@
      ],
      "atWord": "colony",
      "hold": 3.2
+    },
+    {
+     "type": "chapter",
+     "emoji": "otter",
+     "text": "Russian America"
+    },
+    {
+     "type": "sticker",
+     "emoji": "otter",
+     "at": [
+      -152,
+      62
+     ],
+     "dx": -40,
+     "dy": 110,
+     "size": 150,
+     "text": "FUR TRADE",
+     "atWord": "fur-trading",
+     "hold": 2.0
+    },
+    {
+     "type": "region",
+     "text": "United States",
+     "at": [
+      -98,
+      40
+     ],
+     "atWord": "this",
+     "hold": 5
+    },
+    {
+     "type": "region",
+     "text": "Russian Empire",
+     "at": [
+      90,
+      64
+     ],
+     "atWord": "Saint",
+     "hold": 1.8
     }
    ]
   },
@@ -190,6 +243,29 @@
      "atWord": "Britain",
      "hold": 2.4,
      "caption": "British threat?"
+    },
+    {
+     "type": "chapter",
+     "emoji": "thinking",
+     "text": "Why sell?"
+    },
+    {
+     "type": "sticker",
+     "emoji": "money_wings",
+     "x": 250,
+     "y": 900,
+     "size": 170,
+     "atWord": "money",
+     "hold": 2.0
+    },
+    {
+     "type": "sticker",
+     "emoji": "crossed_swords",
+     "x": 830,
+     "y": 900,
+     "size": 150,
+     "atWord": "Crimean",
+     "hold": 1.6
     }
    ]
   },
@@ -251,6 +327,20 @@
      "zoom": 2.0,
      "atWord": "envoy",
      "hold": 2.6
+    },
+    {
+     "type": "chapter",
+     "emoji": "writing",
+     "text": "The deal"
+    },
+    {
+     "type": "sticker",
+     "emoji": "fountain_pen",
+     "x": 900,
+     "y": 1250,
+     "size": 150,
+     "atWord": "signs",
+     "hold": 2.2
     }
    ]
   },
@@ -271,6 +361,11 @@
      "dur": 0.6,
      "hold": 2.0,
      "y": 1080
+    },
+    {
+     "type": "chapter",
+     "emoji": "coin",
+     "text": "The price"
     }
    ]
   },
@@ -287,6 +382,21 @@
      "stamp": "LATER MYTH",
      "stampWord": "myth",
      "atWord": "famous"
+    },
+    {
+     "type": "chapter",
+     "emoji": "newspaper",
+     "text": "The myth"
+    },
+    {
+     "type": "sticker",
+     "emoji": "newspaper",
+     "x": 200,
+     "y": 870,
+     "size": 150,
+     "tilt": -10,
+     "atWord": "critics",
+     "hold": 2.0
     }
    ]
   },
@@ -302,6 +412,20 @@
      "y": 1040,
      "hold": 2.2,
      "atWord": "Senate"
+    },
+    {
+     "type": "chapter",
+     "emoji": "classical_building",
+     "text": "Senate vote"
+    },
+    {
+     "type": "sticker",
+     "emoji": "ballot_box_with_ballot",
+     "x": 540,
+     "y": 820,
+     "size": 170,
+     "atWord": "Senate",
+     "hold": 1.8
     }
    ]
   },
@@ -332,6 +456,24 @@
      "id": "ALASKA",
      "atWord": "American",
      "noLabel": true
+    },
+    {
+     "type": "chapter",
+     "emoji": "flag",
+     "text": "Handover"
+    },
+    {
+     "type": "sticker",
+     "emoji": "flag",
+     "at": [
+      -135.33,
+      57.05
+     ],
+     "dx": 90,
+     "dy": -110,
+     "size": 150,
+     "atWord": "American",
+     "hold": 2.2
     }
    ]
   },
@@ -410,6 +552,11 @@
      "hold": 2.6,
      "atWord": "thousands",
      "size": 34
+    },
+    {
+     "type": "chapter",
+     "emoji": "busts_in_silhouette",
+     "text": "Native peoples"
     }
    ]
   },
@@ -488,6 +635,36 @@
       66
      ],
      "atWord": "oil"
+    },
+    {
+     "type": "chapter",
+     "emoji": "pick",
+     "text": "Gold & oil"
+    },
+    {
+     "type": "sticker",
+     "emoji": "pick",
+     "at": [
+      -150,
+      61
+     ],
+     "dy": 120,
+     "size": 140,
+     "atWord": "gold",
+     "hold": 1.4
+    },
+    {
+     "type": "sticker",
+     "emoji": "oil_drum",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "dx": -140,
+     "dy": -40,
+     "size": 140,
+     "atWord": "oil",
+     "hold": 1.8
     }
    ]
   },
@@ -523,6 +700,20 @@
      ],
      "atWord": "Texas",
      "hold": 2.4
+    },
+    {
+     "type": "chapter",
+     "emoji": "star",
+     "text": "49th state"
+    },
+    {
+     "type": "sticker",
+     "emoji": "star",
+     "x": 860,
+     "y": 1080,
+     "size": 150,
+     "atWord": "49th",
+     "hold": 1.6
     }
    ]
   },
@@ -540,8 +731,18 @@
       "ALASKA"
      ],
      "atWord": "All"
+    },
+    {
+     "type": "sticker",
+     "emoji": "money_bag",
+     "x": 540,
+     "y": 1120,
+     "size": 200,
+     "atWord": "bought",
+     "hold": 1.6
     }
    ]
   }
- ]
+ ],
+ "locator": true
 }
