@@ -71,7 +71,7 @@ Heavy sources live in `assets-src/` (**gitignored**, re-download from the URLs b
 - `public/assets/portraits/` + `credits.json` (Commons/LoC; licence checked via API before download; CC BY-SA only with owner's OK — currently Shushkevich and Nazarbayev).
 - `public/assets/flags/` — `flag-icons` (MIT) + period flags from Commons.
 - npm: `mapshaper` (devDep, MPL-2.0, GeoJSON simplification CLI), `maplibre-gl` (BSD-3-Clause, vector basemaps, no token), `@remotion/rive` (pinned to the same version as `remotion`; see Remotion licence).
-- Not yet fetched: NASA Blue Marble NG (`visibleearth.nasa.gov`, public domain), LottieFiles animations (ask the owner first; Lottie Simple License is *not* in the allowed-licence list).
+- Not yet fetched (blocked from cloud: Commons 429 / NASA eoimages refused): ep.1 portraits `gorbachev, landsbergis, kravchuk, shushkevich, yeltsin_1991` + `flags/ge-1990.svg` (run `scripts/fetch_queue.sh` or download locally; `credits.json` entries exist but licences must be re-verified via API), NASA Blue Marble NG (`visibleearth.nasa.gov`, public domain), LottieFiles animations (ask the owner first; Lottie Simple License is *not* in the allowed-licence list).
 
 ## Setup (fresh clone)
 `scripts/setup.sh` (npm install, Kokoro model download, pip deps).
