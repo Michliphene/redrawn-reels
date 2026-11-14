@@ -1,0 +1,815 @@
+{
+ "id": "louisiana-1803",
+ "episode": 3,
+ "series": "REDRAWN",
+ "title": "How the US doubled in size",
+ "data": "data/louisiana1803.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {
+   "Ildefonso": "Ill-deh-FON-so"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  }
+ },
+ "timeline": {
+  "from": "1795-01-01",
+  "to": "1825-01-01",
+  "step": 5
+ },
+ "palette": {
+  "start": "#D9822B",
+  "startStroke": "#F2A65A",
+  "ids": {
+   "LOUISIANA": "#3C6FB4"
+  },
+  "static": {
+   "US1803": "#2F5A94"
+  }
+ },
+ "counter": false,
+ "legend": false,
+ "locator": true,
+ "beats": [
+  {
+   "id": "hook",
+   "say": "America tried to buy one city.",
+   "camera": {
+    "center": [
+     -90.3,
+     30.3
+    ],
+    "span": 7
+   },
+   "date": null,
+   "hideLocator": true,
+   "actions": [
+    {
+     "type": "marker",
+     "text": "New Orleans",
+     "at": [
+      -90.07,
+      29.95
+     ],
+     "atTime": 0,
+     "hold": 2.2
+    },
+    {
+     "type": "sticker",
+     "emoji": "cityscape",
+     "x": 800,
+     "y": 980,
+     "size": 180,
+     "atTime": 0,
+     "hold": 2.0
+    },
+    {
+     "type": "callout",
+     "text": "1 city?",
+     "y": 1120,
+     "size": 90,
+     "atTime": 0,
+     "hold": 1.9
+    }
+   ]
+  },
+  {
+   "id": "offer",
+   "say": "France offered all of this.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "dur": 0.9
+   },
+   "hideLocator": true,
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "LOUISIANA"
+     ],
+     "atWord": "all"
+    },
+    {
+     "type": "pointer",
+     "at": [
+      -100,
+      42
+     ],
+     "text": "ALL OF THIS",
+     "from": [
+      200,
+      -230
+     ],
+     "atWord": "all",
+     "hold": 1.0
+    },
+    {
+     "type": "sticker",
+     "flag": "fr",
+     "x": 200,
+     "y": 420,
+     "size": 120,
+     "atWord": "France",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "river",
+   "say": "In {1803|eighteen-oh-three}, the United States ends at the Mississippi.",
+   "camera": {
+    "center": [
+     -89,
+     38.5
+    ],
+    "span": 42
+   },
+   "date": "1803",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "world_map",
+     "text": "1803"
+    },
+    {
+     "type": "region",
+     "text": "United States",
+     "at": [
+      -82,
+      38
+     ],
+     "atWord": "United",
+     "hold": 3.0
+    },
+    {
+     "type": "sticker",
+     "flag": "us-15",
+     "x": 880,
+     "y": 980,
+     "size": 120,
+     "atWord": "United",
+     "hold": 1.6
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -95.2,
+       47.24
+      ],
+      [
+       -93.26,
+       44.98
+      ],
+      [
+       -91.2,
+       43.0
+      ],
+      [
+       -90.2,
+       38.6
+      ],
+      [
+       -89.18,
+       37.0
+      ],
+      [
+       -90.05,
+       35.15
+      ],
+      [
+       -90.9,
+       32.35
+      ],
+      [
+       -91.19,
+       30.45
+      ],
+      [
+       -90.07,
+       29.95
+      ],
+      [
+       -89.25,
+       29.15
+      ]
+     ],
+     "color": "#7FD3FF",
+     "width": 8,
+     "dur": 1.2,
+     "hold": 3.0,
+     "label": "Mississippi",
+     "labelAt": [
+      -87.6,
+      35.5
+     ],
+     "atWord": "ends"
+    }
+   ]
+  },
+  {
+   "id": "port",
+   "say": "Its farm trade floats down the river to New Orleans. And Spain has secretly handed all of Louisiana back to France.",
+   "camera": {
+    "center": [
+     -91,
+     34
+    ],
+    "span": 30
+   },
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "anchor",
+     "text": "The port"
+    },
+    {
+     "type": "marker",
+     "text": "New Orleans",
+     "at": [
+      -90.07,
+      29.95
+     ],
+     "atWord": "New",
+     "hold": 2.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "sailboat",
+     "at": [
+      -90.2,
+      36.0
+     ],
+     "dx": 0,
+     "dy": 0,
+     "size": 110,
+     "atWord": "floats",
+     "hold": 1.8
+    },
+    {
+     "type": "callout",
+     "text": "Spain → France",
+     "sub": "secret treaty, 1800",
+     "y": 1060,
+     "size": 64,
+     "hold": 2.6,
+     "atWord": "Spain"
+    },
+    {
+     "type": "sticker",
+     "flag": "fr",
+     "x": 880,
+     "y": 620,
+     "size": 120,
+     "atWord": "France.",
+     "hold": 1.0
+    }
+   ]
+  },
+  {
+   "id": "budget",
+   "say": "Jefferson sends James Monroe to Paris, ready to pay up to ten million dollars for New Orleans and Florida.",
+   "camera": {
+    "center": [
+     -40,
+     45
+    ],
+    "span": 95
+   },
+   "hideLocator": true,
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "money_bag",
+     "text": "The plan"
+    },
+    {
+     "type": "portrait",
+     "key": "jefferson_bust",
+     "name": "Thomas Jefferson",
+     "role": "U.S. President",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "focus": "50% 30%",
+     "atWord": "Jefferson",
+     "hold": 2.4
+    },
+    {
+     "type": "portrait",
+     "key": "monroe",
+     "name": "James Monroe",
+     "role": "U.S. envoy",
+     "side": "right",
+     "y": 360,
+     "small": true,
+     "focus": "55% 35%",
+     "zoom": 1.3,
+     "atWord": "Monroe",
+     "hold": 2.2
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -77.04,
+       38.9
+      ],
+      [
+       2.35,
+       48.86
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 7,
+     "dur": 1.2,
+     "hold": 2.6,
+     "label": "≈ 3,800 miles",
+     "labelAt": [
+      -38,
+      55
+     ],
+     "atWord": "Paris,"
+    },
+    {
+     "type": "marker",
+     "text": "Paris",
+     "at": [
+      2.35,
+      48.86
+     ],
+     "atWord": "Paris,",
+     "hold": 2.6
+    },
+    {
+     "type": "bigNumber",
+     "value": 10000000,
+     "prefix": "up to $",
+     "label": "FOR NEW ORLEANS + FLORIDA",
+     "dur": 0.9,
+     "hold": 1.5,
+     "y": 1000,
+     "atWord": "ten"
+    }
+   ]
+  },
+  {
+   "id": "napoleon",
+   "say": "But Napoleon's army has been wrecked in Haiti, and a new war with Britain is coming.",
+   "camera": {
+    "center": [
+     -82,
+     30
+    ],
+    "span": 42
+   },
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "crossed_swords",
+     "text": "Twist"
+    },
+    {
+     "type": "portrait",
+     "key": "napoleon_bust",
+     "name": "Napoleon Bonaparte",
+     "role": "First Consul of France",
+     "side": "right",
+     "y": 360,
+     "small": true,
+     "focus": "50% 30%",
+     "atWord": "Napoleon's",
+     "hold": 2.6
+    },
+    {
+     "type": "marker",
+     "text": "Haiti (Saint-Domingue)",
+     "at": [
+      -72.3,
+      19.0
+     ],
+     "atWord": "Haiti,",
+     "hold": 2.4
+    },
+    {
+     "type": "sticker",
+     "emoji": "crossed_swords",
+     "at": [
+      -72.3,
+      19.0
+     ],
+     "dx": 0,
+     "dy": -120,
+     "size": 120,
+     "atWord": "wrecked",
+     "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "flag": "gb",
+     "x": 220,
+     "y": 820,
+     "size": 120,
+     "atWord": "Britain",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "ask",
+   "say": "On April 11, France asks: what would you pay for all of Louisiana?",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "date": "1803-04-11",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "thinking",
+     "text": "The offer"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "LOUISIANA"
+     ],
+     "atWord": "all"
+    },
+    {
+     "type": "callout",
+     "text": "All of Louisiana?",
+     "y": 1080,
+     "size": 72,
+     "hold": 1.5,
+     "atWord": "pay"
+    },
+    {
+     "type": "sticker",
+     "emoji": "eyes",
+     "x": 880,
+     "y": 880,
+     "size": 150,
+     "atWord": "asks:",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "deal",
+   "say": "Three weeks later, the deal is signed: fifteen million dollars.",
+   "date": "1803-04-30",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "writing",
+     "text": "The deal"
+    },
+    {
+     "type": "sticker",
+     "emoji": "page_with_curl",
+     "x": 200,
+     "y": 880,
+     "size": 150,
+     "atWord": "signed:",
+     "hold": 1.6
+    },
+    {
+     "type": "bigNumber",
+     "value": 15000000,
+     "prefix": "$",
+     "label": "$11.25M + $3.75M IN CLAIMS",
+     "coins": true,
+     "coinsCount": 14,
+     "dur": 0.9,
+     "hold": 2.2,
+     "y": 1080,
+     "atWord": "fifteen"
+    }
+   ]
+  },
+  {
+   "id": "acre",
+   "say": "Under three cents an acre.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "coin",
+     "text": "The price"
+    },
+    {
+     "type": "bigNumber",
+     "value": 2.8,
+     "decimals": 1,
+     "prefix": "≈ ",
+     "suffix": "¢",
+     "label": "PER ACRE · 828,000 SQ MI",
+     "dur": 0.6,
+     "hold": 1.6,
+     "y": 1080
+    },
+    {
+     "type": "sticker",
+     "emoji": "coin",
+     "x": 880,
+     "y": 940,
+     "size": 140,
+     "atWord": "cents",
+     "hold": 1.2
+    }
+   ]
+  },
+  {
+   "id": "legal",
+   "say": "Jefferson isn't even sure it's constitutional. He buys it anyway.",
+   "date": "1803-10-20",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "classical_building",
+     "text": "Is it legal?"
+    },
+    {
+     "type": "portrait",
+     "key": "jefferson_bust",
+     "name": "Thomas Jefferson",
+     "role": "wanted an amendment",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "focus": "50% 30%",
+     "stamp": "BUYS IT",
+     "stampWord": "buys",
+     "atWord": "Jefferson",
+     "hold": 3.0
+    },
+    {
+     "type": "callout",
+     "text": "Senate: 24 – 7",
+     "sub": "October 20, 1803",
+     "y": 1080,
+     "size": 72,
+     "hold": 1.2,
+     "atWord": "buys"
+    }
+   ]
+  },
+  {
+   "id": "double",
+   "say": "The United States doubles in size.",
+   "date": "1803-12-20",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "star",
+     "text": "Twice as big"
+    },
+    {
+     "type": "declare",
+     "id": "LOUISIANA",
+     "atWord": "doubles",
+     "noLabel": true
+    },
+    {
+     "type": "callout",
+     "text": "×2",
+     "sub": "handover: New Orleans, Dec 20, 1803",
+     "y": 1060,
+     "size": 110,
+     "hold": 1.3,
+     "atWord": "doubles"
+    }
+   ]
+  },
+  {
+   "id": "borders",
+   "say": "But nobody knows where the borders are. The treaty doesn't say.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.12
+   },
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "red_question_mark",
+     "text": "Borders?"
+    },
+    {
+     "type": "sticker",
+     "emoji": "red_question_mark",
+     "at": [
+      -109,
+      44
+     ],
+     "size": 110,
+     "atWord": "nobody",
+     "hold": 1.9
+    },
+    {
+     "type": "sticker",
+     "emoji": "red_question_mark",
+     "at": [
+      -102,
+      36.5
+     ],
+     "size": 100,
+     "atWord": "borders",
+     "hold": 1.9
+    },
+    {
+     "type": "sticker",
+     "emoji": "red_question_mark",
+     "at": [
+      -100,
+      49.6
+     ],
+     "dy": -40,
+     "size": 100,
+     "atWord": "borders",
+     "hold": 1.9
+    },
+    {
+     "type": "region",
+     "text": "Spanish lands",
+     "at": [
+      -108,
+      34
+     ],
+     "atWord": "borders",
+     "hold": 1.9
+    },
+    {
+     "type": "region",
+     "text": "British lands",
+     "at": [
+      -104,
+      50.3
+     ],
+     "atWord": "borders",
+     "hold": 1.9
+    },
+    {
+     "type": "callout",
+     "text": "Shown as settled 1818–19",
+     "size": 40,
+     "y": 1120,
+     "hold": 1.8,
+     "atWord": "treaty"
+    }
+   ]
+  },
+  {
+   "id": "natives",
+   "say": "And the land is home to many Native nations, who never agreed to the sale.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "busts_in_silhouette",
+     "text": "Native nations"
+    },
+    {
+     "type": "region",
+     "text": "Mandan",
+     "at": [
+      -101.2,
+      47.3
+     ],
+     "atWord": "many",
+     "hold": 2.3
+    },
+    {
+     "type": "region",
+     "text": "Lakota",
+     "at": [
+      -101.5,
+      44.3
+     ],
+     "atWord": "many",
+     "hold": 2.3
+    },
+    {
+     "type": "region",
+     "text": "Crow",
+     "at": [
+      -107.5,
+      45.6
+     ],
+     "atWord": "Native",
+     "hold": 2.3
+    },
+    {
+     "type": "region",
+     "text": "Pawnee",
+     "at": [
+      -98.5,
+      41.3
+     ],
+     "atWord": "Native",
+     "hold": 2.3
+    },
+    {
+     "type": "region",
+     "text": "Osage",
+     "at": [
+      -94.8,
+      37.6
+     ],
+     "atWord": "nations,",
+     "hold": 2.3
+    },
+    {
+     "type": "region",
+     "text": "Caddo",
+     "at": [
+      -93.8,
+      32.6
+     ],
+     "atWord": "nations,",
+     "hold": 2.3
+    },
+    {
+     "type": "callout",
+     "text": "Approximate areas, c. 1803",
+     "size": 36,
+     "y": 1120,
+     "hold": 1.5,
+     "atWord": "agreed"
+    }
+   ]
+  },
+  {
+   "id": "today",
+   "say": "Today, that's all or part of fifteen states.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "world_map",
+     "text": "Today"
+    },
+    {
+     "type": "ghost",
+     "id": "STATES_TODAY",
+     "atWord": "Today,",
+     "hold": 2.4
+    },
+    {
+     "type": "callout",
+     "text": "15 states",
+     "sub": "all or part",
+     "y": 1080,
+     "size": 90,
+     "hold": 1.8,
+     "atWord": "fifteen"
+    }
+   ],
+   "hideDate": true
+  },
+  {
+   "id": "loop",
+   "say": "All because…",
+   "camera": {
+    "center": [
+     -90.3,
+     30.3
+    ],
+    "span": 7,
+    "dur": 1.0
+   },
+   "hideLocator": true,
+   "hideChapter": true,
+   "actions": [
+    {
+     "type": "recolor",
+     "ids": [
+      "LOUISIANA"
+     ],
+     "atWord": "All"
+    },
+    {
+     "type": "marker",
+     "text": "New Orleans",
+     "at": [
+      -90.07,
+      29.95
+     ],
+     "atWord": "All",
+     "hold": 1.6
+    }
+   ]
+  }
+ ]
+}

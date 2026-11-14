@@ -42,6 +42,7 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
   const beatIdx = Math.max(0, timings!.beats.findIndex((b, i) => t >= b.start - 0.15 && (i === timings!.beats.length - 1 || t < timings!.beats[i + 1].start - 0.15)));
   const hiddenLocator = !!spec!.beats[beatIdx]?.hideLocator;
   const hiddenChapter = !!spec!.beats[beatIdx]?.hideChapter;
+  const hiddenDate = !!spec!.beats[beatIdx]?.hideDate;
   const end = timings!.duration + 0.5;
   const lastBeatStart = timings!.beats[timings!.beats.length - 1].start;
   // music ducks under the voice, swells slightly at the end
@@ -66,7 +67,7 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       {spec!.locator && !hiddenLocator && <Locator geo={geo!} cam={cam} t={t} />}
       {t > hookEnd && !hiddenChapter && <Chapters t={t} actions={sched.actions} lottieKeys={lottieKeys ?? []} />}
       <Brand series={spec!.series} episode={(spec as any).episode} title={spec!.title} t={t} titleUntil={hookEnd} end={end} {...(cover ? { titleTop: 420, badgeTop: 300 } : {})} />
-      {t > hookEnd && t < lastBeatStart && <DateBadge dates={sched.dates} t={t} />}
+      {t > hookEnd && t < lastBeatStart && !hiddenDate && <DateBadge dates={sched.dates} t={t} />}
       <Captions timings={timings!} t={t} hidden={Object.fromEntries(spec!.beats.filter((b: any) => b.hideCaptionWords).map((b: any) => [b.id, b.hideCaptionWords]))} />
       {!cover && <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />}
       <Sfx actions={sched.actions} />

@@ -66,6 +66,7 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
         if (o <= 0) return null;
         const s = interpolate(t, [g.t, g.t + 0.6], [1.6, 1], clamp);
         const [cx, cy] = path.centroid(f as any);
+        if ((f.properties as any)?.lines) return <path key={`g${i}`} d={path(f as any) ?? ''} fill="none" stroke="#FFFFFF" strokeWidth={2.5} opacity={0.85 * o} />;
         return <path key={`g${i}`} d={path(f as any) ?? ''} fill={g.color ?? '#F2994A'} fillOpacity={0.55 * o} stroke="#fff" strokeWidth={4} strokeDasharray="14 10"
           opacity={o} transform={`translate(${cx} ${cy}) scale(${s}) translate(${-cx} ${-cy})`} />;
       })}
