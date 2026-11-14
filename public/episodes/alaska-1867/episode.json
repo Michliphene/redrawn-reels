@@ -58,10 +58,12 @@
      "prefix": "$",
      "label": "FOR ALL OF THIS?",
      "coins": true,
-     "dur": 1.0,
-     "hold": 3.2,
+     "dur": 0.5,
+     "hold": 3.45,
      "y": 1080,
-     "from": 0.35
+     "from": 0.98,
+     "atTime": 0,
+     "coinsCount": 10
     },
     {
      "type": "pulse",
@@ -92,9 +94,29 @@
      "size": 170,
      "atWord": "million.",
      "hold": 2.6
+    },
+    {
+     "type": "ghost",
+     "id": "TEXAS_GHOST",
+     "atWord": "all",
+     "hold": 0.9
+    },
+    {
+     "type": "region",
+     "text": "Texas, same scale",
+     "at": [
+      -151,
+      63.5
+     ],
+     "atWord": "all",
+     "hold": 0.8
     }
    ],
-   "hideLocator": true
+   "hideLocator": true,
+   "hideCaptionWords": [
+    "$7.2",
+    "million."
+   ]
   },
   {
    "id": "russian",
@@ -292,7 +314,7 @@
   },
   {
    "id": "sign",
-   "say": "On March 30, after an all-night session, Secretary of State William Seward signs the treaty with Russia's envoy, Eduard de Stoeckl.",
+   "say": "On March 30, after an all-night session, Seward signs the treaty with Russia's envoy.",
    "camera": {
     "center": [
      -112,
@@ -309,7 +331,7 @@
       -77.04,
       38.9
      ],
-     "atWord": "Secretary",
+     "atWord": "Seward",
      "hold": 4
     },
     {
@@ -347,7 +369,7 @@
      "focus": "48% 32%",
      "zoom": 2.0,
      "atWord": "envoy",
-     "hold": 1.6
+     "hold": 1.8
     },
     {
      "type": "chapter",
@@ -402,22 +424,23 @@
   },
   {
    "id": "folly",
-   "say": "Some critics mock the deal. But the famous label, Seward's Folly, is largely a later myth.",
+   "say": "Ever heard it called Seward's Folly? Some critics did mock the deal. But that label is largely a later myth.",
    "actions": [
     {
      "type": "callout",
      "text": "“Seward’s Folly”",
      "sub": "most 1867 papers were supportive or neutral",
      "y": 1040,
-     "hold": 3.6,
+     "hold": 4.6,
      "stamp": "LATER MYTH",
      "stampWord": "myth",
-     "atWord": "famous"
+     "atWord": "Seward's"
     },
     {
      "type": "chapter",
      "emoji": "newspaper",
-     "text": "Myth check"
+     "text": "Myth check",
+     "atWord": "Folly?"
     },
     {
      "type": "sticker",
@@ -435,7 +458,7 @@
      "y": 880,
      "size": 150,
      "tilt": -10,
-     "atWord": "famous",
+     "atWord": "Folly?",
      "hold": 2.4
     },
     {
@@ -449,8 +472,21 @@
       -230,
       -180
      ],
-     "atWord": "label,",
+     "atWord": "label",
      "hold": 1.8
+    },
+    {
+     "type": "portrait",
+     "key": "seward",
+     "name": "William Seward",
+     "role": "the 'Folly' was his deal",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "focus": "58% 32%",
+     "zoom": 2.2,
+     "atWord": "Seward's",
+     "hold": 1.6
     }
    ]
   },
@@ -642,7 +678,7 @@
   },
   {
    "id": "gold",
-   "say": "Then come the gold rushes. Then oil.",
+   "say": "And then? Gold rushes. Then oil.",
    "camera": {
     "fit": "FOCUS",
     "pad": 0.08
@@ -656,7 +692,7 @@
       -134.42,
       58.3
      ],
-     "atWord": "gold",
+     "atWord": "Gold",
      "hold": 1.8
     },
     {
@@ -726,7 +762,7 @@
      "dx": -110,
      "dy": -70,
      "size": 120,
-     "atWord": "gold",
+     "atWord": "Gold",
      "hold": 1.4
     },
     {
@@ -842,5 +878,6 @@
    "hideChapter": true
   }
  ],
- "locator": true
+ "locator": true,
+ "episode": 2
 }

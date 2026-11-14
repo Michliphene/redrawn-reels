@@ -27,7 +27,7 @@ export const BigNumbers: React.FC<{ t: number; actions: TimedAction[] }> = ({ t,
       const y = a.y ?? 1110;
       return (
         <div key={i} style={{ position: 'absolute', inset: 0, opacity: o }}>
-          {a.coins && Array.from({ length: 22 }, (_, k) => {
+          {a.coins && Array.from({ length: (a as any).coinsCount ?? 22 }, (_, k) => {
             const x = 60 + random(`cx${i}${k}`) * 960, delay = random(`cd${i}${k}`) * 1.2, sp = 700 + random(`cs${i}${k}`) * 500;
             const yy = -80 + (t - a.t - delay) * sp; if (t - a.t < delay || yy > 1950) return null;
             return <div key={k} style={{ position: 'absolute', left: x, top: yy }}><Coin size={44 + random(`cz${i}${k}`) * 30} spin={(t - a.t) * 8 + k} /></div>;

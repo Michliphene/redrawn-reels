@@ -65,9 +65,9 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       {spec!.counter !== false && <Counter t={t} actions={sched.actions} total={spec!.counter?.total ?? 15} label={spec!.counter?.label} from={hookEnd} />}
       {spec!.locator && !hiddenLocator && <Locator geo={geo!} cam={cam} t={t} />}
       {t > hookEnd && !hiddenChapter && <Chapters t={t} actions={sched.actions} lottieKeys={lottieKeys ?? []} />}
-      <Brand series={spec!.series} title={spec!.title} t={t} titleUntil={hookEnd} end={end} />
+      <Brand series={spec!.series} episode={(spec as any).episode} title={spec!.title} t={t} titleUntil={hookEnd} end={end} />
       {t > hookEnd && t < lastBeatStart && <DateBadge dates={sched.dates} t={t} />}
-      <Captions timings={timings!} t={t} />
+      <Captions timings={timings!} t={t} hidden={Object.fromEntries(spec!.beats.filter((b: any) => b.hideCaptionWords).map((b: any) => [b.id, b.hideCaptionWords]))} />
       <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />
       <Sfx actions={sched.actions} />
       <Audio src={staticFile(`episodes/${episodeId}/voice.wav`)} />
