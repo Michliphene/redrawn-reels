@@ -61,5 +61,17 @@ the owner talks to you in **French**.
 - Components: `src/components/*` (MapLayer, Labels, Units, Portrait, Flag, FlagSwap, Counter, Timeline,
   DateBadge, Captions, Brand, Fx, Sfx); camera in `src/lib/camera.ts`; cue scheduling in `src/lib/schedule.ts`.
 
+## Assets (folders, sources, licences)
+Heavy sources live in `assets-src/` (**gitignored**, re-download from the URLs below); only render-ready versions are committed (< 10 MB each).
+- `assets-src/raster/` — Natural Earth 1:10m `SR_HR`, `NE2_HR_LC_SR` (21600×10800 TIFF, public domain, <https://naciscdn.org/naturalearth/10m/raster/>).
+  → `public/assets/raster/*_8192.jpg` (8192 px, q85) + `README.md` (source/licence). Equirectangular, de facto borders: check disputed areas.
+- `assets-src/game-icons/` — full game-icons.net pack (<https://github.com/game-icons/icons>, **CC BY 3.0**, CC0 for 2 authors).
+  → `public/assets/icons/*.svg` (selection) + `CREDITS.md` (**attribution by author is mandatory**: Lorc, Delapouite, Skoll) + `LICENSE-game-icons.txt`.
+- `assets-src/blendergis/` — BlenderGIS add-on zip (GPL-3.0, tool only, never shipped in a video/repo). Install: Blender → Edit → Preferences → Add-ons → Install… → pick the zip → tick "BlenderGIS" (Blender 2.83–5.x; the add-on refuses ≥ 6).
+- `public/assets/portraits/` + `credits.json` (Commons/LoC; licence checked via API before download; CC BY-SA only with owner's OK — currently Shushkevich and Nazarbayev).
+- `public/assets/flags/` — `flag-icons` (MIT) + period flags from Commons.
+- npm: `mapshaper` (devDep, MPL-2.0, GeoJSON simplification CLI), `maplibre-gl` (BSD-3-Clause, vector basemaps, no token), `@remotion/rive` (pinned to the same version as `remotion`; see Remotion licence).
+- Not yet fetched: NASA Blue Marble NG (`visibleearth.nasa.gov`, public domain), LottieFiles animations (ask the owner first; Lottie Simple License is *not* in the allowed-licence list).
+
 ## Setup (fresh clone)
 `scripts/setup.sh` (npm install, Kokoro model download, pip deps).
