@@ -3,15 +3,17 @@ import { interpolate } from 'remotion';
 import { theme } from '../lib/theme';
 
 /** Series tag (top-left) + title card shown during the hook. */
-export const Brand: React.FC<{ series: string; title: string; t: number; titleUntil: number; end?: number }> = ({ series, title, t, titleUntil, end }) => {
+export const Brand: React.FC<{ series: string; episode?: number; title: string; t: number; titleUntil: number; end?: number; titleTop?: number; badgeTop?: number }> = ({ series, episode, title, t, titleUntil, end, titleTop = 170, badgeTop = 70 }) => {
   // visible on frame 0 (hook) and again on the last 0.4 s so the loop cut is seamless
   const o = Math.max(interpolate(t, [titleUntil - 0.3, titleUntil], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
     end ? interpolate(t, [end - 0.45, end - 0.1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0);
   return (
     <>
-      <div style={{ position: 'absolute', top: 70, left: 60, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 8,
+      <div style={{ position: 'absolute', top: badgeTop, left: 60, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 8,
         color: '#0B1120', background: theme.accent, padding: '8px 18px', borderRadius: 6 }}>{series}</div>
-      <div style={{ position: 'absolute', top: 170, width: '100%', textAlign: 'center', opacity: o, fontFamily: 'Montserrat', fontWeight: 900,
+      {episode != null && <div style={{ position: 'absolute', top: badgeTop, left: 340, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 4,
+        color: theme.accent, border: `3px solid ${theme.accent}`, padding: '5px 14px', borderRadius: 6, opacity: o }}>EP {episode}</div>}
+      <div style={{ position: 'absolute', top: titleTop, width: '100%', textAlign: 'center', opacity: o, fontFamily: 'Montserrat', fontWeight: 900,
         fontSize: 92, color: theme.text, textTransform: 'uppercase', lineHeight: 1.05, textShadow: '0 6px 24px rgba(0,0,0,0.7)' }}>{title}</div>
     </>
   );

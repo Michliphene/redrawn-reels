@@ -11,6 +11,8 @@ video = sys.argv[sys.argv.index("--video") + 1] if "--video" in sys.argv else os
 ep = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "episode.json")))
 tm = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "timings.json")))
 out = os.path.join(ROOT, "out/review", ep_id); os.makedirs(out, exist_ok=True)
+for f in os.listdir(out):  # never leave sheets from a previous render behind
+    if f.startswith(("beat_", "hook_", "loop_")) or f in ("cues.md", "virality_metrics.json"): os.remove(os.path.join(out, f))
 norm = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())
 lines = [f"# Cue timeline — {ep_id} (video {tm['duration']:.2f}s)\n"]
 for i, (b, bt) in enumerate(zip(ep["beats"], tm["beats"])):

@@ -18,6 +18,7 @@ export function schedule(spec: EpisodeSpec, timings: Timings) {
         if (!w) throw new Error(`atWord "${a.atWord}" not found in beat ${b.id}`);
         t = w.start;
       }
+      if (typeof (a as any).atTime === 'number') t = (a as any).atTime;
       const wordT = (word: string) => {
         for (const bb of timings.beats) { const w = bb.words.find((x) => x.start >= t - 0.01 && norm(x.w).startsWith(norm(word))); if (w) return w.start; }
         throw new Error(`word "${word}" not found after ${b.id}`);

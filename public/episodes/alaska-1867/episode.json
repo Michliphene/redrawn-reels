@@ -27,7 +27,7 @@
  },
  "timeline": {
   "from": "1860-01-01",
-  "to": "1960-01-01",
+  "to": "1980-01-01",
   "step": 20
  },
  "palette": {
@@ -56,12 +56,14 @@
      "type": "bigNumber",
      "value": 7200000,
      "prefix": "$",
-     "label": "FOR ALL OF THIS?",
+     "label": "FOR ALL THIS?",
      "coins": true,
-     "dur": 1.0,
-     "hold": 3.2,
+     "dur": 0.5,
+     "hold": 3.45,
      "y": 1080,
-     "from": 0.35
+     "from": 1,
+     "atTime": 0,
+     "coinsCount": 10
     },
     {
      "type": "pulse",
@@ -78,11 +80,11 @@
      ],
      "text": "THIS IS ALASKA",
      "from": [
-      230,
+      190,
       -230
      ],
-     "atWord": "That's",
-     "hold": 2.4
+     "atWord": "million.",
+     "hold": 2.6
     },
     {
      "type": "sticker",
@@ -90,11 +92,31 @@
      "x": 880,
      "y": 880,
      "size": 170,
-     "atWord": "million.",
-     "hold": 2.6
+     "atWord": "That's",
+     "hold": 1.4
+    },
+    {
+     "type": "ghost",
+     "id": "TEXAS_GHOST",
+     "atWord": "all",
+     "hold": 0.7
+    },
+    {
+     "type": "region",
+     "text": "Texas, same scale",
+     "at": [
+      -151,
+      63.5
+     ],
+     "atWord": "all",
+     "hold": 0.7
     }
    ],
-   "hideLocator": true
+   "hideLocator": true,
+   "hideCaptionWords": [
+    "$7.2",
+    "million."
+   ]
   },
   {
    "id": "russian",
@@ -231,7 +253,7 @@
       -116,
       61
      ],
-     "hold": 3.6,
+     "hold": 2.4,
      "atWord": "Britain"
     },
     {
@@ -287,12 +309,19 @@
      "size": 130,
      "atWord": "Britain",
      "hold": 1.6
+    },
+    {
+     "type": "callout",
+     "text": "2 reasons",
+     "y": 1040,
+     "hold": 1.2,
+     "atWord": "two"
     }
    ]
   },
   {
    "id": "sign",
-   "say": "On March 30, after an all-night session, Secretary of State William Seward signs the treaty with Russia's envoy, Eduard de Stoeckl.",
+   "say": "On March 30, after an all-night session, Seward signs the treaty with Russia's envoy.",
    "camera": {
     "center": [
      -112,
@@ -309,8 +338,8 @@
       -77.04,
       38.9
      ],
-     "atWord": "Secretary",
-     "hold": 4
+     "atWord": "Seward",
+     "hold": 2.2
     },
     {
      "type": "archive",
@@ -347,7 +376,7 @@
      "focus": "48% 32%",
      "zoom": 2.0,
      "atWord": "envoy",
-     "hold": 1.6
+     "hold": 1.8
     },
     {
      "type": "chapter",
@@ -402,28 +431,30 @@
   },
   {
    "id": "folly",
-   "say": "Some critics mock the deal. But the famous label, Seward's Folly, is largely a later myth.",
+   "say": "Ever heard it called Seward's Folly? Some critics did mock the deal. But that label is largely a later myth.",
    "actions": [
     {
      "type": "callout",
      "text": "“Seward’s Folly”",
      "sub": "most 1867 papers were supportive or neutral",
      "y": 1040,
-     "hold": 3.6,
+     "hold": 5.4,
      "stamp": "LATER MYTH",
-     "stampWord": "myth",
-     "atWord": "famous"
+     "stampWord": "largely",
+     "atWord": "Seward's",
+     "stampSize": 60
     },
     {
      "type": "chapter",
      "emoji": "newspaper",
-     "text": "Myth check"
+     "text": "Myth check",
+     "atWord": "Folly?"
     },
     {
      "type": "sticker",
      "emoji": "laugh",
-     "x": 820,
-     "y": 860,
+     "x": 870,
+     "y": 690,
      "size": 170,
      "atWord": "mock",
      "hold": 1.4
@@ -435,7 +466,7 @@
      "y": 880,
      "size": 150,
      "tilt": -10,
-     "atWord": "famous",
+     "atWord": "Folly?",
      "hold": 2.4
     },
     {
@@ -449,8 +480,21 @@
       -230,
       -180
      ],
-     "atWord": "label,",
+     "atWord": "label",
      "hold": 1.8
+    },
+    {
+     "type": "portrait",
+     "key": "seward",
+     "name": "William Seward",
+     "role": "the 'Folly' was his deal",
+     "side": "left",
+     "y": 360,
+     "small": true,
+     "focus": "58% 32%",
+     "zoom": 2.2,
+     "atWord": "Seward's",
+     "hold": 1.6
     }
    ]
   },
@@ -472,7 +516,7 @@
       38.89
      ],
      "atWord": "Senate",
-     "hold": 2.4
+     "hold": 1.6
     },
     {
      "type": "sticker",
@@ -544,10 +588,11 @@
      "type": "flagSwap",
      "from": "ru-stylised",
      "to": "us-37",
-     "x": 760,
-     "atWord": "Sitka",
-     "hold": 3.5,
-     "caption": "Sitka, Oct 18, 1867 · flags stylised"
+     "x": 700,
+     "atWord": "the",
+     "hold": 3.4,
+     "caption": "Sitka, 1867 · flags stylised",
+     "h": 170
     },
     {
      "type": "declare",
@@ -573,7 +618,7 @@
       69.3
      ],
      "atWord": "Native",
-     "hold": 3.4
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -583,7 +628,7 @@
       65
      ],
      "atWord": "Native",
-     "hold": 3.4
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -593,7 +638,7 @@
       61.2
      ],
      "atWord": "peoples",
-     "hold": 3.2
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -603,7 +648,7 @@
       54.6
      ],
      "atWord": "peoples",
-     "hold": 3.2
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -613,7 +658,7 @@
       57.6
      ],
      "atWord": "there",
-     "hold": 3.0
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -623,13 +668,13 @@
       58.2
      ],
      "atWord": "there",
-     "hold": 3.0
+     "hold": 2.6
     },
     {
      "type": "callout",
      "text": "Approximate traditional areas",
      "y": 1150,
-     "hold": 2.6,
+     "hold": 1.8,
      "atWord": "thousands",
      "size": 34
     },
@@ -642,7 +687,7 @@
   },
   {
    "id": "gold",
-   "say": "Then come the gold rushes. Then oil.",
+   "say": "So what did America get? Gold rushes.",
    "camera": {
     "fit": "FOCUS",
     "pad": 0.08
@@ -656,8 +701,8 @@
       -134.42,
       58.3
      ],
-     "atWord": "gold",
-     "hold": 1.8
+     "atWord": "Gold",
+     "hold": 1.0
     },
     {
      "type": "marker",
@@ -667,54 +712,12 @@
       64.5
      ],
      "atWord": "rushes",
-     "hold": 1.8
-    },
-    {
-     "type": "date",
-     "date": "1899",
-     "atWord": "rushes"
-    },
-    {
-     "type": "marker",
-     "text": "Prudhoe Bay · oil 1968",
-     "at": [
-      -148.34,
-      70.26
-     ],
-     "atWord": "oil",
-     "hold": 1.8
-    },
-    {
-     "type": "path",
-     "coords": [
-      [
-       -148.34,
-       70.26
-      ],
-      [
-       -147.72,
-       64.84
-      ],
-      [
-       -146.35,
-       61.13
-      ]
-     ],
-     "color": "#E8E8E8",
-     "width": 6,
-     "dur": 1.2,
-     "hold": 1.3,
-     "label": "Pipeline, 1977 (simplified)",
-     "labelAt": [
-      -138,
-      64
-     ],
-     "atWord": "oil"
+     "hold": 1.0
     },
     {
      "type": "chapter",
      "emoji": "pick",
-     "text": "Gold & oil"
+     "text": "Gold rush"
     },
     {
      "type": "sticker",
@@ -726,8 +729,8 @@
      "dx": -110,
      "dy": -70,
      "size": 120,
-     "atWord": "gold",
-     "hold": 1.4
+     "atWord": "Gold",
+     "hold": 1.0
     },
     {
      "type": "sticker",
@@ -737,23 +740,15 @@
       64.5
      ],
      "dx": -40,
-     "dy": 100,
+     "dy": 170,
      "size": 120,
      "atWord": "rushes",
-     "hold": 1.2
+     "hold": 1.0
     },
     {
-     "type": "sticker",
-     "emoji": "oil_drum",
-     "at": [
-      -148.34,
-      70.26
-     ],
-     "dx": 40,
-     "dy": 150,
-     "size": 120,
-     "atWord": "oil",
-     "hold": 1.8
+     "type": "date",
+     "date": "1899",
+     "atWord": "rushes"
     }
    ]
   },
@@ -778,7 +773,7 @@
      "type": "ghost",
      "id": "TEXAS_GHOST",
      "atWord": "twice",
-     "hold": 1.9
+     "hold": 1.3
     },
     {
      "type": "region",
@@ -788,7 +783,7 @@
       63.5
      ],
      "atWord": "twice",
-     "hold": 1.7
+     "hold": 1.3
     },
     {
      "type": "chapter",
@@ -803,6 +798,88 @@
      "size": 150,
      "atWord": "49th",
      "hold": 1.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "ALASKA"
+     ],
+     "atWord": "Alaska"
+    }
+   ]
+  },
+  {
+   "id": "oil",
+   "say": "Then oil: the largest oil field in the United States.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "date": "1968",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "oil_drum",
+     "text": "Oil"
+    },
+    {
+     "type": "marker",
+     "text": "Prudhoe Bay",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "atWord": "oil:",
+     "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "oil_drum",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "dx": 0,
+     "dy": -130,
+     "size": 120,
+     "atWord": "oil:",
+     "hold": 1.6
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -148.34,
+       70.26
+      ],
+      [
+       -147.72,
+       64.84
+      ],
+      [
+       -146.35,
+       61.13
+      ]
+     ],
+     "color": "#E8E8E8",
+     "width": 6,
+     "dur": 1.0,
+     "hold": 1.6,
+     "label": "Pipeline (1977), simplified",
+     "labelAt": [
+      -138,
+      64
+     ],
+     "atWord": "largest"
+    },
+    {
+     "type": "callout",
+     "text": "Largest U.S. oil field",
+     "sub": "Prudhoe Bay · discovery announced 1968",
+     "y": 1060,
+     "size": 64,
+     "hold": 1.8,
+     "atWord": "largest"
     }
    ]
   },
@@ -842,5 +919,6 @@
    "hideChapter": true
   }
  ],
- "locator": true
+ "locator": true,
+ "episode": 2
 }
