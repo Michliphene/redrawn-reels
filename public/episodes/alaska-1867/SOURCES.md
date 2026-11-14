@@ -4,15 +4,16 @@
 1. $7.2 million. That's what America paid for all of this.
 2. In 1867, this was Russian America: a fur-trading colony, over 4,000 miles from Saint Petersburg.
 3. Historians point to two reasons Russia sold: money troubles after the Crimean War, and fear that Britain could simply take it.
-4. On March 30, after an all-night session, Secretary of State William Seward signs the treaty with Russia's envoy, Eduard de Stoeckl.
+4. On March 30, after an all-night session, Seward signs the treaty with Russia's envoy.
 5. About two cents an acre.
-6. Some critics mock the deal. But the famous label, Seward's Folly, is largely a later myth.
+6. Ever heard it called Seward's Folly? Some critics did mock the deal. But that label is largely a later myth.
 7. The Senate approves it, thirty-seven to two.
 8. October 18, Sitka: the Russian flag comes down, and the American flag goes up.
 9. But Alaska's Native peoples, there for thousands of years, are never consulted.
-10. Then come the gold rushes. Then oil.
+10. And then? Gold rushes.
 11. In 1959, Alaska becomes the 49th state, more than twice the size of Texas.
-12. All of it, bought for… → (loop) "$7.2 million."
+12. Then oil: the largest oil field in North America.
+13. All of it, bought for… → (loop) "$7.2 million."
 
 ## Facts used
 | Claim | Value | Note / source |
@@ -27,7 +28,8 @@
 | Flags at Sitka | shown **stylised** | which Russian flag was lowered is described differently (imperial flag vs. company flag); U.S. flag drawn as the 37-star flag, official from 4 Jul 1867 (star layouts varied) |
 | Statehood | 3 Jan 1959, 49th state | — |
 | Gold | Juneau 1880; Nome 1899 | (the 1896–99 Klondike rush was in Canada — not shown) |
-| Oil | Prudhoe Bay discovery 1968; Trans-Alaska Pipeline 1977 | route drawn simplified (Prudhoe → Fairbanks area → Valdez) |
+| Oil | Prudhoe Bay discovery 1968 (12 Mar 1968; some accounts say Dec 1967 — **dates vary**); production from 1977 via the Trans-Alaska Pipeline | "largest oil field in North America" (~25 bn bbl originally in place): Alaska Dept. of Environmental Conservation fact sheet (2006), https://dec.alaska.gov/spar/ppr/response/sum_fy06/060302301/factsheets/060302301_factsheet_pb.pdf ; PetroWiki. Pipeline route drawn simplified |
+| Today's value of $7.2M | **not shown** | estimates $120–140M depending on index/base year — too variable to put on screen |
 
 ## Debated / nuanced points
 - **Why Russia sold:** finances after the Crimean War (1853–56) + indefensibility vs Britain is the standard account; some historians stress geopolitics over money. → script says "Historians point to…", no single cause.

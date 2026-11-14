@@ -10,7 +10,7 @@ const c = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.
 export const FlagSwap: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, actions }) => {
   const f = actions.find((a) => a.type === 'flagSwap') as F | undefined;
   if (!f || t < f.t - 0.4) return null;
-  const top = 380, bottom = 1240, h = 210;
+  const top = 380, bottom = 1240, h = (f as any).h ?? 210;
   const appear = interpolate(t, [f.t - 0.4, f.t, f.t + (f.hold ?? 4.6), f.t + (f.hold ?? 4.6) + 0.5], [0, 1, 1, 0], c);
   if (t > f.t + (f.hold ?? 4.6) + 0.5) return null;
   const down = interpolate(t, [f.t, f.t + 1.6], [top, bottom - h], c);

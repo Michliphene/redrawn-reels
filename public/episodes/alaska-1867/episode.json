@@ -27,7 +27,7 @@
  },
  "timeline": {
   "from": "1860-01-01",
-  "to": "1960-01-01",
+  "to": "1980-01-01",
   "step": 20
  },
  "palette": {
@@ -61,7 +61,7 @@
      "dur": 0.5,
      "hold": 3.45,
      "y": 1080,
-     "from": 0.98,
+     "from": 1,
      "atTime": 0,
      "coinsCount": 10
     },
@@ -84,7 +84,7 @@
       -230
      ],
      "atWord": "That's",
-     "hold": 2.4
+     "hold": 1.05
     },
     {
      "type": "sticker",
@@ -99,7 +99,7 @@
      "type": "ghost",
      "id": "TEXAS_GHOST",
      "atWord": "all",
-     "hold": 0.9
+     "hold": 0.7
     },
     {
      "type": "region",
@@ -109,7 +109,7 @@
       63.5
      ],
      "atWord": "all",
-     "hold": 0.8
+     "hold": 0.7
     }
    ],
    "hideLocator": true,
@@ -253,7 +253,7 @@
       -116,
       61
      ],
-     "hold": 3.6,
+     "hold": 2.4,
      "atWord": "Britain"
     },
     {
@@ -309,6 +309,13 @@
      "size": 130,
      "atWord": "Britain",
      "hold": 1.6
+    },
+    {
+     "type": "callout",
+     "text": "2 reasons",
+     "y": 1040,
+     "hold": 1.2,
+     "atWord": "two"
     }
    ]
   },
@@ -332,7 +339,7 @@
       38.9
      ],
      "atWord": "Seward",
-     "hold": 4
+     "hold": 2.2
     },
     {
      "type": "archive",
@@ -431,10 +438,11 @@
      "text": "“Seward’s Folly”",
      "sub": "most 1867 papers were supportive or neutral",
      "y": 1040,
-     "hold": 4.6,
+     "hold": 5.4,
      "stamp": "LATER MYTH",
-     "stampWord": "myth",
-     "atWord": "Seward's"
+     "stampWord": "largely",
+     "atWord": "Seward's",
+     "stampSize": 60
     },
     {
      "type": "chapter",
@@ -445,8 +453,8 @@
     {
      "type": "sticker",
      "emoji": "laugh",
-     "x": 820,
-     "y": 860,
+     "x": 870,
+     "y": 690,
      "size": 170,
      "atWord": "mock",
      "hold": 1.4
@@ -508,7 +516,7 @@
       38.89
      ],
      "atWord": "Senate",
-     "hold": 2.4
+     "hold": 1.6
     },
     {
      "type": "sticker",
@@ -580,10 +588,11 @@
      "type": "flagSwap",
      "from": "ru-stylised",
      "to": "us-37",
-     "x": 760,
-     "atWord": "Sitka",
-     "hold": 3.5,
-     "caption": "Sitka, Oct 18, 1867 · flags stylised"
+     "x": 700,
+     "atWord": "the",
+     "hold": 3.4,
+     "caption": "Sitka, Oct 18, 1867 · flags stylised",
+     "h": 170
     },
     {
      "type": "declare",
@@ -609,7 +618,7 @@
       69.3
      ],
      "atWord": "Native",
-     "hold": 3.4
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -619,7 +628,7 @@
       65
      ],
      "atWord": "Native",
-     "hold": 3.4
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -629,7 +638,7 @@
       61.2
      ],
      "atWord": "peoples",
-     "hold": 3.2
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -639,7 +648,7 @@
       54.6
      ],
      "atWord": "peoples",
-     "hold": 3.2
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -649,7 +658,7 @@
       57.6
      ],
      "atWord": "there",
-     "hold": 3.0
+     "hold": 2.6
     },
     {
      "type": "region",
@@ -659,13 +668,13 @@
       58.2
      ],
      "atWord": "there",
-     "hold": 3.0
+     "hold": 2.6
     },
     {
      "type": "callout",
      "text": "Approximate traditional areas",
      "y": 1150,
-     "hold": 2.6,
+     "hold": 1.8,
      "atWord": "thousands",
      "size": 34
     },
@@ -678,7 +687,7 @@
   },
   {
    "id": "gold",
-   "say": "And then? Gold rushes. Then oil.",
+   "say": "And then? Gold rushes.",
    "camera": {
     "fit": "FOCUS",
     "pad": 0.08
@@ -693,7 +702,7 @@
       58.3
      ],
      "atWord": "Gold",
-     "hold": 1.8
+     "hold": 1.0
     },
     {
      "type": "marker",
@@ -703,54 +712,12 @@
       64.5
      ],
      "atWord": "rushes",
-     "hold": 1.8
-    },
-    {
-     "type": "date",
-     "date": "1899",
-     "atWord": "rushes"
-    },
-    {
-     "type": "marker",
-     "text": "Prudhoe Bay · oil 1968",
-     "at": [
-      -148.34,
-      70.26
-     ],
-     "atWord": "oil",
-     "hold": 1.8
-    },
-    {
-     "type": "path",
-     "coords": [
-      [
-       -148.34,
-       70.26
-      ],
-      [
-       -147.72,
-       64.84
-      ],
-      [
-       -146.35,
-       61.13
-      ]
-     ],
-     "color": "#E8E8E8",
-     "width": 6,
-     "dur": 1.2,
-     "hold": 1.3,
-     "label": "Pipeline, 1977 (simplified)",
-     "labelAt": [
-      -138,
-      64
-     ],
-     "atWord": "oil"
+     "hold": 1.0
     },
     {
      "type": "chapter",
      "emoji": "pick",
-     "text": "Gold & oil"
+     "text": "Gold rush"
     },
     {
      "type": "sticker",
@@ -763,7 +730,7 @@
      "dy": -70,
      "size": 120,
      "atWord": "Gold",
-     "hold": 1.4
+     "hold": 1.0
     },
     {
      "type": "sticker",
@@ -773,23 +740,15 @@
       64.5
      ],
      "dx": -40,
-     "dy": 100,
+     "dy": 170,
      "size": 120,
      "atWord": "rushes",
-     "hold": 1.2
+     "hold": 1.0
     },
     {
-     "type": "sticker",
-     "emoji": "oil_drum",
-     "at": [
-      -148.34,
-      70.26
-     ],
-     "dx": 40,
-     "dy": 150,
-     "size": 120,
-     "atWord": "oil",
-     "hold": 1.8
+     "type": "date",
+     "date": "1899",
+     "atWord": "rushes"
     }
    ]
   },
@@ -814,7 +773,7 @@
      "type": "ghost",
      "id": "TEXAS_GHOST",
      "atWord": "twice",
-     "hold": 1.9
+     "hold": 1.3
     },
     {
      "type": "region",
@@ -824,7 +783,7 @@
       63.5
      ],
      "atWord": "twice",
-     "hold": 1.7
+     "hold": 1.3
     },
     {
      "type": "chapter",
@@ -839,6 +798,81 @@
      "size": 150,
      "atWord": "49th",
      "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "oil",
+   "say": "Then oil: the largest oil field in North America.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "date": "1968",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "oil_drum",
+     "text": "Oil"
+    },
+    {
+     "type": "marker",
+     "text": "Prudhoe Bay · 1968",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "atWord": "oil:",
+     "hold": 2.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "oil_drum",
+     "at": [
+      -148.34,
+      70.26
+     ],
+     "dx": 0,
+     "dy": -130,
+     "size": 120,
+     "atWord": "oil:",
+     "hold": 1.6
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -148.34,
+       70.26
+      ],
+      [
+       -147.72,
+       64.84
+      ],
+      [
+       -146.35,
+       61.13
+      ]
+     ],
+     "color": "#E8E8E8",
+     "width": 6,
+     "dur": 1.0,
+     "hold": 2.2,
+     "label": "Pipeline, 1977 (simplified)",
+     "labelAt": [
+      -138,
+      64
+     ],
+     "atWord": "largest"
+    },
+    {
+     "type": "callout",
+     "text": "Largest oil field",
+     "sub": "in North America · Prudhoe Bay",
+     "y": 1060,
+     "size": 64,
+     "hold": 2.0,
+     "atWord": "largest"
     }
    ]
   },
