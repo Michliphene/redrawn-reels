@@ -39,6 +39,8 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
   const punch = interpolate(t, [0, 0.7], [1.18, 1], { extrapolateRight: 'clamp', easing: (x) => 1 - Math.pow(1 - x, 3) });
   const projection = projectionFor({ ...cam, scale: cam.scale * punch, off: [cam.off[0] + Math.sin(t * 70) * amp, cam.off[1] + Math.cos(t * 55) * amp] });
   const hookEnd = timings!.beats[0].end;
+  const beatIdx = Math.max(0, timings!.beats.findIndex((b, i) => t >= b.start - 0.15 && (i === timings!.beats.length - 1 || t < timings!.beats[i + 1].start - 0.15)));
+  const hiddenLocator = !!spec!.beats[beatIdx]?.hideLocator;
   const end = timings!.duration + 0.5;
   const lastBeatStart = timings!.beats[timings!.beats.length - 1].start;
   // music ducks under the voice, swells slightly at the end
@@ -60,9 +62,9 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       <BigNumbers t={t} actions={sched.actions} />
       <Fx />
       {spec!.counter !== false && <Counter t={t} actions={sched.actions} total={spec!.counter?.total ?? 15} label={spec!.counter?.label} from={hookEnd} />}
-      {spec!.locator && t > hookEnd && <Locator geo={geo!} cam={cam} t={t} />}
+      {spec!.locator && !hiddenLocator && <Locator geo={geo!} cam={cam} t={t} />}
       {t > hookEnd && <Chapters t={t} actions={sched.actions} lottieKeys={lottieKeys ?? []} />}
-      <Brand series={spec!.series} title={spec!.title} t={t} titleUntil={hookEnd} />
+      <Brand series={spec!.series} title={spec!.title} t={t} titleUntil={hookEnd} end={end} />
       {t > hookEnd && t < lastBeatStart && <DateBadge dates={sched.dates} t={t} />}
       <Captions timings={timings!} t={t} />
       <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />

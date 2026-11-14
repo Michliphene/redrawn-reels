@@ -19,7 +19,7 @@ export const Portraits: React.FC<{ t: number; actions: TimedAction[]; credits: R
         const s = spring({ frame: (t - p.t) * FPS, fps: FPS, config: { damping: 15, stiffness: 140 } });
         const out = interpolate(t, [end, end + 0.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
         const idx = (slot[side + (p.row ?? 0)] = (slot[side + (p.row ?? 0)] ?? -1) + 1);
-        const W = p.small ? 230 : 300;
+        const W = p.small ? 260 : 300;
         const x = side === 'left' ? 40 : side === 'right' ? 1040 - W : 540 - W / 2 + (p.col ?? 0) * (W + 20);
         const y = (p.y ?? 900) + (p.row ?? 0) * 0;
         const dir = side === 'right' ? 1 : -1;
@@ -37,8 +37,8 @@ export const Portraits: React.FC<{ t: number; actions: TimedAction[]; credits: R
                 objectPosition: p.focus ?? '50% 25%', filter: `grayscale(${0.35 + 0.65 * color}) contrast(1.1)`,
                 transform: `scale(${(p.zoom ?? 1) * (1.08 - 0.08 * Math.min(1, (t - p.t) / 3))})`, transformOrigin: p.focus ?? '50% 25%' }} />
               <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '40px 14px 10px', background: 'linear-gradient(transparent, rgba(0,0,0,0.92))' }}>
-                <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: p.small ? 26 : 32, color: '#fff', lineHeight: 1.05 }}>{p.name}</div>
-                <div style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: p.small ? 18 : 21, color: '#FFC94D', marginTop: 3 }}>{p.role}</div>
+                <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: p.small ? 30 : 34, color: '#fff', lineHeight: 1.05 }}>{p.name}</div>
+                <div style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: p.small ? 24 : 26, color: '#FFC94D', marginTop: 3 }}>{p.role}</div>
               </div>
               {stampOn && (
                 <div style={{ position: 'absolute', top: '32%', left: '50%', transform: `translate(-50%,-50%) rotate(-14deg) scale(${2.2 - 1.2 * st})`, opacity: st,
@@ -46,7 +46,7 @@ export const Portraits: React.FC<{ t: number; actions: TimedAction[]; credits: R
                   background: 'rgba(0,0,0,0.35)', letterSpacing: 3 }}>{p.stamp}</div>
               )}
             </div>
-            {c && <div style={{ fontFamily: 'Montserrat', fontSize: 13, color: 'rgba(255,255,255,0.65)', marginTop: 5, lineHeight: 1.2 }}>
+            {c && <div style={{ fontFamily: 'Montserrat', fontSize: 17, color: 'rgba(255,255,255,0.75)', marginTop: 5, lineHeight: 1.2 }}>
               Photo: {c.artist.slice(0, 48)} · {c.license}</div>}
           </div>
         );

@@ -26,6 +26,7 @@ const Emoji: React.FC<{ k: string; size: number; lottie: boolean }> = ({ k, size
 export const Stickers: React.FC<{ t: number; actions: TimedAction[]; projection: GeoProjection; lottieKeys: string[] }> = ({ t, actions, projection, lottieKeys }) => (
   <>
     {(actions.filter((a) => a.type === 'sticker') as S[]).map((a, i) => {
+      if (!a.flag && !a.emoji) return null;
       const hold = a.hold ?? 2.2; if (t < a.t - 0.05 || t > a.t + hold + 0.4) return null;
       const pop = spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 9, stiffness: 180 } });
       const out = interpolate(t, [a.t + hold, a.t + hold + 0.4], [1, 0], clamp);
@@ -37,7 +38,8 @@ export const Stickers: React.FC<{ t: number; actions: TimedAction[]; projection:
         <Sequence key={i} from={Math.round(a.t * FPS)} layout="none">
           <div style={{ position: 'absolute', left: x - size / 2, top: y - size / 2, width: size, height: size, opacity: out,
             transform: `scale(${pop * (0.9 + 0.1 * out)}) rotate(${wob + (a.tilt ?? 0)}deg)`, filter: 'drop-shadow(0 12px 18px rgba(0,0,0,0.55))' }}>
-            <Emoji k={a.emoji} size={size} lottie={lottieKeys.includes(a.emoji)} />
+            {a.flag ? <Img src={staticFile(`assets/flags/${a.flag}.svg`)} style={{ width: size, height: size * 0.66, marginTop: size * 0.17, borderRadius: 6, border: '3px solid #fff' }} />
+              : <Emoji k={a.emoji!} size={size} lottie={lottieKeys.includes(a.emoji!)} />}
             {a.text && <div style={{ position: 'absolute', top: size * 0.95, left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap',
               fontFamily: 'Montserrat', fontWeight: 900, fontSize: 34, color: '#0B1120', background: theme.accent, padding: '4px 14px', borderRadius: 8 }}>{a.text}</div>}
           </div>

@@ -17,14 +17,15 @@ export type Action =
   | { type: 'shake'; amount?: number; atWord?: string }
   | { type: 'ghost'; id: string; label?: string; color?: string; hold?: number; atWord?: string }
   | { type: 'path'; coords: LonLat[]; color?: string; width?: number; dur?: number; hold?: number; label?: string; labelAt?: LonLat; atWord?: string }
-  | { type: 'bigNumber'; value: number; prefix?: string; suffix?: string; decimals?: number; label?: string; y?: number; dur?: number; hold?: number; coins?: boolean; atWord?: string }
+  | { type: 'bigNumber'; value: number; from?: number; prefix?: string; suffix?: string; decimals?: number; label?: string; y?: number; dur?: number; hold?: number; coins?: boolean; atWord?: string }
   | { type: 'archive'; src: string; caption: string; credit: string; y?: number; w?: number; hold?: number; focus?: string; atWord?: string }
   | { type: 'callout'; text: string; sub?: string; size?: number; y?: number; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; atWord?: string }
   | { type: 'region'; text: string; at: LonLat; hold?: number; atWord?: string }
-  | { type: 'sticker'; emoji: string; at?: LonLat; dx?: number; dy?: number; x?: number; y?: number; size?: number; tilt?: number; text?: string; hold?: number; atWord?: string }
+  | { type: 'sticker'; emoji?: string; flag?: string; at?: LonLat; dx?: number; dy?: number; x?: number; y?: number; size?: number; tilt?: number; text?: string; hold?: number; atWord?: string }
   | { type: 'chapter'; emoji: string; text: string; atWord?: string }
+  | { type: 'recolor'; ids: string[]; atWord?: string }
   | { type: 'pointer'; at: LonLat; text: string; from?: [number, number]; hold?: number; atWord?: string };
-export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[] };
+export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean };
 export type EpisodeSpec = {
   id: string; series: string; title: string; data: string;
   timeline: { from: string; to: string; step?: number }; beats: Beat[];

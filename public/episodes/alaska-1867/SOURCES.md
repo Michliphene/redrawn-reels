@@ -24,6 +24,7 @@
 | Per acre | ≈1.9¢ → "about two cents" | computed: $7.2M / 1,518,856 km² (us-atlas land area) = 375M acres |
 | Distance | ≈4,300 mi (great circle Sitka–St Petersburg = 4,316 mi) | computed with d3-geo |
 | Size vs Texas | land area ratio 2.21 (computed); total area incl. water ≈2.5 | "more than twice" holds either way |
+| Flags at Sitka | shown **stylised** | which Russian flag was lowered is described differently (imperial flag vs. company flag); U.S. flag drawn as the 37-star flag, official from 4 Jul 1867 (star layouts varied) |
 | Statehood | 3 Jan 1959, 49th state | — |
 | Gold | Juneau 1880; Nome 1899 | (the 1896–99 Klondike rush was in Canada — not shown) |
 | Oil | Prudhoe Bay discovery 1968; Trans-Alaska Pipeline 1977 | route drawn simplified (Prudhoe → Fairbanks area → Valdez) |

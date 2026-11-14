@@ -8,7 +8,9 @@ const FLASH = 0.25, SETTLE = 0.7;
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
 /** Fill of a focus polity at time t: palette.start until its `declare`, then flash → its own colour. */
-function fillAt(id: string, t: number, declares: TimedAction[]) {
+function fillAt(id: string, t: number, declares: TimedAction[], recolors: TimedAction[] = []): string {
+  const r = recolors.find((a) => a.type === 'recolor' && a.ids.includes(id) && t >= a.t);
+  if (r) return interpolateColors(t, [r.t, r.t + 0.5], [fillAt(id, r.t, declares), PALETTE.start]);
   const d = declares.find((a) => a.type === 'declare' && a.id === id);
   if (!d || t < d.t) return PALETTE.start;
   const target = PALETTE.ids[id] ?? theme.accent;
@@ -54,7 +56,7 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
         <path d={path(outline as any) ?? ''} fill="none" stroke={PALETTE.start} strokeWidth={14} opacity={0.55 * outlineOpacity} filter="url(#glow)" />
       )}
       {focus.map((f) => (
-        <path key={String(f.id)} d={path(f as any) ?? ''} transform={offset(f)} fill={fillAt(String(f.id), t, declares)}
+        <path key={String(f.id)} d={path(f as any) ?? ''} transform={offset(f)} fill={fillAt(String(f.id), t, declares, actions.filter((a) => a.type === 'recolor'))}
           stroke={pulseAmt(String(f.id)) > 0 ? '#FFFFFF' : '#0B1120'} strokeWidth={1.4 + pulseAmt(String(f.id)) * 5} strokeLinejoin="round" />
       ))}
       {outline && outlineOpacity > 0 && <path d={path(outline as any) ?? ''} fill="none" stroke={PALETTE.startStroke} strokeWidth={2.5} opacity={outlineOpacity} />}

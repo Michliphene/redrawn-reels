@@ -3,8 +3,10 @@ import { interpolate } from 'remotion';
 import { theme } from '../lib/theme';
 
 /** Series tag (top-left) + title card shown during the hook. */
-export const Brand: React.FC<{ series: string; title: string; t: number; titleUntil: number }> = ({ series, title, t, titleUntil }) => {
-  const o = interpolate(t, [0, 0.15, titleUntil - 0.3, titleUntil], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+export const Brand: React.FC<{ series: string; title: string; t: number; titleUntil: number; end?: number }> = ({ series, title, t, titleUntil, end }) => {
+  // visible on frame 0 (hook) and again on the last 0.4 s so the loop cut is seamless
+  const o = Math.max(interpolate(t, [titleUntil - 0.3, titleUntil], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
+    end ? interpolate(t, [end - 0.45, end - 0.1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0);
   return (
     <>
       <div style={{ position: 'absolute', top: 70, left: 60, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 8,

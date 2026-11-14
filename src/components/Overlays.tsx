@@ -20,10 +20,10 @@ export const BigNumbers: React.FC<{ t: number; actions: TimedAction[] }> = ({ t,
   <>
     {(actions.filter((a) => a.type === 'bigNumber') as Extract<TimedAction, { type: 'bigNumber' }>[]).map((a, i) => {
       const hold = a.hold ?? 3; if (t < a.t || t > a.t + hold + 0.4) return null;
-      const o = life(t, a.t, hold);
-      const p = interpolate(t, [a.t, a.t + (a.dur ?? 1.1)], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+      const o = a.from ? interpolate(t, [a.t + hold, a.t + hold + 0.4], [1, 0], clamp) : life(t, a.t, hold);
+      const p = interpolate(t, [a.t, a.t + (a.dur ?? 1.1)], [a.from ?? 0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
       const v = (a.value * p).toLocaleString('en-US', { minimumFractionDigits: a.decimals ?? 0, maximumFractionDigits: a.decimals ?? 0 });
-      const pop = spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 12, stiffness: 160 } });
+      const pop = a.from ? 1 : spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 12, stiffness: 160 } });
       const y = a.y ?? 1110;
       return (
         <div key={i} style={{ position: 'absolute', inset: 0, opacity: o }}>

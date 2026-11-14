@@ -58,9 +58,10 @@
      "prefix": "$",
      "label": "FOR ALL OF THIS?",
      "coins": true,
-     "dur": 0.9,
-     "hold": 2.6,
-     "y": 1080
+     "dur": 1.0,
+     "hold": 3.2,
+     "y": 1080,
+     "from": 0.35
     },
     {
      "type": "pulse",
@@ -80,8 +81,17 @@
       230,
       -230
      ],
-     "atWord": "all",
-     "hold": 2.0
+     "atWord": "That's",
+     "hold": 2.4
+    },
+    {
+     "type": "sticker",
+     "emoji": "money_bag",
+     "x": 880,
+     "y": 880,
+     "size": 170,
+     "atWord": "million.",
+     "hold": 2.6
     }
    ]
   },
@@ -105,7 +115,7 @@
       64.5
      ],
      "size": "md",
-     "hold": 2.6,
+     "hold": 2.2,
      "atWord": "Russian"
     },
     {
@@ -123,13 +133,13 @@
      "color": "#FFC94D",
      "width": 8,
      "dur": 1.6,
-     "hold": 4.2,
+     "hold": 3.0,
      "label": "≈ 4,300 miles",
      "labelAt": [
       -40,
       86
      ],
-     "atWord": "fur-trading"
+     "atWord": "over"
     },
     {
      "type": "marker",
@@ -153,7 +163,7 @@
     },
     {
      "type": "chapter",
-     "emoji": "otter",
+     "emoji": "world_map",
      "text": "Russian America"
     },
     {
@@ -184,13 +194,14 @@
      "type": "region",
      "text": "Russian Empire",
      "at": [
-      90,
-      64
+      60,
+      62
      ],
      "atWord": "Saint",
-     "hold": 1.8
+     "hold": 2.0
     }
-   ]
+   ],
+   "hideLocator": true
   },
   {
    "id": "why",
@@ -207,7 +218,7 @@
     {
      "type": "callout",
      "text": "Crimean War",
-     "sub": "1853–1856 · costly defeat",
+     "sub": "1853–1856",
      "y": 1040,
      "hold": 2.2,
      "atWord": "money"
@@ -241,7 +252,7 @@
      "size": 50,
      "color": "#9E1B1B",
      "atWord": "Britain",
-     "hold": 2.4,
+     "hold": 1.5,
      "caption": "British threat?"
     },
     {
@@ -266,6 +277,15 @@
      "size": 150,
      "atWord": "Crimean",
      "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "flag": "gb",
+     "x": 800,
+     "y": 620,
+     "size": 130,
+     "atWord": "Britain",
+     "hold": 1.6
     }
    ]
   },
@@ -288,8 +308,8 @@
       -77.04,
       38.9
      ],
-     "atWord": "March",
-     "hold": 6
+     "atWord": "Secretary",
+     "hold": 4
     },
     {
      "type": "archive",
@@ -298,7 +318,7 @@
      "credit": "19th-century painting · Library of Congress",
      "y": 690,
      "w": 840,
-     "hold": 3.0,
+     "hold": 2.3,
      "focus": "45% 45%",
      "atWord": "all-night"
     },
@@ -326,7 +346,7 @@
      "focus": "48% 32%",
      "zoom": 2.0,
      "atWord": "envoy",
-     "hold": 2.6
+     "hold": 1.6
     },
     {
      "type": "chapter",
@@ -335,14 +355,15 @@
     },
     {
      "type": "sticker",
-     "emoji": "fountain_pen",
-     "x": 900,
-     "y": 1250,
-     "size": 150,
+     "emoji": "writing",
+     "x": 540,
+     "y": 1000,
+     "size": 170,
      "atWord": "signs",
-     "hold": 2.2
+     "hold": 1.6
     }
-   ]
+   ],
+   "hideLocator": true
   },
   {
    "id": "acre",
@@ -356,16 +377,25 @@
      "type": "bigNumber",
      "value": 2,
      "suffix": "¢",
-     "label": "PER ACRE (≈ 1.9¢)",
+     "label": "PER ACRE · ≈1.9¢ · 375M ACRES",
      "coins": true,
      "dur": 0.6,
-     "hold": 2.0,
+     "hold": 1.6,
      "y": 1080
     },
     {
      "type": "chapter",
      "emoji": "coin",
      "text": "The price"
+    },
+    {
+     "type": "sticker",
+     "emoji": "coin",
+     "x": 880,
+     "y": 940,
+     "size": 150,
+     "atWord": "cents",
+     "hold": 1.4
     }
    ]
   },
@@ -386,17 +416,40 @@
     {
      "type": "chapter",
      "emoji": "newspaper",
-     "text": "The myth"
+     "text": "Myth check"
+    },
+    {
+     "type": "sticker",
+     "emoji": "laugh",
+     "x": 820,
+     "y": 860,
+     "size": 170,
+     "atWord": "mock",
+     "hold": 1.4
     },
     {
      "type": "sticker",
      "emoji": "newspaper",
-     "x": 200,
-     "y": 870,
+     "x": 190,
+     "y": 880,
      "size": 150,
      "tilt": -10,
-     "atWord": "critics",
-     "hold": 2.0
+     "atWord": "famous",
+     "hold": 2.4
+    },
+    {
+     "type": "pointer",
+     "at": [
+      -150,
+      64
+     ],
+     "text": "“Folly”?",
+     "from": [
+      -230,
+      -180
+     ],
+     "atWord": "label,",
+     "hold": 1.8
     }
    ]
   },
@@ -406,74 +459,100 @@
    "date": "1867-04-09",
    "actions": [
     {
-     "type": "callout",
-     "text": "37 – 2",
-     "sub": "U.S. Senate · April 9, 1867",
-     "y": 1040,
-     "hold": 2.2,
-     "atWord": "Senate"
-    },
-    {
      "type": "chapter",
      "emoji": "classical_building",
      "text": "Senate vote"
     },
     {
-     "type": "sticker",
-     "emoji": "ballot_box_with_ballot",
-     "x": 540,
-     "y": 820,
-     "size": 170,
+     "type": "marker",
+     "text": "U.S. Senate",
+     "at": [
+      -77.01,
+      38.89
+     ],
      "atWord": "Senate",
-     "hold": 1.8
+     "hold": 2.4
+    },
+    {
+     "type": "sticker",
+     "emoji": "classical_building",
+     "x": 820,
+     "y": 700,
+     "size": 160,
+     "atWord": "Senate",
+     "hold": 1.2
+    },
+    {
+     "type": "sticker",
+     "emoji": "check",
+     "x": 820,
+     "y": 700,
+     "size": 160,
+     "atWord": "approves",
+     "hold": 1.6
+    },
+    {
+     "type": "callout",
+     "text": "37 – 2",
+     "sub": "U.S. Senate · April 9, 1867",
+     "y": 1040,
+     "hold": 1.3,
+     "atWord": "thirty-seven"
     }
-   ]
+   ],
+   "camera": {
+    "center": [
+     -98,
+     48
+    ],
+    "span": 62
+   }
   },
   {
    "id": "transfer",
    "say": "October 18, Sitka: the Russian flag comes down, and the American flag goes up.",
    "camera": {
     "center": [
-     -135.3,
-     57.5
+     -141,
+     60
     ],
-    "span": 16
+    "span": 30
    },
    "date": "1867-10-18",
    "actions": [
-    {
-     "type": "marker",
-     "text": "Sitka",
-     "at": [
-      -135.33,
-      57.05
-     ],
-     "atWord": "Sitka",
-     "hold": 3.6
-    },
-    {
-     "type": "declare",
-     "id": "ALASKA",
-     "atWord": "American",
-     "noLabel": true
-    },
     {
      "type": "chapter",
      "emoji": "flag",
      "text": "Handover"
     },
     {
-     "type": "sticker",
-     "emoji": "flag",
+     "type": "pointer",
      "at": [
       -135.33,
       57.05
      ],
-     "dx": 90,
-     "dy": -110,
-     "size": 150,
+     "text": "Sitka",
+     "from": [
+      -230,
+      160
+     ],
+     "atWord": "Sitka",
+     "hold": 2.0
+    },
+    {
+     "type": "flagSwap",
+     "from": "ru-stylised",
+     "to": "us-37",
+     "x": 760,
+     "atWord": "Russian",
+     "hold": 3.6,
+     "caption": "Sitka, Oct 18, 1867 · flags stylised"
+    },
+    {
+     "type": "declare",
+     "id": "ALASKA",
      "atWord": "American",
-     "hold": 2.2
+     "noLabel": true
     }
    ]
   },
@@ -571,7 +650,7 @@
    "actions": [
     {
      "type": "marker",
-     "text": "Juneau · gold 1880",
+     "text": "Juneau · 1880",
      "at": [
       -134.42,
       58.3
@@ -581,7 +660,7 @@
     },
     {
      "type": "marker",
-     "text": "Nome · gold 1899",
+     "text": "Nome · 1899",
      "at": [
       -165.41,
       64.5
@@ -605,11 +684,6 @@
      "hold": 1.8
     },
     {
-     "type": "date",
-     "date": "1968",
-     "atWord": "oil"
-    },
-    {
      "type": "path",
      "coords": [
       [
@@ -631,8 +705,8 @@
      "hold": 1.3,
      "label": "Pipeline, 1977 (simplified)",
      "labelAt": [
-      -140,
-      66
+      -138,
+      64
      ],
      "atWord": "oil"
     },
@@ -645,13 +719,27 @@
      "type": "sticker",
      "emoji": "pick",
      "at": [
-      -150,
-      61
+      -134.42,
+      58.3
      ],
-     "dy": 120,
-     "size": 140,
+     "dx": -110,
+     "dy": -70,
+     "size": 120,
      "atWord": "gold",
      "hold": 1.4
+    },
+    {
+     "type": "sticker",
+     "emoji": "pick",
+     "at": [
+      -165.41,
+      64.5
+     ],
+     "dx": 40,
+     "dy": -110,
+     "size": 120,
+     "atWord": "rushes",
+     "hold": 1.2
     },
     {
      "type": "sticker",
@@ -660,9 +748,9 @@
       -148.34,
       70.26
      ],
-     "dx": -140,
-     "dy": -40,
-     "size": 140,
+     "dx": -150,
+     "dy": -30,
+     "size": 130,
      "atWord": "oil",
      "hold": 1.8
     }
@@ -688,8 +776,8 @@
     {
      "type": "ghost",
      "id": "TEXAS_GHOST",
-     "atWord": "Texas",
-     "hold": 2.6
+     "atWord": "twice",
+     "hold": 1.9
     },
     {
      "type": "region",
@@ -698,8 +786,8 @@
       -151,
       63.5
      ],
-     "atWord": "Texas",
-     "hold": 2.4
+     "atWord": "twice",
+     "hold": 1.7
     },
     {
      "type": "chapter",
@@ -733,11 +821,18 @@
      "atWord": "All"
     },
     {
+     "type": "recolor",
+     "ids": [
+      "ALASKA"
+     ],
+     "atWord": "bought"
+    },
+    {
      "type": "sticker",
      "emoji": "money_bag",
-     "x": 540,
-     "y": 1120,
-     "size": 200,
+     "x": 880,
+     "y": 880,
+     "size": 170,
      "atWord": "bought",
      "hold": 1.6
     }
