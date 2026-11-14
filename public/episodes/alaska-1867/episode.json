@@ -80,7 +80,7 @@
      ],
      "text": "THIS IS ALASKA",
      "from": [
-      230,
+      190,
       -230
      ],
      "atWord": "That's",
@@ -591,7 +591,7 @@
      "x": 700,
      "atWord": "the",
      "hold": 3.4,
-     "caption": "Sitka, Oct 18, 1867 · flags stylised",
+     "caption": "Sitka, 1867 · flags stylised",
      "h": 170
     },
     {
@@ -798,12 +798,19 @@
      "size": 150,
      "atWord": "49th",
      "hold": 1.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "ALASKA"
+     ],
+     "atWord": "Alaska"
     }
    ]
   },
   {
    "id": "oil",
-   "say": "Then oil: the largest oil field in North America.",
+   "say": "Then oil: the largest oil field in the United States.",
    "camera": {
     "fit": "FOCUS",
     "pad": 0.08
@@ -817,13 +824,13 @@
     },
     {
      "type": "marker",
-     "text": "Prudhoe Bay · 1968",
+     "text": "Prudhoe Bay",
      "at": [
       -148.34,
       70.26
      ],
      "atWord": "oil:",
-     "hold": 2.6
+     "hold": 1.6
     },
     {
      "type": "sticker",
@@ -857,8 +864,8 @@
      "color": "#E8E8E8",
      "width": 6,
      "dur": 1.0,
-     "hold": 2.2,
-     "label": "Pipeline, 1977 (simplified)",
+     "hold": 1.6,
+     "label": "Pipeline (1977), simplified",
      "labelAt": [
       -138,
       64
@@ -867,11 +874,11 @@
     },
     {
      "type": "callout",
-     "text": "Largest oil field",
-     "sub": "in North America · Prudhoe Bay",
+     "text": "Largest U.S. oil field",
+     "sub": "Prudhoe Bay · discovery announced 1968",
      "y": 1060,
      "size": 64,
-     "hold": 2.0,
+     "hold": 1.8,
      "atWord": "largest"
     }
    ]
