@@ -10,7 +10,7 @@
 7. The Senate approves it, thirty-seven to two.
 8. October 18, Sitka: the Russian flag comes down, and the American flag goes up.
 9. But Alaska's Native peoples, there for thousands of years, are never consulted.
-10. And then? Gold rushes.
+10. So what did America get? Gold rushes.
 11. In 1959, Alaska becomes the 49th state, more than twice the size of Texas.
 12. Then oil: the largest oil field in the United States.
 13. All of it, bought for… → (loop) "$7.2 million."
