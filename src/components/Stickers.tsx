@@ -57,7 +57,7 @@ export const Chapters: React.FC<{ t: number; actions: TimedAction[]; lottieKeys:
   const c = cs[idx];
   const s = spring({ frame: (t - c.t) * FPS, fps: FPS, config: { damping: 14, stiffness: 200 } });
   return (
-    <div style={{ position: 'absolute', top: 300, width: '100%', display: 'flex', justifyContent: 'center' }}>
+    <div style={{ position: 'absolute', top: 322, width: '100%', display: 'flex', justifyContent: 'center' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(11,17,32,0.88)', border: `3px solid ${theme.accent}`,
         borderRadius: 50, padding: '6px 26px 6px 10px', transform: `translateY(${(1 - s) * -30}px) scale(${0.85 + 0.15 * s})`, opacity: s,
         boxShadow: '0 8px 24px rgba(0,0,0,0.5)' }}>
