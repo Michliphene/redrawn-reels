@@ -26,12 +26,12 @@
 | Belarus | 25 Aug 1991 | gave constitutional status to the 1990 sovereignty declaration — **nature debated** |
 | Moldova | 27 Aug 1991 | |
 | Azerbaijan | 30 Aug 1991 | declaration; Constitutional Act 18 Oct 1991 — **dates vary** |
-| Kyrgyzstan | 31 Aug 1991 | national Independence Day — *not confirmed by the web search in this session; check a primary source* |
+| Kyrgyzstan | 31 Aug 1991 | national Independence Day; Supreme Council declaration, 31 Aug 1991 (confirmed Nov 2026: Wikipedia "Independence Day (Kyrgyzstan)") |
 | Uzbekistan | 31 Aug 1991 | celebrated 1 Sep |
 | Tajikistan | 9 Sep 1991 | |
 | Armenia | 23 Sep 1991 | referendum 21 Sep — **dates vary** |
 | Turkmenistan | 27 Oct 1991 | |
-| Kazakhstan | 16 Dec 1991 | last; some sources give other December dates |
+| Kazakhstan | 16 Dec 1991 | constitutional law on state independence passed by the Supreme Soviet, 16 Dec 1991; last republic to declare (confirmed Nov 2026: Wikipedia "On the State Independence of the Republic of Kazakhstan"; The Diplomat) |
 | Russia | (shown at 25 Dec 1991) | Russia never "declared independence"; it became the continuator state. Shown as a colour change, deliberately without a date tag |
 
 ## Debated / nuanced points (kept neutral)
