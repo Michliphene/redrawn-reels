@@ -3,10 +3,10 @@ import { interpolate } from 'remotion';
 import { theme } from '../lib/theme';
 
 /** Series tag (top-left) + title card shown during the hook. */
-export const Brand: React.FC<{ series: string; episode?: number; title: string; t: number; titleUntil: number; end?: number; titleTop?: number; badgeTop?: number }> = ({ series, episode, title, t, titleUntil, end, titleTop = 170, badgeTop = 70 }) => {
+export const Brand: React.FC<{ series: string; episode?: number; title: string; t: number; titleUntil: number; end?: number; titleTop?: number; badgeTop?: number; force?: boolean }> = ({ series, episode, title, t, titleUntil, end, titleTop = 170, badgeTop = 70, force }) => {
   // visible on frame 0 (hook) and again on the last 0.4 s so the loop cut is seamless
   const o = Math.max(interpolate(t, [titleUntil - 0.3, titleUntil], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }),
-    end ? interpolate(t, [end - 0.45, end - 0.1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0);
+    end ? interpolate(t, [end - 0.45, end - 0.1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 0, force ? 1 : 0);
   return (
     <>
       <div style={{ position: 'absolute', top: badgeTop, left: 60, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 8,

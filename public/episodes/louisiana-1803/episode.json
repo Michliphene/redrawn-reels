@@ -14,9 +14,9 @@
    "similarity_boost": 0.8,
    "style": 0.2,
    "use_speaker_boost": true,
-   "speed": 1.12
+   "speed": 1.08
   },
-  "maxPause": 0.28,
+  "maxPause": 0.34,
   "respell": {
    "Ildefonso": "Ill-deh-FON-so"
   },
@@ -46,7 +46,7 @@
  "beats": [
   {
    "id": "hook",
-   "say": "America tried to buy one city.",
+   "say": "America tried to buy New Orleans.",
    "camera": {
     "center": [
      -90.3,
@@ -75,14 +75,6 @@
      "size": 180,
      "atTime": 0,
      "hold": 2.0
-    },
-    {
-     "type": "callout",
-     "text": "1 city?",
-     "y": 1120,
-     "size": 90,
-     "atTime": 0,
-     "hold": 1.9
     }
    ]
   },
@@ -481,7 +473,7 @@
     },
     {
      "type": "sticker",
-     "emoji": "eyes",
+     "emoji": "money_bag",
      "x": 880,
      "y": 880,
      "size": 150,
@@ -492,7 +484,7 @@
   },
   {
    "id": "deal",
-   "say": "Three weeks later, the deal is signed: fifteen million dollars.",
+   "say": "Nineteen days later, the deal is signed: fifteen million dollars.",
    "date": "1803-04-30",
    "actions": [
     {
@@ -595,6 +587,15 @@
      "size": 64,
      "atWord": "sure",
      "hold": 1.1
+    },
+    {
+     "type": "sticker",
+     "emoji": "scroll",
+     "x": 880,
+     "y": 880,
+     "size": 140,
+     "atWord": "constitutional.",
+     "hold": 1.2
     }
    ]
   },
@@ -707,7 +708,9 @@
      "hold": 1.2,
      "atWord": "treaty"
     }
-   ]
+   ],
+   "hideChapter": true,
+   "hideDate": true
   },
   {
    "id": "natives",
@@ -845,6 +848,15 @@
      ],
      "atWord": "All",
      "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "cityscape",
+     "x": 800,
+     "y": 980,
+     "size": 180,
+     "atWord": "All",
+     "hold": 1.4
     }
    ]
   }

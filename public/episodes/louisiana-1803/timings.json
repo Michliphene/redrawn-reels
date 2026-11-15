@@ -1,16 +1,16 @@
 {
- "duration": 48.184,
+ "duration": 53.403,
  "engine": "elevenlabs",
  "beats": [
   {
    "id": "hook",
    "start": 0.25,
-   "end": 2.026,
+   "end": 1.841,
    "words": [
     {
      "w": "America",
      "start": 0.25,
-     "end": 0.656
+     "end": 0.668
     },
     {
      "w": "tried",
@@ -19,871 +19,871 @@
     },
     {
      "w": "to",
-     "start": 0.947,
-     "end": 0.993
+     "start": 0.935,
+     "end": 0.981
     },
     {
      "w": "buy",
-     "start": 1.039,
-     "end": 1.202
+     "start": 1.028,
+     "end": 1.156
     },
     {
-     "w": "one",
-     "start": 1.307,
-     "end": 1.539
+     "w": "New",
+     "start": 1.214,
+     "end": 1.307
     },
     {
-     "w": "city.",
-     "start": 1.585,
-     "end": 2.026
+     "w": "Orleans.",
+     "start": 1.353,
+     "end": 1.841
     }
    ]
   },
   {
    "id": "offer",
-   "start": 2.247,
-   "end": 3.512,
+   "start": 2.142,
+   "end": 3.443,
    "words": [
     {
      "w": "France",
-     "start": 2.247,
-     "end": 2.549
+     "start": 2.142,
+     "end": 2.479
     },
     {
      "w": "offered",
-     "start": 2.595,
-     "end": 2.851
+     "start": 2.526,
+     "end": 2.781
     },
     {
      "w": "all",
-     "start": 2.885,
-     "end": 3.013
+     "start": 2.804,
+     "end": 2.944
     },
     {
      "w": "of",
-     "start": 3.06,
-     "end": 3.106
+     "start": 2.99,
+     "end": 3.036
     },
     {
      "w": "this.",
-     "start": 3.152,
-     "end": 3.512
+     "start": 3.083,
+     "end": 3.443
     }
    ]
   },
   {
    "id": "river",
-   "start": 3.792,
-   "end": 6.555,
+   "start": 3.783,
+   "end": 6.987,
    "words": [
     {
      "w": "In",
-     "start": 3.792,
-     "end": 3.908
+     "start": 3.783,
+     "end": 3.922
     },
     {
      "w": "1803,",
-     "start": 3.955,
-     "end": 4.767
+     "start": 4.026,
+     "end": 5.083
     },
     {
      "w": "the",
-     "start": 4.802,
-     "end": 4.872
+     "start": 5.106,
+     "end": 5.176
     },
     {
      "w": "United",
-     "start": 4.93,
-     "end": 5.197
+     "start": 5.246,
+     "end": 5.547
     },
     {
      "w": "States",
-     "start": 5.22,
-     "end": 5.476
+     "start": 5.582,
+     "end": 5.872
     },
     {
      "w": "ends",
-     "start": 5.522,
-     "end": 5.673
+     "start": 5.919,
+     "end": 6.07
     },
     {
      "w": "at",
-     "start": 5.708,
-     "end": 5.766
+     "start": 6.105,
+     "end": 6.163
     },
     {
      "w": "the",
-     "start": 5.801,
-     "end": 5.87
+     "start": 6.198,
+     "end": 6.267
     },
     {
      "w": "Mississippi.",
-     "start": 5.905,
-     "end": 6.555
+     "start": 6.302,
+     "end": 6.987
     }
    ]
   },
   {
    "id": "port",
-   "start": 6.835,
-   "end": 12.676,
+   "start": 7.289,
+   "end": 13.396,
    "words": [
     {
      "w": "Its",
-     "start": 6.835,
-     "end": 6.986
+     "start": 7.289,
+     "end": 7.451
     },
     {
      "w": "farm",
-     "start": 7.032,
-     "end": 7.264
+     "start": 7.498,
+     "end": 7.753
     },
     {
      "w": "trade",
-     "start": 7.311,
-     "end": 7.543
+     "start": 7.8,
+     "end": 8.044
     },
     {
      "w": "floats",
-     "start": 7.578,
-     "end": 7.845
+     "start": 8.09,
+     "end": 8.403
     },
     {
      "w": "down",
-     "start": 7.88,
-     "end": 8.054
+     "start": 8.45,
+     "end": 8.636
     },
     {
      "w": "the",
-     "start": 8.088,
-     "end": 8.158
+     "start": 8.67,
+     "end": 8.74
     },
     {
      "w": "river",
-     "start": 8.205,
-     "end": 8.402
+     "start": 8.787,
+     "end": 8.984
     },
     {
      "w": "to",
-     "start": 8.448,
-     "end": 8.53
+     "start": 9.019,
+     "end": 9.077
     },
     {
      "w": "New",
-     "start": 8.588,
-     "end": 8.692
+     "start": 9.135,
+     "end": 9.228
     },
     {
      "w": "Orleans.",
-     "start": 8.739,
-     "end": 9.203
+     "start": 9.274,
+     "end": 9.727
     },
     {
      "w": "And",
-     "start": 9.483,
-     "end": 9.623
+     "start": 10.029,
+     "end": 10.18
     },
     {
      "w": "Spain",
-     "start": 9.681,
-     "end": 9.959
+     "start": 10.249,
+     "end": 10.516
     },
     {
      "w": "has",
-     "start": 10.017,
-     "end": 10.133
+     "start": 10.574,
+     "end": 10.679
     },
     {
      "w": "secretly",
-     "start": 10.192,
-     "end": 10.575
+     "start": 10.749,
+     "end": 11.178
     },
     {
      "w": "handed",
-     "start": 10.621,
-     "end": 10.923
+     "start": 11.248,
+     "end": 11.596
     },
     {
      "w": "all",
-     "start": 11.004,
-     "end": 11.236
+     "start": 11.666,
+     "end": 11.898
     },
     {
      "w": "of",
-     "start": 11.283,
-     "end": 11.329
+     "start": 11.944,
+     "end": 11.991
     },
     {
      "w": "Louisiana",
-     "start": 11.376,
-     "end": 11.863
+     "start": 12.037,
+     "end": 12.571
     },
     {
      "w": "back",
-     "start": 11.91,
-     "end": 12.084
+     "start": 12.629,
+     "end": 12.78
     },
     {
      "w": "to",
-     "start": 12.13,
-     "end": 12.177
+     "start": 12.827,
+     "end": 12.873
     },
     {
      "w": "France.",
-     "start": 12.223,
-     "end": 12.676
+     "start": 12.931,
+     "end": 13.396
     }
    ]
   },
   {
    "id": "budget",
-   "start": 12.956,
-   "end": 18.006,
+   "start": 13.736,
+   "end": 19.831,
    "words": [
     {
      "w": "Jefferson",
-     "start": 12.956,
-     "end": 13.444
+     "start": 13.736,
+     "end": 14.224
     },
     {
      "w": "sends",
-     "start": 13.525,
-     "end": 13.769
+     "start": 14.293,
+     "end": 14.56
     },
     {
      "w": "James",
-     "start": 13.827,
-     "end": 14.105
+     "start": 14.63,
+     "end": 14.967
     },
     {
      "w": "Monroe",
-     "start": 14.152,
-     "end": 14.454
+     "start": 15.013,
+     "end": 15.408
     },
     {
      "w": "to",
-     "start": 14.477,
-     "end": 14.523
+     "start": 15.431,
+     "end": 15.478
     },
     {
      "w": "Paris,",
-     "start": 14.57,
-     "end": 15.081
+     "start": 15.536,
+     "end": 16.023
     },
     {
      "w": "ready",
-     "start": 15.301,
-     "end": 15.51
+     "start": 16.325,
+     "end": 16.557
     },
     {
      "w": "to",
-     "start": 15.557,
-     "end": 15.603
+     "start": 16.604,
+     "end": 16.662
     },
     {
      "w": "pay",
-     "start": 15.65,
-     "end": 15.789
+     "start": 16.731,
+     "end": 16.952
     },
     {
      "w": "up",
-     "start": 15.835,
-     "end": 15.928
+     "start": 17.01,
+     "end": 17.115
     },
     {
      "w": "to",
-     "start": 15.975,
-     "end": 16.021
+     "start": 17.161,
+     "end": 17.207
     },
     {
      "w": "ten",
-     "start": 16.068,
-     "end": 16.207
+     "start": 17.289,
+     "end": 17.498
     },
     {
      "w": "million",
-     "start": 16.253,
-     "end": 16.485
+     "start": 17.567,
+     "end": 17.858
     },
     {
      "w": "dollars",
-     "start": 16.52,
-     "end": 16.787
+     "start": 17.904,
+     "end": 18.345
     },
     {
      "w": "for",
-     "start": 16.822,
-     "end": 16.927
+     "start": 18.485,
+     "end": 18.635
     },
     {
      "w": "New",
-     "start": 16.973,
-     "end": 17.078
+     "start": 18.693,
+     "end": 18.81
     },
     {
      "w": "Orleans",
-     "start": 17.124,
-     "end": 17.391
+     "start": 18.856,
+     "end": 19.158
     },
     {
      "w": "and",
-     "start": 17.426,
-     "end": 17.507
+     "start": 19.193,
+     "end": 19.274
     },
     {
      "w": "Florida.",
-     "start": 17.542,
-     "end": 18.006
+     "start": 19.32,
+     "end": 19.831
     }
    ]
   },
   {
    "id": "napoleon",
-   "start": 18.286,
-   "end": 22.478,
+   "start": 20.133,
+   "end": 24.266,
    "words": [
     {
      "w": "But",
-     "start": 18.286,
-     "end": 18.426
+     "start": 20.133,
+     "end": 20.284
     },
     {
      "w": "Napoleon's",
-     "start": 18.472,
-     "end": 19.041
+     "start": 20.33,
+     "end": 20.865
     },
     {
      "w": "army",
-     "start": 19.087,
-     "end": 19.296
+     "start": 20.899,
+     "end": 21.108
     },
     {
      "w": "has",
-     "start": 19.343,
-     "end": 19.447
+     "start": 21.166,
+     "end": 21.259
     },
     {
      "w": "been",
-     "start": 19.494,
-     "end": 19.645
+     "start": 21.306,
+     "end": 21.457
     },
     {
      "w": "wrecked",
-     "start": 19.691,
-     "end": 19.947
+     "start": 21.48,
+     "end": 21.712
     },
     {
      "w": "in",
-     "start": 19.981,
-     "end": 20.039
+     "start": 21.747,
+     "end": 21.805
     },
     {
      "w": "Haiti,",
-     "start": 20.109,
-     "end": 20.585
+     "start": 21.875,
+     "end": 22.304
     },
     {
      "w": "and",
-     "start": 20.771,
-     "end": 20.91
+     "start": 22.56,
+     "end": 22.711
     },
     {
      "w": "a",
-     "start": 20.957,
-     "end": 20.991
+     "start": 22.769,
+     "end": 22.803
     },
     {
      "w": "new",
-     "start": 21.05,
-     "end": 21.177
+     "start": 22.873,
+     "end": 23.024
     },
     {
      "w": "war",
-     "start": 21.224,
-     "end": 21.386
+     "start": 23.07,
+     "end": 23.233
     },
     {
      "w": "with",
-     "start": 21.433,
-     "end": 21.56
+     "start": 23.291,
+     "end": 23.419
     },
     {
      "w": "Britain",
-     "start": 21.595,
-     "end": 21.897
+     "start": 23.454,
+     "end": 23.697
     },
     {
      "w": "is",
-     "start": 21.955,
-     "end": 22.036
+     "start": 23.732,
+     "end": 23.802
     },
     {
      "w": "coming.",
-     "start": 22.083,
-     "end": 22.478
+     "start": 23.86,
+     "end": 24.266
     }
    ]
   },
   {
    "id": "ask",
-   "start": 22.758,
-   "end": 26.416,
+   "start": 24.606,
+   "end": 28.987,
    "words": [
     {
      "w": "On",
-     "start": 22.758,
-     "end": 22.909
+     "start": 24.606,
+     "end": 24.746
     },
     {
      "w": "April",
-     "start": 22.956,
-     "end": 23.2
+     "start": 24.804,
+     "end": 25.071
     },
     {
      "w": "11,",
-     "start": 23.234,
-     "end": 23.606
+     "start": 25.106,
+     "end": 25.593
     },
     {
      "w": "France",
-     "start": 23.687,
-     "end": 23.978
+     "start": 25.756,
+     "end": 26.092
     },
     {
      "w": "asks:",
-     "start": 24.024,
-     "end": 24.395
+     "start": 26.139,
+     "end": 26.568
     },
     {
      "w": "what",
-     "start": 24.675,
-     "end": 24.826
+     "start": 26.908,
+     "end": 27.071
     },
     {
      "w": "would",
-     "start": 24.861,
-     "end": 25.0
+     "start": 27.106,
+     "end": 27.245
     },
     {
      "w": "you",
-     "start": 25.035,
-     "end": 25.104
+     "start": 27.28,
+     "end": 27.35
     },
     {
      "w": "pay",
-     "start": 25.163,
-     "end": 25.337
+     "start": 27.408,
+     "end": 27.57
     },
     {
      "w": "for",
-     "start": 25.383,
-     "end": 25.488
+     "start": 27.628,
+     "end": 27.744
     },
     {
      "w": "all",
-     "start": 25.522,
-     "end": 25.627
+     "start": 27.814,
+     "end": 28.058
     },
     {
      "w": "of",
-     "start": 25.673,
-     "end": 25.72
+     "start": 28.116,
+     "end": 28.162
     },
     {
      "w": "Louisiana?",
-     "start": 25.766,
-     "end": 26.416
+     "start": 28.232,
+     "end": 28.987
     }
    ]
   },
   {
    "id": "deal",
-   "start": 26.696,
-   "end": 29.796,
+   "start": 29.327,
+   "end": 33.367,
    "words": [
     {
-     "w": "Three",
-     "start": 26.696,
-     "end": 26.917
+     "w": "Nineteen",
+     "start": 29.327,
+     "end": 29.861
     },
     {
-     "w": "weeks",
-     "start": 26.952,
-     "end": 27.161
+     "w": "days",
+     "start": 29.93,
+     "end": 30.174
     },
     {
      "w": "later,",
-     "start": 27.207,
-     "end": 27.463
+     "start": 30.244,
+     "end": 30.662
     },
     {
      "w": "the",
-     "start": 27.486,
-     "end": 27.567
+     "start": 30.72,
+     "end": 30.824
     },
     {
      "w": "deal",
-     "start": 27.614,
-     "end": 27.764
+     "start": 30.882,
+     "end": 31.057
     },
     {
      "w": "is",
-     "start": 27.811,
-     "end": 27.869
+     "start": 31.115,
+     "end": 31.184
     },
     {
      "w": "signed:",
-     "start": 27.915,
-     "end": 28.357
+     "start": 31.231,
+     "end": 31.765
     },
     {
      "w": "fifteen",
-     "start": 28.507,
-     "end": 28.891
+     "start": 31.962,
+     "end": 32.403
     },
     {
      "w": "million",
-     "start": 28.937,
-     "end": 29.204
+     "start": 32.461,
+     "end": 32.752
     },
     {
      "w": "dollars.",
-     "start": 29.251,
-     "end": 29.796
+     "start": 32.798,
+     "end": 33.367
     }
    ]
   },
   {
    "id": "acre",
-   "start": 30.076,
-   "end": 31.295,
+   "start": 33.669,
+   "end": 34.992,
    "words": [
     {
      "w": "Under",
-     "start": 30.076,
-     "end": 30.285
+     "start": 33.669,
+     "end": 33.901
     },
     {
      "w": "three",
-     "start": 30.332,
-     "end": 30.541
+     "start": 33.959,
+     "end": 34.191
     },
     {
      "w": "cents",
-     "start": 30.576,
-     "end": 30.796
+     "start": 34.238,
+     "end": 34.458
     },
     {
      "w": "an",
-     "start": 30.831,
-     "end": 30.901
+     "start": 34.493,
+     "end": 34.563
     },
     {
      "w": "acre.",
-     "start": 30.947,
-     "end": 31.295
+     "start": 34.609,
+     "end": 34.992
     }
    ]
   },
   {
    "id": "legal",
-   "start": 31.575,
-   "end": 35.071,
+   "start": 35.332,
+   "end": 39.058,
    "words": [
     {
      "w": "Jefferson",
-     "start": 31.575,
-     "end": 32.051
+     "start": 35.332,
+     "end": 35.854
     },
     {
      "w": "isn't",
-     "start": 32.12,
-     "end": 32.329
+     "start": 35.924,
+     "end": 36.156
     },
     {
      "w": "even",
-     "start": 32.364,
-     "end": 32.538
+     "start": 36.191,
+     "end": 36.376
     },
     {
      "w": "sure",
-     "start": 32.596,
-     "end": 32.794
+     "start": 36.423,
+     "end": 36.609
     },
     {
      "w": "it's",
-     "start": 32.828,
-     "end": 32.933
+     "start": 36.632,
+     "end": 36.736
     },
     {
      "w": "constitutional.",
-     "start": 32.979,
-     "end": 33.85
+     "start": 36.783,
+     "end": 37.77
     },
     {
      "w": "He",
-     "start": 34.13,
-     "end": 34.223
+     "start": 37.967,
+     "end": 38.083
     },
     {
      "w": "buys",
-     "start": 34.281,
-     "end": 34.479
+     "start": 38.153,
+     "end": 38.408
     },
     {
      "w": "it",
-     "start": 34.525,
-     "end": 34.583
+     "start": 38.466,
+     "end": 38.536
     },
     {
      "w": "anyway.",
-     "start": 34.63,
-     "end": 35.071
+     "start": 38.571,
+     "end": 39.058
     }
    ]
   },
   {
    "id": "double",
-   "start": 35.351,
-   "end": 37.15,
+   "start": 39.36,
+   "end": 41.287,
    "words": [
     {
      "w": "The",
-     "start": 35.351,
-     "end": 35.455
+     "start": 39.36,
+     "end": 39.476
     },
     {
      "w": "United",
-     "start": 35.525,
-     "end": 35.815
+     "start": 39.558,
+     "end": 39.964
     },
     {
      "w": "States",
-     "start": 35.85,
-     "end": 36.129
+     "start": 40.01,
+     "end": 40.312
     },
     {
      "w": "doubles",
-     "start": 36.187,
-     "end": 36.5
+     "start": 40.359,
+     "end": 40.649
     },
     {
      "w": "in",
-     "start": 36.547,
-     "end": 36.616
+     "start": 40.695,
+     "end": 40.765
     },
     {
      "w": "size.",
-     "start": 36.662,
-     "end": 37.15
+     "start": 40.823,
+     "end": 41.287
     }
    ]
   },
   {
    "id": "borders",
-   "start": 37.43,
-   "end": 40.635,
+   "start": 41.627,
+   "end": 45.041,
    "words": [
     {
      "w": "But",
-     "start": 37.43,
-     "end": 37.581
+     "start": 41.627,
+     "end": 41.802
     },
     {
      "w": "nobody",
-     "start": 37.639,
-     "end": 37.941
+     "start": 41.871,
+     "end": 42.208
     },
     {
      "w": "knows",
-     "start": 37.987,
-     "end": 38.173
+     "start": 42.243,
+     "end": 42.44
     },
     {
      "w": "where",
-     "start": 38.196,
-     "end": 38.324
+     "start": 42.475,
+     "end": 42.603
     },
     {
      "w": "the",
-     "start": 38.347,
-     "end": 38.417
+     "start": 42.626,
+     "end": 42.695
     },
     {
      "w": "borders",
-     "start": 38.451,
-     "end": 38.73
+     "start": 42.73,
+     "end": 43.044
     },
     {
      "w": "are.",
-     "start": 38.777,
-     "end": 39.078
+     "start": 43.09,
+     "end": 43.415
     },
     {
      "w": "The",
-     "start": 39.358,
-     "end": 39.486
+     "start": 43.717,
+     "end": 43.845
     },
     {
      "w": "treaty",
-     "start": 39.532,
-     "end": 39.811
+     "start": 43.903,
+     "end": 44.182
     },
     {
      "w": "doesn't",
-     "start": 39.857,
-     "end": 40.136
+     "start": 44.24,
+     "end": 44.518
     },
     {
      "w": "say.",
-     "start": 40.182,
-     "end": 40.635
+     "start": 44.565,
+     "end": 45.041
     }
    ]
   },
   {
    "id": "natives",
-   "start": 40.786,
-   "end": 44.327,
+   "start": 45.296,
+   "end": 49.011,
    "words": [
     {
      "w": "And",
-     "start": 40.786,
-     "end": 40.937
+     "start": 45.296,
+     "end": 45.435
     },
     {
      "w": "the",
-     "start": 40.984,
-     "end": 41.053
+     "start": 45.482,
+     "end": 45.552
     },
     {
      "w": "land",
-     "start": 41.111,
-     "end": 41.332
+     "start": 45.621,
+     "end": 45.853
     },
     {
      "w": "is",
-     "start": 41.378,
-     "end": 41.46
+     "start": 45.911,
+     "end": 45.981
     },
     {
      "w": "home",
-     "start": 41.506,
-     "end": 41.703
+     "start": 46.039,
+     "end": 46.248
     },
     {
      "w": "to",
-     "start": 41.738,
-     "end": 41.796
+     "start": 46.283,
+     "end": 46.364
     },
     {
      "w": "many",
-     "start": 41.866,
-     "end": 42.052
+     "start": 46.469,
+     "end": 46.678
     },
     {
      "w": "Native",
-     "start": 42.098,
-     "end": 42.342
+     "start": 46.736,
+     "end": 47.003
     },
     {
      "w": "nations,",
-     "start": 42.377,
-     "end": 42.899
+     "start": 47.038,
+     "end": 47.56
     },
     {
      "w": "who",
-     "start": 42.946,
-     "end": 43.085
+     "start": 47.595,
+     "end": 47.757
     },
     {
      "w": "never",
-     "start": 43.155,
-     "end": 43.364
+     "start": 47.827,
+     "end": 48.036
     },
     {
      "w": "agreed",
-     "start": 43.41,
-     "end": 43.665
+     "start": 48.094,
+     "end": 48.361
     },
     {
      "w": "to",
-     "start": 43.689,
-     "end": 43.747
+     "start": 48.384,
+     "end": 48.442
     },
     {
      "w": "the",
-     "start": 43.793,
-     "end": 43.863
+     "start": 48.5,
+     "end": 48.57
     },
     {
      "w": "sale.",
-     "start": 43.909,
-     "end": 44.327
+     "start": 48.605,
+     "end": 49.011
     }
    ]
   },
   {
    "id": "today",
-   "start": 44.607,
-   "end": 46.952,
+   "start": 49.351,
+   "end": 51.975,
    "words": [
     {
      "w": "Today,",
-     "start": 44.607,
-     "end": 44.932
+     "start": 49.351,
+     "end": 49.722
     },
     {
      "w": "that's",
-     "start": 44.955,
-     "end": 45.153
+     "start": 49.745,
+     "end": 49.943
     },
     {
      "w": "all",
-     "start": 45.187,
-     "end": 45.373
+     "start": 50.012,
+     "end": 50.291
     },
     {
      "w": "or",
-     "start": 45.512,
-     "end": 45.698
+     "start": 50.396,
+     "end": 50.523
     },
     {
      "w": "part",
-     "start": 45.803,
-     "end": 45.965
+     "start": 50.593,
+     "end": 50.802
     },
     {
      "w": "of",
-     "start": 46.0,
-     "end": 46.046
+     "start": 50.837,
+     "end": 50.895
     },
     {
      "w": "fifteen",
-     "start": 46.081,
-     "end": 46.383
+     "start": 50.953,
+     "end": 51.359
     },
     {
      "w": "states.",
-     "start": 46.43,
-     "end": 46.952
+     "start": 51.429,
+     "end": 51.975
     }
    ]
   },
   {
    "id": "loop",
-   "start": 47.173,
-   "end": 48.183,
+   "start": 52.195,
+   "end": 53.403,
    "words": [
     {
      "w": "All",
-     "start": 47.173,
-     "end": 47.405
+     "start": 52.195,
+     "end": 52.439
     },
     {
      "w": "because…",
-     "start": 47.451,
-     "end": 48.183
+     "start": 52.509,
+     "end": 53.403
     }
    ]
   }

@@ -131,6 +131,8 @@ def main():
     if ep["voice"].get("engine") == "elevenlabs" and not force_kokoro:
         try:
             return elevenlabs(ep, ep_dir)
+        except BrokenPipeError:
+            raise
         except Exception as e:  # quota, network, auth -> local fallback so the pipeline never blocks
             print(f"ElevenLabs failed ({e}); falling back to Kokoro")
     if ep["voice"].get("engine") == "elevenlabs":
