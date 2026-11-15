@@ -39,11 +39,11 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
   // hidden focus features appear on `reveal`, visible ones fade on `conceal` (e.g. 1945 zones -> today's states)
   const vis = (f: any) => {
     const id = String(f.id);
-    const r = actions.find((a) => a.type === 'reveal' && a.ids.includes(id));
-    const c = actions.find((a) => a.type === 'conceal' && a.ids.includes(id));
-    let o = f.properties?.hidden ? (r ? interpolate(t, [r.t, r.t + 0.6], [0, 1], clamp) : 0) : 1;
-    if (c) o *= interpolate(t, [c.t + 0.6, c.t + 1.0], [1, 0], clamp); // old shapes fade only once the new ones are opaque
-    return o;
+    const evs = actions.filter((a) => (a.type === 'reveal' || a.type === 'conceal') && (a as any).ids.includes(id) && a.t <= t).sort((a, b) => a.t - b.t);
+    const last = evs[evs.length - 1];
+    if (!last) return f.properties?.hidden ? 0 : 1;
+    if (last.type === 'reveal') return interpolate(t, [last.t, last.t + 0.6], [0, 1], clamp);
+    return interpolate(t, [last.t + 0.6, last.t + 1.0], [1, 0], clamp); // old shapes fade only once the new ones are opaque
   };
   const pulseAmt = (id: string) => Math.max(0, ...pulses.filter((p) => p.ids.includes(id)).map((p) => interpolate(t, [p.t, p.t + 0.15, p.t + 1.1], [0, 1, 0], clamp)));
   const grat = path(geoGraticule10()) ?? '';

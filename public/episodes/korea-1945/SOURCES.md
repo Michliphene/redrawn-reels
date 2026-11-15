@@ -1,19 +1,19 @@
 # Ep.4 — How one line split Korea (1945–1953) · sources & fact sheet
 
 ## Script (as spoken)
-1. Two Americans. One National Geographic map. One night.
-2. August 1945. Japan, which has ruled Korea since 1910, is about to surrender.
-3. Soviet troops are already pouring into the north.
+1. One night in 1945. Two Americans. One National Geographic map.
+2. Japan, which has ruled Korea since 1910, is about to surrender.
+3. Soviet troops are already entering the north.
 4. In Washington, two officers, Dean Rusk and Charles Bonesteel, are told to draw a line.
 5. They find no river, no mountain range to use. So they pick a straight line: the 38th parallel.
 6. It keeps Seoul in the American zone.
 7. Moscow agrees.
-8. Meant to be temporary, the line hardens. In 1948, two rival states, each claiming the whole peninsula.
-9. In 1950, the North invades. Three years of war.
-10. The 1953 armistice draws a new line. Not the 38th parallel.
+8. It's meant to be temporary. But in 1948, the line hardens: two rival states, each claiming the whole peninsula.
+9. So in 1950, the North invades. Three years of war. ("So" is narrative linkage — no cause is claimed.)
+10. And when the 1953 armistice draws a new line? It's not the 38th parallel.
 11. Kaesong, once in the South, is now in the North. Sokcho, once in the North, is now in the South.
 12. And no peace treaty was ever signed.
-13. Still divided. All because of… → (loop) "Two Americans. One National Geographic map. One night."
+13. Still divided. And it all started with… → (loop) "One night in 1945…" (no single-cause claim)
 
 ## Facts used
 | Claim | Value | Source / note |
@@ -28,6 +28,7 @@
 | Two states | ROK 15 Aug 1948, DPRK 9 Sep 1948; each claims the whole peninsula | standard references |
 | War | North Korean invasion 25 Jun 1950; armistice 27 Jul 1953 | Britannica; DMZ references |
 | DMZ | ≈4 km (≈2.5 mi) wide; ≈248 km (≈155 mi) long (South Korean govt) — other sources 238–250 km | dmz.go.kr; Wikipedia DMZ |
+| 1953 line on screen | drawn from Natural Earth's North/South Korea shared border (generalised MDL) | — |
 | Kaesong / Sokcho | Kaesong (37.97°N) south of 38°N, now North; Sokcho (38.21°N) north of 38°N, now South | computed against Natural Earth borders |
 | No peace treaty | armistice only; technically still at war | DMZ references |
 
@@ -48,4 +49,4 @@
 
 ## Pinned comment (EN)
 Sources: Dean Rusk, As I Saw It (1990); National Geographic (2013); Britannica; South Korean DMZ office. The night's exact date varies by source; the popular "30 minutes" detail isn't in Rusk's own account, so we left it out. Photo: Library of Congress.
-👉 Did you know the border today isn't the 38th parallel?
+👉 Kaesong went North, Sokcho went South. Did you know the border moved?

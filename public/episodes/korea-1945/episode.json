@@ -49,7 +49,7 @@
  "beats": [
   {
    "id": "hook",
-   "say": "Two Americans. One National Geographic map. One night.",
+   "say": "One night in {1945|nineteen forty-five}. Two Americans. One National Geographic map.",
    "camera": {
     "center": [
      127.6,
@@ -74,8 +74,9 @@
      ],
      "color": "#FFC94D",
      "width": 9,
-     "dur": 2.6,
-     "hold": 3.4,
+     "from": 1,
+     "dur": 0.1,
+     "hold": 4.0,
      "label": "38°N",
      "labelAt": [
       129.3,
@@ -90,15 +91,15 @@
      "y": 1010,
      "size": 170,
      "atTime": 0,
-     "hold": 1.6
+     "hold": 2.6
     },
     {
      "type": "sticker",
      "emoji": "fountain_pen",
-     "x": 830,
+     "x": 250,
      "y": 1010,
      "size": 150,
-     "atWord": "One",
+     "atWord": "map.",
      "hold": 1.4,
      "tilt": -20
     }
@@ -106,7 +107,7 @@
   },
   {
    "id": "japan",
-   "say": "August 1945. Japan, which has ruled Korea since 1910, is about to surrender.",
+   "say": "Japan, which has ruled Korea since {1910|nineteen ten}, is about to surrender.",
    "camera": {
     "center": [
      132,
@@ -150,13 +151,21 @@
      "y": 1080,
      "size": 64,
      "atWord": "ruled",
-     "hold": 1.8
+     "hold": 2.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "surrender."
     }
    ]
   },
   {
    "id": "soviets",
-   "say": "Soviet troops are already pouring into the north.",
+   "say": "Soviet troops are already entering the north.",
    "camera": {
     "center": [
      128,
@@ -178,8 +187,8 @@
       40.6
      ],
      "approach": [
-      60,
-      -220
+      40,
+      -160
      ],
      "count": 3,
      "size": 66,
@@ -368,22 +377,12 @@
   },
   {
    "id": "states",
-   "say": "Meant to be temporary, the line hardens. In 1948, two rival states, each claiming the whole peninsula.",
-   "date": "1948",
+   "say": "It's meant to be temporary. But in {1948|nineteen forty-eight}, the line hardens: two rival states, each claiming the whole peninsula.",
    "actions": [
     {
      "type": "chapter",
      "emoji": "crossed_swords",
      "text": "Two states"
-    },
-    {
-     "type": "sticker",
-     "emoji": "hourglass_done",
-     "x": 860,
-     "y": 1000,
-     "size": 140,
-     "atWord": "temporary,",
-     "hold": 1.4
     },
     {
      "type": "marker",
@@ -433,13 +432,77 @@
      "size": 46,
      "y": 1100,
      "atWord": "whole",
+     "hold": 1.0
+    },
+    {
+     "type": "date",
+     "date": "1948",
+     "atWord": "1948"
+    },
+    {
+     "type": "sticker",
+     "emoji": "hourglass_done",
+     "x": 860,
+     "y": 640,
+     "size": 120,
+     "atWord": "temporary.",
      "hold": 1.4
+    },
+    {
+     "type": "callout",
+     "text": "Temporary zones",
+     "sub": "US · Soviet, 1945",
+     "y": 1080,
+     "size": 60,
+     "atWord": "temporary.",
+     "hold": 2.2,
+     "stamp": "HARDENS",
+     "stampWord": "hardens:",
+     "stampSize": 44
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFFFFF",
+     "width": 8,
+     "dur": 0.4,
+     "hold": 2.2,
+     "atWord": "hardens:"
+    },
+    {
+     "type": "region",
+     "text": "North Korea",
+     "at": [
+      127.0,
+      40.6
+     ],
+     "atWord": "rival",
+     "hold": 2.6
+    },
+    {
+     "type": "region",
+     "text": "South Korea",
+     "at": [
+      128.0,
+      36.0
+     ],
+     "atWord": "rival",
+     "hold": 2.6
     }
    ]
   },
   {
    "id": "war",
-   "say": "In 1950, the North invades. Three years of war.",
+   "say": "So in {1950|nineteen fifty}, the North invades. Three years of war.",
    "date": "1950-06-25",
    "actions": [
     {
@@ -483,7 +546,7 @@
   },
   {
    "id": "armistice",
-   "say": "The 1953 armistice draws a new line. Not the 38th parallel.",
+   "say": "And when the {1953|nineteen fifty-three} armistice draws a new line? It's not the 38th parallel.",
    "date": "1953-07-27",
    "actions": [
     {
@@ -532,6 +595,113 @@
      "type": "path",
      "coords": [
       [
+       126.633,
+       37.781
+      ],
+      [
+       126.665,
+       37.8
+      ],
+      [
+       126.665,
+       37.828
+      ],
+      [
+       126.665,
+       37.917
+      ],
+      [
+       126.755,
+       37.979
+      ],
+      [
+       126.878,
+       38.106
+      ],
+      [
+       126.939,
+       38.175
+      ],
+      [
+       127.011,
+       38.241
+      ],
+      [
+       127.09,
+       38.285
+      ],
+      [
+       127.169,
+       38.304
+      ],
+      [
+       127.295,
+       38.312
+      ],
+      [
+       127.533,
+       38.306
+      ],
+      [
+       127.58,
+       38.312
+      ],
+      [
+       127.745,
+       38.319
+      ],
+      [
+       127.785,
+       38.307
+      ],
+      [
+       127.904,
+       38.3
+      ],
+      [
+       128.041,
+       38.309
+      ],
+      [
+       128.105,
+       38.328
+      ],
+      [
+       128.17,
+       38.359
+      ],
+      [
+       128.224,
+       38.417
+      ],
+      [
+       128.278,
+       38.524
+      ],
+      [
+       128.339,
+       38.608
+      ],
+      [
+       128.375,
+       38.623
+      ]
+     ],
+     "color": "#FFFFFF",
+     "width": 7,
+     "dur": 1.0,
+     "hold": 9.6,
+     "label": "1953 line",
+     "labelAt": [
+      128.9,
+      38.85
+     ],
+     "atWord": "new"
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
        124.55,
        38.0
       ],
@@ -540,16 +710,16 @@
        38.0
       ]
      ],
-     "color": "#FFFFFF",
-     "width": 5,
+     "color": "#FFC94D",
+     "width": 4,
      "dur": 0.6,
-     "hold": 2.6,
-     "label": "38th parallel",
+     "hold": 6.9,
+     "label": "38°N",
      "labelAt": [
-      129.0,
+      124.9,
       38.25
      ],
-     "atWord": "Not"
+     "atWord": "not"
     }
    ]
   },
@@ -574,7 +744,7 @@
       -160
      ],
      "atWord": "Kaesong,",
-     "hold": 2.0
+     "hold": 2.8
     },
     {
      "type": "pointer",
@@ -588,7 +758,7 @@
       160
      ],
      "atWord": "Sokcho,",
-     "hold": 2.0
+     "hold": 2.8
     }
    ]
   },
@@ -617,7 +787,7 @@
   },
   {
    "id": "loop",
-   "say": "Still divided. All because of…",
+   "say": "Still divided. And it all started with…",
    "camera": {
     "center": [
      127.6,
@@ -630,12 +800,28 @@
    "hideDate": true,
    "actions": [
     {
-     "type": "recolor",
+     "type": "conceal",
      "ids": [
       "DPRK",
       "ROK"
      ],
-     "atWord": "All"
+     "atWord": "started"
+    },
+    {
+     "type": "reveal",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "started"
+    },
+    {
+     "type": "recolor",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "started"
     },
     {
      "type": "path",
@@ -652,8 +838,8 @@
      "color": "#FFC94D",
      "width": 9,
      "dur": 0.8,
-     "hold": 1.4,
-     "atWord": "All"
+     "hold": 1.6,
+     "atWord": "started"
     }
    ]
   }
