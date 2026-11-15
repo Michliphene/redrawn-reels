@@ -31,6 +31,7 @@
 | Area | ~828,000 sq mi (Monticello: ~827,000) | National Archives-derived; Monticello |
 | Per acre | $15M / 529.9M acres ≈ 2.8¢ → "under three cents" | computed from 828,000 sq mi |
 | Doubles | US (east of the Mississippi, ~839,000 sq mi computed from our map) + ~828,000 → roughly ×2 | computed; widely stated |
+| Washington–Paris | ≈3,800 mi great-circle (computed 3,831), symbolic arc — Monroe actually sailed New York → Le Havre | computed with d3-geo |
 | Senate | approved 20 Oct 1803, 24–7 | Senate.gov; History.com |
 | Constitutionality | Jefferson thought an amendment was needed; drafted one; proceeded without it | National Constitution Center; Bill of Rights Institute |
 | Handover | New Orleans, 20 Dec 1803 (France → US) | Washington Examiner "On this day"; general references |

@@ -26,7 +26,7 @@
   }
  },
  "timeline": {
-  "from": "1795-01-01",
+  "from": "1800-01-01",
   "to": "1825-01-01",
   "step": 5
  },
@@ -115,7 +115,7 @@
       -230
      ],
      "atWord": "all",
-     "hold": 1.0
+     "hold": 0.6
     },
     {
      "type": "sticker",
@@ -124,7 +124,7 @@
      "y": 420,
      "size": 120,
      "atWord": "France",
-     "hold": 1.8
+     "hold": 1.1
     }
    ]
   },
@@ -143,7 +143,7 @@
     {
      "type": "chapter",
      "emoji": "world_map",
-     "text": "1803"
+     "text": "The border"
     },
     {
      "type": "region",
@@ -251,8 +251,8 @@
      "type": "sticker",
      "emoji": "sailboat",
      "at": [
-      -90.2,
-      36.0
+      -90.9,
+      32.6
      ],
      "dx": 0,
      "dy": 0,
@@ -270,13 +270,34 @@
      "atWord": "Spain"
     },
     {
+     "type": "pulse",
+     "ids": [
+      "LOUISIANA"
+     ],
+     "atWord": "Louisiana"
+    },
+    {
+     "type": "label",
+     "text": "LOUISIANA",
+     "at": [
+      -99,
+      41
+     ],
+     "size": "xl",
+     "atWord": "Louisiana",
+     "hold": 1.1
+    },
+    {
      "type": "sticker",
      "flag": "fr",
-     "x": 880,
-     "y": 620,
+     "at": [
+      -99,
+      41
+     ],
+     "dy": -110,
      "size": 120,
-     "atWord": "France.",
-     "hold": 1.0
+     "atWord": "back",
+     "hold": 0.6
     }
    ]
   },
@@ -286,7 +307,7 @@
    "camera": {
     "center": [
      -40,
-     45
+     56
     ],
     "span": 95
    },
@@ -341,7 +362,7 @@
      "label": "≈ 3,800 miles",
      "labelAt": [
       -38,
-      55
+      50
      ],
      "atWord": "Paris,"
     },
@@ -403,7 +424,7 @@
       19.0
      ],
      "atWord": "Haiti,",
-     "hold": 2.4
+     "hold": 1.9
     },
     {
      "type": "sticker",
@@ -421,11 +442,11 @@
     {
      "type": "sticker",
      "flag": "gb",
-     "x": 220,
-     "y": 820,
+     "x": 860,
+     "y": 760,
      "size": 120,
-     "atWord": "Britain",
-     "hold": 1.6
+     "atWord": "war",
+     "hold": 0.85
     }
    ]
   },
@@ -440,7 +461,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "thinking",
+     "emoji": "world_map",
      "text": "The offer"
     },
     {
@@ -455,7 +476,7 @@
      "text": "All of Louisiana?",
      "y": 1080,
      "size": 72,
-     "hold": 1.5,
+     "hold": 1.1,
      "atWord": "pay"
     },
     {
@@ -476,7 +497,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "writing",
+     "emoji": "scroll",
      "text": "The deal"
     },
     {
@@ -496,7 +517,7 @@
      "coins": true,
      "coinsCount": 14,
      "dur": 0.9,
-     "hold": 2.2,
+     "hold": 1.0,
      "y": 1080,
      "atWord": "fifteen"
     }
@@ -519,7 +540,7 @@
      "suffix": "¢",
      "label": "PER ACRE · 828,000 SQ MI",
      "dur": 0.6,
-     "hold": 1.6,
+     "hold": 1.0,
      "y": 1080
     },
     {
@@ -555,7 +576,7 @@
      "stamp": "BUYS IT",
      "stampWord": "buys",
      "atWord": "Jefferson",
-     "hold": 3.0
+     "hold": 3.3
     },
     {
      "type": "callout",
@@ -565,6 +586,15 @@
      "size": 72,
      "hold": 1.2,
      "atWord": "buys"
+    },
+    {
+     "type": "callout",
+     "text": "Constitutional?",
+     "sub": "Jefferson drafted an amendment",
+     "y": 1080,
+     "size": 64,
+     "atWord": "sure",
+     "hold": 1.1
     }
    ]
   },
@@ -590,10 +620,17 @@
      "sub": "handover: New Orleans, Dec 20, 1803",
      "y": 1060,
      "size": 110,
-     "hold": 1.3,
+     "hold": 1.0,
      "atWord": "doubles"
     }
-   ]
+   ],
+   "camera": {
+    "center": [
+     -92,
+     39
+    ],
+    "span": 44
+   }
   },
   {
    "id": "borders",
@@ -634,10 +671,10 @@
      "type": "sticker",
      "emoji": "red_question_mark",
      "at": [
-      -100,
-      49.6
+      -96,
+      47.8
      ],
-     "dy": -40,
+     "dy": 0,
      "size": 100,
      "atWord": "borders",
      "hold": 1.9
@@ -656,8 +693,8 @@
      "type": "region",
      "text": "British lands",
      "at": [
-      -104,
-      50.3
+      -112,
+      47.6
      ],
      "atWord": "borders",
      "hold": 1.9
@@ -667,7 +704,7 @@
      "text": "Shown as settled 1818–19",
      "size": 40,
      "y": 1120,
-     "hold": 1.8,
+     "hold": 1.2,
      "atWord": "treaty"
     }
    ]
@@ -678,7 +715,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "busts_in_silhouette",
+     "emoji": "mountain",
      "text": "Native nations"
     },
     {
@@ -709,7 +746,7 @@
       45.6
      ],
      "atWord": "Native",
-     "hold": 2.3
+     "hold": 2.0
     },
     {
      "type": "region",
@@ -719,7 +756,7 @@
       41.3
      ],
      "atWord": "Native",
-     "hold": 2.3
+     "hold": 2.0
     },
     {
      "type": "region",
@@ -729,7 +766,7 @@
       37.6
      ],
      "atWord": "nations,",
-     "hold": 2.3
+     "hold": 1.8
     },
     {
      "type": "region",
@@ -739,14 +776,14 @@
       32.6
      ],
      "atWord": "nations,",
-     "hold": 2.3
+     "hold": 1.8
     },
     {
      "type": "callout",
      "text": "Approximate areas, c. 1803",
      "size": 36,
      "y": 1120,
-     "hold": 1.5,
+     "hold": 0.8,
      "atWord": "agreed"
     }
    ]
@@ -764,7 +801,7 @@
      "type": "ghost",
      "id": "STATES_TODAY",
      "atWord": "Today,",
-     "hold": 2.4
+     "hold": 2.0
     },
     {
      "type": "callout",
@@ -772,7 +809,7 @@
      "sub": "all or part",
      "y": 1080,
      "size": 90,
-     "hold": 1.8,
+     "hold": 0.7,
      "atWord": "fifteen"
     }
    ],

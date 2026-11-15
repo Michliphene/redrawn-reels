@@ -16,7 +16,7 @@ const fmt = (d?: string) => {
 const Tag: React.FC<{ x: number; y: number; t: number; t0: number; hold: number; children: React.ReactNode; size?: number; sub?: string; dot?: boolean }> =
   ({ x, y, t, t0, hold, children, size = 44, sub, dot }) => {
     if (t < t0 || t > t0 + hold + 0.4) return null;
-    const s = spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 14, stiffness: 160 } });
+    const s = t0 <= 0.05 ? 1 : spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 14, stiffness: 160 } });
     const out = interpolate(t, [t0 + hold, t0 + hold + 0.4], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
     return (
       <div style={{ position: 'absolute', left: Math.min(Math.max(x, 230), 850), top: y, transform: `translate(-50%,-50%) scale(${0.6 + 0.4 * s})`, opacity: s * out, textAlign: 'center', pointerEvents: 'none' }}>

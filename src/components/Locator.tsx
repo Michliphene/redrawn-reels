@@ -23,8 +23,8 @@ export const Locator: React.FC<{ geo: GeoData; cam: CamState; t: number; size?: 
         ))}
         <path d={path(view) ?? ''} fill="rgba(255,201,77,0.18)" stroke={theme.accent} strokeWidth={2.5} />
       </svg>
-      <div style={{ position: 'absolute', bottom: -26, width: '100%', textAlign: 'center', fontFamily: 'Montserrat', fontWeight: 800, fontSize: 18,
-        color: theme.muted, letterSpacing: 3 }}>YOU ARE HERE</div>
+      <div style={{ position: 'absolute', bottom: -26, width: '100%', textAlign: 'center', fontFamily: 'Montserrat', fontWeight: 800, fontSize: 24,
+        color: theme.muted, letterSpacing: 2 }}>YOU ARE HERE</div>
     </div>
   );
 };

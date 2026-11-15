@@ -5,7 +5,7 @@ import type { TimedAction } from '../lib/types';
 import { FPS, theme } from '../lib/theme';
 
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
-const life = (t: number, t0: number, hold: number) => interpolate(t, [t0, t0 + 0.25, t0 + hold, t0 + hold + 0.4], [0, 1, 1, 0], clamp);
+const life = (t: number, t0: number, hold: number) => interpolate(t, [t0, t0 <= 0.05 ? t0 + 0.001 : t0 + 0.25, t0 + hold, t0 + hold + 0.4], [t0 <= 0.05 ? 1 : 0, 1, 1, 0], clamp);
 
 const Coin: React.FC<{ size: number; spin: number }> = ({ size, spin }) => (
   <svg width={size} height={size} viewBox="0 0 40 40" style={{ transform: `scaleX(${Math.cos(spin)})` }}>
@@ -73,7 +73,7 @@ export const Callouts: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, a
     {(actions.filter((a) => a.type === 'callout') as Extract<TimedAction, { type: 'callout' }>[]).map((a, i) => {
       const hold = a.hold ?? 2.8; if (t < a.t || t > a.t + hold + 0.4) return null;
       const o = life(t, a.t, hold);
-      const s = spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 13, stiffness: 170 } });
+      const s = a.t <= 0.05 ? 1 : spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 13, stiffness: 170 } });
       const st = a.stampAt != null && t >= a.stampAt ? spring({ frame: (t - a.stampAt) * FPS, fps: FPS, config: { damping: 9, stiffness: 200 } }) : 0;
       return (
         <div key={i} style={{ position: 'absolute', top: a.y ?? 1000, width: '100%', display: 'flex', justifyContent: 'center', opacity: o }}>
