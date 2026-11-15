@@ -563,7 +563,7 @@
      "atWord": "Gorbachev",
      "stamp": "RESIGNED",
      "stampWord": "resigns",
-     "hold": 4.6
+     "hold": 3.6
     },
     {
      "type": "flagSwap",
@@ -606,5 +606,6 @@
     }
    ]
   }
- ]
+ ],
+ "episode": 1
 }
