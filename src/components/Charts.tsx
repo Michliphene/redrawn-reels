@@ -155,7 +155,7 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
         return (
           <div key={se.k} style={{ position: 'absolute', left: sx(x) - 40, top: sy(y) - 92, width: 80, textAlign: 'center', opacity: s }}>
             {se.emoji && <Img src={staticFile(`assets/emoji/${se.emoji}.png`)} style={{ width: 70, height: 70, filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.6))' }} />}
-            <div style={{ position: 'absolute', left: 78, top: 18, whiteSpace: 'nowrap', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 36,
+            <div style={{ position: 'absolute', ...(sx(x) > R - 170 ? { right: 78 } : { left: 78 }), top: 18, whiteSpace: 'nowrap', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 36,
               color: se.color, WebkitTextStroke: '6px #0B1120', paintOrder: 'stroke fill' }}>{fmt(y, c)}</div>
           </div>
         );

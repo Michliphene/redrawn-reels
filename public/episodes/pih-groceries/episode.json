@@ -40,7 +40,8 @@
         {
           "type": "chart",
           "chart": "basket",
-          "drawTo": 2026
+          "drawTo": 2026,
+          "atTime": 0
         },
         {
           "type": "bigNumber",
@@ -49,7 +50,8 @@
           "suffix": "%",
           "label": "LESS WORK THAN IN 1984",
           "y": 760,
-          "hold": 2.4
+          "hold": 2.4,
+          "atTime": 0
         },
         {
           "type": "sticker",
@@ -99,33 +101,45 @@
           "type": "sticker",
           "emoji": "alarm_clock",
           "x": 540,
-          "y": 820,
-          "size": 260,
-          "text": "1 PRICE = MINUTES OF WORK",
-          "hold": 2.0,
-          "atWord": "price"
+          "y": 860,
+          "size": 280,
+          "text": "PRICE = MINUTES OF WORK",
+          "hold": 2.4,
+          "atWord": "trick"
         },
         {
           "type": "callout",
-          "text": "$8.55 / hour",
-          "sub": "1984 · avg. non-manager pay",
-          "y": 720,
-          "hold": 1.9,
+          "text": "1984: $8.55/h",
+          "sub": "avg. pay, private-sector non-managers",
+          "y": 700,
+          "size": 76,
+          "hold": 2.6,
+          "atWord": "1984"
+        },
+        {
+          "type": "sticker",
+          "emoji": "hourglass_not_done",
+          "x": 880,
+          "y": 1150,
+          "size": 140,
+          "tilt": 10,
+          "hold": 1.6,
           "atWord": "$8.55"
         },
         {
           "type": "callout",
-          "text": "$32.63 / hour",
-          "sub": "2026 · same workers",
+          "text": "2026: $32.63/h",
+          "sub": "same workers, Sep 2026",
           "y": 980,
-          "hold": 1.8,
-          "atWord": "$32.63"
+          "size": 76,
+          "hold": 2.0,
+          "atWord": "Today"
         },
         {
           "type": "sticker",
           "emoji": "chart_increasing",
           "x": 880,
-          "y": 930,
+          "y": 880,
           "size": 150,
           "hold": 1.6,
           "atWord": "$32.63"
