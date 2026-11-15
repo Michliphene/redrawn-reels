@@ -70,11 +70,15 @@
     {
      "type": "sticker",
      "emoji": "cityscape",
-     "x": 800,
-     "y": 980,
      "size": 180,
      "atTime": 0,
-     "hold": 2.0
+     "hold": 2.0,
+     "at": [
+      -90.07,
+      29.95
+     ],
+     "dx": 150,
+     "dy": 70
     }
    ]
   },
@@ -272,7 +276,7 @@
      "type": "label",
      "text": "LOUISIANA",
      "at": [
-      -99,
+      -94.5,
       41
      ],
      "size": "xl",
@@ -283,7 +287,7 @@
      "type": "sticker",
      "flag": "fr",
      "at": [
-      -99,
+      -94.5,
       41
      ],
      "dy": -110,
@@ -374,9 +378,19 @@
      "prefix": "up to $",
      "label": "FOR NEW ORLEANS + FLORIDA",
      "dur": 0.9,
-     "hold": 1.5,
+     "hold": 2.0,
      "y": 1000,
      "atWord": "ten"
+    },
+    {
+     "type": "marker",
+     "text": "Florida (Spanish)",
+     "at": [
+      -84.5,
+      30.4
+     ],
+     "atWord": "Florida.",
+     "hold": 1.6
     }
    ]
   },
@@ -469,7 +483,7 @@
      "y": 1080,
      "size": 72,
      "hold": 1.1,
-     "atWord": "pay"
+     "atWord": "all"
     },
     {
      "type": "sticker",
@@ -509,7 +523,7 @@
      "coins": true,
      "coinsCount": 14,
      "dur": 0.9,
-     "hold": 1.0,
+     "hold": 1.3,
      "y": 1080,
      "atWord": "fifteen"
     }
@@ -521,7 +535,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "coin",
+     "emoji": "coin3d",
      "text": "The price"
     },
     {
@@ -565,8 +579,6 @@
      "y": 360,
      "small": true,
      "focus": "50% 30%",
-     "stamp": "BUYS IT",
-     "stampWord": "buys",
      "atWord": "Jefferson",
      "hold": 3.3
     },
@@ -576,7 +588,7 @@
      "sub": "October 20, 1803",
      "y": 1080,
      "size": 72,
-     "hold": 1.2,
+     "hold": 0.8,
      "atWord": "buys"
     },
     {
@@ -606,7 +618,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "star",
+     "emoji": "star3d",
      "text": "Twice as big"
     },
     {
@@ -852,11 +864,15 @@
     {
      "type": "sticker",
      "emoji": "cityscape",
-     "x": 800,
-     "y": 980,
      "size": 180,
      "atWord": "All",
-     "hold": 1.4
+     "hold": 1.4,
+     "at": [
+      -90.07,
+      29.95
+     ],
+     "dx": 150,
+     "dy": 70
     }
    ]
   }
