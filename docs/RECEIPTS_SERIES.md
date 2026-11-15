@@ -49,7 +49,7 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 | # | Title | Hook | Source |
 |---|---|---|---|
 | 001 | Why this hot dog is still $1.50 | "This hot dog has cost $1.50 since 1985." | Costco 10-K — **produced** |
-| 002 | Where your $20 Netflix goes | "Most of this never reaches a film set." (verify) | Netflix 10-K |
+| 002 | Netflix: where $100 goes | "Of every $100 you pay Netflix, only about $36 goes to the shows." | Netflix 10-K — **produced** |
 | 003 | Why McDonald's is a landlord | "McDonald's biggest earner isn't burgers." (verify: franchised rent vs company restaurants) | McDonald's 10-K |
 | 004 | Who makes money on a $1,000 iPhone | "Apple keeps about … of this." (gross margin, verify) | Apple 10-K |
 | 005 | Where your airline ticket goes | "The airline keeps a few dollars of this." (verify) | Delta/United 10-K, A4A |

@@ -1,0 +1,268 @@
+{
+ "id": "netflix-100",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "episode": 2,
+ "title": "Netflix: where $100 goes",
+ "source": "Source: Netflix annual report, 2025 (SEC filing)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3
+ },
+ "scenes": {
+  "tv": {
+   "type": "product",
+   "art": "tv",
+   "price": "$36",
+   "tag": "OF EVERY $100"
+  },
+  "hundred": {
+   "type": "grid"
+  },
+  "bars": {
+   "type": "bars",
+   "max": 33
+  },
+  "why": {
+   "type": "lines"
+  },
+  "card": {
+   "type": "card",
+   "cardTitle": "MEMBER",
+   "cardSub": "PAID EVERY MONTH"
+  },
+  "point": {
+   "type": "lines"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "tv",
+   "say": "Of every {$100|hundred dollars} you pay Netflix, only about {$36|thirty-six} goes to the shows.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "$100"
+    },
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$36"
+    }
+   ]
+  },
+  {
+   "id": "rest",
+   "kicker": "Shows & movies: $36",
+   "say": "So where does the rest go?",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "WHERE DOES THE REST GO?",
+     "atWord": "where",
+     "hold": 1.2,
+     "size": 54
+    }
+   ]
+  },
+  {
+   "id": "hundred",
+   "scene": "hundred",
+   "kicker": "Where $100 goes",
+   "say": "Follow {$100|a hundred dollars}.",
+   "actions": []
+  },
+  {
+   "id": "shows",
+   "say": "{$36|Thirty-six dollars} pays for the shows and movies.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 36,
+     "color": "#FF6B5E",
+     "amount": "$36",
+     "label": "shows + movies",
+     "atWord": "$36",
+     "dur": 1.6
+    }
+   ]
+  },
+  {
+   "id": "other",
+   "say": "{$15|Fifteen} more covers the rest of running the service.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 15,
+     "color": "#FF9E7A",
+     "amount": "$15",
+     "label": "running the service",
+     "atWord": "$15",
+     "dur": 1.6
+    }
+   ]
+  },
+  {
+   "id": "ops",
+   "say": "Marketing, tech, and offices take about {$19|nineteen}.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 7,
+     "color": "#FFB648",
+     "amount": "$7",
+     "label": "marketing",
+     "atWord": "Marketing",
+     "dur": 0.4
+    },
+    {
+     "type": "fill",
+     "count": 8,
+     "color": "#7FC8F8",
+     "amount": "$8",
+     "label": "tech",
+     "atWord": "tech",
+     "dur": 0.4
+    },
+    {
+     "type": "fill",
+     "count": 4,
+     "color": "#B9A7F5",
+     "amount": "$4",
+     "label": "offices + admin",
+     "atWord": "offices",
+     "dur": 0.4
+    }
+   ]
+  },
+  {
+   "id": "left",
+   "say": "And about {$30|thirty dollars} is left over. Profit.",
+   "actions": [
+    {
+     "type": "hint",
+     "atWord": "And"
+    },
+    {
+     "type": "rest",
+     "color": "#C8F53C",
+     "amount": "$30",
+     "label": "profit",
+     "atWord": "$30"
+    }
+   ]
+  },
+  {
+   "id": "costco",
+   "scene": "bars",
+   "kicker": "Kept from every $100",
+   "say": "Remember Costco? It keeps about {$4|four dollars}. Netflix keeps about {$30|thirty}.",
+   "actions": [
+    {
+     "type": "bar",
+     "label": "Costco",
+     "value": 3.85,
+     "decimals": 0,
+     "suffix": "",
+     "color": "#FFB648",
+     "atWord": "$4"
+    },
+    {
+     "type": "bar",
+     "label": "Netflix",
+     "value": 29.5,
+     "decimals": 0,
+     "suffix": "",
+     "color": "#C8F53C",
+     "atWord": "Netflix"
+    }
+   ]
+  },
+  {
+   "id": "why",
+   "scene": "why",
+   "kicker": "Why so much?",
+   "say": "Why? A show mostly costs the same, whether a thousand people watch it, or fifty million.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "1,000 VIEWERS",
+     "text": "SAME SHOW COST",
+     "size": 84,
+     "atWord": "show"
+    },
+    {
+     "type": "line",
+     "small": "50,000,000 VIEWERS",
+     "text": "SAME SHOW COST",
+     "size": 84,
+     "color": "#C8F53C",
+     "atWord": "fifty"
+    }
+   ]
+  },
+  {
+   "id": "members",
+   "scene": "card",
+   "kicker": "The multiplier",
+   "say": "Shows cost Netflix over {$16B|sixteen billion dollars} last year. But that bill is shared by over {300 million|three hundred million} paid memberships.",
+   "actions": [
+    {
+     "type": "stat",
+     "value": "$16B+",
+     "label": "on shows",
+     "sub": "2025",
+     "atWord": "$16B"
+    },
+    {
+     "type": "stat",
+     "value": "300M+",
+     "label": "paid memberships",
+     "sub": "end of 2024",
+     "atWord": "300"
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "kicker": "The real business",
+   "say": "More members. Same shows. That's the business.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "MORE",
+     "text": "MEMBERS",
+     "size": 130,
+     "atWord": "More"
+    },
+    {
+     "type": "line",
+     "small": "SAME",
+     "text": "SHOWS",
+     "size": 130,
+     "color": "#C8F53C",
+     "atWord": "Same"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "tv",
+   "say": "So next time your price goes up, remember…",
+   "actions": []
+  }
+ ]
+}

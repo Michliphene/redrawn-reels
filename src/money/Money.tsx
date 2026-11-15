@@ -51,6 +51,21 @@ const HotDog: React.FC<{ w: number }> = ({ w }) => (
     <path d="M90 200 h300" stroke="rgba(255,255,255,0.25)" strokeWidth="10" strokeLinecap="round" />
   </svg>
 );
+const TV: React.FC<{ w: number }> = ({ w }) => (
+  <svg width={w} height={w * 0.62} viewBox="0 0 600 372">
+    <ellipse cx="300" cy="360" rx="190" ry="10" fill="rgba(0,0,0,0.35)" />
+    <rect x="270" y="300" width="60" height="44" fill="#2B3A33" />
+    <rect x="200" y="338" width="200" height="14" rx="7" fill="#2B3A33" />
+    <rect x="10" y="10" width="580" height="300" rx="26" fill="#15201B" stroke="#3B4D44" strokeWidth="8" />
+    <rect x="34" y="34" width="532" height="252" rx="14" fill="#E5463B" />
+    <rect x="34" y="34" width="532" height="252" rx="14" fill="url(#scr)" />
+    <defs><linearGradient id="scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="rgba(255,255,255,0.18)" /><stop offset="0.6" stopColor="rgba(0,0,0,0)" /><stop offset="1" stopColor="rgba(0,0,0,0.35)" /></linearGradient></defs>
+    <circle cx="300" cy="160" r="70" fill="rgba(255,255,255,0.92)" />
+    <path d="M280 122 L340 160 L280 198 Z" fill="#E5463B" />
+    <rect x="70" y="252" width="460" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
+    <rect x="70" y="252" width="190" height="10" rx="5" fill="#fff" />
+  </svg>
+);
 const Person: React.FC<{ on: number; s: number }> = ({ on, s }) => (
   <svg width={s} height={s * 1.25} viewBox="0 0 100 125" style={{ transform: `scale(${0.9 + 0.1 * on})` }}>
     <circle cx="50" cy="28" r="22" fill={on > 0.5 ? C.accent : C.cell} stroke={C.cellStroke} strokeWidth="3" />
@@ -62,7 +77,7 @@ const Person: React.FC<{ on: number; s: number }> = ({ on, s }) => (
 const bump = (t: number, acts: A[], target: string) => 1 + acts.filter((a) => a.type === 'pulse' && a.target === target).reduce((m, a) => Math.max(m, interpolate(t, [a.t, a.t + 0.12, a.t + 0.45], [0, 0.14, 0], clamp)), 0);
 const Product: React.FC<SceneProps> = ({ t, acts, def }) => (
   <>
-    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}><HotDog w={720} /></div>
+    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}>{def.art === 'tv' ? <TV w={640} /> : <HotDog w={720} />}</div>
     <div style={{ position: 'absolute', top: 800, left: 0, right: 0, textAlign: 'center', fontFamily: font, fontWeight: 900, fontSize: 270, lineHeight: 1, color: C.accent, textShadow: '0 10px 40px rgba(0,0,0,0.6)', transform: `scale(${bump(t, acts, 'price')})` }}>{def.price}</div>
     <div style={{ position: 'absolute', top: 1080, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${bump(t, acts, 'tag')})` }}>
       <div style={{ fontFamily: font, fontWeight: 900, fontSize: 54, letterSpacing: 6, color: C.bg, background: C.text, padding: '10px 34px', borderRadius: 14 }}>{def.tag}</div>
@@ -101,11 +116,15 @@ const Grid: React.FC<SceneProps> = ({ t, acts }) => {
       })}
       {fills.map((a, i) => {
         const o = fadeIn(t, a.t); if (o <= 0) return null;
+        // up to 3 rows: one column; 4–6 rows: two compact columns (stays above the captions band at 1390)
+        const compact = fills.length > 3;
+        const top = compact ? 1092 + (i % 3) * 78 : 1096 + i * 82;
+        const left = compact ? (i < 3 ? 70 : 560) : 184;
         return (
-          <div key={i} style={{ position: 'absolute', top: 1096 + i * 82, left: 184, right: 60, opacity: o, transform: `translateX(${(1 - out3(o)) * -40}px)`, display: 'flex', alignItems: 'center', gap: 22, fontFamily: font }}>
-            <div style={{ width: 46, height: 46, borderRadius: 10, background: a.color, flexShrink: 0 }} />
-            <div style={{ fontWeight: 900, fontSize: 62, color: a.color, minWidth: 190 }}>{a.amount}</div>
-            <div style={{ fontWeight: 700, fontSize: 40, color: C.text }}>{a.label}</div>
+          <div key={i} style={{ position: 'absolute', top, left, width: compact ? 470 : undefined, right: compact ? undefined : 60, opacity: o, transform: `translateX(${(1 - out3(o)) * -40}px)`, display: 'flex', alignItems: 'center', gap: compact ? 14 : 22, fontFamily: font }}>
+            <div style={{ width: compact ? 36 : 46, height: compact ? 36 : 46, borderRadius: 9, background: a.color, flexShrink: 0 }} />
+            <div style={{ fontWeight: 900, fontSize: compact ? 52 : 62, color: a.color, minWidth: compact ? 110 : 190 }}>{a.amount}</div>
+            <div style={{ fontWeight: 700, fontSize: compact ? 32 : 40, color: C.text, lineHeight: 1.05 }}>{a.label}</div>
           </div>
         );
       })}
@@ -128,8 +147,12 @@ const Bars: React.FC<SceneProps> = ({ t, acts, def }) => (
       return (
         <div key={i} style={{ position: 'absolute', top: 570 + i * 320, left: 70, right: 70, fontFamily: font }}>
           <div style={{ fontWeight: 800, fontSize: 52, color: C.text, opacity: fadeIn(t, a.t), marginBottom: 14 }}>{a.label}</div>
-          <div style={{ height: 170, width: w, background: a.color, borderRadius: 18, display: 'flex', alignItems: 'center', paddingLeft: 26, boxSizing: 'border-box', overflow: 'hidden', boxShadow: `0 0 40px ${a.color}55` }}>
-            <span style={{ fontWeight: 900, fontSize: 124, color: C.bg, whiteSpace: 'nowrap' }}>{a.prefix ?? '$'}{(a.value * g).toFixed(a.decimals ?? 1)}{a.suffix ?? 'B'}</span>
+          {/* a short bar can't hold its number: the number then sits right of the bar, in the bar colour */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+            <div style={{ height: 170, width: Math.max(w, 24 * g), background: a.color, borderRadius: 18, display: 'flex', alignItems: 'center', paddingLeft: 26, boxSizing: 'border-box', overflow: 'hidden', boxShadow: `0 0 40px ${a.color}55`, flexShrink: 0 }}>
+              {(a.value / def.max) * 940 >= 300 && <span style={{ fontWeight: 900, fontSize: 124, color: C.bg, whiteSpace: 'nowrap' }}>{a.prefix ?? '$'}{(a.value * g).toFixed(a.decimals ?? 1)}{a.suffix ?? 'B'}</span>}
+            </div>
+            {(a.value / def.max) * 940 < 300 && <span style={{ fontWeight: 900, fontSize: 124, color: a.color, whiteSpace: 'nowrap', opacity: g }}>{a.prefix ?? '$'}{(a.value * g).toFixed(a.decimals ?? 1)}{a.suffix ?? 'B'}</span>}
           </div>
         </div>
       );
