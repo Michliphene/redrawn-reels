@@ -28,7 +28,8 @@ export type Action =
   // ---- data episodes (DataEpisode) ----
   | { type: 'chart'; chart: string; drawTo?: number; atWord?: string }          // show a chart (replaces the current one); line charts start drawn up to drawTo
   | { type: 'hideChart'; atWord?: string }
-  | { type: 'reveal'; item: string; atWord?: string }                           // thenNow row appears
+  | { type: 'hideMarks'; atWord?: string }                                     // clear line-chart marks (e.g. for a clean loop frame)
+  | { type: 'reveal'; item: string; nowWord?: string; nowAt?: number; atWord?: string }                           // thenNow row appears
   | { type: 'focus'; item: string | null; atWord?: string }                     // highlight one row, dim the others (null = clear)
   | { type: 'drawTo'; x: number; dur?: number; atWord?: string }                // line chart draws up to x
   | { type: 'mark'; x: number; text: string; series?: string; tone?: 'good' | 'bad' | 'neutral'; hold?: number; atWord?: string };

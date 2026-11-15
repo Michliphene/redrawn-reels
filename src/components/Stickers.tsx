@@ -55,6 +55,7 @@ export const Chapters: React.FC<{ t: number; actions: TimedAction[]; lottieKeys:
   const idx = cs.findIndex((c, i) => t >= c.t && (i === cs.length - 1 || t < cs[i + 1].t));
   if (idx < 0) return null;
   const c = cs[idx];
+  if (!c.text) return null; // empty chapter = hide the chip
   const s = spring({ frame: (t - c.t) * FPS, fps: FPS, config: { damping: 14, stiffness: 200 } });
   return (
     <div style={{ position: 'absolute', top: 322, width: '100%', display: 'flex', justifyContent: 'center' }}>

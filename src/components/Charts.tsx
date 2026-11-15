@@ -44,10 +44,13 @@ const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: Timed
         if (!r || t < r.t - 0.05) return null;
         const inT = spring({ frame: (t - r.t) * FPS, fps: FPS, config: { damping: 16, stiffness: 170 } });
         const thenT = interpolate(t, [r.t + 0.05, r.t + 0.6], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
-        const nowT = interpolate(t, [r.t + 0.45, r.t + 1.15], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
-        const chipT = spring({ frame: (t - r.t - 1.1) * FPS, fps: FPS, config: { damping: 10, stiffness: 190 } });
+        // the "now" bar/value starts when the voice says the now value (nowWord), else shortly after the reveal
+        const nowStart = r.nowAt ?? r.t + 0.45;
+        const nowT = interpolate(t, [nowStart, nowStart + 0.7], [0, 1], { ...clamp, easing: Easing.out(Easing.cubic) });
+        const chipT = spring({ frame: (t - nowStart - 0.6) * FPS, fps: FPS, config: { damping: 10, stiffness: 190 } });
+        const nowOn = t >= nowStart;
         const d = it.now / it.then - 1;
-        const col = d > 0.02 ? BAD : d < -0.02 ? GOOD : theme.accent;
+        const col = d > 0.05 ? BAD : d < -0.05 ? GOOD : theme.accent; // within ±5% = flat
         const focused = focusA?.item === it.k;
         const dim = focusA && focusA.item && !focused ? 1 - 0.7 * focusT : 1;
         const y = top + idx * rowH;
@@ -72,8 +75,9 @@ const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: Timed
                 opacity: chipT, transform: `scale(${0.4 + 0.6 * chipT})` }}>{fmt(d * 100, { suffix: '%', signed: true })}</div>
             </div>
             <div style={{ width: valueW, textAlign: 'right', paddingRight: 14, fontFamily: 'Montserrat', flexShrink: 0 }}>
-              <div style={{ fontWeight: 700, fontSize: 26, color: theme.muted }}>{fmt(it.then * thenT, c)}</div>
-              <div style={{ fontWeight: 900, fontSize: 36, color: theme.text }}>{fmt(it.now * nowT, c)}</div>
+              {/* while only "then" is spoken, it holds the big slot; then the big slot rolls then → now */}
+              <div style={{ fontWeight: 700, fontSize: 26, color: theme.muted, opacity: nowOn ? 1 : 0 }}>{fmt(it.then, c)}</div>
+              <div style={{ fontWeight: 900, fontSize: 36, color: nowOn ? theme.text : theme.muted }}>{fmt(nowOn ? it.then + (it.now - it.then) * nowT : it.then * thenT, c)}</div>
             </div>
           </div>
         );
@@ -93,7 +97,8 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
     if (t < d.t) break;
     xNow = interpolate(t, [d.t, d.t + (d.dur ?? 0.9)], [xNow, d.x], { ...clamp, easing: Easing.inOut(Easing.cubic) });
   }
-  const marks = actions.filter((a) => a.type === 'mark' && a.t >= t0 - 0.01 && a.t < tEnd && t >= a.t) as Extract<TimedAction, { type: 'mark' }>[];
+  const lastHide = Math.max(-1, ...actions.filter((a) => a.type === 'hideMarks' && a.t <= t).map((a) => a.t));
+  const marks = actions.filter((a) => a.type === 'mark' && a.t >= t0 - 0.01 && a.t < tEnd && t >= a.t && a.t > lastHide) as Extract<TimedAction, { type: 'mark' }>[];
   const s = spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 200 } });
   const step = (c.yMax - c.yMin) / 4;
   const ticks = Array.from({ length: 5 }, (_, k) => c.yMin + k * step);
@@ -156,7 +161,7 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
           <div key={se.k} style={{ position: 'absolute', left: sx(x) - 40, top: sy(y) - 92, width: 80, textAlign: 'center', opacity: s }}>
             {se.emoji && <Img src={staticFile(`assets/emoji/${se.emoji}.png`)} style={{ width: 70, height: 70, filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.6))' }} />}
             <div style={{ position: 'absolute', ...(sx(x) > R - 170 ? { right: 78 } : { left: 78 }), top: 18, whiteSpace: 'nowrap', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 36,
-              color: se.color, WebkitTextStroke: '6px #0B1120', paintOrder: 'stroke fill' }}>{fmt(y, c)}</div>
+              color: se.color, WebkitTextStroke: '6px #0B1120', paintOrder: 'stroke fill' }}>{c.series.length > 1 ? `${se.label.split(' ').slice(-1)[0]} ` : ''}{fmt(y, c)}</div>
           </div>
         );
       })}

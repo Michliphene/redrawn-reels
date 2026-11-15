@@ -26,6 +26,7 @@ export function schedule(spec: EpisodeSpec, timings: Timings) {
       const extra: Record<string, number> = {};
       if (a.type === 'units' && a.retreatWord) extra.retreatAt = wordT(a.retreatWord);
       if ((a.type === 'portrait' || a.type === 'callout') && a.stampWord) extra.stampAt = wordT(a.stampWord);
+      if (a.type === 'reveal' && a.nowWord) extra.nowAt = wordT(a.nowWord);
       actions.push({ ...a, ...extra, t, beat: b.id } as TimedAction);
       if (a.type === 'date') dates.push({ t, date: a.date });
       if (a.type === 'declare' && a.date) dates.push({ t, date: a.date });
