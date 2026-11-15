@@ -5,3 +5,4 @@ data/raw/
 *.part
 public/episodes/*/voice_raw.wav
 public/episodes/*/.el_*.json
+deliverables/**/*.mp4
