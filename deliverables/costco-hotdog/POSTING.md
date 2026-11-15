@@ -13,7 +13,8 @@ Costco's hot dog has cost $1.50 since 1985. Here's where $100 at Costco actually
 membership card earns more than everything on the shelves.
 RECEIPTS #001 — follow the money in under a minute. Sources in the pinned comment.
 
-**Hashtags (5):** #costco #business #money #finance #economics
+**Hashtags TikTok (5):** #costco #moneyexplained #businessexplained #fintok #learnontiktok
+**Hashtags Instagram (5):** #costco #moneyexplained #businessexplained #finance #economics
 
 ## Pinned comment
 Sources: Costco's fiscal 2026 annual report (Form 10-K) and Q4 earnings call. "Left from selling" = operating

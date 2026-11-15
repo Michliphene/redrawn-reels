@@ -39,3 +39,12 @@ Disclaimer in captions when relevant: "Not affiliated with <company>. Not financ
 2. Have #002 and #003 ready before posting #001, then about two a week.
 3. Pin the three best once there are six videos. Instagram: upload the 3:4 cover so the grid looks consistent.
 4. Reply to the first "this is wrong" comments with the filing line: it is the channel's whole promise.
+
+## Hashtags (per post, not in the bio)
+5 max per post: **1 company + 2 series + 2 broad**. Search on both apps reads the caption and the on-screen text more
+than the hashtags (Instagram says hashtags don't boost reach; TikTok uses them as a topic signal). So keywords in
+the first caption line matter more.
+- **Series (every post):** `#moneyexplained #businessexplained`
+- **Broad, TikTok:** `#fintok #learnontiktok` · **Broad, Instagram:** `#finance #economics`
+- **Company:** the brand of the episode (`#costco`, `#netflix`…)
+- Bio: no hashtags (not useful for reach, eats characters).
