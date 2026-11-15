@@ -5,3 +5,6 @@ data/raw/
 *.part
 public/episodes/*/voice_raw.wav
 public/episodes/*/.el_*.json
+# Obsidian : on versionne seulement .obsidian/app.json
+.obsidian/*
+!.obsidian/app.json

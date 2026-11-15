@@ -1,0 +1,5 @@
+{
+  "userIgnoreFilters": ["node_modules/", "out/", "models/", "src/", "public/fonts/", "public/assets/emoji/", "package-lock.json"],
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "relative"
+}

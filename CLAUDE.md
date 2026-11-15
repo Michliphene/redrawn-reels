@@ -61,5 +61,10 @@ the owner talks to you in **French**.
 - Components: `src/components/*` (MapLayer, Labels, Units, Portrait, Flag, FlagSwap, Counter, Timeline,
   DateBadge, Captions, Brand, Fx, Sfx); camera in `src/lib/camera.ts`; cue scheduling in `src/lib/schedule.ts`.
 
+## Dashboard (Obsidian)
+Open the repo folder as an Obsidian vault → start at `docs/DASHBOARD.md`. Regenerate with `npm run dashboard`
+(`scripts/dashboard.mjs`); **run it at the end of every task that adds/changes episode files**. State is derived from
+files; only manual state = `public/episodes/<id>/publish.json` (`{"tiktok","instagram","shorts","date"}`) after posting.
+
 ## Setup (fresh clone)
 `scripts/setup.sh` (npm install, Kokoro model download, pip deps).
