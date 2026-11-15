@@ -51,7 +51,7 @@
 - Native sovereignty: the US bought France's claim against other European powers, not the land from its inhabitants; later treaties/purchases/removals followed.
 
 ## Images
-Jefferson (print, 1801?), Napoleon (print, 1804), Monroe — Library of Congress (cropped), no known restrictions (verify each record before monetising).
+Jefferson (print, 1801?, LoC 96522974) and Monroe (LoC 2014648285): "No known restrictions on publication" (checked); Napoleon (print, 1804, LoC 98513059): public domain by age.
 
 ## References
 - Monticello, "The Louisiana Purchase": https://www.monticello.org/the-louisiana-purchase

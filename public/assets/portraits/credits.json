@@ -51,20 +51,23 @@
  "jefferson_bust": {
   "file": "LOC ppmsca 15715 — Thomas Jefferson, President of the United States (print, 1801?) — cropped",
   "artist": "Library of Congress",
-  "license": "No known restrictions (verify)",
-  "date": "1801?"
+  "license": "No known restrictions",
+  "date": "1801?",
+  "page": "https://www.loc.gov/pictures/item/96522974/"
  },
  "napoleon_bust": {
   "file": "LOC cph 3c21171 — Napoléon Bonaparte (print, 1804) — cropped",
   "artist": "Library of Congress",
-  "license": "Public domain (1804 print)",
-  "date": "1804"
+  "license": "Public domain (1804)",
+  "date": "1804",
+  "page": "https://www.loc.gov/pictures/item/98513059/"
  },
  "monroe": {
   "file": "LOC cph 3a53279 — James Monroe (photo of portrait)",
   "artist": "Library of Congress",
-  "license": "No known restrictions (verify)",
-  "date": "1900-1920 photo"
+  "license": "No known restrictions",
+  "date": "1900-1920 photo",
+  "page": "https://www.loc.gov/pictures/item/2014648285/"
  },
  "livingston": {
   "file": "LOC cph 3a49013 — Robert R. Livingston",

@@ -111,7 +111,7 @@
       -230
      ],
      "atWord": "all",
-     "hold": 0.9
+     "hold": 0.6
     },
     {
      "type": "sticker",
@@ -390,7 +390,7 @@
       30.4
      ],
      "atWord": "Florida.",
-     "hold": 1.6
+     "hold": 0.7
     }
    ]
   },
@@ -546,7 +546,7 @@
      "suffix": "¢",
      "label": "PER ACRE · 828,000 SQ MI",
      "dur": 0.6,
-     "hold": 1.6,
+     "hold": 1.25,
      "y": 1080
     },
     {
@@ -797,7 +797,7 @@
      "type": "callout",
      "text": "Approximate areas, c. 1803",
      "size": 36,
-     "y": 1120,
+     "y": 1160,
      "hold": 0.8,
      "atWord": "agreed"
     }
@@ -824,7 +824,7 @@
      "sub": "all or part",
      "y": 1080,
      "size": 90,
-     "hold": 0.9,
+     "hold": 0.8,
      "atWord": "fifteen"
     }
    ],
@@ -874,7 +874,8 @@
      "dx": 0,
      "dy": 190
     }
-   ]
+   ],
+   "hideDate": true
   }
  ]
 }
