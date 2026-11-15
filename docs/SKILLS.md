@@ -41,3 +41,31 @@
 - **Simulations :** moteur déterministe (graine et paramètres dans un `SIM.json`), compteur « IN SYNC x/N » et audio issus de la simulation, test de boucle.
 - **Automatisation IA :** capture réelle (Playwright), données fictives générées, scanner de secrets, journal de mesure avant/après, livrable écrit avant publication.
 - **Communs :** registre de licences, lint des zones de sécurité, contrôle −14 LUFS, mention « AI voice », 3 structures de hook en alternance.
+
+## Comparatif avec ScentArchive (`Michliphene/scentarchive`, branche `claude/baccarat-rouge-540-v3-wv8c0e`)
+
+Lu le 2026-11-15, d'après `CLAUDE.md`, `HANDOFF.md` (mis à jour le 12/11), `README.md` et l'arborescence. Rien n'a été exécuté.
+
+**Nature du projet :** compte TikTok / Reels / Shorts animé sur les parfums (histoire, molécules, dupes, mythes). Même format que REDRAWN (1080×1920, 30–60 s, sans visage, en anglais), même base Remotion, mais avec une mascotte, **Archie** (atomiseur vintage en SVG).
+
+**État :** 4 épisodes rendus (001 v2 et v3 avec 3 hooks A/B/C, 002 Iso E Super, 003 « frotter ses poignets »). Aucun jugé publiable : voix edge-tts reconnaissable, faits ☐ à cocher, vidéo 003 non regardée.
+
+| Domaine | REDRAWN | ScentArchive | Avantage |
+|---|---|---|---|
+| Voix | ElevenLabs (Brian), cache, timings mot à mot | edge-tts (voix en-GB pour Archie, voix US pour le narrateur) ; jugée « défaut n°1 » | REDRAWN |
+| Sources et exactitude | `SOURCES.md` par épisode, tags DATES VARY / DISPUTED | Tableau de faits dans chaque script, cases ☐ à cocher, test anti-slop | REDRAWN (plus systématique) |
+| Agents de review | `reel-reviewer`, `virality-reviewer`, scripts de métriques | Aucun agent ; test « anti-slop » en 6 questions rempli à la main | REDRAWN |
+| Mesure du hook et de la boucle | `virality_metrics.py` (images 0–3 s, comparaison première/dernière image) | Boucle vérifiée à la main (écart moyen 3/255 mesuré sur le 003) | REDRAWN |
+| 3D | Aucune | Blender : flacon héros (90 images) et flacons « dupe » / brume, importés comme séquences | ScentArchive |
+| Personnage récurrent | Aucun (portraits d'archives) | Archie 100 % SVG : 10 expressions, synchro labiale sur le volume, clignements | ScentArchive |
+| Sous-titres | Mot par mot (`Captions.tsx`) | Cartes de sens de 1 à 3 mots, ≥ 0,5 s, taille fixe | ScentArchive (à évaluer sur la rétention) |
+| Kit de motion | Cues d'`episode.json` | `motion.ts` (anticipation, dépassement, squash, bruit), `kit.tsx` (coupes internes, caméra en plongée), 7 transitions `@remotion/transitions` | ScentArchive |
+| Images | Archives libres de droits (LoC, Commons) avec crédit | Images IA (Gemini web, GPT-image) détourées, label « AI-generated content » | Différent (pas comparable) |
+| Séries et backlog | `docs/01_SERIES_AND_TOPICS.md` | 6 séries et `idees.md` avec statuts | Équivalent |
+| Skills Claude Code | Aucune skill locale | Skill Remotion officielle installée (captions, maps, 3D, interactivité) | ScentArchive |
+| Pipeline | `pipeline/render.sh <id>` en une commande | `rendre.mjs <ID>` et `npm run render:*` ; contournement Edge sur un PC Windows | REDRAWN (plus simple) |
+
+### Pistes de transfert
+- **REDRAWN → ScentArchive :** voix ElevenLabs, agents de review et `virality_metrics.py`, `SOURCES.md` par épisode. Limite : la clé ElevenLabs de REDRAWN est injectée par l'environnement cloud de ce repo, elle n'existe pas dans ScentArchive.
+- **ScentArchive → REDRAWN :** pipeline Blender et `@remotion/three` comme base du thème « 3D pixel 8-bit », kit de motion, skill Remotion, sous-titres en cartes à tester sur un épisode REDRAWN.
+- **Points à ne pas copier tels quels :** le test « anti-slop » est utile, mais il repose sur des réponses déclaratives ; chez REDRAWN les métriques sont mesurées par script.
