@@ -63,3 +63,12 @@ the owner talks to you in **French**.
 
 ## Setup (fresh clone)
 `scripts/setup.sh` (npm install, Kokoro model download, pip deps).
+
+## Second series in this repo: RECEIPTS ("where the money goes", 3rd account)
+- Bible, rules, cue language and topic backlog: `docs/RECEIPTS_SERIES.md`. Engine: `src/money/Money.tsx`.
+- An episode selects it with `"composition": "Money"` in `episode.json`; same `pipeline/render.sh <id>`.
+- Template: `public/episodes/costco-hotdog/` (episode.json + SOURCES.md with a line-item "Check" column).
+- No photos, no logos; every figure from one primary filing; computed figures labelled "our calculation".
+- Stills: `npx remotion still src/index.ts Money out/f.jpg --frame=N --props='{"episodeId":"<id>"}' --scale=0.5`
+- SEC / investor-relations sites are blocked from cloud sessions: figures come via web search; the owner
+  ticks the lines against the filing before posting (or allow `www.sec.gov` in the environment).

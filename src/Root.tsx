@@ -1,12 +1,26 @@
 import React from 'react';
 import { Composition, staticFile } from 'remotion';
 import { Episode } from './Episode';
+import { Money } from './money/Money';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
 const getJson = async (p: string) => (await fetch(staticFile(p))).json();
 
 export const Root: React.FC = () => (
+  <>
+  <Composition
+    id="Money"
+    component={Money as any}
+    width={W} height={H} fps={FPS} durationInFrames={FPS * 60}
+    defaultProps={{ episodeId: 'costco-hotdog' }}
+    calculateMetadata={async ({ props }) => {
+      const p = props as any;
+      const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
+      const timings = await getJson(`episodes/${p.episodeId}/timings.json`);
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings } };
+    }}
+  />
   <Composition
     id="Episode"
     component={Episode as any}
@@ -43,4 +57,5 @@ export const Root: React.FC = () => (
       return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys } };
     }}
   />
+</>
 );
