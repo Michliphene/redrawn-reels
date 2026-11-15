@@ -76,7 +76,7 @@
      "width": 9,
      "from": 1,
      "dur": 0.1,
-     "hold": 4.0,
+     "hold": 5.3,
      "label": "38°N",
      "labelAt": [
       129.3,
@@ -90,8 +90,8 @@
      "x": 830,
      "y": 1010,
      "size": 170,
-     "atTime": 0,
-     "hold": 2.6
+     "hold": 1.6,
+     "atWord": "National"
     },
     {
      "type": "sticker",
@@ -102,8 +102,18 @@
      "atWord": "map.",
      "hold": 1.4,
      "tilt": -20
+    },
+    {
+     "type": "sticker",
+     "flag": "us-48",
+     "x": 830,
+     "y": 1010,
+     "size": 130,
+     "atWord": "Two",
+     "hold": 1.4
     }
-   ]
+   ],
+   "hideTimeline": true
   },
   {
    "id": "japan",
@@ -306,6 +316,14 @@
      "size": 90,
      "atWord": "38th",
      "hold": 1.0
+    },
+    {
+     "type": "callout",
+     "text": "No river · no mountains",
+     "size": 48,
+     "y": 1100,
+     "atWord": "river,",
+     "hold": 1.6
     }
    ]
   },
@@ -382,7 +400,7 @@
     {
      "type": "chapter",
      "emoji": "crossed_swords",
-     "text": "Two states"
+     "text": "Temporary?"
     },
     {
      "type": "marker",
@@ -408,8 +426,8 @@
      "type": "sticker",
      "flag": "kp",
      "at": [
-      126.9,
-      40.5
+      128.6,
+      41.4
      ],
      "size": 100,
      "atWord": "rival",
@@ -455,7 +473,7 @@
      "y": 1080,
      "size": 60,
      "atWord": "temporary.",
-     "hold": 2.2,
+     "hold": 3.4,
      "stamp": "HARDENS",
      "stampWord": "hardens:",
      "stampSize": 44
@@ -584,10 +602,10 @@
     },
     {
      "type": "callout",
-     "text": "DMZ",
+     "text": "New border: the DMZ",
      "sub": "≈ 2.5 miles wide · ≈ 155 miles long",
      "y": 1100,
-     "size": 80,
+     "size": 56,
      "atWord": "Not",
      "hold": 1.2
     },
@@ -713,13 +731,21 @@
      "color": "#FFC94D",
      "width": 4,
      "dur": 0.6,
-     "hold": 6.9,
+     "hold": 8.2,
      "label": "38°N",
      "labelAt": [
       124.9,
       38.25
      ],
      "atWord": "not"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "DPRK",
+      "ROK"
+     ],
+     "atWord": "armistice"
     }
    ]
   },
@@ -744,7 +770,7 @@
       -160
      ],
      "atWord": "Kaesong,",
-     "hold": 2.8
+     "hold": 6.0
     },
     {
      "type": "pointer",
@@ -759,6 +785,20 @@
      ],
      "atWord": "Sokcho,",
      "hold": 2.8
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "DPRK"
+     ],
+     "atWord": "North."
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "ROK"
+     ],
+     "atWord": "South."
     }
    ]
   },
@@ -778,7 +818,7 @@
      "y": 1080,
      "size": 72,
      "atWord": "peace",
-     "hold": 1.2,
+     "hold": 1.7,
      "stamp": "STILL",
      "stampWord": "signed.",
      "stampSize": 48
@@ -793,7 +833,7 @@
      127.6,
      38.1
     ],
-    "span": 9
+    "span": 7.6
    },
    "hideLocator": true,
    "hideChapter": true,
@@ -841,7 +881,8 @@
      "hold": 1.6,
      "atWord": "started"
     }
-   ]
+   ],
+   "hideTimeline": true
   }
  ]
 }

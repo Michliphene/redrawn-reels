@@ -43,6 +43,7 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
   const hiddenLocator = !!spec!.beats[beatIdx]?.hideLocator;
   const hiddenChapter = !!spec!.beats[beatIdx]?.hideChapter;
   const hiddenDate = !!spec!.beats[beatIdx]?.hideDate;
+  const hiddenTimeline = !!spec!.beats[beatIdx]?.hideTimeline;
   const end = timings!.duration + 0.5;
   const lastBeatStart = timings!.beats[timings!.beats.length - 1].start;
   // music ducks under the voice, swells slightly at the end
@@ -69,7 +70,7 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       <Brand series={spec!.series} episode={(spec as any).episode} title={spec!.title} t={t} titleUntil={hookEnd} end={end} {...(cover ? { titleTop: 420, badgeTop: 300, force: true } : {})} />
       {!cover && t > hookEnd && t < lastBeatStart && !hiddenDate && <DateBadge dates={sched.dates} t={t} />}
       {!cover && <Captions timings={timings!} t={t} hidden={Object.fromEntries(spec!.beats.filter((b: any) => b.hideCaptionWords).map((b: any) => [b.id, b.hideCaptionWords]))} />}
-      {!cover && <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />}
+      {!cover && !hiddenTimeline && <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />}
       <Sfx actions={sched.actions} />
       <Audio src={staticFile(`episodes/${episodeId}/voice.wav`)} />
       <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />

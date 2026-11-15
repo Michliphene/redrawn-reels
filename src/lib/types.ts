@@ -27,7 +27,7 @@ export type Action =
   | { type: 'reveal'; ids: string[]; atWord?: string }
   | { type: 'conceal'; ids: string[]; atWord?: string }
   | { type: 'pointer'; at: LonLat; text: string; from?: [number, number]; hold?: number; atWord?: string };
-export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean; hideChapter?: boolean; hideDate?: boolean };
+export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean; hideChapter?: boolean; hideDate?: boolean; hideTimeline?: boolean };
 export type EpisodeSpec = {
   id: string; series: string; title: string; data: string;
   timeline: { from: string; to: string; step?: number }; beats: Beat[];

@@ -49,4 +49,4 @@
 
 ## Pinned comment (EN)
 Sources: Dean Rusk, As I Saw It (1990); National Geographic (2013); Britannica; South Korean DMZ office. The night's exact date varies by source; the popular "30 minutes" detail isn't in Rusk's own account, so we left it out. Photo: Library of Congress.
-👉 Kaesong went North, Sokcho went South. Did you know the border moved?
+👉 Kaesong went North, Sokcho went South. Which surprised you more: the straight line, or that it moved?
