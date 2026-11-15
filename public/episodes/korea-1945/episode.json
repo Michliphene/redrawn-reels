@@ -100,7 +100,7 @@
      "y": 1010,
      "size": 150,
      "atWord": "map.",
-     "hold": 1.4,
+     "hold": 0.5,
      "tilt": -20
     },
     {
@@ -399,7 +399,7 @@
    "actions": [
     {
      "type": "chapter",
-     "emoji": "crossed_swords",
+     "emoji": "hourglass_done",
      "text": "Temporary?"
     },
     {
@@ -426,8 +426,8 @@
      "type": "sticker",
      "flag": "kp",
      "at": [
-      128.6,
-      41.4
+      129.0,
+      40.1
      ],
      "size": 100,
      "atWord": "rival",
@@ -456,15 +456,6 @@
      "type": "date",
      "date": "1948",
      "atWord": "1948"
-    },
-    {
-     "type": "sticker",
-     "emoji": "hourglass_done",
-     "x": 860,
-     "y": 640,
-     "size": 120,
-     "atWord": "temporary.",
-     "hold": 1.4
     },
     {
      "type": "callout",
@@ -742,10 +733,19 @@
     {
      "type": "pulse",
      "ids": [
-      "DPRK",
-      "ROK"
+      "KOREA_N38",
+      "KOREA_S38"
      ],
      "atWord": "armistice"
+    },
+    {
+     "type": "sticker",
+     "emoji": "page_with_curl",
+     "x": 860,
+     "y": 980,
+     "size": 140,
+     "atWord": "armistice",
+     "hold": 1.2
     }
    ]
   },
