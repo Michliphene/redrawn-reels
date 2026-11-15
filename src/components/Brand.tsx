@@ -13,7 +13,7 @@ export const Brand: React.FC<{ series: string; episode?: number; title: string; 
         color: '#0B1120', background: theme.accent, padding: '8px 18px', borderRadius: 6 }}>{series}</div>
       {episode != null && <div style={{ position: 'absolute', top: badgeTop, left: 340, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, letterSpacing: 4,
         color: theme.accent, border: `3px solid ${theme.accent}`, padding: '5px 14px', borderRadius: 6, opacity: o }}>EP {episode}</div>}
-      <div style={{ position: 'absolute', top: titleTop, width: '100%', textAlign: 'center', opacity: o, fontFamily: 'Montserrat', fontWeight: 900,
+      <div style={{ position: 'absolute', top: titleTop, left: 50, right: 50, textAlign: 'center', opacity: o, fontFamily: 'Montserrat', fontWeight: 900,
         fontSize: 92, color: theme.text, textTransform: 'uppercase', lineHeight: 1.05, textShadow: '0 6px 24px rgba(0,0,0,0.7)' }}>{title}</div>
     </>
   );

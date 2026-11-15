@@ -24,6 +24,8 @@ export type Action =
   | { type: 'sticker'; emoji?: string; flag?: string; at?: LonLat; dx?: number; dy?: number; x?: number; y?: number; size?: number; tilt?: number; text?: string; hold?: number; atWord?: string }
   | { type: 'chapter'; emoji: string; text: string; atWord?: string }
   | { type: 'recolor'; ids: string[]; atWord?: string }
+  | { type: 'reveal'; ids: string[]; atWord?: string }
+  | { type: 'conceal'; ids: string[]; atWord?: string }
   | { type: 'pointer'; at: LonLat; text: string; from?: [number, number]; hold?: number; atWord?: string };
 export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean; hideChapter?: boolean; hideDate?: boolean };
 export type EpisodeSpec = {

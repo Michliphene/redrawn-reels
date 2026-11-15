@@ -36,6 +36,15 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
   const base = polities.filter((f) => !isFocus(f) && !PALETTE.static[String(f.id)]);
   const statics = polities.filter((f) => !isFocus(f) && PALETTE.static[String(f.id)]);
   const focus = polities.filter(isFocus);
+  // hidden focus features appear on `reveal`, visible ones fade on `conceal` (e.g. 1945 zones -> today's states)
+  const vis = (f: any) => {
+    const id = String(f.id);
+    const r = actions.find((a) => a.type === 'reveal' && a.ids.includes(id));
+    const c = actions.find((a) => a.type === 'conceal' && a.ids.includes(id));
+    let o = f.properties?.hidden ? (r ? interpolate(t, [r.t, r.t + 0.6], [0, 1], clamp) : 0) : 1;
+    if (c) o *= interpolate(t, [c.t + 0.6, c.t + 1.0], [1, 0], clamp); // old shapes fade only once the new ones are opaque
+    return o;
+  };
   const pulseAmt = (id: string) => Math.max(0, ...pulses.filter((p) => p.ids.includes(id)).map((p) => interpolate(t, [p.t, p.t + 0.15, p.t + 1.1], [0, 1, 0], clamp)));
   const grat = path(geoGraticule10()) ?? '';
   const shatter = dissolve ? interpolate(t, [dissolve.t - 0.1, dissolve.t + 0.35, dissolve.t + 2.2], [0, 1, 0], clamp) : 0;
@@ -55,8 +64,8 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
       {outline && outlineOpacity > 0 && (
         <path d={path(outline as any) ?? ''} fill="none" stroke={PALETTE.start} strokeWidth={14} opacity={0.55 * outlineOpacity} filter="url(#glow)" />
       )}
-      {focus.map((f) => (
-        <path key={String(f.id)} d={path(f as any) ?? ''} transform={offset(f)} fill={fillAt(String(f.id), t, declares, actions.filter((a) => a.type === 'recolor'))}
+      {focus.filter((f) => vis(f) > 0).map((f) => (
+        <path key={String(f.id)} d={path(f as any) ?? ''} opacity={vis(f)} transform={offset(f)} fill={fillAt(String(f.id), t, declares, actions.filter((a) => a.type === 'recolor'))}
           stroke={pulseAmt(String(f.id)) > 0 ? '#FFFFFF' : '#0B1120'} strokeWidth={1.4 + pulseAmt(String(f.id)) * 5} strokeLinejoin="round" />
       ))}
       {outline && outlineOpacity > 0 && <path d={path(outline as any) ?? ''} fill="none" stroke={PALETTE.startStroke} strokeWidth={2.5} opacity={outlineOpacity} />}

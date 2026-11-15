@@ -1,0 +1,661 @@
+{
+ "id": "korea-1945",
+ "episode": 4,
+ "series": "REDRAWN",
+ "title": "How one line split Korea",
+ "data": "data/korea1945.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.08
+  },
+  "maxPause": 0.34,
+  "respell": {
+   "Kaesong": "Kay-song",
+   "Sokcho": "Sok-cho",
+   "Bonesteel": "Bone-steel"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.1
+  }
+ },
+ "timeline": {
+  "from": "1900-01-01",
+  "to": "1960-01-01",
+  "step": 10
+ },
+ "palette": {
+  "start": "#9C6B4E",
+  "startStroke": "#C9956F",
+  "ids": {
+   "KOREA_N38": "#C1272D",
+   "KOREA_S38": "#3C6FB4",
+   "DPRK": "#B5302F",
+   "ROK": "#3C6FB4"
+  },
+  "static": {}
+ },
+ "counter": false,
+ "legend": false,
+ "locator": true,
+ "beats": [
+  {
+   "id": "hook",
+   "say": "Two Americans. One National Geographic map. One night.",
+   "camera": {
+    "center": [
+     127.6,
+     38.1
+    ],
+    "span": 9
+   },
+   "date": null,
+   "hideLocator": true,
+   "actions": [
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 9,
+     "dur": 2.6,
+     "hold": 3.4,
+     "label": "38°N",
+     "labelAt": [
+      129.3,
+      38.25
+     ],
+     "atTime": 0
+    },
+    {
+     "type": "sticker",
+     "emoji": "world_map",
+     "x": 830,
+     "y": 1010,
+     "size": 170,
+     "atTime": 0,
+     "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "fountain_pen",
+     "x": 830,
+     "y": 1010,
+     "size": 150,
+     "atWord": "One",
+     "hold": 1.4,
+     "tilt": -20
+    }
+   ]
+  },
+  {
+   "id": "japan",
+   "say": "August 1945. Japan, which has ruled Korea since 1910, is about to surrender.",
+   "camera": {
+    "center": [
+     132,
+     37.5
+    ],
+    "span": 24
+   },
+   "date": "1945-08",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "world_map",
+     "text": "1945"
+    },
+    {
+     "type": "label",
+     "text": "KOREA",
+     "at": [
+      127.4,
+      38.6
+     ],
+     "size": "md",
+     "atWord": "Korea",
+     "hold": 2.4
+    },
+    {
+     "type": "sticker",
+     "flag": "jp",
+     "at": [
+      138.5,
+      36.2
+     ],
+     "size": 120,
+     "atWord": "Japan,",
+     "hold": 2.6
+    },
+    {
+     "type": "callout",
+     "text": "Japanese rule",
+     "sub": "1910 – 1945",
+     "y": 1080,
+     "size": 64,
+     "atWord": "ruled",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "soviets",
+   "say": "Soviet troops are already pouring into the north.",
+   "camera": {
+    "center": [
+     128,
+     39.5
+    ],
+    "span": 16
+   },
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "crossed_swords",
+     "text": "Soviets"
+    },
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      127.6,
+      40.6
+     ],
+     "approach": [
+      60,
+      -220
+     ],
+     "count": 3,
+     "size": 66,
+     "color": "#161A22",
+     "atWord": "Soviet",
+     "hold": 2.2,
+     "caption": "Soviet troops"
+    },
+    {
+     "type": "sticker",
+     "flag": "su",
+     "x": 860,
+     "y": 560,
+     "size": 120,
+     "atWord": "Soviet",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "order",
+   "say": "In Washington, two officers, Dean Rusk and Charles Bonesteel, are told to draw a line.",
+   "camera": {
+    "center": [
+     127.6,
+     38.1
+    ],
+    "span": 9
+   },
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "fountain_pen",
+     "text": "The order"
+    },
+    {
+     "type": "portrait",
+     "key": "rusk_bust",
+     "name": "Dean Rusk",
+     "role": "later Secretary of State (photo: 1961)",
+     "side": "left",
+     "y": 380,
+     "small": true,
+     "focus": "50% 30%",
+     "atWord": "Dean",
+     "hold": 2.6
+    },
+    {
+     "type": "sticker",
+     "flag": "us-48",
+     "x": 860,
+     "y": 560,
+     "size": 120,
+     "atWord": "Washington,",
+     "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "fountain_pen",
+     "x": 860,
+     "y": 1000,
+     "size": 150,
+     "atWord": "draw",
+     "hold": 1.4,
+     "tilt": -20
+    }
+   ]
+  },
+  {
+   "id": "line",
+   "say": "They find no river, no mountain range to use. So they pick a straight line: the 38th parallel.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "red_question_mark",
+     "text": "No border?"
+    },
+    {
+     "type": "sticker",
+     "emoji": "mountain",
+     "x": 250,
+     "y": 1000,
+     "size": 140,
+     "atWord": "mountain",
+     "hold": 1.2
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 9,
+     "dur": 0.9,
+     "hold": 9.0,
+     "label": "38th parallel",
+     "labelAt": [
+      129.0,
+      38.25
+     ],
+     "atWord": "straight"
+    },
+    {
+     "type": "callout",
+     "text": "38°N",
+     "sub": "a straight line",
+     "y": 1080,
+     "size": 90,
+     "atWord": "38th",
+     "hold": 1.0
+    }
+   ]
+  },
+  {
+   "id": "seoul",
+   "say": "It keeps Seoul in the American zone.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "star3d",
+     "text": "US zone"
+    },
+    {
+     "type": "marker",
+     "text": "Seoul",
+     "at": [
+      126.98,
+      37.57
+     ],
+     "atWord": "Seoul",
+     "hold": 2.4
+    },
+    {
+     "type": "declare",
+     "id": "KOREA_S38",
+     "atWord": "American",
+     "noLabel": true
+    },
+    {
+     "type": "sticker",
+     "flag": "us-48",
+     "at": [
+      127.8,
+      36.3
+     ],
+     "size": 110,
+     "atWord": "American",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "moscow",
+   "say": "Moscow agrees.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "classical_building",
+     "text": "Soviet zone"
+    },
+    {
+     "type": "declare",
+     "id": "KOREA_N38",
+     "atWord": "Moscow",
+     "noLabel": true
+    },
+    {
+     "type": "sticker",
+     "flag": "su",
+     "at": [
+      127.2,
+      40.3
+     ],
+     "size": 110,
+     "atWord": "Moscow",
+     "hold": 1.2
+    }
+   ]
+  },
+  {
+   "id": "states",
+   "say": "Meant to be temporary, the line hardens. In 1948, two rival states, each claiming the whole peninsula.",
+   "date": "1948",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "crossed_swords",
+     "text": "Two states"
+    },
+    {
+     "type": "sticker",
+     "emoji": "hourglass_done",
+     "x": 860,
+     "y": 1000,
+     "size": 140,
+     "atWord": "temporary,",
+     "hold": 1.4
+    },
+    {
+     "type": "marker",
+     "text": "Pyongyang",
+     "at": [
+      125.75,
+      39.02
+     ],
+     "atWord": "two",
+     "hold": 2.6
+    },
+    {
+     "type": "marker",
+     "text": "Seoul",
+     "at": [
+      126.98,
+      37.57
+     ],
+     "atWord": "two",
+     "hold": 2.6
+    },
+    {
+     "type": "sticker",
+     "flag": "kp",
+     "at": [
+      126.9,
+      40.5
+     ],
+     "size": 100,
+     "atWord": "rival",
+     "hold": 2.0
+    },
+    {
+     "type": "sticker",
+     "flag": "kr",
+     "at": [
+      128.3,
+      36.4
+     ],
+     "size": 100,
+     "atWord": "rival",
+     "hold": 2.0
+    },
+    {
+     "type": "callout",
+     "text": "Each claims all of Korea",
+     "size": 46,
+     "y": 1100,
+     "atWord": "whole",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "war",
+   "say": "In 1950, the North invades. Three years of war.",
+   "date": "1950-06-25",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "crossed_swords",
+     "text": "War"
+    },
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      126.9,
+      37.75
+     ],
+     "approach": [
+      -40,
+      -320
+     ],
+     "count": 3,
+     "size": 62,
+     "color": "#161A22",
+     "atWord": "North",
+     "hold": 2.4,
+     "caption": "June 1950"
+    },
+    {
+     "type": "shake",
+     "amount": 10,
+     "atWord": "invades."
+    },
+    {
+     "type": "callout",
+     "text": "1950 – 1953",
+     "sub": "Korean War",
+     "y": 1100,
+     "size": 72,
+     "atWord": "Three",
+     "hold": 1.3
+    }
+   ]
+  },
+  {
+   "id": "armistice",
+   "say": "The 1953 armistice draws a new line. Not the 38th parallel.",
+   "date": "1953-07-27",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "page_with_curl",
+     "text": "Armistice"
+    },
+    {
+     "type": "conceal",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "new"
+    },
+    {
+     "type": "reveal",
+     "ids": [
+      "DPRK",
+      "ROK"
+     ],
+     "atWord": "new"
+    },
+    {
+     "type": "declare",
+     "id": "DPRK",
+     "atWord": "new",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "ROK",
+     "atWord": "new",
+     "noLabel": true
+    },
+    {
+     "type": "callout",
+     "text": "DMZ",
+     "sub": "≈ 2.5 miles wide · ≈ 155 miles long",
+     "y": 1100,
+     "size": 80,
+     "atWord": "Not",
+     "hold": 1.2
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFFFFF",
+     "width": 5,
+     "dur": 0.6,
+     "hold": 2.6,
+     "label": "38th parallel",
+     "labelAt": [
+      129.0,
+      38.25
+     ],
+     "atWord": "Not"
+    }
+   ]
+  },
+  {
+   "id": "swap",
+   "say": "Kaesong, once in the South, is now in the North. Sokcho, once in the North, is now in the South.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "red_question_mark",
+     "text": "Swapped"
+    },
+    {
+     "type": "pointer",
+     "at": [
+      126.55,
+      37.97
+     ],
+     "text": "Kaesong",
+     "from": [
+      -230,
+      -160
+     ],
+     "atWord": "Kaesong,",
+     "hold": 2.0
+    },
+    {
+     "type": "pointer",
+     "at": [
+      128.59,
+      38.21
+     ],
+     "text": "Sokcho",
+     "from": [
+      200,
+      160
+     ],
+     "atWord": "Sokcho,",
+     "hold": 2.0
+    }
+   ]
+  },
+  {
+   "id": "treaty",
+   "say": "And no peace treaty was ever signed.",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "page_with_curl",
+     "text": "Still at war"
+    },
+    {
+     "type": "callout",
+     "text": "No peace treaty",
+     "sub": "armistice only, since 1953",
+     "y": 1080,
+     "size": 72,
+     "atWord": "peace",
+     "hold": 1.2,
+     "stamp": "STILL",
+     "stampWord": "signed.",
+     "stampSize": 48
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "Still divided. All because of…",
+   "camera": {
+    "center": [
+     127.6,
+     38.1
+    ],
+    "span": 9
+   },
+   "hideLocator": true,
+   "hideChapter": true,
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "recolor",
+     "ids": [
+      "DPRK",
+      "ROK"
+     ],
+     "atWord": "All"
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 9,
+     "dur": 0.8,
+     "hold": 1.4,
+     "atWord": "All"
+    }
+   ]
+  }
+ ]
+}
