@@ -82,7 +82,7 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
       {paths.map((p, i) => {
         const end = p.t + (p.hold ?? 4);
         if (t < p.t || t > end + 0.5) return null;
-        const prog = interpolate(t, [p.t, p.t + (p.dur ?? 1.4)], [0, 1], clamp);
+        const prog = interpolate(t, [p.t, p.t + (p.dur ?? 1.4)], [(p as any).from ?? 0, 1], clamp); // `from` lets a path start partly drawn (frame 0)
         const o = interpolate(t, [end, end + 0.5], [1, 0], clamp);
         const d = path({ type: 'LineString', coordinates: p.coords } as any) ?? '';
         return (
