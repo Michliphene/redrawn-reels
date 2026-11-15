@@ -63,5 +63,5 @@ Jefferson (print, 1801?, LoC 96522974) and Monroe (LoC 2014648285): "No known re
 - History.com, Senate ratifies (Oct 20): https://www.history.com/this-day-in-history/october-20/u-s-senate-ratifies-the-louisiana-purchase
 
 ## Pinned comment (EN)
-Sources: Louisiana Purchase Treaty (National Archives); U.S. Senate; Monticello. Borders shown as settled in 1818–19 (the 1803 treaty gave none); Native nations' areas approximate. Portraits: Library of Congress.
+Sources: Louisiana Purchase Treaty (National Archives); U.S. Senate; Monticello; National Constitution Center. Borders shown as settled in 1818–19 (the 1803 treaty gave none); Native nations' areas approximate. Portraits: Library of Congress.
 👉 Which of the 15 states do you live in?
