@@ -1,0 +1,394 @@
+{
+  "id": "pih-groceries",
+  "kind": "data",
+  "series": "PRICED IN HOURS",
+  "episode": 1,
+  "title": "Groceries vs. 1984",
+  "data": "data/pih-groceries.json",
+  "source": "BLS average prices, CPI food at home & avg. hourly earnings (AHETPI), via FRED.",
+  "footnote": "Pre-tax pay, production & nonsupervisory workers. US city averages, September of each year.",
+  "disclaimer": "Not financial advice.",
+  "voice": {
+    "engine": "elevenlabs",
+    "voice_id": "nPczCjzI2devNBz1zQrb",
+    "voice_name": "Brian (ElevenLabs premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.2,
+      "use_speaker_boost": true,
+      "speed": 1.12
+    },
+    "maxPause": 0.28,
+    "respell": {},
+    "kokoro_fallback": {
+      "voice": "am_michael",
+      "speed": 1.12
+    }
+  },
+  "timeline": {
+    "from": "1984-01-01",
+    "to": "2026-12-31"
+  },
+  "counter": false,
+  "beats": [
+    {
+      "id": "hook",
+      "say": "{18%|Eighteen percent} less work than in {1984.|nineteen eighty-four.} That's your grocery cart today. Except for one item.",
+      "actions": [
+        {
+          "type": "chart",
+          "chart": "basket",
+          "drawTo": 2026
+        },
+        {
+          "type": "bigNumber",
+          "value": 18,
+          "from": 1,
+          "suffix": "%",
+          "label": "LESS WORK THAN IN 1984",
+          "y": 760,
+          "hold": 2.4
+        },
+        {
+          "type": "sticker",
+          "emoji": "shopping_cart",
+          "x": 820,
+          "y": 640,
+          "size": 190,
+          "tilt": 10,
+          "hold": 2.6,
+          "atWord": "That's"
+        },
+        {
+          "type": "sticker",
+          "emoji": "stopwatch",
+          "x": 230,
+          "y": 640,
+          "size": 150,
+          "tilt": -12,
+          "hold": 2.2,
+          "atWord": "work"
+        },
+        {
+          "type": "sticker",
+          "emoji": "cut_of_meat",
+          "x": 540,
+          "y": 1110,
+          "size": 200,
+          "text": "EXCEPT THIS?",
+          "hold": 1.6,
+          "atWord": "Except"
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "say": "The trick: price food in minutes of work. In {1984,|nineteen eighty-four,} non-managers in the private sector made {$8.55|eight fifty-five} an hour. Today, {$32.63.|thirty-two sixty-three.}",
+      "actions": [
+        {
+          "type": "hideChart"
+        },
+        {
+          "type": "chapter",
+          "emoji": "stopwatch",
+          "text": "The rule"
+        },
+        {
+          "type": "sticker",
+          "emoji": "alarm_clock",
+          "x": 540,
+          "y": 820,
+          "size": 260,
+          "text": "1 PRICE = MINUTES OF WORK",
+          "hold": 2.0,
+          "atWord": "price"
+        },
+        {
+          "type": "callout",
+          "text": "$8.55 / hour",
+          "sub": "1984 · avg. non-manager pay",
+          "y": 720,
+          "hold": 1.9,
+          "atWord": "$8.55"
+        },
+        {
+          "type": "callout",
+          "text": "$32.63 / hour",
+          "sub": "2026 · same workers",
+          "y": 980,
+          "hold": 1.8,
+          "atWord": "$32.63"
+        },
+        {
+          "type": "sticker",
+          "emoji": "chart_increasing",
+          "x": 880,
+          "y": 930,
+          "size": 150,
+          "hold": 1.6,
+          "atWord": "$32.63"
+        }
+      ]
+    },
+    {
+      "id": "cheddar",
+      "say": "A pound of cheddar: {21|twenty-one} minutes of work then. {11|Eleven} now.",
+      "actions": [
+        {
+          "type": "chart",
+          "chart": "board"
+        },
+        {
+          "type": "chapter",
+          "emoji": "receipt",
+          "text": "1984 vs 2026"
+        },
+        {
+          "type": "reveal",
+          "item": "cheddar",
+          "atWord": "cheddar"
+        }
+      ]
+    },
+    {
+      "id": "chicken",
+      "say": "Chicken: {5.5|five and a half} minutes, now under {4.|four.}",
+      "actions": [
+        {
+          "type": "reveal",
+          "item": "chicken",
+          "atWord": "Chicken"
+        }
+      ]
+    },
+    {
+      "id": "eggs",
+      "say": "Eggs: {6|six} minutes then. {12|Twelve} at the {2025|twenty twenty-five} peak. About {4|four} today.",
+      "actions": [
+        {
+          "type": "reveal",
+          "item": "eggs",
+          "atWord": "Eggs"
+        },
+        {
+          "type": "sticker",
+          "emoji": "egg",
+          "x": 830,
+          "y": 1180,
+          "size": 150,
+          "tilt": 8,
+          "text": "MAR 2025: 12 MIN",
+          "hold": 1.8,
+          "atWord": "12"
+        }
+      ]
+    },
+    {
+      "id": "breadgas",
+      "say": "Bread? Cheaper too. Gas? Dead flat: {8|eight} minutes then, {8|eight} now.",
+      "actions": [
+        {
+          "type": "reveal",
+          "item": "bread",
+          "atWord": "Bread"
+        },
+        {
+          "type": "reveal",
+          "item": "gas",
+          "atWord": "Gas"
+        }
+      ]
+    },
+    {
+      "id": "beef",
+      "say": "But one item went the other way. Ground beef: {9|nine} minutes then. {12.5|Twelve and a half} today.",
+      "actions": [
+        {
+          "type": "chapter",
+          "emoji": "fire",
+          "text": "The exception"
+        },
+        {
+          "type": "reveal",
+          "item": "beef",
+          "atWord": "Ground"
+        },
+        {
+          "type": "focus",
+          "item": "beef",
+          "atWord": "Ground"
+        },
+        {
+          "type": "shake",
+          "amount": 12,
+          "atWord": "12.5"
+        },
+        {
+          "type": "sticker",
+          "emoji": "fire",
+          "x": 900,
+          "y": 1180,
+          "size": 140,
+          "hold": 1.4,
+          "atWord": "12.5"
+        }
+      ]
+    },
+    {
+      "id": "beefline",
+      "say": "And it's recent. In {1998,|nineteen ninety-eight,} beef bottomed out at {6|six} minutes. Since then, it has doubled. Chicken? Cheaper.",
+      "actions": [
+        {
+          "type": "chart",
+          "chart": "beef",
+          "drawTo": 1984
+        },
+        {
+          "type": "drawTo",
+          "x": 1998,
+          "dur": 1.0,
+          "atWord": "1998"
+        },
+        {
+          "type": "mark",
+          "x": 1998,
+          "series": "beef",
+          "text": "1998 LOW: 6 MIN",
+          "tone": "good",
+          "atWord": "bottomed"
+        },
+        {
+          "type": "drawTo",
+          "x": 2026,
+          "dur": 1.6,
+          "atWord": "Since"
+        },
+        {
+          "type": "mark",
+          "x": 2026,
+          "series": "beef",
+          "text": "2× SINCE 1998",
+          "tone": "bad",
+          "atWord": "doubled"
+        },
+        {
+          "type": "sticker",
+          "emoji": "chart_increasing",
+          "x": 880,
+          "y": 470,
+          "size": 140,
+          "hold": 1.6,
+          "atWord": "doubled"
+        }
+      ]
+    },
+    {
+      "id": "cart",
+      "say": "Now the whole cart. In {1990,|nineteen ninety,} it took {7%|seven percent} more work. By {2004,|two thousand four,} only {2%|two percent} less.",
+      "actions": [
+        {
+          "type": "chart",
+          "chart": "basket",
+          "drawTo": 1984
+        },
+        {
+          "type": "chapter",
+          "emoji": "shopping_cart",
+          "text": "The whole cart"
+        },
+        {
+          "type": "drawTo",
+          "x": 1990,
+          "dur": 0.8,
+          "atWord": "1990"
+        },
+        {
+          "type": "mark",
+          "x": 1990,
+          "text": "1990: +7%",
+          "tone": "bad",
+          "atWord": "7%"
+        },
+        {
+          "type": "drawTo",
+          "x": 2004,
+          "dur": 1.0,
+          "atWord": "By"
+        },
+        {
+          "type": "mark",
+          "x": 2004,
+          "text": "2004: −2%",
+          "tone": "neutral",
+          "atWord": "less"
+        }
+      ]
+    },
+    {
+      "id": "drop",
+      "say": "The real drop came after {2014.|twenty fourteen.}",
+      "actions": [
+        {
+          "type": "drawTo",
+          "x": 2026,
+          "dur": 1.8,
+          "atWord": "after"
+        },
+        {
+          "type": "mark",
+          "x": 2014,
+          "text": "2014",
+          "tone": "neutral",
+          "atWord": "after"
+        },
+        {
+          "type": "sticker",
+          "emoji": "chart_decreasing",
+          "x": 880,
+          "y": 1150,
+          "size": 140,
+          "hold": 1.6,
+          "atWord": "2014"
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "say": "So, measured in your time, the whole cart now costs…",
+      "actions": [
+        {
+          "type": "bigNumber",
+          "value": 18,
+          "from": 1,
+          "suffix": "%",
+          "label": "LESS WORK THAN IN 1984",
+          "y": 760,
+          "hold": 6,
+          "atWord": "now"
+        },
+        {
+          "type": "sticker",
+          "emoji": "shopping_cart",
+          "x": 820,
+          "y": 640,
+          "size": 190,
+          "tilt": 10,
+          "hold": 6,
+          "atWord": "whole"
+        },
+        {
+          "type": "sticker",
+          "emoji": "stopwatch",
+          "x": 230,
+          "y": 640,
+          "size": 150,
+          "tilt": -12,
+          "hold": 6,
+          "atWord": "time"
+        }
+      ]
+    }
+  ]
+}

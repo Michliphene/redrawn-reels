@@ -1,12 +1,40 @@
 import React from 'react';
 import { Composition, staticFile } from 'remotion';
 import { Episode } from './Episode';
+import { DataEpisode } from './DataEpisode';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
 const getJson = async (p: string) => (await fetch(staticFile(p))).json();
 
+// emoji: lottie (.json) if available, else png; drop stickers/chapters whose emoji is missing
+async function resolveEmoji(spec: any) {
+  const emo = [...new Set(spec.beats.flatMap((b: any) => (b.actions ?? []).filter((a: any) => a.emoji).map((a: any) => a.emoji)))] as string[];
+  const lottieKeys: string[] = []; const pngKeys = new Set<string>();
+  await Promise.all(emo.map(async (k) => {
+    const j = await fetch(staticFile(`assets/emoji/${k}.json`)); if (j.ok && (j.headers.get('content-type') ?? '').includes('json')) { lottieKeys.push(k); return; }
+    const pn = await fetch(staticFile(`assets/emoji/${k}.png`)); if (pn.ok && (pn.headers.get('content-type') ?? '').includes('image')) pngKeys.add(k);
+  }));
+  for (const b of spec.beats) b.actions = (b.actions ?? []).filter((a: any) => !a.emoji || lottieKeys.includes(a.emoji) || pngKeys.has(a.emoji));
+  return lottieKeys;
+}
+
 export const Root: React.FC = () => (
+  <>
+  <Composition
+    id="DataEpisode"
+    component={DataEpisode as any}
+    width={W} height={H} fps={FPS} durationInFrames={FPS * 60}
+    defaultProps={{ episodeId: 'pih-groceries' } as EpisodeProps}
+    calculateMetadata={async ({ props }) => {
+      const p = props as EpisodeProps;
+      const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
+      const timings = await getJson(`episodes/${p.episodeId}/timings.json`);
+      const data = await getJson(spec.data);
+      const lottieKeys = await resolveEmoji(spec);
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, data, lottieKeys } };
+    }}
+  />
   <Composition
     id="Episode"
     component={Episode as any}
@@ -43,4 +71,5 @@ export const Root: React.FC = () => (
       return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys } };
     }}
   />
+</>
 );
