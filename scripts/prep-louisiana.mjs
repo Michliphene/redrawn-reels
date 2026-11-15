@@ -21,7 +21,7 @@ const WEST = ['Louisiana', 'Arkansas', 'Missouri', 'Iowa', 'Minnesota', 'North D
 const clip = turf.polygon([[
   [-114.6, 49.6], [-95.15, 49.6], [-95.2, 47.24], // NE: Lake of the Woods -> Mississippi source (Itasca)
   [-94.88, 47.47], [-94.3, 47.45], [-93.53, 47.23], [-93.7, 46.53], [-94.2, 46.36], [-94.16, 45.56], [-93.6, 45.2], [-93.26, 44.98], [-92.8, 44.75], // Mississippi in MN
-  [-80, 44.75], [-80, 31.0], [-91.64, 31.0], // east side open (eastern states not in WEST set); 31°N back to the river
+  [-80, 44.75], [-80, 31.05], [-91.66, 31.05], // 31.05 avoids a sliver along the LA–MS 31°N line // east side open (eastern states not in WEST set); 31°N back to the river
   [-91.55, 30.95], [-91.3, 30.65], [-91.19, 30.45], [-90.95, 30.33], [-90.47, 30.28], [-90.1, 30.2], [-89.75, 30.17], [-89.6, 30.05], [-89.0, 29.8], [-89.0, 28.0], // river to Baton Rouge, Bayou Manchac, lakes, Rigolets
   [-100.0, 28.0], [-100.0, 37.75], // Gulf -> 100th meridian (Red River boundary comes from the OK/TX state line) -> Arkansas River
   [-100.9, 37.97], [-102.04, 38.05], [-103.54, 37.98], [-104.6, 38.27], [-105.24, 38.44], [-106.0, 38.53], [-106.3, 39.25], // Arkansas River to its source

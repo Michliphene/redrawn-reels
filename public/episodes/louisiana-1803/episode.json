@@ -77,8 +77,8 @@
       -90.07,
       29.95
      ],
-     "dx": 150,
-     "dy": 70
+     "dx": 0,
+     "dy": 190
     }
    ]
   },
@@ -105,13 +105,13 @@
       -100,
       42
      ],
-     "text": "ALL OF THIS",
+     "text": "828,000 SQ MI",
      "from": [
       200,
       -230
      ],
      "atWord": "all",
-     "hold": 0.6
+     "hold": 0.9
     },
     {
      "type": "sticker",
@@ -276,8 +276,8 @@
      "type": "label",
      "text": "LOUISIANA",
      "at": [
-      -94.5,
-      41
+      -96.5,
+      40.5
      ],
      "size": "xl",
      "atWord": "Louisiana",
@@ -287,8 +287,8 @@
      "type": "sticker",
      "flag": "fr",
      "at": [
-      -94.5,
-      41
+      -96.5,
+      40.5
      ],
      "dy": -110,
      "size": 120,
@@ -378,7 +378,7 @@
      "prefix": "up to $",
      "label": "FOR NEW ORLEANS + FLORIDA",
      "dur": 0.9,
-     "hold": 2.0,
+     "hold": 2.1,
      "y": 1000,
      "atWord": "ten"
     },
@@ -546,7 +546,7 @@
      "suffix": "¢",
      "label": "PER ACRE · 828,000 SQ MI",
      "dur": 0.6,
-     "hold": 1.0,
+     "hold": 1.6,
      "y": 1080
     },
     {
@@ -824,7 +824,7 @@
      "sub": "all or part",
      "y": 1080,
      "size": 90,
-     "hold": 0.7,
+     "hold": 0.9,
      "atWord": "fifteen"
     }
    ],
@@ -871,8 +871,8 @@
       -90.07,
       29.95
      ],
-     "dx": 150,
-     "dy": 70
+     "dx": 0,
+     "dy": 190
     }
    ]
   }

@@ -12,9 +12,9 @@ REDRAWN ep. 3 — map history in under a minute. Sources in the pinned comment.
 
 ## Pinned comment
 Sources: Louisiana Purchase Treaty (National Archives); U.S. Senate; Monticello; National Constitution Center. Borders shown as settled in 1818–19 (the 1803 treaty gave none); Native nations' areas approximate. Portraits: Library of Congress.
-👉 Would the US look completely different if Napoleon had said no? Which border should we redraw next?
+👉 Which of the 15 states do you live in?
 
 ## Platform notes
 - **TikTok:** keep the loop ("All because…" → "America tried to buy New Orleans."). "Louisiana Purchase" in caption + on screen.
-- **Instagram Reels:** upload `cover_3x4.jpg`; the DM-able lines: "tried to buy one city", "under 3 cents an acre".
-- **YouTube Shorts:** title "The US tried to buy one city. France offered THIS."; sources in the description.
+- **Instagram Reels:** upload `cover_3x4.jpg`; the DM-able lines: "tried to buy New Orleans", "under 3 cents an acre".
+- **YouTube Shorts:** title "The US tried to buy New Orleans. France offered THIS."; sources in the description.
