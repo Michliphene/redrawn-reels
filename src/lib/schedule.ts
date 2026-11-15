@@ -14,7 +14,11 @@ export function schedule(spec: EpisodeSpec, timings: Timings) {
     for (const a of b.actions ?? []) {
       let t = bt.start;
       if ('atWord' in a && a.atWord) {
-        const w = bt.words.find((x) => norm(x.w).startsWith(norm(a.atWord!)));
+        // exact token (with punctuation) wins over prefix match; `occurrence` picks the n-th match (1-based)
+        const exact = bt.words.filter((x) => x.w.toLowerCase() === a.atWord!.toLowerCase());
+        const prefix = bt.words.filter((x) => norm(x.w).startsWith(norm(a.atWord!)));
+        const pool = exact.length ? exact : prefix;
+        const w = pool[((a as any).occurrence ?? 1) - 1];
         if (!w) throw new Error(`atWord "${a.atWord}" not found in beat ${b.id}`);
         t = w.start;
       }

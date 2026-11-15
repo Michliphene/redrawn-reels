@@ -27,7 +27,8 @@ for b, bt in zip(ep["beats"], tm["beats"]):
     for a in b.get("actions", []):
         t = bt["start"]
         if a.get("atWord"):
-            w = next((w for w in bt["words"] if norm(w["w"]).startswith(norm(a["atWord"]))), None)
+            pool = [w for w in bt["words"] if w["w"].lower() == a["atWord"].lower()] or [w for w in bt["words"] if norm(w["w"]).startswith(norm(a["atWord"]))]
+            w = pool[a.get("occurrence", 1) - 1] if len(pool) >= a.get("occurrence", 1) else None
             if w: t = w["start"]
         cues.append(t)
 cues = sorted(set(round(c, 2) for c in cues)) + [dur]

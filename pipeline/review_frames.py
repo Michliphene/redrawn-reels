@@ -32,7 +32,8 @@ for i, (b, bt) in enumerate(zip(ep["beats"], tm["beats"])):
     for a in b.get("actions", []):
         t = s
         if a.get("atWord"):
-            w = next((w for w in bt["words"] if norm(w["w"]).startswith(norm(a["atWord"]))), None)
+            pool = [w for w in bt["words"] if w["w"].lower() == a["atWord"].lower()] or [w for w in bt["words"] if norm(w["w"]).startswith(norm(a["atWord"]))]
+            w = pool[a.get("occurrence", 1) - 1] if len(pool) >= a.get("occurrence", 1) else None
             t = w["start"] if w else float("nan")
         desc = {k: v for k, v in a.items() if k not in ("type", "atWord", "coords")}
         lines.append(f"- {t:6.2f}s **{a['type']}** @'{a.get('atWord', '')}' {json.dumps(desc, ensure_ascii=False)[:160]}")

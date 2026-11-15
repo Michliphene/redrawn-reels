@@ -17,4 +17,4 @@ Sources: Dean Rusk, As I Saw It (1990); National Geographic (2013); Britannica; 
 ## Platform notes
 - **TikTok:** keep the loop ("And it all started with…" → "One night in 1945…"). "38th parallel" in caption + on screen.
 - **Instagram Reels:** upload `cover_3x4.jpg`; DM-able moments: "one National Geographic map", "the border isn't the 38th parallel".
-- **YouTube Shorts:** title "Two Americans split Korea with a National Geographic map"; sources in the description.
+- **YouTube Shorts:** title "How two Americans picked Korea's dividing line with a National Geographic map"; sources in the description.

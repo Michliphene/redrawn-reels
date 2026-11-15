@@ -26,7 +26,8 @@ the owner talks to you in **French**.
 4. **Cue sheet**: `public/episodes/<id>/episode.json` — copy `ussr-1991/episode.json`.
    - `say`: spoken text; `{1990|nineteen ninety}` = caption shows 1990, voice says the words.
    - `camera`: `{fit:"SOVIET",pad}` or `{center:[lon,lat], span:deg}`.
-   - actions (all accept `atWord` = fire on that spoken word): `declare` (+`flag`, `flagNote`, `date`), `pulse`,
+   - actions (all accept `atWord` = fire on that spoken word; an exact token incl. punctuation, e.g. "South.", wins over a
+     prefix match; add `occurrence: n` for the n-th match; `atTime: s` fires at an absolute time): `declare` (+`flag`, `flagNote`, `date`), `pulse`,
      `label` (+`flag`), `marker`, `date`, `dissolve`, `allLabels`, `units` (tanks/troops/crowd, `offset`, `approach`,
      `retreatWord`, `caption`), `portrait` (`key`, `name`, `role`, `side`, `stampWord`), `flagSwap`, `shake`.
    - More actions: `bigNumber` (rolling number + `coins`), `archive` (image card: `src`, `caption`, `credit`),
