@@ -83,6 +83,7 @@ ok(at(chicken, 1998) > I.chicken.now, 'chicken cheaper since 1998');
 ok(basketPeak[0] === 1990, `basket peak year ${basketPeak[0]}`); near(basketPeak[1], 7, 0.5, 'basket 1990 +7%');
 near(at(basket, 2004), -2, 0.5, 'basket 2004 -2%');
 ok(at(basket, 2014) - basketNow > 0.75 * -basketNow, 'most of the drop after 2014');
+near(at(basket, 2014), -3, 0.5, 'basket 2014 still only ~3% less');
 near(basketNow, -18, 0.5, 'basket now -18%');
 if (errs.length) { console.error('ASSERTIONS FAILED\n- ' + errs.join('\n- ')); process.exit(1); }
 
@@ -93,10 +94,10 @@ const out = {
   charts: {
     board: { type: 'thenNow', title: 'Minutes of work to buy it', legend: [month(BASE), month(NOW)], suffix: ' min', decimals: 1,
       items: items.map(({ k, label, unit, emoji, then, now }) => ({ k, label, unit, emoji, then, now })) },
-    beef: { type: 'line', title: 'Minutes of work per lb', suffix: ' min', decimals: 1, yMin: 0, yMax: 15, xFrom: 1984, xTo: NOW_Y,
+    beef: { type: 'line', title: 'Ground beef vs. chicken: minutes of work per lb', suffix: ' min', decimals: 1, yMin: 0, yMax: 16, xFrom: 1984, xTo: NOW_Y,
       series: [{ k: 'beef', label: 'Ground beef', color: '#FF5A4E', emoji: 'cut_of_meat', points: beef },
                { k: 'chicken', label: 'Chicken', color: '#3DDC84', emoji: 'poultry_leg', points: chicken }] },
-    basket: { type: 'line', title: 'Whole grocery cart, in work vs. 1984', suffix: '%', decimals: 0, signed: true, yMin: -25, yMax: 15, xFrom: 1984, xTo: NOW_Y,
+    basket: { type: 'line', title: 'Work time to buy the US grocery cart, vs. 1984', suffix: '%', decimals: 0, signed: true, yMin: -20, yMax: 20, xFrom: 1984, xTo: NOW_Y,
       refY: 0, refLabel: '1984 level',
       series: [{ k: 'basket', label: 'Groceries', color: '#FFC94D', emoji: 'shopping_cart', points: basket }] },
   },

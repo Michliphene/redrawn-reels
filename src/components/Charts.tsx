@@ -20,10 +20,11 @@ const GOOD = '#3DDC84', BAD = '#FF5A4E';
 const fmt = (v: number, c: { suffix?: string; decimals?: number; signed?: boolean }) =>
   `${c.signed && v > 0.05 ? '+' : ''}${v.toFixed(c.decimals ?? 0)}${c.suffix ?? ''}`.replace('-', '−');
 
-const Title: React.FC<{ text: string; s: number }> = ({ text, s }) => (
+const TitleGate = React.createContext(1);
+const Title: React.FC<{ text: string; s: number }> = ({ text, s }) => { const g = React.useContext(TitleGate); return (
   <div style={{ position: 'absolute', top: 410, left: 60, right: 60, fontFamily: 'Montserrat', fontWeight: 900, fontSize: 58, lineHeight: 1.05,
-    color: theme.text, opacity: s, transform: `translateY(${(1 - s) * 20}px)`, textShadow: '0 4px 16px rgba(0,0,0,0.6)' }}>{text}</div>
-);
+    color: theme.text, opacity: s * g, transform: `translateY(${(1 - s) * 20}px)`, textShadow: '0 4px 16px rgba(0,0,0,0.6)' }}>{text}</div>
+); };
 
 // ---------------------------------------------------------------- then vs now board
 const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: TimedAction[] }> = ({ c, t, t0, actions }) => {
@@ -31,7 +32,7 @@ const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: Timed
   const focusA = (actions.filter((a) => a.type === 'focus' && a.t >= t0 - 0.01 && a.t <= t) as Extract<TimedAction, { type: 'focus' }>[]).slice(-1)[0];
   const focusT = focusA ? interpolate(t, [focusA.t, focusA.t + 0.35], [0, 1], clamp) : 0;
   const max = Math.max(...c.items.flatMap((i) => [i.then, i.now]));
-  const top = 560, rowH = 128, labelW = 330, valueW = 175, chipW = 132, barMax = 960 - labelW - valueW - chipW - 30;
+  const top = 556, rowH = 128, labelW = 340, valueW = 205, chipW = 118, barMax = 960 - labelW - valueW - chipW - 30;
   const s = spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 200 } });
   return (
     <>
@@ -60,10 +61,10 @@ const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: Timed
             background: focused ? `rgba(255,90,78,${0.14 * focusT})` : 'rgba(255,255,255,0.03)', borderRadius: 18,
             outline: focused ? `3px solid rgba(255,90,78,${focusT})` : 'none' }}>
             <div style={{ width: labelW, display: 'flex', alignItems: 'center', gap: 14, paddingLeft: 10, flexShrink: 0 }}>
-              {it.emoji && <Img src={staticFile(`assets/emoji/${it.emoji}.png`)} style={{ width: 84, height: 84 }} />}
+              {it.emoji && <Img src={staticFile(`assets/emoji/${it.emoji}.png`)} style={{ width: 92, height: 92 }} />}
               <div>
-                <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 38, color: theme.text, lineHeight: 1 }}>{it.label}</div>
-                {it.unit && <div style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: 24, color: theme.muted, marginTop: 6 }}>{it.unit}</div>}
+                <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 44, color: theme.text, lineHeight: 1 }}>{it.label}</div>
+                {it.unit && <div style={{ fontFamily: 'Montserrat', fontWeight: 700, fontSize: 26, color: theme.muted, marginTop: 6 }}>{it.unit}</div>}
               </div>
             </div>
             <div style={{ width: barMax, position: 'relative', height: '100%', flexShrink: 0 }}>
@@ -74,10 +75,10 @@ const ThenNow: React.FC<{ c: ThenNowChart; t: number; t0: number; actions: Timed
               <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 30, color: '#0B1120', background: col, borderRadius: 10, padding: '4px 12px',
                 opacity: chipT, transform: `scale(${0.4 + 0.6 * chipT})` }}>{fmt(d * 100, { suffix: '%', signed: true })}</div>
             </div>
-            <div style={{ width: valueW, textAlign: 'right', paddingRight: 14, fontFamily: 'Montserrat', flexShrink: 0 }}>
+            <div style={{ width: valueW, textAlign: 'right', paddingRight: 12, fontFamily: 'Montserrat', flexShrink: 0, whiteSpace: 'nowrap' }}>
               {/* while only "then" is spoken, it holds the big slot; then the big slot rolls then → now */}
-              <div style={{ fontWeight: 700, fontSize: 26, color: theme.muted, opacity: nowOn ? 1 : 0 }}>{fmt(it.then, c)}</div>
-              <div style={{ fontWeight: 900, fontSize: 36, color: nowOn ? theme.text : theme.muted }}>{fmt(nowOn ? it.then + (it.now - it.then) * nowT : it.then * thenT, c)}</div>
+              <div style={{ fontWeight: 700, fontSize: 30, color: theme.muted, opacity: nowOn ? 1 : 0 }}>{fmt(it.then, c)}</div>
+              <div style={{ fontWeight: 900, fontSize: 40, color: nowOn ? theme.text : theme.muted }}>{fmt(nowOn ? it.then + (it.now - it.then) * nowT : it.then * thenT, c)}</div>
             </div>
           </div>
         );
@@ -99,7 +100,8 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
   }
   const lastHide = Math.max(-1, ...actions.filter((a) => a.type === 'hideMarks' && a.t <= t).map((a) => a.t));
   const marks = actions.filter((a) => a.type === 'mark' && a.t >= t0 - 0.01 && a.t < tEnd && t >= a.t && a.t > lastHide) as Extract<TimedAction, { type: 'mark' }>[];
-  const s = spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 200 } });
+  // a chart cued on frame 0 is fully visible on frame 0 (thumbnail / loop seam)
+  const s = t0 <= 0.01 ? 1 : spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 200 } });
   const step = (c.yMax - c.yMin) / 4;
   const ticks = Array.from({ length: 5 }, (_, k) => c.yMin + k * step);
   const years = [] as number[]; for (let y = Math.ceil(c.xFrom / 10) * 10; y <= c.xTo; y += 10) years.push(y);
@@ -161,7 +163,7 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
           <div key={se.k} style={{ position: 'absolute', left: sx(x) - 40, top: sy(y) - 92, width: 80, textAlign: 'center', opacity: s }}>
             {se.emoji && <Img src={staticFile(`assets/emoji/${se.emoji}.png`)} style={{ width: 70, height: 70, filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.6))' }} />}
             <div style={{ position: 'absolute', ...(sx(x) > R - 170 ? { right: 78 } : { left: 78 }), top: 18, whiteSpace: 'nowrap', fontFamily: 'Montserrat', fontWeight: 900, fontSize: 36,
-              color: se.color, WebkitTextStroke: '6px #0B1120', paintOrder: 'stroke fill' }}>{c.series.length > 1 ? `${se.label.split(' ').slice(-1)[0]} ` : ''}{fmt(y, c)}</div>
+              color: se.color, WebkitTextStroke: '6px #0B1120', paintOrder: 'stroke fill' }}>{c.series.length > 1 ? `${se.label.split(' ').slice(-1)[0].replace(/^./, (m) => m.toUpperCase())} ` : ''}{fmt(y, c)}</div>
           </div>
         );
       })}
@@ -170,7 +172,7 @@ const LineChart: React.FC<{ c: LineChartSpec; t: number; t0: number; tEnd: numbe
 };
 
 /** Shows whichever chart was cued last; dims it while a callout / big number is on screen. */
-export const ChartLayer: React.FC<{ t: number; actions: TimedAction[]; charts: Record<string, ChartSpec> }> = ({ t, actions, charts }) => {
+export const ChartLayer: React.FC<{ t: number; actions: TimedAction[]; charts: Record<string, ChartSpec>; titleFrom?: number }> = ({ t, actions, charts, titleFrom = 0 }) => {
   const shows = (actions.filter((a) => a.type === 'chart' || a.type === 'hideChart') as TimedAction[]).sort((a, b) => a.t - b.t);
   const idx = shows.findIndex((a, i) => t >= a.t - 0.01 && (i === shows.length - 1 || t < shows[i + 1].t));
   if (idx < 0) return null;
@@ -178,13 +180,15 @@ export const ChartLayer: React.FC<{ t: number; actions: TimedAction[]; charts: R
   if (cur.type !== 'chart') return null;
   const c = charts[cur.chart]; if (!c) return null;
   const tEnd = shows[idx + 1]?.t ?? 1e9;
-  const overlays = actions.filter((a) => (a.type === 'callout' || a.type === 'bigNumber') && t >= a.t - 0.1 && t <= a.t + ((a as any).hold ?? 2.8) + 0.3);
+  const overlays = actions.filter((a) => (a.type === 'callout' || a.type === 'bigNumber') && !(a as any).noDim && t >= a.t - 0.1 && t <= a.t + ((a as any).hold ?? 2.8) + 0.3);
   const dim = overlays.length ? 0.22 : 1;
   const fade = interpolate(t, [tEnd - 0.2, tEnd], [1, 0], clamp);
   return (
+    <TitleGate.Provider value={interpolate(t, [titleFrom - 0.3, titleFrom + 0.1], [0, 1], clamp)}>
     <div style={{ position: 'absolute', inset: 0, opacity: dim * fade, filter: dim < 1 ? 'blur(3px)' : 'none' }}>
       {c.type === 'thenNow' ? <ThenNow c={c} t={t} t0={cur.t} actions={actions} />
         : <LineChart c={c} t={t} t0={cur.t} tEnd={tEnd} startX={cur.drawTo} actions={actions} />}
     </div>
+    </TitleGate.Provider>
   );
 };

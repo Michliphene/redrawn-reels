@@ -6,18 +6,17 @@ and **asserted** against the script below: if FRED revises a value so that a spo
 **Method.** Minutes of work = BLS average retail price ÷ average hourly earnings of production & nonsupervisory employees,
 total private (AHETPI) × 60. Same month every year (September) to avoid mixing seasons. Latest common month: Sep 2026.
 
-## Script
-1. 18% less work than in 1984. That's your grocery cart today. Except for one item.
-2. The trick: price food in minutes of work. In 1984, non-managers in the private sector made $8.55 an hour. Today, $32.63.
+## Script (pass 2)
+1. 18% less work than in 1984. That's the average US grocery cart today. Except one item on our list.
+2. The trick: divide each price by an hour of pay. In 1984: $8.55. Today: $32.63.
 3. A pound of cheddar: 21 minutes of work then. 11 now.
 4. Chicken: 5.5 minutes, now under 4.
 5. Eggs: 6 minutes then. 12 at the 2025 peak. About 4 today.
 6. Bread? Cheaper too. Gas? Dead flat: 8 minutes then, 8 now.
-7. But one item went the other way. Ground beef: 9 minutes then. 12.5 today.
+7. But the sixth item went the other way. Ground beef: 9 minutes then. 12.5 today.
 8. And it's recent. In 1998, beef bottomed out at 6 minutes. Since then, it has doubled. Chicken? Cheaper.
-9. Now the whole cart. In 1990, it took 7% more work. By 2004, only 2% less.
-10. The real drop came after 2014.
-11. So, measured in your time, the whole cart now costs… *(loops into line 1)*
+9. Now the whole cart. In 1990: 7% more work. In 2014: still only 3% less. Then it fell.
+10. So, measured in your time, the whole cart now costs… *(loops into line 1)*
 
 ## Facts table
 | Claim | Value (computed) | Series |
@@ -37,6 +36,8 @@ total private (AHETPI) × 60. Same month every year (September) to avoid mixing 
 - AHETPI is seasonally adjusted, BLS average prices and CPI are not: comparing the same month limits the bias.
 - BLS average prices are US city averages of a fixed item definition; quality/size changes are not adjusted.
 - The 6 items are chosen for recognisability; the headline (−18%) uses the whole food-at-home CPI, not those 6.
+  Hence "one item **on our list**" / "the sixth item": the data does not show beef is the only food item that rose (virality review pass 1).
+- "US" is said and shown (title, footer): BLS/FRED data are US-only.
 - No cause is claimed for beef's rise or for the post-2014 drop (debated: cattle cycle, wage growth, etc.).
 - Gas looks "flat" partly because Sep 2026 prices are high (FRED shows a 2026 spike); stated as a fact, not explained.
 

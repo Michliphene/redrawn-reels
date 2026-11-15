@@ -3,10 +3,10 @@
   "kind": "data",
   "series": "PRICED IN HOURS",
   "episode": 1,
-  "title": "Groceries vs. 1984",
+  "title": "US Groceries vs. 1984",
   "data": "data/pih-groceries.json",
-  "source": "BLS average prices, CPI food at home & avg. hourly earnings (AHETPI), via FRED.",
-  "footnote": "Pre-tax pay, production & nonsupervisory workers. US city averages, September of each year.",
+  "source": "BLS prices, CPI food at home & avg. hourly earnings (AHETPI), via FRED · US data.",
+  "footnote": "Pre-tax pay, non-supervisory workers · September each year",
   "disclaimer": "Not financial advice.",
   "voice": {
     "engine": "elevenlabs",
@@ -35,7 +35,7 @@
   "beats": [
     {
       "id": "hook",
-      "say": "{18%|Eighteen percent} less work than in {1984.|nineteen eighty-four.} That's your grocery cart today. Except for one item.",
+      "say": "{18%|Eighteen percent} less work than in {1984.|nineteen eighty-four.} That's the average US grocery cart today. Except one item on our list.",
       "actions": [
         {
           "type": "chart",
@@ -48,49 +48,53 @@
           "value": 18,
           "from": 1,
           "suffix": "%",
-          "label": "LESS WORK THAN IN 1984",
-          "y": 760,
+          "label": "LESS WORK TO BUY GROCERIES",
+          "y": 575,
           "hold": 2.4,
-          "atTime": 0
+          "atTime": 0,
+          "noDim": true
         },
         {
           "type": "sticker",
           "emoji": "shopping_cart",
           "x": 820,
           "y": 640,
-          "size": 190,
+          "size": 180,
           "tilt": 10,
-          "hold": 2.6,
-          "atWord": "That's"
+          "hold": 4.6,
+          "atTime": 0
         },
         {
           "type": "sticker",
           "emoji": "stopwatch",
-          "x": 230,
-          "y": 640,
-          "size": 150,
+          "x": 250,
+          "y": 620,
+          "size": 130,
           "tilt": -12,
-          "hold": 2.2,
-          "atWord": "work"
+          "hold": 2.4,
+          "atTime": 0
         },
         {
           "type": "sticker",
           "emoji": "cut_of_meat",
           "x": 540,
-          "y": 1110,
+          "y": 1040,
           "size": 200,
           "text": "EXCEPT THIS?",
           "hold": 1.6,
           "atWord": "Except"
         }
+      ],
+      "hideCaptionWords": [
+        "18%"
       ]
     },
     {
       "id": "rule",
-      "say": "The trick: price food in minutes of work. In {1984,|nineteen eighty-four,} non-managers in the private sector made {$8.55|eight fifty-five} an hour. Today, {$32.63.|thirty-two sixty-three.}",
+      "say": "The trick: divide each price by an hour of pay. In {1984:|nineteen eighty-four:} {$8.55.|eight dollars fifty-five.} Today: {$32.63.|thirty-two dollars sixty-three.}",
       "actions": [
         {
-          "type": "hideChart"
+          "type": "hideMarks"
         },
         {
           "type": "chapter",
@@ -101,46 +105,36 @@
           "type": "sticker",
           "emoji": "alarm_clock",
           "x": 540,
-          "y": 860,
-          "size": 280,
-          "text": "PRICE = MINUTES OF WORK",
-          "hold": 2.4,
+          "y": 1080,
+          "size": 190,
+          "text": "PRICE ÷ HOURLY PAY = MINUTES",
+          "hold": 2.2,
           "atWord": "trick"
         },
         {
           "type": "callout",
           "text": "1984: $8.55/h",
           "sub": "avg. pay, private-sector non-managers",
-          "y": 700,
+          "y": 660,
           "size": 76,
-          "hold": 2.6,
+          "hold": 4.2,
           "atWord": "1984"
-        },
-        {
-          "type": "sticker",
-          "emoji": "hourglass_not_done",
-          "x": 880,
-          "y": 1150,
-          "size": 140,
-          "tilt": 10,
-          "hold": 1.6,
-          "atWord": "$8.55"
         },
         {
           "type": "callout",
           "text": "2026: $32.63/h",
           "sub": "same workers, Sep 2026",
-          "y": 980,
+          "y": 930,
           "size": 76,
-          "hold": 2.0,
+          "hold": 2.4,
           "atWord": "Today"
         },
         {
           "type": "sticker",
           "emoji": "chart_increasing",
-          "x": 880,
-          "y": 880,
-          "size": 150,
+          "x": 720,
+          "y": 1180,
+          "size": 130,
           "hold": 1.6,
           "atWord": "$32.63"
         }
@@ -162,7 +156,18 @@
         {
           "type": "reveal",
           "item": "cheddar",
-          "atWord": "cheddar"
+          "atWord": "cheddar",
+          "nowWord": "11"
+        },
+        {
+          "type": "sticker",
+          "emoji": "cheese_wedge",
+          "x": 700,
+          "y": 470,
+          "size": 110,
+          "tilt": -8,
+          "hold": 1.6,
+          "atWord": "11"
         }
       ]
     },
@@ -173,7 +178,8 @@
         {
           "type": "reveal",
           "item": "chicken",
-          "atWord": "Chicken"
+          "atWord": "Chicken",
+          "nowWord": "under"
         }
       ]
     },
@@ -184,17 +190,18 @@
         {
           "type": "reveal",
           "item": "eggs",
-          "atWord": "Eggs"
+          "atWord": "Eggs",
+          "nowWord": "About"
         },
         {
           "type": "sticker",
           "emoji": "egg",
-          "x": 830,
-          "y": 1180,
+          "x": 700,
+          "y": 1130,
           "size": 150,
           "tilt": 8,
           "text": "MAR 2025: 12 MIN",
-          "hold": 1.8,
+          "hold": 2.8,
           "atWord": "12"
         }
       ]
@@ -211,23 +218,25 @@
         {
           "type": "reveal",
           "item": "gas",
-          "atWord": "Gas"
+          "atWord": "Gas",
+          "nowWord": "now"
         }
       ]
     },
     {
       "id": "beef",
-      "say": "But one item went the other way. Ground beef: {9|nine} minutes then. {12.5|Twelve and a half} today.",
+      "say": "But the sixth item went the other way. Ground beef: {9|nine} minutes then. {12.5|Twelve and a half} today.",
       "actions": [
         {
           "type": "chapter",
-          "emoji": "fire",
+          "emoji": "fire_3d",
           "text": "The exception"
         },
         {
           "type": "reveal",
           "item": "beef",
-          "atWord": "Ground"
+          "atWord": "Ground",
+          "nowWord": "12.5"
         },
         {
           "type": "focus",
@@ -241,10 +250,10 @@
         },
         {
           "type": "sticker",
-          "emoji": "fire",
-          "x": 900,
-          "y": 1180,
-          "size": 140,
+          "emoji": "fire_3d",
+          "x": 720,
+          "y": 470,
+          "size": 120,
           "hold": 1.4,
           "atWord": "12.5"
         }
@@ -269,14 +278,14 @@
           "type": "mark",
           "x": 1998,
           "series": "beef",
-          "text": "1998 LOW: 6 MIN",
+          "text": "1998 LOW",
           "tone": "good",
           "atWord": "bottomed"
         },
         {
           "type": "drawTo",
           "x": 2026,
-          "dur": 1.6,
+          "dur": 0.8,
           "atWord": "Since"
         },
         {
@@ -288,19 +297,21 @@
           "atWord": "doubled"
         },
         {
-          "type": "sticker",
-          "emoji": "chart_increasing",
-          "x": 880,
-          "y": 470,
-          "size": 140,
-          "hold": 1.6,
+          "type": "bigNumber",
+          "value": 2,
+          "from": 1,
+          "suffix": "×",
+          "label": "THE WORK SINCE 1998",
+          "y": 560,
+          "hold": 1.2,
+          "noDim": true,
           "atWord": "doubled"
         }
       ]
     },
     {
       "id": "cart",
-      "say": "Now the whole cart. In {1990,|nineteen ninety,} it took {7%|seven percent} more work. By {2004,|two thousand four,} only {2%|two percent} less.",
+      "say": "Now the whole cart. In {1990:|nineteen ninety:} {7%|seven percent} more work. In {2014:|twenty fourteen:} still only {3%|three percent} less. Then it fell.",
       "actions": [
         {
           "type": "chart",
@@ -327,44 +338,31 @@
         },
         {
           "type": "drawTo",
-          "x": 2004,
-          "dur": 1.0,
-          "atWord": "By"
-        },
-        {
-          "type": "mark",
-          "x": 2004,
-          "text": "2004: −2%",
-          "tone": "neutral",
-          "atWord": "less"
-        }
-      ]
-    },
-    {
-      "id": "drop",
-      "say": "The real drop came after {2014.|twenty fourteen.}",
-      "actions": [
-        {
-          "type": "drawTo",
-          "x": 2026,
-          "dur": 1.8,
-          "atWord": "after"
+          "x": 2014,
+          "dur": 1.2,
+          "atWord": "2014"
         },
         {
           "type": "mark",
           "x": 2014,
-          "text": "2014",
+          "text": "2014: −3%",
           "tone": "neutral",
-          "atWord": "after"
+          "atWord": "still"
+        },
+        {
+          "type": "drawTo",
+          "x": 2026,
+          "dur": 1.2,
+          "atWord": "Then"
         },
         {
           "type": "sticker",
           "emoji": "chart_decreasing",
-          "x": 880,
+          "x": 720,
           "y": 1150,
-          "size": 140,
+          "size": 130,
           "hold": 1.6,
-          "atWord": "2014"
+          "atWord": "fell"
         }
       ]
     },
@@ -373,21 +371,30 @@
       "say": "So, measured in your time, the whole cart now costs…",
       "actions": [
         {
+          "type": "hideMarks"
+        },
+        {
+          "type": "chapter",
+          "emoji": "stopwatch",
+          "text": ""
+        },
+        {
           "type": "bigNumber",
           "value": 18,
           "from": 1,
           "suffix": "%",
-          "label": "LESS WORK THAN IN 1984",
-          "y": 760,
+          "label": "LESS WORK TO BUY GROCERIES",
+          "y": 575,
           "hold": 6,
-          "atWord": "now"
+          "noDim": true,
+          "atWord": "costs"
         },
         {
           "type": "sticker",
           "emoji": "shopping_cart",
           "x": 820,
           "y": 640,
-          "size": 190,
+          "size": 180,
           "tilt": 10,
           "hold": 6,
           "atWord": "whole"
@@ -395,9 +402,9 @@
         {
           "type": "sticker",
           "emoji": "stopwatch",
-          "x": 230,
-          "y": 640,
-          "size": 150,
+          "x": 250,
+          "y": 620,
+          "size": 130,
           "tilt": -12,
           "hold": 6,
           "atWord": "time"

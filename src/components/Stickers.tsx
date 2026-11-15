@@ -28,7 +28,7 @@ export const Stickers: React.FC<{ t: number; actions: TimedAction[]; projection:
     {(actions.filter((a) => a.type === 'sticker') as S[]).map((a, i) => {
       if (!a.flag && !a.emoji) return null;
       const hold = a.hold ?? 2.2; if (t < a.t - 0.05 || t > a.t + hold + 0.4) return null;
-      const pop = spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 9, stiffness: 180 } });
+      const pop = a.t <= 0.01 ? 1 : spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 9, stiffness: 180 } }); // frame-0 stickers are already settled
       const out = interpolate(t, [a.t + hold, a.t + hold + 0.4], [1, 0], clamp);
       let x = a.x ?? 540, y = a.y ?? 900;
       if (a.at) { const p = projection(a.at); if (!p) return null; x = p[0] + (a.dx ?? 0); y = p[1] + (a.dy ?? 0); }

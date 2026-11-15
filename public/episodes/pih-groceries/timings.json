@@ -1,791 +1,758 @@
 {
- "duration": 58.622,
+ "duration": 57.394,
  "beats": [
   {
    "id": "hook",
    "start": 0.25,
-   "end": 6.863,
-   "phonemes": "ˈeɪtiːn pɚsˈɛnt lˈɛs wˈɜːk ðɐn ɪn nˈaɪntiːn ˈeɪɾifˈɔːɹ. ðæts jʊɹ ɡɹˈoʊsɚɹi kˈɑːɹt tədˈeɪ. ɛksˈɛpt fɔːɹ wˈʌn ˈaɪɾəm.",
+   "end": 8.335,
+   "phonemes": "ˈeɪtiːn pɚsˈɛnt lˈɛs wˈɜːk ðɐn ɪn nˈaɪntiːn ˈeɪɾifˈɔːɹ. ðæts ðɪ ˈævɹɪdʒ jˌuːˈɛs ɡɹˈoʊsɚɹi kˈɑːɹt tədˈeɪ. ɛksˈɛpt wˈʌn ˈaɪɾəm ˌɔn ˌaʊɚ lˈɪst.",
    "words": [
     {
      "w": "18%",
-     "start": 0.289,
-     "end": 0.983
+     "start": 0.291,
+     "end": 1.042
     },
     {
      "w": "less",
-     "start": 0.983,
-     "end": 1.172
+     "start": 1.042,
+     "end": 1.247
     },
     {
      "w": "work",
-     "start": 1.172,
-     "end": 1.362
+     "start": 1.247,
+     "end": 1.451
     },
     {
      "w": "than",
-     "start": 1.362,
-     "end": 1.551
+     "start": 1.451,
+     "end": 1.656
     },
     {
      "w": "in",
-     "start": 1.551,
-     "end": 1.677
+     "start": 1.656,
+     "end": 1.793
     },
     {
      "w": "1984.",
-     "start": 1.677,
-     "end": 2.624
+     "start": 1.793,
+     "end": 2.816
     },
     {
      "w": "That's",
-     "start": 3.065,
-     "end": 3.318
+     "start": 3.294,
+     "end": 3.567
     },
     {
-     "w": "your",
-     "start": 3.318,
-     "end": 3.507
+     "w": "the",
+     "start": 3.567,
+     "end": 3.704
+    },
+    {
+     "w": "average",
+     "start": 3.704,
+     "end": 4.113
+    },
+    {
+     "w": "US",
+     "start": 4.113,
+     "end": 4.386
     },
     {
      "w": "grocery",
-     "start": 3.507,
-     "end": 4.012
+     "start": 4.386,
+     "end": 4.932
     },
     {
      "w": "cart",
-     "start": 4.012,
-     "end": 4.264
+     "start": 4.932,
+     "end": 5.205
     },
     {
      "w": "today.",
-     "start": 4.264,
-     "end": 4.643
+     "start": 5.205,
+     "end": 5.614
     },
     {
      "w": "Except",
-     "start": 5.084,
-     "end": 5.463
-    },
-    {
-     "w": "for",
-     "start": 5.463,
-     "end": 5.652
+     "start": 6.092,
+     "end": 6.502
     },
     {
      "w": "one",
-     "start": 5.652,
-     "end": 5.842
+     "start": 6.502,
+     "end": 6.706
     },
     {
-     "w": "item.",
-     "start": 5.842,
-     "end": 6.22
+     "w": "item",
+     "start": 6.706,
+     "end": 7.048
+    },
+    {
+     "w": "on",
+     "start": 7.048,
+     "end": 7.184
+    },
+    {
+     "w": "our",
+     "start": 7.184,
+     "end": 7.389
+    },
+    {
+     "w": "list.",
+     "start": 7.389,
+     "end": 7.73
     }
    ]
   },
   {
    "id": "rule",
-   "start": 7.003,
-   "end": 17.201,
-   "phonemes": "ðə tɹˈɪk: pɹˈaɪs fˈuːd ɪn mˈɪnɪts ʌv wˈɜːk. ɪn nˈaɪntiːn ˈeɪɾifˈɔːɹ, nˈɑːnmˈænɪdʒɚz ɪnðə pɹˈaɪvət sˈɛktɚ mˌeɪd ˈeɪt fˈɪftifˈaɪv ɐn ˈaʊɚ. tədˈeɪ, θˈɜːɾitˈuː sˈɪkstiθɹˈiː.",
+   "start": 8.475,
+   "end": 17.478,
+   "phonemes": "ðə tɹˈɪk: dᵻvˈaɪd ˈiːtʃ pɹˈaɪs baɪ ɐn ˈaʊɚɹ ʌv pˈeɪ. ɪn nˈaɪntiːn ˈeɪɾifˈɔːɹ: ˈeɪt dˈɑːlɚz fˈɪftifˈaɪv. tədˈeɪ: θˈɜːɾitˈuː dˈɑːlɚz sˈɪkstiθɹˈiː.",
    "words": [
     {
      "w": "The",
-     "start": 7.041,
-     "end": 7.174
+     "start": 8.513,
+     "end": 8.648
     },
     {
      "w": "trick:",
-     "start": 7.174,
-     "end": 7.507
+     "start": 8.648,
+     "end": 8.987
+    },
+    {
+     "w": "divide",
+     "start": 9.258,
+     "end": 9.664
+    },
+    {
+     "w": "each",
+     "start": 9.664,
+     "end": 9.867
     },
     {
      "w": "price",
-     "start": 7.773,
-     "end": 8.105
+     "start": 9.867,
+     "end": 10.206
     },
     {
-     "w": "food",
-     "start": 8.105,
-     "end": 8.305
-    },
-    {
-     "w": "in",
-     "start": 8.305,
-     "end": 8.438
-    },
-    {
-     "w": "minutes",
-     "start": 8.438,
-     "end": 8.837
-    },
-    {
-     "w": "of",
-     "start": 8.837,
-     "end": 8.97
-    },
-    {
-     "w": "work.",
-     "start": 8.97,
-     "end": 9.237
-    },
-    {
-     "w": "In",
-     "start": 9.702,
-     "end": 9.835
-    },
-    {
-     "w": "1984,",
-     "start": 9.835,
-     "end": 10.833
-    },
-    {
-     "w": "non-managers",
-     "start": 11.1,
-     "end": 11.831
-    },
-    {
-     "w": "in",
-     "start": 11.831,
-     "end": 11.964
-    },
-    {
-     "w": "the",
-     "start": 11.964,
-     "end": 12.098
-    },
-    {
-     "w": "private",
-     "start": 12.098,
-     "end": 12.563
-    },
-    {
-     "w": "sector",
-     "start": 12.563,
-     "end": 12.896
-    },
-    {
-     "w": "made",
-     "start": 12.896,
-     "end": 13.162
-    },
-    {
-     "w": "$8.55",
-     "start": 13.162,
-     "end": 13.96
+     "w": "by",
+     "start": 10.206,
+     "end": 10.409
     },
     {
      "w": "an",
-     "start": 13.96,
-     "end": 14.094
+     "start": 10.409,
+     "end": 10.544
     },
     {
-     "w": "hour.",
-     "start": 14.094,
-     "end": 14.36
+     "w": "hour",
+     "start": 10.544,
+     "end": 10.747
     },
     {
-     "w": "Today,",
-     "start": 14.825,
-     "end": 15.225
+     "w": "of",
+     "start": 10.747,
+     "end": 10.883
+    },
+    {
+     "w": "pay.",
+     "start": 10.883,
+     "end": 11.153
+    },
+    {
+     "w": "In",
+     "start": 11.627,
+     "end": 11.763
+    },
+    {
+     "w": "1984:",
+     "start": 11.763,
+     "end": 12.778
+    },
+    {
+     "w": "$8.55.",
+     "start": 13.049,
+     "end": 14.268
+    },
+    {
+     "w": "Today:",
+     "start": 14.742,
+     "end": 15.148
     },
     {
      "w": "$32.63.",
-     "start": 15.491,
-     "end": 16.555
+     "start": 15.419,
+     "end": 16.841
     }
    ]
   },
   {
    "id": "cheddar",
-   "start": 17.341,
-   "end": 21.053,
+   "start": 17.618,
+   "end": 21.33,
    "phonemes": "ɐ pˈaʊnd ʌv tʃˈɛdɚ: twˈɛntiwˈʌn mˈɪnɪts ʌv wˈɜːk ðˈɛn. ᵻlˈɛvən nˈaʊ.",
    "words": [
     {
      "w": "A",
-     "start": 17.45,
-     "end": 17.553
+     "start": 17.728,
+     "end": 17.831
     },
     {
      "w": "pound",
-     "start": 17.553,
-     "end": 17.811
+     "start": 17.831,
+     "end": 18.088
     },
     {
      "w": "of",
-     "start": 17.811,
-     "end": 17.914
+     "start": 18.088,
+     "end": 18.191
     },
     {
      "w": "cheddar:",
-     "start": 17.914,
-     "end": 18.223
+     "start": 18.191,
+     "end": 18.501
     },
     {
      "w": "21",
-     "start": 18.429,
-     "end": 18.893
+     "start": 18.707,
+     "end": 19.171
     },
     {
      "w": "minutes",
-     "start": 18.893,
-     "end": 19.202
+     "start": 19.171,
+     "end": 19.48
     },
     {
      "w": "of",
-     "start": 19.202,
-     "end": 19.305
+     "start": 19.48,
+     "end": 19.583
     },
     {
      "w": "work",
-     "start": 19.305,
-     "end": 19.46
+     "start": 19.583,
+     "end": 19.737
     },
     {
      "w": "then.",
-     "start": 19.46,
-     "end": 19.666
+     "start": 19.737,
+     "end": 19.944
     },
     {
      "w": "11",
-     "start": 20.027,
-     "end": 20.336
+     "start": 20.304,
+     "end": 20.613
     },
     {
      "w": "now.",
-     "start": 20.336,
-     "end": 20.542
+     "start": 20.613,
+     "end": 20.82
     }
    ]
   },
   {
    "id": "chicken",
-   "start": 21.193,
-   "end": 24.094,
+   "start": 21.47,
+   "end": 24.371,
    "phonemes": "tʃˈɪkɪn: fˈaɪv ænd ɐ hˈæf mˈɪnɪts, nˈaʊ ˌʌndɚ fˈɔːɹ.",
    "words": [
     {
      "w": "Chicken:",
-     "start": 21.242,
-     "end": 21.583
+     "start": 21.519,
+     "end": 21.86
     },
     {
      "w": "5.5",
-     "start": 21.777,
-     "end": 22.313
+     "start": 22.055,
+     "end": 22.591
     },
     {
      "w": "minutes,",
-     "start": 22.313,
-     "end": 22.654
+     "start": 22.591,
+     "end": 22.931
     },
     {
      "w": "now",
-     "start": 22.849,
-     "end": 22.995
+     "start": 23.126,
+     "end": 23.272
     },
     {
      "w": "under",
-     "start": 22.995,
-     "end": 23.19
+     "start": 23.272,
+     "end": 23.467
     },
     {
      "w": "4.",
-     "start": 23.19,
-     "end": 23.385
+     "start": 23.467,
+     "end": 23.662
     }
    ]
   },
   {
    "id": "eggs",
-   "start": 24.234,
-   "end": 29.034,
+   "start": 24.511,
+   "end": 29.311,
    "phonemes": "ˈɛɡz: sˈɪks mˈɪnɪts ðˈɛn. twˈɛlv æt ðə twˈɛnti twˈɛntifˈaɪv pˈiːk. ɐbˌaʊt fˈɔːɹ tədˈeɪ.",
    "words": [
     {
      "w": "Eggs:",
-     "start": 24.27,
-     "end": 24.482
+     "start": 24.548,
+     "end": 24.759
     },
     {
      "w": "6",
-     "start": 24.694,
-     "end": 24.905
+     "start": 24.971,
+     "end": 25.183
     },
     {
      "w": "minutes",
-     "start": 24.905,
-     "end": 25.223
+     "start": 25.183,
+     "end": 25.5
     },
     {
      "w": "then.",
-     "start": 25.223,
-     "end": 25.435
+     "start": 25.5,
+     "end": 25.712
     },
     {
      "w": "12",
-     "start": 25.805,
-     "end": 26.07
+     "start": 26.082,
+     "end": 26.347
     },
     {
      "w": "at",
-     "start": 26.07,
-     "end": 26.175
+     "start": 26.347,
+     "end": 26.453
     },
     {
      "w": "the",
-     "start": 26.175,
-     "end": 26.281
+     "start": 26.453,
+     "end": 26.559
     },
     {
      "w": "2025",
-     "start": 26.281,
-     "end": 27.128
+     "start": 26.559,
+     "end": 27.405
     },
     {
      "w": "peak.",
-     "start": 27.128,
-     "end": 27.339
+     "start": 27.405,
+     "end": 27.617
     },
     {
      "w": "About",
-     "start": 27.71,
-     "end": 27.974
+     "start": 27.987,
+     "end": 28.252
     },
     {
      "w": "4",
-     "start": 27.974,
-     "end": 28.133
+     "start": 28.252,
+     "end": 28.411
     },
     {
      "w": "today.",
-     "start": 28.133,
-     "end": 28.451
+     "start": 28.411,
+     "end": 28.728
     }
    ]
   },
   {
    "id": "breadgas",
-   "start": 29.174,
-   "end": 32.929,
+   "start": 29.451,
+   "end": 33.206,
    "phonemes": "bɹˈɛd? tʃˈiːpɚ tˈuː. ɡˈæs? dˈɛd flˈæt: ˈeɪt mˈɪnɪts ðˈɛn, ˈeɪt nˈaʊ.",
    "words": [
     {
      "w": "Bread?",
-     "start": 29.201,
-     "end": 29.419
+     "start": 29.478,
+     "end": 29.696
     },
     {
      "w": "Cheaper",
-     "start": 29.724,
-     "end": 29.942
+     "start": 30.001,
+     "end": 30.219
     },
     {
      "w": "too.",
-     "start": 29.942,
-     "end": 30.073
+     "start": 30.219,
+     "end": 30.35
     },
     {
      "w": "Gas?",
-     "start": 30.378,
-     "end": 30.552
+     "start": 30.655,
+     "end": 30.829
     },
     {
      "w": "Dead",
-     "start": 30.857,
-     "end": 30.988
+     "start": 31.134,
+     "end": 31.265
     },
     {
      "w": "flat:",
-     "start": 30.988,
-     "end": 31.206
+     "start": 31.265,
+     "end": 31.483
     },
     {
      "w": "8",
-     "start": 31.38,
-     "end": 31.511
+     "start": 31.657,
+     "end": 31.788
     },
     {
      "w": "minutes",
-     "start": 31.511,
-     "end": 31.772
+     "start": 31.788,
+     "end": 32.05
     },
     {
      "w": "then,",
-     "start": 31.772,
-     "end": 31.947
+     "start": 32.05,
+     "end": 32.224
     },
     {
      "w": "8",
-     "start": 32.121,
-     "end": 32.252
+     "start": 32.398,
+     "end": 32.529
     },
     {
      "w": "now.",
-     "start": 32.252,
-     "end": 32.426
+     "start": 32.529,
+     "end": 32.703
     }
    ]
   },
   {
    "id": "beef",
-   "start": 33.069,
-   "end": 38.317,
-   "phonemes": "bˌʌt wˈʌn ˈaɪɾəm wɛnt ðɪ ˈʌðɚ wˈeɪ. ɡɹˈaʊnd bˈiːf: nˈaɪn mˈɪnɪts ðˈɛn. twˈɛlv ænd ɐ hˈæf tədˈeɪ.",
+   "start": 33.346,
+   "end": 38.829,
+   "phonemes": "bˌʌt ðə sˈɪksθ ˈaɪɾəm wɛnt ðɪ ˈʌðɚ wˈeɪ. ɡɹˈaʊnd bˈiːf: nˈaɪn mˈɪnɪts ðˈɛn. twˈɛlv ænd ɐ hˈæf tədˈeɪ.",
    "words": [
     {
      "w": "But",
-     "start": 33.093,
-     "end": 33.257
-    },
-    {
-     "w": "one",
-     "start": 33.257,
-     "end": 33.42
-    },
-    {
-     "w": "item",
-     "start": 33.42,
-     "end": 33.693
-    },
-    {
-     "w": "went",
-     "start": 33.693,
-     "end": 33.911
+     "start": 33.371,
+     "end": 33.537
     },
     {
      "w": "the",
-     "start": 33.911,
-     "end": 34.02
+     "start": 33.537,
+     "end": 33.648
+    },
+    {
+     "w": "sixth",
+     "start": 33.648,
+     "end": 33.926
+    },
+    {
+     "w": "item",
+     "start": 33.926,
+     "end": 34.204
+    },
+    {
+     "w": "went",
+     "start": 34.204,
+     "end": 34.426
+    },
+    {
+     "w": "the",
+     "start": 34.426,
+     "end": 34.537
     },
     {
      "w": "other",
-     "start": 34.02,
-     "end": 34.184
+     "start": 34.537,
+     "end": 34.704
     },
     {
      "w": "way.",
-     "start": 34.184,
-     "end": 34.402
+     "start": 34.704,
+     "end": 34.926
     },
     {
      "w": "Ground",
-     "start": 34.784,
-     "end": 35.111
+     "start": 35.315,
+     "end": 35.649
     },
     {
      "w": "beef:",
-     "start": 35.111,
-     "end": 35.329
+     "start": 35.649,
+     "end": 35.871
     },
     {
      "w": "9",
-     "start": 35.547,
-     "end": 35.766
+     "start": 36.093,
+     "end": 36.315
     },
     {
      "w": "minutes",
-     "start": 35.766,
-     "end": 36.093
+     "start": 36.315,
+     "end": 36.649
     },
     {
      "w": "then.",
-     "start": 36.093,
-     "end": 36.311
+     "start": 36.649,
+     "end": 36.871
     },
     {
      "w": "12.5",
-     "start": 36.693,
-     "end": 37.347
+     "start": 37.26,
+     "end": 37.927
     },
     {
      "w": "today.",
-     "start": 37.347,
-     "end": 37.674
+     "start": 37.927,
+     "end": 38.26
     }
    ]
   },
   {
    "id": "beefline",
-   "start": 38.457,
-   "end": 45.497,
+   "start": 38.969,
+   "end": 46.009,
    "phonemes": "ænd ɪts ɹˈiːsənt. ɪn nˈaɪntiːn nˈaɪntiˈeɪt, bˈiːf bˈɑːɾəmd ˈaʊt æt sˈɪks mˈɪnɪts. sˈɪns ðˈɛn, ɪt hɐz dˈʌbəld. tʃˈɪkɪn? tʃˈiːpɚ.",
    "words": [
     {
      "w": "And",
-     "start": 38.545,
-     "end": 38.698
+     "start": 39.057,
+     "end": 39.21
     },
     {
      "w": "it's",
-     "start": 38.698,
-     "end": 38.851
+     "start": 39.21,
+     "end": 39.363
     },
     {
      "w": "recent.",
-     "start": 38.851,
-     "end": 39.209
+     "start": 39.363,
+     "end": 39.721
     },
     {
      "w": "In",
-     "start": 39.566,
-     "end": 39.668
+     "start": 40.078,
+     "end": 40.18
     },
     {
      "w": "1998,",
-     "start": 39.668,
-     "end": 40.537
+     "start": 40.18,
+     "end": 41.049
     },
     {
      "w": "beef",
-     "start": 40.741,
-     "end": 40.894
+     "start": 41.253,
+     "end": 41.406
     },
     {
      "w": "bottomed",
-     "start": 40.894,
-     "end": 41.201
+     "start": 41.406,
+     "end": 41.713
     },
     {
      "w": "out",
-     "start": 41.201,
-     "end": 41.354
+     "start": 41.713,
+     "end": 41.866
     },
     {
      "w": "at",
-     "start": 41.354,
-     "end": 41.456
+     "start": 41.866,
+     "end": 41.968
     },
     {
      "w": "6",
-     "start": 41.456,
-     "end": 41.661
+     "start": 41.968,
+     "end": 42.173
     },
     {
      "w": "minutes.",
-     "start": 41.661,
-     "end": 42.018
+     "start": 42.173,
+     "end": 42.53
     },
     {
      "w": "Since",
-     "start": 42.376,
-     "end": 42.58
+     "start": 42.888,
+     "end": 43.092
     },
     {
      "w": "then,",
-     "start": 42.58,
-     "end": 42.784
+     "start": 43.092,
+     "end": 43.296
     },
     {
      "w": "it",
-     "start": 42.989,
-     "end": 43.091
+     "start": 43.501,
+     "end": 43.603
     },
     {
      "w": "has",
-     "start": 43.091,
-     "end": 43.244
+     "start": 43.603,
+     "end": 43.756
     },
     {
      "w": "doubled.",
-     "start": 43.244,
-     "end": 43.602
+     "start": 43.756,
+     "end": 44.114
     },
     {
      "w": "Chicken?",
-     "start": 43.959,
-     "end": 44.317
+     "start": 44.471,
+     "end": 44.829
     },
     {
      "w": "Cheaper.",
-     "start": 44.674,
-     "end": 44.981
+     "start": 45.186,
+     "end": 45.493
     }
    ]
   },
   {
    "id": "cart",
-   "start": 45.637,
-   "end": 52.954,
-   "phonemes": "nˈaʊ ðə hˈoʊl kˈɑːɹt. ɪn nˈaɪntiːn nˈaɪnti, ɪt tˈʊk sˈɛvən pɚsˈɛnt mˈɔːɹ wˈɜːk. baɪ tˈuː θˈaʊzənd fˈɔːɹ, ˈoʊnli tˈuː pɚsˈɛnt lˈɛs.",
+   "start": 46.149,
+   "end": 54.191,
+   "phonemes": "nˈaʊ ðə hˈoʊl kˈɑːɹt. ɪn nˈaɪntiːn nˈaɪnti: sˈɛvən pɚsˈɛnt mˈɔːɹ wˈɜːk. ɪn twˈɛnti fˈɔːɹtiːn: stˈɪl ˈoʊnli θɹˈiː pɚsˈɛnt lˈɛs. ðˈɛn ɪt fˈɛl.",
    "words": [
     {
      "w": "Now",
-     "start": 45.68,
-     "end": 45.868
+     "start": 46.191,
+     "end": 46.371
     },
     {
      "w": "the",
-     "start": 45.868,
-     "end": 45.993
+     "start": 46.371,
+     "end": 46.49
     },
     {
      "w": "whole",
-     "start": 45.993,
-     "end": 46.243
+     "start": 46.49,
+     "end": 46.729
     },
     {
      "w": "cart.",
-     "start": 46.243,
-     "end": 46.556
+     "start": 46.729,
+     "end": 47.028
     },
     {
      "w": "In",
-     "start": 46.993,
-     "end": 47.118
+     "start": 47.446,
+     "end": 47.566
     },
     {
-     "w": "1990,",
-     "start": 47.118,
-     "end": 47.994
-    },
-    {
-     "w": "it",
-     "start": 48.244,
-     "end": 48.369
-    },
-    {
-     "w": "took",
-     "start": 48.369,
-     "end": 48.556
+     "w": "1990:",
+     "start": 47.566,
+     "end": 48.403
     },
     {
      "w": "7%",
-     "start": 48.556,
-     "end": 49.244
+     "start": 48.642,
+     "end": 49.299
     },
     {
      "w": "more",
-     "start": 49.244,
-     "end": 49.432
+     "start": 49.299,
+     "end": 49.478
     },
     {
      "w": "work.",
-     "start": 49.432,
-     "end": 49.682
+     "start": 49.478,
+     "end": 49.717
     },
     {
-     "w": "By",
-     "start": 50.119,
-     "end": 50.307
+     "w": "In",
+     "start": 50.136,
+     "end": 50.255
     },
     {
-     "w": "2004,",
-     "start": 50.307,
-     "end": 51.12
+     "w": "2014:",
+     "start": 50.255,
+     "end": 51.032
+    },
+    {
+     "w": "still",
+     "start": 51.271,
+     "end": 51.51
     },
     {
      "w": "only",
-     "start": 51.37,
-     "end": 51.682
+     "start": 51.51,
+     "end": 51.809
     },
     {
-     "w": "2%",
-     "start": 51.682,
-     "end": 52.183
+     "w": "3%",
+     "start": 51.809,
+     "end": 52.347
     },
     {
      "w": "less.",
-     "start": 52.183,
-     "end": 52.433
-    }
-   ]
-  },
-  {
-   "id": "drop",
-   "start": 53.094,
-   "end": 55.419,
-   "phonemes": "ðə ɹˈiːəl dɹˈɑːp kˈeɪm ˈæftɚ twˈɛnti fˈɔːɹtiːn.",
-   "words": [
-    {
-     "w": "The",
-     "start": 53.133,
-     "end": 53.243
+     "start": 52.347,
+     "end": 52.586
     },
     {
-     "w": "real",
-     "start": 53.243,
-     "end": 53.462
+     "w": "Then",
+     "start": 53.005,
+     "end": 53.184
     },
     {
-     "w": "drop",
-     "start": 53.462,
-     "end": 53.682
+     "w": "it",
+     "start": 53.184,
+     "end": 53.303
     },
     {
-     "w": "came",
-     "start": 53.682,
-     "end": 53.902
-    },
-    {
-     "w": "after",
-     "start": 53.902,
-     "end": 54.122
-    },
-    {
-     "w": "2014.",
-     "start": 54.122,
-     "end": 54.836
+     "w": "fell.",
+     "start": 53.303,
+     "end": 53.543
     }
    ]
   },
   {
    "id": "loop",
-   "start": 55.559,
-   "end": 58.482,
+   "start": 54.331,
+   "end": 57.254,
    "phonemes": "sˈoʊ, mˈɛʒɚd ɪn jʊɹ tˈaɪm, ðə hˈoʊl kˈɑːɹt nˈaʊ kˈɔsts…",
    "words": [
     {
      "w": "So,",
-     "start": 55.604,
-     "end": 55.814
+     "start": 54.376,
+     "end": 54.586
     },
     {
      "w": "measured",
-     "start": 56.024,
-     "end": 56.286
+     "start": 54.796,
+     "end": 55.058
     },
     {
      "w": "in",
-     "start": 56.286,
-     "end": 56.391
+     "start": 55.058,
+     "end": 55.163
     },
     {
      "w": "your",
-     "start": 56.391,
-     "end": 56.549
+     "start": 55.163,
+     "end": 55.321
     },
     {
      "w": "time,",
-     "start": 56.549,
-     "end": 56.811
+     "start": 55.321,
+     "end": 55.583
     },
     {
      "w": "the",
-     "start": 57.022,
-     "end": 57.127
+     "start": 55.794,
+     "end": 55.899
     },
     {
      "w": "whole",
-     "start": 57.127,
-     "end": 57.337
+     "start": 55.899,
+     "end": 56.109
     },
     {
      "w": "cart",
-     "start": 57.337,
-     "end": 57.547
+     "start": 56.109,
+     "end": 56.319
     },
     {
      "w": "now",
-     "start": 57.547,
-     "end": 57.704
+     "start": 56.319,
+     "end": 56.476
     },
     {
      "w": "costs…",
-     "start": 57.704,
-     "end": 58.019
+     "start": 56.476,
+     "end": 56.791
     }
    ]
   }
