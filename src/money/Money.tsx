@@ -51,6 +51,19 @@ const HotDog: React.FC<{ w: number }> = ({ w }) => (
     <path d="M90 200 h300" stroke="rgba(255,255,255,0.25)" strokeWidth="10" strokeLinecap="round" />
   </svg>
 );
+const Burger: React.FC<{ w: number }> = ({ w }) => (
+  <svg width={w} height={w * 0.72} viewBox="0 0 500 360">
+    <defs><linearGradient id="bt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#F4B860" /><stop offset="1" stopColor="#D08A35" /></linearGradient></defs>
+    <ellipse cx="250" cy="346" rx="200" ry="12" fill="rgba(0,0,0,0.35)" />
+    <path d="M60 290 h380 a20 20 0 0 1 -20 40 h-340 a20 20 0 0 1 -20 -40z" fill="#D08A35" />
+    <rect x="48" y="244" width="404" height="50" rx="25" fill="#6B3A22" />
+    <path d="M40 232 l40 22 l40 -18 l40 22 l40 -18 l40 22 l40 -18 l40 22 l40 -18 l40 22 l40 -18 v-14 h-400z" fill="#FFC93C" />
+    <path d="M44 210 q30 26 60 4 t60 4 t60 4 t60 4 t60 4 t60 4 t52 0 v14 h-412z" fill="#6CC04A" />
+    <rect x="70" y="196" width="360" height="18" rx="9" fill="#E5463B" />
+    <path d="M50 196 C50 70 140 30 250 30 C360 30 450 70 450 196 z" fill="url(#bt)" />
+    {[[150, 90], [210, 70], [280, 72], [340, 95], [190, 125], [260, 120], [320, 140], [130, 150]].map(([x, y], i) => <ellipse key={i} cx={x} cy={y} rx="9" ry="5" fill="#FFF3D6" transform={`rotate(${i * 20} ${x} ${y})`} />)}
+  </svg>
+);
 const TV: React.FC<{ w: number }> = ({ w }) => (
   <svg width={w} height={w * 0.62} viewBox="0 0 600 372">
     <ellipse cx="300" cy="360" rx="190" ry="10" fill="rgba(0,0,0,0.35)" />
@@ -77,8 +90,8 @@ const Person: React.FC<{ on: number; s: number }> = ({ on, s }) => (
 const bump = (t: number, acts: A[], target: string) => 1 + acts.filter((a) => a.type === 'pulse' && a.target === target).reduce((m, a) => Math.max(m, interpolate(t, [a.t, a.t + 0.12, a.t + 0.45], [0, 0.14, 0], clamp)), 0);
 const Product: React.FC<SceneProps> = ({ t, acts, def }) => (
   <>
-    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}>{def.art === 'tv' ? <TV w={640} /> : <HotDog w={720} />}</div>
-    <div style={{ position: 'absolute', top: 800, left: 0, right: 0, textAlign: 'center', fontFamily: font, fontWeight: 900, fontSize: 270, lineHeight: 1, color: C.accent, textShadow: '0 10px 40px rgba(0,0,0,0.6)', transform: `scale(${bump(t, acts, 'price')})` }}>{def.price}</div>
+    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}>{def.art === 'tv' ? <TV w={640} /> : def.art === 'burger' ? <Burger w={520} /> : <HotDog w={720} />}</div>
+    <div style={{ position: 'absolute', top: 800, left: 0, right: 0, textAlign: 'center', fontFamily: font, fontWeight: 900, fontSize: def.priceSize ?? 270, lineHeight: 1, color: C.accent, textShadow: '0 10px 40px rgba(0,0,0,0.6)', transform: `scale(${bump(t, acts, 'price')})` }}>{def.price}</div>
     <div style={{ position: 'absolute', top: 1080, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${bump(t, acts, 'tag')})` }}>
       <div style={{ fontFamily: font, fontWeight: 900, fontSize: 54, letterSpacing: 6, color: C.bg, background: C.text, padding: '10px 34px', borderRadius: 14 }}>{def.tag}</div>
     </div>
@@ -190,7 +203,9 @@ const People: React.FC<SceneProps> = ({ t, acts, def }) => {
     <>
       {Array.from({ length: def.total }).map((_, i) => {
         const on = a && i < a.count ? pop(t, a.t + i * 0.07, 0.25) : 0;
-        return <div key={i} style={{ position: 'absolute', left: 95 + (i % 5) * 182, top: 400 + Math.floor(i / 5) * 250 }}><Person on={on} s={160} /></div>;
+        // up to 10 people: 5 per row, big; more: 10 per row, small (keeps the big number clear at y≈930)
+        const wide = def.total > 10, cols = wide ? 10 : 5;
+        return <div key={i} style={{ position: 'absolute', left: wide ? 70 + (i % cols) * 96 : 95 + (i % cols) * 182, top: wide ? 470 + Math.floor(i / cols) * 190 : 400 + Math.floor(i / cols) * 250 }}><Person on={on} s={wide ? 84 : 160} /></div>;
       })}
       {a && <div style={{ position: 'absolute', top: 930, left: 0, right: 0, textAlign: 'center', fontFamily: font, opacity: fadeIn(t, a.t + 0.5), transform: `scale(${pop(t, a.t + 0.5)})` }}>
         <div style={{ fontWeight: 900, fontSize: 150, lineHeight: 1.05, color: C.accent }}>{a.big}</div>

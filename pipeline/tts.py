@@ -84,7 +84,8 @@ def elevenlabs(ep, ep_dir):
         req = urllib.request.Request(
             f"https://api.elevenlabs.io/v1/text-to-speech/{v['voice_id']}/with-timestamps?output_format=mp3_44100_192",
             data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "xi-api-key": "proxy-injected"})
-        open(cache, "w").write(urllib.request.urlopen(req, timeout=180).read().decode())
+        data = urllib.request.urlopen(req, timeout=180).read().decode()  # fetch first: a failed call must not leave an empty cache
+        open(cache, "w").write(data)
     d = json.load(open(cache))
     mp3 = os.path.join(ep_dir, "voice.mp3"); open(mp3, "wb").write(base64.b64decode(d["audio_base64"]))
     raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", mp3, "-f", "f32le", "-ac", "1", "-ar", "48000", "-"], check=True, capture_output=True).stdout

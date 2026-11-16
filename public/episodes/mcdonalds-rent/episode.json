@@ -1,0 +1,228 @@
+{
+ "id": "mcdonalds-rent",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "episode": 3,
+ "title": "McDonald's is a landlord",
+ "source": "Source: McDonald's annual report, 2025 (SEC filing)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3
+ },
+ "scenes": {
+  "burger": {
+   "type": "product",
+   "art": "burger",
+   "price": "$10.4B",
+   "priceSize": 200,
+   "tag": "IN RENT · 2025"
+  },
+  "owners": {
+   "type": "people",
+   "total": 20
+  },
+  "pay": {
+   "type": "bars",
+   "max": 11.5
+  },
+  "vs": {
+   "type": "bars",
+   "max": 11.5
+  },
+  "deed": {
+   "type": "card",
+   "cardTitle": "LEASE",
+   "cardSub": "20-YEAR FRANCHISE"
+  },
+  "profit": {
+   "type": "grid"
+  },
+  "point": {
+   "type": "lines"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "burger",
+   "say": "McDonald's collected {$10.4B|ten point four billion dollars} in rent last year.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$10.4B"
+    },
+    {
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "rent"
+    }
+   ]
+  },
+  {
+   "id": "more",
+   "kicker": "Rent > burgers?",
+   "say": "That's more than it made selling food in its own restaurants.",
+   "actions": [
+    {
+     "type": "ghost",
+     "text": "$9.7B",
+     "label": "FOOD SALES",
+     "atWord": "more",
+     "hold": 2.4
+    }
+   ]
+  },
+  {
+   "id": "owners",
+   "scene": "owners",
+   "kicker": "Who runs McDonald's?",
+   "say": "Here's why. About {95%|ninety-five percent} of McDonald's restaurants aren't run by McDonald's.",
+   "actions": [
+    {
+     "type": "light",
+     "count": 19,
+     "big": "95%",
+     "label": "run by franchisees",
+     "sub": "43,317 of 45,356 restaurants · end of 2025",
+     "atWord": "95%"
+    }
+   ]
+  },
+  {
+   "id": "pay",
+   "scene": "pay",
+   "kicker": "What franchisees pay",
+   "say": "They're franchisees. And they pay McDonald's twice: a cut of their sales, and rent.",
+   "actions": [
+    {
+     "type": "big",
+     "value": "×2",
+     "label": "ways franchisees pay",
+     "atWord": "pay"
+    },
+    {
+     "type": "bar",
+     "label": "Royalties (a cut of sales)",
+     "value": 6.018,
+     "color": "#FFB648",
+     "atWord": "cut"
+    },
+    {
+     "type": "bar",
+     "label": "Rent",
+     "value": 10.442,
+     "color": "#C8F53C",
+     "atWord": "rent."
+    }
+   ]
+  },
+  {
+   "id": "deed",
+   "scene": "deed",
+   "kicker": "Why rent?",
+   "say": "Rent, because McDonald's often owns the restaurant itself. About {56%|fifty-six percent} of the land. {80%|Eighty percent} of the buildings.",
+   "actions": [
+    {
+     "type": "stat",
+     "value": "56%",
+     "label": "of the land",
+     "sub": "owned by McDonald's",
+     "atWord": "56%"
+    },
+    {
+     "type": "stat",
+     "value": "80%",
+     "label": "of the buildings",
+     "sub": "owned by McDonald's",
+     "atWord": "80%"
+    }
+   ]
+  },
+  {
+   "id": "vs",
+   "scene": "vs",
+   "kicker": "Rent vs. food",
+   "say": "So the rent check beats the burgers. {$10.4B|Ten point four billion} in rent, {$9.7B|nine point seven billion} in food sales.",
+   "actions": [
+    {
+     "type": "bar",
+     "label": "Rent collected",
+     "value": 10.442,
+     "color": "#C8F53C",
+     "atWord": "rent"
+    },
+    {
+     "type": "bar",
+     "label": "Food sold in its own restaurants",
+     "value": 9.69,
+     "color": "#FF6B5E",
+     "atWord": "$9.7B"
+    }
+   ]
+  },
+  {
+   "id": "profit",
+   "scene": "profit",
+   "kicker": "Where restaurant profit comes from",
+   "say": "And of every {$100|hundred dollars} of restaurant profit, about {$90|ninety} comes from franchisees.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 90,
+     "color": "#C8F53C",
+     "amount": "$90",
+     "label": "from franchisees",
+     "atWord": "profit,",
+     "dur": 2.4
+    },
+    {
+     "type": "rest",
+     "color": "#FF6B5E",
+     "amount": "$10",
+     "label": "from its own restaurants",
+     "atWord": "franchisees."
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "kicker": "The real business",
+   "say": "It sells burgers. But it lives on rent.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "IT SELLS",
+     "text": "BURGERS",
+     "size": 130,
+     "atWord": "sells"
+    },
+    {
+     "type": "line",
+     "small": "IT LIVES ON",
+     "text": "RENT",
+     "size": 150,
+     "color": "#C8F53C",
+     "atWord": "lives"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "burger",
+   "say": "So next time you grab a Big Mac, remember…",
+   "actions": []
+  }
+ ]
+}
