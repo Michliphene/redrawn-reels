@@ -53,7 +53,8 @@ the owner talks to you in **French**.
 
 ## Posting routine
 `pipeline/post.sh <EP n | id>` → fresh video + checks + `deliverables/<id>/POST.md` (title, description, pinned comment,
-YouTube description). Follow `.claude/skills/post/SKILL.md` whenever the owner asks to post / resend a reel.
+YouTube description) + 16:9 thumbnail if `episode.json` has a `thumb` block (`Thumb` composition, 1920×1080).
+Follow `.claude/skills/post/SKILL.md` whenever the owner asks to post / resend a reel.
 
 ## Pipeline facts
 - Voice: ElevenLabs, voice **Brian** `nPczCjzI2devNBz1zQrb`, `eleven_multilingual_v2`, speed ~1.12, pauses capped

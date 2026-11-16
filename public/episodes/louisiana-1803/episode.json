@@ -877,5 +877,21 @@
    ],
    "hideDate": true
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "France offered",
+  "main": "All of this",
+  "badge": "$15M",
+  "badgeSub": "under 3¢ an acre",
+  "fit": [
+   "LOUISIANA",
+   "US1803"
+  ],
+  "mapBox": [
+   860,
+   60,
+   1880,
+   1020
+  ]
+ }
 }

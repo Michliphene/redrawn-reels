@@ -18,7 +18,7 @@ function fillAt(id: string, t: number, declares: TimedAction[], recolors: TimedA
   return interpolateColors(t, [d.t + FLASH, d.t + FLASH + SETTLE], ['#FFF6E0', target]);
 }
 
-export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: number; actions: TimedAction[] }> = ({ geo, projection, t, actions }) => {
+export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: number; actions: TimedAction[]; width?: number; height?: number }> = ({ geo, projection, t, actions, width = 1080, height = 1920 }) => {
   const path = geoPath(projection);
   const declares = useMemo(() => actions.filter((a) => a.type === 'declare'), [actions]);
   const pulses = actions.filter((a) => a.type === 'pulse') as Extract<TimedAction, { type: 'pulse' }>[];
@@ -56,7 +56,7 @@ export const MapLayer: React.FC<{ geo: GeoData; projection: GeoProjection; t: nu
     return `translate(${(dx / d) * k} ${(dy / d) * k})`;
   };
   return (
-    <svg width={1080} height={1920} style={{ position: 'absolute', inset: 0 }}>
+    <svg width={width} height={height} style={{ position: 'absolute', inset: 0 }}>
       <defs><filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7" /></filter></defs>
       <path d={grat} fill="none" stroke="#1A2540" strokeWidth={1} />
       {base.map((f) => <path key={String(f.id)} d={path(f as any) ?? ''} fill={theme.land} stroke={theme.landStroke} strokeWidth={1} />)}

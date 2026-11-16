@@ -1,12 +1,22 @@
 import React from 'react';
 import { Composition, staticFile } from 'remotion';
 import { Episode } from './Episode';
+import { Thumb } from './Thumb';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
 const getJson = async (p: string) => (await fetch(staticFile(p))).json();
 
 export const Root: React.FC = () => (
+  <>
+  <Composition id="Thumb" component={Thumb as any} width={1920} height={1080} fps={30} durationInFrames={1}
+    defaultProps={{ episodeId: 'louisiana-1803' }}
+    calculateMetadata={async ({ props }) => {
+      const p = props as any;
+      const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
+      const geo = await getJson(spec.data);
+      return { props: { ...p, spec, geo } };
+    }} />
   <Composition
     id="Episode"
     component={Episode as any}
@@ -43,4 +53,5 @@ export const Root: React.FC = () => (
       return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys } };
     }}
   />
+  </>
 );

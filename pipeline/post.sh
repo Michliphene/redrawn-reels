@@ -37,6 +37,16 @@ KIT="deliverables/$ID"; mkdir -p "$KIT"
 if [ ! -f "$KIT/cover_3x4.jpg" ]; then
   echo "== covers missing: render them with cover mode (see CLAUDE.md) before posting"
 fi
+if python3 -c "import json,sys;sys.exit(0 if 'thumb' in json.load(open('public/episodes/$ID/episode.json')) else 1)"; then
+  if [ ! -f "$KIT/thumb_16x9.png" ] || [ "public/episodes/$ID/episode.json" -nt "$KIT/thumb_16x9.png" ] || [ src/Thumb.tsx -nt "$KIT/thumb_16x9.png" ]; then
+    echo "== thumbnail 16:9"
+    CHROME="${REMOTION_CHROME:-$(ls -d /opt/pw-browsers/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell 2>/dev/null | head -1)}"
+    npx remotion still src/index.ts Thumb "$KIT/thumb_16x9.png" --props="{\"episodeId\":\"$ID\"}" --browser-executable="$CHROME" --log=error
+  fi
+  echo "THUMB=$KIT/thumb_16x9.png"
+else
+  echo "== no 16:9 thumbnail config (episode.json \"thumb\") — skipped"
+fi
 [ -f "$KIT/POSTING.md" ] || { echo "!! $KIT/POSTING.md missing — write it first"; exit 1; }
 echo "== post kit"
 python3 pipeline/posting_kit.py "$ID" > /dev/null
