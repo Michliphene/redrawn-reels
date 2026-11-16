@@ -51,6 +51,10 @@ the owner talks to you in **French**.
 7. **Review**: write `docs/REVIEW_<id>.md` (accuracy, map, rhythm, English, pronunciation, oversimplification,
    licences) — see `docs/03_REVIEW_ep1.md`. Look at a contact sheet of ~8 frames before delivering.
 
+## Posting routine
+`pipeline/post.sh <EP n | id>` → fresh video + checks + `deliverables/<id>/POST.md` (title, description, pinned comment,
+YouTube description). Follow `.claude/skills/post/SKILL.md` whenever the owner asks to post / resend a reel.
+
 ## Pipeline facts
 - Voice: ElevenLabs, voice **Brian** `nPczCjzI2devNBz1zQrb`, `eleven_multilingual_v2`, speed ~1.12, pauses capped
   0.28 s. API key is injected by the cloud environment proxy (header `xi-api-key`; key lacks `voices_read`).
