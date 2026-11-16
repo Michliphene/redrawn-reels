@@ -54,10 +54,14 @@ export const drift = (t: number, seed = 0, speed = 1) =>
 /** decaying camera shake amplitude 0→amount→0 */
 export const shake = (t: number, t0: number, amount = 1, d = 0.7) => (t < t0 ? 0 : amount * (1 - ease.out3(ramp(t, t0, d))));
 
-export const hexToRgb = (hex: string): [number, number, number] => {
-  const h = hex.replace('#', '');
+/** Parse '#rgb', '#rrggbb', 'rgb(r, g, b)' or 'rgba(r, g, b, a)' (Remotion's interpolateColors returns the last form). */
+export const hexToRgb = (color: string): [number, number, number] => {
+  const m = color.match(/rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)/i);
+  if (m) return [Number(m[1]) / 255, Number(m[2]) / 255, Number(m[3]) / 255];
+  const h = color.replace('#', '');
   const v = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
-  return [parseInt(v.slice(0, 2), 16) / 255, parseInt(v.slice(2, 4), 16) / 255, parseInt(v.slice(4, 6), 16) / 255];
+  const out: [number, number, number] = [parseInt(v.slice(0, 2), 16) / 255, parseInt(v.slice(2, 4), 16) / 255, parseInt(v.slice(4, 6), 16) / 255];
+  return out.some((x) => Number.isNaN(x)) ? [1, 0, 1] : out; // magenta = "unparsed colour", impossible to miss on a still
 };
 /** mix two hex colours in sRGB (good enough for flat art; avoids the grey midpoint by passing through white if asked) */
 export const mixHex = (a: string, b: string, p: number): string => {

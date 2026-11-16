@@ -1,8 +1,21 @@
-export const W = 1080, H = 1920, FPS = 30;
-export const theme = {
+export { W, H, FPS } from '../studio/tokens';
+const V1 = {
   sea: '#0B1120', seaGlow: '#13203A', land: '#1F2738', landStroke: '#2E3950',
   union: '#C1272D', unionStroke: '#E2545A', text: '#F4F1EA', muted: '#8C93A8', accent: '#FFC94D',
+  /** font family used by every overlay component */
+  font: 'Montserrat',
+  /** card look: corner radius, drop shadow, distance from the frame edge */
+  radius: 18, shadow: '0 18px 40px rgba(0,0,0,0.65)', inset: 40,
 };
+/** Live theme read by the overlay components. DA v1 values by default; `applySkin` swaps it per composition. */
+export const theme = { ...V1 };
+/**
+ * Skin the shared overlay components (labels, cards, stickers…) for a series' DA v2, or reset them to DA v1.
+ * Called at the top of each composition, so both art directions can live in one bundle.
+ */
+export function applySkin(skin?: Partial<typeof V1> | null) {
+  Object.assign(theme, V1, skin ?? {});
+}
 // one colour per republic once independent (muted, distinct, readable on navy)
 export const REPUBLIC_COLORS: Record<string, string> = {
   RUS: '#E0565B', UKR: '#F2C14E', BLR: '#7FB77E', EST: '#5DA9E9', LVA: '#B56576', LTU: '#E9A03B',

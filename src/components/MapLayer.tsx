@@ -8,7 +8,7 @@ const FLASH = 0.25, SETTLE = 0.7;
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 
 /** Fill of a focus polity at time t: palette.start until its `declare`, then flash → its own colour. */
-function fillAt(id: string, t: number, declares: TimedAction[], recolors: TimedAction[] = []): string {
+export function fillAt(id: string, t: number, declares: TimedAction[], recolors: TimedAction[] = []): string {
   const r = recolors.find((a) => a.type === 'recolor' && a.ids.includes(id) && t >= a.t);
   if (r) return interpolateColors(t, [r.t, r.t + 0.12], [fillAt(id, r.t, declares), PALETTE.start]); // fast: avoids a grey RGB midpoint
   const d = declares.find((a) => a.type === 'declare' && a.id === id);

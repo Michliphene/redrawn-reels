@@ -14,8 +14,8 @@ export const Counter: React.FC<{ t: number; actions: TimedAction[]; total: numbe
   return (
     <div style={{ position: 'absolute', top: 64, right: 50, display: 'flex', alignItems: 'center', gap: 12, background: 'rgba(11,17,32,0.85)',
       border: `2px solid ${theme.accent}`, borderRadius: 40, padding: '6px 20px' }}>
-      <span style={{ fontFamily: 'Montserrat', fontWeight: 700, fontSize: 22, color: theme.muted, letterSpacing: 2 }}>{label}</span>
-      <span style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 38, color: theme.accent, transform: `scale(${pop})`, display: 'inline-block', minWidth: 80, textAlign: 'right' }}>
+      <span style={{ fontFamily: theme.font, fontWeight: 700, fontSize: 22, color: theme.muted, letterSpacing: 2 }}>{label}</span>
+      <span style={{ fontFamily: theme.font, fontWeight: 900, fontSize: 38, color: theme.accent, transform: `scale(${pop})`, display: 'inline-block', minWidth: 80, textAlign: 'right' }}>
         {n}<span style={{ fontSize: 24, color: theme.muted }}>/{total}</span></span>
     </div>
   );

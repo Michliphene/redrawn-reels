@@ -21,15 +21,15 @@ const Tag: React.FC<{ x: number; y: number; t: number; t0: number; hold: number;
     return (
       <div style={{ position: 'absolute', left: Math.min(Math.max(x, 230), 850), top: y, transform: `translate(-50%,-50%) scale(${0.6 + 0.4 * s})`, opacity: s * out, textAlign: 'center', pointerEvents: 'none' }}>
         {dot && <div style={{ width: 18, height: 18, borderRadius: 9, background: theme.accent, margin: '0 auto 10px', boxShadow: `0 0 0 ${6 + 10 * (1 - s)}px rgba(255,201,77,0.25)` }} />}
-        <div style={{ fontFamily: 'Montserrat', fontWeight: 800, fontSize: size, color: theme.text, letterSpacing: 1, whiteSpace: 'nowrap',
+        <div style={{ fontFamily: theme.font, fontWeight: 800, fontSize: size, color: theme.text, letterSpacing: 1, whiteSpace: 'nowrap',
           textShadow: '0 3px 12px rgba(0,0,0,0.85), 0 0 2px #000' }}>{children}</div>
-        {sub && <div style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: size * 0.55, color: theme.accent, marginTop: 2, textShadow: '0 2px 8px #000', whiteSpace: 'nowrap' }}>{sub}</div>}
+        {sub && <div style={{ fontFamily: theme.font, fontWeight: 600, fontSize: size * 0.55, color: theme.accent, marginTop: 2, textShadow: '0 2px 8px #000', whiteSpace: 'nowrap' }}>{sub}</div>}
       </div>
     );
   };
 
 /** Labels anchored to geography; they follow the camera because they are re-projected every frame. */
-export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: number; actions: TimedAction[]; end: number; legend?: boolean }> = ({ geo, projection, t, actions, end, legend = true }) => {
+export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: number; actions: TimedAction[]; end: number; legend?: boolean; legendTop?: number; legendInset?: number; declutter?: boolean; legendOut?: number }> = ({ geo, projection, t, actions, end, legend = true, legendTop = 150, legendInset = 70, declutter = false, legendOut }) => {
   const byId = new Map(geo.features.map((f) => [f.id, f]));
   const pt = (ll: [number, number]) => projection(ll) ?? [-999, -999];
   const nodes: React.ReactNode[] = [];
@@ -47,7 +47,17 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
       }
       if ((a as any).noLabel) return;
       const big = ['EST', 'LVA', 'LTU', 'GEO'].includes(a.id);
-      nodes.push(<Tag key={i} x={x} y={y - 40} t={t} t0={a.t} hold={Math.min(2.4, Math.max(0.3, (allT ?? 1e9) - a.t - 0.4))} sub={fmt(a.date ?? undefined) + (a.flagNote ? ` · ${a.flagNote}` : '')} size={big ? 52 : 40}>
+      // declutter (DA v2): a name tag gives way as soon as a later one would land on top of it
+      let room = 1e9;
+      if (declutter) {
+        for (const b of actions) {
+          if (b.type !== 'declare' || b.t <= a.t || (b as any).noLabel) continue;
+          const lb = (byId.get(b.id)?.properties as any)?.label; if (!lb) continue;
+          const [bx, by] = pt(lb);
+          if (Math.abs(bx - x) < 330 && Math.abs(by - y) < 96) { room = b.t - a.t - 0.05; break; }
+        }
+      }
+      nodes.push(<Tag key={i} x={x} y={y - 40} t={t} t0={a.t} hold={Math.min(2.4, room, Math.max(0.3, (allT ?? 1e9) - a.t - 0.4))} sub={fmt(a.date ?? undefined) + (a.flagNote ? ` · ${a.flagNote}` : '')} size={big ? 52 : 40}>
         {a.flag && <Flag code={a.flag} h={big ? 56 : 44} t={t} style={{ marginRight: 12, verticalAlign: 'middle' }} />}
         <span style={{ verticalAlign: 'middle' }}>{(f!.properties as any).name}</span></Tag>);
     } else if (a.type === 'label') {
@@ -66,12 +76,12 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
       if (!legend) return;
       const order = ['RUS','UKR','BLR','EST','LVA','LTU','MDA','GEO','ARM','AZE','KAZ','UZB','TKM','KGZ','TJK'];
       nodes.push(
-        <div key="legend" style={{ position: 'absolute', top: 150, left: 70, right: 70, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px 14px' }}>
+        <div key="legend" style={{ position: 'absolute', top: legendTop, left: legendInset, right: legendInset, opacity: legendOut != null ? interpolate(t, [legendOut, legendOut + 0.25], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 1, display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px 14px' }}>
           {order.map((id, j) => {
             const o = interpolate(t, [a.t + j * 0.07, a.t + j * 0.07 + 0.25], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
             const f = byId.get(id);
             return (
-              <div key={id} style={{ opacity: o, display: 'flex', alignItems: 'center', gap: 10, fontFamily: 'Montserrat', fontWeight: 700, fontSize: 24, color: theme.text }}>
+              <div key={id} style={{ opacity: o, display: 'flex', alignItems: 'center', gap: 10, fontFamily: theme.font, fontWeight: 700, fontSize: 24, color: theme.text }}>
                 <span style={{ width: 10, height: 30, borderRadius: 3, background: REPUBLIC_COLORS[id], flex: 'none' }} /><Flag code={FLAG_TODAY[id]} h={26} t={t} wave={0.4} />{(f?.properties as any)?.name}
               </div>
             );

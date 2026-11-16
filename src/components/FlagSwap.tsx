@@ -2,6 +2,7 @@ import React from 'react';
 import { interpolate, Easing } from 'remotion';
 import type { TimedAction } from '../lib/types';
 import { Flag } from './Flag';
+import { theme } from '../lib/theme';
 
 type F = Extract<TimedAction, { type: 'flagSwap' }>;
 const c = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) } as const;
@@ -10,7 +11,7 @@ const c = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.
 export const FlagSwap: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, actions }) => {
   const f = actions.find((a) => a.type === 'flagSwap') as F | undefined;
   if (!f || t < f.t - 0.4) return null;
-  const top = 380, bottom = 1240, h = (f as any).h ?? 210;
+  const top = (f as any).top ?? 380, bottom = (f as any).bottom ?? 1240, h = (f as any).h ?? 210;
   const appear = interpolate(t, [f.t - 0.4, f.t, f.t + (f.hold ?? 4.6), f.t + (f.hold ?? 4.6) + 0.5], [0, 1, 1, 0], c);
   if (t > f.t + (f.hold ?? 4.6) + 0.5) return null;
   const down = interpolate(t, [f.t, f.t + 1.6], [top, bottom - h], c);
@@ -25,7 +26,7 @@ export const FlagSwap: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, a
       <div style={{ position: 'absolute', left: x - 5, top: top - 44, width: 20, height: 20, borderRadius: 10, background: '#d9b44a' }} />
       <Flag code={f.from} h={h} t={t} style={{ position: 'absolute', left: x + 10, top: down, opacity: downOp }} />
       <Flag code={f.to} h={h} t={t} style={{ position: 'absolute', left: x + 10, top: up, opacity: upOp }} />
-      {f.caption && <div style={{ position: 'absolute', left: x - 260, top: bottom + 40, width: 520, textAlign: 'center', fontFamily: 'Montserrat', fontWeight: 800,
+      {f.caption && <div style={{ position: 'absolute', left: x - 260, top: bottom + 40, width: 520, textAlign: 'center', fontFamily: theme.font, fontWeight: 800,
         fontSize: 30, color: '#fff', opacity: upOp, textShadow: '0 2px 10px #000' }}>{f.caption}</div>}
     </div>
   );

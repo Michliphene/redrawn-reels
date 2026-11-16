@@ -17,19 +17,21 @@ import { Counter } from './components/Counter';
 import { Fx } from './components/Fx';
 import { Sfx } from './components/Sfx';
 import { BigNumbers, Archives, Callouts, GeoTexts } from './components/Overlays';
-import { setPalette } from './lib/theme';
+import { setPalette, applySkin } from './lib/theme';
 import { Stickers, Chapters, Pointers } from './components/Stickers';
 import { Locator } from './components/Locator';
+import { Atlas } from './atlas/Atlas';
 
 // self-hosted font (OFL) so renders never depend on the network
 const fontWait = delayRender('Montserrat');
 new FontFace('Montserrat', `url(${staticFile('fonts/Montserrat-VF.ttf')})`, { weight: '100 900' }).load()
   .then((f) => { document.fonts.add(f); continueRender(fontWait); });
 
-export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean }> = ({ episodeId, spec, timings, geo, credits, lottieKeys, cover }) => {
+const EpisodeV1: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean }> = ({ episodeId, spec, timings, geo, credits, lottieKeys, cover }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   setPalette(spec!.palette);
+  applySkin(null);
   const sched = useMemo(() => schedule(spec!, timings!), [spec, timings]);
   const camKeys = useMemo(() => sched.cameras.map((c) => ({ t: c.t, dur: c.cam.dur ?? 1.1, state: resolveCamera(c.cam, geo!) })), [sched, geo]);
   // camera shake on impacts (coup, dissolution) + punch-in on the very first frames (hook)
@@ -76,4 +78,14 @@ export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>
       <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />
     </AbsoluteFill>
   );
+};
+
+/**
+ * Entry point of the map series. `da` (episode.json, or a render prop to preview) selects the art direction:
+ * 1 = flat map (episodes made before the DA step-up stay exactly as published), 2 = tabletop 3D (`Atlas`).
+ * Without WebGL the 3D world cannot render, so DA 2 falls back to the flat map instead of failing.
+ */
+export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean; da?: number; webgl?: boolean }> = (props) => {
+  const da = props.da ?? (props.spec as any)?.da ?? 1;
+  return da >= 2 && props.webgl !== false ? <Atlas {...props} /> : <EpisodeV1 {...props} />;
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Img, staticFile, spring, interpolate } from 'remotion';
 import type { TimedAction } from '../lib/types';
-import { FPS } from '../lib/theme';
+import { FPS, theme } from '../lib/theme';
 
 type P = Extract<TimedAction, { type: 'portrait' }>;
 export type Credit = { artist: string; license: string; date: string; file: string };
@@ -20,7 +20,7 @@ export const Portraits: React.FC<{ t: number; actions: TimedAction[]; credits: R
         const out = interpolate(t, [end, end + 0.5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
         const idx = (slot[side + (p.row ?? 0)] = (slot[side + (p.row ?? 0)] ?? -1) + 1);
         const W = p.small ? 260 : 300;
-        const x = side === 'left' ? 40 : side === 'right' ? 1040 - W : 540 - W / 2 + (p.col ?? 0) * (W + 20);
+        const x = side === 'left' ? theme.inset : side === 'right' ? 1080 - theme.inset - W : 540 - W / 2 + (p.col ?? 0) * (W + 20);
         const y = (p.y ?? 900) + (p.row ?? 0) * 0;
         const dir = side === 'right' ? 1 : -1;
         const tx = (1 - s) * dir * 420 + out * dir * 420;
@@ -31,22 +31,22 @@ export const Portraits: React.FC<{ t: number; actions: TimedAction[]; credits: R
         void idx;
         return (
           <div key={i} style={{ position: 'absolute', left: x, top: y, width: W, transform: `translateX(${tx}px)`, opacity: 1 - out * 0.6 }}>
-            <div style={{ position: 'relative', width: W, height: W * 1.18, borderRadius: 18, overflow: 'hidden', border: `5px solid ${p.ring ?? '#FFC94D'}`,
-              boxShadow: '0 18px 40px rgba(0,0,0,0.65)', background: '#111' }}>
+            <div style={{ position: 'relative', width: W, height: W * 1.18, borderRadius: theme.radius, overflow: 'hidden', border: `5px solid ${p.ring ?? theme.accent}`,
+              boxShadow: theme.shadow, background: '#111' }}>
               <Img src={staticFile(`assets/portraits/${p.key}.jpg`)} style={{ width: '100%', height: '100%', objectFit: 'cover',
                 objectPosition: p.focus ?? '50% 25%', filter: `grayscale(${0.35 + 0.65 * color}) contrast(1.1)`,
                 transform: `scale(${(p.zoom ?? 1) * (1.08 - 0.08 * Math.min(1, (t - p.t) / 3))})`, transformOrigin: p.focus ?? '50% 25%' }} />
               <div style={{ position: 'absolute', left: 0, right: 0, bottom: 0, padding: '40px 14px 10px', background: 'linear-gradient(transparent, rgba(0,0,0,0.92))' }}>
-                <div style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: p.small ? 30 : 34, color: '#fff', lineHeight: 1.05 }}>{p.name}</div>
-                <div style={{ fontFamily: 'Montserrat', fontWeight: 600, fontSize: p.small ? 24 : 26, color: '#FFC94D', marginTop: 3 }}>{p.role}</div>
+                <div style={{ fontFamily: theme.font, fontWeight: 900, fontSize: p.small ? 30 : 34, color: '#fff', lineHeight: 1.05 }}>{p.name}</div>
+                <div style={{ fontFamily: theme.font, fontWeight: 600, fontSize: p.small ? 24 : 26, color: '#FFC94D', marginTop: 3 }}>{p.role}</div>
               </div>
               {stampOn && (
                 <div style={{ position: 'absolute', top: '32%', left: '50%', transform: `translate(-50%,-50%) rotate(-14deg) scale(${2.2 - 1.2 * st})`, opacity: st,
-                  fontFamily: 'Montserrat', fontWeight: 900, fontSize: 40, color: '#E8443A', border: '5px solid #E8443A', padding: '4px 12px', borderRadius: 6,
+                  fontFamily: theme.font, fontWeight: 900, fontSize: 40, color: '#E8443A', border: '5px solid #E8443A', padding: '4px 12px', borderRadius: 6,
                   background: 'rgba(0,0,0,0.35)', letterSpacing: 3 }}>{p.stamp}</div>
               )}
             </div>
-            {c && <div style={{ fontFamily: 'Montserrat', fontSize: 17, color: 'rgba(255,255,255,0.75)', marginTop: 5, lineHeight: 1.2 }}>
+            {c && <div style={{ fontFamily: theme.font, fontSize: 17, color: 'rgba(255,255,255,0.75)', marginTop: 5, lineHeight: 1.2 }}>
               Photo: {c.artist.slice(0, 48)} · {c.license}</div>}
           </div>
         );

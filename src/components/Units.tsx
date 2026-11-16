@@ -3,6 +3,7 @@ import { GeoProjection } from 'd3-geo';
 import { interpolate, Easing, random } from 'remotion';
 import type { TimedAction } from '../lib/types';
 import { Soldier, Tank, Person } from './Icons';
+import { theme } from '../lib/theme';
 
 type U = Extract<TimedAction, { type: 'units' }>;
 const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
@@ -62,7 +63,7 @@ export const Units: React.FC<{ projection: GeoProjection; t: number; actions: Ti
             })}
             {g.caption && (
               <div style={{ position: 'absolute', left: Math.min(Math.max(cx, 200), 880), top: g.kind === 'crowd' ? cy + 110 : cy - size * 2.4, transform: 'translateX(-50%)',
-                fontFamily: 'Montserrat', fontWeight: 800, fontSize: 32, background: g.kind === 'crowd' ? 'rgba(245,241,234,0.95)' : 'rgba(22,26,34,0.92)', color: g.kind === 'crowd' ? '#0B1120' : '#fff', border: g.kind === 'crowd' ? 'none' : '2px solid #fff',
+                fontFamily: theme.font, fontWeight: 800, fontSize: 32, background: g.kind === 'crowd' ? 'rgba(245,241,234,0.95)' : 'rgba(22,26,34,0.92)', color: g.kind === 'crowd' ? '#0B1120' : '#fff', border: g.kind === 'crowd' ? 'none' : '2px solid #fff',
                 padding: '6px 14px', borderRadius: 6, whiteSpace: 'nowrap', letterSpacing: 1 }}>{g.caption}</div>
             )}
           </div>

@@ -3,7 +3,7 @@ import { Composition, staticFile } from 'remotion';
 import { Episode } from './Episode';
 import { Thumb } from './Thumb';
 import { Money } from './money/Money';
-import { Probe3D } from './studio/_probe';
+import { probeWebGL } from './studio/look/PixelStage';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
@@ -11,7 +11,6 @@ const getJson = async (p: string) => (await fetch(staticFile(p))).json();
 
 export const Root: React.FC = () => (
   <>
-  <Composition id="Probe3D" component={Probe3D} width={1080} height={1920} fps={30} durationInFrames={60} />
   <Composition id="ThumbV" component={Thumb as any} width={1080} height={1920} fps={30} durationInFrames={1}
     defaultProps={{ episodeId: 'louisiana-1803' }}
     calculateMetadata={async ({ props }) => {
@@ -48,7 +47,8 @@ export const Root: React.FC = () => (
     calculateMetadata={async ({ props }) => {
       const p = props as EpisodeProps;
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
-      const timings = await getJson(`episodes/${p.episodeId}/timings.json`);
+      // `audio` lets a remaster or an alternative cut reuse another episode's voice, timings and music
+      const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
       const geo = await getJson(spec.data);
       const credits = await getJson('assets/portraits/credits.json').catch(() => ({}));
       // only keep portrait cues whose image actually exists (pipeline never breaks on a missing asset)
@@ -73,7 +73,7 @@ export const Root: React.FC = () => (
         b.actions = b.actions.filter((a: any) => a.type !== 'flagSwap' || (okF.has(a.from) && okF.has(a.to)));
         for (const a of b.actions) if (a.flag && !okF.has(a.flag)) delete a.flag;
       }
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys } };
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys, webgl: probeWebGL() } };
     }}
   />
   </>

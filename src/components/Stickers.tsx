@@ -41,7 +41,7 @@ export const Stickers: React.FC<{ t: number; actions: TimedAction[]; projection:
             {a.flag ? <Img src={staticFile(`assets/flags/${a.flag}.svg`)} style={{ width: size, height: size * 0.66, marginTop: size * 0.17, borderRadius: 6, border: '3px solid #fff' }} />
               : <Emoji k={a.emoji!} size={size} lottie={lottieKeys.includes(a.emoji!)} />}
             {a.text && <div style={{ position: 'absolute', top: size * 0.95, left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap',
-              fontFamily: 'Montserrat', fontWeight: 900, fontSize: 34, color: '#0B1120', background: theme.accent, padding: '4px 14px', borderRadius: 8 }}>{a.text}</div>}
+              fontFamily: theme.font, fontWeight: 900, fontSize: 34, color: '#0B1120', background: theme.accent, padding: '4px 14px', borderRadius: 8 }}>{a.text}</div>}
           </div>
         </Sequence>
       );
@@ -62,7 +62,7 @@ export const Chapters: React.FC<{ t: number; actions: TimedAction[]; lottieKeys:
         borderRadius: 50, padding: '6px 26px 6px 10px', transform: `translateY(${(1 - s) * -30}px) scale(${0.85 + 0.15 * s})`, opacity: s,
         boxShadow: '0 8px 24px rgba(0,0,0,0.5)' }}>
         <Sequence from={Math.round(c.t * FPS)} layout="none"><Emoji k={c.emoji} size={64} lottie={lottieKeys.includes(c.emoji)} /></Sequence>
-        <span style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 40, color: theme.text, letterSpacing: 2, textTransform: 'uppercase' }}>{c.text}</span>
+        <span style={{ fontFamily: theme.font, fontWeight: 900, fontSize: 40, color: theme.text, letterSpacing: 2, textTransform: 'uppercase' }}>{c.text}</span>
       </div>
     </div>
   );
@@ -91,7 +91,7 @@ export const Pointers: React.FC<{ t: number; actions: TimedAction[]; projection:
               transform={`translate(${ex} ${ey}) rotate(${(ang * 180) / Math.PI})`} />
           </svg>
           <div style={{ position: 'absolute', left: Math.min(Math.max(tailX, 200), 880), top: tailY + (dy < 0 ? -64 : 18),
-            fontFamily: 'Montserrat', fontWeight: 900, fontSize: 40, color: '#0B1120', background: theme.accent, padding: '6px 18px', borderRadius: 10,
+            fontFamily: theme.font, fontWeight: 900, fontSize: 40, color: '#0B1120', background: theme.accent, padding: '6px 18px', borderRadius: 10,
             whiteSpace: 'nowrap', transform: `translateX(-50%) scale(${s})` } as React.CSSProperties}>{a.text}</div>
         </div>
       );

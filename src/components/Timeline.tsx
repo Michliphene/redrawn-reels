@@ -27,7 +27,7 @@ export const Timeline: React.FC<{ from: string; to: string; step?: number; dates
         {years.map((d) => (
           <g key={d}>
             <line x1={X(d)} x2={X(d)} y1={44} y2={76} stroke={theme.muted} strokeWidth={3} />
-            <text x={X(d)} y={118} fill={theme.muted} fontFamily="Montserrat" fontWeight={700} fontSize={30} textAnchor="middle">{d.slice(0, 4)}</text>
+            <text x={X(d)} y={118} fill={theme.muted} fontFamily={theme.font} fontWeight={700} fontSize={30} textAnchor="middle">{d.slice(0, 4)}</text>
           </g>
         ))}
         {events.map((e, i) => {

@@ -12,6 +12,8 @@ export const FONT = {
   serif: 'Instrument Serif',
   mono: 'JetBrains Mono',
   legacy: 'Montserrat',
+  /** the display face locked to its condensed cut: a drop-in family name for components that only set fontFamily */
+  displayCondensed: 'Studio Display',
 } as const;
 
 /** CSS for the condensed heavy cut of the display face. */
@@ -31,6 +33,8 @@ type Face = { family: string; file: string; descriptors: FontFaceDescriptors };
 const FACES: Face[] = [
   { family: FONT.display, file: 'BricolageGrotesque-latin.woff2', descriptors: { weight: '200 800', stretch: '75% 100%', unicodeRange: LATIN } },
   { family: FONT.display, file: 'BricolageGrotesque-latin-ext.woff2', descriptors: { weight: '200 800', stretch: '75% 100%', unicodeRange: LATIN_EXT } },
+  { family: FONT.displayCondensed, file: 'BricolageGrotesque-latin.woff2', descriptors: { weight: '200 800', stretch: '75%', unicodeRange: LATIN } },
+  { family: FONT.displayCondensed, file: 'BricolageGrotesque-latin-ext.woff2', descriptors: { weight: '200 800', stretch: '75%', unicodeRange: LATIN_EXT } },
   { family: FONT.serif, file: 'InstrumentSerif-Italic-latin.woff2', descriptors: { style: 'italic', weight: '400', unicodeRange: LATIN } },
   { family: FONT.serif, file: 'InstrumentSerif-Italic-latin-ext.woff2', descriptors: { style: 'italic', weight: '400', unicodeRange: LATIN_EXT } },
   { family: FONT.mono, file: 'JetBrainsMono-latin.woff2', descriptors: { weight: '100 800', unicodeRange: LATIN } },

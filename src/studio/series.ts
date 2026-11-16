@@ -4,10 +4,12 @@ import studio from '../../public/studio.json';
 export type Look = {
   /** size of one world pixel on the 1080 px master (3 → the 3D world is rendered at 360×640 and upscaled, nearest) */
   px: number;
-  /** colour steps per channel after the dither (32 ≈ PS1/PS2 15-bit colour, 8 ≈ strong retro banding) */
+  /** number of flat steps the light falloff (fog, spotlight) is cut into; fewer = more retro */
   levels: number;
-  /** ordered-dither amplitude, in colour steps (0 = plain posterise, 1 = full Bayer) */
+  /** ordered-dither amplitude between two steps (0 = hard bands, 1 = full Bayer stipple) */
   dither: number;
+  /** strength of the 1-pixel ink line drawn behind silhouettes, 0–1 */
+  outline: number;
   /** darkening of every other world row, 0–1 */
   scan: number;
   /** corner darkening, 0–1 */
@@ -54,17 +56,17 @@ const ENTRIES = (studio as unknown as { series: Record<string, StudioEntry> }).s
 const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
   redrawn: {
     palette: {
-      bg: '#070B16', bgGlow: '#15233F', surface: '#273250', surfaceEdge: '#151C30', grid: '#1B2742',
+      bg: '#05080F', bgGlow: '#16264A', surface: '#2B3759', surfaceEdge: '#141B30', grid: '#22335C',
       ink: '#F4F1EA', muted: '#8C93A8', accent: '#FFC94D', danger: '#E0565B', warn: '#F2994A',
     },
-    look: { px: 3, levels: 24, dither: 1, scan: 0.06, vignette: 0.5, grain: 0.05 },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.62, grain: 0.05 },
   },
   receipts: {
     palette: {
       bg: '#04100C', bgGlow: '#123A2A', surface: '#1C3B2F', surfaceEdge: '#0C2018', grid: '#17352A',
       ink: '#F3F6EE', muted: '#8FA89B', accent: '#C8F53C', danger: '#FF6B5E', warn: '#FFB648',
     },
-    look: { px: 3, levels: 24, dither: 1, scan: 0.06, vignette: 0.5, grain: 0.05 },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.62, grain: 0.05 },
   },
 };
 

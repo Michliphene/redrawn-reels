@@ -33,6 +33,8 @@ export type AtlasWorld = {
   /** centroid of the whole subject (explosions push pieces away from it) */
   focusCentroid: P2;
   focusIds: string[];
+  /** id of the subject piece under a table point, if any */
+  pieceAt: (x: number, z: number) => string | null;
 };
 
 const area = (r: P2[]) => { let a = 0; for (let i = 0, n = r.length; i < n; i++) { const p = r[i], q = r[(i + 1) % n]; a += p[0] * q[1] - q[0] * p[1]; } return a / 2; };
@@ -96,7 +98,7 @@ function toPiece(id: string, geometry: any, projection: any, eps: number, minAre
   return { id, polys: polys.map(({ outer, holes }) => ({ outer, holes })), lines: open.map((l) => thin(l, eps)), centroid: c, bbox: bb };
 }
 
-export function makeWorld(geo: GeoData, opts: { center?: LonLat } = {}): AtlasWorld {
+export function makeWorld(geo: GeoData, opts: { center?: LonLat; thickness?: number } = {}): AtlasWorld {
   const focus = geo.features.filter((f) => isFocus(f) && !isOutline(f) && !(f.properties as any)?.ghost);
   const fc = { type: 'FeatureCollection', features: focus.length ? focus : geo.features } as any;
   const center = opts.center ?? (geoCentroid(fc) as LonLat);
@@ -115,16 +117,25 @@ export function makeWorld(geo: GeoData, opts: { center?: LonLat } = {}): AtlasWo
   return {
     center, project, pieces, graticule,
     point: (ll, y = 0) => { const p = project(ll); return p ? [p[0], y, p[1]] : [9999, y, 9999]; },
-    h: Math.min(0.22, Math.max(0.05, size * 0.022)),
+    h: Math.min(0.15, Math.max(0.045, size * 0.016)) * (opts.thickness ?? 1),
     focusCentroid: [(x0 + x1) / 2, (z0 + z1) / 2],
     focusIds: focus.map((f) => String(f.id)),
+    pieceAt: (x, z) => {
+      for (const f of focus) {
+        if ((f.properties as any)?.hidden) continue;
+        const pc = pieces.get(String(f.id))!;
+        if (x < pc.bbox[0] || x > pc.bbox[2] || z < pc.bbox[1] || z > pc.bbox[3]) continue;
+        if (pc.polys.some((p) => inside([x, z], p.outer) && !p.holes.some((hh) => inside([x, z], hh)))) return pc.id;
+      }
+      return null;
+    },
   };
 }
 
 /** Lens and angle chosen from how wide the view is: wide = steeper (reads as a map), close = lower (reads as a place). */
 export function autoAngle(spanDeg: number): { pitch: number; fov: number } {
   const p = Math.min(1, Math.max(0, (Math.log(spanDeg) - Math.log(6)) / (Math.log(90) - Math.log(6))));
-  return { pitch: 47 + 21 * p, fov: 30 - 6 * p };
+  return { pitch: 44 + 16 * p, fov: 32 - 6 * p };
 }
 
 type Cam3 = Camera & { pitch?: number; yaw?: number; fov?: number; roll?: number; cut?: boolean };

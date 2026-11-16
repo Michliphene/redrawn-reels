@@ -31,7 +31,7 @@ export const Captions: React.FC<{ timings: Timings; t: number; y?: number; hidde
         const active = on && (i === page.length - 1 ? t < w.end + 0.3 : t < page[i + 1].start);
         const s = spring({ frame: Math.max(0, (t - w.start) * FPS), fps: FPS, config: { damping: 12, stiffness: 220 } });
         return (
-          <span key={i} style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 84, lineHeight: 1.12, textTransform: 'uppercase',
+          <span key={i} style={{ fontFamily: theme.font, fontWeight: 900, fontSize: 84, lineHeight: 1.12, textTransform: 'uppercase',
             color: active ? accent : theme.text, opacity: on ? 1 : 0.0,
             transform: `scale(${on ? 0.85 + 0.15 * s : 0.85}) translateY(${on ? 0 : 10}px)`, display: 'inline-block',
             WebkitTextStroke: '3px #000', paintOrder: 'stroke fill', textShadow: '0 6px 18px rgba(0,0,0,0.7)' }}>{w.w}</span>
