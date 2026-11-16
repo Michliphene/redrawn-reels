@@ -19,7 +19,7 @@ function paginate(timings: Timings, maxChars = 22, hidden: Record<string, string
   return pages;
 }
 
-export const Captions: React.FC<{ timings: Timings; t: number; y?: number; hidden?: Record<string, string[]> }> = ({ timings, t, y = 1390, hidden }) => {
+export const Captions: React.FC<{ timings: Timings; t: number; y?: number; hidden?: Record<string, string[]>; accent?: string }> = ({ timings, t, y = 1390, hidden, accent = theme.accent }) => {
   const pages = useMemo(() => paginate(timings, 22, hidden), [timings, hidden]);
   const idx = pages.findIndex((p, i) => t >= p[0].start - 0.05 && (i === pages.length - 1 || t < pages[i + 1][0].start - 0.05));
   const page = pages[idx];
@@ -32,7 +32,7 @@ export const Captions: React.FC<{ timings: Timings; t: number; y?: number; hidde
         const s = spring({ frame: Math.max(0, (t - w.start) * FPS), fps: FPS, config: { damping: 12, stiffness: 220 } });
         return (
           <span key={i} style={{ fontFamily: 'Montserrat', fontWeight: 900, fontSize: 84, lineHeight: 1.12, textTransform: 'uppercase',
-            color: active ? theme.accent : theme.text, opacity: on ? 1 : 0.0,
+            color: active ? accent : theme.text, opacity: on ? 1 : 0.0,
             transform: `scale(${on ? 0.85 + 0.15 * s : 0.85}) translateY(${on ? 0 : 10}px)`, display: 'inline-block',
             WebkitTextStroke: '3px #000', paintOrder: 'stroke fill', textShadow: '0 6px 18px rgba(0,0,0,0.7)' }}>{w.w}</span>
         );

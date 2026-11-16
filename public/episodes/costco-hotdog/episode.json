@@ -1,0 +1,265 @@
+{
+ "id": "costco-hotdog",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "episode": 1,
+ "title": "Why this hot dog is still $1.50",
+ "source": "Source: Costco annual report, fiscal 2026 (SEC filing)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3
+ },
+ "scenes": {
+  "dog": {
+   "type": "product",
+   "price": "$1.50",
+   "tag": "SINCE 1985"
+  },
+  "hundred": {
+   "type": "grid"
+  },
+  "bars": {
+   "type": "bars",
+   "max": 6.2
+  },
+  "card": {
+   "type": "card",
+   "cardTitle": "MEMBER",
+   "cardSub": "PAID EVERY YEAR"
+  },
+  "renew": {
+   "type": "people",
+   "total": 10
+  },
+  "point": {
+   "type": "lines"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "dog",
+   "say": "This hot dog has cost {$1.50|a dollar fifty} since {1985|nineteen eighty-five}.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$1.50"
+    },
+    {
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "1985"
+    }
+   ]
+  },
+  {
+   "id": "infl",
+   "kicker": "41 years. Same price.",
+   "say": "With inflation, it should cost over four dollars. So how does Costco make money?",
+   "actions": [
+    {
+     "type": "ghost",
+     "text": "$4+",
+     "label": "WITH INFLATION",
+     "atWord": "over",
+     "hold": 2.0
+    },
+    {
+     "type": "callout",
+     "text": "SO HOW DOES COSTCO MAKE MONEY?",
+     "atWord": "how",
+     "hold": 1.6,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "id": "hundred",
+   "scene": "hundred",
+   "kicker": "Where $100 goes",
+   "say": "Follow {$100|one hundred dollars} through the checkout.",
+   "actions": []
+  },
+  {
+   "id": "goods",
+   "say": "About {$89|eighty-nine dollars} goes straight to buying the products.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 89,
+     "color": "#FF6B5E",
+     "amount": "$89",
+     "label": "buying the products",
+     "atWord": "$89",
+     "dur": 2.2
+    }
+   ]
+  },
+  {
+   "id": "run",
+   "say": "Around {$9|nine dollars} more pays the staff and runs the warehouses.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 9,
+     "color": "#FFB648",
+     "amount": "$9",
+     "label": "staff + warehouses",
+     "atWord": "$9",
+     "dur": 1.4
+    }
+   ]
+  },
+  {
+   "id": "left",
+   "say": "What's left? Less than {$2|two dollars}.",
+   "actions": [
+    {
+     "type": "hint",
+     "atWord": "What's"
+    },
+    {
+     "type": "rest",
+     "color": "#C8F53C",
+     "amount": "< $2",
+     "label": "left over",
+     "atWord": "Less"
+    }
+   ]
+  },
+  {
+   "id": "scale",
+   "scene": "bars",
+   "kicker": "What selling earns",
+   "say": "On almost {$300B|three hundred billion dollars} of sales, that's under {$6B|six billion dollars}.",
+   "actions": [
+    {
+     "type": "big",
+     "value": "$297B",
+     "label": "in sales · fiscal 2026"
+    },
+    {
+     "type": "bar",
+     "label": "Left from selling goods",
+     "value": 5.778,
+     "color": "#FFB648",
+     "atWord": "under"
+    }
+   ]
+  },
+  {
+   "id": "twist",
+   "say": "But here's the trick. You paid before you walked in.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "YOU PAID BEFORE YOU WALKED IN",
+     "atWord": "paid",
+     "hold": 1.4,
+     "size": 52,
+     "y": 900
+    }
+   ]
+  },
+  {
+   "id": "card",
+   "scene": "card",
+   "kicker": "The membership card",
+   "say": "The membership card. Last fiscal year, {84|eighty-four} million members paid {$5.9B|five point nine billion dollars} in fees.",
+   "actions": [
+    {
+     "type": "stat",
+     "value": "84M",
+     "label": "paid members",
+     "atWord": "84"
+    },
+    {
+     "type": "stat",
+     "value": "$5.9B",
+     "label": "in fees",
+     "sub": "fiscal 2026",
+     "atWord": "$5.9B"
+    }
+   ]
+  },
+  {
+   "id": "more",
+   "scene": "bars",
+   "kicker": "Fees vs. selling",
+   "say": "That's more than Costco earned from everything on its shelves.",
+   "actions": [
+    {
+     "type": "bar",
+     "label": "Membership fees",
+     "value": 5.907,
+     "color": "#C8F53C",
+     "atWord": "more"
+    },
+    {
+     "type": "callout",
+     "text": "FEES ≈ HALF OF OPERATING PROFIT",
+     "atWord": "earned",
+     "hold": 1.6,
+     "size": 46
+    }
+   ]
+  },
+  {
+   "id": "renew",
+   "scene": "renew",
+   "kicker": "Do they come back?",
+   "say": "And every year, about nine in ten members renew.",
+   "actions": [
+    {
+     "type": "light",
+     "count": 9,
+     "big": "9 in 10",
+     "label": "members renew",
+     "sub": "89.8% worldwide · 92.3% US & Canada",
+     "atWord": "nine"
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "kicker": "The real product",
+   "say": "So the low prices aren't the profit. They're the reason you keep the card.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "LOW PRICES =",
+     "text": "THE PROFIT",
+     "strike": true,
+     "atWord": "low",
+     "size": 140
+    },
+    {
+     "type": "line",
+     "small": "LOW PRICES =",
+     "text": "WHY YOU RENEW",
+     "size": 120,
+     "color": "#C8F53C",
+     "atWord": "reason"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "dog",
+   "say": "Which helps explain why…",
+   "actions": []
+  }
+ ]
+}

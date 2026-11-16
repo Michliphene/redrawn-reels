@@ -23,7 +23,7 @@ hook = tm["beats"][0]
 # cue times (visual "news")
 cues = []
 for b, bt in zip(ep["beats"], tm["beats"]):
-    if b.get("camera"): cues.append(bt["start"])
+    if b.get("camera") or b.get("scene") or b.get("kicker"): cues.append(bt["start"])
     for a in b.get("actions", []):
         t = bt["start"]
         if a.get("atWord"):

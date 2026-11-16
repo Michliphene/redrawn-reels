@@ -9,7 +9,8 @@ python3 pipeline/tts.py "$ID"
 DUR=$(python3 -c "import json;print(json.load(open('public/episodes/$ID/timings.json'))['duration']+1)")
 [ -f "public/episodes/$ID/music.lock" ] || pipeline/music.sh "$ID" "$DUR"
 mkdir -p out
-npx remotion render src/index.ts Episode "out/$ID.raw.mp4" --props="{\"episodeId\":\"$ID\"}" \
+COMP=$(python3 -c "import json;print(json.load(open('public/episodes/$ID/episode.json')).get('composition','Episode'))")
+npx remotion render src/index.ts "$COMP" "out/$ID.raw.mp4" --props="{\"episodeId\":\"$ID\"}" \
   --browser-executable="$CHROME" --codec=h264 --crf=18 --concurrency=4 --log=error
 # TikTok/Reels loudness target ≈ -14 LUFS
 ffmpeg -y -loglevel error -i "out/$ID.raw.mp4" -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 -c:a aac -b:a 192k -movflags +faststart "out/$ID.mp4"
