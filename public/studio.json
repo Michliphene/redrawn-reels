@@ -1,0 +1,21 @@
+{
+  "_": "Single source of truth for every channel made in this repo. Rename a channel here (name/handle) and the on-screen tag, covers and posting kits follow. `id` never changes: it is what episode.json refers to.",
+  "series": {
+    "redrawn": {
+      "name": "REDRAWN",
+      "handle": "",
+      "tagline": "History in 60 seconds. One map. Every claim sourced.",
+      "legacyNames": ["REDRAWN"],
+      "composition": "Episode",
+      "episodeTag": "EP {n}"
+    },
+    "receipts": {
+      "name": "RECEIPTS",
+      "handle": "",
+      "tagline": "Follow the money in under a minute. Every number from the filing.",
+      "legacyNames": ["RECEIPTS"],
+      "composition": "Money",
+      "episodeTag": "#{nnn}"
+    }
+  }
+}

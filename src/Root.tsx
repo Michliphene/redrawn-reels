@@ -3,6 +3,7 @@ import { Composition, staticFile } from 'remotion';
 import { Episode } from './Episode';
 import { Thumb } from './Thumb';
 import { Money } from './money/Money';
+import { Probe3D } from './studio/_probe';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
@@ -10,6 +11,7 @@ const getJson = async (p: string) => (await fetch(staticFile(p))).json();
 
 export const Root: React.FC = () => (
   <>
+  <Composition id="Probe3D" component={Probe3D} width={1080} height={1920} fps={30} durationInFrames={60} />
   <Composition id="ThumbV" component={Thumb as any} width={1080} height={1920} fps={30} durationInFrames={1}
     defaultProps={{ episodeId: 'louisiana-1803' }}
     calculateMetadata={async ({ props }) => {
