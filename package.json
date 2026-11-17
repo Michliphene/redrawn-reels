@@ -1,10 +1,14 @@
 {
-  "name": "mapreels",
+  "name": "studio-reels",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Short-form video studio: one cue language, several series (REDRAWN maps, RECEIPTS money), shared art direction kit.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "tsc --noEmit -p . && node scripts/validate.mjs --all",
+    "test": "npm run check && tsx --test tests/*.test.ts",
+    "validate": "node scripts/validate.mjs",
+    "stills": "node scripts/stills.mjs",
+    "render": "pipeline/render.sh",
+    "studio": "remotion studio src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -37,5 +41,6 @@
     "@types/topojson-client": "^3.1.5",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
-  }
+  },
+  "private": true
 }

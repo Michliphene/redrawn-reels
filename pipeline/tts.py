@@ -10,7 +10,10 @@ Kokoro has no word alignment for this model, so each beat is synthesised separat
 snapped to detected pauses. ElevenLabs (/with-timestamps) gives exact alignment.
 """
 import json, re, sys, os
-import numpy as np, soundfile as sf
+try:  # only needed to synthesise; "voice up to date" must work on a machine without them
+    import numpy as np, soundfile as sf
+except ImportError:
+    np = sf = None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SR = 24000
@@ -124,10 +127,38 @@ def elevenlabs(ep, ep_dir):
     print(f"elevenlabs voice {dur:.2f}s ({len(full)} chars, cache {os.path.basename(cache)})")
     for b in beats: print(f"  {b['id']:10s} {b['start']:6.2f}-{b['end']:6.2f}")
 
+def say_hash(ep):
+    """Fingerprint of everything that decides the voice: the script and the voice settings."""
+    import hashlib
+    return hashlib.sha1(json.dumps([ep.get("voice"), ep.get("lexicon"), [[b["id"], b["say"], b.get("gapAfter")] for b in ep["beats"]]], sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+def stamp(ep_dir, h):
+    """Record the fingerprint in timings.json, so the next run can tell whether the voice is still current."""
+    p = os.path.join(ep_dir, "timings.json")
+    t = json.load(open(p)); t["say_hash"] = h
+    json.dump(t, open(p, "w"), indent=1, ensure_ascii=False)
+
 def main():
     ep_id = sys.argv[1]
     ep_dir = os.path.join(ROOT, "public", "episodes", ep_id)
     ep = json.load(open(os.path.join(ep_dir, "episode.json")))
+    # Never re-synthesise a voice that is still current: a new take shifts every cue and costs credits.
+    tp, vp = os.path.join(ep_dir, "timings.json"), os.path.join(ep_dir, "voice.wav")
+    if "--force" not in sys.argv and os.path.exists(tp) and os.path.exists(vp):
+        old = json.load(open(tp)).get("say_hash")
+        if old == say_hash(ep):
+            print("voice up to date (script and voice settings unchanged)"); return
+        if old is None:
+            stamp(ep_dir, say_hash(ep))
+            print("voice kept: it predates the fingerprint, now recorded (use --force to re-record)"); return
+        print("script or voice settings changed: recording a new voice")
+    h = say_hash(ep)  # taken before synthesis: the Kokoro fallback rewrites ep["voice"]
+    _synthesise(ep, ep_dir)
+    stamp(ep_dir, h)
+
+def _synthesise(ep, ep_dir):
+    if np is None:
+        sys.exit("!! numpy and soundfile are needed to record a voice: run scripts/setup.sh")
     force_kokoro = "--engine" in sys.argv and sys.argv[sys.argv.index("--engine") + 1] == "kokoro"
     if ep["voice"].get("engine") == "elevenlabs" and not force_kokoro:
         try:

@@ -16,8 +16,9 @@ sys.exit(f'no episode {a}')
 PY
 )
 VID="out/$ID.mp4"
-DATA=$(python3 -c "import json;print('public/'+json.load(open('public/episodes/$ID/episode.json'))['data'])")
-NEWEST=$(ls -t "public/episodes/$ID/episode.json" "public/episodes/$ID/timings.json" "$DATA" src/*.tsx src/components/*.tsx src/lib/*.ts pipeline/render.sh 2>/dev/null | head -1)
+# inputs of the video: its cue sheet, the voice it uses (its own or a shared one), its map data if any, the engine
+read -r DATA AUDIO < <(python3 -c "import json;e=json.load(open('public/episodes/$ID/episode.json'));print(('public/'+e['data']) if e.get('data') else '-', e.get('audio') or '$ID')")
+NEWEST=$(ls -t "public/episodes/$ID/episode.json" "public/episodes/$AUDIO/timings.json" $([ "$DATA" != "-" ] && echo "$DATA") public/studio.json $(find src -name '*.ts' -o -name '*.tsx') pipeline/render.sh 2>/dev/null | head -1)
 if [ ! -f "$VID" ] || [ "$NEWEST" -nt "$VID" ]; then
   echo "== render: $VID is missing or older than $NEWEST"
   pipeline/render.sh "$ID"
@@ -30,7 +31,8 @@ echo "== check: duration ${DUR}s · loudness ${LUFS} LUFS"
 python3 - "$DUR" "$LUFS" <<'PY'
 import sys
 d,l=float(sys.argv[1]),float(sys.argv[2])
-if not (30<=d<=60): print(f"!! duration {d:.1f}s outside 30–60 s")
+if not (30<=d<=75): print(f"!! duration {d:.1f}s outside 30–75 s")
+elif d>60: print(f"   note: {d:.1f}s — over a minute (fine for a monetised TikTok cut, long for Reels)")
 if abs(l+14)>1.5: print(f"!! loudness {l} LUFS far from -14")
 PY
 KIT="deliverables/$ID"; mkdir -p "$KIT"

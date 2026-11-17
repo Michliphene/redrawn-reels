@@ -71,7 +71,7 @@ export function shotAt(t: number, keys: ShotKey[]): Shot {
     const k = keys[i];
     if (t < k.t) break;
     const p = k.cut || k.dur <= 0 ? 1 : ease.inOut3(clamp01((t - k.t) / k.dur));
-    cur = lerpShot(cur, k.shot, p);
+    cur = p >= 1 ? k.shot : lerpShot(cur, k.shot, p); // arrived: use the key itself, no rounding drift
   }
   return cur;
 }
