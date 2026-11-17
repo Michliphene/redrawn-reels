@@ -94,6 +94,16 @@ export const RacePanel: React.FC<PanelProps> = ({ t, acts, from }) => {
         const x = x0 + 120 * dt * (hero ? 1 : 1 + 0.12 * Math.max(0, t - tt));
         return <Guy key={i} x={x} y={y + bob(ph, 8)} s={1.5} hero={hero} c={hero ? C.ink : C.pencil} seed={310 + i * 10} pose={POSE.run(ph)} />;
       })}
+      {t < tt + 0.1 && (() => {
+        const hx = 100 + 165 + 120 * dt + 6, o = ramp(t, from + 0.2, 0.2) * (1 - ramp(t, tt - 0.1, 0.2));
+        return (
+          <g opacity={o}>
+            <Hand x={hx - 70} y={770} size={68} c={C.red} rot={-8}>you</Hand>
+            <Ink pts={[[hx - 50, 790], [hx - 26, 830], [hx - 8, 862]]} seed={340} w={5} c={C.red} />
+            <Ink pts={[[hx - 30, 852], [hx - 8, 864], [hx - 6, 840]]} seed={341} w={5} c={C.red} />
+          </g>
+        );
+      })()}
       {trip && t >= tt + 0.35 && (() => {
         const hx = 265 + 120 * Math.max(0, tt - from) + 50;
         const o = ramp(t, tt + 0.35, 0.2);
@@ -266,7 +276,7 @@ export const ShopPanel: React.FC<PanelProps> = ({ t, acts }) => {
       })}
       {sale && t >= sale.t + 0.1 && (() => {
         const p = ease.out3(ramp(t, sale.t + 0.1, 0.8)), ph = (t - sale.t) * 10;
-        return <Guy x={lerp(1120, 860, p)} y={1120 + (p < 1 ? bob(ph, 5) : 0)} s={0.95} c={C.pencil} seed={690} dir={-1} pose={p < 1 ? POSE.walk(ph) : { ...POSE.stand(t), armR: 120, mood: 'smile' }} />;
+        return <Guy x={lerp(1140, 955, p)} y={1120 + (p < 1 ? bob(ph, 5) : 0)} s={0.95} c={C.pencil} seed={690} dir={-1} pose={p < 1 ? POSE.walk(ph) : { ...POSE.stand(t), armR: 120, mood: 'smile' }} />;
       })()}
       <Guy x={150} y={1120} s={1.15} seed={700} hero pose={owner} />
       {bulb && t >= bulb.t && <Bulb x={150} y={505} s={1.25 * Math.min(1.1, pop(t, bulb.t, 0.4))} seed={710} />}

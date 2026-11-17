@@ -30,6 +30,7 @@ Idea inspired by a TikTok by @cryothum (script rewritten from scratch, own art d
 | "10" / "10 lessons" (towers) | illustrative arithmetic: one lesson per attempt, not a measured fact | — |
 | "0 lessons" (perfect record) | illustrative, the script's argument, not a statistic | — |
 | Grades A → F | illustrative school scale | — |
+| "2 misses = 2 lessons", "Next fail = next lesson" (sticky notes) | illustrative: the script's argument, not a measurement | — |
 | Store: flops / ignored / a few sales | hypothetical ("Picture…"), labelled PICTURE THIS on screen | — |
 
 ## Debated points (be ready for comments)

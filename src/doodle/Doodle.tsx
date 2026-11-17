@@ -131,7 +131,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
       <AbsoluteFill style={{ background: '#2B2B33' }}>
         <div style={{ position: 'absolute', inset: 0, perspective: 2600 }}>
           <div style={{ position: 'absolute', inset: 0, transformOrigin: '50% 50%',
-            transform: `rotateY(${fa < 90 ? fa : fa - 180}deg) scale(${1 - 0.1 * Math.sin((fa * Math.PI) / 180)})` }}>
+            transform: `rotateX(${10 * settle}deg) rotateY(${fa < 90 ? fa : fa - 180}deg) scale(${1 - 0.1 * Math.sin((fa * Math.PI) / 180)})` }}>
             <div style={{ position: 'absolute', inset: 0, overflow: 'hidden',
               transform: `translate(${hp[0]}px, ${hp[1]}px) scale(${1 + punch}) translate(${-hp[0]}px, ${-hp[1]}px) translate(540px, 845px) scale(${z}) rotate(${tilt}deg) translate(-540px, -845px)` }}>
               {renderSide(sideNow)}
@@ -158,12 +158,12 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
           const o = Math.min(ramp(t, Math.max(s.from, hookEnd), 0.2), 1 - ramp(t, s.to - 0.1, 0.2), 1 - titleO);
           return (
             <div key={i} style={{ position: 'absolute', top: ZONES.title.top + 10, left: SAFE.left, opacity: o, ...displayCut(800, 75), fontSize: 84, lineHeight: 0.94, textTransform: 'uppercase', color: C.ink }}>
-              <span style={{ background: `linear-gradient(transparent 52%, ${C.hl} 52%, ${C.hl} 90%, transparent 90%)`, padding: '0 6px' }}>{s.kicker}</span>
+              <span style={{ background: `linear-gradient(transparent 52%, ${C.hl} 52%, ${C.hl} 90%, transparent 90%)${fa > 0 && fa < 180 ? `, ${C.paper}` : ''}`, padding: '0 6px' }}>{s.kicker}</span>
             </div>
           );
         })}
-        {!cover && <NotebookCaptions timings={timings!} t={t} keywords={spec.keywords ?? []} />}
-        {spec.source && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 22, letterSpacing: '0.06em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
+        {!cover && t < end - 0.5 && <NotebookCaptions timings={timings!} t={t} keywords={spec.keywords ?? []} backing={Math.sin((fa * Math.PI) / 180)} />}
+        {spec.source && (!spec.sourceFrom || t >= firstFrom(spec.sourceFrom) - 0.01) && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 22, letterSpacing: '0.06em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
         {guides && <Guides />}
         {sfx.map((c, i) => (
           <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>
@@ -177,7 +177,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
 
 /** Captions in ballpoint: ink words, keywords and numbers under a stroke of highlighter. */
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9$%]/g, '');
-const NotebookCaptions: React.FC<{ timings: Timings; t: number; keywords: string[] }> = ({ timings, t, keywords }) => {
+const NotebookCaptions: React.FC<{ timings: Timings; t: number; keywords: string[]; backing?: number }> = ({ timings, t, keywords, backing = 0 }) => {
   const size = 90, left = SAFE.left, width = SAFE.railX - SAFE.left;
   const maxChars = Math.floor(width / (size * 0.47));
   const pages = useMemo(() => paginate(timings, maxChars, 2, {}), [timings, maxChars]);
@@ -189,8 +189,9 @@ const NotebookCaptions: React.FC<{ timings: Timings; t: number; keywords: string
   const top = ZONES.captions.top + (ZONES.captions.bottom - ZONES.captions.top - lineH * page.lines.length) / 2;
   return (
     <div style={{ position: 'absolute', top, left, width, display: 'flex', flexDirection: 'column' }}>
+      {backing > 0.01 && <div style={{ position: 'absolute', left: -24, top: -16, right: -24, bottom: -16, background: C.paper, opacity: Math.min(1, backing * 2.5), boxShadow: '4px 6px 0 rgba(0,0,0,0.25)' }} />}
       {page.lines.map((line, li) => (
-        <div key={li} style={{ display: 'flex', gap: size * 0.24, height: lineH, alignItems: 'center', whiteSpace: 'nowrap' }}>
+        <div key={li} style={{ position: 'relative', display: 'flex', gap: size * 0.24, height: lineH, alignItems: 'center', whiteSpace: 'nowrap' }}>
           {line.map((w, i) => {
             const key = /\d/.test(w.w) || keys.has(norm(w.w));
             const p = ease.back(ramp(t, w.start - 0.03, 0.16), 1.6);

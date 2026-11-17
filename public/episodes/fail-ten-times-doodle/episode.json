@@ -195,7 +195,7 @@
     },
     {
      "type": "callout",
-     "text": "Every miss is data",
+     "text": "2 misses = 2 lessons",
      "atWord": "tells",
      "hold": 1.6
     }
@@ -275,7 +275,16 @@
   },
   {
    "id": "loop",
-   "say": "So the next time you fail, remember…"
+   "say": "So the next time you fail, remember…",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Next fail = next lesson",
+     "atWord": "fail,",
+     "hold": 1.1
+    }
+   ]
   }
- ]
+ ],
+ "sourceFrom": "pile"
 }
