@@ -106,7 +106,7 @@
    "actions": [
     {
      "type": "chapter",
-     "text": "1945"
+     "text": "Japanese rule"
     },
     {
      "type": "label",
@@ -118,15 +118,6 @@
      "size": "md",
      "atWord": "Korea",
      "hold": 2.4
-    },
-    {
-     "type": "callout",
-     "text": "Japanese rule",
-     "sub": "1910 – 1945",
-     "y": 880,
-     "size": 64,
-     "atWord": "ruled",
-     "hold": 2.6
     },
     {
      "type": "pulse",
@@ -174,15 +165,25 @@
       40.6
      ],
      "approach": [
-      40,
-      -160
+      20,
+      -70
      ],
      "count": 3,
-     "size": 66,
+     "size": 46,
      "color": "#161A22",
      "atWord": "Soviet",
      "hold": 2.2,
      "caption": "Soviet troops · Aug 1945"
+    },
+    {
+     "type": "label",
+     "text": "USSR",
+     "at": [
+      132.0,
+      44.0
+     ],
+     "atWord": "Soviet",
+     "hold": 2.0
     }
    ]
   },
@@ -208,8 +209,8 @@
      "key": "rusk_bust",
      "name": "Dean Rusk",
      "role": "later Secretary of State (photo: 1961)",
-     "side": "right",
-     "y": 330,
+     "side": "left",
+     "y": 640,
      "small": true,
      "focus": "50% 30%",
      "atWord": "Dean",
@@ -217,14 +218,32 @@
     },
     {
      "type": "label",
-     "text": "WASHINGTON'S ORDER",
+     "text": "ORDER FROM WASHINGTON",
      "flag": "us-48",
      "at": [
       127.6,
-      36.2
+      35.6
      ],
      "atWord": "Washington,",
-     "hold": 2.0
+     "hold": 2.4
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       124.55,
+       38.0
+      ],
+      [
+       128.75,
+       38.0
+      ]
+     ],
+     "color": "#FFC94D",
+     "width": 3,
+     "dur": 0.6,
+     "hold": 0.8,
+     "atWord": "draw"
     }
    ]
   },
@@ -258,15 +277,6 @@
       38.25
      ],
      "atWord": "straight"
-    },
-    {
-     "type": "callout",
-     "text": "38°N",
-     "sub": "a straight line",
-     "y": 880,
-     "size": 90,
-     "atWord": "38th",
-     "hold": 1.0
     },
     {
      "type": "callout",
@@ -341,7 +351,6 @@
     {
      "type": "label",
      "text": "SOVIET ZONE",
-     "flag": "su",
      "at": [
       127.3,
       40.3
@@ -399,10 +408,7 @@
      "y": 880,
      "size": 60,
      "atWord": "temporary.",
-     "hold": 3.4,
-     "stamp": "HARDENS",
-     "stampWord": "hardens:",
-     "stampSize": 44
+     "hold": 1.3
     },
     {
      "type": "path",
@@ -547,10 +553,10 @@
      "type": "callout",
      "text": "New border: the DMZ",
      "sub": "≈ 2.5 miles wide · ≈ 155 miles long",
-     "y": 880,
-     "size": 56,
+     "y": 1050,
+     "size": 52,
      "atWord": "Not",
-     "hold": 1.2
+     "hold": 1.3
     },
     {
      "type": "path",
@@ -672,13 +678,13 @@
       ]
      ],
      "color": "#FFC94D",
-     "width": 4,
+     "width": 6,
      "dur": 0.6,
      "hold": 8.2,
      "label": "38°N",
      "labelAt": [
-      124.9,
-      38.25
+      125.0,
+      37.75
      ],
      "atWord": "not"
     },
@@ -693,11 +699,11 @@
    ],
    "camera": {
     "center": [
-     127.6,
-     38.7
+     127.4,
+     38.2
     ],
-    "span": 8.5,
-    "pitch": 50,
+    "span": 7,
+    "pitch": 38,
     "yaw": 0
    }
   },
@@ -847,7 +853,7 @@
      ],
      "color": "#FFC94D",
      "width": 9,
-     "dur": 0.8,
+     "dur": 0.5,
      "hold": 1.6,
      "atWord": "started"
     }

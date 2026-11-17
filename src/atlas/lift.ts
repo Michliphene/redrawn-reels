@@ -6,7 +6,7 @@ import { ease, hash, hop, ramp } from '../studio/motion';
  * Where a subject piece is at time t (how high it stands, how far the burst has pushed it).
  * One function, used by the map itself and by everything standing on it (units, markers).
  */
-export type PieceState = { y: number; dx: number; dz: number; burst: number };
+export type PieceState = { y: number; dx: number; dz: number; burst: number; rest: number };
 export function makeLift(world: AtlasWorld, actions: TimedAction[]) {
   const declares = actions.filter((a) => a.type === 'declare') as Extract<TimedAction, { type: 'declare' }>[];
   const pulses = actions.filter((a) => a.type === 'pulse') as Extract<TimedAction, { type: 'pulse' }>[];
@@ -15,7 +15,7 @@ export function makeLift(world: AtlasWorld, actions: TimedAction[]) {
   return (id: string, t: number): PieceState => {
     const i = world.focusIds.indexOf(id);
     const piece = world.pieces.get(id);
-    if (i < 0 || !piece) return { y: 0, dx: 0, dz: 0, burst: 0 };
+    if (i < 0 || !piece) return { y: 0, dx: 0, dz: 0, burst: 0, rest: 0 };
     const d = declares.find((a) => a.id === id);
     // each country that has declared stands at its own height: borders stay exact, pieces read as separate
     const rest = d && t >= d.t ? h * (0.18 + 0.55 * hash(i + 3)) * ease.out3(ramp(t, d.t + 0.25, 0.5)) : 0;
@@ -28,6 +28,7 @@ export function makeLift(world: AtlasWorld, actions: TimedAction[]) {
       dx: (piece.centroid[0] - world.focusCentroid[0]) * 0.2 * burst,
       dz: (piece.centroid[1] - world.focusCentroid[1]) * 0.2 * burst,
       burst,
+      rest,
     };
   };
 }
