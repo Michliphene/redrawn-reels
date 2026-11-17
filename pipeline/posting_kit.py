@@ -55,7 +55,7 @@ def main():
         tags = " ".join(hashtags.split()[:3])
         yt = f"{caption.splitlines()[0]}\n\n{src_line}\n\nREDRAWN: map history in under a minute.\n\n#Shorts {tags}".strip()
     n = ep.get("episode", "?")
-    out = f"""# REDRAWN EP {n} — post kit ({ep_id})
+    out = f"""# {ep.get("series", "REDRAWN")} {"#%03d" % n if ep.get("composition") == "Money" and isinstance(n, int) else f"EP {n}"} — post kit ({ep_id})
 
 Video: out/{ep_id}.mp4 · Covers: deliverables/{ep_id}/cover_3x4.jpg (Instagram), cover_9x16.png (TikTok/Shorts)
 
