@@ -16,6 +16,8 @@ const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
+const MINDSET_ACTIONS = { papers: ['mark', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
+const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS };
 const SAFE = { top: 250, bottom: 1440 };
 
 export function seriesIdOf(spec) {
@@ -89,12 +91,12 @@ export function validate(id) {
     }
     if (!spec.timeline?.from || !spec.timeline?.to) E('missing "timeline" {from, to}');
   }
-  if (comp === 'Money') {
+  if (SCENE_ACTIONS[comp]) {
     if (!spec.scenes || !Object.keys(spec.scenes).length) E('missing "scenes"');
     if (!spec.source) E('missing "source" (the line that stays on screen)'); else collect('source', spec.source);
     for (const [sidk, def] of Object.entries(spec.scenes ?? {})) {
-      if (!MONEY_ACTIONS[def.type]) E(`scene "${sidk}": unknown type "${def.type}"`);
-      for (const k of ['price', 'tag', 'cardTitle', 'cardSub']) collect(`scene ${sidk}.${k}`, def[k]);
+      if (!SCENE_ACTIONS[comp][def.type]) E(`scene "${sidk}": unknown type "${def.type}"`);
+      for (const k of ['price', 'tag', 'cardTitle', 'cardSub', 'gradeLabel']) collect(`scene ${sidk}.${k}`, def[k]);
     }
   }
   collect('title', spec.title);
@@ -109,15 +111,17 @@ export function validate(id) {
     seen.add(b.id);
     if (!b.say || !b.say.trim()) E(`beat ${b.id}: empty "say"`);
     const words = timings?.beats[i]?.words.map((w) => w.w) ?? displayWords(b.say ?? '');
-    if (b.scene) { scene = b.scene; if (comp === 'Money' && !spec.scenes?.[scene]) E(`beat ${b.id}: scene "${scene}" is not declared in "scenes"`); }
+    if (b.scene) { scene = b.scene; if (SCENE_ACTIONS[comp] && !spec.scenes?.[scene]) E(`beat ${b.id}: scene "${scene}" is not declared in "scenes"`); }
     collect(`beat ${b.id}.kicker`, b.kicker);
     if (b.camera?.fit && featureIds && !['FOCUS', 'SOVIET'].includes(b.camera.fit) && !featureIds.has(b.camera.fit)) E(`beat ${b.id}: camera fit "${b.camera.fit}" is not a feature id`);
     for (const a of b.actions ?? []) {
       const where = `beat ${b.id} · ${a.type}`;
       if (comp === 'Episode' && !MAP_ACTIONS.has(a.type)) E(`${where}: unknown action type`);
-      if (comp === 'Money') {
+      if (SCENE_ACTIONS[comp]) {
         const type = spec.scenes?.[scene]?.type;
-        if (a.type !== 'callout' && type && !MONEY_ACTIONS[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
+        const allowed = SCENE_ACTIONS[comp];
+        // a papers scene may also carry the cues of a lines scene played over it? no: each cue belongs to its own scene
+        if (a.type !== 'callout' && type && !allowed[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${allowed[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
       }
       for (const key of ['atWord', 'retreatWord', 'stampWord']) {
@@ -137,7 +141,7 @@ export function validate(id) {
       if (a.type === 'archive' && a.src && !fs.existsSync(path.join(ROOT, 'public', a.src))) Wn(`${where}: image public/${a.src} not found`);
       // layout: DA v2 keeps everything readable inside the platform safe area
       if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
-      for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
+      for (const k of ['text', 'label', 'lightLabel', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
     }
     if (b.date) collect(`beat ${b.id}.date`, b.date);
   });

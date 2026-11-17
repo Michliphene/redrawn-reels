@@ -69,6 +69,13 @@ const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
     },
     look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0 },
   },
+  ungraded: {
+    palette: {
+      bg: '#0A0714', bgGlow: '#2B1B5A', surface: '#40327A', surfaceEdge: '#1A1236', grid: '#33266B',
+      ink: '#F5F2FF', muted: '#9A94BD', accent: '#5CF0D0', danger: '#FF5A6E', warn: '#FFC247',
+    },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.55, grain: 0 },
+  },
 };
 
 export const SERIES: Record<string, SeriesDef> = Object.fromEntries(

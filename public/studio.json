@@ -5,7 +5,9 @@
       "name": "REDRAWN",
       "handle": "",
       "tagline": "History in 60 seconds. One map. Every claim sourced.",
-      "legacyNames": ["REDRAWN"],
+      "legacyNames": [
+        "REDRAWN"
+      ],
       "composition": "Episode",
       "episodeTag": "EP {n}"
     },
@@ -13,8 +15,20 @@
       "name": "RECEIPTS",
       "handle": "",
       "tagline": "Follow the money in under a minute. Every number from the filing.",
-      "legacyNames": ["RECEIPTS"],
+      "legacyNames": [
+        "RECEIPTS"
+      ],
       "composition": "Money",
+      "episodeTag": "#{nnn}"
+    },
+    "ungraded": {
+      "name": "UNGRADED",
+      "handle": "",
+      "tagline": "The rules school never taught. One idea, one minute.",
+      "legacyNames": [
+        "UNGRADED"
+      ],
+      "composition": "Mindset",
       "episodeTag": "#{nnn}"
     }
   }
