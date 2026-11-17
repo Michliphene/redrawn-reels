@@ -51,10 +51,10 @@ The five rules (details and measurements in `docs/STUDIO.md`):
    - `say`: spoken text; `{1990|nineteen ninety}` = caption shows 1990, voice says the words.
    - every action takes `atWord` (exact token incl. punctuation wins over a prefix; `occurrence: n`; `atTime: s`).
    - v2 fields: `da: 2`, `seriesId`, `whisper` (quiet line under the title), `keywords` (caption words to
-     highlight; numbers are automatic), `audio` (reuse another episode's voice).
+     highlight; numbers are automatic), `audio` (reuse another episode's voice), `captionSize` (px, DA 2 map).
    - map camera: `{fit:"FOCUS",pad}` or `{center:[lon,lat], span:deg}` + optional `pitch`, `yaw`, `fov`, `roll`,
      `cut: true` (a cut is a re-hook; things pinned to the previous place end before it).
-   - map actions: `declare` (+`flag`, `flagNote`, `date`, `noLabel`), `pulse`, `label`, `marker`, `date`,
+   - map actions: `declare` (+`flag`, `flagNote`, `date`, `noLabel`, `instant` = no flash, DA 2), `pulse`, `label`, `marker`, `date`,
      `dissolve`, `allLabels`, `units` (tanks/troops/crowd as 3D pieces), `portrait`, `flagSwap`, `shake`, `ghost`,
      `path`, `bigNumber`, `archive`, `callout`, `region`, `sticker`, `chapter` (text only in DA 2), `recolor`,
      `reveal`, `conceal`, `pointer`. Episode-level: `palette`, `counter`, `legend`, `timeline`.
