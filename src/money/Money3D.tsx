@@ -159,29 +159,34 @@ const bump = (t: number, acts: A[], target: string) => 1 + acts.filter((a) => a.
 const Pill: React.FC<{ children: React.ReactNode; bg: string; color: string; size?: number; style?: React.CSSProperties }> = ({ children, bg, color, size = 30, style }) => (
   <Mono size={size} color={color} track={0.16} weight={800} style={{ display: 'inline-block', background: bg, padding: `${size * 0.32}px ${size * 0.5}px ${size * 0.28}px`, textShadow: 'none', boxShadow: '6px 6px 0 rgba(0,0,0,0.45)', ...style }}>{children}</Mono>
 );
-type OverlayProps = { t: number; acts: A[]; def: any; series: SeriesDef; toPx: (p: Vec3) => [number, number]; ox: number };
+type OverlayProps = { t: number; acts: A[]; def: any; series: SeriesDef; toPx: (p: Vec3) => [number, number]; ox: number; print: (px: number) => number };
+/**
+ * Small print floor. `"print": 32` in episode.json raises every label below 32 px to 32 (raea's craft floor: small
+ * print ≥ 32 px at 1080 wide). Absent, sizes are exactly as published.
+ */
+const printer = (min?: number) => (px: number) => (min ? Math.max(px, min) : px);
 
-const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series }) => (
+const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, print }) => (
   <>
     <div style={{ position: 'absolute', left: SAFE.left, top: 870, transform: `scale(${bump(t, acts, 'price')})`, transformOrigin: 'left center' }}>
       <Display size={Math.min(214, (def.priceSize ?? 270) * 0.8)} color={pal(series).accent} style={{ letterSpacing: '-0.02em' }}>{def.price}</Display>
     </div>
     <div style={{ position: 'absolute', left: SAFE.left, top: 1078, transform: `scale(${bump(t, acts, 'tag')})`, transformOrigin: 'left center' }}>
-      <Pill bg={pal(series).ink} color={pal(series).bg} size={32}>{def.tag}</Pill>
+      <Pill bg={pal(series).ink} color={pal(series).bg} size={print(32)}>{def.tag}</Pill>
     </div>
     {acts.filter((a) => a.type === 'ghost').map((a, i) => {
       const o = life(t, a.t, a.hold); if (o <= 0) return null;
       return (
         <div key={i} style={{ position: 'absolute', right: 1080 - SAFE.railX + 12, top: 880, opacity: o, transform: `rotate(5deg) scale(${pop(t, a.t)})`, transformOrigin: 'right center', background: pal(series).danger, padding: '14px 26px 12px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)', textAlign: 'center' }}>
           <Display size={118} color="#fff" style={{ textShadow: 'none' }}>{a.text}</Display>
-          <Mono size={24} color="#fff" track={0.12} style={{ marginTop: 6, textShadow: 'none' }}>{a.label}</Mono>
+          <Mono size={print(24)} color="#fff" track={0.12} style={{ marginTop: 6, textShadow: 'none' }}>{a.label}</Mono>
         </div>
       );
     })}
   </>
 );
 
-const GridOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => {
+const GridOverlay: React.FC<OverlayProps> = ({ t, acts, series, print }) => {
   const fills = acts.filter((a) => a.type === 'fill' || a.type === 'rest');
   const two = fills.length > 3;
   return (
@@ -192,7 +197,7 @@ const GridOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => {
           <div key={i} style={{ position: 'absolute', top: 952 + (two ? i % 3 : i) * 64, left: SAFE.left + (two && i >= 3 ? SAFE_W / 2 : 0), opacity: o, transform: `translateX(${(1 - ease.out3(o)) * -30}px)`, display: 'flex', alignItems: 'center', gap: 18 }}>
             <div style={{ width: 36, height: 36, background: a.color, boxShadow: '4px 4px 0 rgba(0,0,0,0.45)', flex: 'none' }} />
             <Display size={two ? 56 : 66} color={a.color} style={{ minWidth: two ? 120 : 158 }}>{a.amount}</Display>
-            <Mono size={two ? 23 : 30} color={pal(series).ink} track={0.06}>{a.label}</Mono>
+            <Mono size={print(two ? 23 : 30)} color={pal(series).ink} track={0.06}>{a.label}</Mono>
           </div>
         );
       })}
@@ -200,12 +205,12 @@ const GridOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => {
   );
 };
 
-const BarsOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, toPx, ox }) => (
+const BarsOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, toPx, ox, print }) => (
   <>
     {acts.filter((a) => a.type === 'big').map((a, i) => (
       <div key={i} style={{ position: 'absolute', left: SAFE.left, top: 452, opacity: ramp(t, a.t, 0.15), transform: `scale(${Math.min(1.08, pop(t, a.t))})`, transformOrigin: 'left center', display: 'flex', alignItems: 'baseline', gap: 20 }}>
         <Display size={128} color={pal(series).ink}>{a.value}</Display>
-        <Mono size={24} color={pal(series).muted} track={0.1}>{a.label}</Mono>
+        <Mono size={print(24)} color={pal(series).muted} track={0.1}>{a.label}</Mono>
       </div>
     ))}
     {acts.filter((a) => a.type === 'bar').map((a, i) => {
@@ -218,7 +223,7 @@ const BarsOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, toPx, ox })
             <Display size={86} color={a.color} stroke={8}>{a.prefix ?? '$'}{(a.value * g).toFixed(a.decimals ?? 1)}{a.suffix ?? 'B'}</Display>
           </div>
           <div style={{ position: 'absolute', left: foot[0], top: foot[1] + 20, transform: 'translateX(-50%)', opacity: ramp(t, a.t, 0.2), width: 270, textAlign: 'center' }}>
-            <Mono size={22} color={pal(series).ink} track={0.05} style={{ whiteSpace: 'normal', lineHeight: 1.25 }}>{a.label}</Mono>
+            <Mono size={print(22)} color={pal(series).ink} track={0.05} style={{ whiteSpace: 'normal', lineHeight: 1.25 }}>{a.label}</Mono>
           </div>
         </React.Fragment>
       );
@@ -226,27 +231,27 @@ const BarsOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, toPx, ox })
   </>
 );
 
-const Stat: React.FC<{ a: A; t: number; left: number; top: number; series: SeriesDef; size?: number }> = ({ a, t, left, top, series, size = 132 }) => (
+const Stat: React.FC<{ a: A; t: number; left: number; top: number; series: SeriesDef; size?: number; print: (px: number) => number }> = ({ a, t, left, top, series, size = 132, print }) => (
   <div style={{ position: 'absolute', left, top, opacity: ramp(t, a.t, 0.15), transform: `scale(${Math.min(1.1, pop(t, a.t))})`, transformOrigin: 'left center' }}>
     <Display size={size} color={pal(series).accent}>{a.value ?? a.big}</Display>
-    <Mono size={27} color={pal(series).ink} track={0.1} style={{ marginTop: 10 }}>{a.label}</Mono>
-    {a.sub && <Mono size={20} color={pal(series).muted} track={0.06} weight={600} style={{ marginTop: 8 }}>{a.sub}</Mono>}
+    <Mono size={print(27)} color={pal(series).ink} track={0.1} style={{ marginTop: 10 }}>{a.label}</Mono>
+    {a.sub && <Mono size={print(20)} color={pal(series).muted} track={0.06} weight={600} style={{ marginTop: 8 }}>{a.sub}</Mono>}
   </div>
 );
-const CardOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => (
-  <>{acts.filter((a) => a.type === 'stat').map((a, i) => <Stat key={i} a={a} t={t} left={SAFE.left + i * (SAFE_W / 2)} top={900} series={series} />)}</>
+const CardOverlay: React.FC<OverlayProps> = ({ t, acts, series, print }) => (
+  <>{acts.filter((a) => a.type === 'stat').map((a, i) => <Stat key={i} a={a} t={t} left={SAFE.left + i * (SAFE_W / 2)} top={900} series={series} print={print} />)}</>
 );
-const PeopleOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => {
+const PeopleOverlay: React.FC<OverlayProps> = ({ t, acts, series, print }) => {
   const a = acts.find((x) => x.type === 'light');
-  return a ? <Stat a={{ ...a, t: a.t + 0.45 }} t={t} left={SAFE.left} top={890} series={series} size={150} /> : null;
+  return a ? <Stat a={{ ...a, t: a.t + 0.45 }} t={t} left={SAFE.left} top={890} series={series} size={150} print={print} /> : null;
 };
-const LinesOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => (
+const LinesOverlay: React.FC<OverlayProps> = ({ t, acts, series, print }) => (
   <div style={{ position: 'absolute', left: SAFE.left, top: 590, width: SAFE_W, display: 'flex', flexDirection: 'column', gap: 44 }}>
     {acts.filter((a) => a.type === 'line').map((a, i) => {
       const struck = a.strike ? ease.out3(ramp(t, a.t + 0.5, 0.25)) : 0;
       return (
         <div key={i} style={{ opacity: ramp(t, a.t, 0.15), transform: `scale(${Math.min(1.06, pop(t, a.t))})`, transformOrigin: 'left center' }}>
-          <Mono size={28} color={pal(series).muted} track={0.14}>{a.small}</Mono>
+          <Mono size={print(28)} color={pal(series).muted} track={0.14}>{a.small}</Mono>
           <div style={{ position: 'relative', display: 'inline-block', marginTop: 10 }}>
             <Display size={Math.min(132, (a.size ?? 120) * 0.95)} color={a.color ?? pal(series).ink} style={{ opacity: 1 - struck * 0.45 }}>{a.text}</Display>
             {a.strike && <div style={{ position: 'absolute', left: -8, top: '46%', height: 13, width: `calc(${struck * 100}% + ${struck * 16}px)`, background: pal(series).danger, boxShadow: '4px 4px 0 rgba(0,0,0,0.4)' }} />}
@@ -267,6 +272,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
   const P = series.palette;
   const end = timings!.duration + 0.5;
   const audioId = spec.audio ?? episodeId;
+  const print = printer(spec.print);
 
   const { segs, byScene, acts, origin, keys } = useMemo(() => {
     const acts = schedule(spec, timings!).actions as unknown as A[];
@@ -346,7 +352,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
         const o = Math.min(i === 0 || prevSame ? 1 : ramp(t, s.from + 0.25, 0.25), nextSame ? (t < s.to ? 1 : 0) : 1 - ramp(t, s.to - 0.12, 0.2));
         if (o <= 0) return null;
         const def = spec.scenes[s.id]; const O = OVERLAYS[def.type];
-        return O ? <AbsoluteFill key={i} style={{ opacity: o }}><O t={t} acts={byScene[s.id] ?? []} def={def} series={series} toPx={toPx} ox={origin[s.id]} /></AbsoluteFill> : null;
+        return O ? <AbsoluteFill key={i} style={{ opacity: o }}><O t={t} acts={byScene[s.id] ?? []} def={def} series={series} toPx={toPx} ox={origin[s.id]} print={print} /></AbsoluteFill> : null;
       })}
       {acts.filter((a) => a.type === 'callout').map((a, i) => {
         const sg = segs.find((s) => a.t >= s.from - 0.01 && a.t < s.to)!;
@@ -360,7 +366,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
       })}
 
       <SeriesBar series={series} episode={spec.episode} />
-      <TitleBlock title={spec.title} whisper={spec.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + 6} max={112} />
+      <TitleBlock title={spec.title} whisper={spec.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + 6} max={112} whisperAt0={!!spec.whisperAt0} />
       {!cover && segs.map((s, i) => {
         if (!s.kicker || t < s.from || t > s.to + 0.2 || titleO > 0.5) return null;
         const o = Math.min(ramp(t, Math.max(s.from, hookEnd), 0.2), 1 - ramp(t, s.to - 0.1, 0.2), 1 - titleO);
@@ -368,7 +374,8 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
       })}
       {!cover && <Captions timings={timings!} t={t} accent={P.accent} ink={P.ink} keywords={spec.keywords ?? []} />}
       {/* the source never leaves the screen: it is the promise of the channel */}
-      <Mono size={20} color={P.muted} track={0.06} weight={600} style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</Mono>
+      {/* the source line sits on the safe-area floor (y 1440): raised to 26 px at most, never past it */}
+      <Mono size={Math.min(print(20), 26)} color={P.muted} track={0.06} weight={600} style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</Mono>
 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}

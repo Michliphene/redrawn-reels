@@ -68,6 +68,11 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 8. **Review**: run the `reel-reviewer` then the `virality-reviewer` agent; write `docs/REVIEW_<id>.md`.
 9. **Post**: `.claude/skills/post/SKILL.md` (`pipeline/post.sh <EP n | id>`), only when the owner asks.
 
+## raea (third engine, optional)
+`raea/<project>/` holds episodes rebuilt in raea (Bevy 3D from React/TS, <https://github.com/shinyobjectz/raea>), e.g.
+`raea/apple-iphone-3d` (RECEIPTS #004). They reuse an episode's voice/timings/figures; `setup.sh` fills `media/`,
+`render.sh` renders and runs `raea check`. Building the CLI in a cloud container: see that project's README.md.
+
 ## Pipeline facts
 - Voice: ElevenLabs, voice **Brian** `nPczCjzI2devNBz1zQrb`, `eleven_multilingual_v2`, speed ~1.12, pauses capped
   0.28 s. The API key is injected by the cloud environment proxy (header `xi-api-key`). multilingual_v2 ignores
