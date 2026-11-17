@@ -13,6 +13,7 @@ npm test                            ← type-check, pre-flight of every episode,
 
 | Read | For |
 |---|---|
+| `docs/LOCAL_SETUP.md` | run everything on your own machine (`scripts/setup-local.sh`, French) |
 | `CLAUDE.md` | the rules and the episode checklist |
 | `docs/STUDIO.md` | art direction (DA 2), the shared kit, camera language, formats, quality gates, resilience |
 | `docs/AXES_AMELIORATION.md` | diagnostic and next steps (French, for the owner) |

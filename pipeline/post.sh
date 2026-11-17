@@ -5,6 +5,7 @@
 #  5. write deliverables/<id>/POST.md (title, description, hashtags, pinned comment, YouTube description).
 set -euo pipefail
 cd "$(dirname "$0")/.."
+. pipeline/local-env.sh
 ID=$(python3 - "$1" <<'PY'
 import json,glob,sys
 a=sys.argv[1]
@@ -45,8 +46,8 @@ if python3 -c "import json,sys;sys.exit(0 if 'thumb' in json.load(open('public/e
   if [ ! -f "$KIT/thumb_16x9.png" ] || [ "public/episodes/$ID/episode.json" -nt "$KIT/thumb_16x9.png" ] || [ src/Thumb.tsx -nt "$KIT/thumb_16x9.png" ]; then
     echo "== thumbnail 16:9"
     CHROME="${REMOTION_CHROME:-$(ls -d /opt/pw-browsers/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell 2>/dev/null | head -1)}"
-    npx remotion still src/index.ts Thumb "$KIT/thumb_16x9.png" --props="{\"episodeId\":\"$ID\"}" --browser-executable="$CHROME" --log=error
-    npx remotion still src/index.ts ThumbV "$KIT/thumb_9x16.png" --props="{\"episodeId\":\"$ID\"}" --browser-executable="$CHROME" --log=error
+    npx remotion still src/index.ts Thumb "$KIT/thumb_16x9.png" --props="{\"episodeId\":\"$ID\"}" ${CHROME:+--browser-executable="$CHROME"} --log=error
+    npx remotion still src/index.ts ThumbV "$KIT/thumb_9x16.png" --props="{\"episodeId\":\"$ID\"}" ${CHROME:+--browser-executable="$CHROME"} --log=error
     ffmpeg -y -loglevel error -i "$KIT/thumb_9x16.png" -vf "crop=1080:1440:0:240" -q:v 2 "$KIT/thumb_3x4.jpg"
   fi
   echo "THUMB_PHONE=$KIT/thumb_9x16.png (TikTok/Reels cover)"; echo "THUMB_GRID=$KIT/thumb_3x4.jpg (Instagram grid)"; echo "THUMB_16x9=$KIT/thumb_16x9.png"

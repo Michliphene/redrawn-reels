@@ -7,6 +7,7 @@
 # timings and music: nothing is synthesised.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+. pipeline/local-env.sh
 ID="${1:?usage: pipeline/render.sh <episode_id> [--force-voice] [--da N] [--crf N] [--skip-validate]}"; shift
 FORCE_VOICE=0; DA=""; CRF=18; VALIDATE=1
 while [ $# -gt 0 ]; do

@@ -33,7 +33,7 @@ const chrome = process.env.REMOTION_CHROME ?? (() => {
   const d = fs.readdirSync(base).find((x) => x.startsWith('chromium_headless_shell-'));
   return d ? path.join(base, d, 'chrome-headless-shell-linux64/chrome-headless-shell') : undefined;
 })();
-const chromiumOptions = { gl: process.env.REMOTION_GL ?? 'swangle' };
+const chromiumOptions = { gl: process.env.REMOTION_GL ?? (process.platform === 'linux' ? 'swangle' : 'angle') };
 
 const t0 = Date.now();
 const serveUrl = await bundle({ entryPoint: path.join(ROOT, 'src/index.ts'), publicDir: path.join(ROOT, 'public'), onProgress: () => {} });

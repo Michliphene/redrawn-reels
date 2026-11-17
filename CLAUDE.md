@@ -96,3 +96,4 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 
 ## Setup (fresh clone)
 `scripts/setup.sh` (npm install, Kokoro model, pip deps), then `npm test`.
+On the owner's own machine: `scripts/setup-local.sh` (checks tools, `.venv`, `.env` with `ELEVENLABS_API_KEY`) — see `docs/LOCAL_SETUP.md`.

@@ -69,7 +69,7 @@ def word_times(k, tokens, audio):
 
 def elevenlabs(ep, ep_dir):
     """One request for the whole script (continuous prosody) + exact character alignment.
-    The API key is injected by the environment's network proxy; a placeholder header is sent."""
+    In the cloud the key is injected by the network proxy (placeholder header); locally set ELEVENLABS_API_KEY (.env)."""
     import base64, hashlib, subprocess, urllib.request
     v = ep["voice"]
     parsed = [parse(b["say"]) for b in ep["beats"]]
@@ -86,7 +86,7 @@ def elevenlabs(ep, ep_dir):
     if not os.path.exists(cache):
         req = urllib.request.Request(
             f"https://api.elevenlabs.io/v1/text-to-speech/{v['voice_id']}/with-timestamps?output_format=mp3_44100_192",
-            data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "xi-api-key": "proxy-injected"})
+            data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "xi-api-key": os.environ.get("ELEVENLABS_API_KEY") or "proxy-injected"})
         data = urllib.request.urlopen(req, timeout=180).read().decode()  # fetch first: a failed call must not leave an empty cache
         open(cache, "w").write(data)
     d = json.load(open(cache))
