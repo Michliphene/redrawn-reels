@@ -84,16 +84,17 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); return g;
   }, [world]);
 
-  // rivers (`properties.river`, LineString features): a flat ribbon lying on the land, drawn in PALETTE.static[id]
+  // rivers (`properties.river`, LineString features): a flat ribbon lying on the land, drawn in PALETTE.static[id].
+  // Its width is screen-constant (like a path), so a close shot does not turn the river into a moat.
+  const riverWidth = Math.round(shot.dist * 40) / 4000; // quantised: rebuilt only when the camera distance changes enough
   const rivers = useMemo(() => geo.features.filter((f) => (f.properties as any)?.river).map((f) => {
     const id = String(f.id), piece = world.pieces.get(id)!;
-    const hw = ((f.properties as any).width ?? 0.012) / 2;
-    const parts = piece.lines.map((l) => ribbon(l, hw, h + 0.003)); // above the subject slabs too
+    const hw = riverWidth * ((f.properties as any).width ?? 1) * 0.5;
     const pos: number[] = [];
-    for (const g of parts) pos.push(...(g.getAttribute('position').array as Float32Array));
+    for (const l of piece.lines) pos.push(...(ribbon(l, hw, h + 0.003).getAttribute('position').array as Float32Array)); // above the subject slabs too
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
     return { id, g };
-  }), [geo, world, h]);
+  }), [geo, world, h, riverWidth]);
   const declares = useMemo(() => actions.filter((a) => a.type === 'declare'), [actions]);
   const recolors = useMemo(() => actions.filter((a) => a.type === 'recolor'), [actions]);
   const pulses = actions.filter((a) => a.type === 'pulse') as Extract<TimedAction, { type: 'pulse' }>[];

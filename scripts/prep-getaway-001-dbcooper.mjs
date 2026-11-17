@@ -50,7 +50,7 @@ for (const f of rivers.features) {
     if (cur.length > 1) lines.push(cur);
   }
 }
-out.push({ type: 'Feature', id: 'COLUMBIA', properties: { name: 'Columbia River', river: true, width: 0.016 }, geometry: { type: 'MultiLineString', coordinates: lines } });
+out.push({ type: 'Feature', id: 'COLUMBIA', properties: { name: 'Columbia River', river: true, width: 0.5 /* × the screen-constant unit */ }, geometry: { type: 'MultiLineString', coordinates: lines } });
 
 // broad, approximate area (see header) — an ellipse of ±0.42° lon × ±0.27° lat
 const C = [-122.5, 45.88], RX = 0.42, RY = 0.27, ring = [];

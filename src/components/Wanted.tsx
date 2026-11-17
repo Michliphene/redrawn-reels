@@ -24,7 +24,7 @@ export const WantedPosters: React.FC<{ t: number; actions: TimedAction[] }> = ({
       const W = a.w ?? 420;
       const side = a.side ?? 'right';
       const x = side === 'left' ? theme.inset : side === 'center' ? 540 - W / 2 : 1080 - theme.inset - W - 40;
-      const s = spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 14, stiffness: 150 } });
+      const s = a.t <= 0.05 ? 1 : spring({ frame: (t - a.t) * FPS, fps: FPS, config: { damping: 14, stiffness: 150 } }); // on frame 0 it is already pinned (loop)
       const out = interpolate(t, [end, end + 0.45], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
       const tilt = (a.tilt ?? 2.5) * (1 - 0.4 * s);
       const stampOn = a.stamp && a.stampAt != null && t >= a.stampAt;

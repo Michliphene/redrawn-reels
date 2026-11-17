@@ -35,9 +35,11 @@ linked page before posting** (CLAUDE.md, quality gate 7).
 | 22 | Serial numbers matched | the FBI confirms the bills are from the ransom | [H2]; [E1] | primary |
 | 23 | Rest of the money | never recovered (≈ $194,000) — our calculation: 200,000 − 5,880 = 194,120 | from rows 8 and 21 | our calculation |
 | 24 | Status | 8 Jul 2016: the FBI "redirected resources allocated to the D.B. Cooper case in order to focus on other investigative priorities"; it still accepts physical evidence about the parachutes or the money | FBI Seattle press release, 12 Jul 2016 [F2]; UPI [U1]; CBS [CB1] | primary |
-| 25 | Persons of interest | the FBI has investigated over 1,000 persons of interest / "no proof beyond a reasonable doubt" for any of them | EBSCO citing FBI [E1]; FBI 2016 [F2] | primary via secondary |
+| 25 | Persons of interest | the FBI has investigated over 1,000 persons of interest (voice: "a thousand people investigated", screen: "1,000+") / "no proof beyond a reasonable doubt" for any of them | EBSCO citing FBI [E1]; FBI 2016 [F2] | primary via secondary |
 | 26 | Uniqueness | "the only documented unsolved case of air piracy in the history of commercial aviation" | EBSCO [E1] (wording also common in press) | secondary → **not used** |
 | 27 | Sketch | FBI composite sketch, c. 1971, public domain (PD-USGov-DOJ) | Wikimedia Commons File:DBCooper.jpg [WC1] | licence checked |
+| 27b | Clothing | a black tie (left on the plane; FBI evidence) | FBI image repository "D.B. Cooper's Black Tie" [F7]; FBI [F1] | primary |
+| 27c | Legal label | hijacking = air piracy (the case's own name, NORJAK = Northwest hijacking) | FBI [F1]; EBSCO [E1] | primary |
 | 28 | Years since | 2026 − 1971 = **55** | arithmetic | — |
 
 Numbers on screen allowed by this table: 1971, 24, 305, 727, 200,000, 20, 4 (four), 36, 1980, 8 (age), 10 Feb, 5,800, 2016, 55, 1,000.
@@ -70,6 +72,7 @@ proven; case inactive since 8 Jul 2016), and ~97 % of the money was never recove
 - [F4] FBI, "A Byte Out of History — D.B. Cooper", 24 Nov 2006: https://www2.fbi.gov/page2/nov06/cooper112406.htm
 - [F5] FBI Vault, NORJAK files (e.g. Part 02, Part 04): https://vault.fbi.gov/D-B-Cooper%20/D.B.%20Cooper%20Part%2002
 - [F6] FBI video, "Scientists Hunt for D.B. Cooper": https://www.fbi.gov/news/videos/scientists-hunt-for-d.b.-cooper/view
+- [F7] FBI image repository, "D.B. Cooper's Black Tie": https://www.fbi.gov/image-repository/black-tie.jpg/view
 - [H1] HistoryLink 1997, "Dan Cooper (aka D.B. Cooper) parachutes from skyjacked jetliner on November 24, 1971": https://www.historylink.org/file/1997
 - [H2] HistoryLink 23059, "$5,800 of airplane hijacker D. B. Cooper's ransom money is found near the Columbia River on February 10, 1980": https://www.historylink.org/file/23059
 - [C1] Columbia Journalism Review, "D.B. Cooper mystery solved" (origin of "D.B."): https://www.cjr.org/the_feature/db_cooper_mystery_solved.php

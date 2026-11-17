@@ -1,0 +1,585 @@
+{
+ "id": "getaway-001-dbcooper",
+ "channel": "getaway",
+ "da": 2,
+ "episode": 1,
+ "title": "Caught or not?",
+ "whisper": "The man who jumped with $200,000 · 1971",
+ "data": "data/getaway-001-dbcooper.geojson",
+ "timeline": {
+  "from": "1971-01-01",
+  "to": "2017-01-01",
+  "step": 5
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "bomb",
+  "parachutes.",
+  "jumps.",
+  "gone.",
+  "match.",
+  "never",
+  "Caught,",
+  "Dan",
+  "Cooper."
+ ],
+ "palette": {
+  "start": "#C9B994",
+  "ids": {
+   "WA": "#C9B994",
+   "OR": "#C9B994"
+  },
+  "static": {
+   "COLUMBIA": "#5F86A3"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "He jumps from a jet with {$200,000|two hundred thousand dollars}. Caught, or not?",
+   "camera": {
+    "center": [
+     -122.4,
+     46.5
+    ],
+    "span": 6.5,
+    "pitch": 50
+   },
+   "actions": [
+    {
+     "type": "path",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -121.2,
+       43.2
+      ]
+     ],
+     "atTime": 0,
+     "from": 0.35,
+     "dur": 1.6,
+     "hold": 3.2,
+     "color": "#E0312B",
+     "width": 6
+    },
+    {
+     "type": "wanted",
+     "key": "cooper_sketch",
+     "name": "Dan Cooper",
+     "headSub": "Air piracy · 1971",
+     "lines": [
+      "Identity: unknown."
+     ],
+     "credit": "FBI composite sketch · public domain",
+     "side": "center",
+     "y": 560,
+     "w": 380,
+     "tilt": -2,
+     "atTime": 0,
+     "hold": 3.6
+    }
+   ]
+  },
+  {
+   "id": "board",
+   "say": "{November 24, 1971|November twenty-fourth, nineteen seventy-one}. Portland. A man in a black tie boards Flight {305|three-oh-five} to Seattle.",
+   "camera": {
+    "center": [
+     -122.6,
+     45.6
+    ],
+    "span": 2.4,
+    "pitch": 40,
+    "yaw": -10
+   },
+   "date": "1971-11-24",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Portland airport",
+     "at": [
+      -122.5975,
+      45.5898
+     ],
+     "atWord": "Portland,",
+     "hold": 4.6
+    },
+    {
+     "type": "label",
+     "text": "NORTHWEST ORIENT 305",
+     "at": [
+      -122.25,
+      45.95
+     ],
+     "size": "md",
+     "atWord": "boards",
+     "hold": 2.4
+    }
+   ]
+  },
+  {
+   "id": "ticket",
+   "say": "His ticket says Dan Cooper. Not D.B. The press got that wrong.",
+   "camera": {
+    "center": [
+     -122.5,
+     46.2
+    ],
+    "span": 3.6,
+    "pitch": 44,
+    "yaw": 6
+   },
+   "actions": [
+    {
+     "type": "wanted",
+     "key": "cooper_sketch",
+     "name": "Dan Cooper",
+     "headSub": "Name on the ticket",
+     "lines": [
+      "Real name: unknown."
+     ],
+     "credit": "FBI composite sketch · public domain",
+     "side": "center",
+     "y": 560,
+     "atWord": "ticket",
+     "hold": 4.4,
+     "stamp": "ALIAS",
+     "stampWord": "Not",
+     "stampSize": 64,
+     "w": 380,
+     "tilt": 3
+    }
+   ]
+  },
+  {
+   "id": "note",
+   "say": "After takeoff, he passes a note: he has a bomb.",
+   "camera": {
+    "center": [
+     -122.45,
+     46.5
+    ],
+    "span": 3.4,
+    "pitch": 46,
+    "yaw": -6
+   },
+   "actions": [
+    {
+     "type": "path",
+     "coords": [
+      [
+       -122.5975,
+       45.5898
+      ],
+      [
+       -122.3088,
+       47.4502
+      ]
+     ],
+     "atWord": "takeoff,",
+     "dur": 2.2,
+     "hold": 4.6,
+     "color": "#E0312B"
+    },
+    {
+     "type": "label",
+     "text": "BOMB THREAT",
+     "at": [
+      -122.0,
+      46.55
+     ],
+     "size": "md",
+     "atWord": "bomb",
+     "hold": 2.2
+    },
+    {
+     "type": "shake",
+     "amount": 6,
+     "atWord": "bomb"
+    }
+   ]
+  },
+  {
+   "id": "demand",
+   "say": "He wants {$200,000|two hundred thousand dollars} in twenties. And four parachutes.",
+   "camera": {
+    "center": [
+     -122.31,
+     47.45
+    ],
+    "span": 2.2,
+    "pitch": 38,
+    "yaw": 10
+   },
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 200000,
+     "prefix": "$",
+     "label": "IN $20 BILLS",
+     "atWord": "$200",
+     "bills": true,
+     "coins": true,
+     "hold": 2.6,
+     "y": 900
+    },
+    {
+     "type": "callout",
+     "text": "+ 4 PARACHUTES",
+     "atWord": "four",
+     "y": 900,
+     "size": 70,
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "seattle",
+   "say": "In Seattle, he gets both. The {36|thirty-six} passengers walk off. The crew stays.",
+   "camera": {
+    "center": [
+     -122.31,
+     47.45
+    ],
+    "span": 1.4,
+    "pitch": 36,
+    "yaw": -14
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Seattle–Tacoma airport",
+     "at": [
+      -122.3088,
+      47.4502
+     ],
+     "atWord": "Seattle,",
+     "hold": 4.6
+    },
+    {
+     "type": "label",
+     "text": "36 PASSENGERS RELEASED",
+     "at": [
+      -122.31,
+      47.2
+     ],
+     "size": "md",
+     "atWord": "passengers",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "south",
+   "say": "Then he orders them south, toward Mexico. Low. Slow. Rear stairs down.",
+   "camera": {
+    "center": [
+     -121.4,
+     43.6
+    ],
+    "span": 10,
+    "pitch": 54,
+    "yaw": 0,
+    "dur": 1.6
+   },
+   "actions": [
+    {
+     "type": "path",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -122.235,
+       40.178
+      ],
+      [
+       -119.7681,
+       39.4991
+      ]
+     ],
+     "atWord": "south,",
+     "dur": 3.4,
+     "hold": 5.4,
+     "color": "#E0312B",
+     "label": "ROUTE · APPROX.",
+     "labelAt": [
+      -123.2,
+      42.6
+     ]
+    },
+    {
+     "type": "marker",
+     "text": "Reno",
+     "at": [
+      -119.7681,
+      39.4991
+     ],
+     "atWord": "Mexico.",
+     "hold": 3.6
+    }
+   ]
+  },
+  {
+   "id": "jump",
+   "say": "A little after eight p.m., somewhere between Seattle and Reno, in the rain, he jumps.",
+   "camera": {
+    "center": [
+     -122.5,
+     45.95
+    ],
+    "span": 2.6,
+    "pitch": 40,
+    "yaw": 14,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "DROPZONE",
+     "color": "#E0312B",
+     "atWord": "somewhere",
+     "hold": 5
+    },
+    {
+     "type": "region",
+     "text": "DROP ZONE · DISPUTED",
+     "at": [
+      -122.5,
+      46.3
+     ],
+     "atWord": "somewhere",
+     "hold": 5
+    },
+    {
+     "type": "shake",
+     "amount": 10,
+     "atWord": "jumps."
+    }
+   ]
+  },
+  {
+   "id": "reno",
+   "say": "The plane lands in Reno. Stairs still down. He's gone.",
+   "camera": {
+    "center": [
+     -119.9,
+     39.7
+    ],
+    "span": 2.4,
+    "pitch": 40,
+    "yaw": -8
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Reno airport",
+     "at": [
+      -119.7681,
+      39.4991
+     ],
+     "atWord": "Reno.",
+     "hold": 3.4
+    },
+    {
+     "type": "label",
+     "text": "NO PASSENGER",
+     "at": [
+      -119.77,
+      39.85
+     ],
+     "size": "md",
+     "atWord": "gone.",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "hunt",
+   "say": "The FBI searches the woods below. Nothing.",
+   "camera": {
+    "center": [
+     -122.45,
+     45.95
+    ],
+    "span": 2.0,
+    "pitch": 34,
+    "yaw": -12
+   },
+   "actions": [
+    {
+     "type": "region",
+     "text": "FBI SEARCH AREA · 1971",
+     "at": [
+      -122.5,
+      46.05
+     ],
+     "atWord": "searches",
+     "hold": 2.8
+    }
+   ]
+  },
+  {
+   "id": "find",
+   "say": "In {1980|nineteen eighty}, a boy of eight, digging on a Columbia River beach, finds about {$5,800|fifty-eight hundred dollars} in rotting twenties. The serial numbers match.",
+   "camera": {
+    "center": [
+     -122.75,
+     45.72
+    ],
+    "span": 1.2,
+    "pitch": 36,
+    "yaw": 18,
+    "cut": true
+   },
+   "date": "1980-02-10",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Tena Bar",
+     "at": [
+      -122.77,
+      45.72
+     ],
+     "atWord": "Columbia",
+     "hold": 6
+    },
+    {
+     "type": "bigNumber",
+     "value": 5800,
+     "prefix": "~$",
+     "label": "FOUND IN THE SAND",
+     "atWord": "$5,800",
+     "bills": true,
+     "coinsCount": 8,
+     "hold": 2.8,
+     "y": 900
+    },
+    {
+     "type": "callout",
+     "text": "SERIALS MATCH",
+     "atWord": "serial",
+     "y": 900,
+     "size": 66,
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "how",
+   "say": "How it got there? Nobody knows.",
+   "camera": {
+    "center": [
+     -122.6,
+     45.85
+    ],
+    "span": 2.4,
+    "pitch": 44,
+    "yaw": 4
+   },
+   "actions": [
+    {
+     "type": "region",
+     "text": "THEORIES: RIVER · DREDGING · BURIED",
+     "at": [
+      -122.6,
+      46.15
+     ],
+     "atWord": "Nobody",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "status",
+   "say": "A thousand people investigated. None proven. In {2016|twenty sixteen}, the FBI stops actively investigating.",
+   "camera": {
+    "center": [
+     -122.4,
+     46.5
+    ],
+    "span": 6.5,
+    "pitch": 50,
+    "yaw": -4
+   },
+   "date": "2016-07-08",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "1,000+ INVESTIGATED",
+     "sub": "no suspect proven",
+     "atWord": "thousand",
+     "y": 880,
+     "size": 64,
+     "hold": 2.6
+    },
+    {
+     "type": "callout",
+     "text": "CASE INACTIVE",
+     "sub": "FBI · 8 Jul 2016",
+     "atWord": "stops",
+     "y": 880,
+     "size": 64,
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "end",
+   "say": "Fifty-five years on, he's never found. Dan Cooper. Caught, or not?",
+   "camera": {
+    "center": [
+     -122.4,
+     46.5
+    ],
+    "span": 6.5,
+    "pitch": 50
+   },
+   "actions": [
+    {
+     "type": "wanted",
+     "key": "cooper_sketch",
+     "name": "Dan Cooper",
+     "headSub": "Air piracy · 1971",
+     "lines": [
+      "Identity: unknown."
+     ],
+     "credit": "FBI composite sketch · public domain",
+     "side": "center",
+     "y": 560,
+     "w": 380,
+     "tilt": -2,
+     "atWord": "Fifty-five",
+     "hold": 6.5,
+     "stamp": "NEVER FOUND",
+     "stampWord": "never"
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  }
+ ],
+ "voiceOverride": {
+  "settings": {
+   "stability": 0.5,
+   "similarity_boost": 0.8,
+   "style": 0.3,
+   "use_speaker_boost": true,
+   "speed": 1.05
+  },
+  "maxPause": 0.32
+ }
+}

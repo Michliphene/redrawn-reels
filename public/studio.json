@@ -38,8 +38,8 @@
       "music": "noir",
       "voice": {
         "engine": "elevenlabs",
-        "voice_id": "TBD",
-        "voice_name": "TBD (owner picks from deliverables/getaway-001-dbcooper/voice_samples)",
+        "voice_id": "2EiwWnXFnvU5JabPnv8n",
+        "voice_name": "Clyde (ElevenLabs premade), chosen by the owner on 17 Nov 2026",
         "model": "eleven_multilingual_v2",
         "settings": {
           "stability": 0.5,
