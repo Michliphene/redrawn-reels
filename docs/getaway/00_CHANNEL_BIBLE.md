@@ -36,7 +36,8 @@ An episode belongs to the channel through `"channel": "getaway"` in `episode.jso
 | Paper | `#E6D9BC` (wanted posters, the series tab), ink `#1A1612`, stamp ink `#C8231E` |
 | Type | Display (Bricolage condensed) for titles and captions · Whisper (Instrument Serif italic) for the one quiet line · **Courier Prime** (OFL) replaces JetBrains Mono for every data/annotation line |
 | Series bar | A: beige typed tab "THE GETAWAY" + red stamped "CASE 001". (B "evidence label" stays available: render prop `brand: "B"`.) |
-| Signature objects | wanted poster (`wanted` cue: image printed in paper ink, typed lines, credit, stamp); falling banknotes (`bills: true`); the verdict stamp |
+| Signature objects | the 3D getaway vehicle on the map (`vehicle`: a tri-jet with its rear airstair; a falling figure that vanishes in the air), night + torch + rain (`night`), the typed document with a struck-out wrong version (`ticket`), the CAUGHT / NEVER FOUND tick boxes open on frame 0 and ticked on the verdict (`verdict`) |
+| Older signature objects | wanted poster (`wanted` cue: image printed in paper ink, typed lines, credit, stamp); falling banknotes (`bills: true`); the verdict stamp |
 
 Palette and look live in `src/studio/series.ts` (`getaway`), the bar in `src/studio/brands/getaway.tsx`.
 

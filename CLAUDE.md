@@ -62,6 +62,9 @@ The five rules (details and measurements in `docs/STUDIO.md`):
      `dissolve`, `allLabels`, `units` (tanks/troops/crowd as 3D pieces), `portrait`, `flagSwap`, `shake`, `ghost`,
      `path`, `bigNumber`, `archive`, `callout`, `region`, `sticker`, `chapter` (text only in DA 2), `recolor`,
      `reveal`, `conceal`, `pointer`, `wanted` (wanted poster: `key`, `name`, `headSub`, `lines`, `credit`, `stamp`).
+     `vehicle` (3D jet flying `coords`, `from`/`to`, `alt`, `land`, `stairsWord`, `dropWord` → a figure under a canopy that
+     fades in the air), `night` (darkness + torch on `follow: "vehicle"|[lon,lat]`, `rain`), `ticket` (typed reconstruction,
+     `wrong` + `strikeWord`), `verdict` (tick boxes, `pick` + `pickWord`).
      `bigNumber` takes `bills: true` (banknotes instead of coins). A LineString feature with `properties.river` is
      drawn as a river ribbon (colour `palette.static[id]`). Episode-level: `palette`, `counter`, `legend`, `timeline`.
    - money: `scenes` {id: {type: product|grid|bars|card|people|lines, …}}, beats carry `scene` and `kicker`;

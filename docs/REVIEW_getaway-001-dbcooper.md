@@ -236,3 +236,17 @@ Stills at 0 / 6 / 20 / 40 s, before (commit 4908840) and after:
 - [ ] Listen once: "D.B.", "three-oh-five", "Reno", "fifty-eight hundred".
 - [ ] Tick the FBI lines of SOURCES.md against fbi.gov (not reachable from the cloud session): rows 8, 9, 11, 12, 14, 17, 24; row 13 (FBI Vault OCR).
 - [ ] Post on 24 Nov with "55 years ago today"; otherwise edit the first caption line.
+
+## Render 4 — creative pass (owner: "sors du cadre, sois plus créatif")
+Voice and facts unchanged; only the world and the cues. New kit pieces (reusable by every map episode):
+- `vehicle`: a low-poly tri-jet with a T-tail flies the route above the table, banks in turns, casts its shadow on the
+  map, opens its **rear airstair** ("Rear stairs down."), lands in Reno with the stairs still down. On "jumps" a figure
+  under a canopy drops and **fades out in the air** with a "?" — the jump is shown without implying a landing point.
+- `night`: from "south," the map goes dark except a torch pool that follows the jet; rain streaks on "in the rain,";
+  a static searchlight on the search area in the hunt beat; dark again on the last line (loop).
+- `ticket`: the ticket beat types a reconstruction (flight 305, Portland → Seattle, 24 Nov 1971, DAN COOPER — labelled
+  "Reconstructed from the FBI record. Not the original ticket.") and the press cutting "D.B. Cooper" is struck out on "D.B.".
+- `verdict`: CAUGHT / NEVER FOUND tick boxes, empty on frame 0, the red cross lands on NEVER FOUND on "never".
+  First and last frame now differ only by that cross and the stamp: the loop *asks* then *answers*.
+Metrics: −14.1 LUFS · loop SSIM 0.907 · 46 visual cues (was 36) · no gap over 4.5 s (the 6 s gap at the verdict is gone).
+Non-regression: `ussr-1991-v2` 4/4 stills byte-identical after the kit changes; `npm test` green.
