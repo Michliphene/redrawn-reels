@@ -5,8 +5,8 @@
  "series": "UNGRADED",
  "da": 2,
  "episode": 1,
- "title": "Ten failures. Ten lessons.",
- "whisper": "A perfect record teaches you nothing.",
+ "title": "Ten failures vs. one A+",
+ "whisper": "Which one teaches you more?",
  "source": "Dyson figure: his own account, Fast Company (2007)",
  "keywords": [
   "failures",
@@ -272,7 +272,15 @@
   },
   {
    "id": "loop",
-   "say": "So the next time you fail, remember…"
+   "say": "So the next time you fail, remember…",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Count the lessons, not the misses",
+     "atWord": "next",
+     "hold": 1.4
+    }
+   ]
   }
  ]
 }
