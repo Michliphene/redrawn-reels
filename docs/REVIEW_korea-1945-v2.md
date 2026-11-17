@@ -133,3 +133,9 @@ land. The loop's last frame (brown peninsula + full gold line) matches frame 0. 
 - Render: 57.3 s, −14.3 LUFS, loop SSIM 0.86, 2 two-second windows without a cue. Accepted: hook 5.1 s (shared voice).
 - Not done (needs the owner): spoken hook change (re-record, also changes DA 1); US/UK scale comparison (needs a
   sourced line in SOURCES.md); v2 posting kit (on request).
+
+## Pass 4 — stronger hook (owner's request)
+- korea-1945-v2 now has its OWN voice (no `audio` field); the DA 1 cut keeps its recording.
+- Hook: "One night in 1945, two Americans pick Korea's dividing line." (4.0 s, was 5.1 s; the stake is spoken by ~3 s).
+  "National Geographic map" moved into `line`. On-screen title: "How one line divided Korea" ("split" dates from 1948).
+- Render: 57.1 s, −14.1 LUFS, loop SSIM 0.86. Cover = frame 0 in cover mode (red/blue split + gold line under the title).

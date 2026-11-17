@@ -1,11 +1,11 @@
-# Ep.4 — How one line split Korea (1945–1953) · sources & fact sheet
+# Ep.4 (DA 2 remaster) — How one line divided Korea (1945–1953) · sources & fact sheet
 
 ## Script (as spoken)
-1. One night in 1945. Two Americans. One National Geographic map.
+1. One night in 1945, two Americans pick Korea's dividing line.
 2. Japan, which has ruled Korea since 1910, is about to surrender.
 3. Soviet troops are already entering the north.
 4. In Washington, two officers, Dean Rusk and Charles Bonesteel, are told to draw a line.
-5. They find no river, no mountain range to use. So they pick a straight line: the 38th parallel.
+5. On a National Geographic map, they find no river, no mountain range to use. So they pick a straight line: the 38th parallel.
 6. It keeps Seoul in the American zone.
 7. Moscow agrees.
 8. It's meant to be temporary. But in 1948, the line hardens: two rival states, each claiming the whole peninsula.
@@ -14,6 +14,8 @@
 11. Kaesong, once in the South, is now in the North. Sokcho, once in the North, is now in the South.
 12. And no peace treaty was ever signed.
 13. Still divided. And it all started with… → (loop) "One night in 1945…" (no single-cause claim)
+
+Remaster note: own voice (the DA 1 cut `korea-1945` keeps its recording). "Dividing line" = the 1945 US/Soviet zone line, not today's border.
 
 ## Facts used
 | Claim | Value | Source / note |

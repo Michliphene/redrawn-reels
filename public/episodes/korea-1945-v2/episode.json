@@ -2,7 +2,7 @@
  "id": "korea-1945-v2",
  "episode": 4,
  "series": "REDRAWN",
- "title": "How one line split Korea",
+ "title": "How one line divided Korea",
  "data": "data/korea1945.geojson",
  "voice": {
   "engine": "elevenlabs",
@@ -49,7 +49,7 @@
  "beats": [
   {
    "id": "hook",
-   "say": "One night in {1945|nineteen forty-five}. Two Americans. One National Geographic map.",
+   "say": "One night in {1945|nineteen forty-five}, two Americans pick Korea's dividing line.",
    "camera": {
     "center": [
      127.6,
@@ -106,7 +106,7 @@
       "KOREA_N38",
       "KOREA_S38"
      ],
-     "atWord": "Two"
+     "atWord": "two"
     },
     {
      "type": "pulse",
@@ -114,7 +114,7 @@
       "KOREA_N38",
       "KOREA_S38"
      ],
-     "atWord": "map."
+     "atWord": "line."
     }
    ],
    "hideTimeline": true
@@ -277,7 +277,7 @@
   },
   {
    "id": "line",
-   "say": "They find no river, no mountain range to use. So they pick a straight line: the 38th parallel.",
+   "say": "On a National Geographic map, they find no river, no mountain range to use. So they pick a straight line: the 38th parallel.",
    "actions": [
     {
      "type": "chapter",
@@ -886,7 +886,6 @@
  ],
  "da": 2,
  "seriesId": "redrawn",
- "audio": "korea-1945",
  "remasterOf": "korea-1945",
  "whisper": "drawn in one night, on a magazine map",
  "keywords": [
