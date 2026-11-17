@@ -5,6 +5,7 @@ import { FPS } from '../lib/theme';
 import { Captions } from '../components/Captions';
 import { Fx } from '../components/Fx';
 import type { Timings } from '../lib/types';
+import { Money3D } from './Money3D';
 
 /**
  * RECEIPTS — "where the money goes" reels. Second engine of this repo (the first is the map engine, Episode.tsx).
@@ -232,7 +233,7 @@ const SCENES: Record<string, React.FC<SceneProps>> = { product: Product, grid: G
 /* ---------- composition ---------- */
 export type MoneyProps = { episodeId: string; spec?: any; timings?: Timings; cover?: boolean };
 
-export const Money: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover }) => {
+const MoneyV1: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const end = timings!.duration + 0.5;
@@ -302,4 +303,14 @@ export const Money: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover })
       <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />
     </AbsoluteFill>
   );
+};
+
+/**
+ * Entry point of the money series. `da` (episode.json, or a render prop to preview) selects the art direction:
+ * 1 = flat scenes (episodes made before the DA step-up stay exactly as published), 2 = the 3D counter (`Money3D`).
+ * Without WebGL, DA 2 falls back to the flat scenes instead of failing.
+ */
+export const Money: React.FC<MoneyProps & { da?: number; webgl?: boolean; guides?: boolean }> = (props) => {
+  const da = props.da ?? props.spec?.da ?? 1;
+  return da >= 2 && props.webgl !== false ? <Money3D {...props} /> : <MoneyV1 {...props} />;
 };

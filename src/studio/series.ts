@@ -63,10 +63,10 @@ const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
   },
   receipts: {
     palette: {
-      bg: '#04100C', bgGlow: '#123A2A', surface: '#1C3B2F', surfaceEdge: '#0C2018', grid: '#17352A',
+      bg: '#03100B', bgGlow: '#14402E', surface: '#245240', surfaceEdge: '#0C2018', grid: '#1D5740',
       ink: '#F3F6EE', muted: '#8FA89B', accent: '#C8F53C', danger: '#FF6B5E', warn: '#FFB648',
     },
-    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.62, grain: 0.05 },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0.05 },
   },
 };
 

@@ -35,8 +35,8 @@ export const Root: React.FC = () => (
     calculateMetadata={async ({ props }) => {
       const p = props as any;
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
-      const timings = await getJson(`episodes/${p.episodeId}/timings.json`);
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings } };
+      const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, webgl: probeWebGL() } };
     }}
   />
   <Composition

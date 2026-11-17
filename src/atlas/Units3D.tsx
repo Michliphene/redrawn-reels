@@ -75,7 +75,7 @@ const Tank: React.FC<{ c: string }> = ({ c }) => (
     <mesh geometry={box} position={[0.4, 0.45, 0]} scale={[0.56, 0.07, 0.07]} castShadow><meshLambertMaterial color="#0d1016" /></mesh>
   </group>
 );
-const Pawn: React.FC<{ c: string; head?: string }> = ({ c, head }) => (
+export const Pawn: React.FC<{ c: string; head?: string }> = ({ c, head }) => (
   <group>
     <mesh geometry={cyl} position={[0, 0.3, 0]} scale={[0.17, 0.6, 0.17]} castShadow><meshLambertMaterial color={c} /></mesh>
     <mesh geometry={ball} position={[0, 0.74, 0]} scale={0.18} castShadow><meshLambertMaterial color={head ?? c} /></mesh>
