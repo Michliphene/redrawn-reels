@@ -2,7 +2,7 @@ import type { FeatureCollection, Feature } from 'geojson';
 export type LonLat = [number, number];
 export type Camera = { fit?: string; pad?: number; center?: LonLat; span?: number; dur?: number };
 export type Action =
-  | { type: 'declare'; id: string; atWord?: string; date?: string; flag?: string; flagNote?: string }
+  | { type: 'declare'; id: string; atWord?: string; date?: string; flag?: string; flagNote?: string; instant?: boolean }
   | { type: 'pulse'; ids: string[]; atWord?: string }
   | { type: 'label'; text: string; at: LonLat; size?: 'xl' | 'md'; hold?: number; atWord?: string; flag?: string }
   | { type: 'marker'; text: string; at: LonLat; hold?: number; atWord?: string }

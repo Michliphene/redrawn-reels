@@ -63,6 +63,20 @@
    "hideLocator": true,
    "actions": [
     {
+     "type": "declare",
+     "id": "KOREA_N38",
+     "atTime": 0,
+     "instant": true,
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "KOREA_S38",
+     "atTime": 0,
+     "instant": true,
+     "noLabel": true
+    },
+    {
      "type": "path",
      "coords": [
       [
@@ -153,6 +167,14 @@
      ],
      "atWord": "Japan,",
      "hold": 2.6
+    },
+    {
+     "type": "recolor",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "Japan,"
     }
    ]
   },
@@ -188,8 +210,7 @@
      "size": 46,
      "color": "#161A22",
      "atWord": "Soviet",
-     "hold": 2.2,
-     "caption": "Soviet troops · Aug 1945"
+     "hold": 2.2
     }
    ]
   },
@@ -291,7 +312,15 @@
      "size": 48,
      "y": 880,
      "atWord": "river,",
-     "hold": 1.6
+     "hold": 2.3
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "So"
     }
    ],
    "camera": {
@@ -392,7 +421,7 @@
       125.75,
       39.02
      ],
-     "atWord": "two",
+     "atWord": "states,",
      "hold": 2.6
     },
     {
@@ -402,7 +431,7 @@
       126.98,
       37.57
      ],
-     "atWord": "two",
+     "atWord": "states,",
      "hold": 2.6
     },
     {
@@ -442,7 +471,7 @@
      "color": "#FFFFFF",
      "width": 8,
      "dur": 0.4,
-     "hold": 2.2,
+     "hold": 0.6,
      "atWord": "hardens:"
     },
     {
@@ -501,8 +530,7 @@
      "size": 62,
      "color": "#161A22",
      "atWord": "North",
-     "hold": 2.4,
-     "caption": "June 1950"
+     "hold": 2.4
     },
     {
      "type": "shake",
@@ -674,7 +702,7 @@
      "color": "#FFFFFF",
      "width": 7,
      "dur": 1.0,
-     "hold": 9.6,
+     "hold": 10.8,
      "label": "1953 line",
      "labelAt": [
       128.9,
@@ -697,7 +725,7 @@
      "color": "#FFC94D",
      "width": 6,
      "dur": 0.6,
-     "hold": 8.2,
+     "hold": 9.4,
      "label": "38°N",
      "labelAt": [
       125.0,
@@ -759,20 +787,6 @@
      ],
      "atWord": "Sokcho,",
      "hold": 2.8
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "DPRK"
-     ],
-     "atWord": "North."
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "ROK"
-     ],
-     "atWord": "South."
     }
    ],
    "camera": {
@@ -797,13 +811,13 @@
      "type": "callout",
      "text": "No peace treaty",
      "sub": "armistice only, since 1953",
-     "y": 880,
-     "size": 72,
+     "y": 990,
+     "size": 64,
      "atWord": "peace",
      "hold": 1.7,
      "stamp": "STILL",
      "stampWord": "signed.",
-     "stampSize": 48
+     "stampSize": 56
     }
    ],
    "camera": {
@@ -842,14 +856,6 @@
     },
     {
      "type": "reveal",
-     "ids": [
-      "KOREA_N38",
-      "KOREA_S38"
-     ],
-     "atWord": "started"
-    },
-    {
-     "type": "recolor",
      "ids": [
       "KOREA_N38",
       "KOREA_S38"

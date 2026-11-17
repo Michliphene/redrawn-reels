@@ -19,7 +19,7 @@ export function makeLift(world: AtlasWorld, actions: TimedAction[]) {
     const d = declares.find((a) => a.id === id);
     // each country that has declared stands at its own height: borders stay exact, pieces read as separate
     const rest = d && t >= d.t ? h * (0.18 + 0.55 * hash(i + 3)) * ease.out3(ramp(t, d.t + 0.25, 0.5)) : 0;
-    const jump = d ? hop(t, d.t, 0.5) * h * 2.4 : 0;
+    const jump = d && !(d as any).instant ? hop(t, d.t, 0.5) * h * 2.4 : 0;
     const pulse = Math.max(0, ...pulses.filter((p) => p.ids.includes(id)).map((p) => hop(t, p.t, 0.38))) * h * 1.1;
     // burst: pieces fly apart from the subject's centre, then settle back on their exact borders
     const burst = dissolve ? (t < dissolve.t ? 0 : t < dissolve.t + 0.35 ? ease.out3(ramp(t, dissolve.t, 0.35)) : 1 - ease.inOut3(ramp(t, dissolve.t + 0.35, 1.9))) : 0;

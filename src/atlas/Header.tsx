@@ -39,7 +39,7 @@ export const Rail: React.FC<{ from: string; to: string; step?: number; dates: { 
     }
     const years: string[] = [];
     for (let y = +from.slice(0, 4); y <= +to.slice(0, 4); y += step) years.push(`${y}-01-01`);
-    const events = actions.filter((x) => x.type === 'declare') as Extract<TimedAction, { type: 'declare' }>[];
+    const events = actions.filter((x) => x.type === 'declare' && !(x as any).instant) as Extract<TimedAction, { type: 'declare' }>[];
     const dateOf = (e: (typeof events)[number]) => e.date ?? [...dates].reverse().find((d) => d.t <= e.t + 0.01)?.date ?? from;
     const y = 14;
     return (

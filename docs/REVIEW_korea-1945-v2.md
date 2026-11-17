@@ -82,3 +82,54 @@ Safe-area guides at 0 / 5.4 / 13.6 / 44.6 s: nothing readable outside the safe a
   no USSR flag, Japan chapter "Japanese rule" without callout, temporary-zones callout 1.3 s without stamp,
   38°N callout removed, loop line dur 0.5).
 - Re-render: 57.3 s, −14.3 LUFS, loop SSIM 0.86. Accepted: hook 5.1 s (voice shared with korea-1945).
+
+## Pass 3 (render 56.7 s, new shot list)
+**Verdict: 7.5/10. Postable once fixes 1–2 are in (both are cue-only, no voice change); 8.5 with 3–5.**
+Pre-flight passes (only the accepted 5.1 s hook warning). Every safe-area check passes (guide stills at 0, 10.4, 37.3,
+45.2 and 53.4 s). The Pass 2 path fix works: the 38°N line rides the declared zones (25.8 s). The armistice
+comparison now reads: the white 1953 line rises above the gold 38°N line in the east and dips under it in the west
+(45.0 s). The shot list gives one camera idea per beat, and the pull-back on `treaty` and the cut on `states` both
+land. The loop's last frame (brown peninsula + full gold line) matches frame 0. Facts unchanged and OK against SOURCES.md.
+
+### Remaining must-fix
+1. **[P1] swap · 48.0 s and 51.3 s · the two pulses hide the payoff on its punchline word.** The hopping piece
+   covers both lines and the pointer tips. On "North." the DPRK hop hides Kaesong's tip. On "South." the ROK hop
+   wipes out the 1953 line and the west half of 38°N, and hides Sokcho's tip. The pointers already carry the beat,
+   so remove both actions from `swap`:
+   `{"type":"pulse","ids":["DPRK"],"atWord":"North."}` and `{"type":"pulse","ids":["ROK"],"atWord":"South."}`.
+2. **[P1] treaty · 52.2–53.9 s · the border disappears and the card covers where it was.** The 1953 line ends at
+   52.3 s, and "No peace treaty" (y 880) sits right on the border. So "still at war" is shown with no front line.
+   In `armistice`, on the 1953-line path (white, the one with `"label":"1953 line"`), set `"hold": 10.8` so it lasts
+   through `treaty` and fades during "Still divided". The loop reveal at 55.8 s is not affected. Leave the gold
+   38°N line ending at 52.2 s: the treaty shot then shows only today's border. In `treaty`, move the card under the
+   peninsula, the same spot as the DMZ card:
+   `{"type":"callout","text":"No peace treaty","sub":"armistice only, since 1953","y":990,"size":64,"atWord":"peace","hold":1.7,"stamp":"STILL","stampWord":"signed.","stampSize":56}`
+   The stamp is currently ~28 px tall and red on navy, which is at the readability limit. Hence 56.
+3. **[P2] war · 37.1–37.8 s · the "JUNE 1950" unit caption flies through the title block** (y≈450, beside
+   "25 JUN 1950"). It repeats the header. Remove `"caption": "June 1950"` from the `war` units action.
+4. **[P2] soviets · 10.1–10.6 s · "SOVIET TROOPS · AUG 1945" enters at y≈595, on the header's bottom edge.** It
+   reads as one line with the "Soviets" whisper, and it ghosts into `order` until ~12.8 s. "AUG 1945" is already in
+   the header. Remove `"caption": "Soviet troops · Aug 1945"` from the `soviets` units action.
+5. **[P2] states · 32.15–33.9 s · the "Pyongyang" label sits on the white "hardens" line** (y≈340 in the stage,
+   with the text half covered). Let the white line flash and go before the cities come in. On the white path set
+   `"hold": 0.6`. On both markers (Pyongyang, Seoul) set `"atWord": "states,"`. "North Korea"/"South Korea" stay on
+   "rival".
+
+### Not must-fix (noted)
+- swap · 45.5–48 s: Kaesong (37.97°N) is 0.03° south of 38°N, so its pointer tip lands under the gold line.
+  "Once in the South" relies on the voice. This is geography, not a bug. If wanted, set the 38°N path `"width": 4`.
+- 0.3 s white flashes on each `declare` (25.0, 26.2, 42.7 s) make labels unreadable for a moment. This is accepted
+  house style.
+
+## Pass 3 — applied (after reel-reviewer 7.5/10 and virality-reviewer 89/100)
+- New shot list (desk overhead on `order`, low grazing `line`, low `soviets`/`war`, top-down `armistice`, pull-back `treaty`);
+  map ~13 % bigger; `captionSize: 98` (new optional episode field, default unchanged for other episodes).
+- Frame 0 already shows the split: `declare` gains `instant: true` (no flash, hop or pop) and the DA 2 map now uses the
+  LATEST declare/recolor per piece (`fill3D` in `src/atlas/Map3D.tsx`; DA 1 `fillAt` untouched). Korea turns one brown
+  piece on "Japan," and splits again on "American"/"Moscow"; the loop no longer recolours.
+- Reviewer fixes 1–5: swap pulses removed; 1953 line hold 10.8 and 38°N hold 9.4 (lines stay through `treaty`);
+  treaty card y 990 / size 64 / stamp 56; unit captions removed (soviets, war); "hardens" line 0.6 s, city markers on "states,".
+- Virality fix 1: `line` callout 2.3 s + pulse on "So".
+- Render: 57.3 s, −14.3 LUFS, loop SSIM 0.86, 2 two-second windows without a cue. Accepted: hook 5.1 s (shared voice).
+- Not done (needs the owner): spoken hook change (re-record, also changes DA 1); US/UK scale comparison (needs a
+  sourced line in SOURCES.md); v2 posting kit (on request).

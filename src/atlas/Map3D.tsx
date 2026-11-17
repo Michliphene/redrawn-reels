@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import * as THREE from 'three';
 import type { GeoData, TimedAction } from '../lib/types';
 import { PALETTE, isFocus, isOutline, theme } from '../lib/theme';
-import { fillAt } from '../components/MapLayer';
+import { interpolateColors } from 'remotion';
 import { shapesOf, type AtlasWorld, type Piece } from './world';
 import { clamp01, ease, ramp, shade } from '../studio/motion';
 import type { Lift } from './lift';
@@ -86,6 +86,7 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
 
   const declares = useMemo(() => actions.filter((a) => a.type === 'declare'), [actions]);
   const recolors = useMemo(() => actions.filter((a) => a.type === 'recolor'), [actions]);
+  const colourEvents = useMemo(() => [...declares, ...recolors].sort((a, b) => a.t - b.t), [declares, recolors]);
   const pulses = actions.filter((a) => a.type === 'pulse') as Extract<TimedAction, { type: 'pulse' }>[];
   const ghosts = actions.filter((a) => a.type === 'ghost') as Extract<TimedAction, { type: 'ghost' }>[];
   const paths = actions.filter((a) => a.type === 'path') as Extract<TimedAction, { type: 'path' }>[];
@@ -130,7 +131,7 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
         const id = String(f.id);
         const v = vis(f);
         if (v <= 0.01) return null;
-        const top = fillAt(id, t, declares, recolors);
+        const top = fill3D(id, t, colourEvents);
         const st = lift(id, t);
         const lit = pulses.some((p) => p.ids.includes(id) && t >= p.t && t < p.t + 0.9);
         return (
@@ -186,6 +187,23 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
     </>
   );
 };
+
+/**
+ * DA 2 fill of a subject piece: the LATEST declare/recolor before t wins (a piece can change colour several times),
+ * a declare flashes from the previous colour to its own (or snaps with `instant: true`), a recolor returns it to
+ * palette.start. DA 1 keeps `fillAt` (first event only) so published episodes render unchanged.
+ */
+function fill3D(id: string, t: number, events: TimedAction[]): string {
+  const mine = events.filter((a) => (a.type === 'declare' ? a.id === id : a.type === 'recolor' && a.ids.includes(id)) && a.t <= t);
+  const last = mine[mine.length - 1];
+  if (!last) return PALETTE.start;
+  const prev = fill3D(id, last.t - 1e-4, events.filter((a) => a !== last));
+  if (last.type === 'recolor') return interpolateColors(t, [last.t, last.t + 0.12], [prev, PALETTE.start]);
+  const target = PALETTE.ids[id] ?? theme.accent;
+  if ((last as any).instant) return target;
+  if (t < last.t + 0.25) return interpolateColors(t, [last.t, last.t + 0.25], [prev, '#FFF6E0']);
+  return interpolateColors(t, [last.t + 0.25, last.t + 0.95], ['#FFF6E0', target]);
+}
 
 /** point at fraction f of the great circle from a to b (lon/lat degrees) */
 function gc(a: [number, number], b: [number, number], f: number): [number, number] {

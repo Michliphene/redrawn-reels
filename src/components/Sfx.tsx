@@ -7,7 +7,7 @@ import { FPS } from '../lib/theme';
 export const Sfx: React.FC<{ actions: TimedAction[] }> = ({ actions }) => {
   const cues: { t: number; f: string; v: number }[] = [{ t: 0, f: 'boom', v: 0.7 }];
   for (const a of actions) {
-    if (a.type === 'declare') cues.push({ t: a.t, f: 'pop', v: 0.45 });
+    if (a.type === 'declare' && !(a as any).instant) cues.push({ t: a.t, f: 'pop', v: 0.45 });
     if (a.type === 'portrait') cues.push({ t: a.t, f: 'whoosh', v: 0.35 });
     if (a.type === 'portrait' && a.stampAt != null) cues.push({ t: a.stampAt, f: 'stamp', v: 0.8 });
     if (a.type === 'units' && a.kind !== 'crowd') cues.push({ t: a.t, f: 'rumble', v: 0.7 });
