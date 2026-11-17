@@ -27,6 +27,8 @@ with hard pixels. The finish (`src/studio/look/PixelStage.tsx`) does three thing
 light falloff (distance fog, spotlight) cut into `look.levels` steps and stippled with a 4×4 Bayer matrix;
 a 1-pixel ink line behind every silhouette; an optional scanline. It never touches a flat colour, so palette
 colours stay exact and the file stays cheap to compress. Type, labels and cards are HTML above the canvas.
+Film grain (`look.grain`) is off: a full-frame SVG noise filter multiplied render time by about five on the
+cloud machine (measured) for a texture the stipple already provides.
 
 **Rule 3 — three voices, one margin** (`src/studio/ui/Type.tsx`, fonts in `public/fonts`):
 
@@ -73,6 +75,7 @@ Each series has ten colours (`SeriesPalette` in `src/studio/series.ts`): `bg`, `
 | `three/rig.ts` | `Shot` {target, dist, pitch, yaw, fov, roll}, `shotAt(t, keys)`, `fitShot(points, angle, rect)`, `dollyZoom`, `makeCamera`, `projector` (world point → pixel) |
 | `three/Light.tsx` | `TableLight`: a surface facing up shows exactly its palette colour |
 | `look/PixelStage.tsx` | the low-res canvas + finish; `probeWebGL()` |
+| `look/PixelImg.tsx` | a photo redrawn as a low-res halftone print in the series tones (portraits use it in DA 2) |
 | `ui/Type.tsx` | `Display`, `Whisper`, `Mono`, `fitDisplay()` |
 | `ui/Hud.tsx` | `SeriesBar`, `TitleBlock`, `Kicker`, `ReadabilityBands` |
 | `ui/Captions.tsx` | word-synced captions with keyword highlight |
@@ -223,8 +226,8 @@ DA 3 and the old path stays.
 A render uses all four cores: do not run stills at the same time.
 
 ## 11. Known limits (be honest in reviews)
-- Cards (portraits, archive images, the flag pole, emoji stickers) are still DA 1 objects with a DA 2 skin:
-  crisp photos over a pixel world. A dithered photo treatment and a 3D flag pole are the next kit items.
+- Portraits are printed in the series tones (`PixelImg`). Archive image cards, the flag pole and emoji stickers
+  are still DA 1 objects with a DA 2 skin: `PixelImg` for archives and a 3D flag pole are the next kit items.
 - The DA 1 locator (mini-globe) has no DA 2 equivalent yet; name the place with a label in the first second.
 - The loop is a camera return plus the title: colours of the last frame differ from the first on REDRAWN.
 - No recurring character yet. A mascot or a "you" pawn is the next step for formats B and C.

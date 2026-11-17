@@ -56,8 +56,8 @@ Aucune erreur bloquante. Cinq avertissements à traiter avant une republication 
    C'est l'écart le plus important avec les comptes de référence, et le seul que la 3D ne comble pas.
 2. **Publier un remaster et mesurer.** Un seul envoi par plateforme d'abord, pour vérifier que le pointillé du
    rendu survit à la recompression.
-3. **Habiller les cartes** (portraits, images d'archives, mât de drapeau) dans le même traitement que le monde.
-   Aujourd'hui ce sont des photos nettes posées sur un décor en pixels.
+3. **Finir d'habiller les cartes.** Les portraits sont désormais imprimés en trame dans les tons de la série.
+   Il reste les images d'archives, le mât de drapeau et les autocollants émoji, encore dans l'ancien style.
 4. **Un personnage récurrent** par série (un pion « toi » suffit pour les formats B et C).
 5. **Compléter les sources** signalées au §3.
 6. **Version de 61 à 70 s** pour TikTok si tu vises le programme de rémunération (voir §5).

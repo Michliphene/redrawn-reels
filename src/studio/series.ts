@@ -14,7 +14,8 @@ export type Look = {
   scan: number;
   /** corner darkening, 0–1 */
   vignette: number;
-  /** film grain opacity over the finished frame, 0–1 */
+  /** film grain opacity over the finished frame, 0–1. Off by default in DA 2: the stipple already textures the
+   *  picture, and a full-frame noise filter costs render time and bitrate for almost nothing visible. */
   grain: number;
 };
 
@@ -59,14 +60,14 @@ const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
       bg: '#05080F', bgGlow: '#16264A', surface: '#2B3759', surfaceEdge: '#141B30', grid: '#22335C',
       ink: '#F4F1EA', muted: '#8C93A8', accent: '#FFC94D', danger: '#E0565B', warn: '#F2994A',
     },
-    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.62, grain: 0.05 },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.62, grain: 0 },
   },
   receipts: {
     palette: {
       bg: '#03100B', bgGlow: '#14402E', surface: '#245240', surfaceEdge: '#0C2018', grid: '#1D5740',
       ink: '#F3F6EE', muted: '#8FA89B', accent: '#C8F53C', danger: '#FF6B5E', warn: '#FFB648',
     },
-    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0.05 },
+    look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0 },
   },
 };
 

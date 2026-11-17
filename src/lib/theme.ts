@@ -6,6 +6,8 @@ const V1 = {
   font: 'Montserrat',
   /** card look: corner radius, drop shadow, distance from the frame edge */
   radius: 18, shadow: '0 18px 40px rgba(0,0,0,0.65)', inset: 40,
+  /** how photos are shown: 'plain' (DA 1) or 'print' (DA 2: low-res halftone in `photoTones`, dark → light) */
+  photo: 'plain' as 'plain' | 'print', photoTones: [] as string[],
 };
 /** Live theme read by the overlay components. DA v1 values by default; `applySkin` swaps it per composition. */
 export const theme = { ...V1 };

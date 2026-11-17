@@ -41,7 +41,8 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const series = seriesOf(spec);
   const pal = series.palette;
   setPalette(spec!.palette);
-  applySkin({ font: `'${FONT.displayCondensed}', '${FONT.legacy}'`, text: pal.ink, muted: pal.muted, accent: pal.accent, radius: 0, shadow: '10px 10px 0 rgba(0,0,0,0.5)', inset: SAFE.left });
+  applySkin({ font: `'${FONT.displayCondensed}', '${FONT.legacy}'`, text: pal.ink, muted: pal.muted, accent: pal.accent, radius: 0, shadow: '10px 10px 0 rgba(0,0,0,0.5)', inset: SAFE.left,
+    photo: 'print', photoTones: [pal.bg, pal.surfaceEdge, pal.surface, pal.muted, pal.ink] });
   const sx = spec as any;
   const audioId = sx.audio ?? episodeId;
 
@@ -62,7 +63,6 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const lift = useMemo(() => makeLift(world, sched.actions), [world, sched]);
   const end = timings!.duration + 0.5;
   const hookEnd = timings!.beats[0].end;
-  const lastBeatStart = timings!.beats[timings!.beats.length - 1].start;
 
   // Camera life. Frame 0 is a low crane shot across the table (the map reads as an object at once),
   // it rises to the reading angle during the hook, drifts slowly for the whole reel, shakes on impacts,
@@ -122,7 +122,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
         <Rail from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} series={series} opacity={ramp(t, hookEnd - 0.2, 0.4) * (1 - ramp(t, end - 0.5, 0.3))} />
       )}
       <TitleBlock title={spec!.title} whisper={sx.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + (cover ? 0 : 6)} />
-      {!beat?.hideDate && t < lastBeatStart + 9 && <DateBlock dates={sched.dates} chapters={beat?.hideChapter ? [] : chapters} t={t} series={series} opacity={headO} />}
+      {!beat?.hideDate && <DateBlock dates={sched.dates} chapters={beat?.hideChapter ? [] : chapters} t={t} series={series} opacity={headO} />}
       {!cover && <Captions timings={timings!} t={t} accent={pal.accent} ink={pal.ink} keywords={sx.keywords ?? []} hidden={hidden} />}
 
       <Grain amount={series.look.grain} />
