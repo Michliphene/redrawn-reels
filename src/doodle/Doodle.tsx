@@ -77,10 +77,10 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
   const settle = cover ? 0 : 1 - ease.inOut3(ramp(t, 0, 1.1)) + ease.inOut3(ramp(t, end - 0.6, 0.5));
   const halt = acts.find((a) => a.type === 'halt');
   const pileId = Object.keys(spec.scenes).find((k) => def(k).type === 'pile');
-  const punch = halt ? hit(t, halt.t, 0.35, 1.5) * 0.2 : 0;
+  const punch = halt ? hit(t, halt.t, 0.35, 1.5) * 0.14 : 0;
   // punch anchored on the left margin: the count (top left) stays in frame, the climber comes closer
   const g0 = halt && pileId ? pilePt(climbAt(halt.t, byScene[pileId] ?? [])) : [540, 845];
-  const hp = [140, g0[1]];
+  const hp = [64, 430]; void g0; // anchored just under the kicker: the zoom pushes the count down, never into the kicker
   const tilt = drift(t, 2, 0.6) * 0.35 + panMotion * 1.2;
 
   const renderSide = (side: 'front' | 'back') => {
@@ -98,13 +98,14 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
                 {k < slots - 1 && Array.from({ length: 24 }, (_, r) => <ellipse key={r} cx={k * PANEL + 1160} cy={40 + r * 80} rx={34} ry={13} fill="none" stroke="#7B7F92" strokeWidth={6} />)}
               </g>
             ))}
+            <defs><clipPath id="page"><rect x={-60} y={0} width={1210} height={H} /></clipPath></defs>
             {ids.map((id) => {
               const P = PANELS[def(id).type]; if (!P) return null;
               const own = byScene[id] ?? [];
               const call = own.filter((a) => a.type === 'callout');
               const [cx, cy] = def(id).callout ?? [520, 430];
               return (
-                <g key={id} transform={`translate(${def(id).slot * PANEL} 0)`}>
+                <g key={id} transform={`translate(${def(id).slot * PANEL} 0)`} clipPath="url(#page)">
                   <P t={t} acts={own} def={def(id)} from={firstFrom(id)} end={end} />
                   {call.map((a, i) => { const o = life(t, a.t, a.hold ?? 1.6); return o > 0 ? <Sticky key={i} x={a.x ?? cx} y={a.y ?? cy} text={a.text} rot={-3 + (i % 2) * 5} s={Math.min(1.08, pop(t, a.t, 0.35))} opacity={o} /> : null; })}
                 </g>
@@ -132,7 +133,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
         <div style={{ position: 'absolute', inset: 0, perspective: 2600 }}>
           <div style={{ position: 'absolute', inset: 0, transformOrigin: '50% 50%',
             transform: `rotateX(${10 * settle}deg) rotateY(${fa < 90 ? fa : fa - 180}deg) scale(${1 - 0.1 * Math.sin((fa * Math.PI) / 180)})` }}>
-            <div style={{ position: 'absolute', inset: 0, overflow: 'hidden',
+            <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', transformOrigin: '0 0',
               transform: `translate(${hp[0]}px, ${hp[1]}px) scale(${1 + punch}) translate(${-hp[0]}px, ${-hp[1]}px) translate(540px, 845px) scale(${z}) rotate(${tilt}deg) translate(-540px, -845px)` }}>
               {renderSide(sideNow)}
             </div>
@@ -155,7 +156,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
         )}
         {!cover && segs.map((s, i) => {
           if (!s.kicker || t < s.from || t > s.to + 0.2 || titleO > 0.5) return null;
-          const o = Math.min(ramp(t, Math.max(s.from, hookEnd), 0.2), 1 - ramp(t, s.to - 0.1, 0.2), 1 - titleO);
+          const o = Math.min(ramp(t, Math.max(s.from + 0.08, hookEnd), 0.18), 1 - ramp(t, s.to - 0.2, 0.16), 1 - titleO);
           return (
             <div key={i} style={{ position: 'absolute', top: ZONES.title.top + 10, left: SAFE.left, opacity: o, ...displayCut(800, 75), fontSize: 84, lineHeight: 0.94, textTransform: 'uppercase', color: C.ink }}>
               <span style={{ background: `linear-gradient(transparent 52%, ${C.hl} 52%, ${C.hl} 90%, transparent 90%)${fa > 0 && fa < 180 ? `, ${C.paper}` : ''}`, padding: '0 6px' }}>{s.kicker}</span>
@@ -163,7 +164,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
           );
         })}
         {!cover && t < end - 0.5 && <NotebookCaptions timings={timings!} t={t} keywords={spec.keywords ?? []} backing={Math.sin((fa * Math.PI) / 180)} />}
-        {spec.source && (!spec.sourceFrom || t >= firstFrom(spec.sourceFrom) - 0.01) && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 22, letterSpacing: '0.06em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
+        {spec.source && (!spec.sourceFrom || t >= firstFrom(spec.sourceFrom) - 0.01) && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 26, letterSpacing: '0.04em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
         {guides && <Guides />}
         {sfx.map((c, i) => (
           <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>

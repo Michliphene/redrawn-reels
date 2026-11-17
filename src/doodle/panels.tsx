@@ -110,8 +110,8 @@ export const RacePanel: React.FC<PanelProps> = ({ t, acts, from }) => {
         return (
           <g opacity={o}>
             <Hand x={Math.min(hx, 760)} y={800} size={70} c={C.red} rot={-4}>falling behind?</Hand>
-            <Ink pts={[[hx, 830], [hx + 8, 910], [hx + 2, 985]]} seed={330} w={5} c={C.red} draw={ramp(t, tt + 0.4, 0.3)} />
-            <Ink pts={[[hx - 14, 962], [hx + 2, 988], [hx + 18, 964]]} seed={331} w={5} c={C.red} draw={ramp(t, tt + 0.65, 0.15)} />
+            <Ink pts={[[Math.min(hx, 760), 830], [hx + 60, 920], [hx + 90, 995]]} seed={330} w={5} c={C.red} draw={ramp(t, tt + 0.4, 0.3)} />
+            <Ink pts={[[hx + 70, 975], [hx + 92, 1000], [hx + 106, 972]]} seed={331} w={5} c={C.red} draw={ramp(t, tt + 0.65, 0.15)} />
           </g>
         );
       })()}
@@ -179,7 +179,7 @@ export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
   const hand: Pt = [272, 880], bin: Pt = [490, 1000];
   const tosses = Array.from({ length: 14 }, (_, k) => from + 0.15 + k * 0.36).filter((x) => x < tf - 0.4);
   const throwArm = Math.max(0, ...tosses.map((x) => hop(t, x - 0.12, 0.32)), hop(t, tf - 0.12, 0.4));
-  const turned = t >= tf + 0.6;
+  const turned = t >= tf + 0.3;
   const pl = ramp(t, tf, 1.0), pe = ease.inOut3(pl);
   const plane: Pt = [lerp(hand[0], 690, pe), lerp(hand[1], 700, pe) - Math.sin(pe * Math.PI) * 260];
   return (
@@ -197,7 +197,7 @@ export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
       <Hand x={bin[0]} y={905} size={60} c={C.red}>mistakes</Hand>
       {ign && t >= ign.t && <>
         <Ink pts={[[bin[0] - 110, 890], [bin[0] - 60, 875], [bin[0] - 10, 895], [bin[0] + 40, 875], [bin[0] + 110, 888]]} seed={545} w={7} c={C.ink} draw={ramp(t, ign.t, 0.3)} />
-        <Hand x={bin[0]} y={835} size={44} c={C.pencil} opacity={ramp(t, ign.t + 0.25, 0.2)}>nobody counts these</Hand>
+        <Hand x={bin[0]} y={835} size={54} c={C.ink} opacity={ramp(t, ign.t + 0.25, 0.2)}>nobody counts these</Hand>
       </>}
       <Guy x={190} y={GROUND} s={1.75} seed={550} hero pose={{ ...POSE.stand(t), armR: 30 + 130 * throwArm, mood: t >= tf ? 'smile' : 'flat' }} />
       {/* the judge looks the other way until something works */}
@@ -211,9 +211,9 @@ export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
         </g>
       )}
       {fly && t >= tf && <Ink pts={Array.from({ length: 12 }, (_, i) => { const p = (i / 11) * Math.min(pe, 1); return [lerp(hand[0], 690, p), lerp(hand[1], 700, p) - Math.sin(p * Math.PI) * 260] as Pt; })} seed={575} w={3} c={C.pencil} dash="10 12" />}
-      {fly && t >= tf + 0.85 && <>
-        <Check x={640} y={830} s={1.7} draw={ramp(t, tf + 0.85, 0.3)} c={C.mint} />
-        <Hand x={660} y={640} size={64} hl={C.mint} opacity={ramp(t, tf + 1.0, 0.2)}>what works</Hand>
+      {fly && t >= tf + 0.45 && <>
+        <Check x={640} y={830} s={1.7} draw={ramp(t, tf + 0.45, 0.3)} c={C.mint} />
+        <Hand x={660} y={640} size={64} hl={C.mint} opacity={ramp(t, tf + 0.55, 0.2)}>what works</Hand>
       </>}
     </g>
   );
@@ -257,9 +257,6 @@ export const ShopPanel: React.FC<PanelProps> = ({ t, acts }) => {
                 <Ink pts={[[cx - 60, 1118], [cx - 50, 1080], [cx + 40, 1090], [cx + 60, 1118]]} seed={640} w={5} fill="#E8E2D2" close />
                 {[-1, 1].map((sx) => <Ink key={sx} pts={[[cx + sx * 75, 1100], [cx + sx * 105, 1080]]} seed={641 + sx} w={4} c={C.pencil} />)}
               </g>}
-              {a.outcome === 'flop' && t >= a.t + 0.9 && <Hand x={cx} y={1000} size={62} c={C.red} rot={-6}>flop!</Hand>}
-              {a.outcome === 'ignored' && t >= a.t + 0.4 && <><Hand x={cx} y={1000} size={58} c={C.pencil}>ignored</Hand><Hand x={cx + 70} y={690} size={46} c={C.pencil} opacity={0.5 + 0.5 * Math.sin(t * 5)}>zzz</Hand></>}
-              {a.outcome === 'sale' && t >= a.t + 0.4 && <Hand x={cx} y={1000} size={58} hl={C.mint}>a few sales</Hand>}
               {a.outcome === 'sale' && [0, 1, 2].map((j) => { const at = a.t + 0.9 + j * 0.22; if (t < at) return null; return <g key={j} transform={`translate(0 ${-hop(t, at, 0.35) * 50})`}><Coin x={cx - 46 + j * 46} y={690} seed={650 + j} /></g>; })}
             </g>
           );
@@ -279,6 +276,13 @@ export const ShopPanel: React.FC<PanelProps> = ({ t, acts }) => {
         return <Guy x={lerp(1140, 955, p)} y={1120 + (p < 1 ? bob(ph, 5) : 0)} s={0.95} c={C.pencil} seed={690} dir={-1} pose={p < 1 ? POSE.walk(ph) : { ...POSE.stand(t), armR: 120, mood: 'smile' }} />;
       })()}
       <Guy x={150} y={1120} s={1.15} seed={700} hero pose={owner} />
+      {launches.slice(0, 3).map((a, i) => {
+        const cx = CARD_X[i] + (510 - CARD_X[i]) * (1 - o);
+        if (a.outcome === 'flop' && t >= a.t + 0.9) return <Hand key={i} x={cx} y={1000} size={64} c={C.red} rot={-6} halo>flop!</Hand>;
+        if (a.outcome === 'ignored' && t >= a.t + 0.4) return <g key={i}><Hand x={cx} y={1000} size={60} c={C.pencil} halo>ignored</Hand><Hand x={cx + 70} y={690} size={46} c={C.pencil} opacity={0.5 + 0.5 * Math.sin(t * 5)}>zzz</Hand></g>;
+        if (a.outcome === 'sale' && t >= a.t + 0.4) return <Hand key={i} x={cx} y={1000} size={60} hl={C.mint} halo>a few sales</Hand>;
+        return null;
+      })}
       {bulb && t >= bulb.t && <Bulb x={150} y={505} s={1.25 * Math.min(1.1, pop(t, bulb.t, 0.4))} seed={710} />}
     </g>
   );
@@ -334,9 +338,9 @@ export const PilePanel: React.FC<PanelProps> = ({ t, acts }) => {
         const v = Math.round(count.value * ease.out3(ramp(t, count.t, count.dur ?? 2)));
         return (
           <g opacity={ramp(t, count.t, 0.15)}>
-            <text x={60} y={760} style={{ ...displayCut(800, 75), fontSize: 168 }} fill={C.ink}>{v.toLocaleString('en-US')}</text>
-            <Hand x={64} y={830} size={58} c={C.red} anchor="start">failed prototypes</Hand>
-            <Hand x={64} y={880} size={40} c={C.pencil} anchor="start">— James Dyson, in his own account</Hand>
+            <text x={60} y={680} style={{ ...displayCut(800, 75), fontSize: 168 }} fill={C.ink}>{v.toLocaleString('en-US')}</text>
+            <Hand x={64} y={750} size={58} c={C.red} anchor="start">failed prototypes</Hand>
+            <Hand x={64} y={800} size={44} c={C.ink} anchor="start">— James Dyson's own account</Hand>
           </g>
         );
       })()}

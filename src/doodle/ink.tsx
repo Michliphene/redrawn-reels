@@ -45,14 +45,14 @@ export const Circle: React.FC<{ cx: number; cy: number; r: number; seed?: number
 );
 
 /** handwriting on the page */
-export const Hand: React.FC<{ x: number; y: number; size?: number; c?: string; anchor?: 'start' | 'middle' | 'end'; rot?: number; children: React.ReactNode; opacity?: number; hl?: string }> =
-  ({ x, y, size = 54, c = C.ink, anchor = 'middle', rot = 0, children, opacity = 1, hl }) => {
+export const Hand: React.FC<{ x: number; y: number; size?: number; c?: string; anchor?: 'start' | 'middle' | 'end'; rot?: number; children: React.ReactNode; opacity?: number; hl?: string; halo?: boolean }> =
+  ({ x, y, size = 54, c = C.ink, anchor = 'middle', rot = 0, children, opacity = 1, hl, halo }) => {
     const b = useBoil();
     const r = rot + J(x + y, b, 0.6);
     return (
       <g transform={`rotate(${r} ${x} ${y})`} opacity={opacity}>
         {hl && (() => { const w = String(children).length * size * 0.37 + 22, x0 = anchor === 'middle' ? x - w / 2 : anchor === 'end' ? x - w + 11 : x - 11; return <rect x={x0} y={y - size * 0.5} width={w} height={size * 0.58} fill={hl} opacity={0.85} rx={6} />; })()}
-        <text x={x} y={y} textAnchor={anchor} style={{ ...handCut, fontSize: size }} fill={c}>{children}</text>
+        <text x={x} y={y} textAnchor={anchor} style={{ ...handCut, fontSize: size }} fill={c} {...(halo ? { stroke: C.paper, strokeWidth: size * 0.22, paintOrder: 'stroke', strokeLinejoin: 'round' } : {})}>{children}</text>
       </g>
     );
   };

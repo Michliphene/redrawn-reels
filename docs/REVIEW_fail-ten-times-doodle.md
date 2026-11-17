@@ -102,3 +102,85 @@ and causal. The re-voice option (open on the 5,126 count) stays the strongest ho
   for replays, so change 1 as well. Title field: "Ten failures vs one A+ (Dyson's 5,126 prototypes)".
 
 VIRALITY SCORE: 83/100 (8.3/10) — can break out
+
+## Reel review
+
+Reviewed the 19:35 render of `out/fail-ten-times-doodle.mp4` (42.1 s, voice ends 41.49 s). It predates the virality-pass commit 6c4afc2, which is not re-rendered yet. Line numbers below refer to the code after 6c4afc2. Frames were sampled every 0.5 s, plus full-res close-ups
+at 14.2–14.7, 21.0, 26.5, 31.3–31.8 and the loop frames. `npm run validate`: clean (0 ✗, 0 !).
+
+**Verdict: not postable yet, 6.5/10.** The notebook idea works. Frame 0 reads in one glance (a bandaged guy vs. an A+ on a
+podium, with the title), the page turn on "flip." is a strong mid-reel re-hook, and the bulbs replacing the plasters
+pay off well. Four bugs block posting. All of them are fixable in cues or the engine; the voice stays as it is.
+
+**3 biggest problems**
+1. The bin beat's payoff never appears. The judge turns, the green check and "what works" all trigger after the camera has
+   already slid to the shop page (tf+0.6…tf+1.0 vs. the slide starting at 14.31 s). The viewer sees a paper plane and nothing more.
+2. On "stop." (31.2–32.3 s) the halt punch-in pushes the counter "5,126" off the left edge and up into the
+   "A REAL ONE" kicker, so the one sourced number in the reel gets cut.
+3. Figures from other pages leak into the frame. The race runners keep running into the school page, and grey "classmates"
+   cross the desk and the test sheet from 6 to 11 s. In the shop, visitors walk over "flop!" and "ignored", and one
+   stands on "a few sales" from 20.5 s to 23.6 s.
+
+### Fix list (beat · time · problem · fix)
+
+1. **[P1] count · 14.06–14.6 s · the "what works" payoff is never seen.** Fix in two places:
+   - `episode.json`, beat `count`: `{ "type": "fly", "atWord": "They" }` (13.14 s) instead of `"works."`.
+   - `src/doodle/panels.tsx` BinPanel: `turned = t >= tf + 0.3`. Draw the Check at `tf + 0.45` and "what works" at `tf + 0.55`.
+     The label then lands at about 13.7 s, on "count what", and stays readable for about 0.6 s before the slide.
+2. **[P1] stop · 31.2–32.3 s · the counter is cut at the left edge and collides with the kicker.** In `src/doodle/Doodle.tsx`
+   l.80–83, anchor the punch on the counter instead of on the climber's height:
+   `const hp = [60, 600];` and `punch = hit(t, halt.t, 0.35, 1.5) * 0.14`. The climber, at u≈0.55, then lands at about
+   (700, 1030), still inside the safe area. The variable `g0` becomes unused and can be removed.
+3. **[P1] grade/flip · 6.0–11.0 s · race runners walk through the school page** (grey figures at the desk, one behind
+   the test sheet at 9.0 s and 10.5 s). RacePanel `x` has no upper bound. Clip every page in `Doodle.tsx` l.107:
+   add `<clipPath id="pg"><rect x={-60} y={0} width={PANEL} height={H}/></clipPath>` once and give the panel `<g>`
+   `clipPath="url(#pg)"`. As a quicker local fix, add `if (x > 1150) return null;` in RacePanel l.94.
+4. **[P1] products/want · 19.3–23.6 s · visitors cover the outcome labels.** "flop!" shows as "op!" and "ignored" as "nored",
+   and "a few sales" stays half hidden by the visitor who stops at x=860. In `panels.tsx` ShopPanel:
+   - The buyer's stop point is already moved to x=955 (6c4afc2). Check on stills that it clears the end of the label at about x=900.
+   - move the three outcome `Hand` labels (l.250–252) out of the cards loop and render them after the visitors (l.260–262).
+     Give `Hand` (`ink.tsx` l.55) an optional halo:
+     `stroke={C.paper} strokeWidth={size*0.18} style={{paintOrder:'stroke', …}}`.
+5. **[P2] dyson · 25.5–27.6 s · the climber's head runs over "— James Dyson, in his own account".** In `panels.tsx` l.337–339,
+   raise the block: number `y={680}`, "failed prototypes" `y={748}`, attribution `y={792}`. Shorten the attribution to
+   "— his own account" (Dyson is already named in the caption). Its x-extent is then about 64–380, which the head
+   only reaches while it is still below y≈860.
+6. **[P2] store · 14.66–15.11 s · empty page.** The browser only exists from `open.t`, so the camera lands on a blank
+   ground line. In `episode.json`, beat `store`: `{ "type": "open", "atWord": "Picture" }`. The browser then pops while the page slides in.
+7. **[P2] all transitions (11.4, 14.7, 23.8 s) · two kickers overlap.** For example, "OUT HERE" sits on top of "PICTURE THIS" for about 0.3 s.
+   In `Doodle.tsx` l.158, fade out before fading in:
+   `o = Math.min(ramp(t, Math.max(s.from + 0.15, hookEnd), 0.2), 1 - ramp(t, s.to - 0.25, 0.15), 1 - titleO)`.
+8. **[P2] think/grade/flip · kickers repeat the caption word for word.** "MOST PEOPLE THINK" sits over "MOST PEOPLE THINK…",
+   "AT SCHOOL" over "AND AT SCHOOL", and "BUT OUT HERE" over "BUT OUT HERE,". The header should name the chapter instead:
+   `think.kicker: "The myth"`, `grade.kicker: "School rules"`, `flip.kicker: "Real-world rules"`,
+   `count.kicker: "Real-world rules"`. Keep "Picture this" and "A real one", which the bible requires.
+9. **[P2] grade · 6.04 s · the grade drops from A to B on "school,"** before any mistake is mentioned. Move the four marks:
+   `"atWord": "right."`, `"mistake"`, `"costs"`, `"grade."` (6.65 / 7.68 / 8.14 / 8.64 s). The F then lands on "grade.".
+10. **[P2] want · 21.3–23.6 s · the bulb's red dashed lines cut through the address bar,** and one of them points at the empty
+    slot of the fallen card. In `panels.tsx` l.267–269, start the flop line at the card on the ground (`[CARD_X[0], 1085]`).
+    Route the other lines below the bar: waypoint `[lerp(CARD_X[i],150,0.5), 700]`, ending at `[150, 600]`. Also place the sticky
+    (`scenes.shop.callout`) at `[600, 440]` so it stays clear of the browser bar at y≈560.
+11. **[P3] think · 4.5–5.5 s · the "falling behind?" arrow points above the fallen guy's feet,** and passing runners cross both the arrow
+    and the label. In `panels.tsx` l.112–114. The new "you" label at y=770 disappears before the trip, so there is no clash, set the label to `y={755}` and end the arrow at `[hx + 90, 1015]` (his torso).
+12. **[P3] source line · 22 px.** 6c4afc2 already restricts it to the pile scene onward (`sourceFrom`). What remains is the size,
+    under the ~28 px floor: in `Doodle.tsx` l.166, use `fontSize: TYPE.source` (24) or larger. It sits at y 1416–1437, so
+    it has no room to grow downward. Move it up by the size difference if needed.
+13. **[P3] stop · 29.4–31.2 s · 1.7 s with nothing new** (the climber walks on its own). Start greying the walked
+    balls from "expensive" (30.36 s): add `{ "type": "fade", "atWord": "expensive" }`, and in PilePanel set `grey` when
+    `t >= fade.t`, so the cost builds up before "stop.".
+14. **[P3] count · 11.5–14.5 s · "nobody counts these"** is 44 px pencil grey, the weakest text in the reel. Set it to `size={52}`
+    and `c={C.ink}` (l.200).
+15. **[P3] dyson · the pile of balls with squiggles reads as smileys or coins** at phone size. Draw `PaperBall` without the
+    inner "U" mark (crumple lines only), or use tiny vacuum-cylinder doodles for the top row so "prototypes" reads.
+16. **[P3] loop.** The leftover "REMEMBER…" caption on the last frame is fixed in 6c4afc2 (captions off in the last 0.5 s).
+    The new loop sticky ("Next fail = next lesson", scene `end`, callout [64,430]) is unrendered. Check on stills that it
+    does not cover the "0" thought bubble (x≈650–840, y≈480–600) or the bulb arc.
+
+### What already works
+- Hook: the stake is visible at frame 0. The "shine" lands on "perfect" (2.17 s), and the trip lands on "failing" (3.98 s).
+- The page turn lands exactly on "flip." (10.80 s). The product launches land on "one" / "two" / "three". The counter starts on the
+  spoken number and settles on 5,126 at 27.2 s, while "five thousand…" is still being said.
+- Safe area: all readable ink sits between y=264 and y=1437, and nothing readable is right of x=930 under y=860
+  ("progress" ends at x≈920, the browser at x=910).
+- Accuracy: the only factual figure is 5,126, which matches `SOURCES.md` (5,127 prototypes, the last one worked). The
+  hypothetical is labelled "Picture this" and the real example "A real one", as the bible requires.

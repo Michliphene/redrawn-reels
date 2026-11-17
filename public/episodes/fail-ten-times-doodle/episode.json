@@ -92,7 +92,7 @@
   {
    "id": "think",
    "scene": "race",
-   "kicker": "Most people think",
+   "kicker": "The myth",
    "say": "Most people think failing means falling behind.",
    "actions": [
     {
@@ -104,13 +104,9 @@
   {
    "id": "grade",
    "scene": "school",
-   "kicker": "At school",
+   "kicker": "School rules",
    "say": "And at school, they're right. Every mistake costs you a grade.",
    "actions": [
-    {
-     "type": "mark",
-     "atWord": "school,"
-    },
     {
      "type": "mark",
      "atWord": "right."
@@ -121,13 +117,17 @@
     },
     {
      "type": "mark",
+     "atWord": "costs"
+    },
+    {
+     "type": "mark",
      "atWord": "grade."
     }
    ]
   },
   {
    "id": "flip",
-   "kicker": "But out here",
+   "kicker": "Real-world rules",
    "say": "But out here, the rules flip.",
    "actions": [
     {
@@ -139,7 +139,7 @@
   {
    "id": "count",
    "scene": "bin",
-   "kicker": "Out here",
+   "kicker": "Real-world rules",
    "say": "Nobody counts your mistakes. They count what finally works.",
    "actions": [
     {
@@ -148,7 +148,7 @@
     },
     {
      "type": "fly",
-     "atWord": "works."
+     "atWord": "They"
     }
    ]
   },
@@ -160,7 +160,7 @@
    "actions": [
     {
      "type": "open",
-     "atWord": "launching"
+     "atWord": "Picture"
     }
    ]
   },
