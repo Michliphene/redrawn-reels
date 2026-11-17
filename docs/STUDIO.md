@@ -219,9 +219,10 @@ DA 3 and the old path stays.
 | | Result |
 |---|---|
 | 12 stills + contact sheet at half size | ≈ 45 s |
-| REDRAWN DA 2, 55.8 s reel (`ussr-1991-v2`) | 21 min 40 s while other jobs were running on the same machine; 62 MB at CRF 18 |
-| Pre-flight of all 9 episodes | < 1 s |
-| `npm test` | ≈ 5 s |
+| REDRAWN DA 2, 55.8 s reel (`ussr-1991-v2`) | 5 min 43 s, 49 MB at CRF 18 |
+| RECEIPTS DA 2, 46.1 s reel (`costco-hotdog-v2`) | 3 min 4 s, 41 MB (14 min 42 s with film grain on) |
+| DA 1 re-render after the refactor vs the original code | SSIM 0.99, PSNR 44 dB: only text anti-aliasing differs (software-GL setting) |
+| Pre-flight of all 9 episodes · `npm test` | < 1 s · ≈ 5 s |
 
 A render uses all four cores: do not run stills at the same time.
 
@@ -229,7 +230,10 @@ A render uses all four cores: do not run stills at the same time.
 - Portraits are printed in the series tones (`PixelImg`). Archive image cards, the flag pole and emoji stickers
   are still DA 1 objects with a DA 2 skin: `PixelImg` for archives and a 3D flag pole are the next kit items.
 - The DA 1 locator (mini-globe) has no DA 2 equivalent yet; name the place with a label in the first second.
-- The loop is a camera return plus the title: colours of the last frame differ from the first on REDRAWN.
+- The loop is a camera return plus the title: colours of the last frame differ from the first on REDRAWN
+  (loop SSIM 0.83 on `ussr-1991-v2`, 0.89 on `costco-hotdog-v2`).
+- The opening crane is low: on a very wide subject (the USSR) frame 0 reads as a red band, not a recognisable
+  shape. Raise the crane end pitch, or open on a closer subject, for the next map episode.
 - No recurring character yet. A mascot or a "you" pawn is the next step for formats B and C.
 - Stippled light is fine detail: check one upload per platform for compression artefacts before a batch.
 - 3D needs WebGL: on a machine with a GPU set `REMOTION_GL=angle` (or `angle-egl` on Linux) for speed.
