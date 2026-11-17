@@ -208,6 +208,9 @@ DA 3 and the old path stays.
   one line in `PRODUCTS`, then `"art": "<key>"` in the scene.
 - **A new cue type:** add it to `Action` in `src/lib/types.ts`, render it as a pure function of `t`, add it to the
   action lists in `scripts/validate.mjs`, document it in the series bible.
+- **A new channel on an existing engine** (THE GETAWAY on the map engine): an entry in `studio.json` with its own
+  `voice`/`music`/`brand`/`post`, a palette + `type`/`extra` in `series.ts`, a bar in `src/studio/brands/`, a bible.
+  Episodes say `"channel": "<id>"`. Check that a REDRAWN still is unchanged afterwards (non-regression).
 - **A new series:** an entry in `public/studio.json` (id, name, composition, episode tag); a palette and a look in
   `src/studio/series.ts`; an engine that starts from the §3 skeleton; a bible in `docs/`; its action list in
   `validate.mjs`. The pipeline, voice, captions, type, safe area, stills and tests are already shared.

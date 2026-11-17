@@ -8,7 +8,11 @@ One codebase, one cue language, one art direction kit, several series:
 |---|---|---|---|---|
 | `redrawn` | REDRAWN | one map, one historical transformation | `Episode` → `src/atlas` (DA 2) / flat map (DA 1) | `docs/01_SERIES_AND_TOPICS.md` |
 | `receipts` | RECEIPTS | where the money goes, from the filing | `Money` → `src/money/Money3D` (DA 2) / flat (DA 1) | `docs/RECEIPTS_SERIES.md` |
+| `getaway` | THE GETAWAY | famous heists and escapes, traced on a map — "caught or not?" | `Episode` → `src/atlas` (DA 2), own brand/voice/music | `docs/getaway/00_CHANNEL_BIBLE.md` |
 
+A series is a channel: `episode.json` picks it with `"channel": "<id>"` (default `redrawn`; older episodes use
+`series`/`seriesId`). A channel may set its own `voice`, `music` style, `brand` and `post` texts in `studio.json`;
+an episode tweaks the channel voice with `voiceOverride`. Never fork the pipeline for a new channel.
 Names, handles and taglines live in **`public/studio.json`**. A channel rename = edit `name` there (keep the
 old one in `legacyNames`); never hard-code a channel name in components or scripts.
 **The full manual is `docs/STUDIO.md`** (art direction, kit, formats, quality gates). Read it before a new episode.
@@ -57,7 +61,9 @@ The five rules (details and measurements in `docs/STUDIO.md`):
    - map actions: `declare` (+`flag`, `flagNote`, `date`, `noLabel`), `pulse`, `label`, `marker`, `date`,
      `dissolve`, `allLabels`, `units` (tanks/troops/crowd as 3D pieces), `portrait`, `flagSwap`, `shake`, `ghost`,
      `path`, `bigNumber`, `archive`, `callout`, `region`, `sticker`, `chapter` (text only in DA 2), `recolor`,
-     `reveal`, `conceal`, `pointer`. Episode-level: `palette`, `counter`, `legend`, `timeline`.
+     `reveal`, `conceal`, `pointer`, `wanted` (wanted poster: `key`, `name`, `headSub`, `lines`, `credit`, `stamp`).
+     `bigNumber` takes `bills: true` (banknotes instead of coins). A LineString feature with `properties.river` is
+     drawn as a river ribbon (colour `palette.static[id]`). Episode-level: `palette`, `counter`, `legend`, `timeline`.
    - money: `scenes` {id: {type: product|grid|bars|card|people|lines, …}}, beats carry `scene` and `kicker`;
      actions per scene type are listed in `docs/RECEIPTS_SERIES.md`. A new product = one model in `src/money/props3d.tsx`.
 5. **Pre-flight**: `npm run validate <id>` — fix every `✗`, read every `!`.

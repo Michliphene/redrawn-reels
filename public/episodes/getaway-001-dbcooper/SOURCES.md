@@ -1,6 +1,7 @@
 # THE GETAWAY — CASE 001 · D.B. Cooper (24 Nov 1971)
 
-Status: **research done, script waiting for the owner's hook choice** (3 hooks below).
+Status: **scripted** — hook 1 chosen by the owner ("Caught or not?"); brand A; voice Clyde.
+Hooks proposed: (1) "He jumps out of a jet with $200,000. Caught… or not?" ✔ (2) "$200,000. Four parachutes. And a man nobody has ever found." (3) "He gives a fake name — 55 years later it's still the only name we have."
 Publication target: **Tuesday 24 Nov 2026**, 55th anniversary of the hijacking (date verified: FBI, HistoryLink, press).
 
 Note on access: fbi.gov, vault.fbi.gov and historylink.org do not answer from the cloud session (DNS blocked), so
@@ -93,8 +94,33 @@ Map data: us-atlas@3 (US Census, PD), Natural Earth 1:50m countries + 1:10m rive
 Airports (markers): Portland PDX 45.589 N 122.598 W; Seattle–Tacoma SEA 47.450 N 122.309 W; Reno RNO 39.499 N 119.768 W.
 Tena Bar (marker, approximate): ≈ 45.72 N 122.77 W, Columbia River, downstream of Vancouver, WA.
 
-## Script
-_Pending the owner's hook choice (see the session message): three hooks proposed, the script is written after._
+## Script (voice: Clyde, ElevenLabs premade `2EiwWnXFnvU5JabPnv8n`, speed 1.05 · 71.8 s)
+Format: B/explainer hybrid with the channel's question "caught or not?" — hook ≤ 1 s ("He jumps from a jet…"),
+the last line asks the hook's question again and the last frame (wanted poster + title) is the first frame.
+
+| beat | s | spoken (caption form) |
+|---|---|---|
+| hook | 0.2–4.4 | He jumps from a jet with $200,000. Caught, or not? |
+| board | 4.6–11.5 | November 24, 1971. Portland. A man in a black tie boards Flight 305 to Seattle. |
+| ticket | 11.7–15.9 | His ticket says Dan Cooper. Not D.B. The press got that wrong. |
+| note | 16.2–19.3 | After takeoff, he passes a note: he has a bomb. |
+| demand | 19.5–23.3 | He wants $200,000 in twenties. And four parachutes. |
+| seattle | 23.5–28.7 | In Seattle, he gets both. The 36 passengers walk off. The crew stays. |
+| south | 28.8–34.0 | Then he orders them south, toward Mexico. Low. Slow. Rear stairs down. |
+| jump | 34.3–39.6 | A little after eight p.m., somewhere between Seattle and Reno, in the rain, he jumps. |
+| reno | 39.8–43.7 | The plane lands in Reno. Stairs still down. He's gone. |
+| hunt | 44.0–46.8 | The FBI searches the woods below. Nothing. |
+| find | 47.1–56.9 | In 1980, a boy of eight, digging on a Columbia River beach, finds about $5,800 in rotting twenties. The serial numbers match. |
+| how | 57.2–59.4 | How it got there? Nobody knows. |
+| status | 59.7–66.1 | A thousand people investigated. None proven. In 2016, the FBI stops actively investigating. |
+| end | 66.4–71.8 | Fifty-five years on, he's never found. Dan Cooper. Caught, or not? |
+
+Fact check of each line: board → rows 1–5, 27b · ticket → 5, 6 · note → 7 · demand → 8, 9 · seattle → 11 ·
+south → 12, 13 · jump → 14, 16 (+ debated 1) · reno → 17 · hunt → 19 · find → 20–22 · how → debated 2 ·
+status → 24, 25 · end → 23, 24, 28, stamp wording below.
 
 ## Pinned comment
-_Written with the script._
+```
+Sources: FBI "D.B. Cooper Hijacking" (fbi.gov/history/famous-cases) and FBI Seattle statement of 12 July 2016; FBI ticket and evidence pages; HistoryLink essays 1997 & 23059 (1980 money find); Columbia Journalism Review on the "D.B." name. Sketch: FBI composite, public domain. Map: US Census / Natural Earth (public domain). The drop zone is disputed: the box on the map is a broad approximate area, not a location. The route is approximate. No suspect is named: over 1,000 people were investigated and none was proven.
+Caught or not? Where do you think he landed?
+```
