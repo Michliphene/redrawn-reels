@@ -3,11 +3,14 @@ import { SAFE, ZONES, TYPE, W } from '../tokens';
 import { episodeTag, type SeriesDef } from '../series';
 import { Display, Mono, Whisper, fitDisplay } from './Type';
 import { ease, ramp } from '../motion';
+import { GetawayBar } from '../brands/getaway';
 
 const SAFE_W = SAFE.right - SAFE.left;
 
 /** Top row of every v2 frame: series tag · episode · (right) whatever the engine counts. Always on screen. */
-export const SeriesBar: React.FC<{ series: SeriesDef; episode?: number; right?: React.ReactNode }> = ({ series, episode, right }) => {
+export const SeriesBar: React.FC<{ series: SeriesDef; episode?: number; right?: React.ReactNode; brand?: string }> = ({ series, episode, right, brand }) => {
+  // a channel with its own identity draws its own bar (same band, same job)
+  if (series.id === 'getaway') return <GetawayBar series={series} episode={episode} right={right} variant={brand} />;
   const ep = episodeTag(series, episode);
   return (
     <div style={{ position: 'absolute', top: ZONES.hud.top, left: SAFE.left, width: SAFE_W, height: ZONES.hud.bottom - ZONES.hud.top, display: 'flex', alignItems: 'center', gap: 16 }}>

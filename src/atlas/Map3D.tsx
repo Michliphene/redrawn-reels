@@ -84,6 +84,16 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); return g;
   }, [world]);
 
+  // rivers (`properties.river`, LineString features): a flat ribbon lying on the land, drawn in PALETTE.static[id]
+  const rivers = useMemo(() => geo.features.filter((f) => (f.properties as any)?.river).map((f) => {
+    const id = String(f.id), piece = world.pieces.get(id)!;
+    const hw = ((f.properties as any).width ?? 0.012) / 2;
+    const parts = piece.lines.map((l) => ribbon(l, hw, h + 0.003)); // above the subject slabs too
+    const pos: number[] = [];
+    for (const g of parts) pos.push(...(g.getAttribute('position').array as Float32Array));
+    const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    return { id, g };
+  }), [geo, world, h]);
   const declares = useMemo(() => actions.filter((a) => a.type === 'declare'), [actions]);
   const recolors = useMemo(() => actions.filter((a) => a.type === 'recolor'), [actions]);
   const pulses = actions.filter((a) => a.type === 'pulse') as Extract<TimedAction, { type: 'pulse' }>[];
@@ -116,7 +126,10 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
       </mesh>
       <lineSegments geometry={grat}><lineBasicMaterial color={pal.grid} /></lineSegments>
 
+      {rivers.map((r) => <mesh key={r.id} geometry={r.g}><meshBasicMaterial color={PALETTE.static[r.id] ?? pal.grid} side={THREE.DoubleSide} /></mesh>)}
+
       {scenery.map((f) => {
+        if ((f.properties as any)?.river) return null;
         const id = String(f.id), c = PALETTE.static[id];
         return <Slab key={id} g={geos.get(id)!} top={c ?? pal.surface} side={shade(c ?? pal.surface, -0.45)} edge={c ? shade(c, -0.6) : pal.surfaceEdge} cast={false} />;
       })}

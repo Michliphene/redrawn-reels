@@ -6,7 +6,7 @@ import { schedule } from '../lib/schedule';
 import { applySkin, setPalette } from '../lib/theme';
 import { FPS, ZONES, SAFE } from '../studio/tokens';
 import { seriesOf } from '../studio/series';
-import { FONT, loadFonts } from '../studio/fonts';
+import { FONT, loadFonts, setMonoFamily } from '../studio/fonts';
 import { drift, ease, ramp, shake } from '../studio/motion';
 import { lerpShot, makeCamera, projector, shotAt, type Shot, type ShotKey } from '../studio/three/rig';
 import { PixelStage } from '../studio/look/PixelStage';
@@ -24,6 +24,7 @@ import { FlagSwap } from '../components/FlagSwap';
 import { Sfx } from '../components/Sfx';
 import { BigNumbers, Archives, Callouts, GeoTexts } from '../components/Overlays';
 import { Stickers, Pointers } from '../components/Stickers';
+import { WantedPosters } from '../components/Wanted';
 
 /**
  * REDRAWN, DA v2 ("tabletop"): the same cue sheet as the flat engine, played on a 3D table with a real camera.
@@ -34,7 +35,7 @@ import { Stickers, Pointers } from '../components/Stickers';
  * Optional v2 fields of episode.json: `da: 2`, `whisper` (quiet line under the title), `keywords` (caption
  * words to highlight), `world: {center, thickness}`, and on a camera: `pitch`, `yaw`, `fov`, `roll`, `cut`.
  */
-export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean; guides?: boolean }> = ({ episodeId, spec, timings, geo, credits, lottieKeys, cover, guides }) => {
+export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean; guides?: boolean; brand?: string }> = ({ episodeId, spec, timings, geo, credits, lottieKeys, cover, guides, brand }) => {
   loadFonts();
   const frame = useCurrentFrame();
   const t = frame / FPS;
@@ -42,7 +43,11 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const pal = series.palette;
   setPalette(spec!.palette);
   applySkin({ font: `'${FONT.displayCondensed}', '${FONT.legacy}'`, text: pal.ink, muted: pal.muted, accent: pal.accent, radius: 0, shadow: '10px 10px 0 rgba(0,0,0,0.5)', inset: SAFE.left,
-    photo: 'print', photoTones: [pal.bg, pal.surfaceEdge, pal.surface, pal.muted, pal.ink] });
+    photo: 'print', photoTones: [pal.bg, pal.surfaceEdge, pal.surface, pal.muted, pal.ink],
+    // a channel's own identity (paper, stamp ink, typewriter); nothing here for a series without `extra`
+    ...(series.extra ? { cardBg: 'rgba(7,6,5,0.94)', stamp: series.extra.stamp, stampBg: 'rgba(7,6,5,0.88)', paper: series.extra.paper, paperInk: series.extra.paperInk } : {}),
+    ...(series.type?.mono ? { typewriter: `'${series.type.mono}', monospace`, stampFont: `'${series.type.mono}', monospace` } : {}) });
+  setMonoFamily(series.type?.mono);
   const sx = spec as any;
   const audioId = sx.audio ?? episodeId;
 
@@ -113,10 +118,11 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
       <FlagSwap t={t} actions={sched.actions} />
       <Archives t={t} actions={sched.actions} />
       <Portraits t={t} actions={sched.actions} credits={credits ?? {}} />
+      <WantedPosters t={t} actions={sched.actions} />
       <Callouts t={t} actions={sched.actions} />
       <BigNumbers t={t} actions={sched.actions} />
 
-      <SeriesBar series={series} episode={sx.episode}
+      <SeriesBar series={series} episode={sx.episode} brand={brand}
         right={spec!.counter !== false && !cover ? <Tally t={t} actions={sched.actions} total={spec!.counter?.total ?? 15} label={spec!.counter?.label} series={series} from={hookEnd} /> : undefined} />
       {!cover && !beat?.hideTimeline && spec!.timeline && (
         <Rail from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} series={series} opacity={ramp(t, hookEnd - 0.2, 0.4) * (1 - ramp(t, end - 0.5, 0.3))} />

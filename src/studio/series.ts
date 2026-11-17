@@ -49,12 +49,18 @@ export type SeriesDef = {
   episodeTag: string;
   palette: SeriesPalette;
   look: Look;
+  /** series-bar variant ("A", "B"…); only channels with their own identity read it */
+  brand?: string;
+  /** the channel's own type: `mono` replaces JetBrains Mono for the data voice (e.g. a typewriter face) */
+  type?: { mono?: string };
+  /** extra colours of a channel's identity (paper, stamp ink…) */
+  extra?: Record<string, string>;
 };
 
-type StudioEntry = { name: string; handle: string; tagline: string; legacyNames: string[]; composition: string; episodeTag: string };
+type StudioEntry = { name: string; handle: string; tagline: string; legacyNames: string[]; composition: string; episodeTag: string; brand?: string };
 const ENTRIES = (studio as unknown as { series: Record<string, StudioEntry> }).series;
 
-const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
+const DESIGN: Record<string, { palette: SeriesPalette; look: Look; type?: SeriesDef['type']; extra?: Record<string, string> }> = {
   redrawn: {
     palette: {
       bg: '#05080F', bgGlow: '#16264A', surface: '#2B3759', surfaceEdge: '#141B30', grid: '#22335C',
@@ -69,6 +75,16 @@ const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
     },
     look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0 },
   },
+  // THE GETAWAY: a case file on a dark desk. Near-black ink, "evidence" red, beige file paper, typewriter annotations.
+  getaway: {
+    palette: {
+      bg: '#070605', bgGlow: '#1C1712', surface: '#3A3127', surfaceEdge: '#14100C', grid: '#2A231B',
+      ink: '#F1E8D6', muted: '#9A8E78', accent: '#E0312B', danger: '#E0312B', warn: '#D9A441',
+    },
+    look: { px: 3, levels: 6, dither: 1, outline: 0.9, scan: 0, vignette: 0.72, grain: 0 },
+    type: { mono: 'Courier Prime' },
+    extra: { paper: '#E6D9BC', paperEdge: '#B9A57E', paperInk: '#1A1612', stamp: '#C8231E' },
+  },
 };
 
 export const SERIES: Record<string, SeriesDef> = Object.fromEntries(
@@ -78,10 +94,11 @@ export const SERIES: Record<string, SeriesDef> = Object.fromEntries(
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 /**
- * Series of an episode. `seriesId` wins; otherwise the legacy `series` string is matched against ids,
+ * Series (= channel) of an episode. `channel` wins, then `seriesId`; otherwise the legacy `series` string is matched against ids,
  * current names and `legacyNames`, so episodes written before a channel was renamed keep resolving.
  */
-export function seriesOf(spec: { seriesId?: string; series?: string; composition?: string } | undefined): SeriesDef {
+export function seriesOf(spec: { channel?: string; seriesId?: string; series?: string; composition?: string } | undefined): SeriesDef {
+  if (spec?.channel && SERIES[spec.channel]) return SERIES[spec.channel];
   if (spec?.seriesId && SERIES[spec.seriesId]) return SERIES[spec.seriesId];
   const key = slug(spec?.series ?? '');
   for (const [id, e] of Object.entries(ENTRIES)) {

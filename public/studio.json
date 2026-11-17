@@ -1,11 +1,13 @@
 {
-  "_": "Single source of truth for every channel made in this repo. Rename a channel here (name/handle) and the on-screen tag, covers and posting kits follow. `id` never changes: it is what episode.json refers to.",
+  "_": "Single source of truth for every channel made in this repo. Rename a channel here (name/handle) and the on-screen tag, covers and posting kits follow. `id` never changes: it is what episode.json refers to. A series is a channel: an episode picks it with `channel` (or the older `seriesId`/`series`); default is redrawn. Optional per-channel defaults: `voice` (used when episode.json has none), `music` (style of pipeline/music.sh), `brand` (variant of the series bar), `post` (posting-kit texts).",
   "series": {
     "redrawn": {
       "name": "REDRAWN",
       "handle": "",
       "tagline": "History in 60 seconds. One map. Every claim sourced.",
-      "legacyNames": ["REDRAWN"],
+      "legacyNames": [
+        "REDRAWN"
+      ],
       "composition": "Episode",
       "episodeTag": "EP {n}"
     },
@@ -13,9 +15,51 @@
       "name": "RECEIPTS",
       "handle": "",
       "tagline": "Follow the money in under a minute. Every number from the filing.",
-      "legacyNames": ["RECEIPTS"],
+      "legacyNames": [
+        "RECEIPTS"
+      ],
       "composition": "Money",
       "episodeTag": "#{nnn}"
+    },
+    "getaway": {
+      "name": "THE GETAWAY",
+      "handle": "",
+      "tagline": "Famous heists and escapes, traced on a map.",
+      "legacyNames": [
+        "GETAWAY",
+        "THE GETAWAY"
+      ],
+      "composition": "Episode",
+      "episodeTag": "CASE {nnn}",
+      "brand": "A",
+      "music": "noir",
+      "voice": {
+        "engine": "elevenlabs",
+        "voice_id": "TBD",
+        "voice_name": "TBD (owner picks from deliverables/getaway-001-dbcooper/voice_samples)",
+        "model": "eleven_multilingual_v2",
+        "settings": {
+          "stability": 0.5,
+          "similarity_boost": 0.8,
+          "style": 0.3,
+          "use_speaker_boost": true,
+          "speed": 1.03
+        },
+        "kokoro_fallback": {
+          "voice": "am_onyx",
+          "speed": 1.0
+        },
+        "maxPause": 0.45
+      },
+      "post": {
+        "footer": "THE GETAWAY: famous heists and escapes, traced on a map. Every claim sourced.",
+        "baseTags": [
+          "#truecrime",
+          "#unsolved",
+          "#mystery",
+          "#history"
+        ]
+      }
     }
   }
 }

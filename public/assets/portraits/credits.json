@@ -82,5 +82,11 @@
   "license": "No known restrictions",
   "date": "1961-01-12",
   "page": "https://www.loc.gov/pictures/item/2026160343/"
+ },
+ "cooper_sketch": {
+  "artist": "FBI composite sketch",
+  "license": "Public domain (US federal government work, PD-USGov-DOJ)",
+  "date": "c. 1971",
+  "file": "https://commons.wikimedia.org/wiki/File:DBCooper.jpg"
  }
 }

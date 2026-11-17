@@ -6,12 +6,15 @@ import { continueRender, delayRender, staticFile } from 'remotion';
  *   serif   — Instrument Serif Italic: the quiet second line ("the tower never moves")
  *   mono    — JetBrains Mono: HUD, sources, anything that reads as data
  *   legacy  — Montserrat: DA v1 episodes only
+ *   typewriter — Courier Prime: THE GETAWAY's data voice (case-file annotations)
  */
 export const FONT = {
   display: 'Bricolage Grotesque',
   serif: 'Instrument Serif',
   mono: 'JetBrains Mono',
   legacy: 'Montserrat',
+  /** THE GETAWAY's data voice: a typewriter face (Courier Prime, OFL) */
+  typewriter: 'Courier Prime',
   /** the display face locked to its condensed cut: a drop-in family name for components that only set fontFamily */
   displayCondensed: 'Studio Display',
 } as const;
@@ -24,7 +27,10 @@ export const displayCut = (weight = 800, width = 75): React.CSSProperties => ({
   fontVariationSettings: `'wdth' ${width}`,
 });
 export const serifCut: React.CSSProperties = { fontFamily: `'${FONT.serif}', Georgia, serif`, fontStyle: 'italic', fontWeight: 400 };
-export const monoCut = (weight = 700): React.CSSProperties => ({ fontFamily: `'${FONT.mono}', monospace`, fontWeight: weight });
+let monoFamily: string = FONT.mono;
+/** A channel may swap the data voice for its own face (set at the top of a composition; reset with no argument). */
+export function setMonoFamily(family?: string) { monoFamily = family ?? FONT.mono; }
+export const monoCut = (weight = 700): React.CSSProperties => ({ fontFamily: monoFamily === FONT.mono ? `'${FONT.mono}', monospace` : `'${monoFamily}', '${FONT.mono}', monospace`, fontWeight: weight });
 
 const LATIN = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
 const LATIN_EXT = 'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF';
@@ -39,6 +45,8 @@ const FACES: Face[] = [
   { family: FONT.serif, file: 'InstrumentSerif-Italic-latin-ext.woff2', descriptors: { style: 'italic', weight: '400', unicodeRange: LATIN_EXT } },
   { family: FONT.mono, file: 'JetBrainsMono-latin.woff2', descriptors: { weight: '100 800', unicodeRange: LATIN } },
   { family: FONT.legacy, file: 'Montserrat-VF.ttf', descriptors: { weight: '100 900' } },
+  { family: FONT.typewriter, file: 'CourierPrime-Regular-latin.woff2', descriptors: { weight: '400', unicodeRange: LATIN } },
+  { family: FONT.typewriter, file: 'CourierPrime-Bold-latin.woff2', descriptors: { weight: '700 800', unicodeRange: LATIN } },
 ];
 
 let started = false;

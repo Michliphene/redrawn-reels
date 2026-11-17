@@ -8,6 +8,10 @@ const V1 = {
   radius: 18, shadow: '0 18px 40px rgba(0,0,0,0.65)', inset: 40,
   /** how photos are shown: 'plain' (DA 1) or 'print' (DA 2: low-res halftone in `photoTones`, dark → light) */
   photo: 'plain' as 'plain' | 'print', photoTones: [] as string[],
+  /** statement boxes (callout) and stamps: background, stamp ink, stamp font ('' = `font`) */
+  cardBg: 'rgba(11,17,32,0.92)', stamp: '#E8443A', stampBg: 'rgba(11,17,32,0.9)', stampFont: '',
+  /** paper of archive cards and wanted posters, and the ink printed on it */
+  paper: '#EFE6D2', paperInk: '#1b1b1b', typewriter: '',
 };
 /** Live theme read by the overlay components. DA v1 values by default; `applySkin` swaps it per composition. */
 export const theme = { ...V1 };

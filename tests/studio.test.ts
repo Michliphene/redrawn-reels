@@ -90,3 +90,14 @@ test('pre-flight: a remaster must keep the script of the episode whose voice it 
   const r = validate('ussr-1991-v2');
   assert.equal(r.da, 2); assert.equal(r.series, 'redrawn');
 });
+
+test('channels: `channel` picks the series, wins over seriesId/series; REDRAWN stays the default', () => {
+  assert.equal(seriesOf({ channel: 'getaway' }).id, 'getaway');
+  assert.equal(seriesOf({ channel: 'getaway', seriesId: 'redrawn', series: 'REDRAWN' }).id, 'getaway');
+  assert.equal(seriesOf({ series: 'The Getaway' }).id, 'getaway');
+  assert.equal(seriesOf({ series: 'REDRAWN' }).id, 'redrawn');
+  assert.equal(episodeTag(SERIES.getaway, 1), 'CASE 001');
+  // the REDRAWN palette is untouched by the new channel
+  assert.equal(SERIES.redrawn.palette.accent, '#FFC94D');
+  assert.equal(SERIES.redrawn.type, undefined);
+});

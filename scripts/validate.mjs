@@ -14,11 +14,12 @@ const studio = readJson(path.join(ROOT, 'public/studio.json')).series;
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
+const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer', 'wanted']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const SAFE = { top: 250, bottom: 1440 };
 
 export function seriesIdOf(spec) {
+  if (spec.channel) return studio[spec.channel] ? spec.channel : null;
   if (spec.seriesId && studio[spec.seriesId]) return spec.seriesId;
   const k = slug(spec.series);
   for (const [id, e] of Object.entries(studio)) if (slug(id) === k || slug(e.name) === k || (e.legacyNames ?? []).some((n) => slug(n) === k)) return id;
@@ -50,7 +51,7 @@ export function validate(id) {
   // identity
   if (spec.id !== id) E(`"id" is "${spec.id}" but the folder is "${id}"`);
   const sid = seriesIdOf(spec);
-  if (!sid) E(`series "${spec.series}" is not in public/studio.json`);
+  if (!sid) E(spec.channel ? `channel "${spec.channel}" is not in public/studio.json` : `series "${spec.series}" is not in public/studio.json`);
   const comp = spec.composition ?? (sid ? studio[sid].composition : 'Episode');
   if (!spec.title) E('missing "title"'); else if (spec.title.length > 36) Wn(`title is ${spec.title.length} characters (aim for ≤ 36: it must fit two or three lines at full size)`);
   if (!Array.isArray(spec.beats) || !spec.beats.length) return { id, errors: [...errors, 'no beats'], warnings };
@@ -64,7 +65,8 @@ export function validate(id) {
       if (src.beats.length !== spec.beats.length) E(`shares the audio of ${spec.audio} but has ${spec.beats.length} beats instead of ${src.beats.length}`);
       else src.beats.forEach((b, i) => { if (b.say !== spec.beats[i].say) E(`beat ${spec.beats[i].id}: "say" differs from ${spec.audio} (the voice is shared, so the script must be identical)`); });
     }
-  } else if (!spec.voice) E('missing "voice" (or "audio" to reuse another episode\'s)');
+  } else if (!spec.voice && !(sid && studio[sid].voice)) E('missing "voice" (or "audio" to reuse another episode\'s, or a channel voice in studio.json)');
+  else if (!spec.voice && /TBD/.test(studio[sid].voice.voice_id ?? '')) E(`channel ${sid} has no voice chosen yet (studio.json voice_id is "${studio[sid].voice.voice_id}")`);
   const timings = fs.existsSync(EP(audioId, 'timings.json')) ? readJson(EP(audioId, 'timings.json')) : null;
   if (!timings) Wn('no timings.json yet: cue words are checked against the script only');
   else if (timings.beats.length !== spec.beats.length) E(`timings.json has ${timings.beats.length} beats, episode.json has ${spec.beats.length}: re-run the voice`);
@@ -132,12 +134,14 @@ export function validate(id) {
       }
       // assets (missing ones are skipped at render, never fatal: so say it now)
       for (const code of [a.flag, a.from, a.to].filter((x) => typeof x === 'string')) if (comp === 'Episode' && (a.type !== 'path') && !fs.existsSync(path.join(ROOT, 'public/assets/flags', `${code}.svg`))) Wn(`${where}: flag "${code}" has no public/assets/flags/${code}.svg (it will be skipped)`);
+      if (a.type === 'wanted' && a.key && !fs.existsSync(path.join(ROOT, 'public/assets/portraits', `${a.key}.jpg`))) Wn(`${where}: wanted poster image "${a.key}" not found (the frame will be empty)`);
       if (a.type === 'portrait' && !fs.existsSync(path.join(ROOT, 'public/assets/portraits', `${a.key}.jpg`))) Wn(`${where}: portrait "${a.key}" has no image (the card will be skipped)`);
       if (a.emoji && !['json', 'png'].some((x) => fs.existsSync(path.join(ROOT, 'public/assets/emoji', `${a.emoji}.${x}`)))) Wn(`${where}: emoji "${a.emoji}" not in public/assets/emoji (it will be skipped)`);
       if (a.type === 'archive' && a.src && !fs.existsSync(path.join(ROOT, 'public', a.src))) Wn(`${where}: image public/${a.src} not found`);
       // layout: DA v2 keeps everything readable inside the platform safe area
       if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
-      for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
+      for (const l of a.lines ?? []) collect(`${where}.lines`, l);
+      for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date', 'name', 'headSub']) collect(`${where}.${k}`, a[k]);
     }
     if (b.date) collect(`beat ${b.id}.date`, b.date);
   });

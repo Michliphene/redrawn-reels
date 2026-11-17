@@ -15,7 +15,18 @@ const Coin: React.FC<{ size: number; spin: number }> = ({ size, spin }) => (
   </svg>
 );
 
-/** Rolling number (e.g. $7,200,000) with optional falling gold coins. */
+/** A banknote seen from above, tumbling (`bills: true` on a bigNumber: a ransom is paper, not coins). */
+const Bill: React.FC<{ size: number; spin: number; tilt: number }> = ({ size, spin, tilt }) => (
+  <svg width={size * 2.1} height={size} viewBox="0 0 84 40" style={{ transform: `rotate(${tilt}deg) scaleY(${0.35 + 0.65 * Math.abs(Math.cos(spin))})` }}>
+    <rect x="1.5" y="1.5" width="81" height="37" rx="2" fill="#A9B892" stroke="#3E4A33" strokeWidth="3" />
+    <rect x="7" y="6" width="70" height="28" fill="none" stroke="#5E6E4C" strokeWidth="1.5" />
+    <ellipse cx="42" cy="20" rx="9" ry="11" fill="#7F9068" />
+    <text x="14" y="17" textAnchor="middle" fontSize="10" fontWeight="900" fill="#3E4A33" fontFamily={theme.font}>20</text>
+    <text x="70" y="33" textAnchor="middle" fontSize="10" fontWeight="900" fill="#3E4A33" fontFamily={theme.font}>20</text>
+  </svg>
+);
+
+/** Rolling number (e.g. $7,200,000) with optional falling gold coins (or banknotes with `bills: true`). */
 export const BigNumbers: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, actions }) => (
   <>
     {(actions.filter((a) => a.type === 'bigNumber') as Extract<TimedAction, { type: 'bigNumber' }>[]).map((a, i) => {
@@ -30,7 +41,9 @@ export const BigNumbers: React.FC<{ t: number; actions: TimedAction[] }> = ({ t,
           {a.coins && Array.from({ length: (a as any).coinsCount ?? 22 }, (_, k) => {
             const x = 60 + random(`cx${i}${k}`) * 960, delay = random(`cd${i}${k}`) * 1.2, sp = 700 + random(`cs${i}${k}`) * 500;
             const yy = -80 + (t - a.t - delay) * sp; if (t - a.t < delay || yy > 1950) return null;
-            return <div key={k} style={{ position: 'absolute', left: x, top: yy }}><Coin size={44 + random(`cz${i}${k}`) * 30} spin={(t - a.t) * 8 + k} /></div>;
+            return <div key={k} style={{ position: 'absolute', left: x, top: yy }}>{(a as any).bills
+              ? <Bill size={40 + random(`cz${i}${k}`) * 26} spin={(t - a.t) * 3 + k} tilt={(random(`ct${i}${k}`) - 0.5) * 70 + (t - a.t) * 40 * (random(`cr${i}${k}`) - 0.5)} />
+              : <Coin size={44 + random(`cz${i}${k}`) * 30} spin={(t - a.t) * 8 + k} />}</div>;
           })}
           <div style={{ position: 'absolute', top: y, width: '100%', textAlign: 'center', transform: `scale(${0.7 + 0.3 * pop})` }}>
             <div style={{ fontFamily: theme.font, fontWeight: 900, fontSize: 150, color: theme.accent, lineHeight: 1, letterSpacing: -2,
@@ -77,13 +90,13 @@ export const Callouts: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, a
       const st = a.stampAt != null && t >= a.stampAt ? spring({ frame: (t - a.stampAt) * FPS, fps: FPS, config: { damping: 9, stiffness: 200 } }) : 0;
       return (
         <div key={i} style={{ position: 'absolute', top: a.y ?? 1000, width: '100%', display: 'flex', justifyContent: 'center', opacity: o }}>
-          <div style={{ position: 'relative', background: 'rgba(11,17,32,0.92)', border: `4px solid ${theme.accent}`, borderRadius: Math.min(16, theme.radius), padding: '22px 40px',
+          <div style={{ position: 'relative', background: theme.cardBg, border: `4px solid ${theme.accent}`, borderRadius: Math.min(16, theme.radius), padding: '22px 40px',
             transform: `scale(${0.8 + 0.2 * s})`, textAlign: 'center', boxShadow: theme.radius ? '0 20px 50px rgba(0,0,0,0.6)' : theme.shadow }}>
             <div style={{ fontFamily: theme.font, fontWeight: 900, fontSize: a.size ?? 84, color: theme.text, lineHeight: 1 }}>{a.text}</div>
             {a.sub && <div style={{ fontFamily: theme.font, fontWeight: 700, fontSize: 30, color: theme.accent, marginTop: 10 }}>{a.sub}</div>}
             {st > 0 && <div style={{ position: 'absolute', right: -30, top: -(((a as any).stampSize ?? 38) * 1.7), transform: `rotate(12deg) scale(${2.2 - 1.2 * st})`, opacity: st,
-              fontFamily: theme.font, fontWeight: 900, fontSize: (a as any).stampSize ?? 38, color: '#E8443A', border: '5px solid #E8443A', borderRadius: 6, padding: '2px 12px',
-              background: 'rgba(11,17,32,0.9)', letterSpacing: 2, whiteSpace: 'nowrap' }}>{a.stamp}</div>}
+              fontFamily: theme.stampFont || theme.font, fontWeight: 900, fontSize: (a as any).stampSize ?? 38, color: theme.stamp, border: `5px solid ${theme.stamp}`, borderRadius: 6, padding: '2px 12px',
+              background: theme.stampBg, letterSpacing: 2, whiteSpace: 'nowrap' }}>{a.stamp}</div>}
           </div>
         </div>
       );

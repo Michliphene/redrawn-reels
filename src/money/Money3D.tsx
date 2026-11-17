@@ -5,7 +5,7 @@ import { schedule } from '../lib/schedule';
 import type { Timings } from '../lib/types';
 import { FPS, SAFE, ZONES } from '../studio/tokens';
 import { seriesOf, type SeriesDef } from '../studio/series';
-import { loadFonts } from '../studio/fonts';
+import { loadFonts, setMonoFamily } from '../studio/fonts';
 import { drift, ease, hit, hop, life, pop, ramp, shade } from '../studio/motion';
 import { fitShot, lerpShot, makeCamera, projector, shotAt, type Rect, type Shot, type ShotKey, type Vec3 } from '../studio/three/rig';
 import { PixelStage } from '../studio/look/PixelStage';
@@ -261,6 +261,7 @@ const OVERLAYS: Record<string, React.FC<OverlayProps>> = { product: ProductOverl
 /* ------------------------------------------------------------------ composition */
 export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cover, guides }) => {
   loadFonts();
+  setMonoFamily();
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const series = seriesOf(spec);
