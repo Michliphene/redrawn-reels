@@ -17,7 +17,7 @@ const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const MINDSET_ACTIONS = { papers: ['mark', 'flip', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
-const DOODLE_ACTIONS = { duel: ['shine', 'light'], race: ['trip'], class: ['mark', 'flip'], bin: ['ignore', 'fly'], shop: ['open', 'launch', 'bulb'], pile: ['count', 'walk', 'halt'] };
+const DOODLE_ACTIONS = { duel: ['shine', 'light'], race: ['trip'], class: ['mark', 'flip'], bin: ['ignore', 'fly'], shop: ['open', 'launch', 'bulb'], pile: ['count', 'walk', 'halt'], drafts: ['count'], versions: ['draft'], rule: ['turn'] };
 const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS, Doodle: DOODLE_ACTIONS };
 const SAFE = { top: 250, bottom: 1440 };
 
@@ -97,7 +97,7 @@ export function validate(id) {
     if (!spec.source) E('missing "source" (the line that stays on screen)'); else collect('source', spec.source);
     for (const [sidk, def] of Object.entries(spec.scenes ?? {})) {
       if (!SCENE_ACTIONS[comp][def.type]) E(`scene "${sidk}": unknown type "${def.type}"`);
-      for (const k of ['price', 'tag', 'cardTitle', 'cardSub', 'gradeLabel']) collect(`scene ${sidk}.${k}`, def[k]);
+      for (const k of ['price', 'tag', 'cardTitle', 'cardSub', 'gradeLabel', 'front', 'back', 'leftLabel', 'leftLit', 'rightLabel', 'rightDim', 'badge', 'bubble', 'binLabel', 'ignoreLabel', 'worksLabel']) collect(`scene ${sidk}.${k}`, def[k]);
     }
   }
   collect('title', spec.title);

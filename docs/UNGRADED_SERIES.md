@@ -39,7 +39,8 @@ for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.
 ## Episodes
 | # | id | Format | Status |
 |---|---|---|---|
-| 001 | `fail-ten-times` | D. myth-bust | rendered, under review |
+| 001 | `fail-ten-times` (3D) · `fail-ten-times-doodle` (notebook) | D. myth-bust | rendered, reviewed |
+| 002 | `first-draft` (notebook) | D. myth-bust, Rule Flip | rendered, under review |
 
 ## Second art direction: the notebook (`composition: "Doodle"`, `src/doodle/`)
 Ballpoint stick figures on squared paper; the reel is one long sheet, each scene a page the camera slides to
@@ -54,4 +55,8 @@ Fonts: house fonts + Caveat Bold (handwriting on the page, OFL, `public/fonts/Ca
 | `bin` | paper balls into a bin, a judge looking away | `ignore` (scribble over "mistakes") · `fly` (paper plane, the judge turns, ✓) |
 | `shop` | an online store drawn as a browser window | `open` · `launch` {outcome} · `bulb` |
 | `pile` | a hill of crumpled tries, a climber | `count` {value} · `walk` {to 0–1, dur} · `halt` (sits, punch-in) |
+| `drafts` | a writer at a desk, a pile of crossed-out "The End" pages | `count` {value, label, sub} (up to two, side by side) |
+| `versions` | three drafts side by side | `draft` {label, tone: messy/stiff/good} |
+| `rule` | one card turned over (`front`/`back`, `frontSmall`/`backSmall`) | `turn` |
+Labels of `duel` (`leftLabel`, `leftLit`, `rightLabel`, `rightDim`, `badge`, `bubble`, `leftProp: pages`) and `bin` (`binLabel`, `ignoreLabel`, `worksLabel`) are set in the scene def.
 Episode: `fail-ten-times-doodle` (same voice as `fail-ten-times` via `audio`).

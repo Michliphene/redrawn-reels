@@ -1,0 +1,286 @@
+{
+ "id": "first-draft",
+ "composition": "Doodle",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 2,
+ "title": "He rewrote one ending 39 times",
+ "whisper": "Your first draft is supposed to be bad.",
+ "source": "Paris Review (1958) · Hemingway Library Ed. (2012)",
+ "sourceFrom": "open",
+ "keywords": [
+  "rewrote",
+  "count.",
+  "papers",
+  "bad",
+  "flip.",
+  "last",
+  "verdict.",
+  "material.",
+  "better.",
+  "you."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "scenes": {
+  "open": {
+   "type": "drafts",
+   "side": "front",
+   "slot": 0
+  },
+  "school": {
+   "type": "class",
+   "side": "front",
+   "slot": 1,
+   "grades": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F"
+   ]
+  },
+  "graded": {
+   "type": "bin",
+   "side": "back",
+   "slot": 0,
+   "binLabel": "first drafts",
+   "ignoreLabel": "nobody grades these",
+   "worksLabel": "the last one"
+  },
+  "versions": {
+   "type": "versions",
+   "side": "back",
+   "slot": 1,
+   "callout": [
+    520,
+    415
+   ]
+  },
+  "rule": {
+   "type": "rule",
+   "side": "back",
+   "slot": 2,
+   "frontSmall": "at school",
+   "front": "First draft\n= verdict",
+   "backSmall": "out here",
+   "back": "First draft\n= material"
+  },
+  "duel": {
+   "type": "duel",
+   "side": "back",
+   "slot": 3,
+   "leftProp": "pages",
+   "leftLabel": "10 drafts",
+   "leftLit": "10 fixes",
+   "rightLabel": "1 try",
+   "rightDim": "1 grade",
+   "badge": "B",
+   "bubble": "1",
+   "callout": [
+    64,
+    430
+   ]
+  },
+  "end": {
+   "type": "drafts",
+   "side": "back",
+   "slot": 4,
+   "callout": [
+    500,
+    430
+   ]
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "open",
+   "say": "Hemingway rewrote one ending {39|thirty-nine} times.",
+   "actions": [
+    {
+     "type": "count",
+     "value": 39,
+     "label": "rewrites of one ending",
+     "sub": "his own count, 1958",
+     "dur": 0.7,
+     "atWord": "times."
+    }
+   ]
+  },
+  {
+   "id": "twist",
+   "say": "That's his count. His papers hold {47|forty-seven}. Some are a single line.",
+   "actions": [
+    {
+     "type": "count",
+     "value": 47,
+     "label": "endings in his papers",
+     "sub": "some just a line, 2012",
+     "dur": 0.6,
+     "atWord": "47."
+    }
+   ]
+  },
+  {
+   "id": "myth",
+   "scene": "school",
+   "kicker": "The myth",
+   "say": "Most people think a bad first draft means you're bad at it. So they stop at draft one.",
+   "actions": [
+    {
+     "type": "mark",
+     "atWord": "bad"
+    },
+    {
+     "type": "mark",
+     "atWord": "stop"
+    }
+   ]
+  },
+  {
+   "id": "rules",
+   "kicker": "School rules",
+   "say": "At school, it did. You handed in one try, and that try got the grade.",
+   "actions": [
+    {
+     "type": "mark",
+     "atWord": "one"
+    },
+    {
+     "type": "mark",
+     "atWord": "grade."
+    }
+   ]
+  },
+  {
+   "id": "flip",
+   "kicker": "Real-world rules",
+   "say": "But out here, the rules flip.",
+   "actions": [
+    {
+     "type": "flip",
+     "atWord": "flip."
+    }
+   ]
+  },
+  {
+   "id": "graded",
+   "scene": "graded",
+   "kicker": "Real-world rules",
+   "say": "Nobody grades your first draft. They only see the last one.",
+   "actions": [
+    {
+     "type": "ignore",
+     "atWord": "Nobody"
+    },
+    {
+     "type": "fly",
+     "atWord": "They"
+    }
+   ]
+  },
+  {
+   "id": "example",
+   "scene": "versions",
+   "kicker": "Picture this",
+   "say": "Picture a cover letter. Draft one rambles. Draft two sounds stiff. Draft three finally sounds like you.",
+   "actions": [
+    {
+     "type": "draft",
+     "label": "rambles",
+     "atWord": "one"
+    },
+    {
+     "type": "draft",
+     "label": "stiff",
+     "atWord": "two"
+    },
+    {
+     "type": "draft",
+     "label": "sounds like you",
+     "atWord": "three"
+    }
+   ]
+  },
+  {
+   "id": "same",
+   "say": "Same person. Same letter. Three tries.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Same you, 3 tries",
+     "atWord": "Three",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "principle",
+   "scene": "rule",
+   "say": "A first draft isn't a verdict. It's material. And you can't fix a page you never wrote.",
+   "actions": [
+    {
+     "type": "turn",
+     "atWord": "It's"
+    }
+   ]
+  },
+  {
+   "id": "contrast",
+   "scene": "duel",
+   "say": "One try gets graded. Ten drafts get better.",
+   "actions": [
+    {
+     "type": "light",
+     "side": "right",
+     "dim": true,
+     "atWord": "graded."
+    },
+    {
+     "type": "light",
+     "side": "left",
+     "atWord": "better."
+    }
+   ]
+  },
+  {
+   "id": "step",
+   "say": "Bad is the first step, not the last word.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Draft 1 is step 1",
+     "atWord": "first",
+     "hold": 1.5
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "end",
+   "say": "So next time your first draft is bad, remember…",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "Bad first draft = normal",
+     "atWord": "bad,",
+     "hold": 1.1
+    }
+   ]
+  }
+ ]
+}

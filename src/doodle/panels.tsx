@@ -21,7 +21,7 @@ const PLASTERS: [keyof Joints, number, number, number][] = [
   ['head', -16, -12, 30], ['head', 10, 10, -25], ['sh', -6, 18, 80], ['sh', 6, 40, 15], ['hip', -4, -26, 0],
   ['handL', 4, -18, 50], ['handR', -4, -16, -40], ['footL', 6, -24, 70], ['footR', -6, -26, -60], ['hip', 8, -46, 20],
 ];
-export const DuelPanel: React.FC<PanelProps> = ({ t, acts }) => {
+export const DuelPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
   const L = acts.find((a) => a.type === 'light' && a.side === 'left' && !(a.until != null && t >= a.until));
   const R = acts.find((a) => a.type === 'light' && a.side === 'right' && !(a.until != null && t >= a.until));
   const shine = acts.find((a) => a.type === 'shine');
@@ -39,14 +39,14 @@ export const DuelPanel: React.FC<PanelProps> = ({ t, acts }) => {
           const a = -170 + (i / (PLASTERS.length - 1)) * 160, to: Pt = [j.head[0] + Math.cos((a * Math.PI) / 180) * 92, j.head[1] + Math.sin((a * Math.PI) / 180) * 92];
           const p = lit ? ease.out3(ramp(t, L!.t + i * 0.06, 0.45)) : 0;
           const x = lerp(from[0], to[0], p), y = lerp(from[1], to[1], p) - Math.sin(p * Math.PI) * 30;
-          return <g key={i}>{p < 1 && <Plaster x={x} y={y} rot={rot * (1 - p)} opacity={1 - p} s={0.75} />}{p > 0 && <Bulb x={x} y={y} s={0.48 * Math.min(1.15, pop(t, L!.t + i * 0.06, 0.4))} seed={140 + i} />}</g>;
+          return <g key={i}>{p < 1 && (def.leftProp === 'pages' ? <g opacity={1 - p}><Note x={x} y={y} s={0.62} rot={rot * 0.4 * (1 - p)} seed={150 + i} /></g> : <Plaster x={x} y={y} rot={rot * (1 - p)} opacity={1 - p} s={0.75} />)}{p > 0 && <Bulb x={x} y={y} s={0.48 * Math.min(1.15, pop(t, L!.t + i * 0.06, 0.4))} seed={140 + i} />}</g>;
         })}
       </Guy>
       <Guy x={RX} y={GROUND - 62} s={s} pose={rp} seed={160}>
         {(j) => (
           <g transform={`translate(${j.handR[0]} ${j.handR[1] - (dim ? 0 : 28)}) rotate(${dim ? 70 : 0})`}>
             <Ink pts={[[-30, -40], [30, -40], [30, 34], [-30, 34]]} seed={170} w={4} fill="#FFFFFF" close amp={0.6} />
-            <text x={0} y={18} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 52 }} fill={C.red}>A+</text>
+            <text x={0} y={18} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 52 }} fill={C.red}>{def.badge ?? 'A+'}</text>
           </g>
         )}
       </Guy>
@@ -62,13 +62,13 @@ export const DuelPanel: React.FC<PanelProps> = ({ t, acts }) => {
             <Circle cx={hx - 30} cy={hy - 40} r={8} seed={190} w={4} fill={C.paper} />
             <Circle cx={hx - 50} cy={hy - 80} r={13} seed={191} w={4} fill={C.paper} />
             <Ink pts={[[hx - 150, hy - 140], [hx - 120, hy - 200], [hx - 40, hy - 215], [hx + 30, hy - 190], [hx + 40, hy - 130], [hx - 20, hy - 100], [hx - 110, hy - 100]]} seed={192} w={5} fill="#FFFFFF" close />
-            <text x={hx - 55} y={hy - 125} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 92 }} fill={C.red} transform={`scale(1)`}>0</text>
+            <text x={hx - 55} y={hy - 125} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 92 }} fill={C.red} transform={`scale(1)`}>{def.bubble ?? '0'}</text>
           </g>
         );
       })()}
       <Hand x={530} y={890} size={86} c={C.red} rot={-6}>vs.</Hand>
-      <Hand x={LX} y={1150} size={62} c={lit ? C.ink : C.red} hl={lit ? C.mint : undefined}>{lit ? '10 lessons' : '10 failures'}</Hand>
-      <Hand x={RX - 10} y={1150} size={62} c={dim ? C.red : C.ink}>{dim ? '0 lessons' : 'perfect record'}</Hand>
+      <Hand x={LX} y={1150} size={62} c={lit ? C.ink : C.red} hl={lit ? C.mint : undefined}>{lit ? def.leftLit ?? '10 lessons' : def.leftLabel ?? '10 failures'}</Hand>
+      <Hand x={RX - 10} y={1150} size={62} c={dim ? C.red : C.ink}>{dim ? def.rightDim ?? '0 lessons' : def.rightLabel ?? 'perfect record'}</Hand>
     </g>
   );
 };
@@ -173,7 +173,7 @@ export const ClassPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
 };
 
 /* ------------------------------------------------------------------ bin: mistakes vs what works */
-export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
+export const BinPanel: React.FC<PanelProps> = ({ t, acts, from, def }) => {
   const ign = one(acts, 'ignore'), fly = one(acts, 'fly');
   const tf = fly?.t ?? 1e9;
   const hand: Pt = [272, 880], bin: Pt = [490, 1000];
@@ -194,10 +194,10 @@ export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
       })}
       <Ink pts={[[bin[0] - 82, 960], [bin[0] + 82, 960], [bin[0] + 62, GROUND], [bin[0] - 62, GROUND]]} seed={540} w={6} fill="rgba(200,210,225,0.55)" close />
       {[-40, 0, 40].map((dx, k) => <Ink key={k} pts={[[bin[0] + dx * 1.2, 975], [bin[0] + dx, GROUND - 12]]} seed={541 + k} w={3.5} c={C.pencil} />)}
-      <Hand x={bin[0]} y={905} size={60} c={C.red}>mistakes</Hand>
+      <Hand x={bin[0]} y={905} size={60} c={C.red}>{def.binLabel ?? 'mistakes'}</Hand>
       {ign && t >= ign.t && <>
         <Ink pts={[[bin[0] - 110, 890], [bin[0] - 60, 875], [bin[0] - 10, 895], [bin[0] + 40, 875], [bin[0] + 110, 888]]} seed={545} w={7} c={C.ink} draw={ramp(t, ign.t, 0.3)} />
-        <Hand x={bin[0]} y={835} size={54} c={C.ink} opacity={ramp(t, ign.t + 0.25, 0.2)}>nobody counts these</Hand>
+        <Hand x={bin[0]} y={835} size={54} c={C.ink} opacity={ramp(t, ign.t + 0.25, 0.2)}>{def.ignoreLabel ?? 'nobody counts these'}</Hand>
       </>}
       <Guy x={190} y={GROUND} s={1.75} seed={550} hero pose={{ ...POSE.stand(t), armR: 30 + 130 * throwArm, mood: t >= tf ? 'smile' : 'flat' }} />
       {/* the judge looks the other way until something works */}
@@ -213,7 +213,7 @@ export const BinPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
       {fly && t >= tf && <Ink pts={Array.from({ length: 12 }, (_, i) => { const p = (i / 11) * Math.min(pe, 1); return [lerp(hand[0], 690, p), lerp(hand[1], 700, p) - Math.sin(p * Math.PI) * 260] as Pt; })} seed={575} w={3} c={C.pencil} dash="10 12" />}
       {fly && t >= tf + 0.45 && <>
         <Check x={640} y={830} s={1.7} draw={ramp(t, tf + 0.45, 0.3)} c={C.mint} />
-        <Hand x={660} y={640} size={64} hl={C.mint} opacity={ramp(t, tf + 0.55, 0.2)}>what works</Hand>
+        <Hand x={660} y={640} size={64} hl={C.mint} opacity={ramp(t, tf + 0.55, 0.2)}>{def.worksLabel ?? 'what works'}</Hand>
       </>}
     </g>
   );
@@ -353,5 +353,105 @@ export const PilePanel: React.FC<PanelProps> = ({ t, acts }) => {
   );
 };
 
-export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel };
+/* ------------------------------------------------------------------ drafts: a writer, a pile of crossed-out endings, up to two counts */
+const Sheet: React.FC<{ x: number; y: number; rot?: number; seed?: number; crossed?: boolean; s?: number }> = ({ x, y, rot = 0, seed = 1, crossed = true, s = 1 }) => (
+  <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`}>
+    <Ink pts={[[-62, -78], [62, -78], [62, 78], [-62, 78]]} seed={seed} w={4} fill="#FFFFFF" close amp={0.8} />
+    {[-50, -30, -10].map((yy, k) => <Ink key={k} pts={[[-44, yy], [40 - k * 10, yy]]} seed={seed + k + 1} w={2.6} c={C.pencil} amp={0.5} />)}
+    <text x={0} y={34} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 34 }} fill={C.ink}>The End</text>
+    {crossed && <Ink pts={[[-50, 30], [-10, 20], [30, 32], [52, 22]]} seed={seed + 9} w={5} c={C.red} amp={1} />}
+  </g>
+);
+export const DraftsPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
+  const counts = all(acts, 'count');
+  const dt = Math.max(0, t - from);
+  const writing = Math.sin(t * 14) * 10;
+  const fly = (dt % 0.9) / 0.9;
+  return (
+    <g>
+      <Ground />
+      {/* the pile of endings that did not make it */}
+      {Array.from({ length: 9 }, (_, k) => <Sheet key={k} x={790 + ((k * 37) % 23) - 11} y={1012 - k * 14} rot={((k * 53) % 26) - 13} seed={1000 + k * 7} />)}
+      {/* the writer at his desk */}
+      <Guy x={230} y={GROUND} s={1.6} seed={1100} hero pose={{ ...POSE.desk(0.25), armR: 75 + writing, mood: 'flat' }} />
+      <Ink pts={[[120, 950], [470, 950]]} seed={1110} w={7} />
+      <Ink pts={[[150, 950], [150, GROUND]]} seed={1111} w={6} />
+      <Ink pts={[[440, 950], [440, GROUND]]} seed={1112} w={6} />
+      <Sheet x={380} y={930} rot={-80} s={0.55} seed={1120} crossed={false} />
+      {/* one more page leaves the desk for the pile, on a loop */}
+      <Sheet x={lerp(400, 790, fly)} y={lerp(910, 880, fly) - Math.sin(fly * Math.PI) * 60} rot={-40 + fly * 380} s={0.6} seed={1130} />
+      {counts.slice(0, 2).map((c, i) => {
+        if (t < c.t) return null;
+        const v = Math.round(c.value * ease.out3(ramp(t, c.t, c.dur ?? 0.8)));
+        const x = i === 0 ? 64 : 520;
+        return (
+          <g key={i} opacity={ramp(t, c.t, 0.15)} transform={`translate(${x} 0)`}>
+            <text x={0} y={680} style={{ ...displayCut(800, 75), fontSize: 168 }} fill={i === 0 ? C.ink : C.red}>{v.toLocaleString('en-US')}</text>
+            <Hand x={4} y={748} size={50} c={i === 0 ? C.ink : C.red} anchor="start">{c.label}</Hand>
+            {c.sub && <Hand x={4} y={796} size={40} c={C.pencil} anchor="start">{c.sub}</Hand>}
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ versions: three drafts side by side */
+const VX = [215, 520, 825];
+export const VersionsPanel: React.FC<PanelProps> = ({ t, acts }) => {
+  const drafts = all(acts, 'draft');
+  const last = drafts[2];
+  return (
+    <g>
+      <Ground />
+      {drafts.slice(0, 3).map((a, i) => {
+        const p = pop(t, a.t, 0.35); if (p <= 0) return null;
+        const cx = VX[i], tone = a.tone ?? ['messy', 'stiff', 'good'][i];
+        return (
+          <g key={i}>
+            <g transform={`translate(${cx} 800) rotate(${(i - 1) * 3}) scale(${p})`}>
+              <Ink pts={[[-120, -170], [120, -170], [120, 170], [-120, 170]]} seed={1200 + i} w={5} fill={tone === 'good' ? '#FFFFFF' : '#FBFAF5'} close />
+              <text x={-96} y={-120} style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 40 }} fill={C.pencil}>{`draft ${i + 1}`}</text>
+              {tone === 'messy' && Array.from({ length: 6 }, (_, k) => (
+                <Ink key={k} pts={Array.from({ length: 7 }, (_, m) => [-95 + m * 30, -70 + k * 38 + ((m + k) % 2 ? -10 : 10)] as Pt)} seed={1210 + k} w={4} c={C.ink} amp={2.5} />
+              ))}
+              {tone === 'messy' && [0, 1].map((k) => <Ink key={`x${k}`} pts={[[-90, -40 + k * 110], [90, -10 + k * 110]]} seed={1220 + k} w={6} c={C.red} />)}
+              {tone === 'stiff' && Array.from({ length: 7 }, (_, k) => <line key={k} x1={-95} y1={-70 + k * 34} x2={95} y2={-70 + k * 34} stroke={C.pencil} strokeWidth={5} />)}
+              {tone === 'good' && Array.from({ length: 5 }, (_, k) => <Ink key={k} pts={seg([-95, -70 + k * 40], [95 - (k % 2) * 40, -70 + k * 40], 4)} seed={1230 + k} w={4} c={C.ink} amp={0.8} />)}
+              {tone === 'good' && <rect x={-95} y={20} width={150} height={22} fill={C.mint} opacity={0.75} />}
+              {tone === 'good' && <Check x={60} y={120} s={1.1} c={C.mint} draw={ramp(t, a.t + 0.3, 0.3)} />}
+            </g>
+            {t >= a.t + 0.3 && <Hand x={cx} y={1035} size={54} c={tone === 'good' ? C.ink : tone === 'messy' ? C.red : C.pencil} hl={tone === 'good' ? C.mint : undefined} halo>{a.label}</Hand>}
+          </g>
+        );
+      })}
+      {last && t >= last.t + 0.35 && <Guy x={VX[2] + 40} y={630} s={0.9} hero seed={1250} pose={POSE.cheer(t)} />}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ rule: one card, turned over on `turn` */
+export const RulePanel: React.FC<PanelProps> = ({ t, acts, def, from }) => {
+  const turn = one(acts, 'turn');
+  const k = turn ? ramp(t, turn.t, 0.5) : 0;
+  const back = k >= 0.5;
+  const sx = Math.abs(Math.cos(k * Math.PI));
+  const inP = pop(t, from + 0.1, 0.4);
+  const side = back ? { small: def.backSmall ?? 'out here', text: def.back ?? '', fill: C.mint, c: C.ink } : { small: def.frontSmall ?? 'at school', text: def.front ?? '', fill: '#FFFFFF', c: C.red };
+  const lines = String(side.text).split('\n');
+  return (
+    <g>
+      <Ground />
+      <g transform={`translate(520 840) scale(${sx * inP} ${inP}) rotate(${back ? 2 : -2})`}>
+        <rect x={-372} y={-212} width={760} height={440} fill="rgba(0,0,0,0.12)" />
+        <Ink pts={[[-380, -220], [380, -220], [380, 220], [-380, 220]]} seed={1300} w={6} fill={side.fill} close />
+        <text x={-330} y={-150} style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 54 }} fill={C.pencil}>{side.small}</text>
+        {lines.map((l, i) => <text key={i} x={0} y={-20 + i * 120 - (lines.length - 1) * 30} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 112 }} fill={side.c}>{l}</text>)}
+      </g>
+      <Guy x={150} y={GROUND} s={1.3} hero seed={1310} pose={back ? POSE.cheer(t) : { ...POSE.stand(t), armR: 120, mood: 'flat' }} />
+    </g>
+  );
+};
+
+export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel, drafts: DraftsPanel, versions: VersionsPanel, rule: RulePanel };
 export { joints };
