@@ -1,0 +1,272 @@
+{
+ "id": "apple-iphone",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "seriesId": "receipts",
+ "da": 2,
+ "episode": 4,
+ "title": "The iPhone is a storefront",
+ "whisper": "The phone is only the start.",
+ "source": "Source: Apple annual report, fiscal 2026 (SEC filing)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {
+   "iCloud": "eye-cloud",
+   "AppleCare": "Apple Care"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.1
+  }
+ },
+ "keywords": [
+  "services",
+  "quarter",
+  "storefront",
+  "subscriptions",
+  "built"
+ ],
+ "scenes": {
+  "phone": {
+   "type": "product",
+   "art": "phone",
+   "price": "$1,000",
+   "tag": "OF APPLE DEVICES · FY2026"
+  },
+  "devices": {
+   "type": "grid"
+  },
+  "services": {
+   "type": "grid"
+  },
+  "share": {
+   "type": "card",
+   "cardTitle": "SERVICES",
+   "cardSub": "FISCAL 2026"
+  },
+  "profit": {
+   "type": "bars",
+   "max": 150
+  },
+  "point": {
+   "type": "lines"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "phone",
+   "say": "Spend {$1,000|a thousand dollars} on Apple devices, and about {$390|three hundred and ninety} is left once they're built.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$1,000"
+    },
+    {
+     "type": "ghost",
+     "text": "$390",
+     "label": "LEFT AFTER COSTS",
+     "atWord": "$390",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "notbest",
+   "kicker": "Big margin. Not the best one.",
+   "say": "That's huge for hardware. But it's not Apple's best business.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NOT APPLE'S BEST BUSINESS",
+     "atWord": "not",
+     "hold": 1.6,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "id": "follow",
+   "scene": "devices",
+   "kicker": "$1,000 of devices · 1 tile = $10",
+   "say": "Follow the {$1,000|thousand dollars}.",
+   "actions": []
+  },
+  {
+   "id": "cost",
+   "say": "About {$610|six hundred and ten} pays to make the devices.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 61,
+     "color": "#FF6B5E",
+     "amount": "$610",
+     "label": "cost of making them",
+     "atWord": "$610",
+     "dur": 2.0
+    }
+   ]
+  },
+  {
+   "id": "left",
+   "say": "{$390|Three ninety} is left. Apple doesn't say how much of that is the iPhone alone.",
+   "actions": [
+    {
+     "type": "rest",
+     "color": "#FFB648",
+     "amount": "$390",
+     "label": "left · all devices",
+     "atWord": "$390"
+    },
+    {
+     "type": "callout",
+     "text": "IPHONE ALONE: NOT DISCLOSED",
+     "atWord": "doesn't",
+     "hold": 1.8,
+     "size": 44
+    }
+   ]
+  },
+  {
+   "id": "turn",
+   "scene": "services",
+   "kicker": "$100 of services · 1 tile = $1",
+   "say": "Now the money that comes after. Apps, iCloud, ads, AppleCare.",
+   "actions": [
+    {
+     "type": "hint",
+     "atWord": "Now"
+    },
+    {
+     "type": "callout",
+     "text": "APPS · ICLOUD · ADS · APPLECARE",
+     "atWord": "Apps,",
+     "hold": 2.2,
+     "size": 44
+    }
+   ]
+  },
+  {
+   "id": "svc",
+   "say": "Of every {$100|hundred dollars} of services, about {$76|seventy-six} is left after costs.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 24,
+     "color": "#FF6B5E",
+     "amount": "$24",
+     "label": "cost of services",
+     "atWord": "$100",
+     "dur": 1.2
+    },
+    {
+     "type": "rest",
+     "color": "#C8F53C",
+     "amount": "$76",
+     "label": "left after costs",
+     "atWord": "$76"
+    }
+   ]
+  },
+  {
+   "id": "share",
+   "scene": "share",
+   "kicker": "Small slice. Big share.",
+   "say": "Services are only about a quarter of Apple's sales. But they bring {40%|forty percent} of what's left after costs.",
+   "actions": [
+    {
+     "type": "stat",
+     "value": "26%",
+     "label": "of sales",
+     "atWord": "quarter"
+    },
+    {
+     "type": "stat",
+     "value": "40%",
+     "label": "of gross profit",
+     "sub": "our calculation",
+     "atWord": "40%"
+    }
+   ]
+  },
+  {
+   "id": "profit",
+   "scene": "profit",
+   "kicker": "Left after costs · fiscal 2026",
+   "say": "That's {$94B|ninety-four billion dollars} last year. Two thirds of what all the devices made.",
+   "actions": [
+    {
+     "type": "big",
+     "value": "$234B",
+     "label": "gross profit · FY2026",
+     "atWord": "That's"
+    },
+    {
+     "type": "bar",
+     "label": "Devices",
+     "value": 139.7,
+     "color": "#FFB648",
+     "decimals": 0,
+     "atWord": "That's"
+    },
+    {
+     "type": "bar",
+     "label": "Services",
+     "value": 93.9,
+     "color": "#C8F53C",
+     "decimals": 0,
+     "atWord": "$94B"
+    },
+    {
+     "type": "callout",
+     "text": "≈ 2/3 OF WHAT DEVICES MADE",
+     "atWord": "Two",
+     "hold": 1.8,
+     "size": 44
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "kicker": "The real product",
+   "say": "So the iPhone isn't just the product. It's the storefront.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "THE IPHONE =",
+     "text": "THE PRODUCT",
+     "strike": true,
+     "atWord": "iPhone",
+     "size": 130
+    },
+    {
+     "type": "line",
+     "small": "THE IPHONE =",
+     "text": "THE STOREFRONT",
+     "size": 120,
+     "color": "#C8F53C",
+     "atWord": "storefront."
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "phone",
+   "say": "And it all starts when you…",
+   "actions": []
+  }
+ ]
+}
