@@ -66,7 +66,7 @@ export const Root: React.FC = () => (
       for (const b of spec.beats) b.actions = b.actions.filter((a: any) => !a.emoji || lottieKeys.includes(a.emoji) || pngKeys.has(a.emoji));
       (p as any).lottieKeys = lottieKeys;
       // same for flags: drop a flag reference whose SVG is missing (and the flag swap if one side is missing)
-      const codes = [...new Set(spec.beats.flatMap((b: any) => b.actions.flatMap((a: any) => [a.flag, a.from, a.to].filter(Boolean))))] as string[];
+      const codes = [...new Set(spec.beats.flatMap((b: any) => b.actions.flatMap((a: any) => [a.flag, a.from, a.to].filter((x: any) => typeof x === 'string'))))] as string[];
       const okF = new Set<string>();
       await Promise.all(codes.map(async (c) => { const r = await fetch(staticFile(`assets/flags/${c}.svg`)); if (r.ok && (await r.text()).includes('<svg')) okF.add(c); }));
       for (const b of spec.beats) {
