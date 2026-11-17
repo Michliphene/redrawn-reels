@@ -85,6 +85,22 @@
       38.25
      ],
      "atTime": 0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "Two"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "KOREA_N38",
+      "KOREA_S38"
+     ],
+     "atWord": "map."
     }
    ],
    "hideTimeline": true
@@ -98,7 +114,7 @@
      37.5
     ],
     "span": 24,
-    "pitch": 54,
+    "pitch": 56,
     "yaw": 6,
     "dur": 1.4
    },
@@ -145,12 +161,12 @@
    "say": "Soviet troops are already entering the north.",
    "camera": {
     "center": [
-     128.2,
-     40.6
+     128.0,
+     40.4
     ],
-    "span": 15,
-    "pitch": 44,
-    "yaw": -10
+    "span": 12.5,
+    "pitch": 32,
+    "yaw": -18
    },
    "actions": [
     {
@@ -174,16 +190,6 @@
      "atWord": "Soviet",
      "hold": 2.2,
      "caption": "Soviet troops · Aug 1945"
-    },
-    {
-     "type": "label",
-     "text": "USSR",
-     "at": [
-      132.0,
-      44.0
-     ],
-     "atWord": "Soviet",
-     "hold": 2.0
     }
    ]
   },
@@ -193,11 +199,12 @@
    "camera": {
     "center": [
      127.6,
-     38.6
+     38.4
     ],
-    "span": 10.5,
-    "pitch": 38,
-    "yaw": 14
+    "span": 9.5,
+    "pitch": 64,
+    "yaw": 0,
+    "dur": 0.8
    },
    "actions": [
     {
@@ -289,12 +296,13 @@
    ],
    "camera": {
     "center": [
-     127.4,
-     38.5
+     127.2,
+     38.2
     ],
-    "span": 9.5,
-    "pitch": 34,
-    "yaw": -6
+    "span": 8,
+    "pitch": 30,
+    "yaw": -20,
+    "dur": 1.2
    }
   },
   {
@@ -332,7 +340,16 @@
      "atWord": "American",
      "hold": 1.8
     }
-   ]
+   ],
+   "camera": {
+    "center": [
+     127.4,
+     38.3
+    ],
+    "span": 8.8,
+    "pitch": 44,
+    "yaw": 8
+   }
   },
   {
    "id": "moscow",
@@ -355,7 +372,7 @@
       127.3,
       40.3
      ],
-     "atWord": "Moscow",
+     "atWord": "agrees.",
      "hold": 1.6
     }
    ]
@@ -454,8 +471,8 @@
      127.6,
      38.9
     ],
-    "span": 12,
-    "pitch": 48,
+    "span": 10.4,
+    "pitch": 50,
     "yaw": 10,
     "cut": true
    }
@@ -504,12 +521,12 @@
    ],
    "camera": {
     "center": [
-     127.1,
-     38.4
+     127.0,
+     38.0
     ],
-    "span": 8.5,
-    "pitch": 36,
-    "yaw": -14
+    "span": 7.4,
+    "pitch": 30,
+    "yaw": -20
    }
   },
   {
@@ -553,8 +570,8 @@
      "type": "callout",
      "text": "New border: the DMZ",
      "sub": "≈ 2.5 miles wide · ≈ 155 miles long",
-     "y": 1050,
-     "size": 52,
+     "y": 990,
+     "size": 54,
      "atWord": "Not",
      "hold": 1.3
     },
@@ -699,11 +716,11 @@
    ],
    "camera": {
     "center": [
-     127.4,
-     38.2
+     127.5,
+     38.55
     ],
-    "span": 7,
-    "pitch": 38,
+    "span": 7.6,
+    "pitch": 62,
     "yaw": 0
    }
   },
@@ -761,11 +778,11 @@
    "camera": {
     "center": [
      127.6,
-     38.6
+     38.3
     ],
-    "span": 8,
-    "pitch": 42,
-    "yaw": 12
+    "span": 6.4,
+    "pitch": 48,
+    "yaw": 10
    }
   },
   {
@@ -792,11 +809,11 @@
    "camera": {
     "center": [
      127.6,
-     38.7
+     38.6
     ],
-    "span": 10,
-    "pitch": 48,
-    "yaw": -4
+    "span": 11,
+    "pitch": 52,
+    "yaw": -6
    }
   },
   {
@@ -882,5 +899,6 @@
   "Kaesong,",
   "Sokcho,",
   "treaty"
- ]
+ ],
+ "captionSize": 98
 }

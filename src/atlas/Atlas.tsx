@@ -32,7 +32,7 @@ import { Stickers, Pointers } from '../components/Stickers';
  *            all inside the platform safe area
  *   cards  = the shared overlay components, skinned with the house fonts
  * Optional v2 fields of episode.json: `da: 2`, `whisper` (quiet line under the title), `keywords` (caption
- * words to highlight), `world: {center, thickness}`, and on a camera: `pitch`, `yaw`, `fov`, `roll`, `cut`.
+ * words to highlight), `captionSize` (px, default TYPE.caption), `world: {center, thickness}`, and on a camera: `pitch`, `yaw`, `fov`, `roll`, `cut`.
  */
 export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean; guides?: boolean }> = ({ episodeId, spec, timings, geo, credits, lottieKeys, cover, guides }) => {
   loadFonts();
@@ -123,7 +123,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
       )}
       <TitleBlock title={spec!.title} whisper={sx.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + (cover ? 0 : 6)} />
       {!beat?.hideDate && <DateBlock dates={sched.dates} chapters={beat?.hideChapter ? [] : chapters} t={t} series={series} opacity={headO} />}
-      {!cover && <Captions timings={timings!} t={t} accent={pal.accent} ink={pal.ink} keywords={sx.keywords ?? []} hidden={hidden} />}
+      {!cover && <Captions timings={timings!} t={t} accent={pal.accent} ink={pal.ink} keywords={sx.keywords ?? []} hidden={hidden} size={sx.captionSize} />}
 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}
