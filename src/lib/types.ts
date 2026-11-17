@@ -28,7 +28,13 @@ export type Action =
   | { type: 'conceal'; ids: string[]; atWord?: string }
   | { type: 'pointer'; at: LonLat; text: string; from?: [number, number]; hold?: number; atWord?: string }
   | { type: 'wanted'; key?: string; name: string; head?: string; headSub?: string; lines?: string[]; credit?: string; side?: 'left' | 'right' | 'center'; y?: number; w?: number;
-      tilt?: number; focus?: string; zoom?: number; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; stampSize?: number; atWord?: string };
+      tilt?: number; focus?: string; zoom?: number; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; stampSize?: number; atWord?: string }
+  | { type: 'vehicle'; kind?: 'plane'; coords: LonLat[]; dur?: number; hold?: number; size?: number; alt?: number; from?: number; to?: number; land?: boolean; caption?: string;
+      stairsOpen?: boolean; stairsWord?: string; stairsAt?: number; dropWord?: string; dropAt?: number; atWord?: string }
+  | { type: 'night'; level?: number; follow?: 'vehicle' | LonLat; radius?: number; rain?: boolean; fadeIn?: number; hold?: number; atWord?: string }
+  | { type: 'ticket'; head: string; sub?: string; rows?: [string, string][]; big?: string; note?: string; wrong?: string; wrongBy?: string; w?: number; y?: number;
+      cps?: number; strikeWord?: string; strikeAt?: number; hold?: number; atWord?: string }
+  | { type: 'verdict'; options: string[]; pick?: number; pickWord?: string; pickAt?: number; x?: number; y?: number; hold?: number; atWord?: string };
 export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean; hideChapter?: boolean; hideDate?: boolean; hideTimeline?: boolean };
 export type EpisodeSpec = {
   id: string; series: string; title: string; data: string;

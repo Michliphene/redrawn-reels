@@ -42,8 +42,8 @@
    "say": "He jumps from a jet with {$200,000|two hundred thousand dollars}. Caught, or not?",
    "camera": {
     "center": [
-     -122.4,
-     46.5
+     -123.3,
+     46.4
     ],
     "span": 6.5,
     "pitch": 50
@@ -102,6 +102,53 @@
      ],
      "atTime": 0.3,
      "hold": 3.4
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -122.235,
+       40.178
+      ]
+     ],
+     "from": 0.3,
+     "atTime": 0,
+     "dur": 4.3,
+     "hold": 4.3,
+     "size": 170,
+     "stairsOpen": true,
+     "dropWord": "jumps",
+     "to": 0.62,
+     "alt": 1.4
+    },
+    {
+     "type": "night",
+     "atTime": 0,
+     "hold": 4.0,
+     "level": 0.62,
+     "follow": "vehicle",
+     "radius": 300
+    },
+    {
+     "type": "verdict",
+     "options": [
+      "CAUGHT",
+      "NEVER FOUND"
+     ],
+     "pick": 1,
+     "atTime": 0,
+     "hold": 4.0,
+     "x": 560,
+     "y": 900
     }
    ]
   },
@@ -130,15 +177,24 @@
      "hold": 4.6
     },
     {
-     "type": "label",
-     "text": "NORTHWEST ORIENT 305",
-     "at": [
-      -122.25,
-      45.95
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.5975,
+       45.5898
+      ],
+      [
+       -122.585,
+       45.597
+      ]
      ],
-     "size": "md",
+     "alt": 0,
      "atWord": "boards",
-     "hold": 2.4
+     "dur": 2,
+     "hold": 2.6,
+     "size": 150,
+     "caption": "FLIGHT 305"
     }
    ]
   },
@@ -156,23 +212,36 @@
    },
    "actions": [
     {
-     "type": "wanted",
-     "key": "cooper_sketch",
-     "name": "Dan Cooper",
-     "headSub": "Name on the ticket",
-     "lines": [
-      "Real name: unknown."
+     "type": "ticket",
+     "head": "Northwest Orient",
+     "sub": "Passenger ticket · reconstruction",
+     "rows": [
+      [
+       "FLIGHT",
+       "305"
+      ],
+      [
+       "FROM",
+       "PORTLAND"
+      ],
+      [
+       "TO",
+       "SEATTLE"
+      ],
+      [
+       "DATE",
+       "24 NOV 1971"
+      ]
      ],
-     "credit": "FBI composite sketch · public domain",
-     "side": "center",
-     "y": 560,
-     "atWord": "ticket",
-     "hold": 4.4,
-     "stamp": "ALIAS",
-     "stampWord": "Not",
-     "stampSize": 64,
-     "w": 380,
-     "tilt": 3
+     "big": "DAN COOPER",
+     "note": "Reconstructed from the FBI record. Not the original ticket.",
+     "wrong": "“D.B. Cooper”",
+     "wrongBy": "THE PRESS, 1971",
+     "cps": 55,
+     "strikeWord": "D.B.",
+     "atWord": "His",
+     "hold": 4.3,
+     "y": 560
     }
    ]
   },
@@ -222,6 +291,25 @@
      "type": "shake",
      "amount": 6,
      "atWord": "bomb"
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.5975,
+       45.5898
+      ],
+      [
+       -122.3088,
+       47.4502
+      ]
+     ],
+     "alt": 1.6,
+     "atWord": "takeoff,",
+     "dur": 2.6,
+     "hold": 3.1,
+     "size": 150
     }
    ]
   },
@@ -293,6 +381,47 @@
      "size": "md",
      "atWord": "passengers",
      "hold": 2.2
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.3,
+       47.462
+      ]
+     ],
+     "alt": 0,
+     "atWord": "Seattle,",
+     "dur": 2,
+     "hold": 4.6,
+     "size": 150,
+     "stairsOpen": false
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      -122.3088,
+      47.4502
+     ],
+     "count": 12,
+     "spread": 70,
+     "size": 40,
+     "approach": [
+      -160,
+      40
+     ],
+     "offset": [
+      -120,
+      60
+     ],
+     "atWord": "walk",
+     "hold": 2.0
     }
    ]
   },
@@ -358,6 +487,34 @@
      "size": "md",
      "atWord": "Low.",
      "hold": 2.4
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.5,
+       46.6
+      ]
+     ],
+     "alt": 2,
+     "atWord": "south,",
+     "dur": 4.4,
+     "hold": 4.5,
+     "size": 150,
+     "stairsWord": "Rear"
+    },
+    {
+     "type": "night",
+     "atWord": "south,",
+     "hold": 9.9,
+     "level": 0.7,
+     "follow": "vehicle",
+     "radius": 260
     }
    ]
   },
@@ -444,6 +601,35 @@
      "type": "shake",
      "amount": 10,
      "atWord": "jumps."
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.4,
+       47.0
+      ],
+      [
+       -122.55,
+       45.6
+      ]
+     ],
+     "alt": 1.2,
+     "atWord": "little",
+     "dur": 7,
+     "hold": 5.4,
+     "size": 200,
+     "stairsOpen": true,
+     "dropWord": "jumps."
+    },
+    {
+     "type": "night",
+     "atWord": "rain,",
+     "hold": 1.4,
+     "level": 0.0,
+     "rain": true,
+     "fadeIn": 0.3
     }
    ]
   },
@@ -499,6 +685,27 @@
      "size": "md",
      "atWord": "gone.",
      "hold": 1.6
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.235,
+       40.178
+      ],
+      [
+       -119.7681,
+       39.4991
+      ]
+     ],
+     "land": true,
+     "alt": 1.6,
+     "atWord": "plane",
+     "dur": 2.2,
+     "hold": 3.6,
+     "size": 150,
+     "stairsOpen": true
     }
    ]
   },
@@ -549,6 +756,18 @@
       0,
       60
      ]
+    },
+    {
+     "type": "night",
+     "atWord": "searches",
+     "hold": 1.8,
+     "level": 0.6,
+     "follow": [
+      -122.5,
+      45.9
+     ],
+     "radius": 330,
+     "fadeIn": 0.4
     }
    ]
   },
@@ -708,8 +927,8 @@
    "say": "Fifty-five years on, he's never found. Dan Cooper. Caught, or not?",
    "camera": {
     "center": [
-     -122.4,
-     46.5
+     -123.3,
+     46.4
     ],
     "span": 6.5,
     "pitch": 50
@@ -772,6 +991,54 @@
      ],
      "atWord": "Fifty-five",
      "hold": 6.5
+    },
+    {
+     "type": "vehicle",
+     "kind": "plane",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -122.235,
+       40.178
+      ]
+     ],
+     "from": 0.08,
+     "atWord": "Dan",
+     "dur": 3.25,
+     "hold": 3.4,
+     "size": 170,
+     "stairsOpen": true,
+     "to": 0.3,
+     "alt": 1.4
+    },
+    {
+     "type": "night",
+     "atWord": "Caught,",
+     "hold": 3,
+     "level": 0.62,
+     "follow": "vehicle",
+     "radius": 300,
+     "fadeIn": 0.6
+    },
+    {
+     "type": "verdict",
+     "options": [
+      "CAUGHT",
+      "NEVER FOUND"
+     ],
+     "pick": 1,
+     "pickWord": "never",
+     "atWord": "Fifty-five",
+     "hold": 6.5,
+     "x": 560,
+     "y": 900
     }
    ],
    "hideDate": true,

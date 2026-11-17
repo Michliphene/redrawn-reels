@@ -25,6 +25,10 @@ import { Sfx } from '../components/Sfx';
 import { BigNumbers, Archives, Callouts, GeoTexts } from '../components/Overlays';
 import { Stickers, Pointers } from '../components/Stickers';
 import { WantedPosters } from '../components/Wanted';
+import { Vehicles3D, VehicleLabels, vehicleStates } from './Vehicles3D';
+import { Night } from '../components/Night';
+import { Tickets } from '../components/Ticket';
+import { Verdicts } from '../components/Verdict';
 
 /**
  * REDRAWN, DA v2 ("tabletop"): the same cue sheet as the flat engine, played on a 3D table with a real camera.
@@ -90,6 +94,8 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const toPx = projector(cam);
   const projection = ((ll: [number, number]) => toPx(world.point(ll, world.h))) as unknown as GeoProjection;
   const groups = unitGroups(world, sched.actions, keys, t, lift);
+  const vehicles = vehicleStates(world, sched.actions, t, shot);
+  const ex = series.extra ?? {};
 
   const beatIdx = Math.max(0, timings!.beats.findIndex((b, i) => t >= b.start - 0.15 && (i === timings!.beats.length - 1 || t < timings!.beats[i + 1].start - 0.15)));
   const beat = spec!.beats[beatIdx] as any;
@@ -107,18 +113,26 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
         <TableLight shot={shot} />
         <Map3D world={world} geo={geo!} t={t} actions={sched.actions} pal={pal} shot={shot} lift={lift} />
         <Units3D groups={groups} t={t} />
+        <Vehicles3D states={vehicles} body={ex.paper ?? pal.ink} tail={pal.accent} canopy={ex.paper ?? pal.ink} />
       </PixelStage>
       <ReadabilityBands bg={pal.bg} />
+      <Night t={t} actions={sched.actions} spot={(n) => {
+        if (n.follow === 'vehicle') { const v = vehicles.find((x) => x.fade > 0.05); return v ? toPx(v.pos) : null; }
+        return Array.isArray(n.follow) ? projection(n.follow) as [number, number] : null;
+      }} />
 
       <GeoTexts t={t} actions={sched.actions} projection={projection} />
       <Labels geo={geo!} projection={projection} t={t} actions={sched.actions} end={end} legend={spec!.legend ?? true} legendTop={ZONES.title.top + 44} legendInset={SAFE.left} declutter legendOut={end - 0.6} />
       <UnitCaptions groups={groups} toPx={toPx} />
+      <VehicleLabels states={vehicles} toPx={toPx} ink={pal.ink} accent={pal.accent} />
       <Pointers t={t} actions={sched.actions} projection={projection} />
       <Stickers t={t} actions={sched.actions} projection={projection} lottieKeys={lottieKeys ?? []} />
       <FlagSwap t={t} actions={sched.actions} />
       <Archives t={t} actions={sched.actions} />
       <Portraits t={t} actions={sched.actions} credits={credits ?? {}} />
       <WantedPosters t={t} actions={sched.actions} />
+      <Tickets t={t} actions={sched.actions} />
+      <Verdicts t={t} actions={sched.actions} />
       <Callouts t={t} actions={sched.actions} />
       <BigNumbers t={t} actions={sched.actions} />
 

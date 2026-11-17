@@ -14,7 +14,7 @@ const studio = readJson(path.join(ROOT, 'public/studio.json')).series;
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer', 'wanted']);
+const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer', 'wanted', 'vehicle', 'night', 'ticket', 'verdict']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const SAFE = { top: 250, bottom: 1440 };
 
@@ -122,7 +122,7 @@ export function validate(id) {
         if (a.type !== 'callout' && type && !MONEY_ACTIONS[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
       }
-      for (const key of ['atWord', 'retreatWord', 'stampWord']) {
+      for (const key of ['atWord', 'retreatWord', 'stampWord', 'stairsWord', 'dropWord', 'strikeWord', 'pickWord']) {
         if (!a[key]) continue;
         // retreat/stamp words may be spoken in a later beat: search from this beat onwards
         const pool = key === 'atWord' ? words : spec.beats.slice(i).flatMap((bb, k) => timings?.beats[i + k]?.words.map((w) => w.w) ?? displayWords(bb.say ?? ''));
@@ -141,7 +141,9 @@ export function validate(id) {
       // layout: DA v2 keeps everything readable inside the platform safe area
       if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
       for (const l of a.lines ?? []) collect(`${where}.lines`, l);
-      for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date', 'name', 'headSub']) collect(`${where}.${k}`, a[k]);
+      for (const r of a.rows ?? []) collect(`${where}.rows`, r.join(' '));
+      for (const o of a.options ?? []) collect(`${where}.options`, o);
+      for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date', 'name', 'headSub', 'head', 'big', 'wrong']) collect(`${where}.${k}`, a[k]);
     }
     if (b.date) collect(`beat ${b.id}.date`, b.date);
   });
