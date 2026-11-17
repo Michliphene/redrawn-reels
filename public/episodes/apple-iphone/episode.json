@@ -34,7 +34,6 @@
   "services",
   "quarter",
   "storefront",
-  "subscriptions",
   "built"
  ],
  "scenes": {
@@ -42,7 +41,10 @@
    "type": "product",
    "art": "phone",
    "price": "$1,000",
-   "tag": "OF APPLE DEVICES · FY2026"
+   "tag": "OF APPLE DEVICES · FY2026",
+   "camera": {
+    "pitch": 26
+   }
   },
   "devices": {
    "type": "grid"
@@ -53,11 +55,17 @@
   "share": {
    "type": "card",
    "cardTitle": "SERVICES",
-   "cardSub": "FISCAL 2026"
+   "cardSub": "FISCAL 2026",
+   "camera": {
+    "pitch": 20
+   }
   },
   "profit": {
    "type": "bars",
-   "max": 150
+   "max": 150,
+   "camera": {
+    "pitch": 17
+   }
   },
   "point": {
    "type": "lines"
@@ -89,18 +97,21 @@
    "say": "That's huge for hardware. But it's not Apple's best business.",
    "actions": [
     {
-     "type": "callout",
-     "text": "NOT APPLE'S BEST BUSINESS",
-     "atWord": "not",
-     "hold": 1.6,
-     "size": 50
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "huge"
+    },
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "best"
     }
    ]
   },
   {
    "id": "follow",
    "scene": "devices",
-   "kicker": "$1,000 of devices · 1 tile = $10",
+   "kicker": "$1,000 of devices · our calc.",
    "say": "Follow the {$1,000|thousand dollars}.",
    "actions": []
   },
@@ -142,7 +153,7 @@
   {
    "id": "turn",
    "scene": "services",
-   "kicker": "$100 of services · 1 tile = $1",
+   "kicker": "$100 of services · our calc.",
    "say": "Now the money that comes after. Apps, iCloud, ads, AppleCare.",
    "actions": [
     {
@@ -151,9 +162,16 @@
     },
     {
      "type": "callout",
+     "text": "AFTER THE SALE",
+     "atWord": "Now",
+     "hold": 1.4,
+     "size": 50
+    },
+    {
+     "type": "callout",
      "text": "APPS · ICLOUD · ADS · APPLECARE",
      "atWord": "Apps,",
-     "hold": 2.2,
+     "hold": 2.6,
      "size": 44
     }
    ]
@@ -190,13 +208,14 @@
      "type": "stat",
      "value": "26%",
      "label": "of sales",
+     "sub": "our calculation",
      "atWord": "quarter"
     },
     {
      "type": "stat",
      "value": "40%",
-     "label": "of gross profit",
-     "sub": "our calculation",
+     "label": "of what's left",
+     "sub": "after costs · our calculation",
      "atWord": "40%"
     }
    ]
@@ -211,7 +230,7 @@
      "type": "big",
      "value": "$234B",
      "label": "gross profit · FY2026",
-     "atWord": "That's"
+     "atWord": "Two"
     },
     {
      "type": "bar",
@@ -224,7 +243,7 @@
     {
      "type": "bar",
      "label": "Services",
-     "value": 93.9,
+     "value": 94,
      "color": "#C8F53C",
      "decimals": 0,
      "atWord": "$94B"

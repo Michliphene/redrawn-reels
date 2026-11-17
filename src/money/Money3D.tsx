@@ -172,7 +172,7 @@ const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series }) => (
     {acts.filter((a) => a.type === 'ghost').map((a, i) => {
       const o = life(t, a.t, a.hold); if (o <= 0) return null;
       return (
-        <div key={i} style={{ position: 'absolute', right: 1080 - SAFE.right, top: 880, opacity: o, transform: `rotate(5deg) scale(${pop(t, a.t)})`, transformOrigin: 'right center', background: pal(series).danger, padding: '14px 26px 12px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)', textAlign: 'center' }}>
+        <div key={i} style={{ position: 'absolute', right: 1080 - SAFE.railX + 12, top: 880, opacity: o, transform: `rotate(5deg) scale(${pop(t, a.t)})`, transformOrigin: 'right center', background: pal(series).danger, padding: '14px 26px 12px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)', textAlign: 'center' }}>
           <Display size={118} color="#fff" style={{ textShadow: 'none' }}>{a.text}</Display>
           <Mono size={24} color="#fff" track={0.12} style={{ marginTop: 6, textShadow: 'none' }}>{a.label}</Mono>
         </div>
