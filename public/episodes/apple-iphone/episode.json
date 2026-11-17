@@ -6,7 +6,7 @@
  "da": 2,
  "episode": 4,
  "title": "The iPhone is a storefront",
- "whisper": "The phone is only the start.",
+ "whisper": "Services keep $76 of every $100.",
  "source": "Source: Apple annual report, fiscal 2026 (SEC filing)",
  "voice": {
   "engine": "elevenlabs",
@@ -83,9 +83,14 @@
      "atWord": "$1,000"
     },
     {
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "Apple"
+    },
+    {
      "type": "ghost",
      "text": "$390",
-     "label": "LEFT AFTER COSTS",
+     "label": "LEFT · ALL DEVICES AVG",
      "atWord": "$390",
      "hold": 2.2
     }
@@ -186,8 +191,8 @@
      "color": "#FF6B5E",
      "amount": "$24",
      "label": "cost of services",
-     "atWord": "$100",
-     "dur": 1.2
+     "atWord": "Of",
+     "dur": 1.6
     },
     {
      "type": "rest",
@@ -260,7 +265,7 @@
   {
    "id": "point",
    "scene": "point",
-   "kicker": "The real product",
+   "kicker": "So what are you buying?",
    "say": "So the iPhone isn't just the product. It's the storefront.",
    "actions": [
     {
