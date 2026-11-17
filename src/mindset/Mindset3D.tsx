@@ -94,12 +94,12 @@ const CUBE_H = 0.62, TOWER_X = 3.3, CUBE_W = 1.45;
 const cubeAt = (i: number, n: number): [number, number] => (n > 5 ? [(i % 2 ? 0.76 : -0.76), Math.floor(i / 2)] : [0, i]);
 const towerRows = (n: number) => (n > 5 ? Math.ceil(n / 2) : n);
 const stackOf = (acts: A[], side: string) => acts.find((a) => a.type === 'stack' && a.side === side);
-const lightOf = (acts: A[], side: string) => acts.find((a) => a.type === 'light' && a.side === side);
+const lightOf = (acts: A[], side: string, t = 0) => acts.find((a) => a.type === 'light' && a.side === side && !(a.until != null && t >= a.until));
 const StacksStation: React.FC<StationProps> = ({ t, acts, ox, series }) => (
   <group position={[ox, 0, 0]}>
     <mesh geometry={box} position={[0, 0.06, 0]} scale={[10.6, 0.12, 4]} receiveShadow><meshLambertMaterial color={pal(series).surface} /></mesh>
     {(['left', 'right'] as const).map((side) => {
-      const s = stackOf(acts, side), l = lightOf(acts, side), x = side === 'left' ? -TOWER_X : TOWER_X;
+      const s = stackOf(acts, side), l = lightOf(acts, side, t), x = side === 'left' ? -TOWER_X : TOWER_X;
       if (!s) return null;
       const n = s.count ?? 0;
       return (
@@ -128,7 +128,7 @@ const StacksStation: React.FC<StationProps> = ({ t, acts, ox, series }) => (
 );
 
 /* ------------------------------------------------------------------ trials */
-const PED_X = (i: number) => (i - 1) * 3.7, PL = 0.34;
+const PED_X = (i: number) => (i - 1) * 4.0, PL = 0.34;
 const launches = (acts: A[]) => acts.filter((a) => a.type === 'launch');
 const TrialsStation: React.FC<StationProps> = ({ t, acts, ox, series }) => {
   const L = launches(acts), learn = acts.find((a) => a.type === 'learn');
@@ -136,6 +136,11 @@ const TrialsStation: React.FC<StationProps> = ({ t, acts, ox, series }) => {
   return (
     <group position={[ox, 0, 0]}>
       <mesh geometry={box} position={[0, 0.06, 0]} scale={[12, 0.12, 4]} receiveShadow><meshLambertMaterial color={shade(P.surface, -0.15)} /></mesh>
+      {/* shop front: striped awning on two posts */}
+      {Array.from({ length: 12 }, (_, k) => (
+        <mesh key={`aw${k}`} geometry={box} position={[-5.5 + k + 0.5, 4.3, -1.7]} rotation={[0.5, 0, 0]} scale={[1, 0.12, 1.5]} castShadow><meshLambertMaterial color={k % 2 ? P.ink : P.danger} /></mesh>
+      ))}
+      {[-5.6, 5.6].map((x) => <mesh key={x} geometry={box} position={[x, 2.1, -2.2]} scale={[0.22, 4.2, 0.22]} castShadow><meshLambertMaterial color={shade(P.surface, 0.2)} /></mesh>)}
       {[0, 1, 2].map((i) => {
         const a = L[i], x = PED_X(i);
         const born = a ? pop(t, a.t, 0.35) : 0;
@@ -178,7 +183,7 @@ const RoadStation: React.FC<StationProps> = ({ t, acts, ox, series }) => {
   const P = pal(series), p = pawnAt(t, acts), halt = acts.find((x) => x.type === 'halt');
   const walks = acts.filter((x) => x.type === 'walk');
   const resume = halt ? walks.find((w) => w.t > halt.t) : undefined;
-  const bar = halt ? pop(t, halt.t, 0.3) * (resume ? 1 - ease.in3(ramp(t, resume.t, 0.25)) : 1) : 0;
+  const bar = halt ? pop(t, halt.t, 0.3) * (resume ? 1 - ease.in3(ramp(t, resume.t, 0.5)) : 1) : 0;
   return (
     <group position={[ox, 0, 0]}>
       {Array.from({ length: TILES }, (_, i) => {
@@ -206,7 +211,7 @@ function frameOf(def: any, ox: number): { pts: Vec3[]; rect: Rect; base: { pitch
   switch (def.type) {
     case 'papers': return { pts: boxPts(ox, 10.2, 0, 2.7, 2.6), rect: { left: L, right: R, top: 600, bottom: 925 }, base: { pitch: 17, yaw: -14, fov: 26 } };
     case 'stacks': return { pts: boxPts(ox, 10, 0, 4.3, 3.2), rect: { left: L + 10, right: R - 10, top: 660, bottom: 1010 }, base: { pitch: 15, yaw: -12, fov: 28 } };
-    case 'trials': return { pts: boxPts(ox, 10.6, 0, 3.6, 2.4), rect: { left: L - 10, right: R + 10, top: 610, bottom: 960 }, base: { pitch: 18, yaw: -16, fov: 26 } };
+    case 'trials': return { pts: boxPts(ox, 11.6, 0, 4.6, 3.4), rect: { left: L - 10, right: R + 10, top: 610, bottom: 960 }, base: { pitch: 18, yaw: -16, fov: 26 } };
     default: return { pts: boxPts(ox + TILE_X(ROAD_VIEW), 8 * 1.3, 0, 2.6, 1.8), rect: { left: L - 30, right: R + 30, top: 600, bottom: 905 }, base: { pitch: 17, yaw: -24, fov: 32 } };
   }
 }
@@ -234,7 +239,7 @@ const PapersOverlay: React.FC<OverlayProps> = ({ t, acts, def, series }) => {
 const StacksOverlay: React.FC<OverlayProps> = ({ t, acts, series, toPx, ox }) => (
   <>
     {(['left', 'right'] as const).map((side) => {
-      const s = stackOf(acts, side), l = lightOf(acts, side);
+      const s = stackOf(acts, side), l = lightOf(acts, side, t);
       if (!s) return null;
       const x = ox + (side === 'left' ? -TOWER_X : TOWER_X), n = s.count ?? 0;
       const top = toPx([x, 0.12 + towerRows(n) * (CUBE_H + 0.05) * (s.tall ?? 1) + 0.1, 0]), foot = toPx([x, 0.12, 1.6]);
@@ -246,7 +251,7 @@ const StacksOverlay: React.FC<OverlayProps> = ({ t, acts, series, toPx, ox }) =>
             <Display size={104} color={lit ? (l!.dim ? pal(series).danger : pal(series).accent) : s.color === 'ink' ? pal(series).ink : pal(series).danger} stroke={7}>{lit && s.lightValue != null ? s.lightValue : s.value ?? n}</Display>
           </div>
           <div style={{ position: 'absolute', left: foot[0], top: foot[1] + 26, transform: 'translateX(-50%)', opacity: shown, width: 330, textAlign: 'center' }}>
-            <Mono size={24} color={pal(series).ink} track={0.08} style={{ whiteSpace: 'normal', lineHeight: 1.25 }}>{lit && s.lightLabel ? s.lightLabel : s.label}</Mono>
+            <Mono size={30} color={pal(series).ink} track={0.08} style={{ whiteSpace: 'normal', lineHeight: 1.25 }}>{lit && s.lightLabel ? s.lightLabel : s.label}</Mono>
           </div>
         </React.Fragment>
       );
@@ -258,10 +263,10 @@ const TrialsOverlay: React.FC<OverlayProps> = ({ t, acts, series, toPx, ox }) =>
   <>
     {launches(acts).slice(0, 3).map((a, i) => {
       const foot = toPx([ox + PED_X(i), 0, 1.5]);
-      const color = a.outcome === 'sale' ? pal(series).accent : a.outcome === 'flop' ? pal(series).danger : pal(series).muted;
+      const color = a.outcome === 'sale' ? pal(series).accent : a.outcome === 'flop' ? pal(series).danger : shade(pal(series).muted, 0.45);
       return (
-        <div key={i} style={{ position: 'absolute', left: foot[0], top: foot[1] + 22, transform: `translateX(-50%) scale(${Math.min(1.08, pop(t, a.t + 0.2, 0.3))})`, opacity: ramp(t, a.t + 0.2, 0.2), textAlign: 'center', width: 300 }}>
-          <Mono size={25} color={color} track={0.1} weight={800} style={{ whiteSpace: 'normal', lineHeight: 1.2 }}>{a.label}</Mono>
+        <div key={i} style={{ position: 'absolute', left: foot[0], top: foot[1] + 22, transform: `translateX(-50%) scale(${Math.min(1.08, pop(t, a.t + 0.2, 0.3))})`, opacity: ramp(t, a.t + 0.2, 0.2), textAlign: 'center', width: 240 }}>
+          <Mono size={26} color={color} track={0.06} weight={800} style={{ whiteSpace: 'normal', lineHeight: 1.2 }}>{a.label}</Mono>
         </div>
       );
     })}
@@ -276,8 +281,8 @@ const RoadOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => (
       return (
         <div key={i} style={{ position: 'absolute', left: SAFE.left, top: 936, opacity: ramp(t, a.t, 0.15), transform: `scale(${Math.min(1.06, pop(t, a.t))})`, transformOrigin: 'left center' }}>
           <Display size={150} color={pal(series).accent} stroke={6}>{fmtInt(v)}</Display>
-          <Mono size={25} color={pal(series).ink} track={0.1} style={{ marginTop: 10 }}>{a.label}</Mono>
-          {a.sub && <Mono size={20} color={pal(series).muted} track={0.06} weight={600} style={{ marginTop: 8 }}>{a.sub}</Mono>}
+          <Mono size={30} color={pal(series).ink} track={0.1} style={{ marginTop: 10 }}>{a.label}</Mono>
+          {a.sub && <Mono size={26} color={pal(series).ink} track={0.06} weight={600} style={{ marginTop: 10, opacity: 0.85 }}>{a.sub}</Mono>}
         </div>
       );
     })}
@@ -326,6 +331,8 @@ export const Mindset3D: React.FC<MindsetProps> = ({ episodeId, spec, timings, co
     });
     const byScene: Record<string, A[]> = {};
     for (const a of acts) (byScene[sceneOfBeat[a.beat]] ??= []).push(a);
+    // loop: in the last 0.45 s (title back on screen) the lit/dimmed towers return to their frame-0 colours
+    for (const a of acts) if (a.type === 'light') a.until = end - 0.45;
     // one station per scene; a `lines` scene is played over the station named in `over`
     const ids = Object.keys(spec.scenes);
     const origin: Record<string, number> = {}; let slot = 0;
@@ -363,6 +370,7 @@ export const Mindset3D: React.FC<MindsetProps> = ({ episodeId, spec, timings, co
   // two signature moves, one each: the world tilts when the rules flip, and a dolly zoom when you stop
   const flipA = acts.find((a) => a.type === 'flip'), haltA = acts.find((a) => a.type === 'halt');
   if (flipA) shot = { ...shot, roll: (shot.roll ?? 0) + Math.sin(ramp(t, flipA.t, 1.1) * Math.PI) * 6 * (1 - ramp(t, flipA.t + 0.55, 0.55)) };
+  const fogDist = shot.dist;
   if (haltA) shot = dollyZoom(shot, shot.fov * (1 + 0.9 * hit(t, haltA.t, 0.55, 1.4)));
   shot = { ...shot, yaw: shot.yaw + (drift(t, 3, 0.7) * 2 + Math.sin((t - seg.from) * 0.5) * 6) * (1 - back), pitch: shot.pitch + drift(t, 5, 0.7) * 0.8 * (1 - back) };
   const cam = makeCamera(shot);
@@ -377,10 +385,10 @@ export const Mindset3D: React.FC<MindsetProps> = ({ episodeId, spec, timings, co
 
   return (
     <AbsoluteFill style={{ background: P.bg }}>
-      <PixelStage look={series.look} camera={cam} bg={P.bg} fog={[shot.dist * 1.25, shot.dist * 3.6]}>
+      <PixelStage look={series.look} camera={cam} bg={P.bg} fog={[fogDist * 1.25, fogDist * 3.6]}>
         <TableLight shot={shot} azimuth={-42} elevation={50} />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[shot.target[0], 0, 0]} receiveShadow>
-          <planeGeometry args={[900, 900]} />
+          <planeGeometry args={[2400, 2400]} />
           <meshLambertMaterial color={P.bgGlow} />
         </mesh>
         <FloorLines color={P.grid} around={shot.target[0]} />
@@ -409,7 +417,7 @@ export const Mindset3D: React.FC<MindsetProps> = ({ episodeId, spec, timings, co
         const sg = segs.find((s) => a.t >= s.from - 0.01 && a.t < s.to)!;
         const o = Math.min(life(t, a.t, a.hold ?? 2), 1 - ramp(t, sg.to - 0.15, 0.15)); if (o <= 0) return null;
         return (
-          <div key={i} style={{ position: 'absolute', left: SAFE.left, top: a.y != null ? Math.min(a.y, 1082) : 1082, maxWidth: SAFE_W - 60, opacity: o, transform: `scale(${Math.min(1.06, pop(t, a.t))})`, transformOrigin: 'left center',
+          <div key={i} style={{ position: 'absolute', left: SAFE.left, top: a.y != null ? Math.min(a.y, 1082) : spec.scenes[sg.id]?.type === 'road' ? 640 : 1082, maxWidth: SAFE_W - 60, opacity: o, transform: `scale(${Math.min(1.06, pop(t, a.t))})`, transformOrigin: 'left center',
             background: a.color ?? P.accent, padding: '12px 20px 8px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)' }}>
             <Display size={Math.min(56, (a.size ?? 58) * 1.04)} color={P.bg} style={{ textShadow: 'none' }}>{a.text}</Display>
           </div>
@@ -424,7 +432,7 @@ export const Mindset3D: React.FC<MindsetProps> = ({ episodeId, spec, timings, co
         return <Kicker key={i} text={s.kicker} series={series} opacity={o} top={ZONES.title.top + 6} size={84} />;
       })}
       {!cover && <Captions timings={timings!} t={t} accent={P.accent} ink={P.ink} keywords={spec.keywords ?? []} />}
-      {spec.source && <Mono size={20} color={P.muted} track={0.06} weight={600} style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</Mono>}
+      {spec.source && <Mono size={24} color={P.muted} track={0.06} weight={600} style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</Mono>}
 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}
