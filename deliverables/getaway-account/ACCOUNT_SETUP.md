@@ -18,7 +18,7 @@ No text (unreadable at 110 px). Checked at 220, 110, 56 and 32 px: `avatar_previ
 ```
 Famous heists & escapes, traced on a map. Caught or not? Every claim sourced.
 ```
-**Instagram** (134/150):
+**Instagram** (123/150):
 ```
 🗺️ Famous heists & escapes, traced on a map
 🔎 Caught… or not? Guess before the stamp
