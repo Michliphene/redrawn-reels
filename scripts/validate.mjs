@@ -17,7 +17,8 @@ const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const MINDSET_ACTIONS = { papers: ['mark', 'flip', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
-const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS };
+const DOODLE_ACTIONS = { duel: ['shine', 'light'], race: ['trip'], class: ['mark', 'flip'], bin: ['ignore', 'fly'], shop: ['open', 'launch', 'bulb'], pile: ['count', 'walk', 'halt'] };
+const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS, Doodle: DOODLE_ACTIONS };
 const SAFE = { top: 250, bottom: 1440 };
 
 export function seriesIdOf(spec) {

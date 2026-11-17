@@ -16,7 +16,7 @@ const isNumber = (w: string) => /\d/.test(w) || /^[$£€]/.test(w) || /%$/.test
 
 type Page = { words: Word[]; lines: Word[][] };
 
-function paginate(timings: Timings, maxChars: number, maxLines: number, hidden: Record<string, string[]>): Page[] {
+export function paginate(timings: Timings, maxChars: number, maxLines: number, hidden: Record<string, string[]>): Page[] {
   const pages: Page[] = [];
   const close = (ws: Word[]) => {
     if (!ws.length) return;

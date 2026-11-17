@@ -1,0 +1,281 @@
+{
+ "id": "fail-ten-times-doodle",
+ "composition": "Doodle",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 1,
+ "audio": "fail-ten-times",
+ "title": "Ten failures vs. one A+",
+ "whisper": "Which one teaches you more?",
+ "source": "Dyson figure: his own account, Fast Company (2007)",
+ "keywords": [
+  "failures",
+  "failure",
+  "lessons",
+  "flip.",
+  "works.",
+  "stop.",
+  "information.",
+  "zero.",
+  "perfect"
+ ],
+ "scenes": {
+  "open": {
+   "type": "duel",
+   "side": "front",
+   "slot": 0
+  },
+  "race": {
+   "type": "race",
+   "side": "front",
+   "slot": 1
+  },
+  "school": {
+   "type": "class",
+   "side": "front",
+   "slot": 2,
+   "grades": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F"
+   ]
+  },
+  "bin": {
+   "type": "bin",
+   "side": "back",
+   "slot": 0
+  },
+  "shop": {
+   "type": "shop",
+   "side": "back",
+   "slot": 1,
+   "callout": [
+    540,
+    415
+   ]
+  },
+  "pile": {
+   "type": "pile",
+   "side": "back",
+   "slot": 2,
+   "callout": [
+    500,
+    420
+   ]
+  },
+  "end": {
+   "type": "duel",
+   "side": "back",
+   "slot": 3,
+   "callout": [
+    64,
+    430
+   ]
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "open",
+   "say": "Ten failures teach you more than a perfect record.",
+   "actions": [
+    {
+     "type": "shine",
+     "side": "right",
+     "atWord": "perfect"
+    }
+   ]
+  },
+  {
+   "id": "think",
+   "scene": "race",
+   "kicker": "Most people think",
+   "say": "Most people think failing means falling behind.",
+   "actions": [
+    {
+     "type": "trip",
+     "atWord": "failing"
+    }
+   ]
+  },
+  {
+   "id": "grade",
+   "scene": "school",
+   "kicker": "At school",
+   "say": "And at school, they're right. Every mistake costs you a grade.",
+   "actions": [
+    {
+     "type": "mark",
+     "atWord": "school,"
+    },
+    {
+     "type": "mark",
+     "atWord": "right."
+    },
+    {
+     "type": "mark",
+     "atWord": "mistake"
+    },
+    {
+     "type": "mark",
+     "atWord": "grade."
+    }
+   ]
+  },
+  {
+   "id": "flip",
+   "kicker": "But out here",
+   "say": "But out here, the rules flip.",
+   "actions": [
+    {
+     "type": "flip",
+     "atWord": "flip."
+    }
+   ]
+  },
+  {
+   "id": "count",
+   "scene": "bin",
+   "kicker": "Out here",
+   "say": "Nobody counts your mistakes. They count what finally works.",
+   "actions": [
+    {
+     "type": "ignore",
+     "atWord": "Nobody"
+    },
+    {
+     "type": "fly",
+     "atWord": "works."
+    }
+   ]
+  },
+  {
+   "id": "store",
+   "scene": "shop",
+   "kicker": "Picture this",
+   "say": "Picture launching an online store.",
+   "actions": [
+    {
+     "type": "open",
+     "atWord": "launching"
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "say": "Product one flops. Product two gets ignored. Product three sells a little.",
+   "actions": [
+    {
+     "type": "launch",
+     "outcome": "flop",
+     "atWord": "one"
+    },
+    {
+     "type": "launch",
+     "outcome": "ignored",
+     "atWord": "two"
+    },
+    {
+     "type": "launch",
+     "outcome": "sale",
+     "atWord": "three"
+    }
+   ]
+  },
+  {
+   "id": "want",
+   "say": "Each miss tells you what people actually want.",
+   "actions": [
+    {
+     "type": "bulb",
+     "atWord": "Each"
+    },
+    {
+     "type": "callout",
+     "text": "Every miss is data",
+     "atWord": "tells",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "dyson",
+   "scene": "pile",
+   "kicker": "A real one",
+   "say": "James Dyson says he built {5,126|five thousand, one hundred and twenty-six} failed prototypes before one worked.",
+   "actions": [
+    {
+     "type": "walk",
+     "to": 0.55,
+     "dur": 6.2,
+     "atWord": "James"
+    },
+    {
+     "type": "count",
+     "value": 5126,
+     "dur": 2.0,
+     "atWord": "5,126"
+    }
+   ]
+  },
+  {
+   "id": "stop",
+   "say": "Failure only gets expensive when you stop.",
+   "actions": [
+    {
+     "type": "halt",
+     "atWord": "stop."
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "say": "Keep going, and every failure becomes information.",
+   "actions": [
+    {
+     "type": "walk",
+     "to": 1,
+     "dur": 2.0,
+     "atWord": "going,"
+    },
+    {
+     "type": "callout",
+     "text": "Failure = information",
+     "atWord": "every",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "ten",
+   "scene": "end",
+   "say": "Ten failures? Ten lessons.",
+   "actions": [
+    {
+     "type": "light",
+     "side": "left",
+     "atWord": "lessons."
+    }
+   ]
+  },
+  {
+   "id": "zero",
+   "say": "A perfect record? Zero.",
+   "actions": [
+    {
+     "type": "light",
+     "side": "right",
+     "dim": true,
+     "atWord": "Zero."
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "So the next time you fail, remember…"
+  }
+ ]
+}

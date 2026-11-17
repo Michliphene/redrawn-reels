@@ -40,3 +40,18 @@ for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.
 | # | id | Format | Status |
 |---|---|---|---|
 | 001 | `fail-ten-times` | D. myth-bust | rendered, under review |
+
+## Second art direction: the notebook (`composition: "Doodle"`, `src/doodle/`)
+Ballpoint stick figures on squared paper; the reel is one long sheet, each scene a page the camera slides to
+(`side` front/back, `slot` n), a spiral binding between pages. Signature moves: `flip` turns the page over (the rules
+flip), the line "boils" every 3 frames like a flip-book, highlighter on keywords, sticky notes for callouts.
+Fonts: house fonts + Caveat Bold (handwriting on the page, OFL, `public/fonts/Caveat-latin-700.woff2`).
+| type | Page | Cues |
+|---|---|---|
+| `duel` | 10 plasters vs a guy holding an A+ | `shine` {side} · `light` {side, dim} (plasters → bulbs; A+ guy → "0" bubble) |
+| `race` | runners on a progress line | `trip` (the hero falls, "falling behind?") |
+| `class` | a student at a desk, a test on the wall | `mark` (red ✗, grade drops, the student slumps) · `flip` |
+| `bin` | paper balls into a bin, a judge looking away | `ignore` (scribble over "mistakes") · `fly` (paper plane, the judge turns, ✓) |
+| `shop` | an online store drawn as a browser window | `open` · `launch` {outcome} · `bulb` |
+| `pile` | a hill of crumpled tries, a climber | `count` {value} · `walk` {to 0–1, dur} · `halt` (sits, punch-in) |
+Episode: `fail-ten-times-doodle` (same voice as `fail-ten-times` via `audio`).

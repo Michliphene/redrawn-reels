@@ -12,6 +12,8 @@ export const FONT = {
   serif: 'Instrument Serif',
   mono: 'JetBrains Mono',
   legacy: 'Montserrat',
+  /** handwriting: notebook / doodle art direction only (labels written on the page) */
+  hand: 'Caveat',
   /** the display face locked to its condensed cut: a drop-in family name for components that only set fontFamily */
   displayCondensed: 'Studio Display',
 } as const;
@@ -24,6 +26,7 @@ export const displayCut = (weight = 800, width = 75): React.CSSProperties => ({
   fontVariationSettings: `'wdth' ${width}`,
 });
 export const serifCut: React.CSSProperties = { fontFamily: `'${FONT.serif}', Georgia, serif`, fontStyle: 'italic', fontWeight: 400 };
+export const handCut: React.CSSProperties = { fontFamily: `'${FONT.hand}', cursive`, fontWeight: 700 };
 export const monoCut = (weight = 700): React.CSSProperties => ({ fontFamily: `'${FONT.mono}', monospace`, fontWeight: weight });
 
 const LATIN = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
@@ -39,6 +42,7 @@ const FACES: Face[] = [
   { family: FONT.serif, file: 'InstrumentSerif-Italic-latin-ext.woff2', descriptors: { style: 'italic', weight: '400', unicodeRange: LATIN_EXT } },
   { family: FONT.mono, file: 'JetBrainsMono-latin.woff2', descriptors: { weight: '100 800', unicodeRange: LATIN } },
   { family: FONT.legacy, file: 'Montserrat-VF.ttf', descriptors: { weight: '100 900' } },
+  { family: FONT.hand, file: 'Caveat-latin-700.woff2', descriptors: { weight: '700', unicodeRange: LATIN } },
 ];
 
 let started = false;
