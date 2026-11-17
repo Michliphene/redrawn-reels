@@ -4,7 +4,7 @@
  "da": 2,
  "episode": 1,
  "title": "Caught or not?",
- "whisper": "The man who jumped with $200,000 · 1971",
+ "whisper": "The D.B. Cooper case · $200,000 · 1971",
  "data": "data/getaway-001-dbcooper.geojson",
  "timeline": {
   "from": "1971-01-01",
@@ -50,6 +50,22 @@
    },
    "actions": [
     {
+     "type": "wanted",
+     "key": "cooper_sketch",
+     "name": "Dan Cooper",
+     "headSub": "Air piracy · 1971",
+     "lines": [
+      "Identity: unknown."
+     ],
+     "credit": "FBI composite sketch · public domain",
+     "side": "left",
+     "y": 560,
+     "w": 400,
+     "tilt": -2,
+     "atTime": 0,
+     "hold": 3.6
+    },
+    {
      "type": "path",
      "coords": [
       [
@@ -61,32 +77,31 @@
        45.65
       ],
       [
-       -121.2,
-       43.2
+       -122.235,
+       40.178
       ]
+     ],
+     "color": "#E0312B",
+     "width": 3,
+     "label": "ROUTE · APPROX.",
+     "labelAt": [
+      -123.35,
+      46.3
      ],
      "atTime": 0,
      "from": 0.35,
      "dur": 1.6,
-     "hold": 3.2,
-     "color": "#E0312B",
-     "width": 3
+     "hold": 3.4
     },
     {
-     "type": "wanted",
-     "key": "cooper_sketch",
-     "name": "Dan Cooper",
-     "headSub": "Air piracy · 1971",
-     "lines": [
-      "Identity: unknown."
+     "type": "marker",
+     "text": "Seattle",
+     "at": [
+      -122.3088,
+      47.4502
      ],
-     "credit": "FBI composite sketch · public domain",
-     "side": "left",
-     "y": 560,
-     "w": 340,
-     "tilt": -2,
-     "atTime": 0,
-     "hold": 3.6
+     "atTime": 0.3,
+     "hold": 3.4
     }
    ]
   },
@@ -361,6 +376,33 @@
    },
    "actions": [
     {
+     "type": "path",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -122.235,
+       40.178
+      ]
+     ],
+     "color": "#E0312B",
+     "width": 3,
+     "label": "ROUTE · APPROX.",
+     "labelAt": [
+      -123.2,
+      46.9
+     ],
+     "atWord": "little",
+     "dur": 2.2,
+     "hold": 4.6
+    },
+    {
      "type": "marker",
      "text": "Seattle",
      "at": [
@@ -503,21 +545,10 @@
      "spread": 110,
      "atWord": "woods",
      "hold": 2.4,
-     "caption": "Searchers (symbolic)",
      "offset": [
       0,
       60
      ]
-    },
-    {
-     "type": "region",
-     "text": "FBI SEARCH AREA · 1971",
-     "at": [
-      -122.5,
-      46.2
-     ],
-     "atWord": "searches",
-     "hold": 2.8
     }
    ]
   },
@@ -641,15 +672,6 @@
    "actions": [
     {
      "type": "callout",
-     "text": "1,000+ INVESTIGATED",
-     "sub": "no suspect proven",
-     "atWord": "thousand",
-     "y": 880,
-     "size": 64,
-     "hold": 3.4
-    },
-    {
-     "type": "callout",
      "text": "CASE INACTIVE",
      "sub": "FBI · 8 Jul 2016",
      "atWord": "stops",
@@ -661,6 +683,23 @@
      "type": "date",
      "date": "2016-07-08",
      "atWord": "2016,"
+    },
+    {
+     "type": "wanted",
+     "key": "cooper_sketch",
+     "name": "Dan Cooper",
+     "headSub": "Persons of interest",
+     "lines": [
+      "1,000+ investigated.",
+      "No suspect proven."
+     ],
+     "credit": "FBI composite sketch · public domain",
+     "side": "center",
+     "w": 380,
+     "y": 560,
+     "tilt": 2,
+     "atWord": "thousand",
+     "hold": 3.4
     }
    ]
   },
@@ -688,13 +727,51 @@
      "credit": "FBI composite sketch · public domain",
      "side": "left",
      "y": 560,
-     "w": 340,
+     "w": 400,
      "tilt": -2,
      "atWord": "Fifty-five",
      "hold": 6.5,
      "stamp": "NEVER FOUND",
      "stampWord": "never",
-     "stampSize": 46
+     "stampSize": 60
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -122.3088,
+       47.4502
+      ],
+      [
+       -122.65,
+       45.65
+      ],
+      [
+       -122.235,
+       40.178
+      ]
+     ],
+     "color": "#E0312B",
+     "width": 3,
+     "label": "ROUTE · APPROX.",
+     "labelAt": [
+      -123.35,
+      46.3
+     ],
+     "atWord": "Fifty-five",
+     "from": 0.35,
+     "dur": 1.2,
+     "hold": 6.5
+    },
+    {
+     "type": "marker",
+     "text": "Seattle",
+     "at": [
+      -122.3088,
+      47.4502
+     ],
+     "atWord": "Fifty-five",
+     "hold": 6.5
     }
    ],
    "hideDate": true,
@@ -710,5 +787,6 @@
    "speed": 1.05
   },
   "maxPause": 0.32
- }
+ },
+ "whisperOnFrame0": true
 }

@@ -127,7 +127,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
       {!cover && !beat?.hideTimeline && spec!.timeline && (
         <Rail from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} series={series} opacity={ramp(t, hookEnd - 0.2, 0.4) * (1 - ramp(t, end - 0.5, 0.3))} />
       )}
-      <TitleBlock title={spec!.title} whisper={sx.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + (cover ? 0 : 6)} />
+      <TitleBlock title={spec!.title} whisper={sx.whisper} series={series} opacity={titleO} t={t} instant={!!sx.whisperOnFrame0} top={ZONES.title.top + (cover ? 0 : 6)} />
       {!beat?.hideDate && <DateBlock dates={sched.dates} chapters={beat?.hideChapter ? [] : chapters} t={t} series={series} opacity={headO} />}
       {!cover && <Captions timings={timings!} t={t} accent={pal.accent} ink={pal.ink} keywords={sx.keywords ?? []} hidden={hidden} />}
 
