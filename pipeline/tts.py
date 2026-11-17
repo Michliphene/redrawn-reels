@@ -138,10 +138,31 @@ def stamp(ep_dir, h):
     t = json.load(open(p)); t["say_hash"] = h
     json.dump(t, open(p, "w"), indent=1, ensure_ascii=False)
 
+def series_of(ep):
+    """Channel of an episode, same rules as src/studio/series.ts: channel > seriesId > series name > redrawn."""
+    series = json.load(open(os.path.join(ROOT, "public", "studio.json")))["series"]
+    slug = lambda s: re.sub(r"[^a-z0-9]", "", str(s or "").lower())
+    for k in (ep.get("channel"), ep.get("seriesId")):
+        if k in series: return k, series[k]
+    for k, v in series.items():
+        if slug(ep.get("series")) in [slug(k), slug(v["name"])] + [slug(n) for n in v.get("legacyNames", [])]: return k, v
+    return "redrawn", series["redrawn"]
+
+def load_episode(ep_dir):
+    """episode.json with the channel's voice filled in when the episode does not set its own."""
+    ep = json.load(open(os.path.join(ep_dir, "episode.json")))
+    if "voice" not in ep:
+        sid, s = series_of(ep)
+        if "voice" not in s: sys.exit(f"!! no voice in episode.json and none for channel {sid} in public/studio.json")
+        if "TBD" in s["voice"].get("voice_id", ""): sys.exit(f"!! channel {sid}: pick a voice first (studio.json voice_id is TBD)")
+        ep["voice"] = json.loads(json.dumps(s["voice"]))
+        ep["voice"].update(ep.pop("voiceOverride", {}))  # e.g. {"respell": {...}} for one episode
+    return ep
+
 def main():
     ep_id = sys.argv[1]
     ep_dir = os.path.join(ROOT, "public", "episodes", ep_id)
-    ep = json.load(open(os.path.join(ep_dir, "episode.json")))
+    ep = load_episode(ep_dir)
     # Never re-synthesise a voice that is still current: a new take shifts every cue and costs credits.
     tp, vp = os.path.join(ep_dir, "timings.json"), os.path.join(ep_dir, "voice.wav")
     if "--force" not in sys.argv and os.path.exists(tp) and os.path.exists(vp):

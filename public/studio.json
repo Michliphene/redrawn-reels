@@ -9,7 +9,10 @@
         "REDRAWN"
       ],
       "composition": "Episode",
-      "episodeTag": "EP {n}"
+      "episodeTag": "EP {n}",
+      "post": {
+        "footer": "REDRAWN: map history in under a minute."
+      }
     },
     "receipts": {
       "name": "RECEIPTS",

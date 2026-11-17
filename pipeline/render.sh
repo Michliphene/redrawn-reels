@@ -28,13 +28,15 @@ CHROME="${REMOTION_CHROME:-$(ls -d /opt/pw-browsers/chromium_headless_shell-*/ch
 if [ "$VALIDATE" = 1 ]; then step "pre-flight"; node scripts/validate.mjs "$ID"; fi
 
 # 2. which composition renders it, whose audio it uses
-read -r COMP AUDIO < <(python3 - "$ID" <<'PY'
+read -r COMP AUDIO MUSIC < <(python3 - "$ID" <<'PY'
 import json, re, sys
 ep = json.load(open(f"public/episodes/{sys.argv[1]}/episode.json"))
 series = json.load(open("public/studio.json"))["series"]
 slug = lambda s: re.sub(r"[^a-z0-9]", "", str(s or "").lower())
-sid = ep.get("seriesId") if ep.get("seriesId") in series else next((k for k, v in series.items() if slug(ep.get("series")) in [slug(k), slug(v["name"])] + [slug(n) for n in v.get("legacyNames", [])]), None)
-print(ep.get("composition") or (series[sid]["composition"] if sid else "Episode"), ep.get("audio") or sys.argv[1])
+# channel > seriesId > series name (same rules as src/studio/series.ts)
+sid = next((k for k in (ep.get("channel"), ep.get("seriesId")) if k in series), None) or next((k for k, v in series.items() if slug(ep.get("series")) in [slug(k), slug(v["name"])] + [slug(n) for n in v.get("legacyNames", [])]), None)
+music = ep.get("music") or (series[sid].get("music") if sid else None) or "ambient"
+print(ep.get("composition") or (series[sid]["composition"] if sid else "Episode"), ep.get("audio") or sys.argv[1], music)
 PY
 )
 AEP="public/episodes/$AUDIO"
@@ -52,7 +54,7 @@ fi
 DUR=$(python3 -c "import json;print(json.load(open('$AEP/timings.json'))['duration']+1)")
 if [ ! -f "$AEP/music.lock" ]; then
   HAVE=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$AEP/music.wav" 2>/dev/null || echo 0)
-  if python3 -c "import sys;sys.exit(0 if float('${HAVE:-0}') < float('$DUR') else 1)"; then step "music"; pipeline/music.sh "$AUDIO" "$DUR"; fi
+  if python3 -c "import sys;sys.exit(0 if float('${HAVE:-0}') < float('$DUR') else 1)"; then step "music ($MUSIC)"; pipeline/music.sh "$AUDIO" "$DUR" "$MUSIC"; fi
 fi
 
 # 5. render (two attempts: a headless browser can die on a busy machine). The WebGL back-end comes from remotion.config.ts.
