@@ -120,7 +120,8 @@ south → 12, 13 · jump → 14, 16 (+ debated 1) · reno → 17 · hunt → 19 
 status → 24, 25 · end → 23, 24, 28, stamp wording below.
 
 ## Pinned comment
+Same text as `deliverables/getaway-001-dbcooper/POSTING.md` → Pinned comment (keep both identical).
 ```
-Sources: FBI "D.B. Cooper Hijacking" (fbi.gov/history/famous-cases) and FBI Seattle statement of 12 July 2016; FBI ticket and evidence pages; HistoryLink essays 1997 & 23059 (1980 money find); Columbia Journalism Review on the "D.B." name. Sketch: FBI composite, public domain. Map: US Census / Natural Earth (public domain). The drop zone is disputed: the box on the map is a broad approximate area, not a location. The route is approximate. No suspect is named: over 1,000 people were investigated and none was proven.
-Caught or not? Where do you think he landed?
+Sources: FBI "D.B. Cooper Hijacking" (fbi.gov, famous cases) and FBI Seattle statement of 12 July 2016; FBI ticket and evidence pages; HistoryLink essays 1997 & 23059 (1980 money find); Columbia Journalism Review on the "D.B." name. Sketch: FBI composite, public domain. Map: US Census / Natural Earth (public domain). The drop zone is disputed: the shaded area is a broad approximation, not a location; the route is approximate. No suspect is named: over 1,000 people were investigated and none was proven. "~$194,000 never recovered" is our calculation ($200,000 minus the ~$5,800 found).
+Caught or not? Did he survive the jump: yes or no?
 ```

@@ -206,3 +206,33 @@ No fix changes a fact or the voice. Fix 1 is the only one that touches the "D.B.
   matters most here. The title above carries the search term. Pick the first-frame cover, not an auto mid-frame.
 
 VIRALITY SCORE: 80/100 (8.0/10) — can break out
+
+## Render 3 — what was applied (17 Nov 2026)
+Render 1 → reel review (6/10) → fixes → render 2 → virality review (80/100) → fixes → **render 3** (`out/getaway-001-dbcooper.mp4`, 72.4 s).
+
+Applied from the reel review: caption overflow fixed in the engine (`paginate()` spills to a new page when no two-line
+split fits — only pages that used to overflow change); drop zone drawn as a flat translucent **area** (`ghost` + `area: true`),
+wider jump camera, Seattle/Portland named; hunt beat = area + "Ariel · Lewis River" + symbolic searchers; routes at width 3,
+south leg ends at Red Bluff with "→ MEXICO CITY (ORDERED)" and "LOW · SLOW · STAIRS DOWN"; Reno leg drawn in the reno beat,
+"HIJACKER NOT ABOARD"; "COLUMBIA RIVER" label; how beat = area + "Tena Bar · money found" + pointer; 2016 date moved to
+the word "2016,"; stamp on the lower half of the poster; "~$194,000 never recovered (our calc.)" on the end poster;
+overlap holds shortened; banknotes start under the series bar; counters roll in 0.6 s.
+Applied from the virality review: case name on frame 0 (`whisper` + `whisperOnFrame0`), approximate route + Seattle in
+the hook and the end (loop), route over the drop area in the jump beat, posters 400 px with a 60 px stamp, status beat uses
+the poster ("1,000+ investigated / No suspect proven"), duplicate hunt text removed.
+Not applied: `pulse` on DROPZONE (pulse only lights subject pieces; the area already pulses its opacity).
+
+Metrics (render 3): −14.1 LUFS · loop SSIM 0.915 · 36+ cues · longest gaps without a new cue: 6.0 s at 66.4 s (the
+verdict: poster, then the stamp on "never" — kept on purpose), 4.4 s at 0.25 s (hook), 4.3 s at 11.9 s.
+Pre-flight: 0 ✗, one `!` accepted: hook beat 4.2 s (the first words land at 0.25 s; the beat carries the loop question).
+
+## Non-regression (REDRAWN after the channel work)
+Stills at 0 / 6 / 20 / 40 s, before (commit 4908840) and after:
+- `ussr-1991-v2` (DA 2): **4/4 byte-identical**.
+- `ussr-1991` (DA 1): 2/4 byte-identical, 2/4 differ at PSNR 63–79 dB. Two renders of the *same* code differ by the same
+  amount (measured: 63 dB at 40 s between two runs), so this is render noise of the DA 1 path, not a change.
+
+## Owner checklist before posting
+- [ ] Listen once: "D.B.", "three-oh-five", "Reno", "fifty-eight hundred".
+- [ ] Tick the FBI lines of SOURCES.md against fbi.gov (not reachable from the cloud session): rows 8, 9, 11, 12, 14, 17, 24; row 13 (FBI Vault OCR).
+- [ ] Post on 24 Nov with "55 years ago today"; otherwise edit the first caption line.
