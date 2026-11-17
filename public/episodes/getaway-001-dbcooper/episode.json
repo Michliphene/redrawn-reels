@@ -31,7 +31,9 @@
    "OR": "#C9B994"
   },
   "static": {
-   "COLUMBIA": "#5F86A3"
+   "COLUMBIA": "#5F86A3",
+   "NV": "#8C7F64",
+   "CA": "#8C7F64"
   }
  },
  "beats": [
@@ -68,7 +70,7 @@
      "dur": 1.6,
      "hold": 3.2,
      "color": "#E0312B",
-     "width": 6
+     "width": 3
     },
     {
      "type": "wanted",
@@ -79,9 +81,9 @@
       "Identity: unknown."
      ],
      "credit": "FBI composite sketch · public domain",
-     "side": "center",
+     "side": "left",
      "y": 560,
-     "w": 380,
+     "w": 340,
      "tilt": -2,
      "atTime": 0,
      "hold": 3.6
@@ -187,7 +189,8 @@
      "atWord": "takeoff,",
      "dur": 2.2,
      "hold": 4.6,
-     "color": "#E0312B"
+     "color": "#E0312B",
+     "width": 3
     },
     {
      "type": "label",
@@ -198,7 +201,7 @@
      ],
      "size": "md",
      "atWord": "bomb",
-     "hold": 2.2
+     "hold": 1.0
     },
     {
      "type": "shake",
@@ -229,7 +232,8 @@
      "bills": true,
      "coins": true,
      "hold": 2.6,
-     "y": 900
+     "y": 900,
+     "dur": 0.6
     },
     {
      "type": "callout",
@@ -262,14 +266,14 @@
       47.4502
      ],
      "atWord": "Seattle,",
-     "hold": 4.6
+     "hold": 2.4
     },
     {
      "type": "label",
      "text": "36 PASSENGERS RELEASED",
      "at": [
-      -122.31,
-      47.2
+      -121.95,
+      47.62
      ],
      "size": "md",
      "atWord": "passengers",
@@ -305,31 +309,40 @@
       [
        -122.235,
        40.178
-      ],
-      [
-       -119.7681,
-       39.4991
       ]
      ],
      "atWord": "south,",
-     "dur": 3.4,
+     "dur": 3.0,
      "hold": 5.4,
      "color": "#E0312B",
+     "width": 3,
      "label": "ROUTE · APPROX.",
      "labelAt": [
-      -123.2,
-      42.6
+      -123.4,
+      43.0
      ]
     },
     {
-     "type": "marker",
-     "text": "Reno",
+     "type": "label",
+     "text": "→ MEXICO CITY (ORDERED)",
      "at": [
-      -119.7681,
-      39.4991
+      -121.0,
+      41.4
      ],
+     "size": "md",
      "atWord": "Mexico.",
-     "hold": 3.6
+     "hold": 2.0
+    },
+    {
+     "type": "label",
+     "text": "LOW · SLOW · STAIRS DOWN",
+     "at": [
+      -121.3,
+      44.6
+     ],
+     "size": "md",
+     "atWord": "Low.",
+     "hold": 2.4
     }
    ]
   },
@@ -338,19 +351,40 @@
    "say": "A little after eight p.m., somewhere between Seattle and Reno, in the rain, he jumps.",
    "camera": {
     "center": [
-     -122.5,
-     45.95
+     -122.4,
+     46.3
     ],
-    "span": 2.6,
-    "pitch": 40,
-    "yaw": 14,
+    "span": 4.2,
+    "pitch": 46,
+    "yaw": 10,
     "cut": true
    },
    "actions": [
     {
+     "type": "marker",
+     "text": "Seattle",
+     "at": [
+      -122.3088,
+      47.4502
+     ],
+     "atWord": "Seattle",
+     "hold": 3.0
+    },
+    {
+     "type": "marker",
+     "text": "Portland",
+     "at": [
+      -122.5975,
+      45.5898
+     ],
+     "atWord": "Seattle",
+     "hold": 3.0
+    },
+    {
      "type": "ghost",
      "id": "DROPZONE",
      "color": "#E0312B",
+     "area": true,
      "atWord": "somewhere",
      "hold": 5
     },
@@ -376,14 +410,33 @@
    "say": "The plane lands in Reno. Stairs still down. He's gone.",
    "camera": {
     "center": [
-     -119.9,
-     39.7
+     -120.6,
+     39.9
     ],
-    "span": 2.4,
-    "pitch": 40,
+    "span": 3.4,
+    "pitch": 42,
     "yaw": -8
    },
    "actions": [
+    {
+     "type": "path",
+     "coords": [
+      [
+       -122.235,
+       40.178
+      ],
+      [
+       -119.7681,
+       39.4991
+      ]
+     ],
+     "atWord": "plane",
+     "dur": 1.2,
+     "hold": 3.4,
+     "color": "#E0312B",
+     "width": 3,
+     "from": 0
+    },
     {
      "type": "marker",
      "text": "Reno airport",
@@ -396,10 +449,10 @@
     },
     {
      "type": "label",
-     "text": "NO PASSENGER",
+     "text": "HIJACKER NOT ABOARD",
      "at": [
       -119.77,
-      39.85
+      39.95
      ],
      "size": "md",
      "atWord": "gone.",
@@ -421,11 +474,47 @@
    },
    "actions": [
     {
+     "type": "ghost",
+     "id": "DROPZONE",
+     "color": "#E0312B",
+     "area": true,
+     "atWord": "FBI",
+     "hold": 3.2
+    },
+    {
+     "type": "marker",
+     "text": "Ariel · Lewis River",
+     "at": [
+      -122.56,
+      45.95
+     ],
+     "atWord": "searches",
+     "hold": 2.8
+    },
+    {
+     "type": "units",
+     "kind": "troops",
+     "at": [
+      -122.5,
+      45.9
+     ],
+     "count": 6,
+     "size": 46,
+     "spread": 110,
+     "atWord": "woods",
+     "hold": 2.4,
+     "caption": "Searchers (symbolic)",
+     "offset": [
+      0,
+      60
+     ]
+    },
+    {
      "type": "region",
      "text": "FBI SEARCH AREA · 1971",
      "at": [
       -122.5,
-      46.05
+      46.2
      ],
      "atWord": "searches",
      "hold": 2.8
@@ -466,7 +555,8 @@
      "bills": true,
      "coinsCount": 8,
      "hold": 2.8,
-     "y": 900
+     "y": 900,
+     "dur": 0.6
     },
     {
      "type": "callout",
@@ -475,6 +565,17 @@
      "y": 900,
      "size": 66,
      "hold": 1.8
+    },
+    {
+     "type": "label",
+     "text": "COLUMBIA RIVER",
+     "at": [
+      -122.95,
+      45.86
+     ],
+     "size": "md",
+     "atWord": "Columbia",
+     "hold": 2.4
     }
    ]
   },
@@ -486,20 +587,42 @@
      -122.6,
      45.85
     ],
-    "span": 2.4,
+    "span": 2.6,
     "pitch": 44,
     "yaw": 4
    },
    "actions": [
     {
-     "type": "region",
-     "text": "THEORIES: RIVER · DREDGING · BURIED",
+     "type": "ghost",
+     "id": "DROPZONE",
+     "color": "#E0312B",
+     "area": true,
+     "atWord": "How",
+     "hold": 2.4
+    },
+    {
+     "type": "marker",
+     "text": "Tena Bar · money found",
+     "at": [
+      -122.77,
+      45.72
+     ],
+     "atWord": "How",
+     "hold": 2.4
+    },
+    {
+     "type": "pointer",
      "at": [
       -122.6,
-      46.15
+      45.8
+     ],
+     "text": "HOW?",
+     "from": [
+      -200,
+      -140
      ],
      "atWord": "Nobody",
-     "hold": 2.2
+     "hold": 1.4
     }
    ]
   },
@@ -508,14 +631,13 @@
    "say": "A thousand people investigated. None proven. In {2016|twenty sixteen}, the FBI stops actively investigating.",
    "camera": {
     "center": [
-     -122.4,
-     46.5
+     -122.5,
+     46.0
     ],
-    "span": 6.5,
-    "pitch": 50,
-    "yaw": -4
+    "span": 3.2,
+    "pitch": 42,
+    "yaw": -14
    },
-   "date": "2016-07-08",
    "actions": [
     {
      "type": "callout",
@@ -524,7 +646,7 @@
      "atWord": "thousand",
      "y": 880,
      "size": 64,
-     "hold": 2.6
+     "hold": 3.4
     },
     {
      "type": "callout",
@@ -533,7 +655,12 @@
      "atWord": "stops",
      "y": 880,
      "size": 64,
-     "hold": 2.2
+     "hold": 1.7
+    },
+    {
+     "type": "date",
+     "date": "2016-07-08",
+     "atWord": "2016,"
     }
    ]
   },
@@ -555,17 +682,19 @@
      "name": "Dan Cooper",
      "headSub": "Air piracy · 1971",
      "lines": [
-      "Identity: unknown."
+      "Identity: unknown.",
+      "~$194,000 never recovered (our calc.)"
      ],
      "credit": "FBI composite sketch · public domain",
-     "side": "center",
+     "side": "left",
      "y": 560,
-     "w": 380,
+     "w": 340,
      "tilt": -2,
      "atWord": "Fifty-five",
      "hold": 6.5,
      "stamp": "NEVER FOUND",
-     "stampWord": "never"
+     "stampWord": "never",
+     "stampSize": 46
     }
    ],
    "hideDate": true,

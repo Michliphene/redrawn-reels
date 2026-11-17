@@ -162,6 +162,13 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
         if ((f.properties as any)?.lines) {
           return <group key={`g${i}`} position={[0, 0.004, 0]}><lineSegments geometry={geos.get(String(f.id))!.edge}><lineBasicMaterial color="#FFFFFF" transparent opacity={0.9 * o} /></lineSegments></group>;
         }
+        if ((g as any).area) {
+          // an approximate AREA (e.g. a disputed drop zone): lies flat on the map, translucent, outlined in its colour —
+          // it must never read as a pin or a solid object
+          const col = g.color ?? '#F2994A';
+          return <Slab key={`g${i}`} g={geos.get(String(f.id))!} top={col} side={col} edge={col} pos={[0, h * 1.02, 0]} scale={[1, 0.04, 1]}
+            opacity={o * (0.26 + 0.06 * Math.sin(t * 3))} cast={false} edgeOpacity={3} />;
+        }
         const s = 1 + 0.6 * (1 - ease.out3(ramp(t, g.t, 0.6)));
         const c = piece.centroid;
         return <Slab key={`g${i}`} g={geos.get(String(f.id))!} top={g.color ?? '#F2994A'} side={shade(g.color ?? '#F2994A', -0.4)} edge="#FFFFFF"

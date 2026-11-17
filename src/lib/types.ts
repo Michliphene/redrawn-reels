@@ -15,7 +15,7 @@ export type Action =
       small?: boolean; focus?: string; zoom?: number; ring?: string; hold?: number; stamp?: string; stampWord?: string; stampAt?: number; atWord?: string }
   | { type: 'flagSwap'; from: string; to: string; x?: number; hold?: number; caption?: string; atWord?: string }
   | { type: 'shake'; amount?: number; atWord?: string }
-  | { type: 'ghost'; id: string; label?: string; color?: string; hold?: number; atWord?: string }
+  | { type: 'ghost'; id: string; label?: string; color?: string; hold?: number; area?: boolean; atWord?: string }
   | { type: 'path'; coords: LonLat[]; from?: number; color?: string; width?: number; dur?: number; hold?: number; label?: string; labelAt?: LonLat; atWord?: string }
   | { type: 'bigNumber'; value: number; from?: number; prefix?: string; suffix?: string; decimals?: number; label?: string; y?: number; dur?: number; hold?: number; coins?: boolean; atWord?: string }
   | { type: 'archive'; src: string; caption: string; credit: string; y?: number; w?: number; hold?: number; focus?: string; atWord?: string }

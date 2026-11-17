@@ -30,6 +30,17 @@ function paginate(timings: Timings, maxChars: number, maxLines: number, hidden: 
         const a = ws.slice(0, i).map((w) => w.w).join(' ').length, b = ws.slice(i).map((w) => w.w).join(' ').length;
         if (a <= maxChars && b <= maxChars && Math.abs(a - b) < bestDiff) { best = i; bestDiff = Math.abs(a - b); }
       }
+      if (bestDiff === Infinity) {
+        // no two-line split fits (e.g. "THE FBI STOPS ACTIVELY INVESTIGATING"): fill lines greedily and spill onto
+        // further pages instead of running past the safe area. Only pages that used to overflow take this path.
+        const greedy: Word[][] = [[]];
+        for (const w of ws) {
+          const cur = greedy[greedy.length - 1];
+          if (cur.length && [...cur, w].map((x) => x.w).join(' ').length > maxChars) greedy.push([w]); else cur.push(w);
+        }
+        for (let i = 0; i < greedy.length; i += maxLines) { const ls = greedy.slice(i, i + maxLines); pages.push({ words: ls.flat(), lines: ls }); }
+        return;
+      }
       lines.push(ws.slice(0, best), ws.slice(best));
     }
     pages.push({ words: ws, lines });

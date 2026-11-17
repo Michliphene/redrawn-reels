@@ -52,8 +52,8 @@ export const WantedPosters: React.FC<{ t: number; actions: TimedAction[] }> = ({
             ))}
             {a.credit && <div style={{ fontFamily: tw, fontWeight: 400, fontSize: 15, color: mix(ink, theme.paper, 0.45), marginTop: 10 }}>{a.credit}</div>}
             {stampOn && (
-              <div style={{ position: 'absolute', left: '50%', top: '46%', transform: `translate(-50%,-50%) rotate(-16deg) scale(${2.3 - 1.3 * st})`, opacity: st * 0.94,
-                fontFamily: theme.stampFont || theme.font, fontWeight: 900, fontSize: a.stampSize ?? 58, color: theme.stamp, border: `6px solid ${theme.stamp}`, padding: '4px 16px',
+              <div style={{ position: 'absolute', left: '50%', top: '66%', transform: `translate(-50%,-50%) rotate(-12deg) scale(${2.3 - 1.3 * st})`, opacity: st * 0.94,
+                fontFamily: theme.stampFont || theme.font, fontWeight: 900, fontSize: a.stampSize ?? 48, color: theme.stamp, border: `6px solid ${theme.stamp}`, padding: '4px 16px',
                 letterSpacing: '0.06em', whiteSpace: 'nowrap', textTransform: 'uppercase', mixBlendMode: 'multiply' }}>{a.stamp}</div>
             )}
           </div>
