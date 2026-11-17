@@ -1,0 +1,640 @@
+{
+ "duration": 41.487,
+ "engine": "elevenlabs",
+ "beats": [
+  {
+   "id": "hook",
+   "start": 0.25,
+   "end": 2.897,
+   "words": [
+    {
+     "w": "Ten",
+     "start": 0.25,
+     "end": 0.517
+    },
+    {
+     "w": "failures",
+     "start": 0.622,
+     "end": 0.981
+    },
+    {
+     "w": "teach",
+     "start": 1.028,
+     "end": 1.237
+    },
+    {
+     "w": "you",
+     "start": 1.283,
+     "end": 1.365
+    },
+    {
+     "w": "more",
+     "start": 1.469,
+     "end": 1.794
+    },
+    {
+     "w": "than",
+     "start": 1.852,
+     "end": 2.015
+    },
+    {
+     "w": "a",
+     "start": 2.061,
+     "end": 2.084
+    },
+    {
+     "w": "perfect",
+     "start": 2.166,
+     "end": 2.468
+    },
+    {
+     "w": "record.",
+     "start": 2.514,
+     "end": 2.897
+    }
+   ]
+  },
+  {
+   "id": "think",
+   "start": 3.177,
+   "end": 5.429,
+   "words": [
+    {
+     "w": "Most",
+     "start": 3.177,
+     "end": 3.432
+    },
+    {
+     "w": "people",
+     "start": 3.479,
+     "end": 3.723
+    },
+    {
+     "w": "think",
+     "start": 3.746,
+     "end": 3.92
+    },
+    {
+     "w": "failing",
+     "start": 3.978,
+     "end": 4.303
+    },
+    {
+     "w": "means",
+     "start": 4.349,
+     "end": 4.558
+    },
+    {
+     "w": "falling",
+     "start": 4.605,
+     "end": 4.895
+    },
+    {
+     "w": "behind.",
+     "start": 4.942,
+     "end": 5.429
+    }
+   ]
+  },
+  {
+   "id": "grade",
+   "start": 5.709,
+   "end": 9.077,
+   "words": [
+    {
+     "w": "And",
+     "start": 5.709,
+     "end": 5.837
+    },
+    {
+     "w": "at",
+     "start": 5.884,
+     "end": 5.965
+    },
+    {
+     "w": "school,",
+     "start": 6.035,
+     "end": 6.383
+    },
+    {
+     "w": "they're",
+     "start": 6.406,
+     "end": 6.603
+    },
+    {
+     "w": "right.",
+     "start": 6.65,
+     "end": 7.021
+    },
+    {
+     "w": "Every",
+     "start": 7.301,
+     "end": 7.626
+    },
+    {
+     "w": "mistake",
+     "start": 7.684,
+     "end": 8.09
+    },
+    {
+     "w": "costs",
+     "start": 8.137,
+     "end": 8.38
+    },
+    {
+     "w": "you",
+     "start": 8.415,
+     "end": 8.508
+    },
+    {
+     "w": "a",
+     "start": 8.566,
+     "end": 8.589
+    },
+    {
+     "w": "grade.",
+     "start": 8.636,
+     "end": 9.077
+    }
+   ]
+  },
+  {
+   "id": "flip",
+   "start": 9.357,
+   "end": 11.249,
+   "words": [
+    {
+     "w": "But",
+     "start": 9.357,
+     "end": 9.519
+    },
+    {
+     "w": "out",
+     "start": 9.577,
+     "end": 9.775
+    },
+    {
+     "w": "here,",
+     "start": 9.821,
+     "end": 10.169
+    },
+    {
+     "w": "the",
+     "start": 10.251,
+     "end": 10.367
+    },
+    {
+     "w": "rules",
+     "start": 10.448,
+     "end": 10.75
+    },
+    {
+     "w": "flip.",
+     "start": 10.796,
+     "end": 11.249
+    }
+   ]
+  },
+  {
+   "id": "count",
+   "start": 11.529,
+   "end": 14.501,
+   "words": [
+    {
+     "w": "Nobody",
+     "start": 11.529,
+     "end": 11.877
+    },
+    {
+     "w": "counts",
+     "start": 11.924,
+     "end": 12.144
+    },
+    {
+     "w": "your",
+     "start": 12.179,
+     "end": 12.295
+    },
+    {
+     "w": "mistakes.",
+     "start": 12.341,
+     "end": 12.899
+    },
+    {
+     "w": "They",
+     "start": 13.143,
+     "end": 13.305
+    },
+    {
+     "w": "count",
+     "start": 13.351,
+     "end": 13.537
+    },
+    {
+     "w": "what",
+     "start": 13.572,
+     "end": 13.7
+    },
+    {
+     "w": "finally",
+     "start": 13.735,
+     "end": 14.013
+    },
+    {
+     "w": "works.",
+     "start": 14.06,
+     "end": 14.501
+    }
+   ]
+  },
+  {
+   "id": "store",
+   "start": 14.781,
+   "end": 16.406,
+   "words": [
+    {
+     "w": "Picture",
+     "start": 14.781,
+     "end": 15.118
+    },
+    {
+     "w": "launching",
+     "start": 15.164,
+     "end": 15.501
+    },
+    {
+     "w": "an",
+     "start": 15.547,
+     "end": 15.605
+    },
+    {
+     "w": "online",
+     "start": 15.663,
+     "end": 15.953
+    },
+    {
+     "w": "store.",
+     "start": 15.977,
+     "end": 16.406
+    }
+   ]
+  },
+  {
+   "id": "products",
+   "start": 16.686,
+   "end": 21.065,
+   "words": [
+    {
+     "w": "Product",
+     "start": 16.686,
+     "end": 17.011
+    },
+    {
+     "w": "one",
+     "start": 17.069,
+     "end": 17.208
+    },
+    {
+     "w": "flops.",
+     "start": 17.254,
+     "end": 17.8
+    },
+    {
+     "w": "Product",
+     "start": 18.08,
+     "end": 18.405
+    },
+    {
+     "w": "two",
+     "start": 18.44,
+     "end": 18.614
+    },
+    {
+     "w": "gets",
+     "start": 18.684,
+     "end": 18.846
+    },
+    {
+     "w": "ignored.",
+     "start": 18.893,
+     "end": 19.38
+    },
+    {
+     "w": "Product",
+     "start": 19.66,
+     "end": 20.02
+    },
+    {
+     "w": "three",
+     "start": 20.055,
+     "end": 20.287
+    },
+    {
+     "w": "sells",
+     "start": 20.334,
+     "end": 20.566
+    },
+    {
+     "w": "a",
+     "start": 20.612,
+     "end": 20.635
+    },
+    {
+     "w": "little.",
+     "start": 20.682,
+     "end": 21.065
+    }
+   ]
+  },
+  {
+   "id": "want",
+   "start": 21.345,
+   "end": 23.643,
+   "words": [
+    {
+     "w": "Each",
+     "start": 21.345,
+     "end": 21.577
+    },
+    {
+     "w": "miss",
+     "start": 21.647,
+     "end": 21.856
+    },
+    {
+     "w": "tells",
+     "start": 21.902,
+     "end": 22.157
+    },
+    {
+     "w": "you",
+     "start": 22.204,
+     "end": 22.297
+    },
+    {
+     "w": "what",
+     "start": 22.332,
+     "end": 22.471
+    },
+    {
+     "w": "people",
+     "start": 22.517,
+     "end": 22.784
+    },
+    {
+     "w": "actually",
+     "start": 22.831,
+     "end": 23.202
+    },
+    {
+     "w": "want.",
+     "start": 23.26,
+     "end": 23.643
+    }
+   ]
+  },
+  {
+   "id": "dyson",
+   "start": 23.923,
+   "end": 29.159,
+   "words": [
+    {
+     "w": "James",
+     "start": 23.923,
+     "end": 24.225
+    },
+    {
+     "w": "Dyson",
+     "start": 24.272,
+     "end": 24.608
+    },
+    {
+     "w": "says",
+     "start": 24.655,
+     "end": 24.817
+    },
+    {
+     "w": "he",
+     "start": 24.864,
+     "end": 24.922
+    },
+    {
+     "w": "built",
+     "start": 24.98,
+     "end": 25.177
+    },
+    {
+     "w": "5,126",
+     "start": 25.235,
+     "end": 27.441
+    },
+    {
+     "w": "failed",
+     "start": 27.499,
+     "end": 27.731
+    },
+    {
+     "w": "prototypes",
+     "start": 27.766,
+     "end": 28.277
+    },
+    {
+     "w": "before",
+     "start": 28.323,
+     "end": 28.567
+    },
+    {
+     "w": "one",
+     "start": 28.614,
+     "end": 28.753
+    },
+    {
+     "w": "worked.",
+     "start": 28.799,
+     "end": 29.159
+    }
+   ]
+  },
+  {
+   "id": "stop",
+   "start": 29.439,
+   "end": 31.587,
+   "words": [
+    {
+     "w": "Failure",
+     "start": 29.439,
+     "end": 29.834
+    },
+    {
+     "w": "only",
+     "start": 29.88,
+     "end": 30.101
+    },
+    {
+     "w": "gets",
+     "start": 30.147,
+     "end": 30.31
+    },
+    {
+     "w": "expensive",
+     "start": 30.356,
+     "end": 30.855
+    },
+    {
+     "w": "when",
+     "start": 30.879,
+     "end": 31.006
+    },
+    {
+     "w": "you",
+     "start": 31.041,
+     "end": 31.111
+    },
+    {
+     "w": "stop.",
+     "start": 31.157,
+     "end": 31.587
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "start": 31.867,
+   "end": 34.56,
+   "words": [
+    {
+     "w": "Keep",
+     "start": 31.867,
+     "end": 32.076
+    },
+    {
+     "w": "going,",
+     "start": 32.134,
+     "end": 32.633
+    },
+    {
+     "w": "and",
+     "start": 32.784,
+     "end": 32.935
+    },
+    {
+     "w": "every",
+     "start": 32.993,
+     "end": 33.19
+    },
+    {
+     "w": "failure",
+     "start": 33.237,
+     "end": 33.55
+    },
+    {
+     "w": "becomes",
+     "start": 33.585,
+     "end": 33.875
+    },
+    {
+     "w": "information.",
+     "start": 33.922,
+     "end": 34.56
+    }
+   ]
+  },
+  {
+   "id": "ten",
+   "start": 34.84,
+   "end": 36.85,
+   "words": [
+    {
+     "w": "Ten",
+     "start": 34.84,
+     "end": 35.095
+    },
+    {
+     "w": "failures?",
+     "start": 35.177,
+     "end": 35.711
+    },
+    {
+     "w": "Ten",
+     "start": 35.991,
+     "end": 36.247
+    },
+    {
+     "w": "lessons.",
+     "start": 36.316,
+     "end": 36.85
+    }
+   ]
+  },
+  {
+   "id": "zero",
+   "start": 37.094,
+   "end": 38.895,
+   "words": [
+    {
+     "w": "A",
+     "start": 37.094,
+     "end": 37.164
+    },
+    {
+     "w": "perfect",
+     "start": 37.234,
+     "end": 37.535
+    },
+    {
+     "w": "record?",
+     "start": 37.582,
+     "end": 38.011
+    },
+    {
+     "w": "Zero.",
+     "start": 38.291,
+     "end": 38.895
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "start": 39.175,
+   "end": 41.487,
+   "words": [
+    {
+     "w": "So",
+     "start": 39.175,
+     "end": 39.303
+    },
+    {
+     "w": "the",
+     "start": 39.349,
+     "end": 39.419
+    },
+    {
+     "w": "next",
+     "start": 39.465,
+     "end": 39.651
+    },
+    {
+     "w": "time",
+     "start": 39.674,
+     "end": 39.837
+    },
+    {
+     "w": "you",
+     "start": 39.872,
+     "end": 39.941
+    },
+    {
+     "w": "fail,",
+     "start": 39.999,
+     "end": 40.417
+    },
+    {
+     "w": "remember…",
+     "start": 40.697,
+     "end": 41.487
+    }
+   ]
+  }
+ ],
+ "say_hash": "e93a9d68270cc8ab"
+}

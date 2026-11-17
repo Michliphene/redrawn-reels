@@ -8,6 +8,7 @@ One codebase, one cue language, one art direction kit, several series:
 |---|---|---|---|---|
 | `redrawn` | REDRAWN | one map, one historical transformation | `Episode` → `src/atlas` (DA 2) / flat map (DA 1) | `docs/01_SERIES_AND_TOPICS.md` |
 | `receipts` | RECEIPTS | where the money goes, from the filing | `Money` → `src/money/Money3D` (DA 2) / flat (DA 1) | `docs/RECEIPTS_SERIES.md` |
+| `ungraded` | UNGRADED | one rule school never taught (mindset) | `Mindset` → `src/mindset/Mindset3D` (DA 2 only) | `docs/UNGRADED_SERIES.md` |
 
 Names, handles and taglines live in **`public/studio.json`**. A channel rename = edit `name` there (keep the
 old one in `legacyNames`); never hard-code a channel name in components or scripts.
@@ -88,7 +89,8 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 - `public/studio.json` series registry · `src/studio/` shared kit: `tokens` (safe area, bands), `series`
   (palettes, looks), `fonts`, `motion`, `three/rig` (shots, fit, dolly zoom), `three/Light`, `look/PixelStage`
   (low-res world + finish), `ui/` (Type, Hud, Captions, Finish).
-- `src/atlas/` REDRAWN DA 2 (world, Map3D, Units3D, Header, lift) · `src/money/` RECEIPTS (Money3D, props3d, Money).
+- `src/atlas/` REDRAWN DA 2 (world, Map3D, Units3D, Header, lift) · `src/money/` RECEIPTS (Money3D, props3d, Money) ·
+  `src/mindset/` UNGRADED (Mindset3D: stacks, papers, lines, trials, road).
 - `src/components/` overlay cards shared by both art directions (skinned through `src/lib/theme.ts`) ·
   `src/lib/schedule.ts` cue timing · `src/Episode.tsx`, `src/money/Money.tsx` entry points (dispatch on `da`).
 - `scripts/validate.mjs` pre-flight · `scripts/stills.mjs` contact sheets · `tests/` (`npm test`) ·

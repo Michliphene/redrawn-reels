@@ -1,0 +1,278 @@
+{
+ "id": "fail-ten-times",
+ "composition": "Mindset",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 1,
+ "title": "Ten failures. Ten lessons.",
+ "whisper": "A perfect record teaches you nothing.",
+ "source": "Dyson figure: his own account, Fast Company (2007)",
+ "keywords": [
+  "failures",
+  "failure",
+  "lessons",
+  "flip.",
+  "works.",
+  "stop.",
+  "information.",
+  "zero.",
+  "perfect"
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "scenes": {
+  "ten": {
+   "type": "stacks"
+  },
+  "exam": {
+   "type": "papers",
+   "grades": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "F"
+   ],
+   "gradeLabel": "Your grade"
+  },
+  "rules": {
+   "type": "lines",
+   "over": "exam"
+  },
+  "shop": {
+   "type": "trials"
+  },
+  "road": {
+   "type": "road"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "ten",
+   "say": "Ten failures teach you more than a perfect record.",
+   "actions": [
+    {
+     "type": "stack",
+     "side": "left",
+     "count": 10,
+     "value": "10",
+     "label": "Failures",
+     "lightLabel": "10 lessons",
+     "atTime": -1.4
+    },
+    {
+     "type": "stack",
+     "side": "right",
+     "count": 1,
+     "color": "ink",
+     "tall": 1.3,
+     "value": "A+",
+     "label": "Perfect record",
+     "lightValue": "0",
+     "lightLabel": "0 lessons",
+     "atWord": "perfect"
+    }
+   ]
+  },
+  {
+   "id": "think",
+   "scene": "exam",
+   "kicker": "At school",
+   "say": "Most people think failing means falling behind.",
+   "actions": [
+    {
+     "type": "mark",
+     "atWord": "behind."
+    }
+   ]
+  },
+  {
+   "id": "grade",
+   "say": "And at school, they're right. Every mistake costs you a grade.",
+   "actions": [
+    {
+     "type": "mark",
+     "atWord": "right."
+    },
+    {
+     "type": "mark",
+     "atWord": "mistake"
+    },
+    {
+     "type": "mark",
+     "atWord": "grade."
+    }
+   ]
+  },
+  {
+   "id": "flip",
+   "kicker": "Out here",
+   "say": "But out here, the rules flip.",
+   "actions": [
+    {
+     "type": "flip",
+     "atWord": "flip."
+    }
+   ]
+  },
+  {
+   "id": "count",
+   "scene": "rules",
+   "say": "Nobody counts your mistakes. They count what finally works.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "At school",
+     "text": "Every mistake counts",
+     "strike": true,
+     "atWord": "Nobody"
+    },
+    {
+     "type": "line",
+     "small": "Out here",
+     "text": "Only what works counts",
+     "color": "#5CF0D0",
+     "atWord": "They"
+    }
+   ]
+  },
+  {
+   "id": "store",
+   "scene": "shop",
+   "kicker": "Picture this",
+   "say": "Picture launching an online store."
+  },
+  {
+   "id": "products",
+   "say": "Product one flops. Product two gets ignored. Product three sells a little.",
+   "actions": [
+    {
+     "type": "launch",
+     "outcome": "flop",
+     "label": "Flops",
+     "atWord": "one"
+    },
+    {
+     "type": "launch",
+     "outcome": "ignored",
+     "label": "Ignored",
+     "atWord": "two"
+    },
+    {
+     "type": "launch",
+     "outcome": "sale",
+     "label": "A few sales",
+     "atWord": "three"
+    }
+   ]
+  },
+  {
+   "id": "want",
+   "say": "Each miss tells you what people actually want.",
+   "actions": [
+    {
+     "type": "learn",
+     "atWord": "Each"
+    },
+    {
+     "type": "callout",
+     "text": "Every miss is data",
+     "atWord": "want.",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "dyson",
+   "scene": "road",
+   "kicker": "A real one",
+   "say": "James Dyson says he built {5,126|five thousand, one hundred and twenty-six} failed prototypes before one worked.",
+   "actions": [
+    {
+     "type": "walk",
+     "to": 7,
+     "dur": 4.2,
+     "atWord": "James"
+    },
+    {
+     "type": "big",
+     "value": 5126,
+     "label": "Failed prototypes",
+     "sub": "James Dyson, in his own account",
+     "dur": 2.0,
+     "atWord": "5,126"
+    }
+   ]
+  },
+  {
+   "id": "stop",
+   "say": "Failure only gets expensive when you stop.",
+   "actions": [
+    {
+     "type": "halt",
+     "atWord": "stop."
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "say": "Keep going, and every failure becomes information.",
+   "actions": [
+    {
+     "type": "walk",
+     "to": 11,
+     "dur": 2.0,
+     "atWord": "Keep"
+    },
+    {
+     "type": "callout",
+     "text": "Failure = information",
+     "atWord": "information.",
+     "hold": 1.3
+    }
+   ]
+  },
+  {
+   "id": "ten",
+   "scene": "ten",
+   "say": "Ten failures? Ten lessons.",
+   "actions": [
+    {
+     "type": "light",
+     "side": "left",
+     "atWord": "lessons."
+    }
+   ]
+  },
+  {
+   "id": "zero",
+   "say": "A perfect record? Zero.",
+   "actions": [
+    {
+     "type": "light",
+     "side": "right",
+     "dim": true,
+     "atWord": "Zero."
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "So the next time you fail, remember…"
+  }
+ ]
+}

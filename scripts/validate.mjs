@@ -16,7 +16,7 @@ const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
-const MINDSET_ACTIONS = { papers: ['mark', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
+const MINDSET_ACTIONS = { papers: ['mark', 'flip', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
 const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS };
 const SAFE = { top: 250, bottom: 1440 };
 
@@ -120,7 +120,6 @@ export function validate(id) {
       if (SCENE_ACTIONS[comp]) {
         const type = spec.scenes?.[scene]?.type;
         const allowed = SCENE_ACTIONS[comp];
-        // a papers scene may also carry the cues of a lines scene played over it? no: each cue belongs to its own scene
         if (a.type !== 'callout' && type && !allowed[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${allowed[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
       }
@@ -141,7 +140,7 @@ export function validate(id) {
       if (a.type === 'archive' && a.src && !fs.existsSync(path.join(ROOT, 'public', a.src))) Wn(`${where}: image public/${a.src} not found`);
       // layout: DA v2 keeps everything readable inside the platform safe area
       if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
-      for (const k of ['text', 'label', 'lightLabel', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
+      for (const k of ['text', 'label', 'lightLabel', 'lightValue', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
     }
     if (b.date) collect(`beat ${b.id}.date`, b.date);
   });
