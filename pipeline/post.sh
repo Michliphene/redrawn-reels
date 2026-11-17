@@ -9,10 +9,12 @@ ID=$(python3 - "$1" <<'PY'
 import json,glob,sys
 a=sys.argv[1]
 if not a.isdigit(): print(a); sys.exit()
-for p in glob.glob('public/episodes/*/episode.json'):
+hits=[]
+for p in sorted(glob.glob('public/episodes/*/episode.json')):
     e=json.load(open(p))
-    if e.get('episode')==int(a): print(e['id']); sys.exit()
-sys.exit(f'no episode {a}')
+    if e.get('episode')==int(a): hits.append(f"{e['id']} ({e.get('series','?')}{', remaster' if e.get('audio') else ''})")
+if len(hits)==1: print(hits[0].split()[0]); sys.exit()
+sys.exit(f'no episode {a}' if not hits else f'episode {a} exists in several series or versions — use the id: ' + ' · '.join(hits))
 PY
 )
 VID="out/$ID.mp4"

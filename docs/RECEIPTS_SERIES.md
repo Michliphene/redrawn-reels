@@ -3,7 +3,9 @@
 **Working name:** RECEIPTS (owner can rename: it is only the `series` field of `episode.json`).
 **Tagline (bio):** "Follow the money in under a minute. Every number from the filing."
 **Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-by-word captions · no photos, no logos.
-**Engine:** `src/money/Money.tsx` (composition `Money`), selected by `"composition": "Money"` in `episode.json`.
+**Engine:** composition `Money`, selected by `"composition": "Money"` in `episode.json`. `"da": 2` plays the cue sheet on
+the 3D counter (`src/money/Money3D.tsx`, template `costco-hotdog-v2`); without `da` an episode keeps its flat DA 1 look
+(`src/money/Money.tsx`). Shared art direction rules: `docs/STUDIO.md`. Series id in `public/studio.json`: `receipts`.
 Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 
 ## Why this theme (benchmark, Nov 2026 — vendor blogs, indicative only)
@@ -18,7 +20,7 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 |---|---|
 | Archive photos: rate limits, BY-SA, credits | Everything is drawn in code. No photo, no logo, brand names as text only. |
 | Disputed borders and dates | One primary source per episode; subtotals must reproduce from line items (see SOURCES.md "Check"). |
-| 3–5 review passes for overlapping overlays | Fixed zones: TOP 60–330 · STAGE 350–1340 · CAPTIONS 1390–1600 · SOURCE 1660. One scene at a time. |
+| 3–5 review passes for overlapping overlays | Fixed bands, one scene at a time. DA 1: TOP 60–330 · STAGE 350–1340 · CAPTIONS 1390–1600 · SOURCE 1660. DA 2 (inside the platform safe area): HUD 250–304 · TITLE 318–600 · STAGE 560–1130 · CAPTIONS 1170–1410 · SOURCE 1416. |
 | Overlays lingering into the next idea | Callouts are cut automatically when their scene ends. |
 | Hooks of 4–5 s, 3–4 s with nothing new | Number on frame 0; run `virality_metrics.py` and fix any gap > 3 s before review. |
 | Name pronunciation | Number-led scripts; `{$5.9B|five point nine billion dollars}` markup for every figure. |
@@ -43,7 +45,23 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
   - `people` {total}: `light` {count, big, label, sub}.
   - `lines`: `line` {small, text, size, color, strike}. Max 2 lines.
   - any scene: `callout` {text, size, hold, y} in the slot at the bottom of the stage.
-- Art available: hot dog. A new product = one new SVG component in `Money.tsx` (+ `art` key).
+- Art available: `hotdog` (default), `burger`, `tv`. DA 2: a new product = one low-poly model in `src/money/props3d.tsx`
+  (primitives only) + its key in `PRODUCTS`; DA 1: one SVG component in `Money.tsx`. Select with `"art": "<key>"`.
+- DA 2 extras: `keywords` (caption words to highlight; figures highlight themselves), `whisper` (quiet line under the
+  title), `scenes.<id>.camera` {pitch, yaw, fov} to override a station's angle, `audio` to reuse a voice.
+
+## DA 2 — the counter
+One continuous set. Each scene is a station on a counter and the camera travels between them; `lines` scenes are
+played over the dimmed product, so the reel ends where it started and the loop is a camera return.
+| Scene | In the world | Read above it |
+|---|---|---|
+| `product` | the object on a plinth, coins and a receipt beside it | price, tag, `ghost` sticker |
+| `grid` | 100 tiles; `fill` raises coloured stacks, `rest` makes what is left glow | legend rows (amount + label) |
+| `bars` | two columns rising | `big` headline, value above each bar, name under it |
+| `card` | a card standing on the counter | two `stat` blocks |
+| `people` | pawns; `light` turns `count` of them to the accent colour | the ratio |
+| `lines` | the product, dimmed | two statements, the first struck through |
+The source line never leaves the screen (bottom of the caption band, y 1416).
 
 ## Topic backlog (each = one filing, one surprising split)
 | # | Title | Hook | Source |
@@ -57,3 +75,10 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 | 007 | Where $100 at Amazon goes | AWS share of operating income (verify) | Amazon 10-K |
 | 008 | What a $5 latte really pays for | store costs split (verify) | Starbucks 10-K |
 Hooks containing a claim are drafts: verify at scripting time, drop the angle if the filing does not support it.
+
+## Formats beyond the explainer (see `docs/STUDIO.md` §6)
+| # | Format | Draft hook (verify against the filing) |
+|---|---|---|
+| C1 | Guess before the count ends | "Of every $100, how much reaches the shows? Lock your guess." (Netflix) |
+| E1 | One object | "Follow one $1.50 hot dog through the checkout." (Costco, produced as an explainer) |
+| B1 | You are… | "You run a burger chain. Your biggest cheque is rent." (McDonald's — same filing as #003; re-check the split before scripting) |

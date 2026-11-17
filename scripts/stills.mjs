@@ -47,6 +47,7 @@ for (const t of times) {
   files.push(output);
 }
 await browser.close({ silent: true });
+fs.rmSync(serveUrl, { recursive: true, force: true }); // the bundle is a temp folder of a few MB: do not leave one per run
 const cols = Number(opt('cols', Math.min(files.length, 4)));
 const rows = Math.ceil(files.length / cols);
 const sheet = path.join(outDir, 'sheet.jpg');

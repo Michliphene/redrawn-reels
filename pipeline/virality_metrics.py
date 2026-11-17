@@ -9,7 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ep_id = sys.argv[1]
 V = os.path.join(ROOT, "out", f"{ep_id}.mp4")
 ep = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "episode.json")))
-tm = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "timings.json")))
+tm = json.load(open(os.path.join(ROOT, "public/episodes", ep.get("audio") or ep_id, "timings.json")))  # a remaster reuses another episode's voice
 out = os.path.join(ROOT, "out/review", ep_id); os.makedirs(out, exist_ok=True)
 norm = lambda s: re.sub(r"[^a-z0-9]", "", s.lower())
 sh = lambda *a: subprocess.run(a, capture_output=True, text=True)

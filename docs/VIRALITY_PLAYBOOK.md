@@ -58,6 +58,21 @@ Title card without visual on frame 0 · logo/intro · vague tease · >3 s with n
 captions covering the subject · fact that viewers can't verify (no source) · politically loaded framing on a disputed
 topic · hook promise not paid off · ending with "follow for more" instead of a loop · music louder than voice.
 
+## 9. DA 2 codes (all series) — what the reviewers check on top of the above
+- **Frame 0 shows depth**: the opening crane shot reads as an object in a space, with the title on it. A flat
+  diagram on frame 0 is an anti-pattern in DA 2.
+- **Safe area**: nothing readable above y=250, below y=1440, or right of x=930 under y=860 (platform header,
+  description and action buttons). A hook hidden under the interface is a lost hook.
+- **One accent**: only keywords and the number that matters take the series accent. Two accents = no accent.
+- **Camera as retention**: one move per beat, one cut as the mid-video re-hook, a pull back before the payoff.
+  A camera move counts as "something new on screen" for the ≤ 3 s rule; a caption does not.
+- **In-world information**: if a fact is shown as a floating widget where a piece of the world could show it
+  (a stack, a pawn, a piece that moves), score it down.
+- **Formats**: second-person ("you are…") and guess-before-the-count reels must pay off in the world, on screen.
+- **Length** [PRACTITIONER, unverified against TikTok's own pages]: third-party 2026 guides agree that Creator
+  Rewards only counts videos longer than one minute. Decide per account; a 61–70 s cut is a different edit, not
+  a slowed-down 45 s one.
+
 ## Sources consulted
 - TikTok, "How TikTok recommends videos #ForYou" (2020), via [SocialPilot](https://www.socialpilot.co/blog/tiktok-algorithm), [Hootsuite](https://blog.hootsuite.com/tikTok-algorithm/)
 - Instagram/Mosseri ranking signals: [Buffer](https://buffer.com/resources//instagram-algorithms/), [Social Media Today](https://www.socialmediatoday.com/news/instagram-shares-algorithm-insights-2025/738034/)

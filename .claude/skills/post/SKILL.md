@@ -1,11 +1,14 @@
 ---
 name: post
-description: Deliver a REDRAWN reel ready to publish — fresh video, Instagram cover, title, description + hashtags, pinned comment, YouTube description. Use whenever the owner asks to post / resend / "repasse" / "envoie" a reel by number (EP 1, reel 003…) or id.
+description: Deliver a reel of any series of this studio (REDRAWN, RECEIPTS) ready to publish — fresh video, Instagram cover, title, description + hashtags, pinned comment, YouTube description. Use whenever the owner asks to post / resend / "repasse" / "envoie" a reel by number (EP 1, reel 003…) or id.
 ---
 # Posting routine
 
-1. Run `pipeline/post.sh <EP number or id>` (re-renders only if the video is stale, checks duration 30–60 s and ≈ −14 LUFS, writes `deliverables/<id>/POST.md`). Report any `!!` line.
-2. If covers are missing, render them: `npx remotion still src/index.ts Episode deliverables/<id>/cover_9x16.png --frame=<N> --props='{"episodeId":"<id>","cover":true}'` then crop `crop=1080:1440:0:240` → `cover_3x4.jpg`.
+0. Run `npm run validate <id> -- --strict`. A `✗` blocks posting; read every `!` to the owner (an on-screen figure
+   missing from `SOURCES.md` must be sourced or removed first).
+1. Run `pipeline/post.sh <EP number or id>` (re-renders only if the video is stale, checks duration 30–75 s and ≈ −14 LUFS, writes `deliverables/<id>/POST.md`). Report any `!!` line.
+   Two series can share an episode number: when the owner gives a number, say which series you took or use the id.
+2. If covers are missing, render them: `npx remotion still src/index.ts <Episode|Money> deliverables/<id>/cover_9x16.png --frame=<N> --props='{"episodeId":"<id>","cover":true}'` then crop `crop=1080:1440:0:240` → `cover_3x4.jpg`. In DA 2 the title block already sits inside the safe area, so frame 0 with `cover` is a valid cover.
 3. Send with SendUserFile: the video and the **phone-format designed cover** `thumb_9x16.png` (+ `thumb_3x4.jpg` grid crop) when the
    episode has a `thumb` config (owner prefers this to a raw frame; fall back to `cover_3x4.jpg` otherwise), `thumb_16x9.png` (if the episode has a `thumb` config — 16:9 YouTube/landscape
    thumbnail rendered by the `Thumb` composition: `kicker`, `main`, `badge`, `badgeSub`, `fit` ids, `mapBox`), and `POST.md`.

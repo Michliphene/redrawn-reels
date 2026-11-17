@@ -2,7 +2,10 @@
 
 **Name:** REDRAWN
 **Tagline (bio):** "History in 60 seconds. One map. Every claim sourced."
-**Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-by-word captions · map is the protagonist
+**Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-synced captions · the map is the protagonist
+**Art direction:** DA 2 "tabletop" for every new episode (`"da": 2`): the map is a board of pieces on a table, seen
+through a real camera. Shared rules, safe area and camera language: `docs/STUDIO.md`. Template: `ussr-1991-v2`.
+The name on screen comes from `public/studio.json` (series id `redrawn`).
 
 ## Editorial angle
 1. **The map does the talking.** Each video = ONE transformation (Y → Z) shown as borders moving, never stock footage.
@@ -37,3 +40,23 @@
 Recommended publishing order (data risk ↑ slowly): 1, 4, 20, 8, 16, 14, 9, 5, 6, 7, 10, 2, 3, 13, 19, 12, 11, 15, 17, 18.
 
 > ⚠️ Every hook containing a figure is a draft to verify at scripting time: "39 Germanies" (German Confederation: 39 members at creation, number varied 1815–66), "3 cents an acre" (≈$15M / ≈530M acres), "30 minutes" (Dean Rusk's own account of the 38th-parallel decision), "vanished in a week" (late Oct–early Nov 1918), Partition displacement (estimates 10–20 million).
+
+## DA 2 — what changes for the script
+- **Frame 0 is an object, not a diagram.** The reel opens on a low crane shot across the subject; the title sits on
+  it. Write the first sentence so it works over that image (a number or a stake, never "this is…" over a map).
+- **Direct the camera in the cue sheet.** One angle per beat (`pitch`, `yaw`), one `cut` around 40–60 % as the
+  re-hook, a pull back before the payoff. Close views go low, wide views go steep.
+- **One header block.** Title and `whisper` on the hook; then date + year + the `chapter` line. No emoji chips.
+- **`keywords`**: the names the reel is about (the countries that leave, the buyer, the price). Numbers highlight
+  themselves. Five to fifteen words, not every noun.
+- **Cards**: single portraits top-right (`side: "right", y: 330, small: true`), groups in the lower stage (`y: 790`).
+- **Units are pieces on the board**, still symbolic: `offset` and `approach` say *that* forces moved, never where.
+- A remaster of a published episode is a new id with `"audio": "<original>"`: same script, same sources.
+
+## Formats beyond the explainer (see `docs/STUDIO.md` §6)
+| # | Format | Draft hook (verify every figure at scripting) | Data |
+|---|---|---|---|
+| B1 | You are… | "You have 15 republics. Keep them." | `ussr1991.geojson` (produced) |
+| C1 | Guess before the count ends | "Guess the price of all this." (three options on screen) | `alaska1867.geojson` (produced) |
+| C2 | Guess before the count ends | "How many countries will this become?" | topic 9 or 10 |
+| D1 | Myth-bust | "Everyone blames this line on two men and a ruler." | topic 11 or 15 |

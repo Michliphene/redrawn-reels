@@ -9,7 +9,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ep_id = sys.argv[1]
 video = sys.argv[sys.argv.index("--video") + 1] if "--video" in sys.argv else os.path.join(ROOT, "out", f"{ep_id}.mp4")
 ep = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "episode.json")))
-tm = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "timings.json")))
+tm = json.load(open(os.path.join(ROOT, "public/episodes", ep.get("audio") or ep_id, "timings.json")))  # a remaster reuses another episode's voice
 out = os.path.join(ROOT, "out/review", ep_id); os.makedirs(out, exist_ok=True)
 for f in os.listdir(out):  # never leave sheets from a previous render behind
     if f.startswith(("beat_", "hook_", "loop_")) or f in ("cues.md", "virality_metrics.json"): os.remove(os.path.join(out, f))
