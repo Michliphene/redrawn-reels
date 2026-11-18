@@ -44,7 +44,7 @@ export const DuelPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
       </Guy>
       <Guy x={RX} y={GROUND - 62} s={s} pose={rp} seed={160}>
         {(j) => (
-          <g transform={`translate(${j.handR[0]} ${j.handR[1] - (dim ? 0 : 28)}) rotate(${dim ? 70 : 0})`}>
+          <g transform={`translate(${j.handR[0]} ${j.handR[1] - (dim ? 0 : 28)}) rotate(${dim ? 18 : 0})`}>
             <Ink pts={[[-30, -40], [30, -40], [30, 34], [-30, 34]]} seed={170} w={4} fill="#FFFFFF" close amp={0.6} />
             <text x={0} y={18} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 52 }} fill={C.red}>{def.badge ?? 'A+'}</text>
           </g>
@@ -363,7 +363,7 @@ const Sheet: React.FC<{ x: number; y: number; rot?: number; seed?: number; cross
   </g>
 );
 export const DraftsPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
-  const counts = all(acts, 'count');
+  const counts = all(acts, 'count').filter((c) => !(c.until != null && t >= c.until));
   const dt = Math.max(0, t - from);
   const writing = Math.sin(t * 14) * 10;
   const fly = (dt % 0.9) / 0.9;
@@ -379,7 +379,7 @@ export const DraftsPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
       <Ink pts={[[440, 950], [440, GROUND]]} seed={1112} w={6} />
       <Sheet x={380} y={930} rot={-80} s={0.55} seed={1120} crossed={false} />
       {/* one more page leaves the desk for the pile, on a loop */}
-      <Sheet x={lerp(400, 790, fly)} y={lerp(910, 880, fly) - Math.sin(fly * Math.PI) * 60} rot={-40 + fly * 380} s={0.6} seed={1130} />
+      <Sheet x={lerp(400, 790, fly)} y={lerp(930, 905, fly) - Math.sin(fly * Math.PI) * 25} rot={-40 + fly * 380} s={0.6} seed={1130} />
       {counts.slice(0, 2).map((c, i) => {
         if (t < c.t) return null;
         const v = Math.round(c.value * ease.out3(ramp(t, c.t, c.dur ?? 0.8)));
@@ -397,7 +397,7 @@ export const DraftsPanel: React.FC<PanelProps> = ({ t, acts, from }) => {
 };
 
 /* ------------------------------------------------------------------ versions: three drafts side by side */
-const VX = [215, 520, 825];
+const VX = [190, 485, 770];
 export const VersionsPanel: React.FC<PanelProps> = ({ t, acts }) => {
   const drafts = all(acts, 'draft');
   const last = drafts[2];
@@ -421,7 +421,7 @@ export const VersionsPanel: React.FC<PanelProps> = ({ t, acts }) => {
               {tone === 'good' && <rect x={-95} y={20} width={150} height={22} fill={C.mint} opacity={0.75} />}
               {tone === 'good' && <Check x={60} y={120} s={1.1} c={C.mint} draw={ramp(t, a.t + 0.3, 0.3)} />}
             </g>
-            {t >= a.t + 0.3 && <Hand x={cx} y={1035} size={54} c={tone === 'good' ? C.ink : tone === 'messy' ? C.red : C.pencil} hl={tone === 'good' ? C.mint : undefined} halo>{a.label}</Hand>}
+            {t >= a.t + 0.3 && <Hand x={cx} y={1035} size={50} c={tone === 'good' ? C.ink : tone === 'messy' ? C.red : C.pencil} hl={tone === 'good' ? C.mint : undefined} halo>{a.label}</Hand>}
           </g>
         );
       })}

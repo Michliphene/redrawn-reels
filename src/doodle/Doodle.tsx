@@ -45,7 +45,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
       else { if (last) last.to = from; segs.push({ id: cur, from, to: end + 1, kicker: b.kicker ?? (last && last.id === cur ? last.kicker : undefined) }); }
     });
     // loop: in the last 0.45 s every "light" is undone, so the last frame is the first frame
-    for (const a of acts) if (a.type === 'light') a.until = end - 0.45;
+    for (const a of acts) if (a.type === 'light' || a.type === 'count') a.until = end - 0.45;
     const byScene: Record<string, A[]> = {};
     for (const a of acts) (byScene[sceneOfBeat[a.beat]] ??= []).push(a);
     return { segs, byScene, acts };
@@ -164,7 +164,7 @@ export const Doodle: React.FC<DoodleProps> = ({ episodeId, spec, timings, cover,
           );
         })}
         {!cover && t < end - 0.5 && <NotebookCaptions timings={timings!} t={t} keywords={spec.keywords ?? []} backing={Math.sin((fa * Math.PI) / 180)} />}
-        {spec.source && (!spec.sourceFrom || t >= firstFrom(spec.sourceFrom) - 0.01) && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom + 6, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 26, letterSpacing: '0.04em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
+        {spec.source && (!spec.sourceFrom || t >= firstFrom(spec.sourceFrom) - 0.01) && <div style={{ position: 'absolute', left: SAFE.left, top: ZONES.captions.bottom - 8, width: SAFE.railX - SAFE.left, ...monoCut(600), fontSize: 26, letterSpacing: '0.04em', textTransform: 'uppercase', color: C.ink, opacity: 0.62, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{spec.source}</div>}
         {guides && <Guides />}
         {sfx.map((c, i) => (
           <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>
@@ -190,7 +190,7 @@ const NotebookCaptions: React.FC<{ timings: Timings; t: number; keywords: string
   const top = ZONES.captions.top + (ZONES.captions.bottom - ZONES.captions.top - lineH * page.lines.length) / 2;
   return (
     <div style={{ position: 'absolute', top, left, width, display: 'flex', flexDirection: 'column' }}>
-      {backing > 0.01 && <div style={{ position: 'absolute', left: -24, top: -16, right: -24, bottom: -16, background: C.paper, opacity: Math.min(1, backing * 2.5), boxShadow: '4px 6px 0 rgba(0,0,0,0.25)' }} />}
+      {backing > 0.01 && <div style={{ position: 'absolute', left: -24, top: -16, right: 0, bottom: -16, background: C.paper, opacity: Math.min(1, backing * 2.5), boxShadow: '4px 6px 0 rgba(0,0,0,0.25)' }} />}
       {page.lines.map((line, li) => (
         <div key={li} style={{ position: 'relative', display: 'flex', gap: size * 0.24, height: lineH, alignItems: 'center', whiteSpace: 'nowrap' }}>
           {line.map((w, i) => {

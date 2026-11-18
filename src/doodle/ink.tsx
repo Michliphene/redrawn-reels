@@ -160,7 +160,7 @@ export const Cross: React.FC<{ x: number; y: number; s?: number; c?: string; dra
 /** sticky note: the doodle world's callout */
 export const Sticky: React.FC<{ x: number; y: number; w?: number; text: string; rot?: number; s?: number; opacity?: number }> = ({ x, y, w = 360, text, rot = -3, s = 1, opacity = 1 }) => {
   const words = text.split(' '), lines: string[] = [];
-  for (const wd of words) { const l = lines[lines.length - 1]; if (l && (l + ' ' + wd).length <= 15) lines[lines.length - 1] = l + ' ' + wd; else lines.push(wd); }
+  for (const wd of words) { const l = lines[lines.length - 1]; if (l && (l + ' ' + wd).length <= 18) lines[lines.length - 1] = l + ' ' + wd; else lines.push(wd); }
   const h = 60 + lines.length * 62;
   return (
     <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${s})`} opacity={opacity}>

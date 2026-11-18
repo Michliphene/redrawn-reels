@@ -14,17 +14,17 @@ Factual claims: Hemingway's own count (39) and the number of endings in his pape
 8. Same person. Same letter. Three tries.
 9. A first draft isn't a verdict. It's material. And you can't fix a page you never wrote.
 10. One try gets graded. Ten drafts get better.
-11. Bad is the first step, not the last word.
+11. Even Hemingway's ending took 39 rewrites.
 12. So next time your first draft is bad, remember… → (loop) Hemingway rewrote one ending 39 times.
 
 ## Facts table
 | On screen / spoken | Status | Source |
 |---|---|---|
 | "rewrote one ending 39 times" | Hemingway's own words: "I rewrote the ending to Farewell to Arms, the last page of it, thirty-nine times before I was satisfied." | "Ernest Hemingway, The Art of Fiction No. 21", interview by George Plimpton, *The Paris Review* no. 18, Spring 1958 (quoted by the Morgan Library and the University of Delaware exhibit "From Thought into Print") |
-| "His papers hold 47" | 47 alternative endings found in his manuscripts (some a single sentence), published in *A Farewell to Arms: The Hemingway Library Edition*, Scribner, 2012; papers at the John F. Kennedy Presidential Library, Boston | NPR, "New Edition Includes 39 Different 'Farewells' To Arms" (22 July 2012); The World / PRI (5 July 2012); Simon & Schuster listing (ISBN 9781451658163) |
+| "His papers hold 47" | 47 alternative endings found in his manuscripts (some a single sentence), published in *A Farewell to Arms: The Hemingway Library Edition*, Scribner, 2012; papers at the John F. Kennedy Presidential Library, Boston | The World / PRI, "Hemingway's 'A Farewell to Arms' and all 47 endings to be released" (5 July 2012) — states 47; context: NPR, "New Edition Includes 39 Different 'Farewells' To Arms" (22 July 2012, the headline uses Hemingway's 39); Simon & Schuster listing (ISBN 9781451658163) |
 | 1958 · 2012 (credits under the counts) | dates of the interview and of the edition | as above |
 | draft 1 / 2 / 3 · rambles / stiff / sounds like you | hypothetical ("Picture…"), labelled PICTURE THIS | — |
-| "10 drafts", "10 fixes", "1 try", "1 grade", "B", "3 tries", "Draft 1 is step 1" | illustrative, the script's argument | — |
+| "10 drafts", "10 fixes", "1 try", "1 grade", "B", "3 tries", "Cover letter", "No page, no fix" | illustrative, the script's argument | — |
 
 ## Debated points (be ready for comments)
 - **39 vs 47 is not a contradiction we hide, it is the hook:** 39 is what he said in 1958; 47 is what the 2012
@@ -39,4 +39,4 @@ threw away?
 
 ## To tick before posting (owner)
 - [ ] 39: quote checked in the Paris Review interview itself.
-- [ ] 47: checked against the 2012 edition or the NPR piece.
+- [ ] 47: checked against the 2012 edition itself or The World / PRI piece (its headline says 47; NPR's headline uses 39).

@@ -1,761 +1,746 @@
 {
- "duration": 44.318,
+ "duration": 42.864,
  "engine": "elevenlabs",
  "beats": [
   {
    "id": "hook",
    "start": 0.25,
-   "end": 2.711,
+   "end": 2.804,
    "words": [
     {
      "w": "Hemingway",
      "start": 0.25,
-     "end": 0.691
+     "end": 0.703
     },
     {
      "w": "rewrote",
-     "start": 0.772,
-     "end": 1.156
+     "start": 0.807,
+     "end": 1.237
     },
     {
      "w": "one",
-     "start": 1.202,
-     "end": 1.353
+     "start": 1.283,
+     "end": 1.504
     },
     {
      "w": "ending",
-     "start": 1.388,
-     "end": 1.643
+     "start": 1.55,
+     "end": 1.817
     },
     {
      "w": "39",
-     "start": 1.713,
-     "end": 2.166
+     "start": 1.875,
+     "end": 2.317
     },
     {
      "w": "times.",
-     "start": 2.212,
-     "end": 2.711
+     "start": 2.351,
+     "end": 2.804
     }
    ]
   },
   {
    "id": "twist",
-   "start": 2.991,
-   "end": 6.975,
+   "start": 3.084,
+   "end": 6.837,
    "words": [
     {
      "w": "That's",
-     "start": 2.991,
-     "end": 3.234
+     "start": 3.084,
+     "end": 3.317
     },
     {
      "w": "his",
-     "start": 3.269,
-     "end": 3.35
+     "start": 3.34,
+     "end": 3.433
     },
     {
      "w": "count.",
-     "start": 3.397,
-     "end": 3.745
+     "start": 3.479,
+     "end": 3.816
     },
     {
      "w": "His",
-     "start": 4.025,
-     "end": 4.165
+     "start": 4.096,
+     "end": 4.235
     },
     {
      "w": "papers",
-     "start": 4.223,
-     "end": 4.548
+     "start": 4.281,
+     "end": 4.583
     },
     {
      "w": "hold",
-     "start": 4.594,
-     "end": 4.838
+     "start": 4.618,
+     "end": 4.769
     },
     {
      "w": "47.",
-     "start": 4.908,
-     "end": 5.558
+     "start": 4.804,
+     "end": 5.442
     },
     {
      "w": "Some",
-     "start": 5.838,
-     "end": 6.035
+     "start": 5.722,
+     "end": 5.931
     },
     {
      "w": "are",
-     "start": 6.058,
-     "end": 6.174
+     "start": 5.954,
+     "end": 6.07
     },
     {
      "w": "a",
-     "start": 6.209,
-     "end": 6.232
+     "start": 6.094,
+     "end": 6.117
     },
     {
      "w": "single",
-     "start": 6.279,
-     "end": 6.534
+     "start": 6.163,
+     "end": 6.407
     },
     {
      "w": "line.",
-     "start": 6.569,
-     "end": 6.975
+     "start": 6.442,
+     "end": 6.837
     }
    ]
   },
   {
    "id": "myth",
-   "start": 7.255,
-   "end": 11.691,
+   "start": 7.117,
+   "end": 11.229,
    "words": [
     {
      "w": "Most",
-     "start": 7.255,
-     "end": 7.487
+     "start": 7.117,
+     "end": 7.326
     },
     {
      "w": "people",
-     "start": 7.522,
-     "end": 7.765
+     "start": 7.361,
+     "end": 7.593
     },
     {
      "w": "think",
-     "start": 7.812,
-     "end": 7.974
+     "start": 7.628,
+     "end": 7.779
     },
     {
      "w": "a",
-     "start": 8.021,
-     "end": 8.056
+     "start": 7.826,
+     "end": 7.86
     },
     {
      "w": "bad",
-     "start": 8.114,
-     "end": 8.323
+     "start": 7.918,
+     "end": 8.127
     },
     {
      "w": "first",
-     "start": 8.381,
-     "end": 8.601
+     "start": 8.185,
+     "end": 8.394
     },
     {
      "w": "draft",
-     "start": 8.636,
-     "end": 8.938
+     "start": 8.429,
+     "end": 8.708
     },
     {
      "w": "means",
-     "start": 8.984,
-     "end": 9.159
+     "start": 8.754,
+     "end": 8.917
     },
     {
      "w": "you're",
-     "start": 9.193,
-     "end": 9.344
+     "start": 8.952,
+     "end": 9.091
     },
     {
      "w": "bad",
-     "start": 9.379,
-     "end": 9.565
+     "start": 9.114,
+     "end": 9.288
     },
     {
      "w": "at",
-     "start": 9.611,
-     "end": 9.716
+     "start": 9.335,
+     "end": 9.439
     },
     {
      "w": "it.",
-     "start": 9.762,
-     "end": 9.96
+     "start": 9.486,
+     "end": 9.683
     },
     {
      "w": "So",
-     "start": 10.24,
-     "end": 10.356
+     "start": 9.963,
+     "end": 10.056
     },
     {
      "w": "they",
-     "start": 10.402,
-     "end": 10.519
+     "start": 10.103,
+     "end": 10.207
     },
     {
      "w": "stop",
-     "start": 10.565,
-     "end": 10.774
+     "start": 10.242,
+     "end": 10.416
     },
     {
      "w": "at",
-     "start": 10.832,
-     "end": 10.913
+     "start": 10.463,
+     "end": 10.521
     },
     {
      "w": "draft",
-     "start": 10.948,
-     "end": 11.238
+     "start": 10.544,
+     "end": 10.834
     },
     {
      "w": "one.",
-     "start": 11.32,
-     "end": 11.691
+     "start": 10.915,
+     "end": 11.229
     }
    ]
   },
   {
    "id": "rules",
-   "start": 11.971,
-   "end": 15.921,
+   "start": 11.509,
+   "end": 15.528,
    "words": [
     {
      "w": "At",
-     "start": 11.971,
-     "end": 12.122
+     "start": 11.509,
+     "end": 11.66
     },
     {
      "w": "school,",
-     "start": 12.168,
-     "end": 12.505
+     "start": 11.706,
+     "end": 12.032
     },
     {
      "w": "it",
-     "start": 12.528,
-     "end": 12.609
+     "start": 12.055,
+     "end": 12.136
     },
     {
      "w": "did.",
-     "start": 12.656,
-     "end": 13.051
+     "start": 12.182,
+     "end": 12.554
     },
     {
      "w": "You",
-     "start": 13.331,
-     "end": 13.448
+     "start": 12.834,
+     "end": 12.962
     },
     {
      "w": "handed",
-     "start": 13.529,
-     "end": 13.773
+     "start": 13.066,
+     "end": 13.345
     },
     {
      "w": "in",
-     "start": 13.819,
-     "end": 13.889
+     "start": 13.391,
+     "end": 13.461
     },
     {
      "w": "one",
-     "start": 13.959,
-     "end": 14.121
+     "start": 13.531,
+     "end": 13.693
     },
     {
      "w": "try,",
-     "start": 14.168,
-     "end": 14.539
+     "start": 13.74,
+     "end": 14.251
     },
     {
      "w": "and",
-     "start": 14.574,
-     "end": 14.667
+     "start": 14.297,
+     "end": 14.425
     },
     {
      "w": "that",
-     "start": 14.713,
-     "end": 14.853
+     "start": 14.471,
+     "end": 14.61
     },
     {
      "w": "try",
-     "start": 14.899,
-     "end": 15.108
+     "start": 14.657,
+     "end": 14.831
     },
     {
      "w": "got",
-     "start": 15.213,
-     "end": 15.375
+     "start": 14.889,
+     "end": 15.005
     },
     {
      "w": "the",
-     "start": 15.41,
-     "end": 15.48
+     "start": 15.04,
+     "end": 15.11
     },
     {
      "w": "grade.",
-     "start": 15.526,
-     "end": 15.921
+     "start": 15.145,
+     "end": 15.528
     }
    ]
   },
   {
    "id": "flip",
-   "start": 16.201,
-   "end": 17.804,
+   "start": 15.808,
+   "end": 17.213,
    "words": [
     {
      "w": "But",
-     "start": 16.201,
-     "end": 16.352
+     "start": 15.808,
+     "end": 15.959
     },
     {
      "w": "out",
-     "start": 16.399,
-     "end": 16.55
+     "start": 15.994,
+     "end": 16.133
     },
     {
      "w": "here,",
-     "start": 16.608,
-     "end": 16.944
+     "start": 16.192,
+     "end": 16.4
     },
     {
      "w": "the",
-     "start": 17.003,
-     "end": 17.107
+     "start": 16.424,
+     "end": 16.493
     },
     {
      "w": "rules",
-     "start": 17.153,
-     "end": 17.386
+     "start": 16.54,
+     "end": 16.772
     },
     {
      "w": "flip.",
-     "start": 17.432,
-     "end": 17.804
+     "start": 16.818,
+     "end": 17.213
     }
    ]
   },
   {
    "id": "graded",
-   "start": 18.084,
-   "end": 21.104,
+   "start": 17.364,
+   "end": 20.361,
    "words": [
     {
      "w": "Nobody",
-     "start": 18.084,
-     "end": 18.409
+     "start": 17.364,
+     "end": 17.678
     },
     {
      "w": "grades",
-     "start": 18.455,
-     "end": 18.676
+     "start": 17.724,
+     "end": 17.968
     },
     {
      "w": "your",
-     "start": 18.699,
-     "end": 18.804
+     "start": 18.003,
+     "end": 18.107
     },
     {
      "w": "first",
-     "start": 18.85,
-     "end": 19.047
+     "start": 18.142,
+     "end": 18.351
     },
     {
      "w": "draft.",
-     "start": 19.082,
-     "end": 19.524
+     "start": 18.386,
+     "end": 18.804
     },
     {
      "w": "They",
-     "start": 19.804,
-     "end": 19.978
+     "start": 19.084,
+     "end": 19.247
     },
     {
      "w": "only",
-     "start": 20.024,
-     "end": 20.21
+     "start": 19.293,
+     "end": 19.456
     },
     {
      "w": "see",
-     "start": 20.257,
-     "end": 20.396
+     "start": 19.502,
+     "end": 19.63
     },
     {
      "w": "the",
-     "start": 20.431,
-     "end": 20.5
+     "start": 19.664,
+     "end": 19.734
     },
     {
      "w": "last",
-     "start": 20.547,
-     "end": 20.756
+     "start": 19.769,
+     "end": 19.99
     },
     {
      "w": "one.",
-     "start": 20.814,
-     "end": 21.104
+     "start": 20.059,
+     "end": 20.361
     }
    ]
   },
   {
    "id": "example",
-   "start": 21.384,
-   "end": 27.85,
+   "start": 20.641,
+   "end": 26.644,
    "words": [
     {
      "w": "Picture",
-     "start": 21.384,
-     "end": 21.697
+     "start": 20.641,
+     "end": 20.966
     },
     {
      "w": "a",
-     "start": 21.732,
-     "end": 21.755
+     "start": 21.013,
+     "end": 21.036
     },
     {
      "w": "cover",
-     "start": 21.825,
-     "end": 22.069
+     "start": 21.117,
+     "end": 21.361
     },
     {
      "w": "letter.",
-     "start": 22.115,
-     "end": 22.487
+     "start": 21.408,
+     "end": 21.802
     },
     {
      "w": "Draft",
-     "start": 22.707,
-     "end": 22.998
+     "start": 21.988,
+     "end": 22.302
     },
     {
      "w": "one",
-     "start": 23.079,
-     "end": 23.299
+     "start": 22.36,
+     "end": 22.511
     },
     {
      "w": "rambles.",
-     "start": 23.346,
-     "end": 23.915
+     "start": 22.557,
+     "end": 23.056
     },
     {
      "w": "Draft",
-     "start": 24.1,
-     "end": 24.414
+     "start": 23.242,
+     "end": 23.521
     },
     {
      "w": "two",
-     "start": 24.46,
-     "end": 24.669
+     "start": 23.567,
+     "end": 23.706
     },
     {
      "w": "sounds",
-     "start": 24.774,
-     "end": 25.076
+     "start": 23.776,
+     "end": 24.055
     },
     {
      "w": "stiff.",
-     "start": 25.122,
-     "end": 25.633
+     "start": 24.089,
+     "end": 24.554
     },
     {
      "w": "Draft",
-     "start": 25.877,
-     "end": 26.19
+     "start": 24.798,
+     "end": 25.111
     },
     {
      "w": "three",
-     "start": 26.237,
-     "end": 26.539
+     "start": 25.158,
+     "end": 25.436
     },
     {
      "w": "finally",
-     "start": 26.597,
-     "end": 26.921
+     "start": 25.494,
+     "end": 25.808
     },
     {
      "w": "sounds",
-     "start": 26.968,
-     "end": 27.235
+     "start": 25.854,
+     "end": 26.087
     },
     {
      "w": "like",
-     "start": 27.27,
-     "end": 27.42
+     "start": 26.121,
+     "end": 26.272
     },
     {
      "w": "you.",
-     "start": 27.467,
-     "end": 27.85
+     "start": 26.319,
+     "end": 26.644
     }
    ]
   },
   {
    "id": "same",
-   "start": 28.13,
-   "end": 30.871,
+   "start": 26.924,
+   "end": 29.632,
    "words": [
     {
      "w": "Same",
-     "start": 28.13,
-     "end": 28.432
+     "start": 26.924,
+     "end": 27.179
     },
     {
      "w": "person.",
-     "start": 28.479,
-     "end": 28.966
+     "start": 27.214,
+     "end": 27.644
     },
     {
      "w": "Same",
-     "start": 29.117,
-     "end": 29.361
+     "start": 27.924,
+     "end": 28.156
     },
     {
      "w": "letter.",
-     "start": 29.407,
-     "end": 29.79
+     "start": 28.191,
+     "end": 28.516
     },
     {
      "w": "Three",
-     "start": 30.07,
-     "end": 30.302
+     "start": 28.796,
+     "end": 29.04
     },
     {
      "w": "tries.",
-     "start": 30.337,
-     "end": 30.871
+     "start": 29.086,
+     "end": 29.632
     }
    ]
   },
   {
    "id": "principle",
-   "start": 31.115,
-   "end": 35.503,
+   "start": 29.912,
+   "end": 34.417,
    "words": [
     {
      "w": "A",
-     "start": 31.115,
-     "end": 31.173
+     "start": 29.912,
+     "end": 29.994
     },
     {
      "w": "first",
-     "start": 31.242,
-     "end": 31.451
+     "start": 30.098,
+     "end": 30.307
     },
     {
      "w": "draft",
-     "start": 31.486,
-     "end": 31.742
+     "start": 30.342,
+     "end": 30.609
     },
     {
      "w": "isn't",
-     "start": 31.788,
-     "end": 31.974
+     "start": 30.655,
+     "end": 30.853
     },
     {
      "w": "a",
-     "start": 31.997,
-     "end": 32.02
+     "start": 30.876,
+     "end": 30.899
     },
     {
      "w": "verdict.",
-     "start": 32.067,
-     "end": 32.485
+     "start": 30.946,
+     "end": 31.352
     },
     {
      "w": "It's",
-     "start": 32.636,
-     "end": 32.81
+     "start": 31.457,
+     "end": 31.642
     },
     {
      "w": "material.",
-     "start": 32.856,
-     "end": 33.437
+     "start": 31.689,
+     "end": 32.292
     },
     {
      "w": "And",
-     "start": 33.657,
-     "end": 33.785
+     "start": 32.513,
+     "end": 32.652
     },
     {
      "w": "you",
-     "start": 33.831,
-     "end": 33.913
+     "start": 32.699,
+     "end": 32.768
     },
     {
      "w": "can't",
-     "start": 33.982,
-     "end": 34.215
+     "start": 32.815,
+     "end": 33.024
     },
     {
      "w": "fix",
-     "start": 34.261,
-     "end": 34.423
+     "start": 33.07,
+     "end": 33.233
     },
     {
      "w": "a",
-     "start": 34.482,
-     "end": 34.516
+     "start": 33.291,
+     "end": 33.326
     },
     {
      "w": "page",
-     "start": 34.563,
-     "end": 34.795
+     "start": 33.384,
+     "end": 33.686
     },
     {
      "w": "you",
-     "start": 34.818,
-     "end": 34.888
+     "start": 33.709,
+     "end": 33.779
     },
     {
      "w": "never",
-     "start": 34.934,
-     "end": 35.12
+     "start": 33.848,
+     "end": 34.022
     },
     {
      "w": "wrote.",
-     "start": 35.155,
-     "end": 35.503
+     "start": 34.069,
+     "end": 34.417
     }
    ]
   },
   {
    "id": "contrast",
-   "start": 35.783,
-   "end": 38.476,
+   "start": 34.697,
+   "end": 37.381,
    "words": [
     {
      "w": "One",
-     "start": 35.783,
-     "end": 36.015
+     "start": 34.697,
+     "end": 34.952
     },
     {
      "w": "try",
-     "start": 36.05,
-     "end": 36.317
+     "start": 34.987,
+     "end": 35.208
     },
     {
      "w": "gets",
-     "start": 36.387,
-     "end": 36.561
+     "start": 35.289,
+     "end": 35.451
     },
     {
      "w": "graded.",
-     "start": 36.607,
-     "end": 37.014
+     "start": 35.498,
+     "end": 35.893
     },
     {
      "w": "Ten",
-     "start": 37.257,
-     "end": 37.513
+     "start": 36.173,
+     "end": 36.429
     },
     {
      "w": "drafts",
-     "start": 37.559,
-     "end": 37.896
+     "start": 36.475,
+     "end": 36.8
     },
     {
      "w": "get",
-     "start": 37.942,
-     "end": 38.07
+     "start": 36.847,
+     "end": 36.974
     },
     {
      "w": "better.",
-     "start": 38.116,
-     "end": 38.476
+     "start": 37.021,
+     "end": 37.381
     }
    ]
   },
   {
    "id": "step",
-   "start": 38.756,
-   "end": 41.124,
+   "start": 37.661,
+   "end": 39.959,
    "words": [
     {
-     "w": "Bad",
-     "start": 38.756,
-     "end": 39.058
+     "w": "Even",
+     "start": 37.661,
+     "end": 37.893
     },
     {
-     "w": "is",
-     "start": 39.104,
-     "end": 39.185
+     "w": "Hemingway's",
+     "start": 37.951,
+     "end": 38.415
     },
     {
-     "w": "the",
-     "start": 39.232,
-     "end": 39.301
+     "w": "ending",
+     "start": 38.462,
+     "end": 38.682
     },
     {
-     "w": "first",
-     "start": 39.371,
-     "end": 39.58
+     "w": "took",
+     "start": 38.729,
+     "end": 38.88
     },
     {
-     "w": "step,",
-     "start": 39.615,
-     "end": 40.01
+     "w": "39",
+     "start": 38.926,
+     "end": 39.356
     },
     {
-     "w": "not",
-     "start": 40.16,
-     "end": 40.323
-    },
-    {
-     "w": "the",
-     "start": 40.358,
-     "end": 40.427
-    },
-    {
-     "w": "last",
-     "start": 40.486,
-     "end": 40.706
-    },
-    {
-     "w": "word.",
-     "start": 40.753,
-     "end": 41.124
+     "w": "rewrites.",
+     "start": 39.402,
+     "end": 39.959
     }
    ]
   },
   {
    "id": "loop",
-   "start": 41.404,
-   "end": 44.318,
+   "start": 40.239,
+   "end": 42.864,
    "words": [
     {
      "w": "So",
-     "start": 41.404,
-     "end": 41.543
+     "start": 40.239,
+     "end": 40.355
     },
     {
      "w": "next",
-     "start": 41.613,
-     "end": 41.799
+     "start": 40.413,
+     "end": 40.587
     },
     {
      "w": "time",
-     "start": 41.833,
-     "end": 42.019
+     "start": 40.611,
+     "end": 40.761
     },
     {
      "w": "your",
-     "start": 42.054,
-     "end": 42.17
+     "start": 40.785,
+     "end": 40.889
     },
     {
      "w": "first",
-     "start": 42.216,
-     "end": 42.437
+     "start": 40.924,
+     "end": 41.11
     },
     {
      "w": "draft",
-     "start": 42.472,
-     "end": 42.716
+     "start": 41.133,
+     "end": 41.365
     },
     {
      "w": "is",
-     "start": 42.762,
-     "end": 42.832
+     "start": 41.4,
+     "end": 41.47
     },
     {
      "w": "bad,",
-     "start": 42.89,
-     "end": 43.308
+     "start": 41.516,
+     "end": 41.911
     },
     {
      "w": "remember…",
-     "start": 43.552,
-     "end": 44.318
+     "start": 42.191,
+     "end": 42.864
     }
    ]
   }
  ],
- "say_hash": "3fd1a9abe36a950f"
+ "say_hash": "6b4f659969971685"
 }
