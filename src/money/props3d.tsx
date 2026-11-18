@@ -59,9 +59,31 @@ export const TV: React.FC = () => {
   );
 };
 
+/** A generic smartphone (no logo, no brand shape): a slab standing on a little easel, screen towards the camera. */
+export const Phone: React.FC = () => (
+  <group position={[0, 0, 0.15]}>
+    {/* easel */}
+    <mesh geometry={box} position={[0, 0.08, 0.35]} scale={[1.3, 0.16, 0.9]} castShadow><M c="#2B3A33" /></mesh>
+    <mesh geometry={box} position={[0, 0.5, -0.55]} rotation={[-0.32, 0, 0]} scale={[0.5, 1.1, 0.14]} castShadow><M c="#2B3A33" /></mesh>
+    <group position={[0, 1.62, 0]} rotation={[-0.2, 0, 0]}>
+      {/* body, screen, a few app tiles, the camera block on the back */}
+      <mesh geometry={box} scale={[1.62, 3.15, 0.2]} castShadow><M c="#1A2420" /></mesh>
+      <mesh geometry={box} position={[0, 0, 0.105]} scale={[1.44, 2.95, 0.02]}><meshBasicMaterial color="#27463B" /></mesh>
+      {Array.from({ length: 12 }, (_, i) => (
+        <mesh key={i} geometry={box} position={[-0.48 + (i % 3) * 0.48, 0.95 - Math.floor(i / 3) * 0.48, 0.12]} scale={[0.32, 0.32, 0.02]}>
+          <meshBasicMaterial color={['#C8F53C', '#FF6B5E', '#FFB648', '#7FD6FF'][(i * 7) % 4]} />
+        </mesh>
+      ))}
+      <mesh geometry={box} position={[0, -1.18, 0.12]} scale={[0.5, 0.06, 0.02]}><meshBasicMaterial color="#F6F1EA" /></mesh>
+      <mesh geometry={box} position={[-0.36, 1.08, -0.14]} scale={[0.66, 0.66, 0.1]} castShadow><M c="#2B3A33" /></mesh>
+    </group>
+  </group>
+);
+
 /** key of `scenes.<id>.art` → model and the box it fills (used to frame it) */
 export const PRODUCTS: Record<string, { El: React.FC; w: number; h: number; d: number }> = {
   hotdog: { El: HotDog, w: 3.6, h: 1.5, d: 1.6 },
   burger: { El: Burger, w: 2.9, h: 2.1, d: 2.9 },
   tv: { El: TV, w: 3.4, h: 2.5, d: 0.9 },
+  phone: { El: Phone, w: 1.9, h: 3.3, d: 1.4 },
 };

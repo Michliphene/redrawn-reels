@@ -1,0 +1,4 @@
+# raea projects: media/ is rebuilt from public/ by each project's setup.sh, renders go to out/
+*/media/
+*/compositions/media
+*/out/

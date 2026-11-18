@@ -69,7 +69,7 @@ The source line never leaves the screen (bottom of the caption band, y 1416).
 | 001 | Why this hot dog is still $1.50 | "This hot dog has cost $1.50 since 1985." | Costco 10-K — **produced** |
 | 002 | Netflix: where $100 goes | "Of every $100 you pay Netflix, only about $36 goes to the shows." | Netflix 10-K — **produced** |
 | 003 | McDonald's is a landlord | "McDonald's collected $10.4 billion in rent last year." | McDonald's 10-K — **produced** |
-| 004 | Who makes money on a $1,000 iPhone | "Apple keeps about … of this." (gross margin, verify) | Apple 10-K |
+| 004 | The iPhone is a storefront | "Spend $1,000 on Apple devices, and about $390 is left once they're built." | Apple 10-K FY2026 — **produced** (DA 2) |
 | 005 | Where your airline ticket goes | "The airline keeps a few dollars of this." (verify) | Delta/United 10-K, A4A |
 | 006 | Why airlines are really banks | loyalty programme income vs flying (verify) | Delta 10-K |
 | 007 | Where $100 at Amazon goes | AWS share of operating income (verify) | Amazon 10-K |
