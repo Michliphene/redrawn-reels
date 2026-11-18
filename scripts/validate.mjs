@@ -6,13 +6,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
+const { schedule, alignTimings } = require('../src/lib/schedule.ts');
+const { episodeMedia } = require('../src/lib/media.ts');
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const EP = (id, f = '') => path.join(ROOT, 'public/episodes', id, f);
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const studio = readJson(path.join(ROOT, 'public/studio.json')).series;
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
@@ -34,11 +38,19 @@ export function displayWords(say) {
   }
   return out;
 }
-const findWord = (words, atWord, occurrence = 1) => {
-  const exact = words.filter((w) => w.toLowerCase() === atWord.toLowerCase());
-  const prefix = words.filter((w) => norm(w).startsWith(norm(atWord)));
-  return (exact.length ? exact : prefix)[occurrence - 1];
-};
+export const compositionOf = (spec, sid = seriesIdOf(spec)) =>
+  spec.composition ?? (sid ? studio[sid].composition : 'Episode');
+
+function scriptTimings(spec) {
+  let cursor = 0;
+  const beats = spec.beats.map(({ id, say }) => {
+    const start = cursor;
+    const words = displayWords(typeof say === 'string' ? say : '').map((w) => ({ w, start: cursor, end: ++cursor }));
+    if (!words.length) cursor++;
+    return { id, start, end: cursor, words };
+  });
+  return { duration: cursor, beats };
+}
 
 export function validate(id) {
   const errors = [], warnings = [];
@@ -51,12 +63,12 @@ export function validate(id) {
   if (spec.id !== id) E(`"id" is "${spec.id}" but the folder is "${id}"`);
   const sid = seriesIdOf(spec);
   if (!sid) E(`series "${spec.series}" is not in public/studio.json`);
-  const comp = spec.composition ?? (sid ? studio[sid].composition : 'Episode');
+  const comp = compositionOf(spec, sid);
   if (!spec.title) E('missing "title"'); else if (spec.title.length > 36) Wn(`title is ${spec.title.length} characters (aim for ≤ 36: it must fit two or three lines at full size)`);
   if (!Array.isArray(spec.beats) || !spec.beats.length) return { id, errors: [...errors, 'no beats'], warnings };
 
   // audio
-  const audioId = spec.audio ?? id;
+  const media = episodeMedia(id, spec);
   if (spec.audio) {
     if (!fs.existsSync(EP(spec.audio, 'episode.json'))) E(`"audio": "${spec.audio}" does not exist`);
     else {
@@ -65,9 +77,19 @@ export function validate(id) {
       else src.beats.forEach((b, i) => { if (b.say !== spec.beats[i].say) E(`beat ${spec.beats[i].id}: "say" differs from ${spec.audio} (the voice is shared, so the script must be identical)`); });
     }
   } else if (!spec.voice) E('missing "voice" (or "audio" to reuse another episode\'s)');
-  const timings = fs.existsSync(EP(audioId, 'timings.json')) ? readJson(EP(audioId, 'timings.json')) : null;
-  if (!timings) Wn('no timings.json yet: cue words are checked against the script only');
-  else if (timings.beats.length !== spec.beats.length) E(`timings.json has ${timings.beats.length} beats, episode.json has ${spec.beats.length}: re-run the voice`);
+  const timingPath = path.join(ROOT, 'public', media.timings);
+  let timings;
+  try {
+    if (fs.existsSync(timingPath)) {
+      timings = alignTimings(spec, readJson(timingPath));
+      schedule(spec, timings, { composition: comp });
+    } else {
+      Wn('no timings.json yet: cue words are checked against the script only');
+      schedule(spec, scriptTimings(spec), { composition: comp, scriptOnly: true });
+    }
+  } catch (error) {
+    E(`${media.timings}: ${error.message}`);
+  }
 
   // sources: the first promise of every channel
   let sources = '';
@@ -108,7 +130,6 @@ export function validate(id) {
     if (seen.has(b.id)) E(`duplicate beat id "${b.id}"`);
     seen.add(b.id);
     if (!b.say || !b.say.trim()) E(`beat ${b.id}: empty "say"`);
-    const words = timings?.beats[i]?.words.map((w) => w.w) ?? displayWords(b.say ?? '');
     if (b.scene) { scene = b.scene; if (comp === 'Money' && !spec.scenes?.[scene]) E(`beat ${b.id}: scene "${scene}" is not declared in "scenes"`); }
     collect(`beat ${b.id}.kicker`, b.kicker);
     if (b.camera?.fit && featureIds && !['FOCUS', 'SOVIET'].includes(b.camera.fit) && !featureIds.has(b.camera.fit)) E(`beat ${b.id}: camera fit "${b.camera.fit}" is not a feature id`);
@@ -117,14 +138,8 @@ export function validate(id) {
       if (comp === 'Episode' && !MAP_ACTIONS.has(a.type)) E(`${where}: unknown action type`);
       if (comp === 'Money') {
         const type = spec.scenes?.[scene]?.type;
-        if (a.type !== 'callout' && type && !MONEY_ACTIONS[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
+        if (a.type !== 'callout' && MONEY_ACTIONS[type] && !MONEY_ACTIONS[type].includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
-      }
-      for (const key of ['atWord', 'retreatWord', 'stampWord']) {
-        if (!a[key]) continue;
-        // retreat/stamp words may be spoken in a later beat: search from this beat onwards
-        const pool = key === 'atWord' ? words : spec.beats.slice(i).flatMap((bb, k) => timings?.beats[i + k]?.words.map((w) => w.w) ?? displayWords(bb.say ?? ''));
-        if (!findWord(pool, a[key], key === 'atWord' ? a.occurrence ?? 1 : 1)) E(`${where}: ${key} "${a[key]}"${a.occurrence ? ` (occurrence ${a.occurrence})` : ''} is not spoken in ${key === 'atWord' ? 'this beat' : 'this beat or after'} — say: "${b.say}"`);
       }
       if (featureIds) {
         const ids = [a.id, ...(a.ids ?? [])].filter((x) => typeof x === 'string');

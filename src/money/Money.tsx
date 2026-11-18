@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame, interpolate, delayRender, continueRender } from 'remotion';
 import { schedule } from '../lib/schedule';
+import { episodeMedia, type RenderDirectionProps } from '../lib/media';
 import { FPS } from '../lib/theme';
 import { Captions } from '../components/Captions';
 import { Fx } from '../components/Fx';
@@ -246,8 +247,9 @@ const MoneyV1: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover }) => {
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const end = timings!.duration + 0.5;
+  const media = episodeMedia(episodeId, spec);
   const { segs, byScene, acts } = useMemo(() => {
-    const acts = schedule(spec, timings!).actions as unknown as A[];
+    const acts = schedule(spec, timings!, { composition: 'Money' }).actions as unknown as A[];
     const sceneOfBeat: Record<string, string> = {}; const segs: { id: string; from: number; to: number; kicker?: string }[] = [];
     let cur = '';
     spec.beats.forEach((b: any, i: number) => {
@@ -308,8 +310,8 @@ const MoneyV1: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover }) => {
       {sfx.map((c, i) => (
         <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>
       ))}
-      <Audio src={staticFile(`episodes/${episodeId}/voice.wav`)} />
-      <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />
+      <Audio src={staticFile(media.voice)} />
+      <Audio src={staticFile(media.music)} volume={musicVol} />
     </AbsoluteFill>
   );
 };
@@ -317,9 +319,9 @@ const MoneyV1: React.FC<MoneyProps> = ({ episodeId, spec, timings, cover }) => {
 /**
  * Entry point of the money series. `da` (episode.json, or a render prop to preview) selects the art direction:
  * 1 = flat scenes (episodes made before the DA step-up stay exactly as published), 2 = the 3D counter (`Money3D`).
- * Without WebGL, DA 2 falls back to the flat scenes instead of failing.
+ * Root requires WebGL for an explicit requireDa=2. Unpinned previews can fall back to the flat scenes.
  */
-export const Money: React.FC<MoneyProps & { da?: number; webgl?: boolean; guides?: boolean }> = (props) => {
+export const Money: React.FC<MoneyProps & RenderDirectionProps & { guides?: boolean; deltaPreview?: boolean }> = (props) => {
   const da = props.da ?? props.spec?.da ?? 1;
   return da >= 2 && props.webgl !== false ? <Money3D {...props} /> : <MoneyV1 {...props} />;
 };

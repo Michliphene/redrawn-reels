@@ -3,6 +3,7 @@ import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame } from 'r
 import type { GeoProjection } from 'd3-geo';
 import type { EpisodeProps } from '../lib/types';
 import { schedule } from '../lib/schedule';
+import { episodeMedia } from '../lib/media';
 import { applySkin, setPalette } from '../lib/theme';
 import { FPS, ZONES, SAFE } from '../studio/tokens';
 import { seriesOf } from '../studio/series';
@@ -44,10 +45,10 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   applySkin({ font: `'${FONT.displayCondensed}', '${FONT.legacy}'`, text: pal.ink, muted: pal.muted, accent: pal.accent, radius: 0, shadow: '10px 10px 0 rgba(0,0,0,0.5)', inset: SAFE.left,
     photo: 'print', photoTones: [pal.bg, pal.surfaceEdge, pal.surface, pal.muted, pal.ink] });
   const sx = spec as any;
-  const audioId = sx.audio ?? episodeId;
+  const media = episodeMedia(episodeId, spec);
 
   const sched = useMemo(() => {
-    const sc = schedule(spec!, timings!);
+    const sc = schedule(spec!, timings!, { composition: 'Episode', da: 2 });
     // A cut is a new place: anything pinned to the old place (labels, markers, units, paths…) ends just before it.
     const cuts = sc.cameras.filter((c) => (c.cam as any).cut).map((c) => c.t);
     const HOLD: Record<string, number> = { label: 2.5, marker: 2.5, units: 4, region: 3.5, pointer: 3, sticker: 2.2, ghost: 3, path: 4 };
@@ -128,8 +129,8 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}
       <Sfx actions={sched.actions} />
-      <Audio src={staticFile(`episodes/${audioId}/voice.wav`)} />
-      <Audio src={staticFile(`episodes/${audioId}/music.wav`)} volume={musicVol} />
+      <Audio src={staticFile(media.voice)} />
+      <Audio src={staticFile(media.music)} volume={musicVol} />
     </AbsoluteFill>
   );
 };

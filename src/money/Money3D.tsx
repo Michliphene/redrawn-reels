@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame, interpolate } from 'remotion';
 import * as THREE from 'three';
 import { schedule } from '../lib/schedule';
+import { deltaHookPreview, episodeMedia } from '../lib/media';
 import type { Timings } from '../lib/types';
 import { FPS, SAFE, ZONES } from '../studio/tokens';
 import { seriesOf, type SeriesDef } from '../studio/series';
@@ -29,7 +30,7 @@ import { PRODUCTS } from './props3d';
 type A = { type: string; t: number; beat: string; [k: string]: any };
 type Seg = { id: string; from: number; to: number; kicker?: string };
 type StationProps = { t: number; acts: A[]; def: any; ox: number; from: number; series: SeriesDef };
-export type Money3DProps = { episodeId: string; spec?: any; timings?: Timings; cover?: boolean; guides?: boolean };
+export type Money3DProps = { episodeId: string; spec?: any; timings?: Timings; cover?: boolean; guides?: boolean; deltaPreview?: boolean };
 
 const GAP = 22;
 const box = new THREE.BoxGeometry(1, 1, 1);
@@ -159,19 +160,19 @@ const bump = (t: number, acts: A[], target: string) => 1 + acts.filter((a) => a.
 const Pill: React.FC<{ children: React.ReactNode; bg: string; color: string; size?: number; style?: React.CSSProperties }> = ({ children, bg, color, size = 30, style }) => (
   <Mono size={size} color={color} track={0.16} weight={800} style={{ display: 'inline-block', background: bg, padding: `${size * 0.32}px ${size * 0.5}px ${size * 0.28}px`, textShadow: 'none', boxShadow: '6px 6px 0 rgba(0,0,0,0.45)', ...style }}>{children}</Mono>
 );
-type OverlayProps = { t: number; acts: A[]; def: any; series: SeriesDef; toPx: (p: Vec3) => [number, number]; ox: number; print: (px: number) => number };
+type OverlayProps = { t: number; acts: A[]; def: any; series: SeriesDef; toPx: (p: Vec3) => [number, number]; ox: number; print: (px: number) => number; productInset?: number };
 /**
  * Small print floor. `"print": 32` in episode.json raises every label below 32 px to 32 (raea's craft floor: small
  * print ≥ 32 px at 1080 wide). Absent, sizes are exactly as published.
  */
 const printer = (min?: number) => (px: number) => (min ? Math.max(px, min) : px);
 
-const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, print }) => (
+const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, print, productInset = 0 }) => (
   <>
-    <div style={{ position: 'absolute', left: SAFE.left, top: 870, transform: `scale(${bump(t, acts, 'price')})`, transformOrigin: 'left center' }}>
+    <div style={{ position: 'absolute', left: SAFE.left + productInset, top: 870, transform: `scale(${bump(t, acts, 'price')})`, transformOrigin: 'left center' }}>
       <Display size={Math.min(214, (def.priceSize ?? 270) * 0.8)} color={pal(series).accent} style={{ letterSpacing: '-0.02em' }}>{def.price}</Display>
     </div>
-    <div style={{ position: 'absolute', left: SAFE.left, top: 1078, transform: `scale(${bump(t, acts, 'tag')})`, transformOrigin: 'left center' }}>
+    <div style={{ position: 'absolute', left: SAFE.left + productInset, top: 1078, transform: `scale(${bump(t, acts, 'tag')})`, transformOrigin: 'left center' }}>
       <Pill bg={pal(series).ink} color={pal(series).bg} size={print(32)}>{def.tag}</Pill>
     </div>
     {acts.filter((a) => a.type === 'ghost').map((a, i) => {
@@ -271,18 +272,19 @@ const LinesOverlay: React.FC<OverlayProps> = ({ t, acts, series, print }) => (
 const OVERLAYS: Record<string, React.FC<OverlayProps>> = { product: ProductOverlay, grid: GridOverlay, bars: BarsOverlay, card: CardOverlay, people: PeopleOverlay, lines: LinesOverlay };
 
 /* ------------------------------------------------------------------ composition */
-export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cover, guides }) => {
+export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cover, guides, deltaPreview }) => {
   loadFonts();
   const frame = useCurrentFrame();
   const t = frame / FPS;
   const series = seriesOf(spec);
   const P = series.palette;
   const end = timings!.duration + 0.5;
-  const audioId = spec.audio ?? episodeId;
+  const media = episodeMedia(episodeId, spec);
+  const preview = deltaHookPreview(episodeId, deltaPreview);
   const print = printer(spec.print);
 
   const { segs, byScene, acts, origin, keys } = useMemo(() => {
-    const acts = schedule(spec, timings!).actions as unknown as A[];
+    const acts = schedule(spec, timings!, { composition: 'Money' }).actions as unknown as A[];
     const sceneOfBeat: Record<string, string> = {}; const segs: Seg[] = [];
     let cur = '';
     spec.beats.forEach((b: any, i: number) => {
@@ -316,7 +318,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
   const segType = spec.scenes[seg.id].type as string;
 
   // camera: station to station, a crane-in on the hook, a slow orbit around whatever is on stage, back to frame 0 for the loop
-  const crane = (s: Shot, k: number): Shot => ({ ...s, pitch: s.pitch - 9 * k, yaw: s.yaw + 26 * k, dist: s.dist * (1 - 0.34 * k) });
+  const crane = (s: Shot, k: number): Shot => ({ ...s, pitch: s.pitch - 9 * k, yaw: s.yaw + 26 * k, dist: s.dist * (1 - (preview?.craneZoom ?? 0.34) * k) });
   const open = crane(keys[0].shot, 1);
   let shot = crane(shotAt(t, keys), cover ? 0 : 1 - ease.inOut3(ramp(t, 0.1, 1.5)));
   const back = ease.inOut3(ramp(t, end - 0.62, 0.5));
@@ -359,7 +361,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
         const o = Math.min(i === 0 || prevSame ? 1 : ramp(t, s.from + 0.25, 0.25), nextSame ? (t < s.to ? 1 : 0) : 1 - ramp(t, s.to - 0.12, 0.2));
         if (o <= 0) return null;
         const def = spec.scenes[s.id]; const O = OVERLAYS[def.type];
-        return O ? <AbsoluteFill key={i} style={{ opacity: o }}><O t={t} acts={byScene[s.id] ?? []} def={def} series={series} toPx={toPx} ox={origin[s.id]} print={print} /></AbsoluteFill> : null;
+        return O ? <AbsoluteFill key={i} style={{ opacity: o }}><O t={t} acts={byScene[s.id] ?? []} def={def} series={series} toPx={toPx} ox={origin[s.id]} print={print} productInset={preview?.inset} /></AbsoluteFill> : null;
       })}
       {acts.filter((a) => a.type === 'callout').map((a, i) => {
         const sg = segs.find((s) => a.t >= s.from - 0.01 && a.t < s.to)!;
@@ -373,7 +375,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
       })}
 
       <SeriesBar series={series} episode={spec.episode} />
-      <TitleBlock title={spec.title} whisper={spec.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + 6} max={112} whisperAt0={!!spec.whisperAt0} />
+      <TitleBlock title={preview?.title ?? spec.title} whisper={spec.whisper} series={series} opacity={titleO} t={t} top={ZONES.title.top + 6} max={112} whisperAt0={!!spec.whisperAt0} />
       {!cover && segs.map((s, i) => {
         if (!s.kicker || t < s.from || t > s.to + 0.2 || titleO > 0.5) return null;
         const o = Math.min(ramp(t, Math.max(s.from, hookEnd), 0.2), 1 - ramp(t, s.to - 0.1, 0.2), 1 - titleO);
@@ -389,8 +391,8 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
       {sfx.map((c, i) => (
         <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>
       ))}
-      <Audio src={staticFile(`episodes/${audioId}/voice.wav`)} />
-      <Audio src={staticFile(`episodes/${audioId}/music.wav`)} volume={musicVol} />
+      <Audio src={staticFile(media.voice)} />
+      <Audio src={staticFile(media.music)} volume={musicVol} />
     </AbsoluteFill>
   );
 };

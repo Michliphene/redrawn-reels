@@ -5,6 +5,8 @@ import { Thumb } from './Thumb';
 import { Money } from './money/Money';
 import { probeWebGL } from './studio/look/PixelStage';
 import type { EpisodeProps } from './lib/types';
+import { alignTimings, assertCueStructure } from './lib/schedule';
+import { episodeMedia, renderDirection, type RenderDirectionProps } from './lib/media';
 import { W, H, FPS } from './lib/theme';
 
 const getJson = async (p: string) => (await fetch(staticFile(p))).json();
@@ -35,8 +37,10 @@ export const Root: React.FC = () => (
     calculateMetadata={async ({ props }) => {
       const p = props as any;
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
-      const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, webgl: probeWebGL() } };
+      const direction = renderDirection(p, spec.da, probeWebGL());
+      assertCueStructure(spec, 'Money', direction.da);
+      const timings = alignTimings(spec, await getJson(episodeMedia(p.episodeId, spec).timings));
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, ...direction } };
     }}
   />
   <Composition
@@ -45,10 +49,11 @@ export const Root: React.FC = () => (
     width={W} height={H} fps={FPS} durationInFrames={FPS * 60}
     defaultProps={{ episodeId: 'ussr-1991' } as EpisodeProps}
     calculateMetadata={async ({ props }) => {
-      const p = props as EpisodeProps;
+      const p = props as EpisodeProps & RenderDirectionProps;
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
-      // `audio` lets a remaster or an alternative cut reuse another episode's voice, timings and music
-      const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
+      const direction = renderDirection(p, spec.da, probeWebGL());
+      assertCueStructure(spec, 'Episode', direction.da);
+      const timings = alignTimings(spec, await getJson(episodeMedia(p.episodeId, spec).timings));
       const geo = await getJson(spec.data);
       const credits = await getJson('assets/portraits/credits.json').catch(() => ({}));
       // only keep portrait cues whose image actually exists (pipeline never breaks on a missing asset)
@@ -73,7 +78,7 @@ export const Root: React.FC = () => (
         b.actions = b.actions.filter((a: any) => a.type !== 'flagSwap' || (okF.has(a.from) && okF.has(a.to)));
         for (const a of b.actions) if (a.flag && !okF.has(a.flag)) delete a.flag;
       }
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys, webgl: probeWebGL() } };
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys, ...direction } };
     }}
   />
   </>

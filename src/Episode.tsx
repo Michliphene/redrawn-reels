@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { AbsoluteFill, Audio, staticFile, useCurrentFrame, interpolate, delayRender, continueRender } from 'remotion';
 import type { EpisodeProps } from './lib/types';
 import { schedule } from './lib/schedule';
+import { episodeMedia, type RenderDirectionProps } from './lib/media';
 import { resolveCamera, cameraAt, projectionFor } from './lib/camera';
 import { theme, FPS } from './lib/theme';
 import { MapLayer } from './components/MapLayer';
@@ -32,7 +33,8 @@ const EpisodeV1: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cov
   const t = frame / FPS;
   setPalette(spec!.palette);
   applySkin(null);
-  const sched = useMemo(() => schedule(spec!, timings!), [spec, timings]);
+  const media = episodeMedia(episodeId, spec);
+  const sched = useMemo(() => schedule(spec!, timings!, { composition: 'Episode', da: 1 }), [spec, timings]);
   const camKeys = useMemo(() => sched.cameras.map((c) => ({ t: c.t, dur: c.cam.dur ?? 1.1, state: resolveCamera(c.cam, geo!) })), [sched, geo]);
   // camera shake on impacts (coup, dissolution) + punch-in on the very first frames (hook)
   const shakes = sched.actions.filter((a) => a.type === 'shake' || a.type === 'dissolve');
@@ -74,8 +76,8 @@ const EpisodeV1: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cov
       {!cover && <Captions timings={timings!} t={t} hidden={Object.fromEntries(spec!.beats.filter((b: any) => b.hideCaptionWords).map((b: any) => [b.id, b.hideCaptionWords]))} />}
       {!cover && !hiddenTimeline && <Timeline from={spec!.timeline.from} to={spec!.timeline.to} step={spec!.timeline.step} dates={sched.dates} actions={sched.actions} t={t} />}
       <Sfx actions={sched.actions} />
-      <Audio src={staticFile(`episodes/${episodeId}/voice.wav`)} />
-      <Audio src={staticFile(`episodes/${episodeId}/music.wav`)} volume={musicVol} />
+      <Audio src={staticFile(media.voice)} />
+      <Audio src={staticFile(media.music)} volume={musicVol} />
     </AbsoluteFill>
   );
 };
@@ -83,9 +85,9 @@ const EpisodeV1: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cov
 /**
  * Entry point of the map series. `da` (episode.json, or a render prop to preview) selects the art direction:
  * 1 = flat map (episodes made before the DA step-up stay exactly as published), 2 = tabletop 3D (`Atlas`).
- * Without WebGL the 3D world cannot render, so DA 2 falls back to the flat map instead of failing.
+ * Root requires WebGL for an explicit requireDa=2. Unpinned previews can fall back to the flat map.
  */
-export const Episode: React.FC<EpisodeProps & { credits?: Record<string, Credit>; cover?: boolean; da?: number; webgl?: boolean }> = (props) => {
-  const da = props.da ?? (props.spec as any)?.da ?? 1;
+export const Episode: React.FC<EpisodeProps & RenderDirectionProps & { credits?: Record<string, Credit>; cover?: boolean }> = (props) => {
+  const da = props.da ?? props.spec?.da ?? 1;
   return da >= 2 && props.webgl !== false ? <Atlas {...props} /> : <EpisodeV1 {...props} />;
 };
