@@ -5,6 +5,7 @@ import { Thumb } from './Thumb';
 import { Money } from './money/Money';
 import { Mindset } from './mindset/Mindset';
 import { Doodle } from './doodle/Doodle';
+import { Blueprint } from './blueprint/Blueprint';
 import { probeWebGL } from './studio/look/PixelStage';
 import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
@@ -39,6 +40,18 @@ export const Root: React.FC = () => (
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
       const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
       return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, webgl: probeWebGL() } };
+    }}
+  />
+  <Composition
+    id="Blueprint"
+    component={Blueprint as any}
+    width={W} height={H} fps={FPS} durationInFrames={FPS * 60}
+    defaultProps={{ episodeId: 'planes-came-back' }}
+    calculateMetadata={async ({ props }) => {
+      const p = props as any;
+      const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
+      const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings } };
     }}
   />
   <Composition

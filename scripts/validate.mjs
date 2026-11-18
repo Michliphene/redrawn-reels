@@ -18,7 +18,9 @@ const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dis
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const MINDSET_ACTIONS = { papers: ['mark', 'flip', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
 const DOODLE_ACTIONS = { duel: ['shine', 'light'], race: ['trip'], class: ['mark', 'flip'], bin: ['ignore', 'fly'], shop: ['open', 'launch', 'bulb'], pile: ['count', 'walk', 'halt'], drafts: ['count'], versions: ['draft'], rule: ['turn'] };
-const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS, Doodle: DOODLE_ACTIONS };
+const BP_GLOBAL = ['tag', 'memo', 'interview', 'line', 'ask'];
+const BLUEPRINT_ACTIONS = { plane: ['draw', 'holes', 'armour', 'flip', 'ghost', 'missing', ...BP_GLOBAL], flips: ['spawn', 'rounds', 'winner', 'fly', 'reveal', ...BP_GLOBAL] };
+const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS, Doodle: DOODLE_ACTIONS, Blueprint: BLUEPRINT_ACTIONS };
 /** episodes made before the owner's "more than one minute" rule (18 Nov 2026): they keep their length */
 export const GRANDFATHERED = new Set(["alaska-1867", "costco-hotdog", "costco-hotdog-v2", "fail-ten-times", "fail-ten-times-doodle", "first-draft", "korea-1945", "louisiana-1803", "mcdonalds-rent", "netflix-100", "ussr-1991", "ussr-1991-v2"]);
 export const MIN_VIDEO_S = 61; // video = voice + 0.5 s tail

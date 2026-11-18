@@ -42,7 +42,8 @@ for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.
 | # | id | Format | Status |
 |---|---|---|---|
 | 001 | `fail-ten-times` (3D) · `fail-ten-times-doodle` (notebook) | D. myth-bust | rendered, reviewed |
-| 002 | `first-draft` (notebook) | D. myth-bust, Rule Flip | rendered, under review |
+| 002 | `first-draft` (notebook) | D. myth-bust, Rule Flip | rendered, reviewed |
+| 003 | `planes-came-back` (blueprint) | A. explainer + C. counted game | rendered, 67 s |
 
 ## Second art direction: the notebook (`composition: "Doodle"`, `src/doodle/`)
 Ballpoint stick figures on squared paper; the reel is one long sheet, each scene a page the camera slides to
@@ -62,3 +63,13 @@ Fonts: house fonts + Caveat Bold (handwriting on the page, OFL, `public/fonts/Ca
 | `rule` | one card turned over (`front`/`back`, `frontSmall`/`backSmall`) | `turn` |
 Labels of `duel` (`leftLabel`, `leftLit`, `rightLabel`, `rightDim`, `badge`, `bubble`, `leftProp: pages`) and `bin` (`binLabel`, `ignoreLabel`, `worksLabel`) are set in the scene def.
 Episode: `fail-ten-times-doodle` (same voice as `fail-ten-times` via `audio`).
+
+## Third art direction: the blueprint (`composition: "Blueprint"`, `src/blueprint/`)
+Motion design on an engineering sheet: deep blue, cyan grid, white line work that draws itself, a 2D camera that
+pushes in and out between areas (`scenes.<id>.at`, `zoom`, `look`; beat `camera` {x, y, zoom} for a push-in), and
+transitions where one element becomes the next (the coin-flip winner turns into a plane). No figures, no 3D.
+| type | Area | Cues |
+|---|---|---|
+| `plane` | a schematic bomber, top view | `draw` · `holes` {dur} · `armour` {part: wings/tail/body/engines} · `flip` · `ghost` · `missing` |
+| `flips` | 1,024 dots, a coin-flip tournament | `spawn` · `rounds` {dur} · `winner` · `fly` · `reveal` |
+Overlays usable in any blueprint scene: `tag`, `memo` {small, text}, `interview` {small, text}, `line` {small, text, color}, `ask`.

@@ -1,0 +1,283 @@
+{
+ "id": "planes-came-back",
+ "composition": "Blueprint",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 3,
+ "title": "The planes that came back",
+ "whisper": "Where would you add armour?",
+ "source": "A. Wald, SRG memo (1943) · AMS Feature Column (2016)",
+ "keywords": [
+  "holes.",
+  "armour?",
+  "disputed.",
+  "opposite.",
+  "engines",
+  "dangerous",
+  "luck.",
+  "skill.",
+  "missing"
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "scenes": {
+  "plane": {
+   "type": "plane",
+   "at": [
+    0,
+    0
+   ],
+   "zoom": 0.86,
+   "look": [
+    0,
+    -20
+   ]
+  },
+  "flips": {
+   "type": "flips",
+   "at": [
+    2600,
+    0
+   ],
+   "zoom": 0.7,
+   "look": [
+    0,
+    -60
+   ]
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "plane",
+   "say": "{1943|Nineteen forty-three}. Bombers come home full of bullet holes.",
+   "actions": [
+    {
+     "type": "draw",
+     "atTime": -3
+    },
+    {
+     "type": "holes",
+     "dur": 1.0,
+     "atWord": "holes."
+    }
+   ]
+  },
+  {
+   "id": "ask0",
+   "say": "Where do you add armour?"
+  },
+  {
+   "id": "story",
+   "say": "That's how the famous story starts. The details are disputed. The lesson isn't.",
+   "actions": [
+    {
+     "type": "tag",
+     "text": "The story as usually told · details disputed",
+     "hold": 4.5,
+     "atWord": "disputed."
+    }
+   ]
+  },
+  {
+   "id": "obvious",
+   "kicker": "The obvious fix",
+   "say": "The obvious answer: the wings, the tail, the body. That's where the holes are.",
+   "actions": [
+    {
+     "type": "armour",
+     "part": "wings",
+     "atWord": "wings,"
+    },
+    {
+     "type": "armour",
+     "part": "tail",
+     "atWord": "tail,"
+    },
+    {
+     "type": "armour",
+     "part": "body",
+     "atWord": "body."
+    }
+   ]
+  },
+  {
+   "id": "wald",
+   "kicker": "Abraham Wald",
+   "say": "A statistician named Abraham Wald looks at the same planes and sees the opposite.",
+   "actions": [
+    {
+     "type": "flip",
+     "atWord": "opposite."
+    }
+   ]
+  },
+  {
+   "id": "back",
+   "say": "These are only the planes that came back.",
+   "actions": [
+    {
+     "type": "ghost",
+     "atWord": "came"
+    }
+   ]
+  },
+  {
+   "id": "engines",
+   "camera": {
+    "x": 0,
+    "y": -110,
+    "zoom": 1.3
+   },
+   "say": "Planes hit in the engines didn't come home. Their holes never got counted.",
+   "actions": [
+    {
+     "type": "missing",
+     "atWord": "engines"
+    }
+   ]
+  },
+  {
+   "id": "clean",
+   "say": "So the clean spots on the survivors are the dangerous ones.",
+   "actions": [
+    {
+     "type": "armour",
+     "part": "engines",
+     "atWord": "dangerous"
+    }
+   ]
+  },
+  {
+   "id": "memo",
+   "say": "Wald's real {1943|nineteen forty-three} memo has a plain title: estimating plane vulnerability from the damage of survivors.",
+   "actions": [
+    {
+     "type": "memo",
+     "small": "Statistical Research Group · Columbia University · 1943",
+     "text": "A Method of Estimating Plane Vulnerability Based on Damage of Survivors. A. Wald",
+     "hold": 5.0,
+     "atWord": "memo"
+    }
+   ]
+  },
+  {
+   "id": "game",
+   "scene": "flips",
+   "kicker": "A coin game",
+   "say": "Now a game. {1,024|One thousand and twenty-four} people each flip a coin ten times.",
+   "actions": [
+    {
+     "type": "spawn",
+     "atWord": "1,024"
+    }
+   ]
+  },
+  {
+   "id": "half",
+   "say": "Tails, you're out. Every round, about half drop out.",
+   "actions": [
+    {
+     "type": "rounds",
+     "dur": 4.6,
+     "atWord": "Tails,"
+    }
+   ]
+  },
+  {
+   "id": "ten",
+   "say": "After ten rounds, about one person has flipped ten heads in a row.",
+   "actions": [
+    {
+     "type": "winner",
+     "atWord": "one"
+    }
+   ]
+  },
+  {
+   "id": "luck",
+   "say": "Pure luck. And that's the person who gets interviewed.",
+   "actions": [
+    {
+     "type": "interview",
+     "small": "The interview",
+     "text": "“Here's my method.”",
+     "hold": 2.4,
+     "atWord": "interviewed."
+    }
+   ]
+  },
+  {
+   "id": "stories",
+   "kicker": "Success stories",
+   "say": "Success stories work the same way. We hear from the planes that came back.",
+   "actions": [
+    {
+     "type": "fly",
+     "atWord": "planes"
+    }
+   ]
+  },
+  {
+   "id": "silent",
+   "say": "Not from the people who made the same choices and never made it home.",
+   "actions": [
+    {
+     "type": "reveal",
+     "atWord": "same"
+    }
+   ]
+  },
+  {
+   "id": "skill",
+   "say": "Making money once can be luck. Knowing why it worked, and checking who didn't make it, is the skill.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "Luck",
+     "text": "It worked once",
+     "atWord": "luck."
+    },
+    {
+     "type": "line",
+     "small": "Skill",
+     "text": "Knowing why",
+     "atWord": "Knowing"
+    },
+    {
+     "type": "line",
+     "small": "and",
+     "text": "Who didn't make it",
+     "color": "amber",
+     "atWord": "checking"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "plane",
+   "say": "Before you copy anyone, look for the missing holes. Like a statistician did in…",
+   "actions": [
+    {
+     "type": "ask",
+     "text": "Where are the missing holes?",
+     "hold": 2.6,
+     "atWord": "look"
+    }
+   ]
+  }
+ ]
+}
