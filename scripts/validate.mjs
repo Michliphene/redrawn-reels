@@ -2,11 +2,12 @@
 // Pre-flight for an episode: catches what would break a render or a promise of the channel BEFORE any voice
 // credit is spent. Errors stop the pipeline; warnings are things to look at.
 //   node scripts/validate.mjs <episodeId> [<episodeId>…]     node scripts/validate.mjs --all [--strict]
-// --strict turns warnings into a failing exit code (use it before posting).
+// --strict turns warnings into a failing exit code. --draft checks cues against the script.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { parseArgs } from 'node:util';
 
 const require = createRequire(import.meta.url);
 const { schedule, alignTimings } = require('../src/lib/schedule.ts');
@@ -52,7 +53,7 @@ function scriptTimings(spec) {
   return { duration: cursor, beats };
 }
 
-export function validate(id) {
+export function validate(id, { draft = false, da } = {}) {
   const errors = [], warnings = [];
   const E = (m) => errors.push(m), Wn = (m) => warnings.push(m);
   if (!fs.existsSync(EP(id, 'episode.json'))) return { id, errors: [`public/episodes/${id}/episode.json not found`], warnings };
@@ -64,6 +65,7 @@ export function validate(id) {
   const sid = seriesIdOf(spec);
   if (!sid) E(`series "${spec.series}" is not in public/studio.json`);
   const comp = compositionOf(spec, sid);
+  const effectiveDa = da ?? spec.da ?? 1;
   if (!spec.title) E('missing "title"'); else if (spec.title.length > 36) Wn(`title is ${spec.title.length} characters (aim for ≤ 36: it must fit two or three lines at full size)`);
   if (!Array.isArray(spec.beats) || !spec.beats.length) return { id, errors: [...errors, 'no beats'], warnings };
 
@@ -80,15 +82,15 @@ export function validate(id) {
   const timingPath = path.join(ROOT, 'public', media.timings);
   let timings;
   try {
-    if (fs.existsSync(timingPath)) {
+    if (!draft && fs.existsSync(timingPath)) {
       timings = alignTimings(spec, readJson(timingPath));
-      schedule(spec, timings, { composition: comp });
+      schedule(spec, timings, { composition: comp, da: effectiveDa });
     } else {
-      Wn('no timings.json yet: cue words are checked against the script only');
-      schedule(spec, scriptTimings(spec), { composition: comp, scriptOnly: true });
+      if (!draft) Wn('no timings.json yet: cue words are checked against the script only');
+      schedule(spec, scriptTimings(spec), { composition: comp, da: effectiveDa, scriptOnly: true });
     }
   } catch (error) {
-    E(`${media.timings}: ${error.message}`);
+    E(`${draft ? 'episode.json' : media.timings}: ${error.message}`);
   }
 
   // sources: the first promise of every channel
@@ -151,7 +153,7 @@ export function validate(id) {
       if (a.emoji && !['json', 'png'].some((x) => fs.existsSync(path.join(ROOT, 'public/assets/emoji', `${a.emoji}.${x}`)))) Wn(`${where}: emoji "${a.emoji}" not in public/assets/emoji (it will be skipped)`);
       if (a.type === 'archive' && a.src && !fs.existsSync(path.join(ROOT, 'public', a.src))) Wn(`${where}: image public/${a.src} not found`);
       // layout: DA v2 keeps everything readable inside the platform safe area
-      if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
+      if (effectiveDa >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);
       for (const k of ['text', 'label', 'sub', 'amount', 'value', 'big', 'caption', 'stamp', 'small', 'flagNote', 'date']) collect(`${where}.${k}`, a[k]);
     }
     if (b.date) collect(`beat ${b.id}.date`, b.date);
@@ -183,18 +185,22 @@ export function validate(id) {
     if (hook.end - hook.start > 4) Wn(`hook lasts ${(hook.end - hook.start).toFixed(1)} s (aim for ≤ 3.5 s)`);
     if (timings.duration < 28 || timings.duration > 75) Wn(`voice lasts ${timings.duration.toFixed(1)} s (aim for 40–58 s, or 61–70 s for a monetised TikTok cut)`);
   }
-  if ((spec.da ?? 1) >= 2 && spec.keywords && !Array.isArray(spec.keywords)) E('"keywords" must be a list of words');
-  return { id, errors, warnings, series: sid, composition: comp, da: spec.da ?? 1 };
+  if (effectiveDa >= 2 && spec.keywords && !Array.isArray(spec.keywords)) E('"keywords" must be a list of words');
+  return { id, errors, warnings, series: sid, composition: comp, da: effectiveDa };
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const args = process.argv.slice(2);
-  const strict = args.includes('--strict');
-  const ids = args.includes('--all') ? fs.readdirSync(path.join(ROOT, 'public/episodes')).filter((d) => fs.existsSync(EP(d, 'episode.json'))).sort() : args.filter((a) => !a.startsWith('--'));
-  if (!ids.length) { console.error('usage: node scripts/validate.mjs <episodeId>… | --all [--strict]'); process.exit(2); }
+  const { values, positionals } = parseArgs({
+    allowPositionals: true,
+    options: { all: { type: 'boolean' }, strict: { type: 'boolean' }, draft: { type: 'boolean' }, da: { type: 'string' } },
+  });
+  const { all, strict, draft, da } = values;
+  if (da !== undefined && da !== '1' && da !== '2') { console.error('--da must be 1 or 2'); process.exit(2); }
+  const ids = all ? fs.readdirSync(path.join(ROOT, 'public/episodes')).filter((d) => fs.existsSync(EP(d, 'episode.json'))).sort() : positionals;
+  if (!ids.length) { console.error('usage: node scripts/validate.mjs <episodeId>… | --all [--strict] [--draft] [--da 1|2]'); process.exit(2); }
   let bad = 0, warned = 0;
   for (const id of ids) {
-    const r = validate(id);
+    const r = validate(id, { draft, da: da === undefined ? undefined : Number(da) });
     const tag = r.errors.length ? 'FAIL' : r.warnings.length ? 'warn' : ' ok ';
     console.log(`[${tag}] ${id}${r.series ? `  (${r.series} · ${r.composition} · DA ${r.da})` : ''}`);
     for (const e of r.errors) console.log(`    ✗ ${e}`);

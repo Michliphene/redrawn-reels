@@ -1,6 +1,8 @@
 """Voice-over + word timings for an episode.
 
-Usage: python3 pipeline/tts.py <episode_id> [--engine kokoro|elevenlabs]
+Usage: python3 pipeline/tts.py <episode_id> [--synthesize | --status]
+       [--engine kokoro|elevenlabs] [--allow-fallback] [--force]
+Without --synthesize, inspect the existing pair without changing it.
 Reads  public/episodes/<id>/episode.json
 Writes public/episodes/<id>/voice.wav and timings.json
 
@@ -9,11 +11,22 @@ Kokoro has no word alignment for this model, so each beat is synthesised separat
 (exact beat boundaries) and word times inside a beat are spread by phoneme count,
 snapped to detected pauses. ElevenLabs (/with-timestamps) gives exact alignment.
 """
-import json, re, sys, os
-try:  # only needed to synthesise; "voice up to date" must work on a machine without them
-    import numpy as np, soundfile as sf
-except ImportError:
-    np = sf = None
+import argparse
+from copy import deepcopy
+import hashlib
+from importlib.metadata import version
+import json
+import math
+import os
+from pathlib import Path
+import re
+import shutil
+import sys
+import tempfile
+import wave
+
+# Loaded only by a real synthesizer, never during inspection or cache lookup.
+np = sf = None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SR = 24000
@@ -70,7 +83,8 @@ def word_times(k, tokens, audio):
 def elevenlabs(ep, ep_dir):
     """One request for the whole script (continuous prosody) + exact character alignment.
     The API key is injected by the environment's network proxy; a placeholder header is sent."""
-    import base64, hashlib, subprocess, urllib.request
+    import base64, subprocess, urllib.request
+    load_audio_modules()
     v = ep["voice"]
     parsed = [parse(b["say"]) for b in ep["beats"]]
     # spoken-text respellings for ElevenLabs (no phoneme tags on multilingual v2)
@@ -81,18 +95,18 @@ def elevenlabs(ep, ep_dir):
     full = " ".join(sp(spoken) for _, spoken in parsed)
     body = {"text": full, "model_id": v.get("model", "eleven_multilingual_v2"),
             "voice_settings": v.get("settings", {"stability": 0.45, "similarity_boost": 0.8, "style": 0.2, "use_speaker_boost": True, "speed": 1.0})}
-    key = hashlib.sha1(json.dumps([v.get("voice_id"), body], sort_keys=True).encode()).hexdigest()[:12]
-    cache = os.path.join(ep_dir, f".el_{key}.json")
-    if not os.path.exists(cache):
-        req = urllib.request.Request(
-            f"https://api.elevenlabs.io/v1/text-to-speech/{v['voice_id']}/with-timestamps?output_format=mp3_44100_192",
-            data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "xi-api-key": "proxy-injected"})
-        data = urllib.request.urlopen(req, timeout=180).read().decode()  # fetch first: a failed call must not leave an empty cache
-        open(cache, "w").write(data)
-    d = json.load(open(cache))
-    mp3 = os.path.join(ep_dir, "voice.mp3"); open(mp3, "wb").write(base64.b64decode(d["audio_base64"]))
-    raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", mp3, "-f", "f32le", "-ac", "1", "-ar", "48000", "-"], check=True, capture_output=True).stdout
-    os.remove(mp3)
+    req = urllib.request.Request(
+        f"https://api.elevenlabs.io/v1/text-to-speech/{v['voice_id']}/with-timestamps?output_format=mp3_44100_192",
+        data=json.dumps(body).encode(),
+        headers={"Content-Type": "application/json", "xi-api-key": "proxy-injected"},
+    )
+    with urllib.request.urlopen(req, timeout=180) as response:
+        d = json.load(response)
+    raw = subprocess.run(
+        ["ffmpeg", "-loglevel", "error", "-f", "mp3", "-i", "pipe:0",
+         "-f", "f32le", "-ac", "1", "-ar", "48000", "-"],
+        input=base64.b64decode(d["audio_base64"]), check=True, capture_output=True,
+    ).stdout
     audio, R = np.frombuffer(raw, np.float32), 48000
     al = d["alignment"]; chars, cs, ce = al["characters"], al["character_start_times_seconds"], al["character_end_times_seconds"]
     assert "".join(chars) == full, "alignment text mismatch"
@@ -123,54 +137,176 @@ def elevenlabs(ep, ep_dir):
             words.append({"w": disp, "start": round(spans[wi][0], 3), "end": round(spans[wi + n - 1][1], 3)}); wi += n
         beats.append({"id": b["id"], "start": words[0]["start"], "end": words[-1]["end"], "words": words})
     dur = float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", os.path.join(ep_dir, "voice.wav")]))
-    json.dump({"duration": round(dur, 3), "engine": "elevenlabs", "beats": beats}, open(os.path.join(ep_dir, "timings.json"), "w"), indent=1, ensure_ascii=False)
-    print(f"elevenlabs voice {dur:.2f}s ({len(full)} chars, cache {os.path.basename(cache)})")
-    for b in beats: print(f"  {b['id']:10s} {b['start']:6.2f}-{b['end']:6.2f}")
+    write_json(Path(ep_dir) / "timings.json", {"duration": round(dur, 3), "engine": "elevenlabs", "beats": beats})
+    return {"engine": "elevenlabs", "model": body["model_id"], "voiceId": v["voice_id"],
+            "settings": body["voice_settings"], "respell": resp, "maxPause": max_gap}
+
 
 def say_hash(ep):
     """Fingerprint of everything that decides the voice: the script and the voice settings."""
     import hashlib
     return hashlib.sha1(json.dumps([ep.get("voice"), ep.get("lexicon"), [[b["id"], b["say"], b.get("gapAfter")] for b in ep["beats"]]], sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
 
-def stamp(ep_dir, h):
-    """Record the fingerprint in timings.json, so the next run can tell whether the voice is still current."""
-    p = os.path.join(ep_dir, "timings.json")
-    t = json.load(open(p)); t["say_hash"] = h
-    json.dump(t, open(p, "w"), indent=1, ensure_ascii=False)
+def read_json(path):
+    return json.loads(path.read_text(encoding="utf-8"))
 
-def main():
-    ep_id = sys.argv[1]
-    ep_dir = os.path.join(ROOT, "public", "episodes", ep_id)
-    ep = json.load(open(os.path.join(ep_dir, "episode.json")))
-    # Never re-synthesise a voice that is still current: a new take shifts every cue and costs credits.
-    tp, vp = os.path.join(ep_dir, "timings.json"), os.path.join(ep_dir, "voice.wav")
-    if "--force" not in sys.argv and os.path.exists(tp) and os.path.exists(vp):
-        old = json.load(open(tp)).get("say_hash")
-        if old == say_hash(ep):
-            print("voice up to date (script and voice settings unchanged)"); return
-        if old is None:
-            stamp(ep_dir, say_hash(ep))
-            print("voice kept: it predates the fingerprint, now recorded (use --force to re-record)"); return
-        print("script or voice settings changed: recording a new voice")
-    h = say_hash(ep)  # taken before synthesis: the Kokoro fallback rewrites ep["voice"]
-    _synthesise(ep, ep_dir)
-    stamp(ep_dir, h)
 
-def _synthesise(ep, ep_dir):
+def write_json(path, value):
+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+
+
+def digest(path):
+    with path.open("rb") as stream:
+        return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def request_inputs(ep):
+    return {
+        "voice": ep.get("voice"), "lexicon": ep.get("lexicon"),
+        "beats": [[b["id"], b["say"], b.get("gapAfter")] for b in ep["beats"]],
+    }
+
+
+PAIR = ("voice.wav", "timings.json")
+PROVENANCE = "voice.provenance.json"
+
+
+def pair_hashes(directory):
+    # Git may materialize timings.json with either line ending.
+    timing_bytes = (directory / "timings.json").read_bytes().replace(b"\r\n", b"\n")
+    return {"voice.wav": digest(directory / "voice.wav"),
+            "timings.json": hashlib.sha256(timing_bytes).hexdigest()}
+
+
+def voice_status(ep, ep_dir):
+    ep_dir = Path(ep_dir)
+    if not all((ep_dir / name).is_file() for name in PAIR):
+        return {"status": "missing"}
+    provenance = ep_dir / PROVENANCE
+    if not provenance.exists():
+        # Historical say_hash values can describe a different engine or a migrated take.
+        return {"status": "legacy-unverified"}
+    try:
+        record = read_json(provenance)
+        if record["schemaVersion"] != 1 or record["sha256"] != pair_hashes(ep_dir):
+            return {"status": "invalid"}
+        if record["request"]["inputs"] != request_inputs(ep):
+            status = "stale"
+        elif record["effective"]["engine"] != record["request"]["engine"]:
+            status = "fallback"
+        else:
+            status = "verified"
+        return {**record, "status": status}
+    except (ValueError, TypeError, KeyError):
+        return {"status": "invalid"}
+
+
+def load_audio_modules():
+    global np, sf
     if np is None:
-        sys.exit("!! numpy and soundfile are needed to record a voice: run scripts/setup.sh")
-    force_kokoro = "--engine" in sys.argv and sys.argv[sys.argv.index("--engine") + 1] == "kokoro"
-    if ep["voice"].get("engine") == "elevenlabs" and not force_kokoro:
-        try:
-            return elevenlabs(ep, ep_dir)
-        except BrokenPipeError:
-            raise
-        except Exception as e:  # quota, network, auth -> local fallback so the pipeline never blocks
-            print(f"ElevenLabs failed ({e}); falling back to Kokoro")
+        import numpy as np
+        import soundfile as sf
+
+
+def validate_take(ep, directory):
+    with wave.open(str(directory / "voice.wav"), "rb") as wav:
+        duration = wav.getnframes() / wav.getframerate()
+    timings = read_json(directory / "timings.json")
+    declared = timings["duration"]
+    if not math.isfinite(declared) or duration <= 0 or abs(duration - declared) > 0.01:
+        raise ValueError("recorded WAV and timings disagree on duration")
+    if [beat["id"] for beat in timings["beats"]] != [beat["id"] for beat in ep["beats"]]:
+        raise ValueError("recorded timings do not match the requested beats")
+    previous_end = 0
+    for beat in timings["beats"]:
+        start, end = beat["start"], beat["end"]
+        if not (previous_end <= start <= end <= declared + 0.01) or not beat["words"]:
+            raise ValueError(f"invalid timing span for beat {beat['id']}")
+        word_start = start
+        for word in beat["words"]:
+            if not (word_start <= word["start"] <= word["end"] <= end + 0.01):
+                raise ValueError(f"invalid word timing for beat {beat['id']}")
+            word_start = word["start"]
+        previous_end = end
+
+
+def promote_take(stage, destination):
+    # A rename is atomic per file. A lock protects writers, and the sidecar hashes
+    # let readers detect an incomplete promotion. Roll back recoverable errors.
+    files = (*PAIR, PROVENANCE)
+    backup = stage / "previous"
+    backup.mkdir()
+    for name in files:
+        old = destination / name
+        if old.exists():
+            shutil.copy2(old, backup / name)
+    replaced = []
+    try:
+        for name in files:
+            (stage / name).replace(destination / name)
+            replaced.append(name)
+    except OSError:
+        for name in reversed(replaced):
+            old = backup / name
+            if old.exists():
+                old.replace(destination / name)
+            else:
+                (destination / name).unlink()
+        raise
+
+
+def prepare_voice(ep, ep_dir, *, engine=None, allow_fallback=False, force=False):
+    if ep.get("audio"):
+        raise ValueError("this episode uses shared audio; record the source episode explicitly")
+    ep_dir = Path(ep_dir)
+    requested = engine or ep["voice"].get("engine", "kokoro")
+    if requested not in {"elevenlabs", "kokoro"}:
+        raise ValueError(f"unsupported synthesis engine: {requested}")
+    request = {"engine": requested, "sayHash": say_hash(ep), "inputs": request_inputs(ep)}
+    lock = ep_dir / ".voice.lock"
+    lock.mkdir()
+    try:
+        existing = voice_status(ep, ep_dir)
+        if not force and existing["status"] == "verified" and existing["request"] == request:
+            print(f"voice up to date ({requested})")
+            return existing
+
+        with tempfile.TemporaryDirectory(prefix=".voice-take-", dir=ep_dir) as temporary:
+            stage = Path(temporary)
+            if requested == "elevenlabs":
+                try:
+                    effective = elevenlabs(ep, stage)
+                    validate_take(ep, stage)
+                except Exception:
+                    if not allow_fallback:
+                        raise
+                    print("ElevenLabs failed; recording an explicitly allowed Kokoro fallback", file=sys.stderr)
+                    effective = kokoro(ep, stage)
+            else:
+                effective = kokoro(ep, stage)
+            validate_take(ep, stage)
+            record = {
+                "schemaVersion": 1, "request": request, "effective": effective,
+                "sha256": pair_hashes(stage),
+            }
+            write_json(stage / PROVENANCE, record)
+            promote_take(stage, ep_dir)
+        return voice_status(ep, ep_dir)
+    finally:
+        lock.rmdir()
+
+
+def kokoro(ep, ep_dir):
+    load_audio_modules()
+    from kokoro_onnx import Kokoro
+
+    ep = deepcopy(ep)
     if ep["voice"].get("engine") == "elevenlabs":
         ep["voice"] = ep["voice"].get("kokoro_fallback", {"voice": "am_michael", "speed": 1.1})
-    from kokoro_onnx import Kokoro
-    k = Kokoro(os.path.join(ROOT, "models/kokoro-v1.0.onnx"), os.path.join(ROOT, "models/voices-v1.0.bin"))
+    model = Path(ROOT) / "models/kokoro-v1.0.onnx"
+    voices = Path(ROOT) / "models/voices-v1.0.bin"
+    model_hashes = {p.name: digest(p) for p in (model, voices)}
+    k = Kokoro(str(model), str(voices))
     chunks, beats, cursor = [], [], 0.25
     chunks.append(np.zeros(int(0.25 * SR), np.float32))
     for b in ep["beats"]:
@@ -188,9 +324,45 @@ def _synthesise(ep, ep_dir):
     full = np.concatenate(chunks)
     full = full / max(1e-6, np.abs(full).max()) * 0.89
     sf.write(os.path.join(ep_dir, "voice.wav"), full, SR)
-    json.dump({"duration": round(len(full) / SR, 3), "beats": beats}, open(os.path.join(ep_dir, "timings.json"), "w"), indent=1, ensure_ascii=False)
-    print(f"voice {len(full)/SR:.2f}s, {len(beats)} beats")
-    for b in beats: print(f"  {b['id']:10s} {b['start']:6.2f}-{b['end']:6.2f}  {b['phonemes'][:90]}")
+    write_json(Path(ep_dir) / "timings.json", {
+        "duration": round(len(full) / SR, 3), "engine": "kokoro", "beats": beats,
+    })
+    return {"engine": "kokoro", "model": model.name, "packageVersion": version("kokoro-onnx"),
+            "modelSha256": model_hashes,
+            "settings": {"voice": ep["voice"]["voice"], "speed": ep["voice"].get("speed", 1.0)}}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("episode_id")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--synthesize", action="store_true")
+    mode.add_argument("--status", action="store_true", help="inspect the existing voice without writing (default)")
+    parser.add_argument("--engine", choices=("elevenlabs", "kokoro"))
+    parser.add_argument("--allow-fallback", action="store_true")
+    parser.add_argument("--force", action="store_true")
+    args = parser.parse_args()
+    if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]*", args.episode_id):
+        parser.error("invalid episode ID")
+    if not args.synthesize and (args.engine or args.allow_fallback or args.force):
+        parser.error("--engine, --allow-fallback and --force require --synthesize")
+    folder = Path(ROOT) / "public" / "episodes" / args.episode_id
+    try:
+        ep = read_json(folder / "episode.json")
+        if args.synthesize:
+            status = prepare_voice(ep, folder, engine=args.engine, allow_fallback=args.allow_fallback, force=args.force)
+        else:
+            if ep.get("audio"):
+                if not re.fullmatch(r"[a-zA-Z0-9][a-zA-Z0-9_-]*", ep["audio"]):
+                    raise ValueError("invalid audio episode ID")
+                folder = folder.parent / ep["audio"]
+                ep = read_json(folder / "episode.json")
+            status = voice_status(ep, folder)
+    except (OSError, ValueError, KeyError, ImportError, RuntimeError) as error:
+        parser.exit(1, f"voice: {error}\n")
+    print(f"voice: {status['status']} ({folder.name})")
+    return 1 if status["status"] in {"missing", "stale", "invalid"} else 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

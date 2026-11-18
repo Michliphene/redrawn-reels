@@ -5,3 +5,13 @@ data/raw/
 *.part
 public/episodes/*/voice_raw.wav
 public/episodes/*/.el_*.json
+
+# Keep local configuration and interrupted media preparation out of source control.
+.env
+.env.*
+!.env.example
+__pycache__/
+public/episodes/*/.voice.lock/
+public/episodes/*/.voice-take-*/
+public/episodes/*/.music.lock/
+public/episodes/*/.music-*/
