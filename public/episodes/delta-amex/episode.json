@@ -1,0 +1,256 @@
+{
+ "id": "delta-amex",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "seriesId": "receipts",
+ "episode": 5,
+ "da": 2,
+ "title": "Delta's biggest check isn't a ticket",
+ "whisper": "follow the swipe, not the seat",
+ "source": "Source: Delta 10-K, fiscal 2025 · Amex 10-K 2025 (SEC filings)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3
+ },
+ "keywords": [
+  "credit",
+  "card",
+  "swipe",
+  "miles",
+  "profit",
+  "both",
+  "Amex",
+  "American"
+ ],
+ "scenes": {
+  "plane": {
+   "type": "product",
+   "art": "plane",
+   "price": "$8.2B",
+   "tag": "FROM ONE CREDIT CARD · 2025"
+  },
+  "hundred": {
+   "type": "grid"
+  },
+  "bars": {
+   "type": "bars",
+   "max": 9
+  },
+  "card": {
+   "type": "card",
+   "cardTitle": "SKYMILES",
+   "cardSub": "AMEX × DELTA"
+  },
+  "point": {
+   "type": "lines"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "plane",
+   "say": "Delta got {$8.2B|eight point two billion dollars} last year. Not from your ticket. From your credit card.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$8.2B"
+    },
+    {
+     "type": "ghost",
+     "text": "TICKET",
+     "label": "NOT FROM YOUR",
+     "atWord": "ticket.",
+     "hold": 1.2
+    },
+    {
+     "type": "pulse",
+     "target": "tag",
+     "atWord": "credit"
+    }
+   ]
+  },
+  {
+   "id": "who",
+   "kicker": "Who pays?",
+   "say": "American Express pays Delta for the miles you earn on every swipe.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "AMEX BUYS YOUR MILES FROM DELTA",
+     "atWord": "miles",
+     "hold": 1.8,
+     "size": 48
+    }
+   ]
+  },
+  {
+   "id": "hundred",
+   "scene": "hundred",
+   "kicker": "Where $100 goes",
+   "say": "First, follow {$100|a hundred dollars} Delta takes in.",
+   "actions": []
+  },
+  {
+   "id": "costs",
+   "say": "About {$91|ninety-one dollars} pays for fuel, crews, planes and everything else.",
+   "actions": [
+    {
+     "type": "fill",
+     "count": 91,
+     "color": "#FF6B5E",
+     "amount": "$91",
+     "label": "fuel, crews, planes…",
+     "atWord": "$91",
+     "dur": 2.4
+    },
+    {
+     "type": "callout",
+     "text": "$57.5B OF COSTS IN 2025",
+     "atWord": "everything",
+     "hold": 1.5,
+     "size": 46
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "say": "Delta keeps about {$9|nine dollars}.",
+   "actions": [
+    {
+     "type": "hint",
+     "atWord": "keeps"
+    },
+    {
+     "type": "rest",
+     "color": "#FFB648",
+     "amount": "$9",
+     "label": "operating profit",
+     "atWord": "$9"
+    }
+   ]
+  },
+  {
+   "id": "year",
+   "scene": "bars",
+   "kicker": "Profit vs. the card",
+   "say": "For the whole year, that's {$5.8B|five point eight billion dollars} of operating profit.",
+   "actions": [
+    {
+     "type": "big",
+     "value": "$63.4B",
+     "label": "revenue · fiscal 2025"
+    },
+    {
+     "type": "bar",
+     "label": "Operating profit",
+     "value": 5.822,
+     "color": "#FFB648",
+     "atWord": "$5.8B"
+    }
+   ]
+  },
+  {
+   "id": "twist",
+   "say": "Now the card. American Express paid {$8.2B|eight point two billion}. More than Delta's entire profit.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NOW: THE CARD",
+     "atWord": "card.",
+     "hold": 1.1,
+     "size": 50
+    },
+    {
+     "type": "bar",
+     "label": "Paid by American Express",
+     "value": 8.2,
+     "color": "#C8F53C",
+     "atWord": "$8.2B"
+    },
+    {
+     "type": "callout",
+     "text": "THE CARD > THE WHOLE PROFIT",
+     "atWord": "More",
+     "hold": 1.8,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "id": "both",
+   "scene": "card",
+   "kicker": "And Amex needs Delta",
+   "say": "And it works both ways. Delta cards are {13%|thirteen percent} of all spending on Amex cards, and {21%|twenty-one percent} of everything Amex lends.",
+   "actions": [
+    {
+     "type": "stat",
+     "value": "13%",
+     "label": "of Amex card spending",
+     "sub": "worldwide · 2025",
+     "atWord": "13%"
+    },
+    {
+     "type": "stat",
+     "value": "21%",
+     "label": "of Amex card loans",
+     "sub": "Dec 31, 2025",
+     "atWord": "21%"
+    }
+   ]
+  },
+  {
+   "id": "target",
+   "say": "Delta is now aiming for {$10B|ten billion dollars} a year.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NEXT TARGET: $10B A YEAR",
+     "atWord": "aiming",
+     "hold": 2.0,
+     "size": 50
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "kicker": "The real product",
+   "say": "So to Delta, you're not just a seat. You're a swipe.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "TO DELTA, YOU ARE",
+     "text": "JUST A SEAT",
+     "strike": true,
+     "atWord": "seat.",
+     "size": 130
+    },
+    {
+     "type": "line",
+     "small": "TO DELTA, YOU ARE",
+     "text": "A SWIPE",
+     "color": "#C8F53C",
+     "atWord": "swipe.",
+     "size": 140
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "plane",
+   "say": "Which is how…",
+   "actions": []
+  }
+ ]
+}

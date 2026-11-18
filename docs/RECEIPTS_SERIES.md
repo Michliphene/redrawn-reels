@@ -45,7 +45,7 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
   - `people` {total}: `light` {count, big, label, sub}.
   - `lines`: `line` {small, text, size, color, strike}. Max 2 lines.
   - any scene: `callout` {text, size, hold, y} in the slot at the bottom of the stage.
-- Art available: `hotdog` (default), `burger`, `tv`. DA 2: a new product = one low-poly model in `src/money/props3d.tsx`
+- Art available: `hotdog` (default), `burger`, `tv`, `plane` (desk model on a stand, no livery). DA 2: a new product = one low-poly model in `src/money/props3d.tsx`
   (primitives only) + its key in `PRODUCTS`; DA 1: one SVG component in `Money.tsx`. Select with `"art": "<key>"`.
 - DA 2 extras: `keywords` (caption words to highlight; figures highlight themselves), `whisper` (quiet line under the
   title), `scenes.<id>.camera` {pitch, yaw, fov} to override a station's angle, `audio` to reuse a voice.
@@ -70,10 +70,11 @@ The source line never leaves the screen (bottom of the caption band, y 1416).
 | 002 | Netflix: where $100 goes | "Of every $100 you pay Netflix, only about $36 goes to the shows." | Netflix 10-K — **produced** |
 | 003 | McDonald's is a landlord | "McDonald's collected $10.4 billion in rent last year." | McDonald's 10-K — **produced** |
 | 004 | Who makes money on a $1,000 iPhone | "Apple keeps about … of this." (gross margin, verify) | Apple 10-K |
-| 005 | Where your airline ticket goes | "The airline keeps a few dollars of this." (verify) | Delta/United 10-K, A4A |
-| 006 | Why airlines are really banks | loyalty programme income vs flying (verify) | Delta 10-K |
+| 005 | Delta's biggest check isn't a ticket | "Delta got $8.2 billion last year. Not from your ticket. From your credit card." | Delta 10-K FY2025 (+ Amex 10-K) — **produced** (`delta-amex`) |
+| 006 | Where your airline ticket goes | "The airline keeps about $9 of every $100." (Delta FY2025: 9.2 % operating margin — reuse `delta-amex` facts) | Delta/United 10-K, A4A |
 | 007 | Where $100 at Amazon goes | AWS share of operating income (verify) | Amazon 10-K |
 | 008 | What a $5 latte really pays for | store costs split (verify) | Starbucks 10-K |
+| 009 | The fee is the business (Live Nation) | ticketing ≈ $3.1B revenue, ≈ $1.1B AOI vs concerts $20.9B revenue, $0.7B AOI (FY2025, verify; AOI is non-GAAP; open DOJ case → neutral wording) | Live Nation 10-K FY2025 |
 Hooks containing a claim are drafts: verify at scripting time, drop the angle if the filing does not support it.
 
 ## Formats beyond the explainer (see `docs/STUDIO.md` §6)
