@@ -181,21 +181,20 @@ Pilots worth scripting first (one per format, existing data and engines):
 1. `npm run validate <id>` — no `✗`. Every `!` is either fixed or explained in `docs/REVIEW_<id>.md`.
 2. `npm run stills <id> -- --n 12 --cols 6` — look at the sheet. Frame 0 must work paused and muted.
 3. One still with `--props '{"guides":true}'` — nothing readable in the red zones.
-4. `pipeline/render.sh <id>`.
-5. `reel-reviewer` agent (clarity, sync, layout, accuracy) then `virality-reviewer` (hook, retention, loop, packaging).
-6. `python3 pipeline/virality_metrics.py <id>`: no gap > 3 s without a new cue, loop SSIM reported, −14 LUFS ±1.5.
-7. The owner listens once (names, numbers) and ticks the source lines before posting.
+4. `npm run render -- <id>` creates the MP4 and its render manifest from existing media.
+5. Generate SHA-bound evidence and run `reel-reviewer` then `virality-reviewer` on the same video.
+6. The owner checks the original sources, listening, rights and the final kit. Use the [release runbook](STUDIO_DELIVERY.md) to record and verify that decision.
 
 ## 8. Resilience — what can fail and what happens
 | Failure | Behaviour | Where |
 |---|---|---|
 | A cue word is not in the script | pre-flight error before any voice is recorded; also a clear render error | `scripts/validate.mjs`, `src/lib/schedule.ts` |
-| No WebGL in the render browser | the episode renders in its flat DA 1 version | `probeWebGL()` in `Root.tsx`, entry points |
+| No WebGL in a DA 2 production render | explicit target error, with a separate DA 1 option for compatible episodes | `probeWebGL()` in `Root.tsx`, entry points |
 | A font fails to load | warning, next family in the stack, render continues | `fonts.ts` |
 | A flag / portrait / emoji is missing | the element is skipped; the pre-flight lists it | `Root.tsx`, `validate.mjs` |
-| ElevenLabs is down or out of quota | Kokoro local voice (needs `scripts/setup.sh`) | `pipeline/tts.py` |
-| The script did not change | the voice is NOT re-recorded (fingerprint in `timings.json`) — cues stay in sync, no credit spent | `pipeline/tts.py` |
-| The headless browser dies mid-render | one automatic retry | `pipeline/render.sh` |
+| ElevenLabs is down or out of quota | explicit error, or recorded Kokoro fallback when requested | `pipeline/tts.py` |
+| Established voice media match the requested script and settings | the pair can be reused with its provenance | `pipeline/tts.py` |
+| The headless browser dies mid-render | staged render fails before replacing the existing delivery | `scripts/render.mjs` |
 | An old episode is re-rendered after engine work | it has no `da` field → DA 1 path, unchanged | entry points |
 | A channel is renamed | edit `public/studio.json`; old `series` strings keep resolving through `legacyNames` | `series.ts` |
 | A figure is on screen but not in `SOURCES.md` | pre-flight warning naming the cue | `validate.mjs` |

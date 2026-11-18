@@ -1,0 +1,20 @@
+{
+  "notes": "Editorial checklist drafted from the cue sheet and SOURCES.md. Each reference remains for the owner to verify.",
+  "claims": [
+    {"id":"purchase","claim":"US purchase price of $7.2 million in gold","unit":"USD in gold","period":"1867"},
+    {"id":"russian-america","claim":"Russian America was a fur-trading colony more than 4,000 miles from Saint Petersburg","unit":"great-circle miles from Sitka; colonial status","period":"1867"},
+    {"id":"crimean-war-dates","claim":"The Crimean War callout shows 1853–1856","unit":"calendar years","period":"1853–1856"},
+    {"id":"sale-reasons","claim":"Historians cite financial strain after the Crimean War and fear of British seizure among the reasons for selling","unit":"historical interpretation","period":"Before the 1867 sale"},
+    {"id":"treaty-signing","claim":"Seward and the Russian envoy sign after an overnight session on March 30","unit":"calendar date; treaty signatories","period":"30 March 1867"},
+    {"id":"acreage-calc","claim":"About two cents per acre, calculated as $7.2 million over approximately 375 million acres","unit":"US cents per land acre","period":"1867 price; modern land-area basis"},
+    {"id":"folly","claim":"Some critics mocked the purchase; most 1867 papers were supportive or neutral in the cited survey, and the Folly narrative developed later","unit":"historical interpretation; survey scope","period":"1867 reporting and later historiography"},
+    {"id":"senate","claim":"The Senate gave advice and consent 37–2 on April 9","unit":"Senate votes and calendar date","period":"9 April 1867"},
+    {"id":"handover","claim":"The handover at Sitka and stylised flag change took place on October 18","unit":"calendar date; historic flags","period":"18 October 1867"},
+    {"id":"native-peoples","claim":"Native peoples present for thousands of years were not consulted; the map depicts approximate traditional areas","unit":"historical description; approximate geography","period":"Before and during the 1867 treaty"},
+    {"id":"gold","claim":"Juneau 1880 and Nome 1899 mark the gold-rush beats","unit":"calendar years; verify what each date denotes","period":"1880 and 1899"},
+    {"id":"statehood","claim":"Alaska became the 49th state on January 3, 1959","unit":"statehood order and calendar date","period":"3 January 1959"},
+    {"id":"texas-scale","claim":"Alaska is more than twice the size of Texas","unit":"land area ratio","period":"Modern geographic comparison"},
+    {"id":"prudhoe-bay","claim":"Prudhoe Bay is presented as the largest US oil field and its discovery was announced in 1968","unit":"oil field ranking basis and announcement year","period":"1968 announcement; ranking basis to confirm"},
+    {"id":"pipeline","claim":"The Trans-Alaska Pipeline began carrying oil in 1977; its mapped route is simplified","unit":"calendar year and simplified route","period":"1977"}
+  ]
+}

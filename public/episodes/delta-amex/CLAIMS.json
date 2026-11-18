@@ -1,0 +1,14 @@
+{
+  "notes": "Editorial checklist drafted from the cue sheet and SOURCES.md. The Delta and American Express filings and the target statement still need human source approval.",
+  "claims": [
+    {"id":"amex-remuneration","claim":"American Express paid Delta $8.2 billion in co-brand remuneration; remuneration is not profit","unit":"USD billions of remuneration","period":"Delta FY2025"},
+    {"id":"skymiles-partnership","claim":"American Express buys SkyMiles from Delta for eligible co-branded card spending","unit":"co-brand contract description","period":"Delta FY2025"},
+    {"id":"gaap-revenue","claim":"Delta had $63.4 billion in revenue, rounded from $63,364 million","unit":"USD billions, GAAP operating revenue","period":"Delta FY2025"},
+    {"id":"gaap-costs","claim":"Delta had $57.5 billion in costs; approximately $91 of each $100 in revenue","unit":"USD billions and USD per $100 GAAP revenue","period":"Delta FY2025"},
+    {"id":"operating-income","claim":"Delta had $5.8 billion in operating profit; approximately $9 of each $100 in revenue","unit":"USD billions and USD per $100 GAAP revenue","period":"Delta FY2025"},
+    {"id":"profit-comparison","claim":"The $8.2 billion remuneration exceeded Delta's reported operating profit in size; this is not a contribution-to-profit claim","unit":"USD billions; comparison of separate measures","period":"Delta FY2025"},
+    {"id":"amex-spending-share","claim":"The Delta co-brand portfolio represented approximately 13% of American Express worldwide billed business","unit":"percent of worldwide billed business","period":"American Express FY2025"},
+    {"id":"amex-loan-share","claim":"The Delta co-brand portfolio represented approximately 21% of American Express worldwide Card Member loans","unit":"percent of worldwide Card Member loans","period":"31 December 2025"},
+    {"id":"amex-target","claim":"Delta's annual co-brand remuneration target is $10 billion, presented as a target","unit":"USD billions per year, target","period":"Long-term target; confirm target statement and date"}
+  ]
+}

@@ -4,13 +4,14 @@ Remplace `<id>` (ex. `costco-hotdog`) et `<serie>` (RECEIPTS ou REDRAWN), puis c
 
 ```
 Prépare tout le déploiement de l'épisode <id> (série <serie>) pour TikTok, Instagram Reels et YouTube Shorts.
-Lis d'abord public/episodes/<id>/SOURCES.md, episode.json, timings.json, docs/REVIEW_<id>.md, docs/VIRALITY_PLAYBOOK.md
-et deliverables/<id>/POSTING.md s'il existe. N'invente aucun chiffre : tout vient de SOURCES.md.
+Lis docs/STUDIO_DELIVERY.md, le manifeste précis du rendu, les deux revues qui correspondent à son SHA-256,
+public/episodes/<id>/SOURCES.md et deliverables/<id>/POSTING.md. Chaque affirmation reste à vérifier dans sa source primaire.
 
 1. VÉRIFS AVANT PUBLICATION
    - Liste les chiffres à cocher dans la source primaire (tableau : ligne · valeur à l'écran · où la vérifier).
    - Rappelle les points ouverts de la revue (voix à écouter, limites connues). Dis clairement si quelque chose bloque la publication.
-   - Vérifie que out/<id>.mp4 existe, durée, −14 LUFS, et que la couverture existe (sinon génère cover_9x16.png et cover_3x4.jpg).
+   - Prépare les couvertures et le packet du kit comme décrit dans le runbook. Identifie le profil technique et les P1
+     encore ouverts. Le propriétaire coche les affirmations, leurs unités et périodes et confirme écoute, droits et kit.
 
 2. DESCRIPTIONS PRÊTES À COLLER (anglais, un bloc de code par plateforme)
    - TikTok : 1re ligne = mots-clés recherchés + chiffre-choc ; 2-3 phrases ; finit par UNE question qui appelle un commentaire ;
@@ -32,8 +33,8 @@ et deliverables/<id>/POSTING.md s'il existe. N'invente aucun chiffre : tout vien
 5. CALENDRIER : meilleur créneau de publication pour une audience US/UK (heure de Paris), ordre de publication
    (TikTok d'abord ou simultané), et quand répondre aux premiers commentaires (première heure).
 
-6. SORTIE : écris tout dans deliverables/<id>/POSTING.md (même structure que costco-hotdog), commit + push sur la branche
-   de développement, puis résume-moi en français : ce que je dois cocher, ce que je copie-colle, dans quel ordre.
-   Si tu as accès à Postiz et que je te l'ai demandé explicitement, programme les posts en BROUILLON uniquement ;
-   ne publie jamais sans mon feu vert.
+6. SORTIE
+   - Écris les champs éditoriaux dans deliverables/<id>/POSTING.md, génère le kit local et prépare le packet.
+   - Quand le propriétaire a confirmé le visa, utilise npm run post -- <id> et transmets les chemins vérifiés.
+   - Demande une autorisation propre pour tout push Git ou action sur une plateforme.
 ```

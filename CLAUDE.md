@@ -63,10 +63,12 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 5. **Pre-flight**: `npm run validate <id>` — fix every `✗`, read every `!`.
 6. **Look before you render**: `npm run stills <id> -- --n 12 --cols 6` → `out/stills/<id>/sheet.jpg`.
    Add `--props '{"guides":true}'` once to check the safe area. Iterate on stills, not on videos.
-7. **Render**: `pipeline/render.sh <id>` → `out/<id>.mp4` (pre-flight → voice only if the script changed → music →
-   render → −14 LUFS). `--da 1|2` previews the other art direction, `--force-voice` re-records.
-8. **Review**: run the `reel-reviewer` then the `virality-reviewer` agent; write `docs/REVIEW_<id>.md`.
-9. **Post**: `.claude/skills/post/SKILL.md` (`pipeline/post.sh <EP n | id>`), only when the owner asks.
+7. **Render**: `npm run render -- <id>` uses existing media by default and captures an input and MP4 manifest. See
+   [the release runbook](docs/STUDIO_DELIVERY.md) for render options and the separate voice production step.
+8. **Review**: give the `reel-reviewer` then `virality-reviewer` the same manifest and evidence. Record the exact MP4
+   hash, observations and open P1s. The owner verifies primary sources, listening, rights and the kit.
+9. **Hand off**: run `npm run post -- <id>` when asked. It checks an existing release and only returns the verified
+   paths. See `.claude/skills/post/SKILL.md` for the resend routine and approval requirements.
 
 ## raea (third engine, optional)
 `raea/<project>/` holds episodes rebuilt in raea (Bevy 3D from React/TS, <https://github.com/shinyobjectz/raea>), e.g.
@@ -78,9 +80,9 @@ The five rules (details and measurements in `docs/STUDIO.md`):
   0.28 s. The API key is injected by the cloud environment proxy (header `xi-api-key`). multilingual_v2 ignores
   IPA → fix names with `voice.respell`; check names by ear. `timings.json` stores a fingerprint of the script:
   the voice is re-recorded only when the script or voice settings change. Fallback: Kokoro local (`scripts/setup.sh`).
-- Rendering: Remotion 4 + `@remotion/three`. The DA 2 world is WebGL; a cloud container has no GPU, so
-  `remotion.config.ts` selects software GL (`swangle`). Without WebGL an episode falls back to its flat version
-  instead of failing. Chromium: `/opt/pw-browsers/chromium_headless_shell-*/…` (found automatically).
+- Rendering: Remotion 4 + `@remotion/three`. The DA 2 world is WebGL; software GL (`swangle`) is available in
+  cloud containers. The release render requires its requested DA. Legacy interactive previews can still fall back
+  to DA 1. The recipe records the selected output and media.
 - Fonts are self-hosted (`public/fonts`, OFL): Bricolage Grotesque, Instrument Serif Italic, JetBrains Mono
   (+ Montserrat for DA 1). No network at render time.
 - Music: `pipeline/music.sh` procedural bed; a licensed `music.wav` + empty `music.lock` keeps your own.
