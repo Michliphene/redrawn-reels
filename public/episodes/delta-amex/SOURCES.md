@@ -1,4 +1,4 @@
-# RECEIPTS #005 — Delta's biggest cheque isn't a ticket (Delta × American Express)
+# RECEIPTS #005 — Delta's $8.2B check isn't a ticket (Delta × American Express)
 
 Format: **A. Explainer** with a contradiction hook (airline money that does not come from flying) and a mid-reel
 reversal (Amex needs Delta as much). Primary filing: **Delta Air Lines Form 10-K, fiscal 2025** (calendar year).

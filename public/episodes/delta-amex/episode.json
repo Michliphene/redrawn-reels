@@ -5,7 +5,7 @@
  "seriesId": "receipts",
  "episode": 5,
  "da": 2,
- "title": "Delta's biggest check isn't a ticket",
+ "title": "Delta's $8.2B check isn't a ticket",
  "whisper": "follow the swipe, not the seat",
  "source": "Source: Delta 10-K, fiscal 2025 · Amex 10-K 2025 (SEC filings)",
  "voice": {
@@ -27,17 +27,15 @@
   "card",
   "swipe",
   "miles",
-  "profit",
-  "both",
-  "Amex",
-  "American"
+  "profit"
  ],
  "scenes": {
   "plane": {
    "type": "product",
    "art": "plane",
    "price": "$8.2B",
-   "tag": "FROM ONE CREDIT CARD · 2025"
+   "tag": "PAID BY AMEX · 2025",
+   "ghostSafe": true
   },
   "hundred": {
    "type": "grid"
@@ -49,10 +47,15 @@
   "card": {
    "type": "card",
    "cardTitle": "SKYMILES",
-   "cardSub": "AMEX × DELTA"
+   "cardSub": "AMEX × DELTA",
+   "cardText": true
   },
   "point": {
-   "type": "lines"
+   "type": "lines",
+   "rect": {
+    "top": 930,
+    "bottom": 1150
+   }
   }
  },
  "beats": [
@@ -69,9 +72,9 @@
     {
      "type": "ghost",
      "text": "TICKET",
-     "label": "NOT FROM YOUR",
+     "label": "NOT THE SOURCE",
      "atWord": "ticket.",
-     "hold": 1.2
+     "hold": 0.8
     },
     {
      "type": "pulse",
@@ -87,7 +90,7 @@
    "actions": [
     {
      "type": "callout",
-     "text": "AMEX BUYS YOUR MILES FROM DELTA",
+     "text": "AMEX BUYS YOUR SKYMILES FROM DELTA",
      "atWord": "miles",
      "hold": 1.8,
      "size": 48
@@ -99,7 +102,15 @@
    "scene": "hundred",
    "kicker": "Where $100 goes",
    "say": "First, follow {$100|a hundred dollars} Delta takes in.",
-   "actions": []
+   "actions": [
+    {
+     "type": "callout",
+     "text": "EACH SQUARE = $1 OF REVENUE",
+     "atWord": "follow",
+     "hold": 1.8,
+     "size": 46
+    }
+   ]
   },
   {
    "id": "costs",
@@ -110,7 +121,7 @@
      "count": 91,
      "color": "#FF6B5E",
      "amount": "$91",
-     "label": "fuel, crews, planes…",
+     "label": "fuel, crews, planes… (our calc.)",
      "atWord": "$91",
      "dur": 2.4
     },
@@ -135,7 +146,7 @@
      "type": "rest",
      "color": "#FFB648",
      "amount": "$9",
-     "label": "operating profit",
+     "label": "operating profit (our calc.)",
      "atWord": "$9"
     }
    ]
@@ -157,6 +168,13 @@
      "value": 5.822,
      "color": "#FFB648",
      "atWord": "$5.8B"
+    },
+    {
+     "type": "callout",
+     "text": "OPERATING INCOME · FISCAL 2025",
+     "atWord": "operating",
+     "hold": 1.6,
+     "size": 44
     }
    ]
   },
@@ -206,6 +224,14 @@
      "label": "of Amex card loans",
      "sub": "Dec 31, 2025",
      "atWord": "21%"
+    },
+    {
+     "type": "callout",
+     "text": "≈ 1 IN 5 DOLLARS AMEX LENDS",
+     "atWord": "lends.",
+     "hold": 1.0,
+     "size": 46,
+     "y": 450
     }
    ]
   },
@@ -215,10 +241,11 @@
    "actions": [
     {
      "type": "callout",
-     "text": "NEXT TARGET: $10B A YEAR",
-     "atWord": "aiming",
-     "hold": 2.0,
-     "size": 50
+     "text": "TARGET: $10B A YEAR",
+     "atWord": "$10B",
+     "hold": 1.8,
+     "size": 50,
+     "y": 450
     }
    ]
   },
@@ -238,7 +265,7 @@
     },
     {
      "type": "line",
-     "small": "TO DELTA, YOU ARE",
+     "small": "",
      "text": "A SWIPE",
      "color": "#C8F53C",
      "atWord": "swipe.",

@@ -70,7 +70,7 @@ The source line never leaves the screen (bottom of the caption band, y 1416).
 | 002 | Netflix: where $100 goes | "Of every $100 you pay Netflix, only about $36 goes to the shows." | Netflix 10-K — **produced** |
 | 003 | McDonald's is a landlord | "McDonald's collected $10.4 billion in rent last year." | McDonald's 10-K — **produced** |
 | 004 | Who makes money on a $1,000 iPhone | "Apple keeps about … of this." (gross margin, verify) | Apple 10-K |
-| 005 | Delta's biggest check isn't a ticket | "Delta got $8.2 billion last year. Not from your ticket. From your credit card." | Delta 10-K FY2025 (+ Amex 10-K) — **produced** (`delta-amex`) |
+| 005 | Delta's $8.2B check isn't a ticket | "Delta got $8.2 billion last year. Not from your ticket. From your credit card." | Delta 10-K FY2025 (+ Amex 10-K) — **produced** (`delta-amex`) |
 | 006 | Where your airline ticket goes | "The airline keeps about $9 of every $100." (Delta FY2025: 9.2 % operating margin — reuse `delta-amex` facts) | Delta/United 10-K, A4A |
 | 007 | Where $100 at Amazon goes | AWS share of operating income (verify) | Amazon 10-K |
 | 008 | What a $5 latte really pays for | store costs split (verify) | Starbucks 10-K |

@@ -23,7 +23,7 @@ for i, (b, bt) in enumerate(zip(ep["beats"], tm["beats"])):
         f = os.path.join(out, f"_f{k}.jpg")
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", f"{t:.2f}", "-i", video, "-frames:v", "1", "-vf", "scale=360:-1", f], check=True)
         files.append(f)
-    text = " ".join(w["w"] for w in bt["words"]).replace("'", "’").replace(":", "\\:")
+    text = " ".join(w["w"] for w in bt["words"]).replace("'", "’").replace("\\", "").replace(":", "\\:").replace("%", "％").replace(",", "\\,")
     sheet = os.path.join(out, f"beat_{i:02d}_{b['id']}.jpg")
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", *sum([["-i", f] for f in files], []), "-filter_complex",
         f"hstack=inputs=3,pad=iw:ih+90:0:0:black,drawtext=text='{i:02d} {b['id']} {s:.1f}-{e:.1f}s  {text[:120]}':fontcolor=white:fontsize=18:x=10:y=h-80",

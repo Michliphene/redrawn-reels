@@ -172,7 +172,7 @@ const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series }) => (
     {acts.filter((a) => a.type === 'ghost').map((a, i) => {
       const o = life(t, a.t, a.hold); if (o <= 0) return null;
       return (
-        <div key={i} style={{ position: 'absolute', right: 1080 - SAFE.right, top: 880, opacity: o, transform: `rotate(5deg) scale(${pop(t, a.t)})`, transformOrigin: 'right center', background: pal(series).danger, padding: '14px 26px 12px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)', textAlign: 'center' }}>
+        <div key={i} style={{ position: 'absolute', right: 1080 - (def.ghostSafe ? SAFE.railX : SAFE.right), top: 880, opacity: o, transform: `rotate(5deg) scale(${pop(t, a.t)})`, transformOrigin: 'right center', background: pal(series).danger, padding: '14px 26px 12px', boxShadow: '8px 8px 0 rgba(0,0,0,0.5)', textAlign: 'center' }}>
           <Display size={118} color="#fff" style={{ textShadow: 'none' }}>{a.text}</Display>
           <Mono size={24} color="#fff" track={0.12} style={{ marginTop: 6, textShadow: 'none' }}>{a.label}</Mono>
         </div>
@@ -233,9 +233,16 @@ const Stat: React.FC<{ a: A; t: number; left: number; top: number; series: Serie
     {a.sub && <Mono size={20} color={pal(series).muted} track={0.06} weight={600} style={{ marginTop: 8 }}>{a.sub}</Mono>}
   </div>
 );
-const CardOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => (
-  <>{acts.filter((a) => a.type === 'stat').map((a, i) => <Stat key={i} a={a} t={t} left={SAFE.left + i * (SAFE_W / 2)} top={900} series={series} />)}</>
-);
+const CardOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, toPx, ox }) => {
+  const at = toPx([ox - 0.3, 3.25, 0.2]);
+  return (
+  <>{def.cardText && (
+      <div style={{ position: 'absolute', left: at[0], top: at[1], transform: 'translate(-50%, -50%) rotate(-3deg)', textAlign: 'center' }}>
+        <Mono size={34} color={pal(series).bg} track={0.18} weight={800} style={{ textShadow: 'none' }}>{def.cardTitle}</Mono>
+      </div>
+    )}{acts.filter((a) => a.type === 'stat').map((a, i) => <Stat key={i} a={a} t={t} left={SAFE.left + i * (SAFE_W / 2)} top={900} series={series} />)}</>
+  );
+};
 const PeopleOverlay: React.FC<OverlayProps> = ({ t, acts, series }) => {
   const a = acts.find((x) => x.type === 'light');
   return a ? <Stat a={{ ...a, t: a.t + 0.45 }} t={t} left={SAFE.left} top={890} series={series} size={150} /> : null;
@@ -291,7 +298,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
     const shotOf = (id: string): Shot => {
       const def = spec.scenes[id];
       const f = frameOf(def.type === 'lines' && hero ? { ...def, art: spec.scenes[hero].art } : def, origin[id]);
-      return fitShot(f.pts, { ...f.base, ...(def.camera ?? {}) }, f.rect);
+      return fitShot(f.pts, { ...f.base, ...(def.camera ?? {}) }, { ...f.rect, ...(def.rect ?? {}) });
     };
     const keys: ShotKey[] = [];
     segs.forEach((s, i) => { if (i === 0 || segs[i - 1].id !== s.id) keys.push({ t: Math.max(0, s.from - (i ? 0.3 : 0)), dur: 0.95, shot: shotOf(s.id) }); });
