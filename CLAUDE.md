@@ -38,6 +38,19 @@ The five rules (details and measurements in `docs/STUDIO.md`):
    (`src/studio/tokens.ts`). Check with `--props '{"guides":true}'`.
 5. **One job per band:** series bar · title/date block · stage · captions. No extra widgets, no emoji chips.
 
+## Follow the studio (board, posts, panel)
+- `npm run board` — every episode, one line: the 10 pipeline stages (sources → map data → pre-flight → voice →
+  music → stills → render → review → post kit → publish), scores, views and the **next command**.
+  `npm run board -- <id>` details one episode; `--json` for tools; `--md` writes `docs/BOARD.md`; `--doctor` toolchain.
+  ◌ = done before but not in this checkout (`out/` is not committed: re-render before posting). Read-only.
+- `npm run track` — the posting log `tracker/posts.json` (committed). After the owner posts:
+  `npm run track -- posted <id> tiktok --url <url>`; numbers: `npm run track -- stats <id> tiktok views=12k likes=900
+  comments=40 shares=130 saves=210 follows=35`; `npm run track -- list` (engagement/share/save/follow rates).
+  Never invent numbers: they come from the owner or a platform screenshot.
+- Claude Code panel `tools/claude-mod/studio-board` (mod): the board live beside the chat, `/board [id]`, status line
+  while a render/stills/pre-flight runs, toast when a render ends. Install: `/plugin install studio-board
+  --marketplace michliphene/redrawn-reels`; while developing: `claude --plugin-dir tools/claude-mod/studio-board`.
+
 ## Make a new episode
 1. **Topic** from the series bible (backlog at the bottom). Pick the FORMAT too (`docs/STUDIO.md` §6): explainer,
    second-person, countdown/guess, myth-bust.
@@ -91,7 +104,7 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 - `src/atlas/` REDRAWN DA 2 (world, Map3D, Units3D, Header, lift) · `src/money/` RECEIPTS (Money3D, props3d, Money).
 - `src/components/` overlay cards shared by both art directions (skinned through `src/lib/theme.ts`) ·
   `src/lib/schedule.ts` cue timing · `src/Episode.tsx`, `src/money/Money.tsx` entry points (dispatch on `da`).
-- `scripts/validate.mjs` pre-flight · `scripts/stills.mjs` contact sheets · `tests/` (`npm test`) ·
+- `scripts/board.mjs` studio board · `scripts/track.mjs` posting log · `scripts/validate.mjs` pre-flight · `scripts/stills.mjs` contact sheets · `tests/` (`npm test`) ·
   `pipeline/` render, voice, music, review metrics, posting.
 
 ## Setup (fresh clone)

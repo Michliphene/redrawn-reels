@@ -1,0 +1,5 @@
+{
+  "name": "redrawn-reels-studio",
+  "owner": { "name": "redrawn-reels" },
+  "plugins": [{ "name": "studio-board", "source": "./tools/claude-mod/studio-board", "description": "Live pane of the reel studio: pipeline stage, next step, scores and posts of every episode." }]
+}
