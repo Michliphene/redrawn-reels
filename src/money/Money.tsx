@@ -80,6 +80,15 @@ const TV: React.FC<{ w: number }> = ({ w }) => (
     <rect x="70" y="252" width="190" height="10" rx="5" fill="#fff" />
   </svg>
 );
+const Phone: React.FC<{ w: number }> = ({ w }) => (
+  <svg width={w} height={w * 1.9} viewBox="0 0 300 570">
+    <ellipse cx="150" cy="556" rx="120" ry="10" fill="rgba(0,0,0,0.35)" />
+    <rect x="20" y="10" width="260" height="530" rx="40" fill="#1A2420" stroke="#3B4D44" strokeWidth="6" />
+    <rect x="38" y="30" width="224" height="490" rx="26" fill="#27463B" />
+    {Array.from({ length: 12 }, (_, i) => <rect key={i} x={62 + (i % 3) * 64} y={80 + Math.floor(i / 3) * 64} width="46" height="46" rx="10" fill={['#C8F53C', '#FF6B5E', '#FFB648', '#7FD6FF'][(i * 7) % 4]} />)}
+    <rect x="110" y="494" width="80" height="8" rx="4" fill="#F6F1EA" />
+  </svg>
+);
 const Person: React.FC<{ on: number; s: number }> = ({ on, s }) => (
   <svg width={s} height={s * 1.25} viewBox="0 0 100 125" style={{ transform: `scale(${0.9 + 0.1 * on})` }}>
     <circle cx="50" cy="28" r="22" fill={on > 0.5 ? C.accent : C.cell} stroke={C.cellStroke} strokeWidth="3" />
@@ -91,7 +100,7 @@ const Person: React.FC<{ on: number; s: number }> = ({ on, s }) => (
 const bump = (t: number, acts: A[], target: string) => 1 + acts.filter((a) => a.type === 'pulse' && a.target === target).reduce((m, a) => Math.max(m, interpolate(t, [a.t, a.t + 0.12, a.t + 0.45], [0, 0.14, 0], clamp)), 0);
 const Product: React.FC<SceneProps> = ({ t, acts, def }) => (
   <>
-    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}>{def.art === 'tv' ? <TV w={640} /> : def.art === 'burger' ? <Burger w={520} /> : <HotDog w={720} />}</div>
+    <div style={{ position: 'absolute', top: 400, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `rotate(-6deg) translateY(${Math.sin(t * 2.2) * 8}px)` }}>{def.art === 'phone' ? <Phone w={250} /> : def.art === 'tv' ? <TV w={640} /> : def.art === 'burger' ? <Burger w={520} /> : <HotDog w={720} />}</div>
     <div style={{ position: 'absolute', top: 800, left: 0, right: 0, textAlign: 'center', fontFamily: font, fontWeight: 900, fontSize: def.priceSize ?? 270, lineHeight: 1, color: C.accent, textShadow: '0 10px 40px rgba(0,0,0,0.6)', transform: `scale(${bump(t, acts, 'price')})` }}>{def.price}</div>
     <div style={{ position: 'absolute', top: 1080, left: 0, right: 0, display: 'flex', justifyContent: 'center', transform: `scale(${bump(t, acts, 'tag')})` }}>
       <div style={{ fontFamily: font, fontWeight: 900, fontSize: 54, letterSpacing: 6, color: C.bg, background: C.text, padding: '10px 34px', borderRadius: 14 }}>{def.tag}</div>

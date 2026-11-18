@@ -24,11 +24,12 @@ export const SeriesBar: React.FC<{ series: SeriesDef; episode?: number; right?: 
  * Title block, left aligned under the series bar: one loud line set (auto-fitted to two or three lines)
  * and an optional quiet line. Used for the hook, the loop tail and covers.
  */
-export const TitleBlock: React.FC<{ title: string; whisper?: string; series: SeriesDef; opacity?: number; t?: number; top?: number; max?: number; lines?: number }> =
-  ({ title, whisper, series, opacity = 1, t = 99, top = ZONES.title.top, max = 124, lines = 3 }) => {
+export const TitleBlock: React.FC<{ title: string; whisper?: string; series: SeriesDef; opacity?: number; t?: number; top?: number; max?: number; lines?: number; whisperAt0?: boolean }> =
+  ({ title, whisper, series, opacity = 1, t = 99, top = ZONES.title.top, max = 124, lines = 3, whisperAt0 = false }) => {
     if (opacity <= 0.01) return null;
     const size = fitDisplay(title, SAFE_W, lines, max);
-    const inP = ease.out3(ramp(t, 0, 0.35));
+    // `whisperAt0`: frame 0 is the cover and the loop seam, so the whisper is there from the first frame
+    const inP = whisperAt0 ? 1 : ease.out3(ramp(t, 0, 0.35));
     return (
       <div style={{ position: 'absolute', top, left: SAFE.left, width: SAFE_W, opacity }}>
         <Display size={size} color={series.palette.ink} style={{ textWrap: 'balance' } as React.CSSProperties}>{title}</Display>
