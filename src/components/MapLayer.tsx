@@ -11,10 +11,12 @@ const clamp = { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' } as const;
 export function fillAt(id: string, t: number, declares: TimedAction[], recolors: TimedAction[] = []): string {
   const r = recolors.find((a) => a.type === 'recolor' && a.ids.includes(id) && t >= a.t);
   if (r) return interpolateColors(t, [r.t, r.t + 0.12], [fillAt(id, r.t, declares), PALETTE.start]); // fast: avoids a grey RGB midpoint
-  const d = declares.find((a) => a.type === 'declare' && a.id === id);
-  if (!d || t < d.t) return PALETTE.start;
-  const target = PALETTE.ids[id] ?? theme.accent;
-  if (t < d.t + FLASH) return interpolateColors(t, [d.t, d.t + FLASH], [PALETTE.start, '#FFF6E0']);
+  // the latest declare of this piece wins: a second declare is a new claim on it (flash → its colour)
+  const mine = declares.filter((a) => a.type === 'declare' && a.id === id && t >= a.t) as Extract<TimedAction, { type: 'declare' }>[];
+  const d = mine[mine.length - 1];
+  if (!d) return PALETTE.start;
+  const target = d.color ?? PALETTE.ids[id] ?? theme.accent;
+  if (t < d.t + FLASH) return interpolateColors(t, [d.t, d.t + FLASH], [mine.length > 1 ? (mine[mine.length - 2].color ?? PALETTE.ids[id] ?? theme.accent) : PALETTE.start, '#FFF6E0']);
   return interpolateColors(t, [d.t + FLASH, d.t + FLASH + SETTLE], ['#FFF6E0', target]);
 }
 

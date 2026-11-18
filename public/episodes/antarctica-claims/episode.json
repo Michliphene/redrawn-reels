@@ -1,0 +1,788 @@
+{
+ "id": "antarctica-claims",
+ "series": "REDRAWN",
+ "seriesId": "redrawn",
+ "episode": 5,
+ "da": 2,
+ "title": "Who owns Antarctica?",
+ "whisper": "seven claims, one frozen treaty",
+ "data": "data/antarctica.geojson",
+ "world": {
+  "center": [
+   -30,
+   -90
+  ],
+  "thickness": 0.9
+ },
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {},
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "palette": {
+  "start": "#DCE6EE",
+  "startStroke": "#9FB3C2",
+  "ids": {
+   "GBR": "#4F8FE0",
+   "NZL": "#56CFE1",
+   "FRA": "#9C89B8",
+   "AUS": "#7FB77E",
+   "AUS2": "#7FB77E",
+   "NOR": "#E0565B",
+   "CHL": "#F28482",
+   "CG": "#4F8FE0",
+   "TRI": "#4F8FE0",
+   "AG": "#4F8FE0",
+   "NONE": "#FFC94D"
+  }
+ },
+ "timeline": {
+  "from": "1900-01-01",
+  "to": "1990-01-01",
+  "step": 10
+ },
+ "counter": {
+  "label": "CLAIMS",
+  "total": 7
+ },
+ "legend": false,
+ "keywords": [
+  "Antarctica",
+  "Britain",
+  "Zealand",
+  "France",
+  "Australia",
+  "Norway",
+  "Chile",
+  "Argentina",
+  "Emilio",
+  "Palma",
+  "Russia",
+  "nobody",
+  "Texas",
+  "unclaimed",
+  "counts"
+ ],
+ "beats": [
+  {
+   "id": "hook",
+   "say": "{7|Seven} countries claim Antarctica. And {3|three} of them claim the same slice.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.0
+   },
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "TRI"
+     ],
+     "atWord": "same"
+    },
+    {
+     "type": "sticker",
+     "flag": "gb",
+     "at": [
+      -63,
+      -70
+     ],
+     "dx": -170,
+     "dy": 150,
+     "size": 110,
+     "tilt": -8,
+     "atWord": "of",
+     "hold": 1.9
+    },
+    {
+     "type": "sticker",
+     "flag": "cl",
+     "at": [
+      -63,
+      -70
+     ],
+     "dx": 0,
+     "dy": 100,
+     "size": 110,
+     "tilt": 4,
+     "atWord": "claim",
+     "occurrence": 2,
+     "hold": 1.6
+    },
+    {
+     "type": "sticker",
+     "flag": "ar",
+     "at": [
+      -63,
+      -70
+     ],
+     "dx": 170,
+     "dy": 150,
+     "size": 110,
+     "tilt": 9,
+     "atWord": "same",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "uk",
+   "say": "{1908|Nineteen-oh-eight}: Britain cuts the first slice.",
+   "camera": {
+    "center": [
+     -52,
+     -76
+    ],
+    "span": 36,
+    "pitch": 46,
+    "yaw": -14
+   },
+   "date": "1908",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "GBR",
+     "atWord": "Britain",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "AG",
+     "atWord": "Britain",
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atWord": "Britain",
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "CG",
+     "atWord": "Britain",
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "label",
+     "text": "United Kingdom",
+     "flag": "gb",
+     "at": [
+      -50,
+      -79
+     ],
+     "atWord": "Britain",
+     "hold": 2.6
+    }
+   ]
+  },
+  {
+   "id": "others",
+   "say": "New Zealand, France, Australia and Norway take theirs.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.02,
+    "pitch": 58,
+    "yaw": 24,
+    "dur": 1.6
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "NZL",
+     "atWord": "Zealand,",
+     "date": "1923",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "New Zealand",
+     "flag": "nz",
+     "at": [
+      -176,
+      -82
+     ],
+     "atWord": "Zealand,",
+     "hold": 0.9
+    },
+    {
+     "type": "date",
+     "date": "1923",
+     "atWord": "Zealand,"
+    },
+    {
+     "type": "declare",
+     "id": "FRA",
+     "atWord": "France,",
+     "date": "1924",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "France",
+     "flag": "fr",
+     "at": [
+      139,
+      -71
+     ],
+     "atWord": "France,",
+     "hold": 0.9
+    },
+    {
+     "type": "date",
+     "date": "1924",
+     "atWord": "France,"
+    },
+    {
+     "type": "declare",
+     "id": "AUS",
+     "atWord": "Australia",
+     "date": "1933",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "AUS2",
+     "atWord": "Australia",
+     "date": "1933",
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "label",
+     "text": "Australia",
+     "flag": "au",
+     "at": [
+      95,
+      -77
+     ],
+     "atWord": "Australia",
+     "hold": 0.9
+    },
+    {
+     "type": "date",
+     "date": "1933",
+     "atWord": "Australia"
+    },
+    {
+     "type": "declare",
+     "id": "NOR",
+     "atWord": "Norway",
+     "date": "1939",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "Norway",
+     "flag": "no",
+     "at": [
+      12,
+      -78
+     ],
+     "atWord": "Norway",
+     "hold": 1.6
+    },
+    {
+     "type": "date",
+     "date": "1939",
+     "atWord": "Norway"
+    }
+   ]
+  },
+  {
+   "id": "overlap",
+   "say": "Then Chile claims a slice right on top of Britain's. And Argentina claims one on top of both.",
+   "camera": {
+    "center": [
+     -63,
+     -73
+    ],
+    "span": 27,
+    "pitch": 40,
+    "yaw": -22,
+    "cut": true
+   },
+   "date": "1940",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "CHL",
+     "atWord": "Chile",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "CG",
+     "atWord": "top",
+     "noLabel": true,
+     "count": false,
+     "color": "#B56576"
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atWord": "top",
+     "noLabel": true,
+     "count": false,
+     "color": "#B56576"
+    },
+    {
+     "type": "label",
+     "text": "Chile",
+     "flag": "cl",
+     "at": [
+      -82,
+      -76
+     ],
+     "atWord": "Chile",
+     "hold": 2.4
+    },
+    {
+     "type": "chapter",
+     "text": "Argentina: dates vary, 1940s",
+     "atWord": "Argentina"
+    },
+    {
+     "type": "declare",
+     "id": "AG",
+     "atWord": "Argentina",
+     "noLabel": true,
+     "color": "#B56576"
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atWord": "both.",
+     "noLabel": true,
+     "count": false,
+     "color": "#FF4FA3"
+    },
+    {
+     "type": "label",
+     "text": "Argentina",
+     "flag": "ar",
+     "at": [
+      -42,
+      -78
+     ],
+     "atWord": "Argentina",
+     "hold": 2.2
+    },
+    {
+     "type": "region",
+     "text": "UK + Chile + Argentina",
+     "at": [
+      -63,
+      -71.5
+     ],
+     "atWord": "both.",
+     "hold": 2.0
+    },
+    {
+     "type": "shake",
+     "amount": 8,
+     "atWord": "both."
+    }
+   ]
+  },
+  {
+   "id": "treaty",
+   "say": "A {1959|nineteen fifty-nine} treaty freezes it all. No new claims. No bigger ones.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.04,
+    "pitch": 62,
+    "yaw": -6
+   },
+   "date": "1959-12-01",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "ANTARCTIC TREATY",
+     "sub": "Article IV · signed 1 Dec 1959",
+     "size": 64,
+     "y": 1010,
+     "atWord": "treaty",
+     "hold": 3.4,
+     "stamp": "FROZEN",
+     "stampWord": "freezes"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "GBR",
+      "AG",
+      "TRI",
+      "CG",
+      "CHL",
+      "NOR",
+      "AUS",
+      "AUS2",
+      "FRA",
+      "NZL"
+     ],
+     "atWord": "freezes"
+    },
+    {
+     "type": "chapter",
+     "text": "every claim frozen, none given up",
+     "atWord": "freezes"
+    }
+   ]
+  },
+  {
+   "id": "baby",
+   "say": "But in {1978|nineteen seventy-eight}, Argentina flies a pregnant woman to its base. Her son, Emilio Palma, is the first person known to be born in Antarctica.",
+   "camera": {
+    "center": [
+     -56.99,
+     -63.4
+    ],
+    "span": 15,
+    "pitch": 47,
+    "yaw": 18,
+    "cut": true
+   },
+   "date": "1978-01-07",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Esperanza Base",
+     "at": [
+      -56.99,
+      -63.4
+     ],
+     "atWord": "flies",
+     "hold": 7
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      -56.99,
+      -63.4
+     ],
+     "count": 1,
+     "spread": 10,
+     "size": 70,
+     "atWord": "pregnant",
+     "hold": 5,
+     "caption": "Emilio Palma · born 7 Jan 1978",
+     "offset": [
+      0,
+      120
+     ]
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "TRI"
+     ],
+     "atWord": "son,"
+    },
+    {
+     "type": "chapter",
+     "text": "Esperanza Base, Argentina",
+     "atWord": "flies"
+    },
+    {
+     "type": "label",
+     "text": "1st birth on the continent",
+     "at": [
+      -57.4,
+      -64.7
+     ],
+     "atWord": "first",
+     "hold": 2.0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "TRI",
+      "AG",
+      "CG"
+     ],
+     "atWord": "Antarctica."
+    }
+   ]
+  },
+  {
+   "id": "chile",
+   "say": "Chile's first baby follows in {1984|nineteen eighty-four}.",
+   "camera": {
+    "center": [
+     -58.96,
+     -62.19
+    ],
+    "span": 15,
+    "pitch": 48,
+    "yaw": -12
+   },
+   "date": "1984-11-21",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Villa Las Estrellas",
+     "at": [
+      -58.96,
+      -62.19
+     ],
+     "atWord": "Chile's",
+     "hold": 2.8
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      -58.96,
+      -62.19
+     ],
+     "count": 1,
+     "spread": 10,
+     "size": 70,
+     "atWord": "baby",
+     "hold": 2.6,
+     "caption": "Juan Pablo Camacho · Nov 1984",
+     "offset": [
+      0,
+      120
+     ]
+    },
+    {
+     "type": "chapter",
+     "text": "Villa Las Estrellas, Chile",
+     "atWord": "Chile's"
+    }
+   ]
+  },
+  {
+   "id": "void",
+   "say": "Under the treaty, none of it counts.",
+   "camera": {
+    "center": [
+     -60,
+     -66
+    ],
+    "span": 20,
+    "pitch": 50,
+    "yaw": 0
+   },
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NONE OF IT COUNTS",
+     "sub": "acts after the treaty can't support a claim · Art. IV(2)",
+     "size": 60,
+     "y": 1010,
+     "atWord": "Under",
+     "hold": 2.2,
+     "stamp": "VOID",
+     "stampWord": "counts."
+    }
+   ]
+  },
+  {
+   "id": "usru",
+   "say": "And the US and Russia? They recognise no one's claim, and keep the right to make their own.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 56,
+    "yaw": 30
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "sticker",
+     "flag": "us",
+     "x": 330,
+     "y": 760,
+     "size": 150,
+     "tilt": -6,
+     "text": "USA",
+     "atWord": "US",
+     "hold": 4.4
+    },
+    {
+     "type": "sticker",
+     "flag": "ru",
+     "x": 690,
+     "y": 760,
+     "size": 150,
+     "tilt": 6,
+     "text": "RUSSIA",
+     "atWord": "Russia?",
+     "hold": 4.0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "GBR",
+      "AG",
+      "TRI",
+      "CG",
+      "CHL",
+      "NOR",
+      "AUS",
+      "AUS2",
+      "FRA",
+      "NZL"
+     ],
+     "atWord": "recognise"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "NONE"
+     ],
+     "atWord": "right"
+    }
+   ]
+  },
+  {
+   "id": "nobody",
+   "say": "And one slice, nobody claims at all. More than twice the size of Texas. The biggest unclaimed land on Earth.",
+   "camera": {
+    "center": [
+     -118,
+     -78
+    ],
+    "span": 30,
+    "pitch": 46,
+    "yaw": -18,
+    "cut": true
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "declare",
+     "id": "NONE",
+     "atWord": "nobody",
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "label",
+     "text": "UNCLAIMED",
+     "at": [
+      -118,
+      -77
+     ],
+     "atWord": "nobody",
+     "hold": 1.5
+    },
+    {
+     "type": "ghost",
+     "id": "TEXAS_A",
+     "atWord": "twice",
+     "hold": 3.0,
+     "color": "#F2994A"
+    },
+    {
+     "type": "ghost",
+     "id": "TEXAS_B",
+     "atWord": "size",
+     "hold": 2.7,
+     "color": "#F2994A"
+    },
+    {
+     "type": "label",
+     "text": "1 Texas",
+     "at": [
+      -122,
+      -80.2
+     ],
+     "atWord": "twice",
+     "hold": 1.2
+    },
+    {
+     "type": "label",
+     "text": "2 Texas",
+     "at": [
+      -114,
+      -73.6
+     ],
+     "atWord": "size",
+     "hold": 1.2
+    },
+    {
+     "type": "label",
+     "text": "Marie Byrd Land",
+     "at": [
+      -120,
+      -84
+     ],
+     "atWord": "unclaimed",
+     "hold": 2.0
+    },
+    {
+     "type": "bigNumber",
+     "value": 1.5,
+     "decimals": 1,
+     "suffix": "M km²",
+     "label": "our calculation · 590,000 sq mi",
+     "y": 900,
+     "atWord": "unclaimed",
+     "hold": 2.2,
+     "from": 0.6
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "So who owns Antarctica? Depends who you ask. Because…",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.0
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "GBR",
+      "AG",
+      "TRI",
+      "CG",
+      "CHL",
+      "NOR",
+      "AUS",
+      "AUS2",
+      "FRA",
+      "NZL",
+      "NONE"
+     ],
+     "atWord": "owns"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "TRI"
+     ],
+     "atWord": "Depends"
+    },
+    {
+     "type": "shake",
+     "amount": 5,
+     "atWord": "Because…"
+    }
+   ]
+  }
+ ]
+}

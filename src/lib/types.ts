@@ -2,7 +2,11 @@ import type { FeatureCollection, Feature } from 'geojson';
 export type LonLat = [number, number];
 export type Camera = { fit?: string; pad?: number; center?: LonLat; span?: number; dur?: number };
 export type Action =
-  | { type: 'declare'; id: string; atWord?: string; date?: string; flag?: string; flagNote?: string }
+  | { type: 'declare'; id: string; atWord?: string; date?: string; flag?: string; flagNote?: string; noLabel?: boolean;
+      /** colour of the piece from now on (default: palette.ids[id]); a later declare of the same id re-claims it */
+      color?: string;
+      /** false: not counted by the tally / time rail (a second claim on a piece already counted) */
+      count?: boolean }
   | { type: 'pulse'; ids: string[]; atWord?: string }
   | { type: 'label'; text: string; at: LonLat; size?: 'xl' | 'md'; hold?: number; atWord?: string; flag?: string }
   | { type: 'marker'; text: string; at: LonLat; hold?: number; atWord?: string }

@@ -43,7 +43,7 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
         const r = interpolate(t, [a.t, a.t + 0.9], [10, 190]);
         const o = interpolate(t, [a.t, a.t + 0.9], [0.9, 0]);
         nodes.push(<div key={`w${i}`} style={{ position: 'absolute', left: x - r, top: y - r, width: r * 2, height: r * 2, borderRadius: '50%',
-          border: `6px solid ${PALETTE.ids[a.id]}`, opacity: o, boxShadow: `0 0 30px ${PALETTE.ids[a.id]}` }} />);
+          border: `6px solid ${(a as any).color ?? PALETTE.ids[a.id]}`, opacity: o, boxShadow: `0 0 30px ${(a as any).color ?? PALETTE.ids[a.id]}` }} />);
       }
       if ((a as any).noLabel) return;
       const big = ['EST', 'LVA', 'LTU', 'GEO'].includes(a.id);

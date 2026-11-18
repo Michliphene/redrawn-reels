@@ -13,7 +13,7 @@ const SAFE_W = SAFE.right - SAFE.left;
 /** "03/15 NEW COUNTRIES" for the right side of the series bar: +1 each time a piece changes hands. */
 export const Tally: React.FC<{ t: number; actions: TimedAction[]; total: number; label?: string; series: SeriesDef; from: number }> = ({ t, actions, total, label = 'NEW COUNTRIES', series, from }) => {
   if (t < from) return null;
-  const ds = actions.filter((a) => a.type === 'declare').map((a) => a.t).filter((x) => x <= t);
+  const ds = actions.filter((a) => a.type === 'declare' && (a as any).count !== false).map((a) => a.t).filter((x) => x <= t);
   const last = ds.length ? Math.max(...ds) : -10;
   const k = 1 + 0.3 * (1 - Math.min(1, pop(t, last, 0.3)));
   return (
@@ -39,7 +39,7 @@ export const Rail: React.FC<{ from: string; to: string; step?: number; dates: { 
     }
     const years: string[] = [];
     for (let y = +from.slice(0, 4); y <= +to.slice(0, 4); y += step) years.push(`${y}-01-01`);
-    const events = actions.filter((x) => x.type === 'declare') as Extract<TimedAction, { type: 'declare' }>[];
+    const events = actions.filter((x) => x.type === 'declare' && (x as any).count !== false) as Extract<TimedAction, { type: 'declare' }>[];
     const dateOf = (e: (typeof events)[number]) => e.date ?? [...dates].reverse().find((d) => d.t <= e.t + 0.01)?.date ?? from;
     const y = 14;
     return (
@@ -57,7 +57,7 @@ export const Rail: React.FC<{ from: string; to: string; step?: number; dates: { 
         ))}
         {events.map((e, i) => {
           const on = t >= e.t;
-          return <rect key={i} x={X(dateOf(e)) - (on ? 6 : 4)} y={y - (on ? 6 : 4)} width={on ? 12 : 8} height={on ? 12 : 8} fill={on ? (PALETTE.ids[e.id] ?? series.palette.accent) : series.palette.surface} stroke={series.palette.bg} strokeWidth={2} />;
+          return <rect key={i} x={X(dateOf(e)) - (on ? 6 : 4)} y={y - (on ? 6 : 4)} width={on ? 12 : 8} height={on ? 12 : 8} fill={on ? (e.color ?? PALETTE.ids[e.id] ?? series.palette.accent) : series.palette.surface} stroke={series.palette.bg} strokeWidth={2} />;
         })}
         <rect x={cx - 7} y={y - 7} width={14} height={14} fill={series.palette.ink} />
       </svg>
