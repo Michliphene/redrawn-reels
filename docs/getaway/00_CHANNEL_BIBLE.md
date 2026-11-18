@@ -37,6 +37,7 @@ An episode belongs to the channel through `"channel": "getaway"` in `episode.jso
 | Type | Display (Bricolage condensed) for titles and captions · Whisper (Instrument Serif italic) for the one quiet line · **Courier Prime** (OFL) replaces JetBrains Mono for every data/annotation line |
 | Series bar | A: beige typed tab "THE GETAWAY" + red stamped "CASE 001". (B "evidence label" stays available: render prop `brand: "B"`.) |
 | Signature objects | the 3D getaway vehicle on the map (`vehicle`: a tri-jet with its rear airstair; a falling figure that vanishes in the air), night + torch + rain (`night`), the typed document with a struck-out wrong version (`ticket`), the CAUGHT / NEVER FOUND tick boxes open on frame 0 and ticked on the verdict (`verdict`) |
+| Props on the map (CASE 002) | `prop`: 3D evidence and set pieces standing on the table, sized in screen pixels like `vehicle` — `vault` (a wall of deposit-box doors swinging open in a scattered order, red inside; `open` is a fraction, a SYMBOL, never a count), `diamonds` (`sinkWord` sinks them: gone), `sandwich` (half, cut on the diagonal), `bags`, `envelopes`, `building`; `drop: true` = falls with a bounce; `caption` = typed paper evidence tag on a red string. `vehicle` `kind: "car"` drives a route on the ground. `verdict` `picks: [{pick, word, note}]` = a split verdict (several boxes ticked, each with a stamped note: THE MEN / THE DIAMONDS) |
 | Older signature objects | wanted poster (`wanted` cue: image printed in paper ink, typed lines, credit, stamp); falling banknotes (`bills: true`); the verdict stamp |
 
 Palette and look live in `src/studio/series.ts` (`getaway`), the bar in `src/studio/brands/getaway.tsx`.
@@ -76,7 +77,7 @@ Palette and look live in `src/studio/series.ts` (`getaway`), the bar in `src/stu
 | 4 | Great Train Robbery + Ronnie Biggs' run | 1963–2001 · Bridego Bridge → Rio | CAUGHT (most) / Biggs returns 2001 | 5 | 5 | National Archives (UK), trial records; violence: one sentence (the driver was injured) |
 | 5 | Hatton Garden heist | 2015 · London | CAUGHT (pensioners) | 5 | 5 | Met Police, sentencing remarks; deadpan gold |
 | 6 | Isabella Stewart Gardner Museum | 1990 · Boston | NEVER FOUND ($10 m reward) | 4 | 4 | FBI + museum; small map → use the floor plan as a second set later |
-| 7 | Antwerp Diamond Centre | 2003 · Antwerp → the E19 woods | CAUGHT (the half-eaten sandwich) | 4 | 5 | Belgian court, Notarbartolo conviction; claims of the thief himself = DISPUTED |
+| ~~7~~ | Antwerp Diamond Centre — **produced as CASE 002 (`getaway-002-antwerp`)** | 2003 · Antwerp → the E19 woods | CAUGHT (the half-eaten sandwich) | 4 | 5 | Belgian court, Notarbartolo conviction; claims of the thief himself = DISPUTED |
 | 8 | Brink's robbery | 1950 · Boston | CAUGHT days before the statute of limitations | 4 | 4 | FBI famous cases |
 | 9 | Louvre crown jewels | Oct 2025 · Paris | arrests; jewels status to verify at scripting | 3 | 5 | very recent: only official statements (Paris prosecutor); re-check everything |
 | 10 | Dresden Green Vault | 2019 · Dresden → Berlin | CAUGHT (2023 convictions), part returned | 4 | 4 | court rulings, SKD statements |

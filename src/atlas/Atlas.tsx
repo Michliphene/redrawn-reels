@@ -26,6 +26,7 @@ import { BigNumbers, Archives, Callouts, GeoTexts } from '../components/Overlays
 import { Stickers, Pointers } from '../components/Stickers';
 import { WantedPosters } from '../components/Wanted';
 import { Vehicles3D, VehicleLabels, vehicleStates } from './Vehicles3D';
+import { Props3D, PropLabels, propStates } from './Props3D';
 import { Night } from '../components/Night';
 import { Tickets } from '../components/Ticket';
 import { Verdicts } from '../components/Verdict';
@@ -95,6 +96,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const projection = ((ll: [number, number]) => toPx(world.point(ll, world.h))) as unknown as GeoProjection;
   const groups = unitGroups(world, sched.actions, keys, t, lift);
   const vehicles = vehicleStates(world, sched.actions, t, shot);
+  const props = propStates(world, sched.actions, t, shot);
   const ex = series.extra ?? {};
 
   const beatIdx = Math.max(0, timings!.beats.findIndex((b, i) => t >= b.start - 0.15 && (i === timings!.beats.length - 1 || t < timings!.beats[i + 1].start - 0.15)));
@@ -113,6 +115,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
         <TableLight shot={shot} />
         <Map3D world={world} geo={geo!} t={t} actions={sched.actions} pal={pal} shot={shot} lift={lift} />
         <Units3D groups={groups} t={t} />
+        <Props3D states={props} pal={pal} />
         <Vehicles3D states={vehicles} body={ex.paper ?? pal.ink} tail={pal.accent} canopy={ex.paper ?? pal.ink} />
       </PixelStage>
       <ReadabilityBands bg={pal.bg} />
@@ -124,6 +127,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
       <GeoTexts t={t} actions={sched.actions} projection={projection} />
       <Labels geo={geo!} projection={projection} t={t} actions={sched.actions} end={end} legend={spec!.legend ?? true} legendTop={ZONES.title.top + 44} legendInset={SAFE.left} declutter legendOut={end - 0.6} />
       <UnitCaptions groups={groups} toPx={toPx} />
+      <PropLabels states={props} toPx={toPx} />
       <VehicleLabels states={vehicles} toPx={toPx} ink={pal.ink} accent={pal.accent} />
       <Pointers t={t} actions={sched.actions} projection={projection} />
       <Stickers t={t} actions={sched.actions} projection={projection} lottieKeys={lottieKeys ?? []} />

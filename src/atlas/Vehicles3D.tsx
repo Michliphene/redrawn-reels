@@ -66,8 +66,8 @@ export function vehicleStates(world: AtlasWorld, actions: TimedAction[], t: numb
     const here = tr.at(k), ahead = tr.at(Math.min(1, k + 0.02)), behind = tr.at(Math.max(0, k - 0.02));
     const u = (v.size ?? 110) * ppx;
     const land = v.land ? ease.inOut3(ramp(k, 0.55, 0.45)) : 0;
-    const altK = (v.alt ?? 2.2) * (1 - land);
-    const y = world.h + u * (0.12 + altK);
+    const altK = (v.alt ?? (v.kind === 'car' ? 0 : 2.2)) * (1 - land);
+    const y = world.h + u * ((v.kind === 'car' ? 0.005 : 0.12) + altK);
     const h1 = Math.atan2(-(ahead.p[1] - here.p[1]), ahead.p[0] - here.p[0] || 1e-9);
     const h0 = Math.atan2(-(here.p[1] - behind.p[1]), here.p[0] - behind.p[0] || 1e-9);
     let turn = h1 - h0; while (turn > Math.PI) turn -= 2 * Math.PI; while (turn < -Math.PI) turn += 2 * Math.PI;
@@ -87,7 +87,7 @@ export function vehicleStates(world: AtlasWorld, actions: TimedAction[], t: numb
       };
     }
     out.push({
-      v, pos: [here.p[0], y, here.p[1]], heading: h1, bank: moving ? Math.max(-0.6, Math.min(0.6, -turn * 6)) : 0, climb: land ? -0.12 : 0, u, fade,
+      v, pos: [here.p[0], y, here.p[1]], heading: h1, bank: moving && v.kind !== 'car' ? Math.max(-0.6, Math.min(0.6, -turn * 6)) : 0, climb: land ? -0.12 : 0, u, fade,
       stairs: v.stairsAt != null ? ease.inOut3(ramp(t, v.stairsAt, 0.6)) : v.stairsOpen ? 1 : 0, drop,
     });
   }
@@ -99,6 +99,20 @@ const tube = new THREE.CylinderGeometry(1, 1, 1, 10).rotateZ(Math.PI / 2);
 const nose = new THREE.SphereGeometry(1, 10, 8);
 const dome = new THREE.SphereGeometry(1, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2);
 const line = new THREE.CylinderGeometry(1, 1, 1, 4);
+
+/** A small saloon car, 1 unit long, nose towards +x, sitting on y = 0. */
+const Car: React.FC<{ body: string; tail: string }> = ({ body, tail }) => (
+  <group>
+    <mesh geometry={box} position={[0, 0.13, 0]} scale={[1, 0.17, 0.44]} castShadow><meshLambertMaterial color={tail} /></mesh>
+    <mesh geometry={box} position={[-0.06, 0.29, 0]} scale={[0.52, 0.16, 0.38]} castShadow><meshLambertMaterial color={body} /></mesh>
+    {[[0.3, 1], [0.3, -1], [-0.3, 1], [-0.3, -1]].map(([x, s], i) => (
+      <mesh key={i} geometry={tube} position={[x, 0.07, s * 0.22]} rotation={[Math.PI / 2, 0, Math.PI / 2]} scale={[0.07, 0.07, 0.07]}><meshLambertMaterial color="#1A1612" /></mesh>
+    ))}
+    {[1, -1].map((s) => (
+      <mesh key={`l${s}`} geometry={box} position={[0.5, 0.15, s * 0.14]} scale={[0.02, 0.05, 0.08]}><meshBasicMaterial color="#FFF2B8" /></mesh>
+    ))}
+  </group>
+);
 
 /** A tri-jet with a T-tail and a ventral rear airstair, 1 unit long, nose towards +x. */
 const Jet: React.FC<{ body: string; tail: string; stairs: number }> = ({ body, tail, stairs }) => (
@@ -138,7 +152,7 @@ export const Vehicles3D: React.FC<{ states: VehicleState[]; body: string; tail: 
       <group key={i}>
         {S.fade > 0.01 && (
           <group position={S.pos} rotation={[0, S.heading, 0]} scale={S.u * S.fade}>
-            <group rotation={[S.bank, 0, S.climb]}><Jet body={body} tail={tail} stairs={S.stairs} /></group>
+            <group rotation={[S.bank, 0, S.climb]}>{S.v.kind === 'car' ? <Car body={body} tail={tail} /> : <Jet body={body} tail={tail} stairs={S.stairs} />}</group>
           </group>
         )}
         {S.drop && S.drop.fade > 0.01 && (

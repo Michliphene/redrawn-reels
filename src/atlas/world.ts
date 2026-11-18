@@ -161,7 +161,8 @@ export function resolveShot(cam: Cam3, world: AtlasWorld): Shot {
   const auto = autoAngle(span);
   const fov = cam.fov ?? auto.fov;
   const c = world.project(cam.center ?? world.center) ?? [0, 0];
-  return { target: [c[0], world.h * 0.5, c[1]], dist: distForWidth(((span * Math.PI) / 180) * K, fov), pitch: cam.pitch ?? auto.pitch, yaw: cam.yaw ?? 0, fov, roll: cam.roll ?? 0 };
+  // a close shot (< 1°, a city) aims at the table's surface: half the slab's thickness is a large share of a short camera distance
+  return { target: [c[0], world.h * (span < 1 ? 1 : 0.5), c[1]], dist: distForWidth(((span * Math.PI) / 180) * K, fov), pitch: cam.pitch ?? auto.pitch, yaw: cam.yaw ?? 0, fov, roll: cam.roll ?? 0 };
 }
 
 /** Shape list for an extrusion; shape space is (x, −z) so that rotating −90° about X lays it on the table. */

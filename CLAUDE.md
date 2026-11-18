@@ -61,7 +61,9 @@ The five rules (details and measurements in `docs/STUDIO.md`):
    - map actions: `declare` (+`flag`, `flagNote`, `date`, `noLabel`), `pulse`, `label`, `marker`, `date`,
      `dissolve`, `allLabels`, `units` (tanks/troops/crowd as 3D pieces), `portrait`, `flagSwap`, `shake`, `ghost`,
      `path`, `bigNumber`, `archive`, `callout`, `region`, `sticker`, `chapter` (text only in DA 2), `recolor`,
-     `reveal`, `conceal`, `pointer`, `wanted` (wanted poster: `key`, `name`, `headSub`, `lines`, `credit`, `stamp`).
+     `reveal`, `conceal`, `pointer`, `wanted` (wanted poster: `key`, `name`, `headSub`, `lines`, `credit`, `stamp`); THE GETAWAY kit also has
+     `vehicle` (plane / car), `night`, `ticket`, `verdict` (+ `picks`: split verdict) and `prop` (3D vault, diamonds, sandwich,
+     bags, envelopes, building — channel bible §3).
      `vehicle` (3D jet flying `coords`, `from`/`to`, `alt`, `land`, `stairsWord`, `dropWord` → a figure under a canopy that
      fades in the air), `night` (darkness + torch on `follow: "vehicle"|[lon,lat]`, `rain`), `ticket` (typed reconstruction,
      `wrong` + `strikeWord`), `verdict` (tick boxes, `pick` + `pickWord`).

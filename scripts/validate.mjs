@@ -14,7 +14,7 @@ const studio = readJson(path.join(ROOT, 'public/studio.json')).series;
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer', 'wanted', 'vehicle', 'night', 'ticket', 'verdict']);
+const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer', 'wanted', 'vehicle', 'night', 'ticket', 'verdict', 'prop']);
 const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const SAFE = { top: 250, bottom: 1440 };
 
@@ -122,11 +122,16 @@ export function validate(id) {
         if (a.type !== 'callout' && type && !MONEY_ACTIONS[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
       }
-      for (const key of ['atWord', 'retreatWord', 'stampWord', 'stairsWord', 'dropWord', 'strikeWord', 'pickWord']) {
+      for (const key of ['atWord', 'retreatWord', 'stampWord', 'stairsWord', 'dropWord', 'strikeWord', 'pickWord', 'openWord', 'sinkWord']) {
         if (!a[key]) continue;
         // retreat/stamp words may be spoken in a later beat: search from this beat onwards
         const pool = key === 'atWord' ? words : spec.beats.slice(i).flatMap((bb, k) => timings?.beats[i + k]?.words.map((w) => w.w) ?? displayWords(bb.say ?? ''));
         if (!findWord(pool, a[key], key === 'atWord' ? a.occurrence ?? 1 : 1)) E(`${where}: ${key} "${a[key]}"${a.occurrence ? ` (occurrence ${a.occurrence})` : ''} is not spoken in ${key === 'atWord' ? 'this beat' : 'this beat or after'} — say: "${b.say}"`);
+      }
+      for (const pk of a.picks ?? []) if (pk.word) {
+        const pool = spec.beats.slice(i).flatMap((bb, k) => timings?.beats[i + k]?.words.map((w) => w.w) ?? displayWords(bb.say ?? ''));
+        if (!findWord(pool, pk.word, 1)) E(`${where}: picks word "${pk.word}" is not spoken in this beat or after`);
+        collect(`${where}.picks`, pk.note);
       }
       if (featureIds) {
         const ids = [a.id, ...(a.ids ?? [])].filter((x) => typeof x === 'string');

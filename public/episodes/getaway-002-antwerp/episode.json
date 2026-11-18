@@ -1,0 +1,919 @@
+{
+  "id": "getaway-002-antwerp",
+  "channel": "getaway",
+  "da": 2,
+  "episode": 2,
+  "title": "Undone by a sandwich",
+  "whisper": "The Antwerp diamond heist · $100M+ (est.) · 2003",
+  "whisperOnFrame0": true,
+  "data": "data/getaway-002-antwerp.geojson",
+  "timeline": {
+    "from": "2003-01-01",
+    "to": "2006-01-01",
+    "step": 1
+  },
+  "counter": false,
+  "legend": false,
+  "keywords": [
+    "sandwich.",
+    "mistake.",
+    "trash",
+    "salami",
+    "Arrested.",
+    "never",
+    "King",
+    "Keys,",
+    "caught.",
+    "gone.",
+    "caught,",
+    "proof."
+  ],
+  "palette": {
+    "start": "#C9B994",
+    "ids": {
+      "BE": "#C9B994"
+    },
+    "static": {}
+  },
+  "voiceOverride": {
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.8,
+      "style": 0.3,
+      "use_speaker_boost": true,
+      "speed": 1.06
+    },
+    "maxPause": 0.34
+  },
+  "beats": [
+    {
+      "id": "hook",
+      "say": "{$100 million|A hundred million dollars} in diamonds. Undone by a sandwich.",
+      "camera": {
+        "center": [
+          4.418,
+          51.203
+        ],
+        "span": 0.36,
+        "pitch": 40,
+        "yaw": 0
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "vault",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 420,
+          "openStart": 0.62,
+          "atTime": 0,
+          "hold": 3.9
+        },
+        {
+          "type": "prop",
+          "kind": "diamonds",
+          "at": [
+            4.418,
+            51.199
+          ],
+          "size": 240,
+          "atTime": 0,
+          "hold": 3.9
+        },
+        {
+          "type": "prop",
+          "kind": "sandwich",
+          "at": [
+            4.372,
+            51.196
+          ],
+          "size": 190,
+          "drop": false,
+          "hold": 3.9,
+          "atTime": 0
+        },
+        {
+          "type": "label",
+          "text": "EXHIBIT A",
+          "at": [
+            4.372,
+            51.183
+          ],
+          "size": "md",
+          "atWord": "sandwich.",
+          "hold": 1.4
+        },
+        {
+          "type": "shake",
+          "amount": 8,
+          "atWord": "sandwich."
+        },
+        {
+          "type": "night",
+          "atTime": 0,
+          "hold": 3.9,
+          "level": 0.5,
+          "follow": [
+            4.418,
+            51.207
+          ],
+          "radius": 430
+        },
+        {
+          "type": "verdict",
+          "options": [
+            "CAUGHT",
+            "NEVER FOUND"
+          ],
+          "atTime": 0,
+          "hold": 3.9,
+          "x": 140,
+          "y": 1010
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "say": "Antwerp, {2003|two thousand three}. An Italian, Leonardo Notarbartolo, rents an office in the Diamond Centre. Just another trader.",
+      "camera": {
+        "center": [
+          6.1,
+          48.6
+        ],
+        "span": 8.5,
+        "pitch": 54,
+        "yaw": -6,
+        "dur": 1.3
+      },
+      "actions": [
+        {
+          "type": "marker",
+          "text": "Antwerp",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "atWord": "Antwerp,",
+          "hold": 3.4
+        },
+        {
+          "type": "pulse",
+          "ids": [
+            "BE"
+          ],
+          "atWord": "Antwerp,"
+        },
+        {
+          "type": "date",
+          "date": "2003-02-15",
+          "atWord": "2003."
+        },
+        {
+          "type": "marker",
+          "text": "Turin",
+          "at": [
+            7.686,
+            45.07
+          ],
+          "atWord": "Italian,",
+          "hold": 2.4
+        },
+        {
+          "type": "path",
+          "coords": [
+            [
+              7.686,
+              45.07
+            ],
+            [
+              4.418,
+              51.2155
+            ]
+          ],
+          "atWord": "Italian,",
+          "dur": 1.1,
+          "hold": 2.4,
+          "color": "#E0312B",
+          "width": 3
+        },
+        {
+          "type": "ticket",
+          "head": "Diamond Centre",
+          "sub": "Tenant · reconstruction",
+          "rows": [
+            [
+              "TENANT",
+              "L. NOTARBARTOLO"
+            ],
+            [
+              "FROM",
+              "TURIN, ITALY"
+            ],
+            [
+              "TRADE",
+              "DIAMONDS"
+            ],
+            [
+              "HERE",
+              "~2 YEARS"
+            ]
+          ],
+          "note": "Reconstructed from press accounts. Not an original document.",
+          "wrong": "\"a diamond trader\"",
+          "wrongBy": "HIS COVER",
+          "strikeWord": "trader.",
+          "atWord": "rents",
+          "hold": 3.9,
+          "y": 600,
+          "cps": 40
+        }
+      ]
+    },
+    {
+      "id": "vault",
+      "say": "Two floors below: the vault. Layer after layer of security.",
+      "camera": {
+        "center": [
+          4.418,
+          51.207
+        ],
+        "span": 0.3,
+        "pitch": 30,
+        "yaw": -18,
+        "cut": true
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "vault",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 470,
+          "atWord": "Two",
+          "hold": 14.5,
+          "openWord": "Monday,",
+          "openDur": 2.4,
+          "open": 0.62
+        },
+        {
+          "type": "label",
+          "text": "VAULT · 2 FLOORS DOWN",
+          "at": [
+            4.418,
+            51.236
+          ],
+          "size": "md",
+          "atWord": "vault.",
+          "hold": 2.4
+        },
+        {
+          "type": "night",
+          "atWord": "Layer",
+          "hold": 2.2,
+          "level": 0.55,
+          "follow": [
+            4.418,
+            51.21
+          ],
+          "radius": 380,
+          "fadeIn": 0.4
+        }
+      ]
+    },
+    {
+      "id": "heist",
+      "say": "One weekend, his crew gets in. By Monday, over a hundred safe-deposit boxes are empty.",
+      "camera": {
+        "center": [
+          4.418,
+          51.209
+        ],
+        "span": 0.25,
+        "pitch": 26,
+        "yaw": 16
+      },
+      "actions": [
+        {
+          "type": "night",
+          "atWord": "weekend,",
+          "hold": 5.2,
+          "level": 0.72,
+          "follow": [
+            4.418,
+            51.212
+          ],
+          "radius": 330,
+          "fadeIn": 0.5
+        },
+        {
+          "type": "units",
+          "kind": "crowd",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "count": 4,
+          "spread": 60,
+          "size": 40,
+          "offset": [
+            0,
+            140
+          ],
+          "approach": [
+            0,
+            90
+          ],
+          "atWord": "crew",
+          "hold": 2.6,
+          "caption": "THE CREW · SYMBOLIC"
+        },
+        {
+          "type": "date",
+          "date": "2003-02-17",
+          "atWord": "Monday,"
+        },
+        {
+          "type": "label",
+          "text": "100+ BOXES · COUNTS VARY",
+          "at": [
+            4.418,
+            51.232
+          ],
+          "size": "md",
+          "atWord": "hundred",
+          "hold": 2.6
+        },
+        {
+          "type": "shake",
+          "amount": 5,
+          "atWord": "empty."
+        }
+      ]
+    },
+    {
+      "id": "loot",
+      "say": "Diamonds, gold, jewels. {$100 million|A hundred million}, by most estimates.",
+      "camera": {
+        "center": [
+          4.418,
+          51.204
+        ],
+        "span": 0.34,
+        "pitch": 40,
+        "yaw": 2
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "diamonds",
+          "at": [
+            4.418,
+            51.199
+          ],
+          "size": 280,
+          "atWord": "Diamonds,",
+          "hold": 4.2
+        },
+        {
+          "type": "bigNumber",
+          "value": 100,
+          "prefix": "$",
+          "suffix": "M+",
+          "label": "ESTIMATE · DIAMONDS, GOLD, JEWELS",
+          "atWord": "$100",
+          "y": 1000,
+          "dur": 0.5,
+          "hold": 2.4
+        }
+      ]
+    },
+    {
+      "id": "mistake",
+      "say": "Then, one mistake. On the motorway to Brussels, they dump their trash in a wood.",
+      "camera": {
+        "center": [
+          4.43,
+          51.04
+        ],
+        "span": 0.62,
+        "pitch": 50,
+        "yaw": -8,
+        "cut": true
+      },
+      "actions": [
+        {
+          "type": "night",
+          "atWord": "Then,",
+          "hold": 5.6,
+          "level": 0.72,
+          "follow": "vehicle",
+          "radius": 270,
+          "fadeIn": 0.3
+        },
+        {
+          "type": "marker",
+          "text": "Antwerp",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "atWord": "Then,",
+          "hold": 2.8
+        },
+        {
+          "type": "path",
+          "coords": [
+            [
+              4.418,
+              51.2155
+            ],
+            [
+              4.43,
+              51.12
+            ],
+            [
+              4.478,
+              51.03
+            ],
+            [
+              4.43,
+              50.93
+            ],
+            [
+              4.3517,
+              50.8503
+            ]
+          ],
+          "atWord": "motorway",
+          "dur": 1.6,
+          "hold": 4.4,
+          "color": "#E0312B",
+          "width": 3,
+          "label": "E19",
+          "labelAt": [
+            4.6,
+            51.13
+          ]
+        },
+        {
+          "type": "vehicle",
+          "kind": "car",
+          "coords": [
+            [
+              4.418,
+              51.2155
+            ],
+            [
+              4.43,
+              51.12
+            ],
+            [
+              4.47,
+              51.045
+            ]
+          ],
+          "atWord": "motorway",
+          "dur": 2.6,
+          "hold": 3.6,
+          "size": 90
+        },
+        {
+          "type": "marker",
+          "text": "Brussels",
+          "at": [
+            4.3517,
+            50.8503
+          ],
+          "atWord": "Brussels,",
+          "hold": 3
+        },
+        {
+          "type": "prop",
+          "kind": "bags",
+          "at": [
+            4.478,
+            51.042
+          ],
+          "size": 100,
+          "drop": true,
+          "atWord": "dump",
+          "hold": 9.5
+        },
+        {
+          "type": "ghost",
+          "id": "WOODS",
+          "color": "#E0312B",
+          "area": true,
+          "atWord": "wood.",
+          "hold": 2.2
+        },
+        {
+          "type": "region",
+          "text": "WOODS BY THE E19 · APPROX.",
+          "at": [
+            4.46,
+            50.96
+          ],
+          "atWord": "wood.",
+          "hold": 2.2
+        }
+      ]
+    },
+    {
+      "id": "owner",
+      "say": "The man who owns it is sick of litter. He checks every bag.",
+      "camera": {
+        "center": [
+          4.476,
+          51.036
+        ],
+        "span": 0.2,
+        "pitch": 34,
+        "yaw": 14
+      },
+      "actions": [
+        {
+          "type": "units",
+          "kind": "crowd",
+          "at": [
+            4.478,
+            51.042
+          ],
+          "count": 1,
+          "spread": 0,
+          "size": 58,
+          "offset": [
+            -150,
+            40
+          ],
+          "approach": [
+            -60,
+            0
+          ],
+          "atWord": "man",
+          "hold": 4.4,
+          "caption": "THE LANDOWNER"
+        },
+        {
+          "type": "shake",
+          "amount": 4,
+          "atWord": "every"
+        }
+      ]
+    },
+    {
+      "id": "evidence",
+      "say": "Envelopes from the Diamond Centre. And half a salami sandwich.",
+      "camera": {
+        "center": [
+          4.476,
+          51.037
+        ],
+        "span": 0.15,
+        "pitch": 30,
+        "yaw": -10
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "envelopes",
+          "at": [
+            4.466,
+            51.039
+          ],
+          "size": 170,
+          "drop": true,
+          "atWord": "Envelopes",
+          "hold": 4.2,
+          "caption": "ENVELOPES · DIAMOND CENTRE",
+          "captionDy": 90
+        },
+        {
+          "type": "prop",
+          "kind": "sandwich",
+          "at": [
+            4.487,
+            51.035
+          ],
+          "size": 230,
+          "drop": true,
+          "atWord": "half",
+          "hold": 2.4,
+          "caption": "EXHIBIT · HALF A SALAMI SANDWICH",
+          "captionDy": 110
+        },
+        {
+          "type": "shake",
+          "amount": 7,
+          "atWord": "sandwich."
+        }
+      ]
+    },
+    {
+      "id": "arrest",
+      "say": "Police trace the trash to the crew. Five days later, Notarbartolo walks back in. Arrested.",
+      "camera": {
+        "center": [
+          4.44,
+          51.13
+        ],
+        "span": 0.5,
+        "pitch": 46,
+        "yaw": 6
+      },
+      "actions": [
+        {
+          "type": "path",
+          "coords": [
+            [
+              4.478,
+              51.042
+            ],
+            [
+              4.418,
+              51.2155
+            ]
+          ],
+          "atWord": "trace",
+          "dur": 1.2,
+          "hold": 3.2,
+          "color": "#E0312B",
+          "width": 3,
+          "label": "THE TRAIL",
+          "labelAt": [
+            4.53,
+            51.12
+          ]
+        },
+        {
+          "type": "marker",
+          "text": "Diamond Centre",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "atWord": "trace",
+          "hold": 6
+        },
+        {
+          "type": "date",
+          "date": "2003-02-21",
+          "atWord": "Five"
+        },
+        {
+          "type": "prop",
+          "kind": "building",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 150,
+          "atWord": "walks",
+          "hold": 3.2
+        },
+        {
+          "type": "callout",
+          "text": "ARRESTED",
+          "sub": "5 DAYS AFTER THE HEIST",
+          "atWord": "Arrested.",
+          "y": 900,
+          "size": 96,
+          "hold": 1.0
+        },
+        {
+          "type": "shake",
+          "amount": 9,
+          "atWord": "Arrested."
+        }
+      ]
+    },
+    {
+      "id": "sentence",
+      "say": "Ten years for him. Five for three others.",
+      "camera": {
+        "center": [
+          4.418,
+          51.2
+        ],
+        "span": 0.5,
+        "pitch": 44,
+        "yaw": -6
+      },
+      "actions": [
+        {
+          "type": "date",
+          "date": "2005",
+          "atWord": "Ten"
+        },
+        {
+          "type": "ticket",
+          "head": "Antwerp court",
+          "sub": "Sentences · 2005 · reconstruction",
+          "rows": [
+            [
+              "NOTARBARTOLO",
+              "10 YEARS"
+            ],
+            [
+              "3 OTHERS",
+              "5 YEARS EACH"
+            ]
+          ],
+          "big": "CAUGHT.",
+          "note": "From press reports of the verdict. Not an original document.",
+          "atWord": "Ten",
+          "hold": 3.3,
+          "y": 620,
+          "cps": 46,
+          "keyW": 230
+        }
+      ]
+    },
+    {
+      "id": "twist",
+      "say": "But the diamonds? Almost none are ever found. And one man, the King of Keys, is never identified.",
+      "camera": {
+        "center": [
+          4.418,
+          51.203
+        ],
+        "span": 0.32,
+        "pitch": 34,
+        "yaw": 22,
+        "cut": true
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "diamonds",
+          "at": [
+            4.418,
+            51.205
+          ],
+          "size": 300,
+          "atWord": "diamonds?",
+          "sinkWord": "none",
+          "hold": 3.0
+        },
+        {
+          "type": "label",
+          "text": "MOSTLY NEVER RECOVERED",
+          "at": [
+            4.418,
+            51.225
+          ],
+          "size": "md",
+          "atWord": "found.",
+          "hold": 1.8
+        },
+        {
+          "type": "wanted",
+          "name": "King of Keys",
+          "headSub": "Crew member · 2003",
+          "lines": [
+            "Identity: unknown."
+          ],
+          "credit": "No photo exists.",
+          "side": "center",
+          "y": 520,
+          "w": 380,
+          "stamp": "NEVER IDENTIFIED",
+          "stampWord": "identified.",
+          "stampSize": 44,
+          "atWord": "King",
+          "hold": 3.6,
+          "head": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "id": "claim",
+      "say": "He says it was an insurance job. Investigators say: no proof.",
+      "camera": {
+        "center": [
+          4.418,
+          51.21
+        ],
+        "span": 0.42,
+        "pitch": 42,
+        "yaw": -12
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "vault",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 360,
+          "openStart": 0.62,
+          "atWord": "He",
+          "hold": 5.4
+        },
+        {
+          "type": "callout",
+          "text": "HIS CLAIM: AN INSURANCE JOB",
+          "sub": "Wired, 2009 · \"~$20M\", he says",
+          "atWord": "says",
+          "y": 880,
+          "size": 58,
+          "hold": 4.4,
+          "stamp": "NO PROOF",
+          "stampWord": "proof."
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "say": "The men: caught. The diamonds: gone. So… caught, or not?",
+      "camera": {
+        "center": [
+          4.418,
+          51.203
+        ],
+        "span": 0.36,
+        "pitch": 40,
+        "yaw": 0
+      },
+      "actions": [
+        {
+          "type": "prop",
+          "kind": "vault",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 420,
+          "openStart": 0.62,
+          "atWord": "The",
+          "hold": 6
+        },
+        {
+          "type": "prop",
+          "kind": "diamonds",
+          "at": [
+            4.418,
+            51.199
+          ],
+          "size": 240,
+          "atWord": "The",
+          "hold": 6,
+          "sinkWord": "gone."
+        },
+        {
+          "type": "prop",
+          "kind": "sandwich",
+          "at": [
+            4.372,
+            51.196
+          ],
+          "size": 190,
+          "drop": true,
+          "atWord": "So…",
+          "hold": 3
+        },
+        {
+          "type": "night",
+          "atWord": "The",
+          "hold": 6,
+          "level": 0.5,
+          "follow": [
+            4.418,
+            51.207
+          ],
+          "radius": 430,
+          "fadeIn": 0.6
+        },
+        {
+          "type": "verdict",
+          "options": [
+            "CAUGHT",
+            "NEVER FOUND"
+          ],
+          "atWord": "The",
+          "hold": 6,
+          "x": 140,
+          "y": 1010,
+          "picks": [
+            {
+              "pick": 0,
+              "word": "caught.",
+              "note": "THE MEN"
+            },
+            {
+              "pick": 1,
+              "word": "gone.",
+              "note": "THE DIAMONDS"
+            }
+          ]
+        }
+      ],
+      "hideDate": true
+    }
+  ]
+}

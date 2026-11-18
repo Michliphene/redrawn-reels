@@ -26,6 +26,16 @@ test('cue words: stamp and retreat words may come from a later beat', () => {
   assert.equal((s.actions[0] as any).stampAt, 2.8);
 });
 
+test('cue words: a split verdict ticks each box on its own word; props open and sink on theirs', () => {
+  const s = schedule(spec([
+    { type: 'verdict', options: ['CAUGHT', 'NEVER FOUND'], atWord: 'The', picks: [{ pick: 0, word: 'South.', note: 'THE MEN' }, { pick: 1, word: 'ends' }] },
+    { type: 'prop', kind: 'vault', at: [0, 0], atWord: 'The', openWord: 'and', sinkWord: 'Then' },
+  ]), timings);
+  assert.deepEqual((s.actions[0] as any).picks.map((p: any) => p.at), [0.5, 2.8]);
+  assert.equal((s.actions[1] as any).openAt, 0.9);
+  assert.equal((s.actions[1] as any).sinkAt, 2.2);
+});
+
 test('series registry: old names, ids and compositions all resolve; unknown falls back', () => {
   assert.equal(seriesOf({ series: 'REDRAWN' }).id, 'redrawn');
   assert.equal(seriesOf({ series: 'Receipts' }).id, 'receipts');
