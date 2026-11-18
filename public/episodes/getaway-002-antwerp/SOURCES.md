@@ -19,26 +19,26 @@ Compared: Alcatraz 1962, Gardner Museum 1990, Mona Lisa 1911, Louvre crown jewel
   moving), Ghosn (living person, legal sensitivity), Mona Lisa / Gardner (very saturated, weaker twist on a map).
 
 ## Hooks considered
-1. "A hundred million dollars in diamonds… undone by a sandwich." ✔ (number + contradiction in 3.4 s)
+1. "$100 million in diamonds. Undone by a sandwich." ✔ (number + contradiction in 3.4 s)
 2. "The biggest diamond heist in history. Four men caught. Zero diamonds found." (accurate, but it gives the twist away)
 3. "You beat the most guarded vault in Antwerp. Then you stop for a sandwich." (second person; rejected: puts the viewer
    in a thief's seat, too close to glorification)
 
 ## Script (voice, 13 beats)
-1. A hundred million dollars in diamonds… undone by a sandwich.
-2. Antwerp, February 2003. An Italian, Leonardo Notarbartolo, has rented an office in the Diamond Centre for years. Just another trader.
-3. Two floors below him: the vault. Layer after layer of security.
-4. One weekend, his crew gets in. By Monday, more than a hundred safe-deposit boxes are empty.
-5. Diamonds, gold, jewels: over a hundred million dollars, by most estimates.
-6. Then, one mistake. On the motorway to Brussels, they dump their trash in a small wood.
-7. The man who owns that wood is sick of litter. He checks every bag.
+1. $100 million in diamonds. Undone by a sandwich.
+2. Antwerp, 2003. An Italian, Leonardo Notarbartolo, rents an office in the Diamond Centre. Just another trader.
+3. Two floors below: the vault. Layer after layer of security.
+4. One weekend, his crew gets in. By Monday, over a hundred safe-deposit boxes are empty.
+5. Diamonds, gold, jewels. $100 million, by most estimates.
+6. Then, one mistake. On the motorway to Brussels, they dump their trash in a wood.
+7. The man who owns it is sick of litter. He checks every bag.
 8. Envelopes from the Diamond Centre. And half a salami sandwich.
-9. Police trace the trash to the crew. Five days after the heist, Notarbartolo walks back into the building. Arrested.
-10. Ten years for him. Five each for three others.
-11. But the diamonds? Almost none are ever found. And one man, the "King of Keys", is never even identified.
-12. Notarbartolo says it was an inside job, for the insurance. Investigators say there's no proof.
+9. Police trace the trash to the crew. Five days later, Notarbartolo walks back in. Arrested.
+10. Ten years for him. Five for three others.
+11. But the diamonds? Almost none are ever found. And one man, the King of Keys, is never identified.
+12. Notarbartolo says it was an insurance job. Investigators say: no proof.
 13. The men: caught. The diamonds: gone. So… caught, or not?
-(Loop: "…caught, or not?" → "A hundred million dollars in diamonds…")
+(Loop: "…caught, or not?" → "$100 million in diamonds…")
 
 ## Facts table (only these may appear on screen or in the voice)
 
@@ -54,7 +54,7 @@ Compared: Alcatraz 1962, Gardner Museum 1990, Mona Lisa 1911, Louvre crown jewel
 | 8 | ⚠ Boxes opened | "more than a hundred": **123 of 160** (Wikipedia, most press) vs **109 of 189** (other accounts) → screen **"100+ BOXES · COUNTS VARY"** | [W1]; [M1] | DISPUTED → range |
 | 9 | Contents | loose diamonds, gold, silver, other jewellery | [W1]; [GW1] | secondary |
 | 10 | ⚠ Value | **over $100 million** (estimate; Guinness: "over US$100 m"; other estimates range up to several hundred million) | Guinness WR "Largest diamond heist" [GW1]; [W1] | estimate → on screen **"$100M+ (EST.)"** |
-| 11 | Record | Guinness: largest diamond heist; "the industry considers it to be the biggest diamond heist in history" | [GW1] | used only in the pinned comment |
+| 11 | Record | Guinness: largest diamond heist; "the industry considers it to be the biggest diamond heist in history" | [GW1] | on screen as "GUINNESS: LARGEST DIAMOND HEIST" (label of the $100M+ estimate) + pinned comment |
 | 12 | The dump | Notarbartolo and an accomplice dumped trash from the heist and their safe house near the **E19 motorway between Antwerp and Brussels** | [W1]; [WD1] | secondary |
 | 13 | The landowner | a local man (named in press; **not named on screen**: a private person) who had complained repeatedly about rubbish dumped on his small wooded plot along the E19, and sifted through it | [CL1] (Crime Library); [W1] | secondary |
 | 14 | Contents of the trash | envelopes printed "Diamond Center, Antwerp"; a partially eaten **salami sandwich** | [CL1]; [WD1] ("a half-eaten salami sandwich"); [T1] | secondary, consistent |
@@ -78,10 +78,12 @@ $100M+ (est.), E19, 5 (days), 10 (years), 5 (years), 3 (others), ~$20M (his clai
    own ~$20 million figure appears as HIS CLAIM.
 3. **Which clue identified whom** (DNA on the sandwich, a receipt, CCTV): the voice says only that the trash led to the crew.
 4. **The insurance-fraud story**: his claim, stated as a claim, followed at once by the rebuttal; nobody else is named or implied.
-5. **How they got in**: no method is described (channel rule: no how-to). "His crew gets in" is all the voice says.
-6. **Where exactly the trash was found**: no pin. A broad translucent area labelled "WOODS BY THE E19 · APPROX." over
+5. **"A hundred million dollars in diamonds"** (hook): the estimate covers diamonds, gold, silver and jewellery (rows 9–10).
+   The screen says "$100M+ (est.)" from frame 0 and the loot beat lists "diamonds, gold, jewels"; accepted shorthand.
+6. **How they got in**: no method is described (channel rule: no how-to). "His crew gets in" is all the voice says.
+7. **Where exactly the trash was found**: no pin. A broad translucent area labelled "WOODS BY THE E19 · APPROX." over
    the motorway corridor between Antwerp and Brussels; the motorway is drawn as a symbolic route labelled APPROX.
-7. **People**: the four convicted men are named in SOURCES only; on screen only Notarbartolo is named (convicted, as the
+8. **People**: the four convicted men are named in SOURCES only; on screen only Notarbartolo is named (convicted, as the
    organiser). No photo of anyone (no public-domain image exists): the poster of the King of Keys is an empty frame.
    The landowner is a private person: never named, shown only as one symbolic pawn.
 

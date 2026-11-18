@@ -54,7 +54,7 @@ export const WantedPosters: React.FC<{ t: number; actions: TimedAction[] }> = ({
             {stampOn && (
               <div style={{ position: 'absolute', left: '50%', top: '66%', transform: `translate(-50%,-50%) rotate(-12deg) scale(${2.3 - 1.3 * st})`, opacity: st * 0.94,
                 fontFamily: theme.stampFont || theme.font, fontWeight: 900, fontSize: a.stampSize ?? 48, color: theme.stamp, border: `6px solid ${theme.stamp}`, padding: '4px 16px',
-                letterSpacing: '0.06em', whiteSpace: 'nowrap', textTransform: 'uppercase', mixBlendMode: 'multiply' }}>{a.stamp}</div>
+                letterSpacing: '0.06em', whiteSpace: 'nowrap', textTransform: 'uppercase', mixBlendMode: a.key ? 'multiply' : 'normal', background: a.key ? 'transparent' : theme.paper }}>{a.stamp}</div>
             )}
           </div>
         </div>

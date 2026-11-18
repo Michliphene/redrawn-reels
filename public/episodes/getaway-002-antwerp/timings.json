@@ -1,883 +1,883 @@
 {
- "duration": 67.729,
+ "duration": 68.492,
  "engine": "elevenlabs",
  "beats": [
   {
    "id": "hook",
    "start": 0.25,
-   "end": 3.814,
+   "end": 3.849,
    "words": [
     {
      "w": "$100",
      "start": 0.25,
-     "end": 0.331
+     "end": 0.343
     },
     {
      "w": "million",
-     "start": 0.436,
-     "end": 1.527
+     "start": 0.447,
+     "end": 1.515
     },
     {
      "w": "in",
-     "start": 1.574,
-     "end": 1.643
+     "start": 1.562,
+     "end": 1.632
     },
     {
      "w": "diamonds.",
      "start": 1.701,
-     "end": 2.27
+     "end": 2.282
     },
     {
      "w": "Undone",
-     "start": 2.433,
-     "end": 2.885
+     "start": 2.479,
+     "end": 2.897
     },
     {
      "w": "by",
-     "start": 2.92,
-     "end": 3.048
+     "start": 2.932,
+     "end": 3.06
     },
     {
      "w": "a",
-     "start": 3.106,
-     "end": 3.129
+     "start": 3.118,
+     "end": 3.152
     },
     {
      "w": "sandwich.",
-     "start": 3.211,
-     "end": 3.814
+     "start": 3.222,
+     "end": 3.849
     }
    ]
   },
   {
    "id": "office",
-   "start": 4.012,
-   "end": 12.487,
+   "start": 4.046,
+   "end": 12.429,
    "words": [
     {
      "w": "Antwerp,",
-     "start": 4.012,
-     "end": 4.72
+     "start": 4.046,
+     "end": 4.662
     },
     {
      "w": "2003.",
-     "start": 4.801,
-     "end": 5.846
+     "start": 4.755,
+     "end": 5.858
     },
     {
      "w": "An",
-     "start": 6.009,
-     "end": 6.136
+     "start": 6.159,
+     "end": 6.299
     },
     {
      "w": "Italian,",
-     "start": 6.183,
-     "end": 6.868
+     "start": 6.345,
+     "end": 6.972
     },
     {
      "w": "Leonardo",
-     "start": 7.007,
-     "end": 7.622
+     "start": 7.077,
+     "end": 7.68
     },
     {
      "w": "Notarbartolo,",
-     "start": 7.727,
-     "end": 8.957
+     "start": 7.785,
+     "end": 8.795
     },
     {
      "w": "rents",
-     "start": 9.155,
-     "end": 9.399
+     "start": 8.957,
+     "end": 9.213
     },
     {
      "w": "an",
-     "start": 9.433,
-     "end": 9.492
+     "start": 9.248,
+     "end": 9.317
     },
     {
      "w": "office",
-     "start": 9.561,
-     "end": 9.909
+     "start": 9.375,
+     "end": 9.701
     },
     {
      "w": "in",
-     "start": 9.944,
-     "end": 10.002
+     "start": 9.735,
+     "end": 9.805
     },
     {
      "w": "the",
-     "start": 10.049,
-     "end": 10.118
+     "start": 9.851,
+     "end": 9.921
     },
     {
      "w": "Diamond",
-     "start": 10.165,
-     "end": 10.513
+     "start": 9.968,
+     "end": 10.304
     },
     {
      "w": "Centre.",
-     "start": 10.571,
-     "end": 11.094
+     "start": 10.362,
+     "end": 10.896
     },
     {
      "w": "Just",
-     "start": 11.396,
-     "end": 11.616
+     "start": 11.198,
+     "end": 11.442
     },
     {
      "w": "another",
-     "start": 11.663,
-     "end": 11.93
+     "start": 11.488,
+     "end": 11.767
     },
     {
      "w": "trader.",
-     "start": 11.988,
-     "end": 12.487
+     "start": 11.825,
+     "end": 12.429
     }
    ]
   },
   {
    "id": "vault",
-   "start": 12.626,
-   "end": 16.631,
+   "start": 12.731,
+   "end": 16.829,
    "words": [
     {
      "w": "Two",
-     "start": 12.626,
-     "end": 12.8
+     "start": 12.731,
+     "end": 12.94
     },
     {
      "w": "floors",
-     "start": 12.858,
-     "end": 13.16
+     "start": 13.009,
+     "end": 13.311
     },
     {
      "w": "below:",
-     "start": 13.207,
-     "end": 13.718
+     "start": 13.369,
+     "end": 13.857
     },
     {
      "w": "the",
-     "start": 13.822,
-     "end": 13.927
+     "start": 14.019,
+     "end": 14.112
     },
     {
      "w": "vault.",
-     "start": 13.985,
-     "end": 14.495
+     "start": 14.182,
+     "end": 14.693
     },
     {
      "w": "Layer",
-     "start": 14.797,
-     "end": 15.146
+     "start": 14.925,
+     "end": 15.285
     },
     {
      "w": "after",
-     "start": 15.215,
-     "end": 15.447
+     "start": 15.366,
+     "end": 15.598
     },
     {
      "w": "layer",
-     "start": 15.517,
-     "end": 15.772
+     "start": 15.679,
+     "end": 15.958
     },
     {
      "w": "of",
-     "start": 15.83,
-     "end": 15.888
+     "start": 16.028,
+     "end": 16.086
     },
     {
      "w": "security.",
-     "start": 15.946,
-     "end": 16.631
+     "start": 16.144,
+     "end": 16.829
     }
    ]
   },
   {
    "id": "heist",
-   "start": 16.933,
-   "end": 23.029,
+   "start": 17.061,
+   "end": 23.063,
    "words": [
     {
      "w": "One",
-     "start": 16.933,
-     "end": 17.165
+     "start": 17.061,
+     "end": 17.282
     },
     {
      "w": "weekend,",
-     "start": 17.2,
-     "end": 17.827
+     "start": 17.316,
+     "end": 17.943
     },
     {
      "w": "his",
-     "start": 17.967,
-     "end": 18.094
+     "start": 18.048,
+     "end": 18.187
     },
     {
      "w": "crew",
-     "start": 18.164,
-     "end": 18.396
+     "start": 18.257,
+     "end": 18.501
     },
     {
      "w": "gets",
-     "start": 18.454,
-     "end": 18.675
+     "start": 18.559,
+     "end": 18.791
     },
     {
      "w": "in.",
-     "start": 18.733,
-     "end": 19.081
+     "start": 18.849,
+     "end": 19.209
     },
     {
      "w": "By",
-     "start": 19.348,
-     "end": 19.511
+     "start": 19.476,
+     "end": 19.627
     },
     {
      "w": "Monday,",
-     "start": 19.604,
+     "start": 19.697,
      "end": 20.219
     },
     {
      "w": "over",
-     "start": 20.358,
-     "end": 20.602
+     "start": 20.335,
+     "end": 20.579
     },
     {
      "w": "a",
-     "start": 20.66,
-     "end": 20.683
+     "start": 20.637,
+     "end": 20.672
     },
     {
      "w": "hundred",
-     "start": 20.765,
-     "end": 21.09
+     "start": 20.741,
+     "end": 21.101
     },
     {
      "w": "safe-deposit",
-     "start": 21.159,
-     "end": 21.891
+     "start": 21.183,
+     "end": 21.914
     },
     {
      "w": "boxes",
-     "start": 21.949,
-     "end": 22.344
+     "start": 21.972,
+     "end": 22.367
     },
     {
      "w": "are",
-     "start": 22.39,
-     "end": 22.506
+     "start": 22.413,
+     "end": 22.529
     },
     {
      "w": "empty.",
-     "start": 22.541,
-     "end": 23.029
+     "start": 22.564,
+     "end": 23.063
     }
    ]
   },
   {
    "id": "loot",
-   "start": 23.33,
-   "end": 28.392,
+   "start": 23.296,
+   "end": 28.195,
    "words": [
     {
      "w": "Diamonds,",
-     "start": 23.33,
-     "end": 24.004
+     "start": 23.296,
+     "end": 23.992
     },
     {
      "w": "gold,",
-     "start": 24.12,
+     "start": 24.132,
      "end": 24.677
     },
     {
      "w": "jewels.",
      "start": 24.84,
-     "end": 25.525
+     "end": 25.42
     },
     {
      "w": "$100",
-     "start": 25.792,
-     "end": 25.885
+     "start": 25.583,
+     "end": 25.664
     },
     {
      "w": "million,",
-     "start": 25.989,
-     "end": 27.034
+     "start": 25.803,
+     "end": 26.837
     },
     {
      "w": "by",
-     "start": 27.197,
-     "end": 27.336
+     "start": 26.976,
+     "end": 27.115
     },
     {
      "w": "most",
-     "start": 27.417,
-     "end": 27.649
+     "start": 27.197,
+     "end": 27.452
     },
     {
      "w": "estimates.",
-     "start": 27.719,
-     "end": 28.392
+     "start": 27.522,
+     "end": 28.195
     }
    ]
   },
   {
    "id": "mistake",
-   "start": 28.732,
-   "end": 33.481,
+   "start": 28.358,
+   "end": 33.558,
    "words": [
     {
      "w": "Then,",
-     "start": 28.732,
-     "end": 29.173
+     "start": 28.358,
+     "end": 28.822
     },
     {
      "w": "one",
-     "start": 29.371,
-     "end": 29.603
+     "start": 29.054,
+     "end": 29.275
     },
     {
      "w": "mistake.",
-     "start": 29.638,
-     "end": 30.265
+     "start": 29.31,
+     "end": 29.937
     },
     {
      "w": "On",
-     "start": 30.532,
-     "end": 30.683
+     "start": 30.169,
+     "end": 30.331
     },
     {
      "w": "the",
-     "start": 30.718,
-     "end": 30.787
+     "start": 30.366,
+     "end": 30.436
     },
     {
      "w": "motorway",
-     "start": 30.834,
-     "end": 31.205
+     "start": 30.494,
+     "end": 30.912
     },
     {
      "w": "to",
-     "start": 31.252,
-     "end": 31.298
+     "start": 30.97,
+     "end": 31.039
     },
     {
      "w": "Brussels,",
-     "start": 31.356,
-     "end": 31.786
+     "start": 31.109,
+     "end": 31.713
     },
     {
      "w": "they",
-     "start": 31.809,
-     "end": 31.925
+     "start": 31.817,
+     "end": 31.968
     },
     {
      "w": "dump",
-     "start": 31.995,
-     "end": 32.192
+     "start": 32.061,
+     "end": 32.293
     },
     {
      "w": "their",
-     "start": 32.25,
-     "end": 32.39
+     "start": 32.351,
+     "end": 32.502
     },
     {
      "w": "trash",
-     "start": 32.436,
-     "end": 32.785
+     "start": 32.548,
+     "end": 32.908
     },
     {
      "w": "in",
-     "start": 32.831,
-     "end": 32.889
+     "start": 32.955,
+     "end": 33.013
     },
     {
      "w": "a",
-     "start": 32.935,
-     "end": 32.959
+     "start": 33.071,
+     "end": 33.094
     },
     {
      "w": "wood.",
-     "start": 33.028,
-     "end": 33.481
+     "start": 33.152,
+     "end": 33.558
     }
    ]
   },
   {
    "id": "owner",
-   "start": 33.713,
-   "end": 37.405,
+   "start": 33.791,
+   "end": 37.32,
    "words": [
     {
      "w": "The",
-     "start": 33.713,
-     "end": 33.829
+     "start": 33.791,
+     "end": 33.907
     },
     {
      "w": "man",
-     "start": 33.887,
-     "end": 34.073
+     "start": 33.965,
+     "end": 34.151
     },
     {
      "w": "who",
-     "start": 34.12,
-     "end": 34.224
+     "start": 34.197,
+     "end": 34.29
     },
     {
      "w": "owns",
-     "start": 34.294,
-     "end": 34.561
+     "start": 34.371,
+     "end": 34.603
     },
     {
      "w": "it",
-     "start": 34.619,
-     "end": 34.723
+     "start": 34.661,
+     "end": 34.731
     },
     {
      "w": "is",
-     "start": 34.828,
-     "end": 34.979
+     "start": 34.778,
+     "end": 34.847
     },
     {
      "w": "sick",
-     "start": 35.048,
-     "end": 35.269
+     "start": 34.905,
+     "end": 35.126
     },
     {
      "w": "of",
-     "start": 35.327,
-     "end": 35.385
+     "start": 35.172,
+     "end": 35.23
     },
     {
      "w": "litter.",
-     "start": 35.466,
-     "end": 35.884
+     "start": 35.312,
+     "end": 35.695
     },
     {
      "w": "He",
-     "start": 36.186,
-     "end": 36.302
+     "start": 35.962,
+     "end": 36.078
     },
     {
      "w": "checks",
-     "start": 36.36,
-     "end": 36.651
+     "start": 36.136,
+     "end": 36.461
     },
     {
      "w": "every",
-     "start": 36.697,
-     "end": 36.906
+     "start": 36.519,
+     "end": 36.74
     },
     {
      "w": "bag.",
-     "start": 36.964,
-     "end": 37.405
+     "start": 36.798,
+     "end": 37.32
     }
    ]
   },
   {
    "id": "evidence",
-   "start": 37.603,
-   "end": 41.016,
+   "start": 37.552,
+   "end": 41.326,
    "words": [
     {
      "w": "Envelopes",
-     "start": 37.603,
-     "end": 38.16
+     "start": 37.552,
+     "end": 38.098
     },
     {
      "w": "from",
-     "start": 38.206,
-     "end": 38.346
+     "start": 38.144,
+     "end": 38.272
     },
     {
      "w": "the",
-     "start": 38.392,
-     "end": 38.462
+     "start": 38.319,
+     "end": 38.388
     },
     {
      "w": "Diamond",
-     "start": 38.508,
-     "end": 38.857
+     "start": 38.446,
+     "end": 38.841
     },
     {
      "w": "Centre.",
-     "start": 38.915,
-     "end": 39.333
+     "start": 38.911,
+     "end": 39.398
     },
     {
      "w": "And",
-     "start": 39.437,
-     "end": 39.576
+     "start": 39.596,
+     "end": 39.747
     },
     {
      "w": "half",
-     "start": 39.658,
-     "end": 39.843
+     "start": 39.816,
+     "end": 40.002
     },
     {
      "w": "a",
-     "start": 39.89,
-     "end": 39.913
+     "start": 40.06,
+     "end": 40.083
     },
     {
      "w": "salami",
-     "start": 39.971,
-     "end": 40.377
+     "start": 40.141,
+     "end": 40.594
     },
     {
      "w": "sandwich.",
-     "start": 40.447,
-     "end": 41.016
+     "start": 40.664,
+     "end": 41.326
     }
    ]
   },
   {
    "id": "arrest",
-   "start": 41.356,
-   "end": 47.606,
+   "start": 41.666,
+   "end": 47.869,
    "words": [
     {
      "w": "Police",
-     "start": 41.356,
-     "end": 41.751
+     "start": 41.666,
+     "end": 42.095
     },
     {
      "w": "trace",
-     "start": 41.785,
-     "end": 42.087
+     "start": 42.142,
+     "end": 42.443
     },
     {
      "w": "the",
-     "start": 42.134,
-     "end": 42.203
+     "start": 42.49,
+     "end": 42.559
     },
     {
      "w": "trash",
-     "start": 42.238,
-     "end": 42.563
+     "start": 42.594,
+     "end": 42.943
     },
     {
      "w": "to",
-     "start": 42.61,
-     "end": 42.668
+     "start": 42.989,
+     "end": 43.047
     },
     {
      "w": "the",
-     "start": 42.726,
-     "end": 42.796
+     "start": 43.105,
+     "end": 43.175
     },
     {
      "w": "crew.",
-     "start": 42.83,
-     "end": 43.283
+     "start": 43.221,
+     "end": 43.732
     },
     {
      "w": "Five",
-     "start": 43.623,
-     "end": 43.913
+     "start": 44.072,
+     "end": 44.339
     },
     {
      "w": "days",
-     "start": 43.948,
-     "end": 44.146
+     "start": 44.374,
+     "end": 44.548
     },
     {
      "w": "later,",
-     "start": 44.204,
-     "end": 44.61
+     "start": 44.606,
+     "end": 45.047
     },
     {
      "w": "Notarbartolo",
-     "start": 44.749,
-     "end": 45.597
+     "start": 45.21,
+     "end": 45.988
     },
     {
      "w": "walks",
-     "start": 45.666,
-     "end": 45.945
+     "start": 46.057,
+     "end": 46.348
     },
     {
      "w": "back",
-     "start": 45.992,
-     "end": 46.201
+     "start": 46.394,
+     "end": 46.603
     },
     {
      "w": "in.",
-     "start": 46.293,
-     "end": 46.631
+     "start": 46.696,
+     "end": 47.045
     },
     {
      "w": "Arrested.",
-     "start": 46.863,
-     "end": 47.606
+     "start": 47.184,
+     "end": 47.869
     }
    ]
   },
   {
    "id": "sentence",
-   "start": 47.908,
-   "end": 50.613,
+   "start": 48.136,
+   "end": 50.911,
    "words": [
     {
      "w": "Ten",
-     "start": 47.908,
-     "end": 48.14
+     "start": 48.136,
+     "end": 48.356
     },
     {
      "w": "years",
-     "start": 48.209,
-     "end": 48.43
+     "start": 48.426,
+     "end": 48.647
     },
     {
      "w": "for",
-     "start": 48.488,
-     "end": 48.604
+     "start": 48.693,
+     "end": 48.809
     },
     {
      "w": "him.",
-     "start": 48.662,
-     "end": 48.987
+     "start": 48.867,
+     "end": 49.227
     },
     {
      "w": "Five",
-     "start": 49.289,
-     "end": 49.661
+     "start": 49.494,
+     "end": 49.912
     },
     {
      "w": "for",
-     "start": 49.696,
-     "end": 49.812
+     "start": 49.959,
+     "end": 50.075
     },
     {
      "w": "three",
-     "start": 49.87,
-     "end": 50.102
+     "start": 50.133,
+     "end": 50.377
     },
     {
      "w": "others.",
-     "start": 50.148,
-     "end": 50.613
+     "start": 50.423,
+     "end": 50.911
     }
    ]
   },
   {
    "id": "twist",
-   "start": 50.953,
-   "end": 57.675,
+   "start": 51.143,
+   "end": 57.819,
    "words": [
     {
      "w": "But",
-     "start": 50.953,
-     "end": 51.104
+     "start": 51.143,
+     "end": 51.305
     },
     {
      "w": "the",
-     "start": 51.138,
-     "end": 51.208
+     "start": 51.34,
+     "end": 51.41
     },
     {
      "w": "diamonds?",
-     "start": 51.278,
-     "end": 51.928
+     "start": 51.468,
+     "end": 52.141
     },
     {
      "w": "Almost",
-     "start": 52.067,
-     "end": 52.474
+     "start": 52.374,
+     "end": 52.722
     },
     {
      "w": "none",
-     "start": 52.578,
-     "end": 52.868
+     "start": 52.803,
+     "end": 53.059
     },
     {
      "w": "are",
-     "start": 52.915,
-     "end": 53.066
+     "start": 53.093,
+     "end": 53.209
     },
     {
      "w": "ever",
-     "start": 53.112,
-     "end": 53.368
+     "start": 53.244,
+     "end": 53.43
     },
     {
      "w": "found.",
-     "start": 53.472,
-     "end": 54.029
+     "start": 53.511,
+     "end": 54.08
     },
     {
      "w": "And",
-     "start": 54.227,
-     "end": 54.389
+     "start": 54.312,
+     "end": 54.475
     },
     {
      "w": "one",
-     "start": 54.482,
-     "end": 54.703
+     "start": 54.568,
+     "end": 54.765
     },
     {
      "w": "man,",
-     "start": 54.749,
-     "end": 55.132
+     "start": 54.8,
+     "end": 55.195
     },
     {
      "w": "the",
-     "start": 55.237,
-     "end": 55.341
+     "start": 55.299,
+     "end": 55.404
     },
     {
      "w": "King",
-     "start": 55.411,
-     "end": 55.597
+     "start": 55.45,
+     "end": 55.613
     },
     {
      "w": "of",
-     "start": 55.631,
-     "end": 55.69
+     "start": 55.659,
+     "end": 55.717
     },
     {
      "w": "Keys,",
-     "start": 55.771,
-     "end": 56.27
+     "start": 55.787,
+     "end": 56.286
     },
     {
      "w": "is",
-     "start": 56.316,
-     "end": 56.467
+     "start": 56.344,
+     "end": 56.483
     },
     {
      "w": "never",
-     "start": 56.549,
-     "end": 56.792
+     "start": 56.565,
+     "end": 56.809
     },
     {
      "w": "identified.",
-     "start": 56.862,
-     "end": 57.675
+     "start": 56.89,
+     "end": 57.819
     }
    ]
   },
   {
    "id": "claim",
-   "start": 57.977,
-   "end": 62.156,
+   "start": 58.159,
+   "end": 62.71,
    "words": [
     {
-     "w": "He",
-     "start": 57.977,
-     "end": 58.093
+     "w": "Notarbartolo",
+     "start": 58.159,
+     "end": 58.936
     },
     {
      "w": "says",
-     "start": 58.151,
-     "end": 58.325
+     "start": 59.006,
+     "end": 59.203
     },
     {
      "w": "it",
-     "start": 58.371,
-     "end": 58.429
+     "start": 59.25,
+     "end": 59.308
     },
     {
      "w": "was",
-     "start": 58.464,
-     "end": 58.557
+     "start": 59.343,
+     "end": 59.447
     },
     {
      "w": "an",
-     "start": 58.604,
-     "end": 58.662
+     "start": 59.482,
+     "end": 59.54
     },
     {
      "w": "insurance",
-     "start": 58.708,
-     "end": 59.254
+     "start": 59.587,
+     "end": 60.086
     },
     {
      "w": "job.",
-     "start": 59.289,
-     "end": 59.741
+     "start": 60.132,
+     "end": 60.573
     },
     {
      "w": "Investigators",
-     "start": 59.974,
-     "end": 60.728
+     "start": 60.736,
+     "end": 61.444
     },
     {
      "w": "say:",
-     "start": 60.775,
-     "end": 61.193
+     "start": 61.479,
+     "end": 61.839
     },
     {
      "w": "no",
-     "start": 61.355,
-     "end": 61.518
+     "start": 61.978,
+     "end": 62.118
     },
     {
      "w": "proof.",
-     "start": 61.611,
-     "end": 62.156
+     "start": 62.21,
+     "end": 62.71
     }
    ]
   },
   {
    "id": "end",
-   "start": 62.423,
-   "end": 67.729,
+   "start": 62.872,
+   "end": 68.491,
    "words": [
     {
      "w": "The",
-     "start": 62.423,
-     "end": 62.539
+     "start": 62.872,
+     "end": 62.988
     },
     {
      "w": "men:",
-     "start": 62.621,
-     "end": 63.015
+     "start": 63.058,
+     "end": 63.476
     },
     {
      "w": "caught.",
-     "start": 63.248,
-     "end": 63.735
+     "start": 63.638,
+     "end": 64.138
     },
     {
      "w": "The",
-     "start": 63.875,
-     "end": 63.991
+     "start": 64.277,
+     "end": 64.393
     },
     {
      "w": "diamonds:",
-     "start": 64.06,
-     "end": 64.664
+     "start": 64.451,
+     "end": 65.066
     },
     {
      "w": "gone.",
-     "start": 64.896,
-     "end": 65.43
+     "start": 65.206,
+     "end": 65.821
     },
     {
      "w": "So…",
-     "start": 65.663,
-     "end": 66.15
+     "start": 66.123,
+     "end": 66.645
     },
     {
      "w": "caught,",
-     "start": 66.347,
-     "end": 66.789
+     "start": 66.947,
+     "end": 67.493
     },
     {
      "w": "or",
-     "start": 66.893,
-     "end": 67.032
+     "start": 67.655,
+     "end": 67.783
     },
     {
      "w": "not?",
-     "start": 67.102,
-     "end": 67.729
+     "start": 67.853,
+     "end": 68.491
     }
    ]
   }
  ],
- "say_hash": "4d2a67a93b105ee9"
+ "say_hash": "467b1b0d2f466822"
 }

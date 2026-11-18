@@ -37,7 +37,7 @@ export const Verdicts: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, a
             const note = tk && 'note' in tk ? (tk as any).note as string | undefined : undefined;
             return (
               <div key={j} style={{ display: 'flex', alignItems: 'center', gap: 16, opacity: picked && !mine && !split ? 1 - 0.55 * k : 1, position: 'relative',
-                background: theme.paper, padding: '10px 20px 8px 14px', boxShadow: '6px 6px 0 rgba(0,0,0,0.55)', transform: `rotate(${j % 2 ? 1.2 : -1}deg) scale(${1 + 0.06 * Math.sin(Math.PI * Math.min(1, pop))})` }}>
+                background: theme.paper, padding: '10px 20px 8px 14px', boxShadow: '6px 6px 0 rgba(0,0,0,0.55)', transform: `rotate(${j % 2 ? 1.2 : -1}deg) scale(${split ? 1 + 0.06 * Math.sin(Math.PI * Math.min(1, pop)) : 1})` }}>
                 <svg width={44} height={44} viewBox="0 0 44 44" style={{ flex: 'none' }}>
                   <rect x={3} y={3} width={38} height={38} fill="none" stroke={theme.paperInk} strokeWidth={4} />
                   {mine && picked && (

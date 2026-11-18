@@ -69,16 +69,18 @@
           "size": 420,
           "openStart": 0.62,
           "atTime": 0,
-          "hold": 3.9
+          "hold": 3.9,
+          "caption": "ANTWERP DIAMOND CENTRE",
+          "captionDy": 6
         },
         {
           "type": "prop",
           "kind": "diamonds",
           "at": [
-            4.418,
-            51.199
+            4.434,
+            51.197
           ],
-          "size": 240,
+          "size": 220,
           "atTime": 0,
           "hold": 3.9
         },
@@ -86,10 +88,10 @@
           "type": "prop",
           "kind": "sandwich",
           "at": [
-            4.372,
-            51.196
+            4.398,
+            51.19
           ],
-          "size": 190,
+          "size": 250,
           "drop": false,
           "hold": 3.9,
           "atTime": 0
@@ -98,12 +100,12 @@
           "type": "label",
           "text": "EXHIBIT A",
           "at": [
-            4.372,
-            51.183
+            4.398,
+            51.178
           ],
           "size": "md",
           "atWord": "sandwich.",
-          "hold": 1.4
+          "hold": 0.6
         },
         {
           "type": "shake",
@@ -167,7 +169,7 @@
         },
         {
           "type": "date",
-          "date": "2003-02-15",
+          "date": "2003",
           "atWord": "2003."
         },
         {
@@ -225,7 +227,7 @@
           "wrongBy": "HIS COVER",
           "strikeWord": "trader.",
           "atWord": "rents",
-          "hold": 3.9,
+          "hold": 3.3,
           "y": 600,
           "cps": 40
         }
@@ -240,11 +242,33 @@
           51.207
         ],
         "span": 0.3,
-        "pitch": 30,
+        "pitch": 24,
         "yaw": -18,
         "cut": true
       },
       "actions": [
+        {
+          "type": "prop",
+          "kind": "building",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 220,
+          "atWord": "Two",
+          "sinkWord": "vault.",
+          "hold": 2.6
+        },
+        {
+          "type": "marker",
+          "text": "Diamond Centre · Antwerp",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "atWord": "Two",
+          "hold": 1.6
+        },
         {
           "type": "prop",
           "kind": "vault",
@@ -253,8 +277,8 @@
             51.2155
           ],
           "size": 470,
-          "atWord": "Two",
-          "hold": 14.5,
+          "atWord": "vault.",
+          "hold": 15.6,
           "openWord": "Monday,",
           "openDur": 2.4,
           "open": 0.62
@@ -297,6 +321,11 @@
         "yaw": 16
       },
       "actions": [
+        {
+          "type": "date",
+          "date": "2003-02-15",
+          "atWord": "weekend,"
+        },
         {
           "type": "night",
           "atWord": "weekend,",
@@ -345,7 +374,7 @@
           ],
           "size": "md",
           "atWord": "hundred",
-          "hold": 2.6
+          "hold": 2.2
         },
         {
           "type": "shake",
@@ -376,17 +405,17 @@
           ],
           "size": 280,
           "atWord": "Diamonds,",
-          "hold": 4.2
+          "hold": 5.0
         },
         {
           "type": "bigNumber",
           "value": 100,
           "prefix": "$",
           "suffix": "M+",
-          "label": "ESTIMATE · DIAMONDS, GOLD, JEWELS",
+          "label": "EST. · GUINNESS: LARGEST DIAMOND HEIST",
           "atWord": "$100",
           "y": 1000,
-          "dur": 0.5,
+          "dur": 0.05,
           "hold": 2.4
         }
       ]
@@ -448,10 +477,10 @@
               50.8503
             ]
           ],
-          "atWord": "motorway",
+          "atWord": "mistake.",
           "dur": 1.6,
           "hold": 4.4,
-          "color": "#E0312B",
+          "color": "#E6D9BC",
           "width": 3,
           "label": "E19",
           "labelAt": [
@@ -476,10 +505,10 @@
               51.045
             ]
           ],
-          "atWord": "motorway",
-          "dur": 2.6,
-          "hold": 3.6,
-          "size": 90
+          "atWord": "mistake.",
+          "dur": 3.6,
+          "hold": 4.6,
+          "size": 150
         },
         {
           "type": "marker",
@@ -551,7 +580,7 @@
             40
           ],
           "approach": [
-            -60,
+            -130,
             0
           ],
           "atWord": "man",
@@ -562,6 +591,18 @@
           "type": "shake",
           "amount": 4,
           "atWord": "every"
+        },
+        {
+          "type": "night",
+          "atWord": "The",
+          "hold": 7.2,
+          "level": 0.42,
+          "follow": [
+            4.478,
+            51.04
+          ],
+          "radius": 420,
+          "fadeIn": 0.4
         }
       ]
     },
@@ -582,27 +623,27 @@
           "type": "prop",
           "kind": "envelopes",
           "at": [
-            4.466,
-            51.039
+            4.447,
+            51.041
           ],
           "size": 170,
           "drop": true,
           "atWord": "Envelopes",
-          "hold": 4.2,
+          "hold": 3.3,
           "caption": "ENVELOPES · DIAMOND CENTRE",
-          "captionDy": 90
+          "captionDy": -50
         },
         {
           "type": "prop",
           "kind": "sandwich",
           "at": [
-            4.487,
-            51.035
+            4.496,
+            51.033
           ],
-          "size": 230,
+          "size": 290,
           "drop": true,
           "atWord": "half",
-          "hold": 2.4,
+          "hold": 1.6,
           "caption": "EXHIBIT · HALF A SALAMI SANDWICH",
           "captionDy": 110
         },
@@ -671,7 +712,7 @@
             4.418,
             51.2155
           ],
-          "size": 150,
+          "size": 220,
           "atWord": "walks",
           "hold": 3.2
         },
@@ -682,12 +723,32 @@
           "atWord": "Arrested.",
           "y": 900,
           "size": 96,
-          "hold": 1.0
+          "hold": 0.7
         },
         {
           "type": "shake",
           "amount": 9,
           "atWord": "Arrested."
+        },
+        {
+          "type": "units",
+          "kind": "crowd",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "count": 1,
+          "size": 44,
+          "offset": [
+            90,
+            40
+          ],
+          "approach": [
+            -80,
+            -20
+          ],
+          "atWord": "walks",
+          "hold": 1.3
         }
       ]
     },
@@ -726,7 +787,7 @@
           "big": "CAUGHT.",
           "note": "From press reports of the verdict. Not an original document.",
           "atWord": "Ten",
-          "hold": 3.3,
+          "hold": 2.8,
           "y": 620,
           "cps": 46,
           "keyW": 230
@@ -747,6 +808,28 @@
         "cut": true
       },
       "actions": [
+        {
+          "type": "prop",
+          "kind": "vault",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "size": 360,
+          "openStart": 0.62,
+          "atWord": "diamonds?",
+          "hold": 3.0
+        },
+        {
+          "type": "marker",
+          "text": "Antwerp",
+          "at": [
+            4.418,
+            51.2155
+          ],
+          "atWord": "diamonds?",
+          "hold": 2.0
+        },
         {
           "type": "prop",
           "kind": "diamonds",
@@ -783,7 +866,7 @@
           "w": 380,
           "stamp": "NEVER IDENTIFIED",
           "stampWord": "identified.",
-          "stampSize": 44,
+          "stampSize": 30,
           "atWord": "King",
           "hold": 3.6,
           "head": "UNKNOWN"
@@ -792,7 +875,7 @@
     },
     {
       "id": "claim",
-      "say": "He says it was an insurance job. Investigators say: no proof.",
+      "say": "Notarbartolo says it was an insurance job. Investigators say: no proof.",
       "camera": {
         "center": [
           4.418,
@@ -812,19 +895,44 @@
           ],
           "size": 360,
           "openStart": 0.62,
-          "atWord": "He",
+          "atWord": "Notarbartolo",
           "hold": 5.4
         },
         {
-          "type": "callout",
-          "text": "HIS CLAIM: AN INSURANCE JOB",
-          "sub": "Wired, 2009 · \"~$20M\", he says",
+          "type": "label",
+          "text": "INVESTIGATORS",
+          "at": [
+            4.418,
+            51.235
+          ],
+          "size": "md",
+          "atWord": "Investigators",
+          "hold": 1.6
+        },
+        {
+          "type": "ticket",
+          "head": "His claim",
+          "sub": "Wired · 2009 · his account",
+          "rows": [
+            [
+              "SAYS",
+              "INSURANCE JOB"
+            ],
+            [
+              "HIS FIGURE",
+              "~$20M"
+            ],
+            [
+              "INVESTIGATORS",
+              "NO PROOF"
+            ]
+          ],
+          "note": "His own account, as told to Wired. Not supported by investigators.",
           "atWord": "says",
-          "y": 880,
-          "size": 58,
-          "hold": 4.4,
-          "stamp": "NO PROOF",
-          "stampWord": "proof."
+          "hold": 3.6,
+          "y": 620,
+          "cps": 44,
+          "keyW": 230
         }
       ]
     },
@@ -851,16 +959,18 @@
           "size": 420,
           "openStart": 0.62,
           "atWord": "The",
-          "hold": 6
+          "hold": 6,
+          "caption": "ANTWERP DIAMOND CENTRE",
+          "captionDy": 6
         },
         {
           "type": "prop",
           "kind": "diamonds",
           "at": [
-            4.418,
-            51.199
+            4.434,
+            51.197
           ],
-          "size": 240,
+          "size": 220,
           "atWord": "The",
           "hold": 6,
           "sinkWord": "gone."
@@ -869,10 +979,10 @@
           "type": "prop",
           "kind": "sandwich",
           "at": [
-            4.372,
-            51.196
+            4.398,
+            51.19
           ],
-          "size": 190,
+          "size": 250,
           "drop": true,
           "atWord": "So…",
           "hold": 3
