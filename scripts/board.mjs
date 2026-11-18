@@ -2,6 +2,7 @@
 // Studio board: where every reel stands in the pipeline, what to do next, what is posted and how it performs.
 //   node scripts/board.mjs              every episode, one line each + next action
 //   node scripts/board.mjs <id>         one episode in detail
+//   node scripts/board.mjs <id> --manifest <file> --approval <file>  inspect a selected release
 //   node scripts/board.mjs --json       machine-readable
 //   node scripts/board.mjs --md         writes docs/BOARD.md
 //   node scripts/board.mjs --doctor     only the toolchain checks
@@ -10,6 +11,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
+import { existingVoice } from './render-tools.mjs';
 import { validate, seriesIdOf } from './validate.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -24,20 +27,6 @@ const studio = readJson(P('public/studio.json')).series;
 export const STAGES = ['sources', 'data', 'cues', 'voice', 'music', 'stills', 'render', 'review', 'kit', 'posted'];
 const SHORT = { sources: 'Src', data: 'Map', cues: 'Pre', voice: 'Voi', music: 'Mus', stills: 'Sti', render: 'Ren', review: 'Rev', kit: 'Kit', posted: 'Pub' };
 const LABEL = { sources: 'Sources', data: 'Map data', cues: 'Pre-flight', voice: 'Voice', music: 'Music', stills: 'Stills', render: 'Render', review: 'Review', kit: 'Post kit', posted: 'Publish' };
-
-/** Python's say_hash (pipeline/tts.py), computed by Python itself so the two never drift. */
-function voiceHashes(ids) {
-  try {
-    const out = execFileSync('python3', ['-c', `
-import sys, json; sys.path.insert(0, 'pipeline')
-from tts import say_hash
-for i in sys.argv[1:]:
-    try: print(i, say_hash(json.load(open(f'public/episodes/{i}/episode.json'))))
-    except Exception: print(i, '-')
-`, ...ids], { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' } });
-    return Object.fromEntries(out.trim().split('\n').map((l) => l.split(' ')));
-  } catch { return {}; }
-}
 
 function walk(dir, re, acc = []) {
   if (!exists(dir)) return acc;
@@ -82,11 +71,12 @@ export function loadTracker() {
   return readJson(P('tracker/posts.json'), { posts: {} });
 }
 
-function deliveryDecision(id) {
-  if (!exists(P('out', `${id}.render.json`))) {
-    return { status: 'missing', reason: `No local render manifest out/${id}.render.json` };
+function deliveryDecision(id, { manifest, approval }) {
+  if (!exists(path.resolve(ROOT, manifest))) {
+    return { status: 'missing', reason: `No local render manifest ${manifest}` };
   }
-  const result = spawnSync(process.execPath, [P('scripts/delivery.mjs'), 'status', id, '--json'], {
+  const args = ['status', id, '--json', `--manifest=${manifest}`, `--approval=${approval}`];
+  const result = spawnSync(process.execPath, [P('scripts/delivery.mjs'), ...args], {
     cwd: ROOT, encoding: 'utf8', timeout: 10_000, windowsHide: true,
   });
   if (!result.error && !result.signal) {
@@ -105,7 +95,7 @@ function deliveryDecision(id) {
 /** the best-known numbers for one platform post: its latest stats snapshot */
 const latest = (post) => (post?.stats?.length ? post.stats.at(-1) : null);
 
-function episodeStatus(id, hashes, tracker) {
+function episodeStatus(id, tracker, overrides) {
   const dir = P('public/episodes', id);
   const spec = readJson(path.join(dir, 'episode.json'), {});
   const sid = seriesIdOf(spec) ?? '?';
@@ -139,17 +129,23 @@ function episodeStatus(id, hashes, tracker) {
   const issues = { errors: v.errors, warnings: v.warnings };
 
   // voice
-  const tj = readJson(path.join(adir, 'timings.json'));
-  const hasVoice = exists(path.join(adir, 'voice.wav')) && tj;
-  if (!hasVoice) set('voice', 'todo', audio !== id ? `shared voice ${audio} not recorded` : 'not recorded', `pipeline/render.sh ${audio}`);
-  else {
-    const want = hashes[audio], have = tj.say_hash;
-    const dur = tj.duration ? `${tj.duration.toFixed(1)} s · ${tj.engine ?? '?'}` : '';
-    const shared = audio !== id ? ` (shared with ${audio})` : '';
-    if (!have) set('voice', 'done', `${dur}${shared} · pre-fingerprint take`);
-    else if (want && want !== '-' && want !== have) set('voice', 'stale', `script changed since the take${shared}`, `pipeline/render.sh ${audio}`);
-    else set('voice', 'done', `${dur}${shared}`);
-    if (tj.duration && (tj.duration < 40 || tj.duration > 58)) S.voice.note += tj.duration > 70 ? ' · too long' : tj.duration > 58 ? ' · over 58 s (TikTok cut only)' : ' · under 40 s';
+  const timingFile = path.join(adir, 'timings.json');
+  const tj = readJson(timingFile);
+  const shared = audio !== id ? ` (shared with ${audio})` : '';
+  if (!exists(path.join(adir, 'voice.wav')) || !exists(timingFile)) {
+    set('voice', 'todo', `voice.wav or timings.json missing${shared}`, `pipeline/render.sh ${audio}`);
+  } else {
+    try {
+      const voice = existingVoice(adir);
+      const engine = voice.effective?.engine ?? voice.reportedEngine ?? '?';
+      const duration = Number.isFinite(tj?.duration) ? `${tj.duration.toFixed(1)} s · ` : '';
+      const status = voice.status === 'fallback' ? `fallback from ${voice.request.engine}` : voice.status;
+      set('voice', voice.status === 'verified' ? 'done' : 'warn', `${duration}${engine}${shared} · ${status}`);
+    } catch (error) {
+      const stale = error.message.startsWith('Voice provenance is stale');
+      set('voice', stale ? 'stale' : 'warn', `${stale ? error.message : `Voice probe unavailable · ${error.message}`}${shared}`);
+    }
+    if (Number.isFinite(tj?.duration) && (tj.duration < 40 || tj.duration > 58)) S.voice.note += tj.duration > 70 ? ' · too long' : tj.duration > 58 ? ' · over 58 s (TikTok cut only)' : ' · under 40 s';
   }
 
   // music
@@ -195,7 +191,11 @@ function episodeStatus(id, hashes, tracker) {
   else if (missing.length) set('kit', 'warn', `missing ${missing.join(', ')}`);
   else set('kit', 'done', 'local kit files present');
 
-  const delivery = deliveryDecision(id);
+  const deliverySelection = {
+    manifest: overrides.manifest ?? `out/${id}.render.json`,
+    approval: overrides.approval ?? `deliverables/${id}/RELEASE.json`,
+  };
+  const delivery = deliveryDecision(id, deliverySelection);
 
   // posted (tracker)
   const posts = tracker.posts?.[id] ?? {};
@@ -230,7 +230,7 @@ function episodeStatus(id, hashes, tracker) {
     audio, remasterOf: spec.audio ?? null, hasRemaster: superseded, duration: tj?.duration ?? null,
     stages: STAGES.map((k) => S[k]), progress: `${doneCount}/${STAGES.length}`,
     scores: { reel: reelScore, viral: viralScore, viralHistory: R.viral.map((r) => r.score) },
-    issues, delivery, posts, totals, next: next ? { stage: next.label, note: next.note, cmd: next.cmd } : null,
+    issues, delivery, deliverySelection, posts, totals, next: next ? { stage: next.label, note: next.note, cmd: next.cmd } : null,
   };
 }
 
@@ -258,12 +258,13 @@ function backlog(episodes) {
 
 // ---------- toolchain ----------
 function doctor() {
-  const ok = (cmd, args) => { try { execFileSync(cmd, args, { stdio: 'ignore', cwd: ROOT }); return true; } catch { return false; } };
+  const ok = (cmd, args) => { try { execFileSync(cmd, args, { stdio: 'ignore', cwd: ROOT, windowsHide: true, timeout: 5_000 }); return true; } catch { return false; } };
+  const python = process.env.STUDIO_PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
   const chrome = (() => { try { return fs.readdirSync('/opt/pw-browsers').some((d) => d.startsWith('chromium_headless_shell')); } catch { return false; } })();
   return [
     { name: 'node_modules', ok: exists(P('node_modules/remotion')), fix: 'npm install (or scripts/setup.sh)' },
     { name: 'ffmpeg / ffprobe', ok: ok('ffmpeg', ['-version']) && ok('ffprobe', ['-version']), fix: 'apt-get install -y ffmpeg' },
-    { name: 'python voice deps (numpy, soundfile)', ok: ok('python3', ['-c', 'import numpy, soundfile']), fix: 'pip install numpy soundfile (scripts/setup.sh)' },
+    { name: `Python voice deps (${python})`, ok: ok(python, ['-c', 'import numpy, soundfile']), fix: 'Set STUDIO_PYTHON to an interpreter with numpy and soundfile' },
     { name: 'headless Chromium', ok: chrome || !!process.env.REMOTION_CHROME, fix: 'set REMOTION_CHROME' },
     { name: 'Kokoro fallback model', ok: exists(P('models')) && fs.readdirSync(P('models')).length > 0, fix: 'scripts/setup.sh (only needed without ElevenLabs)', optional: true },
   ];
@@ -271,13 +272,14 @@ function doctor() {
 
 const fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1) + 'k' : String(n));
 
-export function board(selection) {
+export function board(selection, overrides = {}) {
+  if (!selection && (overrides.manifest !== undefined || overrides.approval !== undefined)) {
+    throw new Error('Delivery overrides require a single episode selector.');
+  }
   const allIds = fs.readdirSync(P('public/episodes')).filter((d) => exists(P('public/episodes', d, 'episode.json')));
   const ids = selection ? [selectEpisode(selection, allIds)] : allIds;
-  const audio = selection && readJson(P('public/episodes', ids[0], 'episode.json'))?.audio;
-  const hashes = voiceHashes(audio && allIds.includes(audio) && audio !== ids[0] ? [...ids, audio] : ids);
   const tracker = loadTracker();
-  const episodes = ids.map((id) => episodeStatus(id, hashes, tracker))
+  const episodes = ids.map((id) => episodeStatus(id, tracker, overrides))
     .sort((a, b) => a.seriesId.localeCompare(b.seriesId) || (a.episode ?? 99) - (b.episode ?? 99) || a.da - b.da);
   return { generatedAt: new Date().toISOString(), episodes, backlog: selection ? [] : backlog(episodes), doctor: selection ? [] : doctor() };
 }
@@ -328,6 +330,8 @@ function printOne(e) {
   console.log(c(1, `${e.series} ${e.tag} · ${e.title}`) + c(90, `  (${e.id} · DA ${e.da}${e.remasterOf ? ` · voice of ${e.remasterOf}` : ''})`));
   for (const s of e.stages) console.log(`  ${ICON[s.state]} ${pad(s.label, 11)} ${s.note}${s.cmd && s.state !== 'done' && s.state !== 'skip' ? c(90, `\n                ↳ ${s.cmd}`) : ''}`);
   console.log(`  ${pad('Approval', 13)} ${APPROVAL[e.delivery.status]} · ${e.delivery.reason}`);
+  console.log(`  ${pad('Manifest', 13)} ${e.deliverySelection.manifest}`);
+  console.log(`  ${pad('Release file', 13)} ${e.deliverySelection.approval}`);
   for (const x of e.issues.errors) console.log(c(31, `      ✗ ${x}`));
   for (const x of e.issues.warnings) console.log(c(33, `      ! ${x}`));
   if (e.scores.viralHistory.length > 1) console.log(c(90, `  virality across passes: ${e.scores.viralHistory.join(' → ')}`));
@@ -342,7 +346,8 @@ function markdown(B) {
   const sym = { away: '◌', done: '●', skip: '·', todo: '○', stale: '◐', warn: '!', fail: '✗' };
   const L = [`# Studio board`, '', `Generated by \`node scripts/board.mjs --md\` on ${B.generatedAt.slice(0, 10)}. ● done · ◌ done before, absent locally · ◐ stale · ! look · ✗ fail · ○ todo · · n/a`, '',
     'Approval comes from the delivery diagnostic for the exact episode ID. A dash means the decision is missing. Review scores and local kit files describe production history.', '',
-    'The board checks `out/<id>.render.json` in this checkout before querying the default delivery status, which looks for `deliverables/<id>/RELEASE.json`. It has no remote artifact lookup. A manual post entry takes priority over delivery in the next-action column.', '',
+    'Delivery defaults to `out/<id>.render.json` and `deliverables/<id>/RELEASE.json`. For one episode, use `node scripts/board.mjs <id> --manifest <file> --approval <file>` to override either path. The detail view and JSON show both selected paths. Delivery checks local files. A manual post entry takes priority in the next-action column.', '',
+    'The voice stage checks the local voice and timings against their provenance, including for shared audio. It flags legacy-unverified, fallback, stale and unavailable evidence. `--doctor` checks Python voice dependencies with `STUDIO_PYTHON`, or `python` on Windows and `python3` elsewhere.', '',
     'Use `node scripts/board.mjs <id>` for the delivery reason and `node scripts/track.mjs list` for the manual publication log. After an authorized post, use `node scripts/track.mjs posted <id> <platform> --url <url>` and record platform metrics with `node scripts/track.mjs stats <id> <platform> views=…`.', '',
     `| Series | # | Episode | DA | ${STAGES.map((k) => LABEL[k]).join(' | ')} | Approval | Reel | Viral | Next |`, `|${'---|'.repeat(STAGES.length + 8)}`];
   for (const e of B.episodes) {
@@ -356,18 +361,29 @@ function markdown(B) {
   return L.join('\n') + '\n';
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const args = process.argv.slice(2);
-  const id = args.find((a) => !a.startsWith('--'));
-  if (args.includes('--doctor')) {
-    for (const d of doctor()) console.log(`${d.ok ? ICON.done : d.optional ? ICON.todo : ICON.fail} ${pad(d.name, 40)} ${d.ok ? '' : c(90, d.fix)}`);
-    process.exit(0);
+function main(args) {
+  const { values, positionals } = parseArgs({ args, allowPositionals: true, options: {
+    manifest: { type: 'string' }, approval: { type: 'string' }, json: { type: 'boolean' },
+    md: { type: 'boolean' }, doctor: { type: 'boolean' },
+  } });
+  const [id] = positionals;
+  const { manifest, approval } = values;
+  if (positionals.length > 1) throw new Error('Select a single episode.');
+  if (manifest?.trim() === '' || approval?.trim() === '') throw new Error('Delivery paths must be non-empty.');
+  if ((values.md || values.doctor) && (id || manifest !== undefined || approval !== undefined)) {
+    throw new Error('Use --md and --doctor without an episode selector or delivery overrides.');
   }
-  if (id && args.includes('--md')) { console.error('Use --md without an episode selector.'); process.exit(2); }
-  let B;
-  try { B = board(id); } catch (error) { console.error(error.message); process.exit(2); }
-  if (args.includes('--json')) console.log(JSON.stringify(id ? B.episodes[0] : B, null, 1));
-  else if (args.includes('--md')) { fs.writeFileSync(P('docs/BOARD.md'), markdown(B)); console.log('wrote docs/BOARD.md'); }
+  if (values.doctor) {
+    for (const d of doctor()) console.log(`${d.ok ? ICON.done : d.optional ? ICON.todo : ICON.fail} ${pad(d.name, 40)} ${d.ok ? '' : c(90, d.fix)}`);
+    return;
+  }
+  const B = board(id, { manifest, approval });
+  if (values.json) console.log(JSON.stringify(id ? B.episodes[0] : B, null, 1));
+  else if (values.md) { fs.writeFileSync(P('docs/BOARD.md'), markdown(B)); console.log('wrote docs/BOARD.md'); }
   else if (id) printOne(B.episodes[0]);
   else printBoard(B);
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  try { main(process.argv.slice(2)); } catch (error) { console.error(error.message); process.exitCode = 2; }
 }
