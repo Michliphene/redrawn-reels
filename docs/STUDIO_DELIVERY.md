@@ -70,7 +70,7 @@ npm run board
 npm run track -- list
 ```
 
-La première commande vérifie et imprime les fichiers exacts à remettre. Elle peut être relancée pour un renvoi. Pour une variante, passer `--manifest <path> --approval <path>` aux deux commandes de contrôle ou à `npm run board -- --episode <id>`. Une modification de vidéo, d'entrée, de preuve, de rapport ou de kit bloque la remise de la version précédente. Les actions plateforme et les écritures Git distantes ont leurs propres autorisations.
+La première commande vérifie et imprime les fichiers exacts à remettre. Elle peut être relancée pour un renvoi. Pour une variante, passer `--manifest <path> --approval <path>` aux deux commandes de contrôle ou à `npm run board -- <id>`. Une modification de vidéo, d'entrée, de preuve, de rapport ou de kit bloque la remise de la version précédente. Les actions plateforme et les écritures Git distantes ont leurs propres autorisations.
 
 ## Cas de recette
 
@@ -81,6 +81,12 @@ La première commande vérifie et imprime les fichiers exacts à remettre. Elle 
 | Chipotle | La machine d'origine possède le projet raea, les timings, les WAV et deux exports locaux. Le code Remotion présent ne contient pas la station `slice` de l'export attribué à Remotion. | Choisir la variante après avoir établi sa recette et revu les chiffres, le payoff, la lecture et les crêtes. |
 
 Le prototype de cadrage Delta est isolé derrière `deltaPreview`. Pour comparer les images 0, 0,85 et 2,5 s, utiliser les mêmes timings et ajouter `--props '{"deltaPreview":true}'` sur le deuxième run de `scripts/stills.mjs`. Le titre, le zoom initial et le retrait de la donnée changent sur les images du prototype. L'épisode et la voix de référence restent les mêmes.
+
+### Recette locale du 19 novembre 2026
+
+- Sous Windows, le pipeline a rendu Alaska en DA 1 avec ses médias historiques. L'export de 55,70 s mesure −14,24 LUFS et −1,16 dBTP. Les deux extracteurs ont produit leurs index et le kit de contrôle a été calculé. `npm run post -- alaska-1867` a bloqué la remise faute de visa. Lors d'une première tentative, une entrée modifiée pendant l'encodage a fait échouer la capture.
+- Trois images Delta avant/après et trois images avec guides ont été inspectées. Le texte reste dans les zones prévues sur les images du prototype contrôlées. Les objets décoratifs à droite restent à recadrer si cette variante est retenue.
+- Un contrôle réel de l'export Chipotle raea local a reproduit une erreur de crête et 42 avertissements de lecture. Sur une copie d'essai, FFmpeg en deux passes donne −14,07 LUFS et −1,50 dBTP avec le même flux vidéo. raea renvoie zéro erreur et conserve les 42 avertissements. Cette copie attend une écoute et une revue. Elle dépend du projet local Chipotle.
 
 ## Outils et accès
 
