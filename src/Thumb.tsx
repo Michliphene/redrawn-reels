@@ -1,7 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, useVideoConfig } from 'remotion';
 import { geoAzimuthalEqualArea, geoCentroid } from 'd3-geo';
-import type { GeoData, EpisodeSpec } from './lib/types';
+import type { GeoData, EpisodeSpec, TimedAction } from './lib/types';
 import { MapLayer } from './components/MapLayer';
 import { setPalette, theme, isFocus, isOutline } from './lib/theme';
 
@@ -11,7 +11,11 @@ export type ThumbConfig = {
   mapBox?: [number, number, number, number]; // x0,y0,x1,y1 of the map area
   mainSize?: number; mapSide?: 'right' | 'left';
   mapBoxV?: [number, number, number, number]; mainSizeV?: number;
+  center?: [number, number]; // projection centre (default: centroid of the framed features; set it for a polar map)
 };
+/** The map as it stands on frame 0: declares the hook gives with atTime 0 (none on older episodes). */
+const frame0 = (spec: EpisodeSpec): TimedAction[] =>
+  ((spec.beats[0]?.actions ?? []) as any[]).filter((a) => a.type === 'declare' && a.atTime === 0).map((a) => ({ ...a, t: 0, beat: spec.beats[0].id }));
 export type ThumbProps = { episodeId: string; spec?: EpisodeSpec & { thumb?: ThumbConfig; episode?: number }; geo?: GeoData };
 
 /** 1920x1080 thumbnail (YouTube / landscape previews): big hook text + the episode's map, same palette as the reel. */
@@ -24,12 +28,12 @@ export const Thumb: React.FC<ThumbProps> = ({ spec, geo }) => {
   const ids = cfg.fit;
   const feats = geo!.features.filter((f) => (ids ? ids.includes(String(f.id)) : isFocus(f) && !isOutline(f)));
   const fc: any = { type: 'FeatureCollection', features: feats };
-  const c = geoCentroid(fc) as [number, number];
+  const c = cfg.center ?? (geoCentroid(fc) as [number, number]);
   const projection = geoAzimuthalEqualArea().rotate([-c[0], -c[1]]).fitExtent([[x0, y0], [x1, y1]], fc).clipAngle(95);
   const epTag = spec!.episode != null ? `EP ${spec!.episode}` : '';
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at 70% 50%, ${theme.seaGlow} 0%, ${theme.sea} 72%)`, fontFamily: 'Montserrat' }}>
-      <MapLayer geo={geo!} projection={projection} t={0} actions={[]} width={1920} height={1080} />
+      <MapLayer geo={geo!} projection={projection} t={0} actions={frame0(spec!)} width={1920} height={1080} />
       <AbsoluteFill style={{ background: 'linear-gradient(90deg, rgba(11,17,32,0.96) 0%, rgba(11,17,32,0.88) 34%, rgba(11,17,32,0) 56%)' }} />
       <div style={{ position: 'absolute', top: 60, left: 80, display: 'flex', gap: 16, alignItems: 'center' }}>
         <div style={{ fontWeight: 900, fontSize: 40, letterSpacing: 9, color: '#0B1120', background: theme.accent, padding: '10px 24px', borderRadius: 8 }}>{spec!.series}</div>
@@ -59,12 +63,12 @@ const ThumbVertical: React.FC<ThumbProps> = ({ spec, geo }) => {
   const ids = cfg.fit;
   const feats = geo!.features.filter((f) => (ids ? ids.includes(String(f.id)) : isFocus(f) && !isOutline(f)));
   const fc: any = { type: 'FeatureCollection', features: feats };
-  const c = geoCentroid(fc) as [number, number];
+  const c = cfg.center ?? (geoCentroid(fc) as [number, number]);
   const projection = geoAzimuthalEqualArea().rotate([-c[0], -c[1]]).fitExtent([[x0, y0], [x1, y1]], fc).clipAngle(95);
   const epTag = spec!.episode != null ? `EP ${spec!.episode}` : '';
   return (
     <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 60%, ${theme.seaGlow} 0%, ${theme.sea} 70%)`, fontFamily: 'Montserrat' }}>
-      <MapLayer geo={geo!} projection={projection} t={0} actions={[]} width={1080} height={1920} />
+      <MapLayer geo={geo!} projection={projection} t={0} actions={frame0(spec!)} width={1080} height={1920} />
       <AbsoluteFill style={{ background: 'linear-gradient(180deg, rgba(11,17,32,0.97) 0%, rgba(11,17,32,0.9) 36%, rgba(11,17,32,0) 46%, rgba(11,17,32,0) 72%, rgba(11,17,32,0.92) 80%)' }} />
       <div style={{ position: 'absolute', top: 290, width: '100%', display: 'flex', justifyContent: 'center', gap: 16 }}>
         <div style={{ fontWeight: 900, fontSize: 36, letterSpacing: 8, color: '#0B1120', background: theme.accent, padding: '8px 22px', borderRadius: 8 }}>{spec!.series}</div>

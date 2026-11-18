@@ -980,5 +980,36 @@
     }
    ]
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "7 countries claim it",
+  "main": "Who owns this?",
+  "mainSize": 150,
+  "mainSizeV": 150,
+  "badge": "3 claims",
+  "badgeSub": "on the same slice",
+  "center": [
+   -30,
+   -90
+  ],
+  "fit": [
+   "GBR",
+   "AG",
+   "TRI",
+   "CG",
+   "CHL",
+   "NOR",
+   "AUS",
+   "AUS2",
+   "FRA",
+   "NZL",
+   "NONE"
+  ],
+  "mapBox": [
+   960,
+   60,
+   1880,
+   1020
+  ]
+ }
 }
