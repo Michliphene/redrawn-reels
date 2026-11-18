@@ -1,0 +1,274 @@
+{
+ "id": "planes-doodle",
+ "composition": "Doodle",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 3,
+ "title": "The planes that came back",
+ "whisper": "Where would you add armour?",
+ "source": "A. Wald, memo (1943) · AMS Feature Column (2016)",
+ "sourceFrom": "open",
+ "keywords": [
+  "holes.",
+  "armour?",
+  "no",
+  "never",
+  "luck.",
+  "socks.",
+  "1,023",
+  "skill."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "scenes": {
+  "open": {
+   "type": "plane",
+   "side": "front",
+   "slot": 0,
+   "callout": [
+    560,
+    420
+   ]
+  },
+  "gym": {
+   "type": "gym",
+   "side": "front",
+   "slot": 1,
+   "callout": [
+    560,
+    415
+   ]
+  },
+  "stage": {
+   "type": "stage",
+   "side": "front",
+   "slot": 2,
+   "callout": [
+    520,
+    640
+   ]
+  },
+  "rule": {
+   "type": "rule",
+   "side": "front",
+   "slot": 3,
+   "frontSmall": "most people think",
+   "front": "Won once\n= skill",
+   "backSmall": "actually",
+   "back": "Knows why\n= skill"
+  },
+  "end": {
+   "type": "plane",
+   "side": "front",
+   "slot": 4
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "open",
+   "say": "In {1943|nineteen forty-three}, planes came back full of bullet holes.",
+   "actions": [
+    {
+     "type": "holes",
+     "dur": 1.0,
+     "atWord": "holes."
+    }
+   ]
+  },
+  {
+   "id": "ask",
+   "say": "Where would you add armour?"
+  },
+  {
+   "id": "obvious",
+   "kicker": "The obvious fix",
+   "say": "Most people say: where the holes are. The wings. The tail.",
+   "actions": [
+    {
+     "type": "patch",
+     "part": "wings",
+     "atWord": "wings."
+    },
+    {
+     "type": "patch",
+     "part": "tail",
+     "atWord": "tail."
+    }
+   ]
+  },
+  {
+   "id": "wald",
+   "kicker": "Abraham Wald",
+   "say": "But a statistician, Abraham Wald, said no. Look where there are no holes.",
+   "actions": [
+    {
+     "type": "circle",
+     "atWord": "Look"
+    }
+   ]
+  },
+  {
+   "id": "never",
+   "say": "Planes hit there never came back. So nobody saw them.",
+   "actions": [
+    {
+     "type": "ghost",
+     "atWord": "never"
+    }
+   ]
+  },
+  {
+   "id": "story",
+   "say": "That's the famous story. The details are fuzzy. The idea is solid.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "details: fuzzy · idea: solid",
+     "atWord": "fuzzy.",
+     "hold": 2.0
+    }
+   ]
+  },
+  {
+   "id": "gym1",
+   "scene": "gym",
+   "kicker": "The coin game",
+   "say": "Now picture {1,024|one thousand and twenty-four} students in a gym. Everyone flips a coin.",
+   "actions": [
+    {
+     "type": "spawn",
+     "atWord": "1,024"
+    }
+   ]
+  },
+  {
+   "id": "gym2",
+   "say": "Tails, you sit down. Flip again. And again.",
+   "actions": [
+    {
+     "type": "rounds",
+     "dur": 4.6,
+     "atWord": "Tails,"
+    }
+   ]
+  },
+  {
+   "id": "gym3",
+   "say": "After ten flips, about one student is still standing.",
+   "actions": [
+    {
+     "type": "winner",
+     "atWord": "standing."
+    }
+   ]
+  },
+  {
+   "id": "gym4",
+   "say": "Ten heads in a row. Pure luck."
+  },
+  {
+   "id": "gym5",
+   "say": "Was he good at flipping? No. Someone had to win.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "someone had to win",
+     "atWord": "win.",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "secret",
+   "scene": "stage",
+   "kicker": "The success story",
+   "say": "Now everyone wants his secret. He'll tell you about his lucky socks.",
+   "actions": [
+    {
+     "type": "secret",
+     "atWord": "lucky"
+    }
+   ]
+  },
+  {
+   "id": "nobody",
+   "say": "Nobody asks the {1,023|one thousand and twenty-three} who sat down.",
+   "actions": [
+    {
+     "type": "crowd",
+     "atWord": "1,023"
+    }
+   ]
+  },
+  {
+   "id": "same0",
+   "say": "They flipped the same coin. Same arm. Same socks, probably.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "same coin, same socks",
+     "atWord": "socks,",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "same",
+   "say": "Success stories work the same way. You only hear from the planes that came back.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "= the planes that came back",
+     "atWord": "planes",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "copy",
+   "say": "So when someone says, \"Just do what I did,\" ask who did the same thing and didn't make it.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "ask who sat down",
+     "atWord": "ask",
+     "hold": 2.0
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "scene": "rule",
+   "say": "Like the friend who passed one test without studying. Lucky once. That's not a method."
+  },
+  {
+   "id": "skill",
+   "say": "Winning once can be luck. Knowing why is the skill.",
+   "actions": [
+    {
+     "type": "turn",
+     "atWord": "Knowing"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "end",
+   "say": "Like the statistician who looked at the planes in…"
+  }
+ ]
+}

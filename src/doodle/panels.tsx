@@ -453,5 +453,146 @@ export const RulePanel: React.FC<PanelProps> = ({ t, acts, def, from }) => {
   );
 };
 
-export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel, drafts: DraftsPanel, versions: VersionsPanel, rule: RulePanel };
+/* ------------------------------------------------------------------ plane: a doodled bomber (top view), holes, tape, the missing spots */
+const PL = { cx: 540, cy: 800 };
+const pl = (x: number, y: number): Pt => [PL.cx + x, PL.cy + y];
+const PL_FUS: Pt[] = [[0, -300], [30, -270], [36, -150], [34, 230], [18, 280], [0, 290], [-18, 280], [-34, 230], [-36, -150], [-30, -270]].map(([x, y]) => pl(x, y));
+const PL_WING_R: Pt[] = [[34, -70], [430, -20], [430, 30], [34, 40]].map(([x, y]) => pl(x, y));
+const PL_WING_L: Pt[] = [[-34, -70], [-430, -20], [-430, 30], [-34, 40]].map(([x, y]) => pl(x, y));
+const PL_TAIL: Pt[] = [[34, 210], [160, 240], [160, 268], [34, 262], [-34, 262], [-160, 268], [-160, 240], [-34, 210]].map(([x, y]) => pl(x, y));
+const PL_ENG: Pt[] = [[-265, -55], [-135, -70], [135, -70], [265, -55]].map(([x, y]) => pl(x, y));
+const PL_HOLES: Pt[] = (() => {
+  const out: Pt[] = [];
+  for (let i = 0; out.length < 34 && i < 900; i++) {
+    const r = Math.abs(Math.sin(i * 12.9898) * 43758.5453) % 1, u = Math.abs(Math.sin(i * 78.233) * 12345.678) % 1, v = Math.abs(Math.sin(i * 39.425) * 9876.54) % 1;
+    let x = 0, y = 0;
+    if (r < 0.6) { const sd = u < 0.5 ? -1 : 1; x = sd * (60 + v * 350); y = -40 + (Math.abs(x) - 60) * 0.1 + ((i * 37) % 50); }
+    else if (r < 0.8) { x = (u - 0.5) * 44; y = -110 + v * 300; }
+    else { const sd = u < 0.5 ? -1 : 1; x = sd * (45 + v * 100); y = 222 + ((i * 13) % 30); }
+    if ([[-265, -55], [-135, -70], [135, -70], [265, -55]].some(([ex, ey]) => Math.abs(x - ex) < 46 && Math.abs(y - ey) < 52)) continue;
+    out.push(pl(x, y));
+  }
+  return out;
+})();
+export const PlanePanel: React.FC<PanelProps> = ({ t, acts }) => {
+  const holes = one(acts, 'holes'), circle = one(acts, 'circle'), ghost = one(acts, 'ghost');
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  const patches = all(acts, 'patch').filter((a) => live(a));
+  const tape = (part: string) => { const a = patches.find((x) => x.part === part); return a ? Math.min(1.1, pop(t, a.t, 0.3)) : 0; };
+  const Tape: React.FC<{ x: number; y: number; w: number; h: number; rot: number; k: number }> = ({ x, y, w, h, rot, k }) => k <= 0 ? null : (
+    <g transform={`translate(${x} ${y}) rotate(${rot}) scale(${k})`}><rect x={-w / 2} y={-h / 2} width={w} height={h} fill={C.tape} stroke="rgba(120,90,30,0.4)" strokeWidth={2} /></g>
+  );
+  return (
+    <g>
+      {live(ghost) && (() => {
+        const g = ramp(t, ghost!.t, 2.4);
+        return (
+          <g transform={`translate(${250 - 120 * g} ${600 + 560 * g * g}) rotate(${-20 - 70 * g}) scale(0.34) translate(${-PL.cx} ${-PL.cy})`} opacity={Math.min(1, 3 * (1 - g))}>
+            {[PL_FUS, PL_WING_R, PL_WING_L, PL_TAIL].map((pts, i) => <Ink key={i} pts={pts} seed={2000 + i} w={9} c={C.pencil} close dash="18 14" />)}
+            {PL_ENG.map(([x, y], i) => <circle key={i} cx={x} cy={y} r={26} fill={C.red} />)}
+          </g>
+        );
+      })()}
+      {live(ghost) && <Hand x={64} y={500} size={58} c={C.red} anchor="start" rot={-4} opacity={ramp(t, ghost!.t + 0.3, 0.3)} halo>never came back</Hand>}
+      <Ink pts={PL_WING_L} seed={2010} w={7} fill="#FFFFFF" close />
+      <Ink pts={PL_WING_R} seed={2011} w={7} fill="#FFFFFF" close />
+      <Ink pts={PL_TAIL} seed={2012} w={7} fill="#FFFFFF" close />
+      <Ink pts={PL_FUS} seed={2013} w={7} fill="#FFFFFF" close />
+      {PL_ENG.map(([x, y], i) => <Circle key={i} cx={x} cy={y} r={30} seed={2020 + i} w={6} fill={C.paper} />)}
+      <Ink pts={[pl(-14, -255), pl(14, -255), pl(12, -228), pl(-12, -228)]} seed={2030} w={4} close fill="#D9ECF7" amp={0.6} />
+      <Tape x={pl(-230, 0)[0]} y={pl(-230, 0)[1]} w={260} h={60} rot={-6} k={tape('wings')} />
+      <Tape x={pl(230, 0)[0]} y={pl(230, 0)[1]} w={260} h={60} rot={5} k={tape('wings')} />
+      <Tape x={pl(0, 240)[0]} y={pl(0, 240)[1]} w={300} h={52} rot={-3} k={tape('tail')} />
+      {holes && t >= holes.t && !(holes.until != null && t >= holes.until) && PL_HOLES.map(([x, y], i) => {
+        const at = holes.t + (i / PL_HOLES.length) * (holes.dur ?? 1.0);
+        if (t < at) return null;
+        const k = Math.min(1.3, pop(t, at, 0.2));
+        return <g key={i}><circle cx={x} cy={y} r={9 * k} fill={C.red} /><circle cx={x - 2} cy={y - 2} r={3 * k} fill="#FFFFFF" opacity={0.6} /></g>;
+      })}
+      {live(circle) && <>
+        {PL_ENG.map(([x, y], i) => <Circle key={i} cx={x} cy={y} r={50} seed={2040 + i} w={7} c={C.red} draw={ramp(t, circle!.t + i * 0.12, 0.3)} />)}
+        <Hand x={760} y={640} size={58} c={C.red} rot={-3} opacity={ramp(t, circle!.t + 0.5, 0.25)} halo>no holes here?!</Hand>
+      </>}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ gym: 1,024 students flip a coin, tails sit down */
+const GN = 1024, GC = 32, GS = 18, GX = 540, GY = 862;
+const GRANK: number[] = (() => { const ids = Array.from({ length: GN }, (_, i) => i); ids.sort((a, b) => (Math.abs(Math.sin(a * 91.7 + 3) * 4375.85) % 1) - (Math.abs(Math.sin(b * 91.7 + 3) * 4375.85) % 1)); const r = new Array(GN); ids.forEach((id, k) => { r[id] = k; }); return r; })();
+const gOut = (i: number) => { const k = GRANK[i]; if (k === 0) return 99; let r = 1; while ((k & ((1 << r) - 1)) === 0) r++; return r; };
+const gXY = (i: number): Pt => [GX + ((i % GC) - (GC - 1) / 2) * GS, GY + (Math.floor(i / GC) - (GC - 1) / 2) * GS];
+const GWIN = GRANK.indexOf(0);
+const gRound = (t: number, acts: A[]) => { const r = acts.find((a) => a.type === 'rounds'); return r && t >= r.t ? Math.min(10, Math.floor((t - r.t) / ((r.dur ?? 4) / 10)) + 1) : 0; };
+export const GymPanel: React.FC<PanelProps> = ({ t, acts }) => {
+  const spawn = one(acts, 'spawn'), winner = one(acts, 'winner');
+  if (!spawn || t < spawn.t) return <g><Ground /></g>;
+  const round = gRound(t, acts);
+  const rr = acts.find((a) => a.type === 'rounds');
+  const per = (rr?.dur ?? 4) / 10;
+  const w = winner && t >= winner.t ? ease.back(ramp(t, winner.t, 0.5), 1.3) : 0;
+  const [wx, wy] = gXY(GWIN);
+  const alive = GN >> round;
+  return (
+    <g>
+      <text x={60} y={520} style={{ ...displayCut(800, 75), fontSize: 140 }} fill={round >= 10 ? C.red : C.ink}>{alive.toLocaleString('en-US')}</text>
+      <Hand x={64} y={566} size={50} c={C.red} anchor="start">{round === 0 ? 'students, all standing' : round >= 10 ? 'ten heads in a row' : `still standing · flip ${round}`}</Hand>
+      {Array.from({ length: GN }, (_, i) => {
+        if (i === GWIN) return null;
+        const [x, y] = gXY(i);
+        const born = spawn.t + (Math.hypot(x - GX, y - GY) / 420) * 0.8;
+        if (t < born) return null;
+        const out = gOut(i);
+        const down = round >= out;
+        const tOut = rr ? rr.t + (out - 1) * per : 1e9;
+        const k = down ? ramp(t, tOut, 0.25) : 0;
+        return down
+          ? <line key={i} x1={x - 4} y1={y + 2} x2={x + 4} y2={y + 2} stroke={C.pencil} strokeWidth={2} opacity={0.35 + 0.65 * (1 - k)} />
+          : <circle key={i} cx={x} cy={y} r={6 * Math.min(1, pop(t, born, 0.2))} fill={C.paper} stroke={C.ink} strokeWidth={2.4} />;
+      })}
+      {w > 0
+        ? <Guy x={lerp(wx, GX, Math.min(1, w))} y={lerp(wy, 1100, Math.min(1, w))} s={0.4 + 1.2 * Math.min(1, w)} hero seed={2100} pose={POSE.cheer(t)}>
+            {(j) => <g transform={`translate(${j.head[0]} ${j.head[1] - 30})`}><Ink pts={[[-22, 6], [-26, -18], [-10, -4], [0, -24], [10, -4], [26, -18], [22, 6]]} seed={2101} w={4} fill={C.hl} close amp={0.6} /></g>}
+          </Guy>
+        : <circle cx={wx} cy={wy} r={6.5} fill={C.hl} stroke={C.ink} strokeWidth={2.6} />}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ stage: the lucky winner gives a talk; the 1,023 who sat down */
+export const StagePanel: React.FC<PanelProps> = ({ t, acts, def }) => {
+  const secret = one(acts, 'secret'), crowd = one(acts, 'crowd');
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  return (
+    <g>
+      {/* spotlight */}
+      <path d="M 470 360 L 260 1000 L 820 1000 L 610 360 Z" fill={C.hl} opacity={0.22} />
+      <Ink pts={[[200, 1000], [880, 1000], [880, 1050], [200, 1050]]} seed={2200} w={6} fill="#EDE6D2" close />
+      <Guy x={540} y={1000} s={1.55} hero seed={2210} pose={{ ...POSE.stand(t), armR: 150 + Math.sin(t * 5) * 12, armL: 40, mood: 'smile' }}>
+        {(j) => <g>
+          <g transform={`translate(${j.head[0]} ${j.head[1] - 30})`}><Ink pts={[[-22, 6], [-26, -18], [-10, -4], [0, -24], [10, -4], [26, -18], [22, 6]]} seed={2211} w={4} fill={C.hl} close amp={0.6} /></g>
+          <g transform={`translate(${j.handL[0]} ${j.handL[1]})`}><Ink pts={[[0, 0], [10, -30]]} seed={2212} w={5} /><Circle cx={12} cy={-38} r={10} seed={2213} w={4} fill={C.ink} /></g>
+        </g>}
+      </Guy>
+      {live(secret) && (
+        <g transform={`translate(540 520) scale(${Math.min(1.05, pop(t, secret!.t, 0.35))}) rotate(-2)`}>
+          <Ink pts={[[-300, -70], [300, -70], [300, 70], [-300, 70]]} seed={2220} w={5} fill="#FFFFFF" close />
+          <Hand x={0} y={-10} size={50} c={C.pencil}>{def.secretSmall ?? 'my secret:'}</Hand>
+          <Hand x={0} y={48} size={70} c={C.red}>{def.secret ?? 'lucky socks'}</Hand>
+        </g>
+      )}
+      {/* the ones who sat down, in front of the stage */}
+      {live(crowd) && Array.from({ length: 40 }, (_, i) => {
+        const row = Math.floor(i / 10), col = i % 10;
+        const x = 120 + col * 92 + (row % 2) * 40, y = 1085 + row * 26;
+        const at = crowd!.t + (col + row * 2) * 0.03;
+        if (t < at || x > 1000) return null;
+        return <g key={i} opacity={ramp(t, at, 0.2)}><Circle cx={x} cy={y} r={15} seed={2300 + i} w={3.5} c={C.pencil} fill={C.paper} /></g>;
+      })}
+      {live(crowd) && <Hand x={540} y={1160} size={58} c={C.red} halo opacity={ramp(t, crowd!.t + 0.4, 0.25)}>{def.crowdLabel ?? '1,023 who sat down'}</Hand>}
+    </g>
+  );
+};
+
+export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel, drafts: DraftsPanel, versions: VersionsPanel, rule: RulePanel, plane: PlanePanel, gym: GymPanel, stage: StagePanel };
 export { joints };

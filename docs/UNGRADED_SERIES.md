@@ -43,7 +43,7 @@ for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.
 |---|---|---|---|
 | 001 | `fail-ten-times` (3D) · `fail-ten-times-doodle` (notebook) | D. myth-bust | rendered, reviewed |
 | 002 | `first-draft` (notebook) | D. myth-bust, Rule Flip | rendered, reviewed |
-| 003 | `planes-came-back` (blueprint) | A. explainer + C. counted game | rendered, 67 s |
+| 003 | `planes-doodle` (notebook, younger audience) · alt. `planes-came-back` (blueprint) | A. explainer + C. counted game | rendered, 68.8 s / 67 s |
 
 ## Second art direction: the notebook (`composition: "Doodle"`, `src/doodle/`)
 Ballpoint stick figures on squared paper; the reel is one long sheet, each scene a page the camera slides to
@@ -61,6 +61,9 @@ Fonts: house fonts + Caveat Bold (handwriting on the page, OFL, `public/fonts/Ca
 | `drafts` | a writer at a desk, a pile of crossed-out "The End" pages | `count` {value, label, sub} (up to two, side by side) |
 | `versions` | three drafts side by side | `draft` {label, tone: messy/stiff/good} |
 | `rule` | one card turned over (`front`/`back`, `frontSmall`/`backSmall`) | `turn` |
+| `plane` | a doodled bomber, top view | `holes` {dur} · `patch` {part: wings/tail} (masking tape) · `circle` (red pen on the engines) · `ghost` (a plane that never came back) |
+| `gym` | 1,024 students, a coin game | `spawn` · `rounds` {dur} · `winner` (the last one grows into a crowned figure) |
+| `stage` | the winner gives a talk (`secret`, `secretSmall`, `crowdLabel`) | `secret` · `crowd` |
 Labels of `duel` (`leftLabel`, `leftLit`, `rightLabel`, `rightDim`, `badge`, `bubble`, `leftProp: pages`) and `bin` (`binLabel`, `ignoreLabel`, `worksLabel`) are set in the scene def.
 Episode: `fail-ten-times-doodle` (same voice as `fail-ten-times` via `audio`).
 
