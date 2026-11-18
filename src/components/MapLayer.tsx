@@ -17,6 +17,8 @@ export function fillAt(id: string, t: number, declares: TimedAction[], recolors:
   if (!d) return PALETTE.start;
   const target = d.color ?? PALETTE.ids[id] ?? theme.accent;
   if (d.t <= 0.05) return target; // a state given on frame 0 is already there (no flash)
+  const prev = mine.length > 1 ? (mine[mine.length - 2].color ?? PALETTE.ids[id] ?? theme.accent) : PALETTE.start;
+  if (d.quiet) return interpolateColors(t, [d.t, d.t + SETTLE], [prev, target]); // silent change: straight fade, no flash
   if (t < d.t + FLASH) return interpolateColors(t, [d.t, d.t + FLASH], [mine.length > 1 ? (mine[mine.length - 2].color ?? PALETTE.ids[id] ?? theme.accent) : PALETTE.start, '#FFF6E0']);
   return interpolateColors(t, [d.t + FLASH, d.t + FLASH + SETTLE], ['#FFF6E0', target]);
 }

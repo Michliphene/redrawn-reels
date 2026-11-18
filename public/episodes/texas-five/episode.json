@@ -49,7 +49,6 @@
  "counter": false,
  "legend": false,
  "keywords": [
-  "Texas",
   "Mexico",
   "Wyoming",
   "Santa",
@@ -59,7 +58,6 @@
   "Colorado",
   "Kansas",
   "Oklahoma",
-  "New",
   "lawyers",
   "disagree."
  ],
@@ -178,8 +176,7 @@
       -60
      ],
      "atWord": "San",
-     "hold": 2.4,
-     "caption": "21 Apr 1836"
+     "hold": 2.4
     },
     {
      "type": "label",
@@ -229,11 +226,11 @@
      "noLabel": true
     },
     {
-     "type": "region",
+     "type": "label",
      "text": "claimed · approximate",
      "at": [
-      -104.2,
-      36.3
+      -104.6,
+      35.2
      ],
      "atWord": "far",
      "hold": 2.2
@@ -297,7 +294,7 @@
       41.5
      ],
      "atWord": "Wyoming.",
-     "hold": 2.0
+     "hold": 0.8
     },
     {
      "type": "pulse",
@@ -342,8 +339,11 @@
    "id": "1845",
    "say": "In {1845|eighteen forty-five}, Texas joins the United States. And the deal has a clause: up to four new states can be carved out of it, if Texas agrees.",
    "camera": {
-    "fit": "TX",
-    "pad": 0.1,
+    "center": [
+     -101.5,
+     35.0
+    ],
+    "span": 24,
     "pitch": 54,
     "yaw": 10,
     "cut": true
@@ -358,17 +358,6 @@
      "atWord": "joins"
     },
     {
-     "type": "sticker",
-     "flag": "us",
-     "x": 790,
-     "y": 700,
-     "size": 130,
-     "tilt": 6,
-     "text": "28TH STATE",
-     "atWord": "United",
-     "hold": 2.4
-    },
-    {
      "type": "callout",
      "text": "THE 1845 DEAL",
      "sub": "up to 4 new states · with Texas's consent",
@@ -381,7 +370,17 @@
      "type": "ghost",
      "id": "SPLIT",
      "atWord": "four",
-     "hold": 3.0
+     "hold": 2.6
+    },
+    {
+     "type": "label",
+     "text": "28th state",
+     "at": [
+      -98.0,
+      31.6
+     ],
+     "atWord": "United",
+     "hold": 2.2
     }
    ]
   },
@@ -400,11 +399,11 @@
    "date": "1850-11-25",
    "actions": [
     {
-     "type": "pulse",
-     "ids": [
-      "CLAIM"
-     ],
-     "atWord": "gives"
+     "type": "declare",
+     "id": "CLAIM",
+     "atWord": "gives",
+     "noLabel": true,
+     "color": "#C9D3DF"
     },
     {
      "type": "bigNumber",
@@ -412,16 +411,9 @@
      "prefix": "$",
      "suffix": "M",
      "label": "debt relief · Compromise of 1850",
-     "y": 990,
+     "y": 900,
      "atWord": "million",
      "hold": 1.5
-    },
-    {
-     "type": "conceal",
-     "ids": [
-      "CLAIM"
-     ],
-     "atWord": "debts."
     }
    ]
   },
@@ -463,10 +455,10 @@
      "text": "Kansas",
      "at": [
       -101.3,
-      37.45
+      37.75
      ],
      "atWord": "Kansas,",
-     "hold": 1.5
+     "hold": 0.65
     },
     {
      "type": "label",
@@ -486,21 +478,7 @@
       41.5
      ],
      "atWord": "Wyoming.",
-     "hold": 1.5
-    },
-    {
-     "type": "reveal",
-     "ids": [
-      "CLAIM"
-     ],
-     "atWord": "Half"
-    },
-    {
-     "type": "conceal",
-     "ids": [
-      "CLAIM"
-     ],
-     "atWord": "Wyoming."
+     "hold": 0.75
     }
    ]
   },
@@ -520,6 +498,13 @@
       "TX"
      ],
      "atWord": "shape."
+    },
+    {
+     "type": "conceal",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "That's"
     }
    ]
   },
@@ -544,13 +529,33 @@
     {
      "type": "callout",
      "text": "STILL VALID?",
-     "sub": "yes: Kesavan & Paulsen (2004) · no: Art. IV §3",
-     "size": 70,
+     "sub": "for: Kesavan & Paulsen (2004) · against: Art. IV §3 · never tested in court",
+     "size": 64,
      "y": 960,
      "atWord": "valid?",
      "hold": 2.4,
      "stamp": "DISPUTED",
      "stampWord": "disagree."
+    },
+    {
+     "type": "label",
+     "text": "never used · 1845 → today",
+     "at": [
+      -99.5,
+      27.4
+     ],
+     "atWord": "never",
+     "hold": 1.3
+    },
+    {
+     "type": "label",
+     "text": "illustration",
+     "at": [
+      -99.6,
+      26.4
+     ],
+     "atWord": "valid?",
+     "hold": 1.6
     }
    ]
   },

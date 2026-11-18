@@ -80,7 +80,7 @@ export const Callouts: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, a
           <div style={{ position: 'relative', background: 'rgba(11,17,32,0.92)', border: `4px solid ${theme.accent}`, borderRadius: Math.min(16, theme.radius), padding: '22px 40px',
             transform: `scale(${0.8 + 0.2 * s})`, textAlign: 'center', boxShadow: theme.radius ? '0 20px 50px rgba(0,0,0,0.6)' : theme.shadow }}>
             <div style={{ fontFamily: theme.font, fontWeight: 900, fontSize: a.size ?? 84, color: theme.text, lineHeight: 1 }}>{a.text}</div>
-            {a.sub && <div style={{ fontFamily: theme.font, fontWeight: 700, fontSize: 30, color: theme.accent, marginTop: 10 }}>{a.sub}</div>}
+            {a.sub && <div style={{ fontFamily: theme.font, fontWeight: 700, fontSize: theme.radius ? 30 : 36, color: theme.accent, marginTop: 10 }}>{a.sub}</div>}
             {st > 0 && <div style={{ position: 'absolute', right: -30, top: -(((a as any).stampSize ?? 38) * 1.7), transform: `rotate(12deg) scale(${2.2 - 1.2 * st})`, opacity: st,
               fontFamily: theme.font, fontWeight: 900, fontSize: (a as any).stampSize ?? 38, color: '#E8443A', border: '5px solid #E8443A', borderRadius: 6, padding: '2px 12px',
               background: 'rgba(11,17,32,0.9)', letterSpacing: 2, whiteSpace: 'nowrap' }}>{a.stamp}</div>}
