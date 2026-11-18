@@ -62,20 +62,13 @@
  "legend": false,
  "keywords": [
   "Antarctica",
-  "Britain",
-  "Zealand",
-  "France",
-  "Australia",
-  "Norway",
-  "Chile",
-  "Argentina",
   "Emilio",
   "Palma",
-  "Russia",
   "nobody",
   "Texas",
   "unclaimed",
-  "counts"
+  "counts.",
+  "treaty"
  ],
  "beats": [
   {
@@ -87,11 +80,84 @@
    },
    "actions": [
     {
-     "type": "pulse",
-     "ids": [
-      "TRI"
-     ],
-     "atWord": "same"
+     "type": "declare",
+     "id": "GBR",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "AG",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false,
+     "color": "#B56576"
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false,
+     "color": "#FF4FA3"
+    },
+    {
+     "type": "declare",
+     "id": "CG",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false,
+     "color": "#B56576"
+    },
+    {
+     "type": "declare",
+     "id": "CHL",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "NOR",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "AUS",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "AUS2",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "FRA",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "NZL",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
+    },
+    {
+     "type": "declare",
+     "id": "NONE",
+     "atTime": 0,
+     "noLabel": true,
+     "count": false
     },
     {
      "type": "sticker",
@@ -135,6 +201,14 @@
      "tilt": 9,
      "atWord": "same",
      "hold": 1.4
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atWord": "same",
+     "noLabel": true,
+     "count": false,
+     "color": "#FF4FA3"
     }
    ]
   },
@@ -152,6 +226,105 @@
    },
    "date": "1908",
    "actions": [
+    {
+     "type": "declare",
+     "id": "GBR",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "AG",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "TRI",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "CG",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "CHL",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "NOR",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "AUS",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "AUS2",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "FRA",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "NZL",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "NONE",
+     "atTime": 4.5,
+     "noLabel": true,
+     "count": false,
+     "color": "#DCE6EE",
+     "quiet": true
+    },
     {
      "type": "declare",
      "id": "GBR",
@@ -310,10 +483,10 @@
    "say": "Then Chile claims a slice right on top of Britain's. And Argentina claims one on top of both.",
    "camera": {
     "center": [
-     -63,
-     -73
+     -62,
+     -70.5
     ],
-    "span": 27,
+    "span": 29,
     "pitch": 40,
     "yaw": -22,
     "cut": true
@@ -355,7 +528,7 @@
     },
     {
      "type": "chapter",
-     "text": "Argentina: dates vary, 1940s",
+     "text": "Argentina: dates vary, 1939–47",
      "atWord": "Argentina"
     },
     {
@@ -385,19 +558,19 @@
      "hold": 2.2
     },
     {
-     "type": "region",
-     "text": "UK + Chile + Argentina",
-     "at": [
-      -63,
-      -71.5
-     ],
-     "atWord": "both.",
-     "hold": 2.0
-    },
-    {
      "type": "shake",
      "amount": 8,
      "atWord": "both."
+    },
+    {
+     "type": "label",
+     "text": "3 claims: UK · Chile · Argentina",
+     "at": [
+      -72,
+      -66
+     ],
+     "atWord": "both.",
+     "hold": 2.4
     }
    ]
   },
@@ -419,7 +592,7 @@
      "size": 64,
      "y": 1010,
      "atWord": "treaty",
-     "hold": 3.4,
+     "hold": 2.9,
      "stamp": "FROZEN",
      "stampWord": "freezes"
     },
@@ -441,8 +614,8 @@
     },
     {
      "type": "chapter",
-     "text": "every claim frozen, none given up",
-     "atWord": "freezes"
+     "text": "Antarctic Treaty, Washington",
+     "atWord": "A"
     }
    ]
   },
@@ -468,8 +641,8 @@
       -56.99,
       -63.4
      ],
-     "atWord": "flies",
-     "hold": 7
+     "atWord": "Argentina",
+     "hold": 6.9
     },
     {
      "type": "units",
@@ -481,8 +654,8 @@
      "count": 1,
      "spread": 10,
      "size": 70,
-     "atWord": "pregnant",
-     "hold": 5,
+     "atWord": "Emilio",
+     "hold": 3.3,
      "caption": "Emilio Palma · born 7 Jan 1978",
      "offset": [
       0,
@@ -499,17 +672,7 @@
     {
      "type": "chapter",
      "text": "Esperanza Base, Argentina",
-     "atWord": "flies"
-    },
-    {
-     "type": "label",
-     "text": "1st birth on the continent",
-     "at": [
-      -57.4,
-      -64.7
-     ],
-     "atWord": "first",
-     "hold": 2.0
+     "atWord": "But"
     },
     {
      "type": "pulse",
@@ -519,6 +682,16 @@
       "CG"
      ],
      "atWord": "Antarctica."
+    },
+    {
+     "type": "label",
+     "text": "claimed by UK · Chile · Argentina",
+     "at": [
+      -62,
+      -67.5
+     ],
+     "atWord": "base.",
+     "hold": 1.6
     }
    ]
   },
@@ -534,7 +707,7 @@
     "pitch": 48,
     "yaw": -12
    },
-   "date": "1984-11-21",
+   "date": "1984-11",
    "actions": [
     {
      "type": "marker",
@@ -557,7 +730,7 @@
      "spread": 10,
      "size": 70,
      "atWord": "baby",
-     "hold": 2.6,
+     "hold": 1.9,
      "caption": "Juan Pablo Camacho · Nov 1984",
      "offset": [
       0,
@@ -591,7 +764,7 @@
      "size": 60,
      "y": 1010,
      "atWord": "Under",
-     "hold": 2.2,
+     "hold": 1.9,
      "stamp": "VOID",
      "stampWord": "counts."
     }
@@ -611,8 +784,8 @@
     {
      "type": "sticker",
      "flag": "us",
-     "x": 330,
-     "y": 760,
+     "x": 190,
+     "y": 700,
      "size": 150,
      "tilt": -6,
      "text": "USA",
@@ -622,8 +795,8 @@
     {
      "type": "sticker",
      "flag": "ru",
-     "x": 690,
-     "y": 760,
+     "x": 880,
+     "y": 700,
      "size": 150,
      "tilt": 6,
      "text": "RUSSIA",
@@ -647,11 +820,26 @@
      "atWord": "recognise"
     },
     {
+     "type": "shake",
+     "amount": 4,
+     "atWord": "own."
+    },
+    {
      "type": "pulse",
      "ids": [
+      "GBR",
+      "AG",
+      "TRI",
+      "CG",
+      "CHL",
+      "NOR",
+      "AUS",
+      "AUS2",
+      "FRA",
+      "NZL",
       "NONE"
      ],
-     "atWord": "right"
+     "atWord": "own."
     }
    ]
   },
@@ -715,8 +903,8 @@
      "type": "label",
      "text": "2 Texas",
      "at": [
-      -114,
-      -73.6
+      -112,
+      -74.6
      ],
      "atWord": "size",
      "hold": 1.2
@@ -737,9 +925,9 @@
      "decimals": 1,
      "suffix": "M km²",
      "label": "our calculation · 590,000 sq mi",
-     "y": 900,
+     "y": 930,
      "atWord": "unclaimed",
-     "hold": 2.2,
+     "hold": 1.4,
      "from": 0.6
     }
    ]

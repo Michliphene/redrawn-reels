@@ -39,7 +39,7 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
       const f = byId.get(a.id); const ll = (f?.properties as any)?.label;
       if (!ll) return; const [x, y] = pt(ll);
       // shockwave ring in the republic's colour
-      if (t >= a.t && t < a.t + 0.9) {
+      if (a.t > 0.05 && !(a as any).quiet && t >= a.t && t < a.t + 0.9) {
         const r = interpolate(t, [a.t, a.t + 0.9], [10, 190]);
         const o = interpolate(t, [a.t, a.t + 0.9], [0.9, 0]);
         nodes.push(<div key={`w${i}`} style={{ position: 'absolute', left: x - r, top: y - r, width: r * 2, height: r * 2, borderRadius: '50%',

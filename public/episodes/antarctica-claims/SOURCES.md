@@ -17,8 +17,8 @@ Topic #16 of the bible ("How Antarctica got 7 claims — and none count"), angle
 11. So who owns Antarctica? Depends who you ask. Because… → (loop) "Seven countries claim Antarctica."
 
 Wording choices: "Then Chile… And Argentina…" orders the two claims in the script only loosely — Chile's decree is
-dated 6 Nov 1940; Argentina's formal claim is dated variously 1939–1947 (see below), so the screen shows
-"Argentina: dates vary, 1940s" and no year for it. No motive is stated for the 1978 birth on screen or in voice
+dated 6 Nov 1940; Argentina's formal claim is dated variously 1939–1947 (see below; 47 = 1947), so the screen shows
+"Argentina: dates vary, 1939–47" and no single year for it. No motive is stated for the 1978 birth on screen or in voice
 (widely reported as a sovereignty move, see Atlas Obscura) — the viewer sees the base inside the triple overlap.
 
 ## Facts used
@@ -32,7 +32,7 @@ dated 6 Nov 1940; Argentina's formal claim is dated variously 1939–1947 (see b
 | Australia 1933 | Order in Council 1933 (Acceptance Act in force 1936) — **dates vary 1933/1936** → screen shows 1933 = date of the claim instrument | Wikipedia, Australian Antarctic Territory; logged |
 | Norway 1939 | Queen Maud Land, 14 Jan 1939; 20°W–44°38′E; inland limit clarified to the pole in 2015 | NPI; Wikipedia, Queen Maud Land |
 | Chile 1940 | Decree of 6 Nov 1940; 53°W–90°W | Wikipedia, Chilean Antarctic Territory |
-| Argentina 1940s | **DATES VARY** (1939, 1940, 1942, 1943, 1947 in different sources); sector 25°W–74°W | Wikipedia, Argentine Antarctica; search results summarised in session — on screen "dates vary, 1940s" |
+| Argentina 1940s | **DATES VARY** (1939, 1940, 1942, 1943, 1947 in different sources); sector 25°W–74°W | Wikipedia, Argentine Antarctica; search results summarised in session — on screen "dates vary, 1939–47" |
 | Antarctic Treaty signed 1959 | signed 1 Dec 1959 in Washington, in force 23 Jun 1961 | Treaty text (Wikisource); Secretariat of the Antarctic Treaty |
 | "Freezes it all. No new claims. No bigger ones." | Art. IV(2): "no new claim, or enlargement of an existing claim … shall be asserted while the present Treaty is in force" | Treaty text, Art. IV |
 | "None of it counts" | Art. IV(2): "No acts or activities taking place while the present Treaty is in force shall constitute a basis for asserting, supporting or denying a claim" | Treaty text, Art. IV |

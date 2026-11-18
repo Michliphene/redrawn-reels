@@ -6,7 +6,9 @@ export type Action =
       /** colour of the piece from now on (default: palette.ids[id]); a later declare of the same id re-claims it */
       color?: string;
       /** false: not counted by the tally / time rail (a second claim on a piece already counted) */
-      count?: boolean }
+      count?: boolean;
+      /** a silent state change: no shockwave, no jump, no sound (e.g. wiping the board back to blank) */
+      quiet?: boolean }
   | { type: 'pulse'; ids: string[]; atWord?: string }
   | { type: 'label'; text: string; at: LonLat; size?: 'xl' | 'md'; hold?: number; atWord?: string; flag?: string }
   | { type: 'marker'; text: string; at: LonLat; hold?: number; atWord?: string }

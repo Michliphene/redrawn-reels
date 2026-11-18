@@ -25,11 +25,14 @@ function paginate(timings: Timings, maxChars: number, maxLines: number, hidden: 
     const total = ws.map((w) => w.w).join(' ').length;
     if (total <= maxChars || ws.length === 1 || maxLines === 1) lines.push(ws);
     else {
-      let best = 1, bestDiff = Infinity;
+      // if no break keeps both lines under maxChars, take the one with the shortest longer line (never a lone word)
+      let best = 1, bestDiff = Infinity, fb = 1, fbMax = Infinity;
       for (let i = 1; i < ws.length; i++) {
         const a = ws.slice(0, i).map((w) => w.w).join(' ').length, b = ws.slice(i).map((w) => w.w).join(' ').length;
         if (a <= maxChars && b <= maxChars && Math.abs(a - b) < bestDiff) { best = i; bestDiff = Math.abs(a - b); }
+        if (Math.max(a, b) < fbMax) { fb = i; fbMax = Math.max(a, b); }
       }
+      if (bestDiff === Infinity) best = fb;
       lines.push(ws.slice(0, best), ws.slice(best));
     }
     pages.push({ words: ws, lines });
