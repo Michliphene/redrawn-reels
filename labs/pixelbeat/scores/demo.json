@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "id": "demo",
+    "title": "Chain Reaction",
+    "scene": "chain-reaction",
+    "bpm": 120,
+    "fps": 30,
+    "beatsPerBar": 4,
+    "lengthBeats": 80,
+    "key": "A",
+    "seed": 7
+  },
+  "chords": ["Am", "F", "C", "G"],
+  "sections": [
+    {"name": "hook",   "start": 0,  "length": 8,  "music": {"drums": "hats",  "arp": true}},
+    {"name": "build1", "start": 8,  "length": 16, "music": {"drums": "four",  "bass": true, "arp": true}},
+    {"name": "build2", "start": 24, "length": 12, "music": {"drums": "four",  "bass": true, "arp": true, "lead": true}},
+    {"name": "drop",   "start": 36, "length": 4,  "music": {"drums": "none"}},
+    {"name": "boom",   "start": 40, "length": 16, "music": {"drums": "break", "bass": true, "lead": true}},
+    {"name": "payoff", "start": 56, "length": 24, "music": {"drums": "hats",  "bass": true, "arp": true}}
+  ],
+  "events": [
+    {"beat": 0, "type": "title", "until": 7.5, "lines": ["WHAT HAPPENS WHEN", "ONE NEUTRON HITS?"]},
+    {"beat": 4, "type": "neutron"},
+    {"beat": 7, "type": "hit"},
+
+    {"beat": 8, "type": "split"}, {"beat": 10, "type": "split"}, {"beat": 12, "type": "split"}, {"beat": 14, "type": "split"},
+    {"beat": 16, "type": "split"}, {"beat": 18, "type": "split"}, {"beat": 20, "type": "split"}, {"beat": 22, "type": "split"},
+    {"beat": 24, "type": "split"}, {"beat": 25, "type": "split"}, {"beat": 26, "type": "split"}, {"beat": 27, "type": "split"},
+    {"beat": 28, "type": "split"}, {"beat": 29, "type": "split"}, {"beat": 30, "type": "split"}, {"beat": 31, "type": "split"},
+    {"beat": 32, "type": "split"}, {"beat": 32.5, "type": "split"}, {"beat": 33, "type": "split"}, {"beat": 33.5, "type": "split"},
+    {"beat": 34, "type": "split"}, {"beat": 34.5, "type": "split"}, {"beat": 35, "type": "split"}, {"beat": 35.5, "type": "split"},
+
+    {"beat": 36, "type": "riser", "length": 4, "toGeneration": 80},
+    {"beat": 40, "type": "flash"},
+    {"beat": 40, "type": "boom"},
+    {"beat": 44, "type": "panel", "until": 54, "lines": [["80 GENERATIONS", "accent"], ["IN ABOUT 1 MICROSECOND", "white"]]},
+    {"beat": 58, "type": "panel", "until": 72, "lines": [["1 GRAM OF MASS", "accent"], ["= 20,000 TONS OF TNT", "white"]]},
+    {"beat": 72, "type": "loop"}
+  ]
+}
