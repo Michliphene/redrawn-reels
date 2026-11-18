@@ -1,0 +1,27 @@
+{
+  "name": "pixelbeat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./build.sh scores/demo.json",
+    "studio": "remotion studio src/index.ts",
+    "preview": "tsx tools/preview.ts",
+    "audio": "tsx audio/synth.ts",
+    "check": "python3 tools/check_sync.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "^4.0.545",
+    "@types/react": "^18.3.31",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.545",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.23.15"
+  }
+}

@@ -81,6 +81,27 @@ The five rules (details and measurements in `docs/STUDIO.md`):
 8. **Review**: run the `reel-reviewer` then the `virality-reviewer` agent; write `docs/REVIEW_<id>.md`.
 9. **Post**: `.claude/skills/post/SKILL.md` (`pipeline/post.sh <EP n | id>`), only when the owner asks.
 
+## Lab: `labs/pixelbeat` — pixel-art reels synced to music (@bit_wonder style)
+Self-contained Remotion project (own `package.json`, not part of `npm test` / the studio `tsconfig`). Not a series
+yet: no entry in `studio.json`, no board stages. Full manual: `labs/pixelbeat/README.md`.
+- **A score, not a script**: `scores/<id>.json` = `bpm`, `chords` (one per bar), music `sections`, `events` placed in
+  **beats** (never seconds). The chiptune synth (`audio/synth.ts`) and the scene (`src/scenes/*.ts`, pure
+  `draw(fb, score, beat)`) read the same score and share the rhythm helpers of `src/score/timing.ts`
+  (`rollHits`, `typedChars`, `typeTicks`…) → every sound lands on the frame of its visual by construction.
+- **Look**: native 180×320 indexed framebuffer scaled ×6 nearest-neighbour (measured on @bit_wonder: 6×6 px),
+  hue-shifted palette ramps, Bayer dithering (gradients and fades only), 1 px outlines, home-made 5×7 bitmap font.
+  Camera/shake in whole pixels and only on the rhythm grid. Deterministic (`hash`, seed).
+- **Sync rules**: 30 fps with 90/100/120/150 BPM; every hard visual change sits on an event or on
+  `Math.floor(beat*4)`; the riser stops ½ beat before the boom (true silence + frozen image), boom + flash on the beat;
+  the last frames redraw the first (seamless loop).
+- Run from `labs/pixelbeat`: `npm i`, `./build.sh scores/<id>.json` (synth → −14 LUFS linear gain + limiter → render
+  → QA), `npx tsx tools/preview.ts scores/<id>.json 0,8,36,40 out/preview.png` to look before rendering.
+  `CHROME=/opt/pw-browsers/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell` in the cloud.
+- **QA gate** `tools/check_sync.py out/<id>.mp4 scores/<id>.json` (numpy + ffmpeg) on the final MP4: format, detected
+  tempo vs score, ≥ 70 % of visual hits with a sound, score events without sound, drop contrast ≥ 12 dB, dead air
+  > 2 s, −16…−12 LUFS. Exit 1 = fix (`unsynced_visual_hits_s` says where). Demo (`demo`, chain reaction): OK.
+- Same non-negotiables as the studio (sources for every fact, English on screen, no Higgsfield, no posting without go).
+
 ## Pipeline facts
 - Voice: ElevenLabs, voice **Brian** `nPczCjzI2devNBz1zQrb`, `eleven_multilingual_v2`, speed ~1.12, pauses capped
   0.28 s. The API key is injected by the cloud environment proxy (header `xi-api-key`). multilingual_v2 ignores
