@@ -1,5 +1,7 @@
 import { execFileSync, spawnSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as cues from '../src/lib/schedule';
@@ -79,6 +81,82 @@ test('reviewer CLI exports canonical cues and shared audio identity', () => {
   const unknown = spawnSync(process.execPath, ['scripts/resolve-cues.mjs', 'unknown-episode'], { encoding: 'utf8' });
   assert.notEqual(unknown.status, 0);
   assert.equal(unknown.stdout, '');
+});
+
+test('reviewer CLI reflects the selected DA and drops the missing USSR portrait and flag assets', () => {
+  const run = (...args: string[]) => JSON.parse(execFileSync(process.execPath, ['scripts/resolve-cues.mjs', 'ussr-1991-v2', ...args], { encoding: 'utf8' }));
+  assert.equal(run().da, 2);
+  for (const da of [1, 2]) {
+    const result = run('--da', String(da));
+    assert.equal(result.da, da);
+    const portraits = result.actions.filter((a: Action) => a.type === 'portrait').map((a: { key: string }) => a.key);
+    assert.ok(portraits.includes('gorbachev'));
+    for (const key of ['landsbergis', 'kravchuk', 'shushkevich']) assert.ok(!portraits.includes(key), key);
+    const georgia = result.actions.find((a: { beat: string; type: string }) => a.beat === 'geo' && a.type === 'declare');
+    assert.ok(georgia);
+    assert.ok(!('flag' in georgia));
+  }
+});
+
+test('reviewer CLI accepts only a single explicit DA of 1 or 2', () => {
+  for (const args of [['--da'], ['--da', '0'], ['--da', '3'], ['--da', '02'], ['--da', '2', '--da', '1']]) {
+    const result = spawnSync(process.execPath, ['scripts/resolve-cues.mjs', 'ussr-1991-v2', ...args], { encoding: 'utf8' });
+    assert.equal(result.status, 2, result.stderr);
+    assert.equal(result.stdout, '');
+    assert.match(result.stderr, /--da.*1.*2/);
+  }
+});
+
+test('reviewer CLI applies Root’s local asset predicates before resolving action words', (t) => {
+  const root = mkdtempSync(join(tmpdir(), 'studio-cues-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  for (const file of ['scripts/resolve-cues.mjs', 'scripts/validate.mjs', 'src/lib/media.ts', 'src/lib/schedule.ts', 'public/studio.json']) {
+    const dest = join(root, file);
+    mkdirSync(dirname(dest), { recursive: true });
+    copyFileSync(file, dest);
+  }
+  const write = (file: string, contents: string) => {
+    const dest = join(root, 'public', file);
+    mkdirSync(dirname(dest), { recursive: true });
+    writeFileSync(dest, contents);
+  };
+  write('episodes/fixture/episode.json', JSON.stringify({
+    ...episode(),
+    beats: [{ ...episode().beats[0], actions: [
+      { type: 'portrait', key: 'fits' },
+      { type: 'portrait', key: 'tiny', atWord: 'Unspoken' },
+      { type: 'chapter', text: 'lottie', emoji: 'lottie' },
+      { type: 'sticker', text: 'png', emoji: 'png' },
+      { type: 'chapter', text: 'missing', emoji: 'missing', atWord: 'Unspoken' },
+      { type: 'flagSwap', from: 'valid', to: 'valid' },
+      { type: 'flagSwap', from: 'valid', to: 'invalid', atWord: 'Unspoken' },
+      { type: 'declare', id: 'a', flag: 'invalid' },
+      { type: 'declare', id: 'b', flag: 'valid' },
+    ] }, episode().beats[1]],
+  }));
+  write('episodes/fixture/timings.json', JSON.stringify(timings));
+  write('assets/portraits/fits.jpg', 'x'.repeat(1001));
+  write('assets/portraits/tiny.jpg', 'x'.repeat(1000));
+  write('assets/emoji/lottie.json', 'Root checks MIME regardless of the JSON body');
+  mkdirSync(join(root, 'public/assets/emoji/png.json'));
+  write('assets/emoji/png.png', 'Root checks MIME regardless of the PNG body');
+  write('assets/flags/valid.svg', '<?xml version="1.0"?><svg/>');
+  write('assets/flags/invalid.svg', '<html>not an SVG</html>');
+
+  const run = (...args: string[]) => spawnSync(process.execPath, ['scripts/resolve-cues.mjs', 'fixture', ...args], { cwd: root, encoding: 'utf8' });
+  const flat = run('--da', '1');
+  assert.equal(flat.status, 0, flat.stderr);
+  assert.deepEqual(JSON.parse(flat.stdout).actions, [
+    { type: 'portrait', key: 'fits', beat: 'a', t: 0.2 },
+    { type: 'chapter', text: 'lottie', emoji: 'lottie', beat: 'a', t: 0.2 },
+    { type: 'sticker', text: 'png', emoji: 'png', beat: 'a', t: 0.2 },
+    { type: 'flagSwap', from: 'valid', to: 'valid', beat: 'a', t: 0.2 },
+    { type: 'declare', id: 'a', beat: 'a', t: 0.2 },
+    { type: 'declare', id: 'b', flag: 'valid', beat: 'a', t: 0.2 },
+  ]);
+  const atlas = run('--da', '2');
+  assert.equal(atlas.status, 1);
+  assert.match(atlas.stderr, /DA 2.*camera/i);
 });
 
 test('remaster voice, music and timing paths use the same audio identity', async () => {

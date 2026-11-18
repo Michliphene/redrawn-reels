@@ -9,13 +9,20 @@ RECEIPTS money reel. The repo's CLAUDE.md rules apply; `docs/STUDIO.md` is the a
 world with crisp type), `audio` the episode whose voice and `timings.json` it reuses (a remaster).
 
 ## Inputs
-- Episode id `<id>`. Video: `out/<id>.mp4`. Cues: `public/episodes/<id>/episode.json`, timings `timings.json`, facts `SOURCES.md`.
-- Run `python3 pipeline/review_frames.py <id>` → `out/review/<id>/beat_XX_*.jpg` (start/middle/end of each beat,
-  with the spoken words) and `out/review/<id>/cues.md` (every cue at its resolved time). **Look at every sheet.**
-- For a closer look at a moment: `ffmpeg -ss <t> -i out/<id>.mp4 -frames:v 1 -vf scale=540:-1 /tmp/x.jpg` and Read it.
-- Run `npm run validate <id>`: every `✗` is a P1, every `!` must be fixed or justified in your report.
-- DA 2 only: `npm run stills <id> -- --times 0,<hook end>,<mid>,<last beat> --props '{"guides":true}'` draws the
-  platform safe area in red and the four bands; Read `out/stills/<id>/sheet.jpg`.
+- Require the episode ID, delivery render manifest, and exact MP4. Read the manifest's engine and recipe.
+  Run `python pipeline/review_frames.py <id> --manifest <manifest.json> --video <video.mp4>` and
+  `python pipeline/virality_metrics.py <id> --manifest <manifest.json> --video <video.mp4>`.
+  Omitting `--video` uses the repo-relative path in the manifest.
+- Read `out/review/<id>/<video-sha256>/frames_status.json` and `virality_status.json`. Confirm their
+  `videoSha256`, `renderSha256`, and `inputsSha256` match the output of
+  `node scripts/delivery.mjs inspect <id> --manifest <manifest.json>`. Open the files listed by the indexes, including every beat sheet or
+  overview, `cues.md`, loop image, and metrics. Record failed commands and incomplete coverage. For raea,
+  manually check the rendered MP4 and record the missing exact engine timeline.
+- Read `public/episodes/<id>/SOURCES.md` and the episode and voice-timing inputs where applicable.
+  Run `npm run validate <id>` for the applicable Remotion source. Every ✗ is a P1 and every ! needs resolution
+  or justification. Use guide renders as reference previews. Check the safe areas on the actual MP4.
+- Watch and listen to the MP4 end to end, including pronunciation, audio transitions, and final payoff.
+  Record any unavailable playback, listening, source, rights, or recipe checks as incomplete.
 
 ## What to judge (in this order)
 1. **Can a viewer who has never seen a map follow?** At every moment: is it obvious WHERE we are (named place,
@@ -26,7 +33,15 @@ world with crisp type), `audio` the episode whose voice and `timings.json` it re
    DA 1: elements hidden under the captions band (y ≈ 1380–1560) or the timeline (y ≈ 1640–1760).
    DA 2: anything readable above y=250, below y=1440, or right of x=930 under y=860 is a P1 (the platform interface
    covers it); anything in the header block (y 250–600) colliding with a card; captions (y 1170–1410) covered.
-4. **Accuracy**: every on-screen date/number/claim must match `SOURCES.md`. Anachronisms (flags, borders, names).
+4. **Accuracy and claims coverage**: compare the proposed `public/episodes/<id>/CLAIMS.json` with the facts
+   spoken in the exact MP4, shown on screen, and stated in the proposed delivery kit, including covers and
+   platform copy. Check each claim's wording, unit, period, and support in `SOURCES.md`. Check flags,
+   borders, and names for anachronisms.
+   - Record unsupported, mismatched, or unobserved inventory IDs with the claim, timecode or kit file,
+     and the source gap or discrepancy. For a fact missing from the inventory, quote the fact and its
+     location and mark it as having no inventory ID. Record unavailable inputs as incomplete coverage.
+   - Leave the inventory untouched. Report coverage and support findings for the owner, who verifies the
+     references and approves every inventory ID. Reserve source approval for the owner.
 5. **Pacing & hook**: frame 0 must already be striking; the loop end must visually match the start.
 6. **Visual richness**: DA 1: suggest icons/emoji stickers, chapter chips, archive images, comparisons — using the
    existing cue types (see CLAUDE.md) or describe a new component precisely if one is needed.
@@ -37,9 +52,42 @@ world with crisp type), `audio` the episode whose voice and `timings.json` it re
    changes as JSON. RECEIPTS: the source line must be on screen for the whole reel.
 
 ## Output
-Write `docs/review/<id>-pass<N>.md`:
-- A verdict (postable? score /10) and the 3 biggest problems.
-- A numbered list: **[P1/P2/P3] beat id · time · problem · fix**. Fixes must be concrete: the exact
-  `episode.json` change (JSON snippet) or the precise component change. P1 = blocks posting.
-Do not edit source files yourself unless explicitly asked; the producer applies fixes and re-renders.
-Keep the report under ~120 lines. Return a 10-line summary as your final message.
+Write a report under `docs/review/` with the episode, engine, MP4 SHA-256, verdict, score /10, and three biggest
+problems. Distinguish **measured** media results, **estimated** or visually judged results, and **incomplete**
+checks. Review source lines, asset rights and credits, sync, reading time, safe areas, format, loop, and audio.
+Use measured LUFS and true peak where available. The authored Remotion cue schedule uses verified render
+inputs. Verify cue appearance and sync in the MP4.
+Each finding needs a stable finding ID,
+severity (P1/P2/P3), beat and timecode, evidence, owner, status, and a concrete fix and verification step.
+P1 blocks posting. Keep the report under about 120 lines.
+
+Record the engine, render manifest SHA-256, and MP4 SHA-256 in the report. Write the receipt JSON alongside the report. Use repo-relative paths with forward slashes.
+
+```json
+{
+  "kind": "technical",
+  "videoSha256": "<full SHA-256 of the reviewed MP4>",
+  "renderSha256": "<renderSha256 from delivery inspect for this review>",
+  "report": {"path": "docs/review/<report>.md", "sha256": "<report SHA-256>"},
+  "evidence": {"path": "out/review/<id>/<video-sha256>/frames_status.json", "sha256": "<index SHA-256>"},
+  "reviewer": "<reviewer identity>",
+  "status": "complete",
+  "openP1": []
+}
+```
+
+For a complete release, include the versioned `evidence` reference shown above. The index must match the
+reviewed render and list successfully extracted artifacts. Use `node scripts/delivery.mjs artifact <path>`
+for the report and index references, including their SHA-256 values.
+
+For raea only, an incomplete exact timeline can be covered by human review. When the index reports
+`extractionStatus: "complete"`, the timeline is the only gap, and a human reviewer checked the exact MP4,
+record that reviewer's timecoded sync, pacing, and payoff observations and evidence in the report. Add
+`"timelineReviewedManually": true` to the receipt. State which observations were unavailable. Keep the
+receipt incomplete if any required observation or measurement remains unverified.
+
+Use `"status": "incomplete"` for unresolved coverage gaps, unversioned or failed evidence, or a
+provisional review. List the finding IDs of all open P1s in `openP1`. An incomplete receipt may omit an
+unavailable evidence reference. Describe the gap in the report.
+Limit edits to the review report and receipt.
+Return the report and receipt paths with your summary.

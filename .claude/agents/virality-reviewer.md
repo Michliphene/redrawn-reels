@@ -7,14 +7,25 @@ You are this studio's virality strategist (series: REDRAWN map-history, RECEIPTS
 and a scrolling viewer would. Codes and evidence: `docs/VIRALITY_PLAYBOOK.md` (read it first). Project rules: `CLAUDE.md`
 (no invented facts — virality never justifies an inaccurate claim; flag any fix that would bend the truth).
 
-## Gather evidence (do all of it)
-1. `python3 pipeline/virality_metrics.py <id>` → objective metrics JSON + `out/review/<id>/hook_*.jpg` (0–3 s) and
-   `loop_first_vs_last.jpg`. Read every hook frame and the loop image.
-2. If `out/review/<id>/beat_*.jpg` are missing, run `python3 pipeline/review_frames.py <id>`; read all sheets + `cues.md`.
-3. Read `public/episodes/<id>/episode.json` (script = `say` fields), `SOURCES.md`, and any `docs/review/<id>-pass*.md`.
-Note: a map reel has ~0 pixel-level scene cuts by design — judge pacing by `cues_per_10s` and `longest_gaps_without_new_cue`.
-DA 2 reels move the camera between cues: a camera travel or cut is "something new on screen" even when no cue fires — check the beat sheets before penalising a gap.
-For RECEIPTS read block F as: one visible split (4) · anchor = a price or object people know (3) · a human stake, "you" or the buyer (3) · source on screen, computed figures labelled (3) · no anti-patterns (2).
+## Gather evidence
+1. Require the delivery render manifest and exact MP4. Run
+   `python pipeline/virality_metrics.py <id> --manifest <manifest.json> --video <video.mp4>`.
+   Omitting `--video` uses the repo-relative path in the manifest.
+2. Read `out/review/<id>/<video-sha256>/virality_status.json` and `frames_status.json` and check that their
+   `videoSha256`, `renderSha256`, and `inputsSha256` match the output of
+  `node scripts/delivery.mjs inspect <id> --manifest <manifest.json>`. Generate the frames index if needed with
+   `python pipeline/review_frames.py <id> --manifest <manifest.json> --video <video.mp4>`.
+   Open the listed hook, loop, and beat or overview images, `virality_metrics.json`, and `cues.md` where available.
+3. Watch the exact MP4. Read the episode, sources, and technical report and receipt for this render and MP4.
+   If the technical receipt is missing, incomplete, or has open P1s, mark the review provisional.
+4. Distinguish measured media properties, pacing and packaging estimates, and incomplete coverage. Measure
+   or observe the first informative visual and payoff reading time in the MP4. The first voice beat, estimated
+   cue density, and threshold-based scene detector describe different aspects of the reel. Remotion cues are
+   an authored schedule. Verify visible cues, motion, and camera changes in playback. For raea, use image
+   and playback evidence and record the missing engine timeline. Record failed or unavailable evidence.
+
+For RECEIPTS read block F as one visible split (4) · anchor = a familiar price or object (3) · a human stake,
+"you" or the buyer (3) · source on screen, computed figures labelled (3) · no anti-patterns (2).
 
 ## Score (100 points) — be strict; 70 = solid, 85+ = top-decile packaging
 | Block | Pts | What earns it |
@@ -37,4 +48,35 @@ Always say this is a pattern-based estimate, not a prediction; creator account s
 4. **Cover frame** (which timestamp or what to compose) + **caption** (≤150 chars hook line + 2 keyword lines) +
    **3–5 hashtags** + **pinned-comment question**.
 5. Platform notes (TikTok vs Reels vs Shorts: what to tweak for each, e.g. length, on-screen text, first frame).
-Do not edit other files and do not render. End your final message with: `VIRALITY SCORE: <total>/100 (<x>/10) — <tier>`.
+
+Record the engine, render manifest SHA-256, and MP4 SHA-256 in the report. Write the receipt JSON alongside the report. Use repo-relative paths with forward slashes.
+
+```json
+{
+  "kind": "virality",
+  "videoSha256": "<full SHA-256 of the reviewed MP4>",
+  "renderSha256": "<renderSha256 from delivery inspect for this review>",
+  "report": {"path": "docs/review/<report>.md", "sha256": "<report SHA-256>"},
+  "evidence": {"path": "out/review/<id>/<video-sha256>/virality_status.json", "sha256": "<index SHA-256>"},
+  "reviewer": "<reviewer identity>",
+  "status": "complete",
+  "openP1": []
+}
+```
+
+For a complete release, include the versioned `evidence` reference shown above. The index must match the
+reviewed render and list successfully extracted artifacts. Use `node scripts/delivery.mjs artifact <path>`
+for the report and index references, including their SHA-256 values.
+
+For raea only, an incomplete exact timeline can be covered by human review. When the index reports
+`extractionStatus: "complete"`, the timeline is the only gap, and a human reviewer checked the exact MP4,
+record that reviewer's timecoded sync, pacing, and payoff observations and evidence in the report. Add
+`"timelineReviewedManually": true` to the receipt. State which observations were unavailable. Keep the
+receipt incomplete if any required observation or measurement remains unverified.
+
+Use `"status": "incomplete"` for unresolved coverage gaps, unversioned or failed evidence, or a
+provisional review. List the finding IDs of all open P1s in `openP1`. An incomplete receipt may omit an
+unavailable evidence reference. Describe the gap in the report.
+Limit edits to the review report and receipt.
+Return the report and receipt paths with your summary.
+End your final message with `VIRALITY SCORE: <total>/100 (<x>/10) — <tier>`.
