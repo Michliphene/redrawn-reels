@@ -142,6 +142,7 @@ export function validate(id) {
       if (a.type === 'wanted' && a.key && !fs.existsSync(path.join(ROOT, 'public/assets/portraits', `${a.key}.jpg`))) Wn(`${where}: wanted poster image "${a.key}" not found (the frame will be empty)`);
       if (a.type === 'portrait' && !fs.existsSync(path.join(ROOT, 'public/assets/portraits', `${a.key}.jpg`))) Wn(`${where}: portrait "${a.key}" has no image (the card will be skipped)`);
       if (a.emoji && !['json', 'png'].some((x) => fs.existsSync(path.join(ROOT, 'public/assets/emoji', `${a.emoji}.${x}`)))) Wn(`${where}: emoji "${a.emoji}" not in public/assets/emoji (it will be skipped)`);
+      if (a.type === 'prop' && a.image && !fs.existsSync(path.join(ROOT, 'public', a.image))) Wn(`${where}: prop image public/${a.image} not found (plain canvas instead)`);
       if (a.type === 'archive' && a.src && !fs.existsSync(path.join(ROOT, 'public', a.src))) Wn(`${where}: image public/${a.src} not found`);
       // layout: DA v2 keeps everything readable inside the platform safe area
       if ((spec.da ?? 1) >= 2 && typeof a.y === 'number' && (a.y < SAFE.top || a.y > SAFE.bottom - 60)) Wn(`${where}: y=${a.y} is outside the safe area (${SAFE.top}–${SAFE.bottom}): the platform interface will cover it`);

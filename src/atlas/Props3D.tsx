@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { continueRender, delayRender, staticFile } from 'remotion';
 import * as THREE from 'three';
+import { useFrame, useThree } from '@react-three/fiber';
 import type { TimedAction } from '../lib/types';
 import type { AtlasWorld } from './world';
 import { clamp01, ease, hash, ramp } from '../studio/motion';
@@ -15,7 +17,9 @@ import { theme } from '../lib/theme';
  * kinds: `vault` (a wall of deposit-box doors that swing open in a scattered order: `open` = fraction opened — a
  *   SYMBOL, never a count), `diamonds` (a pile of cut stones; `sinkWord` sinks it into the table: gone),
  *   `sandwich` (half a sandwich, cut diagonally), `bags` (dumped rubbish bags), `envelopes` (scattered envelopes),
- *   `building` (a block standing on the map).
+ *   `building` (a block standing on the map), `painting` (a gilt frame holding `image` — public/<image>, e.g.
+ *   "assets/art/monalisa.jpg" — on a gallery wall when `wall: true`; `empty: true` = the bare wall with its four hooks),
+ *   `trunk` (a wooden trunk whose lid opens on `openWord`; `image` = a painting lying inside).
  * `size` is the object's width in screen pixels (it keeps that size whatever the camera does, like `vehicle`);
  * `drop: true` makes it fall onto the table with a bounce, otherwise it rises out of the table.
  */
@@ -141,6 +145,85 @@ const Building: React.FC<{ wall: string; window: string }> = ({ wall, window: wi
   </group>
 );
 
+// Image textures for props: loaded once per tab, the frame waits for them (delayRender), a failure never blocks the render.
+const TEX = new Map<string, THREE.Texture | null>();
+function useTex(path?: string): THREE.Texture | null {
+  const [tex, setTex] = useState<THREE.Texture | null>(() => (path ? TEX.get(path) ?? null : null));
+  // the frame must wait from the very first render: delayRender is called while rendering, not in an effect
+  const [h] = useState(() => (path && !TEX.has(path) ? delayRender(`prop texture ${path}`, { timeoutInMilliseconds: 20000 }) : null));
+  const advance = useThree((st) => st.advance);
+  const pending = useRef(h);
+  // once React has committed the textured material, draw one frame (frameloop is 'never' while rendering)…
+  useEffect(() => { if (tex && pending.current != null) advance(performance.now()); }, [tex, advance]);
+  // …and release the frame only after a frame was drawn with the texture
+  useFrame(() => { if (tex && pending.current != null) { const k = pending.current; pending.current = null; setTimeout(() => continueRender(k), 0); } });
+  useEffect(() => {
+    if (!path || h == null) { if (path && TEX.has(path)) setTex(TEX.get(path) ?? null); return undefined; }
+    const key = path;
+    // decoded through a 2D canvas and uploaded as raw pixels: software WebGL (swangle) fails on image-element uploads
+    const img = new Image();
+    img.onload = () => {
+      const w = Math.min(512, img.naturalWidth), hh = Math.round((img.naturalHeight * w) / img.naturalWidth);
+      const cv = document.createElement('canvas'); cv.width = w; cv.height = hh;
+      const ctx = cv.getContext('2d')!; ctx.drawImage(img, 0, 0, w, hh);
+      const src = ctx.getImageData(0, 0, w, hh).data, data = new Uint8Array(src.length), row = w * 4;
+      for (let y = 0; y < hh; y++) data.set(src.subarray((hh - 1 - y) * row, (hh - y) * row), y * row); // flip: texture rows go bottom-up
+      const t = new THREE.DataTexture(data, w, hh, THREE.RGBAFormat);
+      t.colorSpace = THREE.SRGBColorSpace; t.magFilter = THREE.LinearFilter; t.minFilter = THREE.LinearFilter; t.needsUpdate = true;
+      TEX.set(key, t); setTex(t);
+    };
+    img.onerror = () => { console.warn(`prop texture missing: ${key}`); TEX.set(key, null); pending.current = null; continueRender(h); };
+    img.src = staticFile(key);
+    return undefined;
+  }, [path, advance, h]);
+  return tex;
+}
+
+const GILT = '#B8913F', GILT_DARK = '#7A5E26';
+/** A framed picture standing upright (bottom on the table), 1 unit wide, facing +z. */
+const Painting: React.FC<{ image?: string; empty?: boolean; wall?: boolean; ratio?: number }> = ({ image, empty, wall, ratio = 1.43 }) => {
+  const tex = useTex(empty ? undefined : image);
+  const w = wall ? 0.6 : 0.84, h = w * ratio, y0 = wall ? 0.2 : 0.04, b = w * 0.09;
+  return (
+    <group>
+      {wall && <mesh geometry={box} position={[0, 0.66, -0.03]} scale={[1.1, 1.32, 0.05]} castShadow><meshLambertMaterial color="#8E8371" /></mesh>}
+      {empty ? (
+        <group position={[0, y0 + h / 2, 0.0]}>
+          <mesh geometry={box} scale={[w * 0.98, h * 0.98, 0.004]}><meshLambertMaterial color="#A89C86" /></mesh>
+          {[[-1, 1], [1, 1], [-1, -1], [1, -1]].map(([x, z], i) => (
+            <mesh key={i} geometry={box} position={[x * w * 0.36, z * h * 0.3, 0.012]} scale={[0.022, 0.022, 0.03]}><meshLambertMaterial color="#1A1612" /></mesh>
+          ))}
+        </group>
+      ) : (
+        <group position={[0, y0 + h / 2, 0.0]}>
+          <mesh geometry={box} scale={[w + 2 * b, h + 2 * b, 0.05]} castShadow><meshLambertMaterial color={GILT} /></mesh>
+          <mesh geometry={box} position={[0, 0, 0.012]} scale={[w + b * 0.7, h + b * 0.7, 0.04]}><meshLambertMaterial color={GILT_DARK} /></mesh>
+          <mesh position={[0, 0, 0.034]}><planeGeometry args={[w, h]} /><meshBasicMaterial key={tex ? 'map' : 'plain'} map={tex ?? undefined} color={tex ? '#FFFFFF' : '#3A2E20'} /></mesh>
+        </group>
+      )}
+    </group>
+  );
+};
+
+/** A travelling trunk, 1 unit wide; the lid (hinged at the back) opens with `open`; `image` lies inside, face up. */
+const Trunk: React.FC<{ open: number; image?: string }> = ({ open, image }) => {
+  const tex = useTex(image);
+  const w = 1, d = 0.56, h = 0.42;
+  return (
+    <group>
+      <mesh geometry={box} position={[0, h / 2, 0]} scale={[w, h, d]} castShadow><meshLambertMaterial color="#6B4A2B" /></mesh>
+      {[-0.3, 0.3].map((x) => <mesh key={x} geometry={box} position={[x, h / 2, 0]} scale={[0.06, h + 0.01, d + 0.01]}><meshLambertMaterial color="#3B2A18" /></mesh>)}
+      {open > 0.05 && image && (
+        <mesh position={[0, h + 0.002, 0]} rotation={[-Math.PI / 2, 0, 0]}><planeGeometry args={[w * 0.62, d * 0.86]} /><meshBasicMaterial key={tex ? 'map' : 'plain'} map={tex ?? undefined} color={tex ? '#FFFFFF' : '#3A2E20'} /></mesh>
+      )}
+      <group position={[0, h, -d / 2]} rotation={[-1.9 * ease.out3(clamp01(open)), 0, 0]}>
+        <mesh geometry={box} position={[0, 0.06, d / 2]} scale={[w + 0.02, 0.12, d + 0.02]} castShadow><meshLambertMaterial color="#7A5532" /></mesh>
+        {[-0.3, 0.3].map((x) => <mesh key={x} geometry={box} position={[x, 0.06, d / 2]} scale={[0.06, 0.13, d + 0.03]}><meshLambertMaterial color="#3B2A18" /></mesh>)}
+      </group>
+    </group>
+  );
+};
+
 export const Props3D: React.FC<{ states: PropState[]; pal: { ink: string; accent: string; surface: string; muted: string } }> = ({ states, pal }) => (
   <>
     {states.map((S, i) => {
@@ -157,6 +240,8 @@ export const Props3D: React.FC<{ states: PropState[]; pal: { ink: string; accent
           {k === 'bags' && <Bags color="#4A4740" tie={pal.accent} />}
           {k === 'envelopes' && <Envelopes paper={paper} mark={pal.accent} />}
           {k === 'building' && <Building wall="#8C7F64" window="#F1D98A" />}
+          {k === 'painting' && <Painting image={S.p.image} empty={S.p.empty} wall={S.p.wall} />}
+          {k === 'trunk' && <Trunk open={S.open} image={S.p.image} />}
         </group>
       );
     })}
@@ -168,7 +253,7 @@ export const PropLabels: React.FC<{ states: PropState[]; toPx: (p: Vec3) => [num
   <>
     {states.map((S, i) => {
       if (!S.p.caption || S.fade < 0.05 || S.sink > 0.6) return null;
-      const lift = S.p.kind === 'vault' ? 0.78 : S.p.kind === 'building' ? 0.85 : 0.5;
+      const lift = S.p.kind === 'vault' ? 0.78 : S.p.kind === 'building' ? 0.85 : S.p.kind === 'painting' ? (S.p.wall ? 1.4 : 1.35) : 0.5;
       const [x, y] = toPx([S.pos[0], S.pos[1] + S.u * lift, S.pos[2]]);
       const left = Math.min(Math.max(x, SAFE.left + 150), 930 - 150);
       return (

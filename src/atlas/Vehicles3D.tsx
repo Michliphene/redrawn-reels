@@ -66,8 +66,9 @@ export function vehicleStates(world: AtlasWorld, actions: TimedAction[], t: numb
     const here = tr.at(k), ahead = tr.at(Math.min(1, k + 0.02)), behind = tr.at(Math.max(0, k - 0.02));
     const u = (v.size ?? 110) * ppx;
     const land = v.land ? ease.inOut3(ramp(k, 0.55, 0.45)) : 0;
-    const altK = (v.alt ?? (v.kind === 'car' ? 0 : 2.2)) * (1 - land);
-    const y = world.h + u * ((v.kind === 'car' ? 0.005 : 0.12) + altK);
+    const ground = v.kind === 'car' || v.kind === 'train';
+    const altK = (v.alt ?? (ground ? 0 : 2.2)) * (1 - land);
+    const y = world.h + u * ((ground ? 0.005 : 0.12) + altK);
     const h1 = Math.atan2(-(ahead.p[1] - here.p[1]), ahead.p[0] - here.p[0] || 1e-9);
     const h0 = Math.atan2(-(here.p[1] - behind.p[1]), here.p[0] - behind.p[0] || 1e-9);
     let turn = h1 - h0; while (turn > Math.PI) turn -= 2 * Math.PI; while (turn < -Math.PI) turn += 2 * Math.PI;
@@ -87,7 +88,7 @@ export function vehicleStates(world: AtlasWorld, actions: TimedAction[], t: numb
       };
     }
     out.push({
-      v, pos: [here.p[0], y, here.p[1]], heading: h1, bank: moving && v.kind !== 'car' ? Math.max(-0.6, Math.min(0.6, -turn * 6)) : 0, climb: land ? -0.12 : 0, u, fade,
+      v, pos: [here.p[0], y, here.p[1]], heading: h1, bank: moving && !ground ? Math.max(-0.6, Math.min(0.6, -turn * 6)) : 0, climb: land ? -0.12 : 0, u, fade,
       stairs: v.stairsAt != null ? ease.inOut3(ramp(t, v.stairsAt, 0.6)) : v.stairsOpen ? 1 : 0, drop,
     });
   }
@@ -110,6 +111,22 @@ const Car: React.FC<{ body: string; tail: string }> = ({ body, tail }) => (
     ))}
     {[1, -1].map((s) => (
       <mesh key={`l${s}`} geometry={box} position={[0.5, 0.15, s * 0.14]} scale={[0.02, 0.05, 0.08]}><meshBasicMaterial color="#FFF2B8" /></mesh>
+    ))}
+  </group>
+);
+
+/** A steam train: locomotive + two carriages trailing behind (−x), 1 unit = the locomotive's length. */
+const Train: React.FC<{ body: string; tail: string }> = ({ body, tail }) => (
+  <group>
+    <mesh geometry={tube} position={[0.08, 0.2, 0]} scale={[0.6, 0.13, 0.13]} castShadow><meshLambertMaterial color="#2B2620" /></mesh>
+    <mesh geometry={box} position={[-0.3, 0.24, 0]} scale={[0.26, 0.3, 0.3]} castShadow><meshLambertMaterial color="#2B2620" /></mesh>
+    <mesh geometry={line} position={[0.3, 0.38, 0]} scale={[0.045, 0.16, 0.045]} castShadow><meshLambertMaterial color="#1A1612" /></mesh>
+    <mesh geometry={box} position={[0, 0.06, 0]} scale={[0.96, 0.06, 0.3]}><meshLambertMaterial color={tail} /></mesh>
+    {[-1.15, -2.2].map((x) => (
+      <group key={x} position={[x, 0, 0]}>
+        <mesh geometry={box} position={[0, 0.22, 0]} scale={[0.95, 0.3, 0.32]} castShadow><meshLambertMaterial color={tail} /></mesh>
+        <mesh geometry={box} position={[0, 0.39, 0]} scale={[0.97, 0.04, 0.34]}><meshLambertMaterial color={body} /></mesh>
+      </group>
     ))}
   </group>
 );
@@ -152,7 +169,7 @@ export const Vehicles3D: React.FC<{ states: VehicleState[]; body: string; tail: 
       <group key={i}>
         {S.fade > 0.01 && (
           <group position={S.pos} rotation={[0, S.heading, 0]} scale={S.u * S.fade}>
-            <group rotation={[S.bank, 0, S.climb]}>{S.v.kind === 'car' ? <Car body={body} tail={tail} /> : <Jet body={body} tail={tail} stairs={S.stairs} />}</group>
+            <group rotation={[S.bank, 0, S.climb]}>{S.v.kind === 'car' ? <Car body={body} tail={tail} /> : S.v.kind === 'train' ? <Train body={body} tail={tail} /> : <Jet body={body} tail={tail} stairs={S.stairs} />}</group>
           </group>
         )}
         {S.drop && S.drop.fade > 0.01 && (

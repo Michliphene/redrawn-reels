@@ -88,5 +88,32 @@
   "license": "Public domain (US federal government work, PD-USGov-DOJ)",
   "date": "c. 1971",
   "file": "https://commons.wikimedia.org/wiki/File:DBCooper.jpg"
+ },
+ "monalisa": {
+  "file": "LOC det 4a26503 — [Mona Lisa] (photo of the painting), cropped and toned",
+  "artist": "Detroit Publishing Co., Library of Congress",
+  "license": "No known restrictions (painting: public domain)",
+  "date": "c. 1900–1912",
+  "page": "https://www.loc.gov/pictures/item/2016817361/"
+ },
+ "puck_louvre_1911": {
+  "file": "LOC ppmsca 27781 — 'Daily scene in the Louvre', Puck, 18 Oct 1911",
+  "artist": "Puck / Library of Congress",
+  "license": "No known restrictions (published 1911)",
+  "date": "1911-10-18",
+  "page": "https://www.loc.gov/pictures/item/2011649072/"
+ },
+ "puck_republican_monalisa_1911": {
+  "file": "LOC ppmsca 27775 — 'The Republican Mona Lisa — can he get away with it?', Puck, 27 Sep 1911",
+  "artist": "Puck / Library of Congress",
+  "license": "No known restrictions (published 1911)",
+  "date": "1911-09-27",
+  "page": "https://www.loc.gov/pictures/item/2011649066/"
+ },
+ "peruggia": {
+  "file": "https://commons.wikimedia.org/wiki/File:Vincenzo_peruggia.jpg",
+  "artist": "Unknown author (Paris police identification photo, no. 378.699)",
+  "license": "Public domain",
+  "date": "1909"
  }
 }
