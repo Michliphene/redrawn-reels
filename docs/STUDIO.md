@@ -178,6 +178,10 @@ Pilots worth scripting first (one per format, existing data and engines):
 5. **C · RECEIPTS** — "Of $100, how much reaches the shows? Lock your guess." (the Netflix split, reuses its filing).
 
 ## 7. Quality gates (in this order; each one is cheap compared with the next)
+**Length rule (owner, 18 Nov 2026): every reel generated from now on lasts more than one minute** (62–75 s of
+voice). `validate.mjs` fails an episode whose video would be 61 s or less, except the episodes made before that
+date (listed in `GRANDFATHERED`). Use the extra time for one more beat of evidence or a second re-hook, never for
+filler or slower speech.
 1. `npm run validate <id>` — no `✗`. Every `!` is either fixed or explained in `docs/REVIEW_<id>.md`.
 2. `npm run stills <id> -- --n 12 --cols 6` — look at the sheet. Frame 0 must work paused and muted.
 3. One still with `--props '{"guides":true}'` — nothing readable in the red zones.

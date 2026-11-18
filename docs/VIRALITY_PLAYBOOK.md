@@ -70,7 +70,8 @@ topic · hook promise not paid off · ending with "follow for more" instead of a
   (a stack, a pawn, a piece that moves), score it down.
 - **Formats**: second-person ("you are…") and guess-before-the-count reels must pay off in the world, on screen.
 - **Length** [PRACTITIONER, unverified against TikTok's own pages]: third-party 2026 guides agree that Creator
-  Rewards only counts videos longer than one minute. Decide per account; a 61–70 s cut is a different edit, not
+  Rewards only counts videos longer than one minute. Owner's rule since 18 Nov 2026: every new reel runs > 60 s
+  (62–75 s), so every reel qualifies. A long reel is a different edit, not
   a slowed-down 45 s one.
 
 ## Sources consulted

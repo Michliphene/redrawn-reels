@@ -4,6 +4,8 @@
 viewer can watch change. On-screen name, handle and tagline live in `public/studio.json` (`ungraded`); the name is a
 working title, rename it there.
 
+**Length:** every reel runs more than one minute (62–75 s of voice), owner's rule since 18 Nov 2026.
+
 **Engine:** `composition: "Mindset"` → `src/mindset/Mindset3D.tsx`. DA 2 only (there is no flat DA 1 version, so a
 machine without WebGL fails instead of publishing a degraded reel). Palette: night violet, mint accent (`#5CF0D0`)
 for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.

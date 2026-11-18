@@ -13,7 +13,7 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 - Educational faceless posts are claimed to get 12–25 % saves vs 3–8 % for entertainment.
 - Unlimited topics, each with one primary source (annual report), so "every number sourced" is cheap to keep.
 - **Open question:** TikTok Creator Rewards reportedly needs videos > 60 s. Not confirmed on TikTok's own pages.
-  #001 is 46 s. Decide per account whether to target 61–70 s.
+  #001 is 46 s (made before the length rule). Since 18 Nov 2026 every new reel runs more than one minute (62–75 s).
 
 ## Lessons carried over from REDRAWN
 | REDRAWN pain | RECEIPTS rule |

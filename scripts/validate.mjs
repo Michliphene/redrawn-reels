@@ -19,6 +19,9 @@ const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'res
 const MINDSET_ACTIONS = { papers: ['mark', 'flip', 'clear', 'pass'], stacks: ['stack', 'light'], trials: ['launch', 'learn'], road: ['walk', 'halt', 'big'], lines: ['line'] };
 const DOODLE_ACTIONS = { duel: ['shine', 'light'], race: ['trip'], class: ['mark', 'flip'], bin: ['ignore', 'fly'], shop: ['open', 'launch', 'bulb'], pile: ['count', 'walk', 'halt'], drafts: ['count'], versions: ['draft'], rule: ['turn'] };
 const SCENE_ACTIONS = { Money: MONEY_ACTIONS, Mindset: MINDSET_ACTIONS, Doodle: DOODLE_ACTIONS };
+/** episodes made before the owner's "more than one minute" rule (18 Nov 2026): they keep their length */
+export const GRANDFATHERED = new Set(["alaska-1867", "costco-hotdog", "costco-hotdog-v2", "fail-ten-times", "fail-ten-times-doodle", "first-draft", "korea-1945", "louisiana-1803", "mcdonalds-rent", "netflix-100", "ussr-1991", "ussr-1991-v2"]);
+export const MIN_VIDEO_S = 61; // video = voice + 0.5 s tail
 const SAFE = { top: 250, bottom: 1440 };
 
 export function seriesIdOf(spec) {
@@ -170,7 +173,9 @@ export function validate(id) {
   if (timings) {
     const hook = timings.beats[0];
     if (hook.end - hook.start > 4) Wn(`hook lasts ${(hook.end - hook.start).toFixed(1)} s (aim for ≤ 3.5 s)`);
-    if (timings.duration < 28 || timings.duration > 75) Wn(`voice lasts ${timings.duration.toFixed(1)} s (aim for 40–58 s, or 61–70 s for a monetised TikTok cut)`);
+    const video = timings.duration + 0.5;
+    if (!GRANDFATHERED.has(id) && video < MIN_VIDEO_S) E(`video lasts ${video.toFixed(1)} s: every reel must run more than one minute (owner's rule, 18 Nov 2026). Add a beat; aim for 62–75 s of voice`);
+    else if (timings.duration > 80) Wn(`voice lasts ${timings.duration.toFixed(1)} s (aim for 62–75 s)`);
   }
   if ((spec.da ?? 1) >= 2 && spec.keywords && !Array.isArray(spec.keywords)) E('"keywords" must be a list of words');
   return { id, errors, warnings, series: sid, composition: comp, da: spec.da ?? 1 };
