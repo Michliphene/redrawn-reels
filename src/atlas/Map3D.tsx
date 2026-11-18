@@ -142,11 +142,12 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
       {ghosts.map((g, i) => {
         const f = geo.features.find((x) => x.id === g.id); if (!f) return null;
         const hold = g.hold ?? 3;
-        const o = Math.min(ramp(t, g.t, 0.4), 1 - ramp(t, g.t + hold, 0.5));
+        const o = Math.min(g.t <= 0.05 ? 1 : ramp(t, g.t, 0.4), 1 - ramp(t, g.t + hold, 0.5)); // frame-0 states are already there
         if (t < g.t || o <= 0.01) return null;
         const piece = world.pieces.get(String(f.id))!;
         if ((f.properties as any)?.lines) {
-          return <group key={`g${i}`} position={[0, 0.004, 0]}><lineSegments geometry={geos.get(String(f.id))!.edge}><lineBasicMaterial color="#FFFFFF" transparent opacity={0.9 * o} /></lineSegments></group>;
+          // above the subject pieces, which stand up to ~0.75 h above their own thickness once claimed
+          return <group key={`g${i}`} position={[0, h * 0.95, 0]}><lineSegments geometry={geos.get(String(f.id))!.edge}><lineBasicMaterial color="#FFFFFF" transparent opacity={0.9 * o} /></lineSegments></group>;
         }
         const s = 1 + 0.6 * (1 - ease.out3(ramp(t, g.t, 0.6)));
         const c = piece.centroid;

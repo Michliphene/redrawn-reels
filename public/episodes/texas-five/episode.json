@@ -1,0 +1,575 @@
+{
+ "id": "texas-five",
+ "series": "REDRAWN",
+ "seriesId": "redrawn",
+ "episode": 6,
+ "da": 2,
+ "title": "Texas could split in five",
+ "whisper": "at least on paper",
+ "data": "data/texas1836.geojson",
+ "world": {
+  "center": [
+   -101,
+   33
+  ],
+  "thickness": 1.0
+ },
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {},
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "palette": {
+  "start": "#C9D3DF",
+  "startStroke": "#8E9CB0",
+  "ids": {
+   "TX": "#E0565B",
+   "CLAIM": "#F2A07B"
+  }
+ },
+ "timeline": {
+  "from": "1835-01-01",
+  "to": "1851-01-01",
+  "step": 5
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "Texas",
+  "Mexico",
+  "Wyoming",
+  "Santa",
+  "Fe",
+  "Rio",
+  "Grande",
+  "Colorado",
+  "Kansas",
+  "Oklahoma",
+  "New",
+  "lawyers",
+  "disagree."
+ ],
+ "beats": [
+  {
+   "id": "hook",
+   "say": "Texas could split into {5|five} states. It's written into the deal that made it American.",
+   "camera": {
+    "fit": "TX",
+    "pad": 0.06
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "TX",
+     "atTime": 0,
+     "noLabel": true
+    },
+    {
+     "type": "ghost",
+     "id": "SPLIT",
+     "atTime": 0,
+     "hold": 4.0
+    },
+    {
+     "type": "label",
+     "text": "illustration",
+     "at": [
+      -99.6,
+      26.4
+     ],
+     "atWord": "states.",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "1836",
+   "say": "{1836|Eighteen thirty-six}: Texas breaks away from Mexico.",
+   "camera": {
+    "center": [
+     -100,
+     29
+    ],
+    "span": 22,
+    "pitch": 46,
+    "yaw": -10
+   },
+   "date": "1836-03-02",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "TX",
+     "atTime": 4.75,
+     "noLabel": true,
+     "color": "#C9D3DF",
+     "quiet": true
+    },
+    {
+     "type": "label",
+     "text": "Mexico",
+     "at": [
+      -102.5,
+      24.5
+     ],
+     "atWord": "Mexico.",
+     "hold": 1.6
+    },
+    {
+     "type": "declare",
+     "id": "TX",
+     "atWord": "breaks",
+     "noLabel": true
+    }
+   ]
+  },
+  {
+   "id": "republic",
+   "say": "After San Jacinto, it's its own country: the Republic of Texas.",
+   "camera": {
+    "center": [
+     -95.5,
+     30.2
+    ],
+    "span": 9,
+    "pitch": 40,
+    "yaw": 14
+   },
+   "date": "1836-04-21",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "San Jacinto",
+     "at": [
+      -95.08,
+      29.75
+     ],
+     "atWord": "San",
+     "hold": 2.6
+    },
+    {
+     "type": "units",
+     "kind": "troops",
+     "at": [
+      -95.08,
+      29.75
+     ],
+     "count": 6,
+     "size": 56,
+     "approach": [
+      -220,
+      0
+     ],
+     "offset": [
+      -140,
+      -60
+     ],
+     "atWord": "San",
+     "hold": 2.4,
+     "caption": "21 Apr 1836"
+    },
+    {
+     "type": "label",
+     "text": "Republic of Texas",
+     "at": [
+      -98.5,
+      31.2
+     ],
+     "atWord": "Republic",
+     "hold": 2.0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "TX"
+     ],
+     "atWord": "Republic"
+    }
+   ]
+  },
+  {
+   "id": "claim",
+   "say": "And it claims far more than today's Texas: up the Rio Grande to its source, then north, all the way to Wyoming.",
+   "camera": {
+    "center": [
+     -104,
+     37
+    ],
+    "span": 25,
+    "pitch": 50,
+    "yaw": -8,
+    "dur": 1.6
+   },
+   "date": "1836-12-19",
+   "actions": [
+    {
+     "type": "reveal",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "claims"
+    },
+    {
+     "type": "declare",
+     "id": "CLAIM",
+     "atWord": "claims",
+     "noLabel": true
+    },
+    {
+     "type": "region",
+     "text": "claimed · approximate",
+     "at": [
+      -104.2,
+      36.3
+     ],
+     "atWord": "far",
+     "hold": 2.2
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       -106.53,
+       31.78
+      ],
+      [
+       -106.89,
+       34.06
+      ],
+      [
+       -106.65,
+       35.08
+      ],
+      [
+       -106.08,
+       35.99
+      ],
+      [
+       -105.75,
+       36.55
+      ],
+      [
+       -105.87,
+       37.47
+      ],
+      [
+       -106.93,
+       37.84
+      ],
+      [
+       -107.55,
+       37.79
+      ]
+     ],
+     "atWord": "Rio",
+     "dur": 1.6,
+     "hold": 2.8,
+     "color": "#56CFE1"
+    },
+    {
+     "type": "marker",
+     "text": "Rio Grande source",
+     "at": [
+      -107.55,
+      37.79
+     ],
+     "atWord": "source,",
+     "hold": 1.6
+    },
+    {
+     "type": "label",
+     "text": "Wyoming",
+     "at": [
+      -106.9,
+      41.5
+     ],
+     "atWord": "Wyoming.",
+     "hold": 2.0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "Wyoming."
+    }
+   ]
+  },
+  {
+   "id": "santafe",
+   "say": "Even Santa Fe, a city it never controls.",
+   "camera": {
+    "center": [
+     -105.94,
+     35.69
+    ],
+    "span": 9,
+    "pitch": 42,
+    "yaw": 16
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Santa Fe",
+     "at": [
+      -105.94,
+      35.69
+     ],
+     "atWord": "Santa",
+     "hold": 2.4
+    },
+    {
+     "type": "shake",
+     "amount": 4,
+     "atWord": "never"
+    }
+   ]
+  },
+  {
+   "id": "1845",
+   "say": "In {1845|eighteen forty-five}, Texas joins the United States. And the deal has a clause: up to four new states can be carved out of it, if Texas agrees.",
+   "camera": {
+    "fit": "TX",
+    "pad": 0.1,
+    "pitch": 54,
+    "yaw": 10,
+    "cut": true
+   },
+   "date": "1845-12-29",
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "TX"
+     ],
+     "atWord": "joins"
+    },
+    {
+     "type": "sticker",
+     "flag": "us",
+     "x": 790,
+     "y": 700,
+     "size": 130,
+     "tilt": 6,
+     "text": "28TH STATE",
+     "atWord": "United",
+     "hold": 2.4
+    },
+    {
+     "type": "callout",
+     "text": "THE 1845 DEAL",
+     "sub": "up to 4 new states · with Texas's consent",
+     "size": 64,
+     "y": 960,
+     "atWord": "clause:",
+     "hold": 2.6
+    },
+    {
+     "type": "ghost",
+     "id": "SPLIT",
+     "atWord": "four",
+     "hold": 3.0
+    }
+   ]
+  },
+  {
+   "id": "1850",
+   "say": "Then in {1850|eighteen fifty}, Texas gives up its western claims, for {$10 million|ten million dollars} to pay its debts.",
+   "camera": {
+    "center": [
+     -103.5,
+     36.2
+    ],
+    "span": 20,
+    "pitch": 52,
+    "yaw": 6
+   },
+   "date": "1850-11-25",
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "gives"
+    },
+    {
+     "type": "bigNumber",
+     "value": 10,
+     "prefix": "$",
+     "suffix": "M",
+     "label": "debt relief · Compromise of 1850",
+     "y": 990,
+     "atWord": "million",
+     "hold": 1.5
+    },
+    {
+     "type": "conceal",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "debts."
+    }
+   ]
+  },
+  {
+   "id": "states",
+   "say": "Half of New Mexico. A third of Colorado. Slices of Kansas, Oklahoma and Wyoming.",
+   "camera": {
+    "center": [
+     -104.4,
+     37.8
+    ],
+    "span": 20,
+    "pitch": 46,
+    "yaw": -12
+   },
+   "actions": [
+    {
+     "type": "label",
+     "text": "New Mexico",
+     "at": [
+      -104.6,
+      34.4
+     ],
+     "atWord": "Half",
+     "hold": 1.5
+    },
+    {
+     "type": "label",
+     "text": "Colorado",
+     "at": [
+      -105.3,
+      38.7
+     ],
+     "atWord": "third",
+     "hold": 1.4
+    },
+    {
+     "type": "label",
+     "text": "Kansas",
+     "at": [
+      -101.3,
+      37.45
+     ],
+     "atWord": "Kansas,",
+     "hold": 1.5
+    },
+    {
+     "type": "label",
+     "text": "Oklahoma",
+     "at": [
+      -101.6,
+      36.75
+     ],
+     "atWord": "Oklahoma",
+     "hold": 1.4
+    },
+    {
+     "type": "label",
+     "text": "Wyoming",
+     "at": [
+      -106.9,
+      41.5
+     ],
+     "atWord": "Wyoming.",
+     "hold": 1.5
+    },
+    {
+     "type": "reveal",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "Half"
+    },
+    {
+     "type": "conceal",
+     "ids": [
+      "CLAIM"
+     ],
+     "atWord": "Wyoming."
+    }
+   ]
+  },
+  {
+   "id": "shape",
+   "say": "That's how Texas got its shape.",
+   "camera": {
+    "fit": "TX",
+    "pad": 0.06,
+    "pitch": 58,
+    "yaw": -4
+   },
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "TX"
+     ],
+     "atWord": "shape."
+    }
+   ]
+  },
+  {
+   "id": "clause",
+   "say": "But that four-state clause? It's never been used. Is it still valid? Lawyers disagree.",
+   "camera": {
+    "fit": "TX",
+    "pad": 0.12,
+    "pitch": 50,
+    "yaw": 18,
+    "cut": true
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SPLIT",
+     "atWord": "four-state",
+     "hold": 5.5
+    },
+    {
+     "type": "callout",
+     "text": "STILL VALID?",
+     "sub": "yes: Kesavan & Paulsen (2004) · no: Art. IV §3",
+     "size": 70,
+     "y": 960,
+     "atWord": "valid?",
+     "hold": 2.4,
+     "stamp": "DISPUTED",
+     "stampWord": "disagree."
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "So, at least on paper…",
+   "camera": {
+    "fit": "TX",
+    "pad": 0.06
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SPLIT",
+     "atWord": "paper…",
+     "hold": 3.0
+    }
+   ]
+  }
+ ]
+}
