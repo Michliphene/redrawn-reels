@@ -48,6 +48,12 @@ else
   if [ "$FORCE_VOICE" = 1 ]; then python3 pipeline/tts.py "$ID" --force; else python3 pipeline/tts.py "$ID"; fi
 fi
 
+# 3b. listen to the take (WhisperX, optional): flags names said wrong or skipped words, never blocks
+if python3 -c "import whisperx" 2>/dev/null; then
+  step "voice check (whisperx)"
+  python3 pipeline/align.py "$AUDIO" 2>&1 | grep -E "^(asr check|  !)" || echo "!! voice check failed (render continues)" >&2
+fi
+
 # 4. music: made once, redone only if it is missing or too short for the voice (drop music.lock to keep your own)
 DUR=$(python3 -c "import json;print(json.load(open('$AEP/timings.json'))['duration']+1)")
 if [ ! -f "$AEP/music.lock" ]; then

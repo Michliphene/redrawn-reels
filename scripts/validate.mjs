@@ -68,6 +68,13 @@ export function validate(id) {
   const timings = fs.existsSync(EP(audioId, 'timings.json')) ? readJson(EP(audioId, 'timings.json')) : null;
   if (!timings) Wn('no timings.json yet: cue words are checked against the script only');
   else if (timings.beats.length !== spec.beats.length) E(`timings.json has ${timings.beats.length} beats, episode.json has ${spec.beats.length}: re-run the voice`);
+  // what WhisperX heard in the take (pipeline/align.py): a name said wrong, a skipped word
+  if (timings && fs.existsSync(EP(audioId, 'asr.json'))) {
+    const asr = readJson(EP(audioId, 'asr.json'));
+    const take = timings.say_hash || `dur:${timings.duration}`;
+    if (asr.say_hash !== take) Wn('asr.json is from an older voice take: python3 pipeline/align.py ' + audioId);
+    else for (const i of asr.issues) Wn(`voice ${i.beat} @${i.at ?? '?'}s: script "${i.script ?? '—'}", heard "${i.heard ?? '—'}" (check by ear; fix with voice.respell)`);
+  }
 
   // sources: the first promise of every channel
   let sources = '';

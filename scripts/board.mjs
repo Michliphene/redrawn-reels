@@ -239,6 +239,7 @@ function doctor() {
     { name: 'ffmpeg / ffprobe', ok: ok('ffmpeg', ['-version']) && ok('ffprobe', ['-version']), fix: 'apt-get install -y ffmpeg' },
     { name: 'python voice deps (numpy, soundfile)', ok: ok('python3', ['-c', 'import numpy, soundfile']), fix: 'pip install numpy soundfile (scripts/setup.sh)' },
     { name: 'headless Chromium', ok: chrome || !!process.env.REMOTION_CHROME, fix: 'set REMOTION_CHROME' },
+    { name: 'WhisperX (voice check, Kokoro word times)', ok: ok('python3', ['-c', 'import whisperx']), fix: 'scripts/setup.sh --asr', optional: true },
     { name: 'Kokoro fallback model', ok: exists(P('models')) && fs.readdirSync(P('models')).length > 0, fix: 'scripts/setup.sh (only needed without ElevenLabs)', optional: true },
   ];
 }

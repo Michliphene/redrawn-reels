@@ -86,6 +86,10 @@ The five rules (details and measurements in `docs/STUDIO.md`):
   0.28 s. The API key is injected by the cloud environment proxy (header `xi-api-key`). multilingual_v2 ignores
   IPA → fix names with `voice.respell`; check names by ear. `timings.json` stores a fingerprint of the script:
   the voice is re-recorded only when the script or voice settings change. Fallback: Kokoro local (`scripts/setup.sh`).
+- Voice check: WhisperX (`pipeline/align.py <id>`, CPU, optional: `scripts/setup.sh --asr`) transcribes the take and
+  diffs it against the script → `asr.json` (committed); the pre-flight prints each mismatch as `!` (a name said wrong,
+  a skipped word: check by ear, fix with `voice.respell`). `render.sh` runs it after the voice when whisperx is installed.
+  After a Kokoro fallback, `tts.py` runs `align.py --retime` (forced alignment → exact word times instead of estimates).
 - Rendering: Remotion 4 + `@remotion/three`. The DA 2 world is WebGL; a cloud container has no GPU, so
   `remotion.config.ts` selects software GL (`swangle`). Without WebGL an episode falls back to its flat version
   instead of failing. Chromium: `/opt/pw-browsers/chromium_headless_shell-*/…` (found automatically).

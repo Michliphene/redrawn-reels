@@ -1,0 +1,15 @@
+{
+ "say_hash": "dur:56.711",
+ "model": "small.en",
+ "wer": 0.013,
+ "heard": "one night in nineteen forty five two americans one national geographic map japan which has ruled korea since nineteen ten is about to surrender soviet troops are already entering the north in washington two officers dean rusk and charles bonesteel are told to draw a line they find no river no mountain range to use so they pick a straight line the thirty eighth parallel it keeps seoul in the american zone moscow agrees it's meant to be temporary but in nineteen forty eight the line hardens two rival states each claiming the whole peninsula so in nineteen fifty the north invades three years of war and when the nineteen fifty three armistice draws a new line it's not the thirty eighth parallel kaesong once in the south is now in the north saksho once in the north is now in the south and no peace treaty was ever signed still divided and it all started with",
+ "issues": [
+  {
+   "beat": "swap",
+   "kind": "heard",
+   "script": "Sokcho,",
+   "heard": "saksho",
+   "at": 48.8
+  }
+ ]
+}

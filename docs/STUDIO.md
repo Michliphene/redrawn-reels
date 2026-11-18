@@ -194,6 +194,8 @@ Pilots worth scripting first (one per format, existing data and engines):
 | A font fails to load | warning, next family in the stack, render continues | `fonts.ts` |
 | A flag / portrait / emoji is missing | the element is skipped; the pre-flight lists it | `Root.tsx`, `validate.mjs` |
 | ElevenLabs is down or out of quota | Kokoro local voice (needs `scripts/setup.sh`) | `pipeline/tts.py` |
+| The voice mispronounces a name or skips a word | WhisperX check: `asr.json`, listed by the pre-flight as `!` | `pipeline/align.py` |
+| Kokoro take (no word times) | WhisperX forced alignment re-times every word (median error ~15 ms vs ElevenLabs) | `pipeline/align.py --retime` |
 | The script did not change | the voice is NOT re-recorded (fingerprint in `timings.json`) — cues stay in sync, no credit spent | `pipeline/tts.py` |
 | The headless browser dies mid-render | one automatic retry | `pipeline/render.sh` |
 | An old episode is re-rendered after engine work | it has no `da` field → DA 1 path, unchanged | entry points |

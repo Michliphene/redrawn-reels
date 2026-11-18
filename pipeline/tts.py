@@ -7,7 +7,7 @@ Writes public/episodes/<id>/voice.wav and timings.json
 `say` markup: "{Display|spoken}" shows Display in captions but speaks `spoken`.
 Kokoro has no word alignment for this model, so each beat is synthesised separately
 (exact beat boundaries) and word times inside a beat are spread by phoneme count,
-snapped to detected pauses. ElevenLabs (/with-timestamps) gives exact alignment.
+snapped to detected pauses; pipeline/align.py (WhisperX) then re-times them exactly. ElevenLabs (/with-timestamps) gives exact alignment.
 """
 import json, re, sys, os
 try:  # only needed to synthesise; "voice up to date" must work on a machine without them
@@ -191,6 +191,14 @@ def _synthesise(ep, ep_dir):
     json.dump({"duration": round(len(full) / SR, 3), "beats": beats}, open(os.path.join(ep_dir, "timings.json"), "w"), indent=1, ensure_ascii=False)
     print(f"voice {len(full)/SR:.2f}s, {len(beats)} beats")
     for b in beats: print(f"  {b['id']:10s} {b['start']:6.2f}-{b['end']:6.2f}  {b['phonemes'][:90]}")
+    # Kokoro gives no word times: forced alignment (WhisperX) replaces the estimate when it is installed
+    import importlib.util, subprocess
+    if importlib.util.find_spec("whisperx"):
+        ep_id = os.path.basename(ep_dir)
+        if subprocess.run([sys.executable, os.path.join(ROOT, "pipeline", "align.py"), ep_id, "--retime"]).returncode:
+            print("!! whisperx re-timing failed: word times are estimates")
+    else:
+        print("! word times are estimates (install whisperx for exact ones: scripts/setup.sh --asr)")
 
 if __name__ == "__main__":
     main()

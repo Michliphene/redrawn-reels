@@ -1,0 +1,15 @@
+{
+ "say_hash": "dur:55.255",
+ "model": "small.en",
+ "wer": 0.023,
+ "heard": "the largest country on earth fell apart in under two years march nineteen ninety lithuania goes first declaring its independence restored moscow refuses in january ninety one soviet troops attack the tv tower in vilnius fourteen civilians die in april georgia follows then in august hardliners try to overthrow gorbachev the coup fails in three days estonia and latvia break away in the chaos within ten days ukraine belarus moldova azerbaijan kyrgyzstan uzbekistan by october tajikistan armenia turkmenistan december eighth russia ukraine and belarus sign the bailah vait zha accords the soviet union they declare no longer exists kazakhstan is the last to declare on december sixteenth december twenty fifth gorbachev resigns the soviet flag comes down over the kremlin fifteen countries from one and even on its own russia is still",
+ "issues": [
+  {
+   "beat": "belavezha",
+   "kind": "heard",
+   "script": "Belavezha",
+   "heard": "bailah vait",
+   "at": 37.49
+  }
+ ]
+}
