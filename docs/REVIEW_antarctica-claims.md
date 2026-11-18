@@ -74,3 +74,71 @@ pull-backs). Accuracy is clean apart from one date. What blocks posting:
 - Sync: declares and labels land on their words (±0.1 s) in uk/others/overlap; FROZEN/VOID stamps land on "freezes"/"counts.".
 - Camera: one idea per beat. The cuts at overlap / baby / nobody are good re-hooks. Beats ≥2 s with nothing new: baby 20.3–22.6
   (fixed by #3 moving the marker to "Argentina").
+
+---
+
+# VIRALITY — antarctica-claims (REDRAWN EP 5, DA 2) · pass 1
+
+Evidence: `pipeline/virality_metrics.py` (49.6 s, 141 words, 3.07 w/s, 8.5 cues/10 s, longest gap 2.98 s at 17.3 s,
+3/25 two-second windows with no cue, loop SSIM 0.883, −14.1 LUFS), hook frames 0–3 s, `loop_first_vs_last.jpg`, beat
+sheets regenerated from the final render (`out/review/antarctica-claims/beat_*.jpg`), extra frames at 3.8 / 15.3 / 25.5 /
+42.6 / 43.4 / 47.5 s. The voice is locked: no `say` changes below. This is a pattern-based estimate, not a prediction;
+the size of the creator account is the biggest factor we can't control.
+
+## Scorecard
+| Block | Pts | Why |
+|---|---|---|
+| A. Hook 0–3 s | **21**/25 | Frame 0 is the coloured 3D pie with "WHO OWNS ANTARCTICA?": striking paused and muted, place known at once (7/8, 5/5). Sentence 1 carries a number and a contradiction ("7… 3 claim the same slice"), but the "same slice" lands at 3.4 s and the hook runs 4.1 s (6/7). On-screen text shows no number until the caption: title 3 words, whisper "seven claims, one frozen treaty" fades in at 0.5 s and is quiet (2/3). No throat-clearing (2/2). Frame-0 pink triple-overlap slice is tiny at thumbnail size. |
+| B. Retention | **21**/25 | Something new every ≤3 s, camera travels between cues (7/8: three 2.9–3.0 s windows, at 17.3 / 25.2 / 35.6 s). Clear "but / therefore" spine: claims → overlap → treaty freezes → **but** a baby → **but** none of it counts → US/Russia → nobody's slice (5/6: `usru` plateaus a little, no new picture after the flags land). Re-hook with a cut at 20.3 s (41 %): "But in 1978… pregnant woman" (4/4). The payoff is not buried: the Texas comparison is the last big beat, but the two Texas ghosts are hard to read (orange on the yellow slice, the 2nd one hangs off the coast) (3/4). Pace 3.07 w/s, captions clean (3/3). |
+| C. Rewatch & loop | **9**/10 | "So who owns Antarctica? Depends who you ask. Because…" → "7 countries claim Antarctica" is a true sentence loop (5/5). SSIM 0.88 (3/3). Frames dense enough to pause on (overlap, Esperanza in the pink zone), but no frame shows the 7 claims labelled together (1/2). |
+| D. Shareability & saves | **11**/15 | Two strong "I didn't know that" facts: a baby born in a 3-way disputed zone, and the biggest unclaimed land on Earth (5/6: the baby's purpose is not stated, rightly, since SOURCES leaves the motive unstated; the viewer has to infer it). Save value: a claims map people want to keep, but the full pie is never labelled (2/4). Honest comment trigger, "Depends who you ask" + pinned "whose slice?" (3/3). Human stake: two pawns with names, no face (1/2). |
+| E. Packaging | **9**/10 | Frame 0 / 3.7 s work as a cover (3/4: big shape + 3 words, no number). Caption written below (3/3). Series badge "REDRAWN EP 5" on every frame (3/3). |
+| F. Niche codes & trust | **11**/15 | Visible change: slices appear one by one and the overlaps stack (4/4). Texas anchor for the US audience, but the picture is weak (2/3). Real stakes: pawns only, no portrait (1/3). Hedged where disputed: "dates vary, 1939–47", "our calculation", "known to be", Art. IV(2) on screen (3/3). Minor anti-patterns: the pawn caption collides with the "claimed by…" label (25.2–25.6 s); the `void` beat keeps a stale "NOV 1984 / Villa Las Estrellas, Chile" header; at 39.1–41 s the peninsula is drawn over the series bar (1/2). |
+| **TOTAL** | **82/100 · 8.2/10** | **can break out** |
+
+## Top 5 changes, ranked by expected gain (cue sheet / data only, voice untouched)
+1. **+2 (B payoff, F anchor). Make the two Texases readable.** The ghosts are `#F2994A` on the `#FFC94D` unclaimed slice, which is too low in contrast, and TEXAS_B sits half on the sea (clarity fix #15 is still open). In `nobody.actions`, set both ghosts to a colour that stands out from yellow:
+   ```json
+   {"type":"ghost","id":"TEXAS_A","atWord":"twice","hold":3.0,"color":"#FFFFFF"},
+   {"type":"ghost","id":"TEXAS_B","atWord":"size","hold":2.7,"color":"#FFFFFF"}
+   ```
+   Then rotate TEXAS_B about 4° toward the pole in `scripts/prep-antarctica.mjs` so it lies inside 90–150°W on land, and re-run the prep. Check with `npm run stills antarctica-claims -- --times 42.6,43.4,44.5`. The facts stay the same: true-size Texas, 2.19× by our calculation.
+2. **+1.5 (A on-screen text, E cover). Put the numbers on screen from frame 0.** Whisper:
+   `"whisper": "7 claims. 3 on the same slice."` (both numbers are in SOURCES: NPI 2011, WOR 6). This gives the muted scroller the hook before the caption builds. The "one frozen treaty" setup is not lost: the FROZEN stamp carries it at 17 s. If the whisper only fades in at 0.5 s, check whether the Header can show it at t=0 the way the title does. Frame 0 = last frame, so SSIM stays the same.
+3. **+1 (F anti-patterns). Fix the three small collisions:**
+   - `baby` label "claimed by UK · Chile · Argentina": `"hold": 1.2` (ends 25.17, before the Emilio pawn caption at 25.23).
+   - `void`: add `"hideDate": true`. The beat is in the present tense, and the header still reads "NOV 1984 · Villa Las Estrellas, Chile".
+   - `nobody.camera`: lower the land so the peninsula clears the series bar (y < 250 during 39.1–41 s). For example, try `"span": 33` or move `center` toward the pole (`[-112,-80]`), then confirm with `--props '{"guides":true}'` at 39.5 s.
+4. **+1 (C density, D save value). One labelled frame of the whole pie.** The 7 claims are never labelled together; the `others` labels last only 0.9 s each. In `usru`, after the flags land, add short flag labels on the full map at "recognise" (hold about 2.2, ending before "own."). Use `label` actions at each `properties.label`, flags gb/nz/fr/au/no/cl/ar, text = country name, and keep the US/RU stickers on the sea. Do not use `allLabels`: its legend code is USSR-specific. If the labels clutter, drop this change and pin a labelled still in the comments instead.
+5. **+0.5 (B gap at 17.3 s and 35.6 s). Fill the two 3 s holes.** In `treaty`, add `{"type":"shake","amount":3,"atWord":"No","occurrence":2}` on "No bigger ones" (a small "lock" beat). In `usru`, add `{"type":"pulse","ids":["NONE"],"atWord":"own."}` **only if** the slice already reads as unclaimed. It doesn't yet (white, undeclared until 40.2 s), so prefer a slow camera `dur` on `usru`, e.g. `"dur": 2.4`, which keeps the camera moving through 35–37 s.
+
+Expected after 1–3: about 86–87/100.
+
+## 3 alternative hooks (for a remaster / TikTok cut; all true per SOURCES.md)
+| Archetype | Verbal line | Frame-0 visual | On-screen text |
+|---|---|---|---|
+| Myth-bust | "Nobody owns Antarctica? Seven countries say they do." | Full coloured pie, crane from low angle | **7 COUNTRIES SAY THEY DO** |
+| Big number / comparison | "No country claims this land. It's more than twice the size of Texas." | Yellow unclaimed slice with the two white Texas ghosts already on it | **NOBODY CLAIMS THIS** |
+| In-media-res / human | "In 1978, Argentina flew a pregnant woman to Antarctica." (motive unstated, as in SOURCES) | Pink peninsula, Esperanza pawn, "claimed by UK · Chile · Argentina" | **BORN IN ANTARCTICA · 1978** |
+
+## Cover, caption, hashtags, pinned comment
+- **Cover frame: 3.7 s.** Title "WHO OWNS ANTARCTICA?" + the UK/Chile/Argentina flags stacked on the pink slice. If the platform allows a text overlay, the cover text is **"3 COUNTRIES. 1 SLICE."** (or frame 0 with the new whisper from change #2).
+- **Caption (IG / TikTok / YT Shorts):**
+  > 7 countries claim Antarctica. 3 of them claim the same slice.
+  > Antarctica territorial claims map, the 1959 Antarctic Treaty, and the first baby born in Antarctica.
+  > Marie Byrd Land: the biggest unclaimed land on Earth. Sources in the comments.
+- **Hashtags (4):** `#antarctica #maps #geography #history` (+ `#redrawn` on TikTok for the series).
+- **Pinned comment question** (after the sources line already in SOURCES.md): "Three countries, one slice: if the treaty ended tomorrow, whose slice is it?"
+
+## Platform notes
+- **TikTok:** keep 49.6 s. Rewatch counts, and the "Because…" loop is the asset, so add no end card. The on-screen numbers (#2) matter most here, because search reads on-screen text. A 61–70 s Creator Rewards cut would need new script content (e.g. Peter I Island, the 2048 myth), not a slowed edit, so not this one.
+- **Instagram Reels:** sends per reach is the signal. The baby fact is the send, so make sure the cover (3.7 s) and the first line are in the caption. Hashtags don't help reach; keep 3–4. Upload the clean master (no TikTok watermark).
+- **YouTube Shorts:** the "viewed vs swiped away" metric is decided in second 1. Frame 0 already has motion and the title; the whisper with numbers (#2) is the cheapest win. Title field: "Who owns Antarctica? 7 claims, 3 on the same slice". Shorts loops automatically, so the SSIM 0.88 loop pays off most here.
+
+VIRALITY SCORE: 82/100 (8.2/10) — can break out
+
+## Applied after both reviews (final render, 18 Nov 2026)
+- Clarity P1 1–7 applied (caption break fallback in `Captions.tsx`, frame 0 = final claims map with a quiet rewind at 1908, labels/holds, "Nov 1984", overlap label).
+- Clarity P2/P3 applied: pawn caption on "Emilio", treaty chapter, holds, US/RU flags on the sea, overlap camera, chapter "1939–47", fewer keywords.
+- Virality fixes 1, 2, 3, 5 applied: white Texas ghosts (TEXAS_B moved onto land), whisper "7 claims. 3 on the same slice.", collisions cleared, extra cues. Fix 4 (seven flag labels at once) not applied: clutter risk.
+- Final metrics: 49.6 s · −14.1 LUFS · longest gap without a new cue 2.9 s · loop SSIM 0.88 · pre-flight 0 ✗, 1 ! (hook 4.1 s, voice kept).

@@ -91,7 +91,7 @@ out.push({ type: 'Feature', id: 'FOCUS_OUTLINE', properties: { name: 'Antarctica
 const us = require('us-atlas/states-10m.json');
 const tx = feature(us, us.objects.states.geometries.find((g) => g.properties.name === 'Texas'));
 const TXC = geoCentroid(tx);
-for (const [id, B] of [['TEXAS_A', [-122, -80.2]], ['TEXAS_B', [-112, -74.6]]]) {
+for (const [id, B] of [['TEXAS_A', [-122, -80.2]], ['TEXAS_B', [-108, -76.2]]]) {
   const r1 = geoRotation([-TXC[0], -TXC[1]]), r2 = geoRotation([-B[0], -B[1]]);
   const mv = (q) => r2.invert(r1(q));
   const mc = (c) => (typeof c[0] === 'number' ? mv(c) : c.map(mc));
