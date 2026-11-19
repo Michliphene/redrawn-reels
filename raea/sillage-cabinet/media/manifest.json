@@ -1,0 +1,151 @@
+{
+ "episode": "scent-001-notjustflowers",
+ "date": "2026-11-19",
+ "rule": "Every image is an AI illustration: an 'AI illustration' chip is on screen while it is shown, and the post description says so. None is used as evidence; facts come from SOURCES.md.",
+ "style": "painterly cabinet of curiosities + editorial still life; plum and ivory with gold, petrol-teal and copper; no text, no logo, no watermark",
+ "items": [
+  {
+   "id": "nb_whale_cabinet",
+   "original": "media/plates/nb_whale_cabinet.jpg",
+   "size": "1536,2752",
+   "used_as": "s_whale_cabinet.jpg",
+   "tool": "Nano Banana (Gemini, owner's browser session)",
+   "role": "full 9:16, hook cut on \"whale's\"",
+   "prompt_summary": "antique petrol-teal gilded curiosity cabinet, doors open, ghostly sperm whale swimming out through golden smoke, amber flask on shelf",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_ocean_bottle",
+   "original": "media/plates/nb_ocean_bottle.jpg",
+   "size": "1536,2752",
+   "used_as": "s_ocean_bottle.jpg",
+   "tool": "Nano Banana",
+   "role": "full 9:16, \"float at sea for years\"",
+   "prompt_summary": "crystal bottle on copper stand with a stormy ocean wave and full moon inside, raw ambergris on a velvet cushion",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_ambergris_jar",
+   "original": "media/plates/gpt_ambergris_jar.png",
+   "size": "1024,1536",
+   "used_as": "f_ambergris_jar.jpg",
+   "tool": "gpt-image (ChatGPT, owner's browser session)",
+   "role": "framed 3:4, \"ambergris\"",
+   "prompt_summary": "raw ambergris under a glass bell jar on an ornate copper base, aubergine velvet",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_musk_window",
+   "original": "media/plates/nb_musk_window.jpg",
+   "size": "1792,2400",
+   "used_as": "f_musk_window.jpg",
+   "tool": "Nano Banana",
+   "role": "framed 3:4, \"musk deer\"",
+   "prompt_summary": "arched cabinet window with velvet curtains onto a misty forest, male musk deer on a mossy rock",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_leather",
+   "original": "media/plates/gpt_leather.png",
+   "size": "1024,1536",
+   "used_as": "c_leather.jpg",
+   "tool": "gpt-image",
+   "role": "table card, \"leather note in old classics\"",
+   "prompt_summary": "vintage leather driving gloves and an antique cut-crystal perfume bottle on aubergine velvet",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_beaver_plate",
+   "original": "media/plates/gpt_beaver_plate.png",
+   "size": "1024,1536",
+   "used_as": "c_beaver.jpg",
+   "tool": "gpt-image",
+   "role": "table card, \"Castoreum. From beavers.\"",
+   "prompt_summary": "19th-century natural-history plate of a Eurasian beaver, sepia engraving and watercolour on ivory parchment",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_lab_lilac",
+   "original": "media/plates/gpt_lab_lilac.png",
+   "size": "1024,1536",
+   "used_as": "not on screen",
+   "tool": "gpt-image",
+   "role": "reference for the 3D lab set",
+   "prompt_summary": "lab glassware, lilac and ivory ball-and-stick model, lifted plum",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_jasmine_drawer",
+   "original": "media/plates/nb_jasmine_drawer.jpg",
+   "size": "1536,2752",
+   "used_as": "s_jasmine_drawer.jpg",
+   "tool": "Nano Banana",
+   "role": "full 9:16, \"the flowers are still real\"",
+   "prompt_summary": "open antique drawer lined with aubergine velvet overflowing with white jasmine, tiny vials",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_rose_valley_framed",
+   "original": "media/plates/nb_rose_valley_framed.jpg",
+   "size": "1792,2400",
+   "used_as": "f_rose_valley.jpg (inside of the painted frame)",
+   "tool": "Nano Banana",
+   "role": "framed 3:4, \"Bulgaria and Turkey\"",
+   "prompt_summary": "Rose Valley, Bulgaria, at dawn, Damask roses, baskets of petals, no people",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_vanilla",
+   "original": "media/plates/gpt_vanilla.png",
+   "size": "1086,1448",
+   "used_as": "f_vanilla.jpg",
+   "tool": "gpt-image (made for sillage-notjustflowers)",
+   "role": "framed 3:4, \"pollinated by hand\"",
+   "prompt_summary": "vanilla orchid hand-pollinated with a bamboo splinter, fingertips only",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "gpt_vanilla_1841",
+   "original": "media/plates/gpt_vanilla_1841.png",
+   "size": "1024,1536",
+   "used_as": "s_vanilla_1841.jpg",
+   "tool": "gpt-image",
+   "role": "full 9:16, Edmond Albius 1841, a reconstruction",
+   "prompt_summary": "painterly reconstruction: young hand (no face) pollinating a vanilla orchid, 19th-century Reunion plantation",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_vetiver_paper",
+   "original": "media/plates/nb_vetiver_paper.jpg",
+   "size": "1792,2400",
+   "used_as": "c_vetiver.jpg",
+   "tool": "Nano Banana",
+   "role": "table specimen, \"half the world's vetiver\"",
+   "prompt_summary": "vetiver roots isolated on ivory paper, top-down, sage accent",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  },
+  {
+   "id": "nb_cover_bottle",
+   "original": "media/plates/nb_cover_bottle.jpg",
+   "size": "1536,2752",
+   "used_as": "s_cover_bottle.jpg",
+   "tool": "Nano Banana",
+   "role": "cover",
+   "prompt_summary": "the signature bottle on a copper pedestal, gold ring, ghost whale and jasmine in golden smoke",
+   "crop": "centred: 9:16 to 1080x1920, 3:4 to 900x1200 (prep-plates.sh)",
+   "subject_check": "checked on the contact sheets out/sheet_full.jpg, out/sheet_34.jpg"
+  }
+ ]
+}

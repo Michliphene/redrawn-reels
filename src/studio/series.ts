@@ -69,6 +69,14 @@ const DESIGN: Record<string, { palette: SeriesPalette; look: Look }> = {
     },
     look: { px: 3, levels: 7, dither: 1, outline: 0.8, scan: 0, vignette: 0.5, grain: 0 },
   },
+  // SILLAGE (perfume): a velvet vitrine. Plum-black room, rose-champagne accent (distinct from REDRAWN amber).
+  scent: {
+    palette: {
+      bg: '#0C0609', bgGlow: '#3B1A28', surface: '#45283A', surfaceEdge: '#1B0C13', grid: '#3A1F2C',
+      ink: '#F8EFE9', muted: '#A9949C', accent: '#F4B6C2', danger: '#E0565B', warn: '#E9B872',
+    },
+    look: { px: 3, levels: 8, dither: 0.85, outline: 0.7, scan: 0, vignette: 0.68, grain: 0 },
+  },
 };
 
 export const SERIES: Record<string, SeriesDef> = Object.fromEntries(

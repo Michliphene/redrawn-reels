@@ -1,0 +1,117 @@
+{
+ "id": "scent-001-notjustflowers",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 1,
+ "da": 2,
+ "composition": "Episode",
+ "title": "What's really in your perfume",
+ "whisper": "a whale, a deer, a beaver and a ton of flowers",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {},
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-notjustflowers (the map fields are unused; this file holds the script and the voice)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "Perfume isn't just flowers. Some of it came from a whale's gut.",
+   "actions": []
+  },
+  {
+   "id": "ambergris",
+   "say": "It's called ambergris. A sperm whale makes it, and it can float at sea for years before it washes up.",
+   "actions": []
+  },
+  {
+   "id": "fixative",
+   "say": "Perfumers loved it because it makes a scent last on your skin.",
+   "actions": []
+  },
+  {
+   "id": "musk",
+   "say": "Musk? It first came from a gland of the male musk deer. Since {1979|nineteen seventy-nine}, the deer is protected.",
+   "actions": []
+  },
+  {
+   "id": "beaver",
+   "say": "And the leather note in old classics? Castoreum. From beavers. Yes, beavers.",
+   "actions": []
+  },
+  {
+   "id": "twist",
+   "say": "Here's the twist: today, almost all of these animal notes are made in a lab.",
+   "actions": []
+  },
+  {
+   "id": "flowers",
+   "say": "The flowers, though, are still real. And it takes a lot of them.",
+   "actions": []
+  },
+  {
+   "id": "jasmine",
+   "say": "{1|One} kilo of jasmine oil needs about a ton of flowers, picked by hand around Grasse, France.",
+   "actions": []
+  },
+  {
+   "id": "rose",
+   "say": "Most of the world's rose oil comes from two countries: Bulgaria and Turkey.",
+   "actions": []
+  },
+  {
+   "id": "vanilla",
+   "say": "Vanilla is pollinated by hand, one flower at a time. An enslaved twelve-year-old, Edmond Albius, found the trick in {1841|eighteen forty-one}.",
+   "actions": []
+  },
+  {
+   "id": "vetiver",
+   "say": "And about half the world's vetiver oil comes from Haiti. From the roots.",
+   "actions": []
+  },
+  {
+   "id": "pullback",
+   "say": "Whales, deer and beavers, rebuilt in a lab. A ton of flowers, picked by hand. That's what's in the bottle.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "So next time you spray it, remember:",
+   "actions": []
+  }
+ ]
+}

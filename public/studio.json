@@ -5,7 +5,9 @@
       "name": "REDRAWN",
       "handle": "",
       "tagline": "History in 60 seconds. One map. Every claim sourced.",
-      "legacyNames": ["REDRAWN"],
+      "legacyNames": [
+        "REDRAWN"
+      ],
       "composition": "Episode",
       "episodeTag": "EP {n}"
     },
@@ -13,9 +15,21 @@
       "name": "RECEIPTS",
       "handle": "",
       "tagline": "Follow the money in under a minute. Every number from the filing.",
-      "legacyNames": ["RECEIPTS"],
+      "legacyNames": [
+        "RECEIPTS"
+      ],
       "composition": "Money",
       "episodeTag": "#{nnn}"
+    },
+    "scent": {
+      "name": "SILLAGE",
+      "handle": "",
+      "tagline": "The story in the bottle. 60 seconds, every note sourced.",
+      "legacyNames": [
+        "SILLAGE"
+      ],
+      "composition": "Episode",
+      "episodeTag": "N°{n}"
     }
   }
 }

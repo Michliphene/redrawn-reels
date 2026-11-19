@@ -1,0 +1,555 @@
+{
+ "duration": 35.574,
+ "engine": "elevenlabs",
+ "beats": [
+  {
+   "id": "hook",
+   "start": 0.25,
+   "end": 2.909,
+   "words": [
+    {
+     "w": "1",
+     "start": 0.25,
+     "end": 0.424
+    },
+    {
+     "w": "kilo",
+     "start": 0.471,
+     "end": 0.749
+    },
+    {
+     "w": "of",
+     "start": 0.807,
+     "end": 0.854
+    },
+    {
+     "w": "jasmine",
+     "start": 0.9,
+     "end": 1.318
+    },
+    {
+     "w": "oil",
+     "start": 1.353,
+     "end": 1.515
+    },
+    {
+     "w": "takes",
+     "start": 1.574,
+     "end": 1.783
+    },
+    {
+     "w": "about",
+     "start": 1.806,
+     "end": 1.991
+    },
+    {
+     "w": "a",
+     "start": 2.015,
+     "end": 2.05
+    },
+    {
+     "w": "ton",
+     "start": 2.096,
+     "end": 2.212
+    },
+    {
+     "w": "of",
+     "start": 2.259,
+     "end": 2.305
+    },
+    {
+     "w": "flowers.",
+     "start": 2.34,
+     "end": 2.909
+    }
+   ]
+  },
+  {
+   "id": "grasse",
+   "start": 3.189,
+   "end": 8.044,
+   "words": [
+    {
+     "w": "That's",
+     "start": 3.189,
+     "end": 3.386
+    },
+    {
+     "w": "Grasse,",
+     "start": 3.433,
+     "end": 3.827
+    },
+    {
+     "w": "in",
+     "start": 3.851,
+     "end": 3.932
+    },
+    {
+     "w": "France.",
+     "start": 3.99,
+     "end": 4.42
+    },
+    {
+     "w": "Since",
+     "start": 4.7,
+     "end": 4.944
+    },
+    {
+     "w": "2018,",
+     "start": 4.979,
+     "end": 5.722
+    },
+    {
+     "w": "its",
+     "start": 5.745,
+     "end": 5.861
+    },
+    {
+     "w": "perfume",
+     "start": 5.908,
+     "end": 6.291
+    },
+    {
+     "w": "know-how",
+     "start": 6.326,
+     "end": 6.79
+    },
+    {
+     "w": "is",
+     "start": 6.895,
+     "end": 6.987
+    },
+    {
+     "w": "UNESCO",
+     "start": 7.092,
+     "end": 7.475
+    },
+    {
+     "w": "heritage.",
+     "start": 7.522,
+     "end": 8.044
+    }
+   ]
+  },
+  {
+   "id": "rose",
+   "start": 8.324,
+   "end": 12.795,
+   "words": [
+    {
+     "w": "The",
+     "start": 8.324,
+     "end": 8.44
+    },
+    {
+     "w": "roses",
+     "start": 8.509,
+     "end": 8.846
+    },
+    {
+     "w": "come",
+     "start": 8.904,
+     "end": 9.067
+    },
+    {
+     "w": "from",
+     "start": 9.102,
+     "end": 9.229
+    },
+    {
+     "w": "further",
+     "start": 9.276,
+     "end": 9.554
+    },
+    {
+     "w": "east.",
+     "start": 9.612,
+     "end": 9.949
+    },
+    {
+     "w": "Bulgaria",
+     "start": 10.229,
+     "end": 10.821
+    },
+    {
+     "w": "and",
+     "start": 10.879,
+     "end": 10.972
+    },
+    {
+     "w": "Turkey",
+     "start": 11.018,
+     "end": 11.285
+    },
+    {
+     "w": "make",
+     "start": 11.343,
+     "end": 11.494
+    },
+    {
+     "w": "most",
+     "start": 11.541,
+     "end": 11.715
+    },
+    {
+     "w": "of",
+     "start": 11.761,
+     "end": 11.808
+    },
+    {
+     "w": "the",
+     "start": 11.843,
+     "end": 11.912
+    },
+    {
+     "w": "world's",
+     "start": 11.947,
+     "end": 12.191
+    },
+    {
+     "w": "rose",
+     "start": 12.237,
+     "end": 12.458
+    },
+    {
+     "w": "oil.",
+     "start": 12.504,
+     "end": 12.795
+    }
+   ]
+  },
+  {
+   "id": "vetiver",
+   "start": 13.075,
+   "end": 18.173,
+   "words": [
+    {
+     "w": "The",
+     "start": 13.075,
+     "end": 13.203
+    },
+    {
+     "w": "smoky",
+     "start": 13.273,
+     "end": 13.667
+    },
+    {
+     "w": "note",
+     "start": 13.737,
+     "end": 13.935
+    },
+    {
+     "w": "comes",
+     "start": 13.981,
+     "end": 14.178
+    },
+    {
+     "w": "from",
+     "start": 14.213,
+     "end": 14.352
+    },
+    {
+     "w": "Haiti.",
+     "start": 14.422,
+     "end": 14.828
+    },
+    {
+     "w": "About",
+     "start": 15.108,
+     "end": 15.398
+    },
+    {
+     "w": "half",
+     "start": 15.468,
+     "end": 15.7
+    },
+    {
+     "w": "the",
+     "start": 15.746,
+     "end": 15.816
+    },
+    {
+     "w": "world's",
+     "start": 15.862,
+     "end": 16.153
+    },
+    {
+     "w": "vetiver",
+     "start": 16.199,
+     "end": 16.547
+    },
+    {
+     "w": "oil,",
+     "start": 16.617,
+     "end": 17.012
+    },
+    {
+     "w": "distilled",
+     "start": 17.151,
+     "end": 17.523
+    },
+    {
+     "w": "from",
+     "start": 17.546,
+     "end": 17.674
+    },
+    {
+     "w": "roots.",
+     "start": 17.732,
+     "end": 18.173
+    }
+   ]
+  },
+  {
+   "id": "vanilla",
+   "start": 18.453,
+   "end": 22.217,
+   "words": [
+    {
+     "w": "The",
+     "start": 18.453,
+     "end": 18.581
+    },
+    {
+     "w": "sweetness,",
+     "start": 18.662,
+     "end": 19.278
+    },
+    {
+     "w": "from",
+     "start": 19.324,
+     "end": 19.487
+    },
+    {
+     "w": "Madagascar:",
+     "start": 19.533,
+     "end": 20.369
+    },
+    {
+     "w": "the",
+     "start": 20.649,
+     "end": 20.742
+    },
+    {
+     "w": "world's",
+     "start": 20.789,
+     "end": 21.079
+    },
+    {
+     "w": "biggest",
+     "start": 21.137,
+     "end": 21.439
+    },
+    {
+     "w": "vanilla",
+     "start": 21.485,
+     "end": 21.764
+    },
+    {
+     "w": "grower.",
+     "start": 21.81,
+     "end": 22.217
+    }
+   ]
+  },
+  {
+   "id": "patchouli",
+   "start": 22.497,
+   "end": 27.247,
+   "words": [
+    {
+     "w": "The",
+     "start": 22.497,
+     "end": 22.625
+    },
+    {
+     "w": "earthy",
+     "start": 22.706,
+     "end": 22.973
+    },
+    {
+     "w": "base,",
+     "start": 23.031,
+     "end": 23.472
+    },
+    {
+     "w": "from",
+     "start": 23.519,
+     "end": 23.681
+    },
+    {
+     "w": "Indonesia.",
+     "start": 23.728,
+     "end": 24.343
+    },
+    {
+     "w": "Estimates",
+     "start": 24.623,
+     "end": 25.122
+    },
+    {
+     "w": "reach",
+     "start": 25.192,
+     "end": 25.412
+    },
+    {
+     "w": "90%",
+     "start": 25.552,
+     "end": 26.19
+    },
+    {
+     "w": "of",
+     "start": 26.225,
+     "end": 26.271
+    },
+    {
+     "w": "the",
+     "start": 26.318,
+     "end": 26.388
+    },
+    {
+     "w": "world's",
+     "start": 26.422,
+     "end": 26.666
+    },
+    {
+     "w": "patchouli.",
+     "start": 26.701,
+     "end": 27.247
+    }
+   ]
+  },
+  {
+   "id": "pullback",
+   "start": 27.527,
+   "end": 29.802,
+   "words": [
+    {
+     "w": "Six",
+     "start": 27.527,
+     "end": 27.782
+    },
+    {
+     "w": "countries.",
+     "start": 27.84,
+     "end": 28.293
+    },
+    {
+     "w": "Five",
+     "start": 28.362,
+     "end": 28.595
+    },
+    {
+     "w": "ingredients.",
+     "start": 28.618,
+     "end": 29.152
+    },
+    {
+     "w": "One",
+     "start": 29.222,
+     "end": 29.384
+    },
+    {
+     "w": "bottle.",
+     "start": 29.431,
+     "end": 29.802
+    }
+   ]
+  },
+  {
+   "id": "twist",
+   "start": 30.082,
+   "end": 33.472,
+   "words": [
+    {
+     "w": "And",
+     "start": 30.082,
+     "end": 30.21
+    },
+    {
+     "w": "most",
+     "start": 30.268,
+     "end": 30.453
+    },
+    {
+     "w": "perfumes",
+     "start": 30.5,
+     "end": 30.86
+    },
+    {
+     "w": "today",
+     "start": 30.906,
+     "end": 31.243
+    },
+    {
+     "w": "also",
+     "start": 31.324,
+     "end": 31.649
+    },
+    {
+     "w": "rely",
+     "start": 31.73,
+     "end": 31.986
+    },
+    {
+     "w": "on",
+     "start": 32.044,
+     "end": 32.137
+    },
+    {
+     "w": "molecules",
+     "start": 32.195,
+     "end": 32.682
+    },
+    {
+     "w": "made",
+     "start": 32.729,
+     "end": 32.88
+    },
+    {
+     "w": "in",
+     "start": 32.903,
+     "end": 32.961
+    },
+    {
+     "w": "a",
+     "start": 33.008,
+     "end": 33.031
+    },
+    {
+     "w": "lab.",
+     "start": 33.077,
+     "end": 33.472
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "start": 33.752,
+   "end": 35.574,
+   "words": [
+    {
+     "w": "Why?",
+     "start": 33.752,
+     "end": 34.181
+    },
+    {
+     "w": "Remember",
+     "start": 34.367,
+     "end": 34.68
+    },
+    {
+     "w": "the",
+     "start": 34.727,
+     "end": 34.797
+    },
+    {
+     "w": "jasmine:",
+     "start": 34.843,
+     "end": 35.574
+    }
+   ]
+  }
+ ],
+ "say_hash": "bd7b861aa84d7018"
+}

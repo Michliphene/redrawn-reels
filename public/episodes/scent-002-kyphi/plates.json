@@ -1,0 +1,17 @@
+{
+ "_": "Nano Banana plates for SILLAGE N°2 (pilot A). Run: node scripts/nano-banana.mjs scent-002-kyphi  (--dry to read the prompts). Every plate is shown with the label AI ILLUSTRATION: it is our picture of a documented recipe, never a museum object.",
+ "model": "gemini-3-pro-image",
+ "aspect": "3:4",
+ "style": "Editorial still-life photograph for a perfume archive. One object alone on a low plinth of dark plum velvet, in an otherwise black room. A single soft key light from the upper left, a thin warm rim light, deep plum shadows, rose-champagne highlights on glass and stone. Shallow depth of field, 85 mm lens, quiet and expensive, like a museum catalogue shot at night. Strictly no text, no letters, no hieroglyphs, no logo, no label, no brand, no people, no hands. Vertical frame; the object sits in the lower two thirds; the top third is empty dark space for typography.",
+ "plates": [
+  { "key": "kyphi_flask", "prompt": "An imagined vessel for kyphi, an ancient Egyptian temple perfume: a small squat flask of translucent banded alabaster with a rounded shoulder and a short neck, sealed with a plug of dark resin; a few crumbs of amber resin and three dried raisins at its foot. It must look like a contemporary art object inspired by the period, not like a real museum artefact." },
+  { "key": "dusk_censer", "prompt": "A small bronze arm-shaped incense burner on the plinth, a thin line of pale smoke rising and curling into the dark, a glowing ember in the bowl, dusk-coloured light. Calm, ritual, no figures." },
+  { "key": "honey_wine_raisins", "prompt": "Three ingredients arranged like jewels: a shallow bowl of dark amber honey, a small cup of red wine, a cluster of dark raisins." },
+  { "key": "myrrh", "prompt": "A small heap of raw myrrh resin tears, translucent red-brown, backlit so they glow like garnets." },
+  { "key": "juniper", "prompt": "A sprig of juniper with dusty blue-black berries, a few loose berries on the velvet." },
+  { "key": "mastic", "prompt": "Pale yellow tears of mastic resin, translucent like frosted glass, in a tiny stone dish." },
+  { "key": "calamus", "prompt": "Cut pieces of sweet flag root (calamus) and a few dry reed stems tied with a thread." },
+  { "key": "cardamom", "prompt": "Green cardamom pods, one split open to show the dark seeds, scattered on the velvet." },
+  { "key": "cover", "aspect": "9:16", "prompt": "The same alabaster flask as a hero shot, closer, the plinth edge visible, a single curl of smoke behind it. Leave the top 40 % of the frame as empty dark plum space for a title." }
+ ]
+}

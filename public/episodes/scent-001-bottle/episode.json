@@ -1,0 +1,442 @@
+{
+ "id": "scent-001-bottle",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 1,
+ "da": 2,
+ "title": "What's inside your perfume",
+ "whisper": "six countries, one bottle",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {},
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "jasmine",
+  "Grasse,",
+  "UNESCO",
+  "Bulgaria",
+  "Turkey",
+  "Haiti.",
+  "vetiver",
+  "Madagascar:",
+  "vanilla",
+  "Indonesia.",
+  "patchouli.",
+  "lab.",
+  "jasmine:"
+ ],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "{1|One} kilo of jasmine oil takes about a ton of flowers.",
+   "camera": {
+    "center": [
+     6.9,
+     43.7
+    ],
+    "span": 9,
+    "pitch": 34,
+    "yaw": -14
+   },
+   "date": null,
+   "hideLocator": true,
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 1000,
+     "prefix": "≈",
+     "suffix": " KG",
+     "label": "OF FLOWERS FOR 1 KG OF JASMINE OIL",
+     "from": 1,
+     "dur": 0.6,
+     "hold": 2.6,
+     "y": 1000,
+     "atTime": 0
+    },
+    {
+     "type": "marker",
+     "text": "Grasse",
+     "at": [
+      6.92,
+      43.66
+     ],
+     "atWord": "jasmine",
+     "hold": 3.4
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "FRA"
+     ],
+     "atWord": "flowers."
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "grasse",
+   "say": "That's Grasse, in France. Since {2018|twenty eighteen}, its perfume know-how is UNESCO heritage.",
+   "camera": {
+    "center": [
+     5.2,
+     45.4
+    ],
+    "span": 16,
+    "yaw": -6
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "FRA",
+     "atWord": "Grasse,",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "France",
+     "at": [
+      2.4,
+      46.7
+     ],
+     "atWord": "France.",
+     "hold": 2.2
+    },
+    {
+     "type": "callout",
+     "text": "UNESCO",
+     "sub": "intangible cultural heritage · 2018",
+     "y": 1000,
+     "atWord": "UNESCO",
+     "hold": 1.6
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "rose",
+   "say": "The roses come from further east. Bulgaria and Turkey make most of the world's rose oil.",
+   "camera": {
+    "center": [
+     28.5,
+     40.6
+    ],
+    "span": 18,
+    "yaw": 10
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "declare",
+     "id": "BGR",
+     "atWord": "Bulgaria",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "TUR",
+     "atWord": "Turkey",
+     "noLabel": true
+    },
+    {
+     "type": "marker",
+     "text": "Rose Valley",
+     "at": [
+      25.4,
+      42.62
+     ],
+     "atWord": "Bulgaria",
+     "hold": 3
+    },
+    {
+     "type": "marker",
+     "text": "Isparta",
+     "at": [
+      30.55,
+      37.76
+     ],
+     "atWord": "Turkey",
+     "hold": 2.4
+    },
+    {
+     "type": "region",
+     "text": "rose oil",
+     "at": [
+      27.6,
+      40.2
+     ],
+     "atWord": "rose",
+     "hold": 1.6
+    }
+   ],
+   "hideTimeline": true
+  },
+  {
+   "id": "vetiver",
+   "say": "The smoky note comes from Haiti. About half the world's vetiver oil, distilled from roots.",
+   "camera": {
+    "center": [
+     -72.6,
+     19
+    ],
+    "span": 7,
+    "pitch": 40,
+    "yaw": -12,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "HTI",
+     "atWord": "Haiti.",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "Haiti",
+     "at": [
+      -72.7,
+      19
+     ],
+     "atWord": "Haiti.",
+     "hold": 3.6
+    },
+    {
+     "type": "bigNumber",
+     "value": 50,
+     "prefix": "≈",
+     "suffix": "%",
+     "label": "OF THE WORLD'S VETIVER OIL",
+     "from": 0,
+     "dur": 0.7,
+     "hold": 2.2,
+     "y": 1000,
+     "atWord": "half"
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "vanilla",
+   "say": "The sweetness, from Madagascar: the world's biggest vanilla grower.",
+   "camera": {
+    "center": [
+     46.8,
+     -19.2
+    ],
+    "span": 16,
+    "yaw": 8,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "MDG",
+     "atWord": "Madagascar:",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "Madagascar",
+     "at": [
+      46.7,
+      -19.6
+     ],
+     "atWord": "Madagascar:",
+     "hold": 3
+    },
+    {
+     "type": "region",
+     "text": "vanilla · No. 1 grower",
+     "at": [
+      49.5,
+      -15.2
+     ],
+     "atWord": "vanilla",
+     "hold": 1.8
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "patchouli",
+   "say": "The earthy base, from Indonesia. Estimates reach {90%|ninety percent} of the world's patchouli.",
+   "camera": {
+    "center": [
+     117.5,
+     -2.2
+    ],
+    "span": 30,
+    "yaw": -8,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "IDN",
+     "atWord": "Indonesia.",
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "Indonesia",
+     "at": [
+      116.5,
+      -2.4
+     ],
+     "atWord": "Indonesia.",
+     "hold": 3
+    },
+    {
+     "type": "bigNumber",
+     "value": 90,
+     "prefix": "UP TO ",
+     "suffix": "%",
+     "label": "OF THE WORLD'S PATCHOULI · ESTIMATES",
+     "from": 0,
+     "dur": 0.7,
+     "hold": 2.2,
+     "y": 1000,
+     "atWord": "Estimates"
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "pullback",
+   "say": "Six countries. Five ingredients. One bottle.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 58
+   },
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "FRA",
+      "BGR",
+      "TUR"
+     ],
+     "atWord": "Six"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "HTI",
+      "MDG",
+      "IDN"
+     ],
+     "atWord": "Five"
+    },
+    {
+     "type": "allLabels",
+     "atWord": "Six"
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "twist",
+   "say": "And most perfumes today also rely on molecules made in a lab.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 56,
+    "yaw": 10
+   },
+   "actions": [
+    {
+     "type": "callout",
+     "text": "MADE IN A LAB",
+     "sub": "synthetic molecules sit beside the naturals",
+     "y": 1000,
+     "atWord": "lab.",
+     "hold": 1.8
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  },
+  {
+   "id": "loop",
+   "say": "Why? Remember the jasmine:",
+   "camera": {
+    "center": [
+     6.9,
+     43.7
+    ],
+    "span": 9,
+    "pitch": 34,
+    "yaw": -14,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "FRA"
+     ],
+     "atWord": "jasmine:"
+    },
+    {
+     "type": "marker",
+     "text": "Grasse",
+     "at": [
+      6.92,
+      43.66
+     ],
+     "atWord": "jasmine:",
+     "hold": 1.4
+    }
+   ],
+   "hideDate": true,
+   "hideTimeline": true
+  }
+ ],
+ "world": {
+  "center": [
+   22,
+   14
+  ]
+ }
+}
