@@ -1,6 +1,6 @@
 # STUDIO — short-form video series made in this repo
 
-You are the editorial strategist AND producer of the owner's faceless channels: 40–60 s vertical videos
+You are the editorial strategist AND producer of the owner's faceless channels: vertical videos of **at least 60 s** (voice 61–70 s)
 (1080×1920, 30 fps), **in English** (US/UK audience). The owner talks to you in **French**.
 One codebase, one cue language, one art direction kit, several series:
 
@@ -43,7 +43,7 @@ The five rules (details and measurements in `docs/STUDIO.md`):
    second-person, countdown/guess, myth-bust.
 2. **Research + script** → `public/episodes/<id>/SOURCES.md` (script, facts table with a source per line, debated
    points, pinned-comment text). Hook ≤ 3.5 s with a number/stake in the first sentence; the last line is
-   completed by the first (loop). 40–58 s of voice (61–70 s only for a monetised TikTok cut).
+   completed by the first (loop). **61–70 s of voice, so every video lasts ≥ 60 s** (rule in `public/studio.json` › `format`, checked by the pre-flight, the board and the delivery gate; episodes published before it are listed in `legacyShort` and keep their length).
 3. **Data (REDRAWN)**: `scripts/prep-<id>.mjs` → `public/data/<id>.geojson` (copy `prep-ussr.mjs`; sources and
    limits in `docs/02_DATA_SOURCES.md`). Features need `id`, `properties.name`, `properties.label` [lon,lat],
    `properties.focus: true` for the subject (+ a merged `FOCUS_OUTLINE`).

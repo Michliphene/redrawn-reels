@@ -7,7 +7,7 @@ import { test } from 'node:test';
 
 const cli = path.resolve('scripts/delivery.mjs');
 const api = () => import('../scripts/delivery.mjs');
-const technical = { width: 1080, height: 1920, fps: 30, duration: 42, videoCodec: 'h264', audioCodec: 'aac', lufs: -14, truePeak: -1.2 };
+const technical = { width: 1080, height: 1920, fps: 30, duration: 62, videoCodec: 'h264', audioCodec: 'aac', lufs: -14, truePeak: -1.2 };
 
 function fixture(t: Parameters<Parameters<typeof test>[1]>[0], id = 'alaska-1867') {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), 'redrawn-delivery-'));
@@ -29,7 +29,7 @@ function fixture(t: Parameters<Parameters<typeof test>[1]>[0], id = 'alaska-1867
   ] });
   put(`${ep}/voice.wav`, 'voice A');
   put(`${ep}/music.wav`, 'music A');
-  put(`${ep}/timings.json`, { duration: 42 });
+  put(`${ep}/timings.json`, { duration: 62 });
   put('public/studio.json', { series: {} });
   put('src/index.ts', 'render entry');
   put('package-lock.json', {});
@@ -202,4 +202,16 @@ test('Alaska: the source visa must cover the recorded claim ids and compare thei
   sources.claims[0].unit = 'cents';
   f.put(f.approvalPath, f.approval);
   assert.match(f.d.deliveryStatus(f.root, f.id).reason, /unit.*main-claim/i);
+});
+
+test('Length rule: a new reel needs 60 s, a legacy episode keeps its 30 s floor', async () => {
+  const { readFormat, videoLengthIssue, voiceLengthNote } = await import('../scripts/format.mjs');
+  const fmt = readFormat(process.cwd());
+  assert.equal(fmt.minSeconds, 60);
+  assert.match(videoLengthIssue(fmt, 'brand-new-reel', 59.9) ?? '', /60–75/);
+  assert.equal(videoLengthIssue(fmt, 'brand-new-reel', 60), null);
+  assert.equal(videoLengthIssue(fmt, 'alaska-1867', 55.7), null);
+  assert.match(voiceLengthNote(fmt, 'brand-new-reel', 55) ?? '', /under 61 s/);
+  assert.equal(voiceLengthNote(fmt, 'brand-new-reel', 64), null);
+  assert.equal(voiceLengthNote(fmt, 'alaska-1867', 42), null);
 });

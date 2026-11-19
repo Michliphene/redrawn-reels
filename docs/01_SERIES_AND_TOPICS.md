@@ -2,7 +2,7 @@
 
 **Name:** REDRAWN
 **Tagline (bio):** "History in 60 seconds. One map. Every claim sourced."
-**Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-synced captions · the map is the protagonist
+**Format:** 1080×1920 · 30 fps · ≥ 60 s (voice 61–70 s) · EN voice-over · word-synced captions · the map is the protagonist
 **Art direction:** DA 2 "tabletop" for every new episode (`"da": 2`): the map is a board of pieces on a table, seen
 through a real camera. Shared rules, safe area and camera language: `docs/STUDIO.md`. Template: `ussr-1991-v2`.
 The name on screen comes from `public/studio.json` (series id `redrawn`).

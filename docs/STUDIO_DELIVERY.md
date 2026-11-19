@@ -24,7 +24,7 @@ Sur Linux, utiliser `python3` si nécessaire. Chaque extraction crée son propre
 
 Écrire `deliverables/<id>/POSTING.md` avec `## TikTok description`, `## Instagram description`, `## Pinned comment` et, si utile, `## Title` et `## YouTube Shorts description`. Les anciens kits avec `## Caption` restent lisibles. Générer la copie locale avec `python pipeline/posting_kit.py <id>`. Préparer et regarder la couverture 9:16. Si le kit inclut la miniature dessinée 16:9, les versions 9:16 et 3:4 doivent être présentes.
 
-Le profil de remise est un profil studio pour ce repo. Il exige un MP4 vertical 1080×1920 à 30 fps, H.264/AAC, 30–75 s, −14 ± 1,5 LUFS et une crête vraie ≤ −1 dBTP. Ces seuils constituent une porte technique locale.
+Le profil de remise est un profil studio pour ce repo. Il exige un MP4 vertical 1080×1920 à 30 fps, H.264/AAC, 60–75 s pour un nouveau reel (30–75 s pour les épisodes de `legacyShort` dans `public/studio.json`), −14 ± 1,5 LUFS et une crête vraie ≤ −1 dBTP. Ces seuils constituent une porte technique locale.
 
 ```sh
 npm run delivery -- packet <id> --manifest out/<id>.render.json

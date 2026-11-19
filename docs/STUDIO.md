@@ -153,6 +153,11 @@ travels between stations and returns to the product for the loop.
 Every format keeps the spine **Hook → Escalation → Re-hook → Payoff → Loop** and every rule of the bibles.
 Figures and hooks below are drafts: verify each at scripting time and drop the angle if the sources do not support it.
 
+**Length (all series): at least 60 s.** Write 61–70 s of voice (about 175–200 words at ~2.8 w/s) so the video clears one
+minute, and never pad: the extra 15–20 s is a second escalation step, one more stake, or a longer payoff. Keep the hook ≤ 3.5 s,
+a new visual idea every ~3 s and the re-hook around 40–60 %. The pre-flight warns under 61 s, the board shows it, and the
+delivery gate blocks a new reel under 60 s. Episodes listed in `public/studio.json` › `format.legacyShort` keep their length.
+
 | Format | The viewer's seat | Skeleton | Works when |
 |---|---|---|---|
 | **A. Explainer** (what we have) | spectator | number or contradiction → 4–6 steps → twist → loop | the transformation itself is the surprise |

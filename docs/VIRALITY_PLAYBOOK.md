@@ -70,8 +70,8 @@ topic · hook promise not paid off · ending with "follow for more" instead of a
   (a stack, a pawn, a piece that moves), score it down.
 - **Formats**: second-person ("you are…") and guess-before-the-count reels must pay off in the world, on screen.
 - **Length** [PRACTITIONER, unverified against TikTok's own pages]: third-party 2026 guides agree that Creator
-  Rewards only counts videos longer than one minute. Decide per account; a 61–70 s cut is a different edit, not
-  a slowed-down 45 s one.
+  Rewards only counts videos longer than one minute. The studio therefore writes every new reel for 61–70 s of voice from the script stage; never pad a short script with
+  filler or slow the voice. Add a second fact, a stake or a twist, and keep the mid-video re-hook.
 
 ## Sources consulted
 - TikTok, "How TikTok recommends videos #ForYou" (2020), via [SocialPilot](https://www.socialpilot.co/blog/tiktok-algorithm), [Hootsuite](https://blog.hootsuite.com/tikTok-algorithm/)

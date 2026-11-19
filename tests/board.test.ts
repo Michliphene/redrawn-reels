@@ -39,7 +39,7 @@ function checkout(t: import('node:test').TestContext) {
     mkdirSync(dirname(dest), { recursive: true });
     writeFileSync(dest, data);
   };
-  for (const file of ['scripts/board.mjs', 'scripts/track.mjs', 'scripts/render-tools.mjs', 'scripts/validate.mjs', 'public/studio.json']) {
+  for (const file of ['scripts/board.mjs', 'scripts/track.mjs', 'scripts/render-tools.mjs', 'scripts/validate.mjs', 'scripts/format.mjs', 'public/studio.json']) {
     const dest = join(root, file);
     mkdirSync(dirname(dest), { recursive: true });
     copyFileSync(new URL(`../${file}`, import.meta.url), dest);

@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { existingVoice } from './render-tools.mjs';
 import { validate, seriesIdOf } from './validate.mjs';
+import { readFormat, voiceLengthNote } from './format.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const P = (...a) => path.join(ROOT, ...a);
@@ -145,7 +146,8 @@ function episodeStatus(id, tracker, overrides) {
       const stale = error.message.startsWith('Voice provenance is stale');
       set('voice', stale ? 'stale' : 'warn', `${stale ? error.message : `Voice probe unavailable · ${error.message}`}${shared}`);
     }
-    if (Number.isFinite(tj?.duration) && (tj.duration < 40 || tj.duration > 58)) S.voice.note += tj.duration > 70 ? ' · too long' : tj.duration > 58 ? ' · over 58 s (TikTok cut only)' : ' · under 40 s';
+    const lengthNote = voiceLengthNote(readFormat(ROOT), id, tj?.duration);
+    if (lengthNote) S.voice.note += ` · ${lengthNote}`;
   }
 
   // music

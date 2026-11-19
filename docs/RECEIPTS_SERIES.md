@@ -1,8 +1,8 @@
 # RECEIPTS — series bible (3rd account, "where the money goes")
 
 **Working name:** RECEIPTS (owner can rename: it is only the `series` field of `episode.json`).
-**Tagline (bio):** "Follow the money in under a minute. Every number from the filing."
-**Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-by-word captions · no photos, no logos.
+**Tagline (bio):** "Follow the money in one minute. Every number from the filing."
+**Format:** 1080×1920 · 30 fps · ≥ 60 s (voice 61–70 s) · EN voice-over · word-by-word captions · no photos, no logos.
 **Engine:** composition `Money`, selected by `"composition": "Money"` in `episode.json`. `"da": 2` plays the cue sheet on
 the 3D counter (`src/money/Money3D.tsx`, template `costco-hotdog-v2`); without `da` an episode keeps its flat DA 1 look
 (`src/money/Money.tsx`). Shared art direction rules: `docs/STUDIO.md`. Series id in `public/studio.json`: `receipts`.
@@ -12,8 +12,7 @@ Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 - Finance/business is the best-paid short-form niche (claimed ≈ $0.40–1.00 per 1,000 qualified views vs $0.40–0.60 entertainment).
 - Educational faceless posts are claimed to get 12–25 % saves vs 3–8 % for entertainment.
 - Unlimited topics, each with one primary source (annual report), so "every number sourced" is cheap to keep.
-- **Open question:** TikTok Creator Rewards reportedly needs videos > 60 s. Not confirmed on TikTok's own pages.
-  #001 is 46 s. Decide per account whether to target 61–70 s.
+- **Length (decided):** every new reel lasts at least 60 s (voice 61–70 s). TikTok Creator Rewards reportedly needs videos > 60 s (not confirmed on TikTok's own pages). #001–#005 predate the rule and stay as published.
 
 ## Lessons carried over from REDRAWN
 | REDRAWN pain | RECEIPTS rule |

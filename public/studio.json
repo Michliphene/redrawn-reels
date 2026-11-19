@@ -5,17 +5,42 @@
       "name": "REDRAWN",
       "handle": "",
       "tagline": "History in 60 seconds. One map. Every claim sourced.",
-      "legacyNames": ["REDRAWN"],
+      "legacyNames": [
+        "REDRAWN"
+      ],
       "composition": "Episode",
       "episodeTag": "EP {n}"
     },
     "receipts": {
       "name": "RECEIPTS",
       "handle": "",
-      "tagline": "Follow the money in under a minute. Every number from the filing.",
-      "legacyNames": ["RECEIPTS"],
+      "tagline": "Follow the money in one minute. Every number from the filing.",
+      "legacyNames": [
+        "RECEIPTS"
+      ],
       "composition": "Money",
       "episodeTag": "#{nnn}"
     }
+  },
+  "format": {
+    "_": "Length rule for every channel. A NEW reel lasts at least minSeconds (voice voiceMin–voiceMax, video <= maxSeconds). Episodes in legacyShort were published before the rule and keep their length.",
+    "minSeconds": 60,
+    "voiceMin": 61,
+    "voiceMax": 70,
+    "maxSeconds": 75,
+    "legacyShort": [
+      "alaska-1867",
+      "apple-iphone",
+      "apple-iphone-v2",
+      "costco-hotdog",
+      "costco-hotdog-v2",
+      "delta-amex",
+      "korea-1945",
+      "louisiana-1803",
+      "mcdonalds-rent",
+      "netflix-100",
+      "ussr-1991",
+      "ussr-1991-v2"
+    ]
   }
 }

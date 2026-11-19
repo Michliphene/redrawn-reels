@@ -101,6 +101,7 @@ test('raea refreshes prepared timings and keeps the check report when the checke
     f.write(project + '/' + name, fs.readFileSync(new URL('../' + project + '/' + name, import.meta.url), 'utf8').replaceAll('\r\n', '\n'));
   }
   f.write('scripts/render-tools.mjs', fs.readFileSync(new URL('../scripts/render-tools.mjs', import.meta.url), 'utf8'));
+  f.write('scripts/format.mjs', fs.readFileSync(new URL('../scripts/format.mjs', import.meta.url), 'utf8'));
   f.write(source + '/timings.json', {duration: 4, beats: [], revision: 'latest'});
   f.write(source + '/voice.wav', 'new voice');
   f.write(source + '/music.wav', 'new music');
@@ -153,7 +154,7 @@ test('a recorded fallback remains identifiable after a Windows checkout and reje
 
 function changedScript(t: TestContext) {
   const f = fixture(t);
-  for (const file of ['scripts/validate.mjs', 'src/lib/schedule.ts', 'src/lib/media.ts']) {
+  for (const file of ['scripts/validate.mjs', 'scripts/format.mjs', 'src/lib/schedule.ts', 'src/lib/media.ts']) {
     f.write(file, fs.readFileSync(new URL('../' + file, import.meta.url), 'utf8'));
   }
   const episode = 'public/episodes/original';

@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
+import { readFormat, videoLengthIssue } from './format.mjs';
 
 const VERSION = 1;
 const ID = /^[a-z0-9][a-z0-9-]*$/;
@@ -176,10 +177,11 @@ function inspectVideo(filename) {
   };
 }
 
-function technicalIssue(m) {
+function technicalIssue(m, id = '', fmt = readFormat(process.cwd())) {
   if (!m || m.width !== 1080 || m.height !== 1920 || m.fps !== 30) return 'Expected 1080×1920 at 30 fps';
   if (m.videoCodec !== 'h264' || m.audioCodec !== 'aac') return 'Expected H.264 video and AAC audio';
-  if (!Number.isFinite(m.duration) || m.duration < 30 || m.duration > 75) return 'Duration outside 30–75 s';
+  const length = videoLengthIssue(fmt, id, m.duration);
+  if (length) return length;
   if (!Number.isFinite(m.lufs) || Math.abs(m.lufs + 14) > 1.5) return 'Integrated loudness outside −14 ± 1.5 LUFS';
   if (!Number.isFinite(m.truePeak) || m.truePeak > -1) return 'True peak above −1 dBTP or unavailable';
   return null;
@@ -232,7 +234,7 @@ function readRender(root, id, manifestPath) {
 
 function checkedRender(root, id, { manifest, identity }) {
   if (manifest.recipe.preflightSkipped === true) throw new Error('Render preflight was skipped; make a checked render for delivery');
-  const problem = technicalIssue(manifest.technical);
+  const problem = technicalIssue(manifest.technical, id, readFormat(root));
   if (problem) throw new Error(problem);
   return {
     version: VERSION, ...identity, sourcesSha256: artifact(root, `${episodeDir(id)}/SOURCES.md`).sha256,
@@ -373,7 +375,7 @@ function main(args) {
   } else if (command === 'capture') {
     const captured = capture(root, id, readJson(root, values.snapshot), values.video);
     writeJson(root, values.manifest ?? defaultManifest(id), captured);
-    const problem = technicalIssue(captured.technical);
+    const problem = technicalIssue(captured.technical, id, readFormat(root));
     if (problem) console.error(`Review export captured; delivery blocked: ${problem}`);
   } else if (command === 'inspect') {
     console.log(JSON.stringify(readRender(root, id, values.manifest ?? defaultManifest(id)).identity));

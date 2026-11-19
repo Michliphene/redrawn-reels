@@ -12,11 +12,13 @@ import { parseArgs } from 'node:util';
 const require = createRequire(import.meta.url);
 const { schedule, alignTimings } = require('../src/lib/schedule.ts');
 const { episodeMedia } = require('../src/lib/media.ts');
+import { readFormat, voiceLengthNote } from './format.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const EP = (id, f = '') => path.join(ROOT, 'public/episodes', id, f);
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 const studio = readJson(path.join(ROOT, 'public/studio.json')).series;
+const FORMAT = readFormat(ROOT);
 const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
@@ -183,7 +185,8 @@ export function validate(id, { draft = false, da } = {}) {
   if (timings) {
     const hook = timings.beats[0];
     if (hook.end - hook.start > 4) Wn(`hook lasts ${(hook.end - hook.start).toFixed(1)} s (aim for ≤ 3.5 s)`);
-    if (timings.duration < 28 || timings.duration > 75) Wn(`voice lasts ${timings.duration.toFixed(1)} s (aim for 40–58 s, or 61–70 s for a monetised TikTok cut)`);
+    const note = voiceLengthNote(FORMAT, id, timings.duration);
+    if (note) Wn(`voice lasts ${timings.duration.toFixed(1)} s: ${note} (aim for ${FORMAT.voiceMin}–${FORMAT.voiceMax} s)`);
   }
   if (effectiveDa >= 2 && spec.keywords && !Array.isArray(spec.keywords)) E('"keywords" must be a list of words');
   return { id, errors, warnings, series: sid, composition: comp, da: effectiveDa };

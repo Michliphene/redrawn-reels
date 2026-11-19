@@ -110,7 +110,7 @@ test('reviewer CLI accepts only a single explicit DA of 1 or 2', () => {
 test('reviewer CLI applies Root’s local asset predicates before resolving action words', (t) => {
   const root = mkdtempSync(join(tmpdir(), 'studio-cues-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  for (const file of ['scripts/resolve-cues.mjs', 'scripts/validate.mjs', 'src/lib/media.ts', 'src/lib/schedule.ts', 'public/studio.json']) {
+  for (const file of ['scripts/resolve-cues.mjs', 'scripts/validate.mjs', 'scripts/format.mjs', 'src/lib/media.ts', 'src/lib/schedule.ts', 'public/studio.json']) {
     const dest = join(root, file);
     mkdirSync(dirname(dest), { recursive: true });
     copyFileSync(file, dest);
