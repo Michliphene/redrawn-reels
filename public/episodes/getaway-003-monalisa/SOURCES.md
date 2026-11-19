@@ -26,7 +26,20 @@ the Mona Lisa 1911.
 3. "In 1911, a handyman walks out of the Louvre with the Mona Lisa under his clothes." (no number)
 
 ## Script (voice, 13 beats)
-(filled from episode.json after the voice is recorded)
+1. 20,000 a day come to see her. One man took her.
+2. Paris, 1911. Vincenzo Peruggia, an Italian handyman, once worked at the Louvre. He even helped fit her protective glass.
+3. On August 21, he lifts her off the wall, hides her under his clothes, and walks out.
+4. Nobody notices for over a day.
+5. The Louvre closes for a week. When it reopens, crowds line up… to stare at an empty wall.
+6. And here's the twist. In 1911, she isn't that famous yet. Admired, yes. A superstar? Not yet.
+7. Then the theft hits front pages around the world.
+8. Police arrest the poet Apollinaire. They question Pablo Picasso. Both are cleared.
+9. All along, she's in Peruggia's room in Paris. In a trunk. For over two years.
+10. December 1913. He takes her to Florence and offers her to an art dealer.
+11. The dealer brings the director of the Uffizi gallery. Then the police. Caught.
+12. In Italy, some cheer him as a patriot. He's out within months.
+13. She goes back to the Louvre. And the whole world comes to see her.
+(Loop: "…the whole world comes to see her." → "20,000 a day come to see her.")
 
 ## Facts table (only these may appear on screen or in the voice)
 
