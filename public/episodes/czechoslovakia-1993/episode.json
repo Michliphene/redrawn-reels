@@ -108,6 +108,16 @@
      "type": "shake",
      "amount": 6,
      "atWord": "Split"
+    },
+    {
+     "type": "label",
+     "text": "Czechoslovakia",
+     "at": [
+      17.3,
+      49.0
+     ],
+     "atWord": "One",
+     "hold": 0.9
     }
    ]
   },
@@ -307,6 +317,26 @@
      "noLabel": true,
      "quiet": true,
      "color": "#D98A8E"
+    },
+    {
+     "type": "label",
+     "text": "tight federation, or none",
+     "at": [
+      15.3,
+      49.9
+     ],
+     "atWord": "Their",
+     "hold": 1.0
+    },
+    {
+     "type": "label",
+     "text": "looser union",
+     "at": [
+      19.6,
+      48.9
+     ],
+     "atWord": "plans",
+     "hold": 0.8
     }
    ]
   },
@@ -406,7 +436,7 @@
     {
      "type": "chapter",
      "text": "the Velvet Divorce",
-     "atWord": "ends."
+     "atWord": "January"
     },
     {
      "type": "label",
@@ -415,8 +445,8 @@
       17.3,
       49.0
      ],
-     "hold": 1.5,
-     "atTime": 27.0
+     "hold": 2.0,
+     "atWord": "January"
     },
     {
      "type": "label",
@@ -492,6 +522,14 @@
      ],
      "atWord": "tanks,",
      "hold": 1.8
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE",
+      "SVK"
+     ],
+     "atWord": "trains."
     }
    ]
   },
@@ -651,5 +689,17 @@
     }
    ]
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "Czechoslovakia, 1993",
+  "main": "Nobody asked them",
+  "mainSize": 150,
+  "mainSizeV": 128,
+  "badge": "~1 in 3",
+  "badgeSub": "backed the split · 1992 poll",
+  "fit": [
+   "CZE",
+   "SVK"
+  ]
+ }
 }

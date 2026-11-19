@@ -91,3 +91,103 @@ The declare date sub-labels "1 Jan 1993" under the flag names are below 28 px. T
   The `sk` flag (with the arms) was adopted Sept 1992, so it is fine for 1993.
 - Dates: 17 Nov 1989, 29 Mar 1990, 6 Jun 1992, 1 Jan 1993 and 24 Nov 1999 all match SOURCES. "Peacefully" and "2 : 1 · by population" are sourced. No cause is claimed.
 - Loop: the last frame comes back to the frame-0 crane pose with the same colours. Frame 0 is striking (an object in a space, title, two slabs).
+
+---
+
+# Virality — czechoslovakia-1993 (REDRAWN EP 7, DA 2) · pass 1
+
+Final render `out/czechoslovakia-1993.mp4` (45.8 s), checked after the P0/P1/P2 fixes above. Evidence: `pipeline/virality_metrics.py`
+(hook frames 0–3 s, loop image), 12 beat sheets and `cues.md` regenerated from the final render, `episode.json`, `SOURCES.md`.
+Metrics: 106 words, 2.52 w/s, first word 0.25 s, hook sentence 4.41 s, 40 cues = **8.7 cues/10 s**, longest gaps
+2.62 s (17.87 s, leaders), 2.47 s (0.25 s, hook), 2.32 s (32.98 s, share); 1 of 23 two-second windows without a cue;
+**loop SSIM 0.895**; −14.4 LUFS. The `say` is locked (voice recorded), so every fix below is cue sheet, title or packaging only.
+*This is a pattern-based estimate, not a prediction. The account's size and history are the biggest factor, and we can't control it.*
+
+## Scorecard
+| Block | Pts | Why |
+|---|---|---|
+| A. Hook 0–3 s | **21/25** | Frame 0 has depth: a low crane over two extruded slabs, blue and red, under a 6-word title. It works paused and muted (7/8), but the Slovak slab runs off the right edge and no place name shows on frame 0. Sentence 1 opens on a number ("15 million"). The stake ("nobody asked them") only lands at 3.9–4.4 s, past the 3 s gate (5/7). The whisper "Czechoslovakia, 1993" is on screen by 0.5 s, but it is a small serif line, and the country labels only arrive at 2.7 s (4/5). Title is 6 words and matches the voice (3/3). No throat-clearing (2/2). |
+| B. Retention | **22/25** | 8.7 cues/10 s, longest gap 2.62 s, and the camera moves on every beat (7/8). There is a but/therefore spine: revolution → fights → two winners → no referendum → only 1 in 3 wanted it → split → rule → broken rule. The share/gold stretch (31–37 s) plateaus into a list (5/6). The mid-video re-hook is right: a real cut at 21.1 s (46 %) with the NEVER ASKED stamp (4/4). The hook's promise is paid at 22–26 s and the flag twist sits at 40 s, so not buried. But the twist is not set up in the hook (3/4). Pace is 2.52 w/s with word-by-word captions (3/3). |
+| C. Rewatch & loop | **9/10** | "All decided for…" → "15 million people." is a grammatical loop (5/5). SSIM 0.895, the same crane pose and colours (3/3). Frames are moderately dense (timeline, Act number, poll label) but not a map you pause to study (1/2). |
+| D. Shareability & saves | **11/15** | Strong send fact: *the flag both sides promised to drop is the Czech flag today*. Second: *no referendum, only ~1 in 3 wanted it* (5/6). Save value is low: no reference map, only the series (2/4). Honest comment trigger: the referendum question, plus Czech/Slovak identity (3/3). The human stake is real but abstract, with no face or voice of a citizen (1/2). |
+| E. Packaging | **9/10** | Frame 0 / the 1.6 s frame works as a cover: big shapes plus a 6-word title. But the place name is small and Slovakia is cropped on frame 0 (3/4). Caption written below (3/3). REDRAWN · EP 7 badge and series look (3/3). |
+| F. Niche codes & trust | **11/15** | One visible transformation: two colours → one lavender country → two flagged countries (4/4). No US/UK scale anchor, only "15 million" (1/3). No faces: two named leaders, with the stake carried by the poll (2/3). Hedged and sourced on screen: "~1 in 3", month-only poll date, Act 542/1992 Art. 3, "4.1 t · protocol 24 Nov 1999" (3/3). Minor anti-patterns: the "midnight, 31 Dec 1992" label is barely readable over the seam at 27–28 s, and "what the polls said" still sits under the 1 JAN 1993 header until 29.7 s (1/2). |
+| **TOTAL** | **83/100 → 8.3/10** | **Tier: can break out** |
+
+## Top 5 changes, ranked by expected gain (no `say` change; every `atWord` exists in both forms of any `{a|b}` token)
+1. **+2 · Name the one country in the hook (A place, F transformation).** On "One country." the viewer sees two colours and no name.
+   Put the old name on the seam until "Split", when the two new names take over:
+   ```json
+   {"type":"label","text":"Czechoslovakia","at":[17.3,49.0],"atWord":"One","hold":0.9}
+   ```
+   (hook beat; "One" is at 1.79 s and the label ends at 2.69 s, before "Czech Republic" at 2.72 s). The place is then named in big type before 2 s,
+   and "one → two" can be read with the sound off.
+2. **+2 · Show the two plans (B escalation and the 2.6 s gap at 17.9–20.5 s).** "Their plans don't fit" is said but never shown.
+   SOURCES backs it: *Klaus: a tight federation or none; Mečiar: a looser union*. Add to `leaders`:
+   ```json
+   {"type":"label","text":"tight federation, or none","at":[15.3,49.9],"atWord":"Their","hold":1.0},
+   {"type":"label","text":"looser union","at":[19.6,48.9],"atWord":"plans","hold":0.8}
+   ```
+   Both labels end before the noref cut (21.08 s). The Prague marker is gone by 19.06 s, and the Bratislava marker (until 20.47 s) sits west of the Slovak label.
+   Check the overlap on a still.
+3. **+1 · Fix the whisper lag and the faint midnight label in `jan1` (F anti-patterns).** "what the polls said" sits under 1 JAN 1993 for 3 s.
+   Move the chapter to the first word ("January" is in both forms of `{January 1, 1993|January first, …}`), and give the midnight label
+   a full-opacity window:
+   ```json
+   {"type":"chapter","text":"the Velvet Divorce","atWord":"January"},
+   {"type":"label","text":"midnight, 31 Dec 1992","at":[17.3,49.0],"atWord":"January","hold":2.0}
+   ```
+   (replace the existing chapter on "ends." and the `atTime: 27.0` label. The "Czechoslovakia" label at 28.83 s still follows cleanly.)
+4. **+2 (conditional) · Add a US/UK scale anchor (F).** Czechoslovakia covered about 127,900 km² (≈ 49,400 sq mi), close to England's
+   130,279 km². **This is NOT in SOURCES.md yet.** Add it with a source (Britannica, Czechoslovakia; ONS, England area) before using it. If it is sourced:
+   velvet label `{"type":"label","text":"Czechoslovakia · about England's size","at":[17.3,49.0],"atWord":"Czechoslovakia.","hold":1.1}`.
+   If it cannot be sourced cleanly, skip it. Virality does not justify an unsourced comparison.
+5. **+1 · Cover and thumb (E cover).** Add the `thumb` block below so the cover names the place, keeps both slabs whole and carries the strongest
+   number. In the TikTok/Reels cover picker, use 1.6 s (title + whisper + both slabs + "15 MILLION PEOPLE").
+   ```json
+   "thumb": {
+     "kicker": "Czechoslovakia, 1993",
+     "main": "Nobody asked them",
+     "mainSize": 150,
+     "mainSizeV": 150,
+     "badge": "~1 in 3",
+     "badgeSub": "backed the split · 1992 poll",
+     "fit": ["CZE", "SVK"]
+   }
+   ```
+   (`main` is 17 characters; the badge copies the on-screen hedge "~" and the poll label.)
+
+Minor, if there is time: in `share`, add `{"type":"pulse","ids":["CZE","SVK"],"atWord":"trains."}` so the 2.3 s after "tanks," gets a beat.
+Projected after 1–3 and 5: about 87/100. With 4 as well: about 89. These are estimates, not promises.
+
+## 3 alternative hooks (for a re-cut or remaster only: they need a new voice line; all true per SOURCES)
+| Archetype | Verbal line | Frame-0 visual | On-screen text |
+|---|---|---|---|
+| Contradiction | "Both sides promised to drop this flag. One side kept it." | Crane on the two slabs; the `cz` flag sticker already standing on the Czech slab | THE FLAG THEY PROMISED TO DROP |
+| Big number | "Only about one in three wanted this split. It happened anyway." | The lavender single country, a seam glowing, "~1 in 3" pinned over it | ONLY ~1 IN 3 WANTED THIS |
+| Question | "Why does Czechia still fly Czechoslovakia's flag?" | Close shot on the Czech slab with the flag; Slovakia red in the background | WHOSE FLAG IS THIS? |
+Title-only A/B you can use now, with no voice change: `"title": "Only ~1 in 3 wanted this"`. It is accurate, but it moves the promise away from the spoken
+"nobody asked them". Keep the current title as the main version.
+
+## Cover, caption, hashtags, pinned comment
+- **Cover:** 1.6 s in-reel (title, whisper, both slabs whole, "15 MILLION PEOPLE"), or the `Thumb` render above. Cover text: **NOBODY ASKED THEM**.
+- **Caption (IG / TikTok / YT Shorts):**
+  > 15 million people, one country, split in two — and nobody asked them. No referendum, ever.
+  > How Czechoslovakia split into the Czech Republic (Czechia) and Slovakia on January 1, 1993: the Velvet Divorce.
+  > Velvet Revolution 1989, Václav Klaus, Vladimír Mečiar, the Hyphen War, and the flag both sides agreed to drop.
+- **Hashtags (4):** #history #czechoslovakia #maps #europe
+- **Pinned comment:** use the SOURCES.md text, with the question as its own line and no emoji:
+  "Sources: Constitutional Acts 541 and 542/1992; Britannica; Czech National Bank (gold, 1999); Sept 1992 poll (36–37 % for the split,
+  sources differ on which side had which). No referendum was ever held. The Czech Republic adopted the Czechoslovak flag in 1993 despite
+  Art. 3 of Act 542/1992. Czechs and Slovaks: should there have been a referendum?"
+
+## Platform notes
+- **TikTok:** 45.8 s is in the completion sweet spot. Don't stretch it. A Creator Rewards cut (61–70 s) is a different edit with new lines (e.g. the
+  gold logistics, the 1992 Federal Assembly vote), not this one. Pick the 1.6 s cover and add "NOBODY ASKED THEM" as cover text. The search
+  keywords are in the caption ("Czechoslovakia split", "Velvet Divorce").
+- **Instagram Reels:** sends drive non-follower reach, so the first caption line should be the sendable fact. The cover must survive the 3:4 grid crop:
+  the vertical Thumb keeps everything inside y 240–1680. No watermark from TikTok; upload the clean master.
+- **YouTube Shorts:** the "viewed vs swiped" metric lives in second 1, so fix 1 (the name on screen before 2 s) matters most here.
+  Shorts title = "The split nobody was asked about — Czechoslovakia 1993". The loop works well on Shorts autoplay.
+
+VIRALITY SCORE: 83/100 (8.3/10) — can break out
