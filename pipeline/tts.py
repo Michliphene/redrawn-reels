@@ -86,7 +86,9 @@ def elevenlabs(ep, ep_dir):
     if not os.path.exists(cache):
         req = urllib.request.Request(
             f"https://api.elevenlabs.io/v1/text-to-speech/{v['voice_id']}/with-timestamps?output_format=mp3_44100_192",
-            data=json.dumps(body).encode(), headers={"Content-Type": "application/json", "xi-api-key": "proxy-injected"})
+            data=json.dumps(body).encode(), headers={"Content-Type": "application/json",
+                     # local machine: ELEVENLABS_API_KEY; cloud: the proxy injects the real key over this placeholder
+                     "xi-api-key": os.environ.get("ELEVENLABS_API_KEY") or "proxy-injected"})
         data = urllib.request.urlopen(req, timeout=180).read().decode()  # fetch first: a failed call must not leave an empty cache
         open(cache, "w").write(data)
     d = json.load(open(cache))

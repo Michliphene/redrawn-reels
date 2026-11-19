@@ -7,6 +7,13 @@
 # timings and music: nothing is synthesised.
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# Windows (Git Bash): `python3` is often the Microsoft Store stub; fall back to `python` for this script and its children
+if [ "$(python3 -c "print(42)" 2>/dev/null)" != 42 ]; then python3() { python "$@"; }; export -f python3; fi
+# Windows: a key stored in the user environment after the app started is not inherited; read it from the registry
+if [ -z "${ELEVENLABS_API_KEY:-}" ] && command -v powershell >/dev/null 2>&1; then
+  ELEVENLABS_API_KEY="$(powershell -NoProfile -Command "[Environment]::GetEnvironmentVariable('ELEVENLABS_API_KEY','User')" | tr -d '\r')"
+  [ -n "$ELEVENLABS_API_KEY" ] && export ELEVENLABS_API_KEY || unset ELEVENLABS_API_KEY
+fi
 ID="${1:?usage: pipeline/render.sh <episode_id> [--force-voice] [--da N] [--crf N] [--skip-validate]}"; shift
 FORCE_VOICE=0; DA=""; CRF=18; VALIDATE=1
 while [ $# -gt 0 ]; do

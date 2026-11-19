@@ -15,7 +15,7 @@ const slug = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 const MAP_ACTIONS = new Set(['declare', 'pulse', 'label', 'marker', 'date', 'dissolve', 'allLabels', 'units', 'portrait', 'flagSwap', 'shake', 'ghost', 'path', 'bigNumber', 'archive', 'callout', 'region', 'sticker', 'chapter', 'recolor', 'reveal', 'conceal', 'pointer']);
-const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
+const MONEY_ACTIONS = { product: ['pulse', 'ghost'], grid: ['fill', 'hint', 'rest'], slice: ['cut'], bars: ['big', 'bar'], card: ['stat'], people: ['light'], lines: ['line'] };
 const SAFE = { top: 250, bottom: 1440 };
 
 export function seriesIdOf(spec) {

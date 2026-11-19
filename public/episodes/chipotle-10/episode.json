@@ -1,0 +1,232 @@
+{
+ "id": "chipotle-10",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "seriesId": "receipts",
+ "episode": 6,
+ "da": 2,
+ "title": "Inside a Chipotle bill",
+ "whisper": "every cent from the 2025 annual report",
+ "source": "Source: Chipotle 10-K, fiscal 2025 (SEC) · per $10: our calc.",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3
+ },
+ "keywords": [
+  "food",
+  "crew",
+  "rent",
+  "keeps",
+  "people",
+  "place"
+ ],
+ "scenes": {
+  "burrito": {
+   "type": "product",
+   "art": "burrito",
+   "price": "$10",
+   "tag": "YOU PAY",
+   "ghostSafe": true
+  },
+  "cut": {
+   "type": "slice",
+   "total": 10,
+   "meterLabel": "Left of your $10",
+   "keepLabel": "Chipotle keeps"
+  },
+  "year": {
+   "type": "bars",
+   "max": 4
+  },
+  "point": {
+   "type": "lines",
+   "rect": {
+    "top": 930,
+    "bottom": 1150
+   }
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "burrito",
+   "say": "You pay Chipotle {$10|ten dollars}. The food? Under {$3|three dollars}.",
+   "actions": [
+    {
+     "type": "pulse",
+     "target": "price",
+     "atWord": "$10"
+    },
+    {
+     "type": "ghost",
+     "text": "UNDER $3",
+     "label": "THE FOOD",
+     "atWord": "$3",
+     "hold": 1.2
+    }
+   ]
+  },
+  {
+   "id": "open",
+   "scene": "cut",
+   "say": "So where does the rest go? Let's cut it open.",
+   "actions": []
+  },
+  {
+   "id": "food",
+   "say": "Food, drinks and packaging: {$2.96|two ninety-six}.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 29.6,
+     "value": 2.96,
+     "amount": "$2.96",
+     "label": "food, drinks, packaging",
+     "color": "#FFB648",
+     "atWord": "$2.96"
+    }
+   ]
+  },
+  {
+   "id": "crew",
+   "say": "Almost as much pays the crew who make it: {$2.51|two fifty-one}.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 25.1,
+     "value": 2.51,
+     "amount": "$2.51",
+     "label": "the crew",
+     "color": "#FF6B5E",
+     "atWord": "$2.51"
+    }
+   ]
+  },
+  {
+   "id": "rent",
+   "say": "Rent on the restaurant? Just {52¢|fifty-two cents}.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 5.2,
+     "value": 0.52,
+     "amount": "52¢",
+     "label": "rent",
+     "color": "#7FB2FF",
+     "atWord": "52¢"
+    }
+   ]
+  },
+  {
+   "id": "store",
+   "say": "{$1.47|A dollar forty-seven} runs the store: delivery, ads, card fees, power.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 14.7,
+     "value": 1.47,
+     "amount": "$1.47",
+     "label": "delivery, ads, card fees",
+     "color": "#B98CFF",
+     "atWord": "$1.47"
+    }
+   ]
+  },
+  {
+   "id": "office",
+   "say": "{92¢|Ninety-two cents} for the head office, equipment and new stores.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 9.1,
+     "value": 0.92,
+     "amount": "92¢",
+     "label": "head office, gear",
+     "color": "#9AA89F",
+     "atWord": "92¢"
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "say": "And Chipotle keeps {$1.62|a dollar sixty-two}.",
+   "actions": [
+    {
+     "type": "cut",
+     "share": 16.2,
+     "value": 1.62,
+     "amount": "$1.62",
+     "label": "operating profit",
+     "keep": true,
+     "atWord": "$1.62"
+    }
+   ]
+  },
+  {
+   "id": "year",
+   "scene": "year",
+   "say": "Across {4,000|four thousand} restaurants, that's {$1.9B|one point nine billion dollars} of operating profit in 2025.",
+   "actions": [
+    {
+     "type": "big",
+     "value": "$11.9B",
+     "label": "spent at Chipotle · 2025",
+     "atWord": "Across"
+    },
+    {
+     "type": "bar",
+     "label": "food, drinks, packaging",
+     "value": 3.5,
+     "color": "#FFB648",
+     "atWord": "4,000"
+    },
+    {
+     "type": "bar",
+     "label": "operating profit",
+     "value": 1.9,
+     "color": "#C8F53C",
+     "atWord": "$1.9B"
+    }
+   ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "say": "So the food is under a third. The restaurant around it costs nearly twice as much.",
+   "actions": [
+    {
+     "type": "line",
+     "small": "WHAT YOUR $10 PAYS FOR MOST",
+     "text": "THE FOOD",
+     "strike": true,
+     "atWord": "third.",
+     "size": 130
+    },
+    {
+     "type": "line",
+     "small": "",
+     "text": "PEOPLE & PLACE",
+     "color": "#C8F53C",
+     "atWord": "much.",
+     "size": 130
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "burrito",
+   "say": "Remember that next time…",
+   "actions": []
+  }
+ ]
+}

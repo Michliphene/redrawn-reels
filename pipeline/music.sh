@@ -18,5 +18,5 @@ ffmpeg -y -loglevel error -f lavfi -i "aevalsrc='
 0.05*sin(2*PI*196.3*t)*(0.5+0.5*sin(2*PI*t/14+2))+
 0.035*sin(2*PI*247.2*t)*(0.5+0.5*sin(2*PI*t/6+3))
 ':s=48000:d=$D" -f lavfi -i "anoisesrc=c=pink:a=0.02:d=$D:r=48000" \
-  -filter_complex "[1]lowpass=f=600,aformat=channel_layouts=stereo[n];[0][n]amix=inputs=2:normalize=0,lowpass=f=2400,aecho=0.8:0.7:120|260:0.35|0.25,afade=t=in:d=1.5,afade=t=out:st=$(echo "$D-2"|bc):d=2,loudnorm=I=-26:TP=-3" -ar 48000 "$OUT"
+  -filter_complex "[1]lowpass=f=600,aformat=channel_layouts=stereo[n];[0][n]amix=inputs=2:normalize=0,lowpass=f=2400,aecho=0.8:0.7:120|260:0.35|0.25,afade=t=in:d=1.5,afade=t=out:st=$(awk "BEGIN{print $D-2}"):d=2,loudnorm=I=-26:TP=-3" -ar 48000 "$OUT"
 echo "music -> $OUT"
