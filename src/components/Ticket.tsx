@@ -44,8 +44,8 @@ export const Tickets: React.FC<{ t: number; actions: TimedAction[] }> = ({ t, ac
               const n = typed[r], full = `${k} ${v}`;
               const shown = cut(full, n);
               return (
-                <div key={r} style={{ display: 'flex', gap: 14, fontFamily: tw, fontWeight: 700, fontSize: 26, color: ink, height: 34, alignItems: 'baseline' }}>
-                  <span style={{ width: (a as any).keyW ?? 120, flex: 'none', opacity: 0.6, fontSize: 20, letterSpacing: '0.1em' }}>{shown.slice(0, k.length)}</span>
+                <div key={r} style={{ display: 'flex', gap: 14, fontFamily: tw, fontWeight: 700, fontSize: (a as any).rowSize ?? 26, color: ink, height: ((a as any).rowSize ?? 26) + 8, alignItems: 'baseline' }}>
+                  <span style={{ width: (a as any).keyW ?? 120, flex: 'none', opacity: 0.6, fontSize: (a as any).rowSize ? (a as any).rowSize - 6 : 20, letterSpacing: '0.1em' }}>{shown.slice(0, k.length)}</span>
                   <span>{shown.slice(k.length + 1)}{n > 0 && n < full.length && caretOn ? '▌' : ''}</span>
                 </div>
               );

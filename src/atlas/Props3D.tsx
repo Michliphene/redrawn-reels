@@ -24,7 +24,7 @@ import { theme } from '../lib/theme';
  * `drop: true` makes it fall onto the table with a bounce, otherwise it rises out of the table.
  */
 type P = Extract<TimedAction, { type: 'prop' }>;
-export type PropState = { p: P; pos: Vec3; u: number; rise: number; fade: number; sink: number; open: number; yaw: number; drop: number };
+export type PropState = { p: P; pos: Vec3; u: number; rise: number; fade: number; sink: number; open: number; yaw: number; drop: number; lift: number };
 
 /** fall then two small bounces, 0 → 1 */
 const bounce = (x: number) => { const n = 7.5625, d = 2.75;
@@ -46,7 +46,8 @@ export function propStates(world: AtlasWorld, actions: TimedAction[], t: number,
     const sink = p.sinkAt != null ? ease.inOut3(ramp(t, p.sinkAt, 1.1)) : 0;
     const open = Math.max(p.openStart ?? 0, p.openAt != null ? (p.open ?? 1) * clamp01((t - p.openAt) / (p.openDur ?? 2)) : 0);
     const u = (p.size ?? 200) * ppx;
-    out.push({ p, pos: [q[0], world.h, q[1]], u, rise, fade, sink, open, yaw: rad(p.yaw ?? 0), drop });
+    const lift = p.liftAt != null ? clamp01((t - p.liftAt) / 0.9) : 0;
+    out.push({ p, pos: [q[0], world.h, q[1]], u, rise, fade, sink, open, yaw: rad(p.yaw ?? 0), drop, lift });
   }
   return out;
 }
@@ -181,21 +182,23 @@ function useTex(path?: string): THREE.Texture | null {
 
 const GILT = '#B8913F', GILT_DARK = '#7A5E26';
 /** A framed picture standing upright (bottom on the table), 1 unit wide, facing +z. */
-const Painting: React.FC<{ image?: string; empty?: boolean; wall?: boolean; ratio?: number }> = ({ image, empty, wall, ratio = 1.43 }) => {
+/** `lift` 0→1: the framed picture rises off its hooks, then slides out sideways; the bare wall with its hooks shows underneath. */
+const Painting: React.FC<{ image?: string; empty?: boolean; wall?: boolean; ratio?: number; lift?: number }> = ({ image, empty, wall, ratio = 1.43, lift = 0 }) => {
   const tex = useTex(empty ? undefined : image);
   const w = wall ? 0.6 : 0.84, h = w * ratio, y0 = wall ? 0.2 : 0.04, b = w * 0.09;
   return (
     <group>
       {wall && <mesh geometry={box} position={[0, 0.66, -0.03]} scale={[1.1, 1.32, 0.05]} castShadow><meshLambertMaterial color="#8E8371" /></mesh>}
-      {empty ? (
+      {(empty || lift > 0) && (
         <group position={[0, y0 + h / 2, 0.0]}>
           <mesh geometry={box} scale={[w * 0.98, h * 0.98, 0.004]}><meshLambertMaterial color="#A89C86" /></mesh>
           {[[-1, 1], [1, 1], [-1, -1], [1, -1]].map(([x, z], i) => (
             <mesh key={i} geometry={box} position={[x * w * 0.36, z * h * 0.3, 0.012]} scale={[0.022, 0.022, 0.03]}><meshLambertMaterial color="#1A1612" /></mesh>
           ))}
         </group>
-      ) : (
-        <group position={[0, y0 + h / 2, 0.0]}>
+      )}
+      {!empty && lift < 1 && (
+        <group position={[ease.inOut3(clamp01((lift - 0.35) / 0.65)) * 1.3, y0 + h / 2 + 0.12 * ease.out3(clamp01(lift / 0.35)), 0.04 * clamp01(lift / 0.35)]}>
           <mesh geometry={box} scale={[w + 2 * b, h + 2 * b, 0.05]} castShadow><meshLambertMaterial color={GILT} /></mesh>
           <mesh geometry={box} position={[0, 0, 0.012]} scale={[w + b * 0.7, h + b * 0.7, 0.04]}><meshLambertMaterial color={GILT_DARK} /></mesh>
           <mesh position={[0, 0, 0.034]}><planeGeometry args={[w, h]} /><meshBasicMaterial key={tex ? 'map' : 'plain'} map={tex ?? undefined} color={tex ? '#FFFFFF' : '#3A2E20'} /></mesh>
@@ -240,7 +243,7 @@ export const Props3D: React.FC<{ states: PropState[]; pal: { ink: string; accent
           {k === 'bags' && <Bags color="#4A4740" tie={pal.accent} />}
           {k === 'envelopes' && <Envelopes paper={paper} mark={pal.accent} />}
           {k === 'building' && <Building wall="#8C7F64" window="#F1D98A" />}
-          {k === 'painting' && <Painting image={S.p.image} empty={S.p.empty} wall={S.p.wall} />}
+          {k === 'painting' && <Painting image={S.p.image} empty={S.p.empty} wall={S.p.wall} lift={S.lift} />}
           {k === 'trunk' && <Trunk open={S.open} image={S.p.image} />}
         </group>
       );

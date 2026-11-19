@@ -122,7 +122,7 @@ export function validate(id) {
         if (a.type !== 'callout' && type && !MONEY_ACTIONS[type]?.includes(a.type)) E(`${where}: not an action of a "${type}" scene (${MONEY_ACTIONS[type].join(', ')}, callout)`);
         (perScene[scene] ??= []).push(a.type);
       }
-      for (const key of ['atWord', 'retreatWord', 'stampWord', 'stairsWord', 'dropWord', 'strikeWord', 'pickWord', 'openWord', 'sinkWord']) {
+      for (const key of ['atWord', 'retreatWord', 'stampWord', 'stairsWord', 'dropWord', 'strikeWord', 'pickWord', 'openWord', 'sinkWord', 'liftWord']) {
         if (!a[key]) continue;
         // retreat/stamp words may be spoken in a later beat: search from this beat onwards
         const pool = key === 'atWord' ? words : spec.beats.slice(i).flatMap((bb, k) => timings?.beats[i + k]?.words.map((w) => w.w) ?? displayWords(bb.say ?? ''));

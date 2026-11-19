@@ -37,7 +37,7 @@ export type Action =
   | { type: 'verdict'; options: string[]; pick?: number; pickWord?: string; pickAt?: number; x?: number; y?: number; hold?: number; atWord?: string;
       /** split verdict: several boxes ticked, each on its own word, each with a typed note ("THE MEN") */
       picks?: { pick: number; word?: string; at?: number; note?: string }[] }
-  | { type: 'prop'; kind: 'vault' | 'diamonds' | 'sandwich' | 'bags' | 'envelopes' | 'building' | 'painting' | 'trunk'; image?: string; empty?: boolean; wall?: boolean; at: LonLat; size?: number; yaw?: number; drop?: boolean; hold?: number;
+  | { type: 'prop'; kind: 'vault' | 'diamonds' | 'sandwich' | 'bags' | 'envelopes' | 'building' | 'painting' | 'trunk'; image?: string; empty?: boolean; wall?: boolean; liftWord?: string; liftAt?: number; at: LonLat; size?: number; yaw?: number; drop?: boolean; hold?: number;
       caption?: string; captionDy?: number; open?: number; openStart?: number; openWord?: string; openAt?: number; openDur?: number; sinkWord?: string; sinkAt?: number; atWord?: string };
 export type Beat = { id: string; say: string; camera?: Camera; date?: string | null; actions?: Action[]; hideLocator?: boolean; hideChapter?: boolean; hideDate?: boolean; hideTimeline?: boolean };
 export type EpisodeSpec = {

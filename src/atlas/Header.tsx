@@ -80,7 +80,7 @@ export const DateBlock: React.FC<{ dates: { t: number; date: string }[]; chapter
       <div style={{ position: 'absolute', left: SAFE.left, top, width: SAFE_W, opacity }}>
         {cur && (
           <div style={{ transform: `translateY(${(1 - p) * -14}px)`, opacity: p }}>
-            <Mono size={30} color={series.palette.accent} track={0.18} style={{ height: 34 }}>{m ? `${d ? `${d} ` : ''}${MONTHS[m - 1]}` : ' '}</Mono>
+            <Mono size={30} color={series.palette.accent} track={0.18} style={{ height: 34, ...(series.extra ? { textShadow: '0 0 6px rgba(7,6,5,0.95), 2px 2px 0 rgba(7,6,5,0.9)' } : {}) }}>{m ? `${d ? `${d} ` : ''}${MONTHS[m - 1]}` : ' '}</Mono>
             <Display size={150} color={series.palette.ink} style={{ marginTop: 2, letterSpacing: '-0.02em' }}>{y}</Display>
           </div>
         )}

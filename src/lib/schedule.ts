@@ -31,7 +31,7 @@ export function schedule(spec: EpisodeSpec, timings: Timings) {
       if (a.type === 'units' && a.retreatWord) extra.retreatAt = wordT(a.retreatWord);
       if ((a.type === 'portrait' || a.type === 'callout' || a.type === 'wanted') && a.stampWord) extra.stampAt = wordT(a.stampWord);
       // later moments of one cue, each named by the word that triggers it (searched from the cue onwards)
-      for (const [w, k] of [['stairsWord', 'stairsAt'], ['dropWord', 'dropAt'], ['strikeWord', 'strikeAt'], ['pickWord', 'pickAt'], ['openWord', 'openAt'], ['sinkWord', 'sinkAt']] as const) {
+      for (const [w, k] of [['stairsWord', 'stairsAt'], ['dropWord', 'dropAt'], ['strikeWord', 'strikeAt'], ['pickWord', 'pickAt'], ['openWord', 'openAt'], ['sinkWord', 'sinkAt'], ['liftWord', 'liftAt']] as const) {
         const word = (a as any)[w]; if (typeof word === 'string') extra[k] = wordT(word);
       }
       const more: Record<string, unknown> = {};

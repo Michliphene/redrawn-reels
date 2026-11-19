@@ -33,7 +33,9 @@
       "FR": "#C9B994",
       "IT": "#C9B994"
     },
-    "static": {}
+    "static": {
+      "SEINE": "#5F86A3"
+    }
   },
   "voiceOverride": {
     "settings": {
@@ -52,7 +54,7 @@
       "camera": {
         "center": [
           2.3376,
-          48.958
+          48.965
         ],
         "span": 0.34,
         "pitch": 32,
@@ -81,10 +83,10 @@
           ],
           "count": 12,
           "spread": 150,
-          "size": 34,
+          "size": 44,
           "offset": [
-            170,
-            110
+            210,
+            40
           ],
           "atTime": 0,
           "hold": 3.6
@@ -109,7 +111,7 @@
           ],
           "atTime": 0,
           "hold": 3.6,
-          "x": 140,
+          "x": 64,
           "y": 930
         }
       ]
@@ -134,29 +136,55 @@
         },
         {
           "type": "marker",
-          "text": "The Louvre",
+          "text": "The Louvre · Paris",
           "at": [
             2.3376,
             48.8606
           ],
           "atWord": "Paris,",
-          "hold": 2.6
+          "hold": 2.0
+        },
+        {
+          "type": "prop",
+          "kind": "building",
+          "at": [
+            2.3376,
+            48.8606
+          ],
+          "size": 220,
+          "atWord": "Paris,",
+          "hold": 2.0
         },
         {
           "type": "wanted",
           "key": "peruggia",
           "head": "THE HANDYMAN",
           "name": "V. Peruggia",
-          "headSub": "Louvre worker · 1911",
+          "headSub": "Ex-Louvre worker",
           "lines": [
             "Fitted glass cases."
           ],
-          "credit": "Paris police photo · public domain",
+          "credit": "Paris police photo, 1909 · public domain",
           "side": "center",
           "y": 540,
           "w": 360,
           "atWord": "Vincenzo",
-          "hold": 5.6
+          "hold": 4.2
+        },
+        {
+          "type": "prop",
+          "kind": "painting",
+          "image": "assets/art/monalisa.jpg",
+          "wall": true,
+          "at": [
+            2.3376,
+            48.8606
+          ],
+          "size": 340,
+          "atWord": "He",
+          "hold": 2.9,
+          "caption": "HE FITTED HER GLASS CASE",
+          "captionDy": 60
         }
       ]
     },
@@ -180,32 +208,6 @@
           "atWord": "August"
         },
         {
-          "type": "prop",
-          "kind": "painting",
-          "image": "assets/art/monalisa.jpg",
-          "wall": true,
-          "at": [
-            2.3376,
-            48.8606
-          ],
-          "size": 340,
-          "atWord": "August",
-          "hold": 1.57
-        },
-        {
-          "type": "prop",
-          "kind": "painting",
-          "empty": true,
-          "wall": true,
-          "at": [
-            2.3376,
-            48.8606
-          ],
-          "size": 340,
-          "atWord": "lifts",
-          "hold": 4.04
-        },
-        {
           "type": "units",
           "kind": "crowd",
           "at": [
@@ -214,7 +216,7 @@
           ],
           "count": 1,
           "spread": 0,
-          "size": 48,
+          "size": 90,
           "offset": [
             40,
             150
@@ -231,6 +233,20 @@
           "type": "shake",
           "amount": 6,
           "atWord": "lifts"
+        },
+        {
+          "type": "prop",
+          "kind": "painting",
+          "image": "assets/art/monalisa.jpg",
+          "wall": true,
+          "at": [
+            2.3376,
+            48.8606
+          ],
+          "size": 340,
+          "atWord": "On",
+          "liftWord": "lifts",
+          "hold": 5.3
         }
       ]
     },
@@ -270,11 +286,11 @@
           "text": "STOLEN · NOTICED A DAY LATER",
           "at": [
             2.3376,
-            48.882
+            48.905
           ],
           "size": "md",
           "atWord": "over",
-          "hold": 1.6
+          "hold": 0.9
         }
       ]
     },
@@ -309,7 +325,7 @@
           "text": "CLOSED · 1 WEEK",
           "at": [
             2.3376,
-            48.884
+            48.905
           ],
           "size": "md",
           "atWord": "closes",
@@ -323,11 +339,11 @@
             48.8606
           ],
           "count": 16,
-          "spread": 170,
-          "size": 34,
+          "spread": 90,
+          "size": 56,
           "offset": [
             0,
-            190
+            170
           ],
           "approach": [
             0,
@@ -338,10 +354,10 @@
         },
         {
           "type": "label",
-          "text": "4 IRON HOOKS",
+          "text": "4 IRON PEGS",
           "at": [
             2.3376,
-            48.884
+            48.905
           ],
           "size": "md",
           "atWord": "empty",
@@ -383,9 +399,27 @@
           "atWord": "isn't",
           "y": 880,
           "size": 52,
-          "hold": 4.4,
+          "hold": 5.0,
           "stamp": "NOT YET",
           "stampWord": "Not"
+        },
+        {
+          "type": "units",
+          "kind": "crowd",
+          "at": [
+            2.3376,
+            48.8606
+          ],
+          "count": 3,
+          "spread": 120,
+          "size": 40,
+          "offset": [
+            -170,
+            150
+          ],
+          "atWord": "Admired,",
+          "hold": 3.4,
+          "caption": "1911 · NOT THE MOST VISITED · SYMBOLIC"
         }
       ]
     },
@@ -419,10 +453,10 @@
           "src": "assets/archive/puck_louvre_1911.jpg",
           "caption": "\"Daily scene in the Louvre\" · Puck, New York · 18 Oct 1911",
           "credit": "Library of Congress",
-          "y": 560,
-          "w": 820,
-          "atWord": "front",
-          "hold": 2.6
+          "y": 620,
+          "w": 760,
+          "atWord": "theft",
+          "hold": 2.3
         }
       ]
     },
@@ -456,10 +490,32 @@
           "big": "BOTH CLEARED",
           "note": "From published accounts. Not an original document.",
           "atWord": "Police",
-          "hold": 5.0,
+          "hold": 5.3,
           "y": 600,
-          "cps": 42,
-          "keyW": 200
+          "cps": 13,
+          "keyW": 240,
+          "w": 720,
+          "rowSize": 32
+        },
+        {
+          "type": "marker",
+          "text": "Paris",
+          "at": [
+            2.3522,
+            48.8566
+          ],
+          "atWord": "Police",
+          "hold": 1.5
+        },
+        {
+          "type": "shake",
+          "amount": 5,
+          "atWord": "Picasso."
+        },
+        {
+          "type": "shake",
+          "amount": 4,
+          "atWord": "cleared."
         }
       ]
     },
@@ -489,18 +545,18 @@
           "atWord": "All",
           "openWord": "trunk.",
           "openDur": 0.8,
-          "hold": 5.57
+          "hold": 5.15
         },
         {
           "type": "label",
           "text": "28 MONTHS",
           "at": [
             2.37,
-            48.892
+            48.905
           ],
           "size": "md",
           "atWord": "two",
-          "hold": 1.8
+          "hold": 0.95
         },
         {
           "type": "night",
@@ -513,6 +569,21 @@
           ],
           "radius": 380,
           "fadeIn": 0.4
+        },
+        {
+          "type": "date",
+          "date": "1913",
+          "atWord": "two"
+        },
+        {
+          "type": "marker",
+          "text": "His room · Paris",
+          "at": [
+            2.37,
+            48.872
+          ],
+          "atWord": "room",
+          "hold": 1.3
         }
       ]
     },
@@ -521,8 +592,8 @@
       "say": "December {1913|nineteen thirteen}. He takes her to Florence and offers her to an art dealer.",
       "camera": {
         "center": [
-          6.9,
-          46.4
+          8.2,
+          46.0
         ],
         "span": 9.5,
         "pitch": 52,
@@ -629,20 +700,8 @@
       "actions": [
         {
           "type": "date",
-          "date": "1913-12-11",
+          "date": "1913-12",
           "atWord": "Caught."
-        },
-        {
-          "type": "prop",
-          "kind": "painting",
-          "image": "assets/art/monalisa.jpg",
-          "at": [
-            11.2558,
-            43.7696
-          ],
-          "size": 260,
-          "atWord": "dealer",
-          "hold": 4.67
         },
         {
           "type": "units",
@@ -663,7 +722,7 @@
             80
           ],
           "atWord": "police.",
-          "hold": 2.0,
+          "hold": 0.8,
           "caption": "POLICE · SYMBOLIC"
         },
         {
@@ -673,12 +732,60 @@
           "atWord": "Caught.",
           "y": 900,
           "size": 90,
-          "hold": 0.7
+          "hold": 0.5
         },
         {
           "type": "shake",
           "amount": 8,
           "atWord": "Caught."
+        },
+        {
+          "type": "marker",
+          "text": "Uffizi · Florence",
+          "at": [
+            11.2558,
+            43.7696
+          ],
+          "atWord": "The",
+          "hold": 0.9
+        },
+        {
+          "type": "ticket",
+          "head": "Florence",
+          "sub": "Dec 1913 · reconstruction",
+          "rows": [
+            [
+              "DEALER",
+              "A. GERI"
+            ],
+            [
+              "BRINGS",
+              "G. POGGI, UFFIZI"
+            ],
+            [
+              "THEN",
+              "POLICE"
+            ]
+          ],
+          "note": "From published accounts. Not an original document.",
+          "atWord": "dealer",
+          "hold": 3.2,
+          "y": 600,
+          "cps": 30,
+          "keyW": 170,
+          "rowSize": 30
+        },
+        {
+          "type": "prop",
+          "kind": "painting",
+          "image": "assets/art/monalisa.jpg",
+          "at": [
+            11.2558,
+            43.7696
+          ],
+          "size": 240,
+          "atWord": "Caught.",
+          "hold": 1.2
         }
       ]
     },
@@ -709,11 +816,16 @@
           "side": "center",
           "y": 520,
           "w": 360,
-          "atWord": "Italy,",
-          "hold": 4.2,
+          "atWord": "some",
+          "hold": 3.0,
           "stamp": "OUT",
           "stampWord": "out",
           "stampSize": 56
+        },
+        {
+          "type": "date",
+          "date": "1914",
+          "atWord": "He's"
         }
       ]
     },
@@ -723,11 +835,12 @@
       "camera": {
         "center": [
           2.3376,
-          48.958
+          48.965
         ],
         "span": 0.34,
         "pitch": 32,
-        "yaw": -17
+        "yaw": -17,
+        "cut": true
       },
       "actions": [
         {
@@ -746,7 +859,7 @@
           ],
           "size": 420,
           "atWord": "She",
-          "hold": 3.98
+          "hold": 4.6
         },
         {
           "type": "units",
@@ -757,17 +870,13 @@
           ],
           "count": 12,
           "spread": 150,
-          "size": 34,
+          "size": 44,
           "offset": [
-            170,
-            110
-          ],
-          "approach": [
-            0,
-            120
+            210,
+            40
           ],
           "atWord": "whole",
-          "hold": 4
+          "hold": 3.2
         },
         {
           "type": "night",
@@ -790,12 +899,12 @@
           ],
           "atWord": "She",
           "hold": 6,
-          "x": 140,
+          "x": 64,
           "y": 930,
           "picks": [
             {
               "pick": 0,
-              "word": "goes"
+              "word": "She"
             },
             {
               "pick": 1,
