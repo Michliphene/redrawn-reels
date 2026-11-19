@@ -630,7 +630,7 @@ function DateLine({ t }: { t: number }) {
   );
 }
 
-function Overlay({ t, cam }: { t: number; cam: Cam }) {
+function Overlay({ t, cam, cover = false }: { t: number; cam: Cam; cover?: boolean }) {
   const hookEnd = E("hook");
   const titleO = Math.max(1 - ramp(t, hookEnd - 0.2, 0.25), ramp(t, B("end") + 0.15, 0.35));
   const figO = Math.min(life(t, 0.25, hookEnd - 0.25, 0.2), 1);
@@ -754,7 +754,7 @@ function Overlay({ t, cam }: { t: number; cam: Cam }) {
         );
       })()}
 
-      <Captions t={t} />
+      {!cover && <Captions t={t} />}
       {credit && <div style={abs(SAFE.left, 1404, { ...mono(19, P.muted, 400), textTransform: "none", letterSpacing: "0.02em", width: SAFE.right - SAFE.left })}>{credit}</div>}
     </AbsoluteFill>
   );
@@ -792,9 +792,9 @@ function Captions({ t }: { t: number }) {
 }
 
 /* ------------------------------------------------------------------ the frame */
-function Monalisa003() {
+function Monalisa003({ cover = false }: { cover?: boolean }) {
   const f = useCurrentFrame();
-  const t = f / FPS;
+  const t = cover ? 2.9 : f / FPS;
   const cam = cameraAt(t);
   const focus = Math.hypot(cam.pos[0] - cam.look[0], cam.pos[1] - cam.look[1], cam.pos[2] - cam.look[2]);
   const cuts = SHOTS.slice(1).map((s) => [s.t + 0.02, s.cut ? "boom" : "whoosh", s.cut ? 0.28 : 0.3] as [number, string, number]);
@@ -832,7 +832,7 @@ function Monalisa003() {
       <MapTable t={t} />
       <Room t={t} />
 
-      <Overlay t={t} cam={cam} />
+      <Overlay t={t} cam={cam} cover={cover} />
 
       {sfx.map(([at, name, v], i) => (
         <Sequence key={i} from={Math.max(0, Math.round(at * FPS))} durationInFrames={FPS * 3} layout="none" name={`sfx-${name}-${i}`}>
@@ -845,4 +845,11 @@ function Monalisa003() {
   );
 }
 
-registerRoot(() => <Composition id="monalisa" component={Monalisa003} width={W} height={H} fps={FPS} durationInFrames={Math.ceil(DUR * FPS)} />);
+/** The cover: frame 0's shot at 2.9 s (title, the painting, 20,000, the open boxes), no caption. */
+const Cover = () => <Monalisa003 cover />;
+registerRoot(() => (
+  <>
+    <Composition id="monalisa" component={Monalisa003} width={W} height={H} fps={FPS} durationInFrames={Math.ceil(DUR * FPS)} />
+    <Composition id="monalisa-cover" component={Cover} width={W} height={H} fps={FPS} durationInFrames={1} />
+  </>
+));

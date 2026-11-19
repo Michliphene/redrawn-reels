@@ -10,8 +10,8 @@ RAEA="${RAEA_BIN:-$(command -v raea || true)}"
 NAME="${1:-monalisa}"
 [ -f media/voice.wav ] || ./setup.sh
 rm -rf out/frames && mkdir -p out/frames
-"$RAEA" render compositions/monalisa.tsx -o out/frames/ --manifest "out/$NAME.render.json"
-"$RAEA" render compositions/monalisa.tsx -o out/mix.wav
+"$RAEA" render compositions/monalisa.tsx --composition monalisa -o out/frames/ --manifest "out/$NAME.render.json"
+"$RAEA" render compositions/monalisa.tsx --composition monalisa -o out/mix.wav
 ffmpeg -y -loglevel error -framerate 30 -i out/frames/frame-%05d.png -i out/mix.wav -map 0:v -map 1:a \
   -c:v libx264 -preset slow -crf 14 -x264-params aq-mode=3:aq-strength=1.1:deblock=-1,-1 -pix_fmt yuv420p \
   -af "acompressor=threshold=0.08:ratio=3:attack=4:release=90,volume=8.9dB,alimiter=limit=0.84:level=false" -c:a aac -b:a 256k \
