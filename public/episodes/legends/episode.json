@@ -1,0 +1,276 @@
+{
+ "id": "legends",
+ "composition": "Doodle",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 4,
+ "title": "Michael Jordan was never cut",
+ "whisper": "The legend is bigger than the failure.",
+ "source": "Sports Illustrated (2012) · NZ Herald · History.com",
+ "keywords": [
+  "never",
+  "cut",
+  "twist.",
+  "crushed.",
+  "practises.",
+  "no.",
+  "rest.",
+  "late,",
+  "counted.",
+  "smaller",
+  "legends.",
+  "movie."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "scenes": {
+  "open": {
+   "type": "tryout",
+   "side": "front",
+   "slot": 0
+  },
+  "nos": {
+   "type": "nos",
+   "side": "front",
+   "slot": 1
+  },
+  "late": {
+   "type": "late",
+   "side": "front",
+   "slot": 2,
+   "callout": [
+    560,
+    420
+   ]
+  },
+  "shrink": {
+   "type": "shrink",
+   "side": "front",
+   "slot": 3
+  },
+  "rule": {
+   "type": "rule",
+   "side": "front",
+   "slot": 4,
+   "frontSmall": "feels like",
+   "front": "My setback\n= the end",
+   "backSmall": "actually",
+   "back": "My setback\n= the middle"
+  },
+  "end": {
+   "type": "tryout",
+   "side": "front",
+   "slot": 5
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "open",
+   "say": "Michael Jordan was never cut from his high school team.",
+   "actions": [
+    {
+     "type": "stamp",
+     "atWord": "cut"
+    }
+   ]
+  },
+  {
+   "id": "twist",
+   "say": "That's the twist. Here's the real story.",
+   "actions": [
+    {
+     "type": "unstamp",
+     "atWord": "twist."
+    }
+   ]
+  },
+  {
+   "id": "jv",
+   "kicker": "1 · The cut",
+   "say": "At fifteen, he's five foot nine. The coach puts him on the junior team, like the other sophomores.",
+   "actions": [
+    {
+     "type": "height",
+     "atWord": "five"
+    }
+   ]
+  },
+  {
+   "id": "friend",
+   "say": "His friend, six foot seven, makes varsity. Michael is crushed.",
+   "actions": [
+    {
+     "type": "cry",
+     "atWord": "crushed."
+    }
+   ]
+  },
+  {
+   "id": "practice",
+   "say": "So he practises. Harder than anyone.",
+   "actions": [
+    {
+     "type": "practice",
+     "atWord": "practises."
+    }
+   ]
+  },
+  {
+   "id": "told",
+   "say": "For years, he tells it as \"I got cut.\" Because that's how it felt.",
+   "actions": [
+    {
+     "type": "bubble",
+     "atWord": "got"
+    }
+   ]
+  },
+  {
+   "id": "book1",
+   "scene": "nos",
+   "kicker": "2 · The no’s",
+   "say": "Story two. A mum writes a book about a boy wizard."
+  },
+  {
+   "id": "book2",
+   "say": "Publisher after publisher says no. About twelve, by most counts.",
+   "actions": [
+    {
+     "type": "nos",
+     "count": 12,
+     "dur": 2.6,
+     "atWord": "Publisher"
+    }
+   ]
+  },
+  {
+   "id": "book3",
+   "say": "Then one boss takes the first chapters home, and gives them to his eight-year-old daughter.",
+   "actions": [
+    {
+     "type": "kid",
+     "atWord": "gives"
+    }
+   ]
+  },
+  {
+   "id": "book4",
+   "say": "She reads them, and asks for the rest.",
+   "actions": [
+    {
+     "type": "more",
+     "atWord": "rest."
+    }
+   ]
+  },
+  {
+   "id": "book5",
+   "say": "That book is Harry Potter.",
+   "actions": [
+    {
+     "type": "book",
+     "atWord": "Harry"
+    }
+   ]
+  },
+  {
+   "id": "late1",
+   "scene": "late",
+   "kicker": "3 · The late start",
+   "say": "Story three. A man is {62|sixty-two} when he signs his first chicken franchise deal.",
+   "actions": [
+    {
+     "type": "age",
+     "dur": 1.8,
+     "atWord": "man"
+    },
+    {
+     "type": "sign",
+     "atWord": "deal."
+    }
+   ]
+  },
+  {
+   "id": "late2",
+   "say": "Maybe you've heard he was rejected {1,009|one thousand and nine} times. Nobody can find where that number comes from.",
+   "actions": [
+    {
+     "type": "myth",
+     "atWord": "1,009"
+    }
+   ]
+  },
+  {
+   "id": "late3",
+   "say": "The real twist is simpler. He started late, and it still counted.",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "late still counts",
+     "atWord": "counted.",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "good",
+   "scene": "shrink",
+   "kicker": "The good news",
+   "say": "So here's the good news. Their big failures were smaller than the legends.",
+   "actions": [
+    {
+     "type": "legends",
+     "atWord": "failures"
+    }
+   ]
+  },
+  {
+   "id": "small",
+   "say": "A junior team. A pile of no's. A late start.",
+   "actions": [
+    {
+     "type": "shrink",
+     "atWord": "junior"
+    },
+    {
+     "type": "shrink",
+     "atWord": "pile"
+    },
+    {
+     "type": "shrink",
+     "atWord": "late"
+    }
+   ]
+  },
+  {
+   "id": "you",
+   "scene": "rule",
+   "say": "Your setback probably isn't the end of your story either. It's the part they skip in the movie.",
+   "actions": [
+    {
+     "type": "turn",
+     "atWord": "It's"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "scene": "end",
+   "say": "And speaking of legends…"
+  }
+ ]
+}

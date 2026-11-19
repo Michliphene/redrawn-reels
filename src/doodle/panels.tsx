@@ -594,5 +594,190 @@ export const StagePanel: React.FC<PanelProps> = ({ t, acts, def }) => {
   );
 };
 
-export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel, drafts: DraftsPanel, versions: VersionsPanel, rule: RulePanel, plane: PlanePanel, gym: GymPanel, stage: StagePanel };
+/* ------------------------------------------------------------------ tryout: the team list, a short kid and a tall friend, the "cut" that wasn't */
+const BOARD = { x: 560, y: 650, w: 370, h: 300 };
+export const TryoutPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  const stamp = one(acts, 'stamp'), unstamp = one(acts, 'unstamp'), height = one(acts, 'height'), cry = one(acts, 'cry'), practice = one(acts, 'practice'), bubble = one(acts, 'bubble');
+  const sad = live(cry) && !live(practice);
+  const shooting = live(practice);
+  const ph = shooting ? (t - practice!.t) % 1.1 / 1.1 : 0;
+  const shots = shooting ? Math.floor((t - practice!.t) / 1.1) + 1 : 0;
+  const hero: Pose = shooting ? { ...POSE.stand(t), armR: ph < 0.25 ? 170 : 150 - ph * 60, armL: ph < 0.25 ? 160 : 40, mood: 'flat' } : sad ? { ...POSE.stand(t), armL: 10, armR: -10, tilt: 16, mood: 'sad' } : { ...POSE.stand(t), mood: 'flat' };
+  return (
+    <g>
+      <Ground />
+      {/* the team list pinned on the wall */}
+      <Ink pts={[[BOARD.x, BOARD.y], [BOARD.x + BOARD.w, BOARD.y], [BOARD.x + BOARD.w, BOARD.y + BOARD.h], [BOARD.x, BOARD.y + BOARD.h]]} seed={3000} w={5} fill="#FFFFFF" close />
+      <circle cx={BOARD.x + BOARD.w / 2} cy={BOARD.y + 8} r={9} fill={C.red} />
+      <Hand x={BOARD.x + 30} y={BOARD.y + 64} size={46} anchor="start">{def.colA ?? 'Varsity'}</Hand>
+      <Hand x={BOARD.x + 210} y={BOARD.y + 64} size={46} anchor="start">{def.colB ?? 'JV'}</Hand>
+      {[0, 1, 2, 3, 4].map((k) => <Ink key={k} pts={[[BOARD.x + 30, BOARD.y + 110 + k * 42], [BOARD.x + 150 - (k % 2) * 20, BOARD.y + 110 + k * 42]]} seed={3010 + k} w={3} c={C.pencil} amp={0.5} />)}
+      {[0, 1, 2, 3, 4].map((k) => k === 2
+        ? <Hand key={k} x={BOARD.x + 210} y={BOARD.y + 122 + k * 42} size={40} c={C.ink} anchor="start" hl={live(unstamp) ? C.hl : undefined}>{def.name ?? 'Michael'}</Hand>
+        : <Ink key={k} pts={[[BOARD.x + 210, BOARD.y + 110 + k * 42], [BOARD.x + 330 - (k % 2) * 25, BOARD.y + 110 + k * 42]]} seed={3020 + k} w={3} c={C.pencil} amp={0.5} />)}
+      {live(stamp) && (() => {
+        const k = Math.min(1.15, pop(t, stamp!.t, 0.25)), x = live(unstamp) ? ease.out3(ramp(t, unstamp!.t, 0.3)) : 0;
+        return (
+          <g transform={`translate(${BOARD.x + BOARD.w / 2} ${BOARD.y + BOARD.h / 2}) rotate(-12) scale(${k * (1 + (1 - Math.min(1, k)) * 0.6)})`}>
+            <rect x={-140} y={-62} width={280} height={124} rx={12} fill="none" stroke={C.red} strokeWidth={10} opacity={0.9} />
+            <text x={0} y={34} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 110 }} fill={C.red} opacity={0.9}>CUT</text>
+            {x > 0 && <Ink pts={[[-160, -30], [-80, 20], [0, -20], [80, 30], [160, -10]]} seed={3030} w={12} c={C.ink} draw={x} />}
+          </g>
+        );
+      })()}
+      {live(unstamp) && <Hand x={BOARD.x + BOARD.w / 2} y={BOARD.y + BOARD.h + 70} size={64} c={C.ink} hl={C.mint} opacity={ramp(t, unstamp!.t + 0.3, 0.2)}>{def.truth ?? 'not cut: JV'}</Hand>}
+      {/* the two friends */}
+      <Guy x={190} y={GROUND} s={1.3} hero seed={3040} pose={hero} />
+      <Guy x={390} y={GROUND} s={1.75} c={C.pencil} seed={3050} pose={{ ...POSE.stand(t, 1), mood: 'smile' }} />
+      {live(height) && <>
+        <Hand x={190} y={790} size={52} c={C.red} opacity={ramp(t, height!.t, 0.2)}>{def.heightA ?? `5'9"`}</Hand>
+        <Hand x={330} y={668} size={52} c={C.ink} opacity={ramp(t, height!.t + 0.3, 0.2)}>{def.heightB ?? `6'7"`}</Hand>
+      </>}
+      {sad && [0, 1].map((k) => { const p = ((t - cry!.t) * 0.9 + k * 0.5) % 1; return <Ink key={k} pts={[[205 + k * 18, 860 + p * 60], [200 + k * 18, 878 + p * 60], [210 + k * 18, 878 + p * 60]]} seed={3060 + k} w={3} c="#4A8FD9" fill="#BFE0FF" close amp={0.4} />; })}
+      {/* practice: the ball goes up again and again, the tally grows */}
+      {shooting && (() => {
+        const bx = lerp(250, 470, ph), by = 820 - Math.sin(ph * Math.PI) * 330;
+        return <g>
+          <Ink pts={[[440, 600], [520, 600]]} seed={3070} w={6} c={C.red} />
+          <Ink pts={[[445, 604], [460, 650], [500, 650], [515, 604]]} seed={3071} w={3} c={C.pencil} />
+          <Circle cx={bx} cy={by} r={20} seed={3072} w={4} fill="#F08A3C" />
+          <Hand x={64} y={1150} size={56} c={C.ink} anchor="start">{'practice: ' + '|'.repeat(Math.min(14, shots + 3))}</Hand>
+        </g>;
+      })()}
+      {live(bubble) && (
+        <g opacity={ramp(t, bubble!.t, 0.2)}>
+          <Ink pts={[[60, 470], [470, 470], [470, 580], [260, 580], [220, 630], [215, 580], [60, 580]]} seed={3080} w={5} fill="#FFFFFF" close />
+          <Hand x={265} y={545} size={60} c={C.ink}>{def.quote ?? '"I got cut."'}</Hand>
+        </g>
+      )}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ nos: letters come back stamped NO, then a kid asks for more */
+export const NosPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  const nos = one(acts, 'nos'), kid = one(acts, 'kid'), more = one(acts, 'more'), book = one(acts, 'book');
+  const n = nos ? nos.count ?? 12 : 0;
+  const got = nos && t >= nos.t ? Math.min(n, Math.floor((t - nos.t) / ((nos.dur ?? 2.4) / n)) + 1) : 0;
+  return (
+    <g>
+      <Ground />
+      <Guy x={170} y={GROUND} s={1.45} hero seed={3100} pose={{ ...POSE.desk(live(kid) ? 0 : Math.min(0.6, got / 20)), armR: 75 + Math.sin(t * 12) * 8, mood: live(more) ? 'smile' : got > 6 ? 'sad' : 'flat' }} />
+      <Ink pts={[[70, 950], [380, 950]]} seed={3110} w={7} />
+      <Ink pts={[[100, 950], [100, GROUND]]} seed={3111} w={6} />
+      <Ink pts={[[350, 950], [350, GROUND]]} seed={3112} w={6} />
+      {/* the rejection letters pile up */}
+      {Array.from({ length: got }, (_, k) => {
+        const x = 520 + ((k * 41) % 90) - 45, y = 1060 - k * 22;
+        const p = nos ? ramp(t, nos.t + k * ((nos.dur ?? 2.4) / n), 0.25) : 1;
+        return (
+          <g key={k} transform={`translate(${lerp(900, x, ease.out3(p))} ${lerp(500, y, ease.out3(p))}) rotate(${((k * 29) % 24) - 12})`}>
+            <Ink pts={[[-70, -40], [70, -40], [70, 40], [-70, 40]]} seed={3120 + k} w={3.5} fill="#FFFFFF" close amp={0.6} />
+            <Ink pts={[[-70, -40], [0, 5], [70, -40]]} seed={3140 + k} w={2.5} c={C.pencil} amp={0.5} />
+            <text x={0} y={22} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 44 }} fill={C.red}>NO</text>
+          </g>
+        );
+      })}
+      {got > 0 && !live(kid) && <Hand x={520} y={720} size={64} c={C.red}>{`no. ${got}`}</Hand>}
+      {/* the boss hands the chapters to his daughter */}
+      {live(kid) && (() => {
+        const k = ease.out3(ramp(t, kid!.t, 0.6));
+        return <g opacity={k}>
+          <Guy x={700} y={GROUND} s={1.5} c={C.pencil} seed={3160} pose={{ ...POSE.stand(t), armR: 70, mood: 'flat' }} />
+          <Guy x={860} y={GROUND} s={0.95} hero seed={3170} pose={{ ...POSE.stand(t), armL: 70, armR: 80, mood: live(more) ? 'smile' : 'o' }}>
+            {(j) => <g transform={`translate(${j.handR[0] + 6} ${j.handR[1] - 10}) rotate(-10)`}><Ink pts={[[-30, -40], [30, -40], [30, 30], [-30, 30]]} seed={3175} w={3.5} fill="#FFFFFF" close amp={0.5} />{[-24, -10, 4].map((yy, i) => <line key={i} x1={-20} y1={yy} x2={20} y2={yy} stroke={C.pencil} strokeWidth={2.5} />)}</g>}
+          </Guy>
+        </g>;
+      })()}
+      {live(more) && (
+        <g transform={`translate(760 640) scale(${Math.min(1.1, pop(t, more!.t, 0.35))})`}>
+          <Ink pts={[[-150, -70], [150, -70], [150, 50], [30, 50], [0, 100], [-10, 50], [-150, 50]]} seed={3180} w={5} fill="#FFFFFF" close />
+          <text x={0} y={18} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 92 }} fill={C.red}>{def.moreText ?? 'MORE!'}</text>
+        </g>
+      )}
+      {live(book) && (
+        <g transform={`translate(420 640) rotate(-6) scale(${Math.min(1.1, pop(t, book!.t, 0.4))})`}>
+          <Ink pts={[[-130, -170], [130, -170], [130, 170], [-130, 170]]} seed={3190} w={6} fill="#C9372C" close />
+          <Ink pts={[[-110, -170], [-110, 170]]} seed={3191} w={4} c="#7A1F18" />
+          <text x={10} y={-40} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 64 }} fill="#FFE04A">{def.bookA ?? 'Harry'}</text>
+          <text x={10} y={30} textAnchor="middle" style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, fontSize: 64 }} fill="#FFE04A">{def.bookB ?? 'Potter'}</text>
+          <Ink pts={[[-20, 80], [0, 110], [20, 80], [40, 110]]} seed={3192} w={4} c="#FFE04A" />
+        </g>
+      )}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ late: an age line to 62, a contract, and a number with no source */
+export const LatePanel: React.FC<PanelProps> = ({ t, acts, def }) => {
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  const age = one(acts, 'age'), sign = one(acts, 'sign'), myth = one(acts, 'myth');
+  const target = def.age ?? 62;
+  const a = age && t >= age.t ? target * ease.inOut3(ramp(t, age.t, age.dur ?? 2.4)) : 0;
+  const X0 = 110, X1 = 960, Y = 1000;
+  const ax = X0 + (X1 - X0) * (a / 80);
+  return (
+    <g>
+      <Ink pts={seg([X0, Y], [X1, Y], 12)} seed={3200} w={5} c={C.ink} />
+      {[0, 10, 20, 30, 40, 50, 60, 70, 80].map((k) => <g key={k}><Ink pts={[[X0 + (X1 - X0) * (k / 80), Y - 12], [X0 + (X1 - X0) * (k / 80), Y + 12]]} seed={3210 + k} w={3} c={C.pencil} amp={0.4} /><Hand x={X0 + (X1 - X0) * (k / 80)} y={Y + 56} size={38} c={C.pencil}>{String(k)}</Hand></g>)}
+      <Hand x={X1 - 10} y={Y + 104} size={40} c={C.pencil} anchor="end">age</Hand>
+      <Guy x={ax} y={Y - 4 + (age && a < target ? bob(t * 9, 5) : 0)} s={1.25} hero seed={3220} pose={age && a < target - 0.5 ? POSE.walk(t * 9) : live(sign) ? POSE.cheer(t) : POSE.stand(t)} />
+      {a > 1 && <text x={64} y={700} style={{ ...displayCut(800, 75), fontSize: 150 }} fill={C.ink}>{`age ${Math.round(a)}`}</text>}
+      {live(sign) && (
+        <g transform={`translate(780 700) rotate(4) scale(${Math.min(1.08, pop(t, sign!.t, 0.35))})`}>
+          <Ink pts={[[-150, -130], [150, -130], [150, 130], [-150, 130]]} seed={3230} w={5} fill="#FFFFFF" close />
+          <Hand x={0} y={-74} size={42} c={C.ink}>{def.contract ?? 'franchise deal'}</Hand>
+          {[-30, -2, 26].map((yy, i) => <line key={i} x1={-110} y1={yy} x2={110 - i * 30} y2={yy} stroke={C.pencil} strokeWidth={3} />)}
+          <Ink pts={[[-100, 90], [-60, 64], [-30, 96], [10, 66], [40, 94], [90, 70]]} seed={3231} w={5} c={C.ink} draw={ramp(t, sign!.t + 0.3, 0.5)} />
+          <Hand x={0} y={170} size={44} c={C.red}>{def.year ?? '#1 · 1952'}</Hand>
+        </g>
+      )}
+      {live(myth) && (() => {
+        const o = ramp(t, myth!.t, 0.2), q = ramp(t, myth!.t + 1.2, 0.3);
+        return <g opacity={o}>
+          <rect x={50} y={420} width={575} height={320} fill={C.paper} />
+          <text x={80} y={560} style={{ ...displayCut(800, 75), fontSize: 130 }} fill={C.red} opacity={1 - q * 0.45}>{def.mythText ?? '1,009 NO’S'}</text>
+          {q > 0 && <Ink pts={[[70, 520], [380, 500], [690, 530]]} seed={3240} w={11} c={C.ink} draw={q} />}
+          <Hand x={84} y={640} size={54} c={C.ink} anchor="start" opacity={q}>{def.mythNote ?? 'source? nobody can find one'}</Hand>
+          <g transform="translate(560 690)" opacity={q}><Circle cx={0} cy={0} r={34} seed={3241} w={6} /><Ink pts={[[24, 24], [62, 62]]} seed={3242} w={9} /></g>
+        </g>;
+      })()}
+    </g>
+  );
+};
+
+/* ------------------------------------------------------------------ shrink: three big legends shrink into the small true versions */
+export const ShrinkPanel: React.FC<PanelProps> = ({ t, acts, def }) => {
+  const live = (a?: A) => !!a && t >= a.t && !(a.until != null && t >= a.until);
+  const legends = one(acts, 'legends');
+  const shrinks = all(acts, 'shrink');
+  const big: string[] = def.big ?? ['CUT!', '12 NO’S', '1,009 NO’S'];
+  const small: string[] = def.small ?? ['JV team', 'a pile of no’s', 'a late start'];
+  if (!live(legends)) return <g><Ground /></g>;
+  return (
+    <g>
+      <Ground />
+      {big.map((b, i) => {
+        const s = shrinks[i] && t >= shrinks[i].t ? ease.inOut3(ramp(t, shrinks[i].t, 0.5)) : 0;
+        const y = 640 + i * 170, x = 540;
+        const k = Math.min(1.08, pop(t, legends!.t + i * 0.15, 0.35));
+        return (
+          <g key={i}>
+            <g transform={`translate(${x} ${y}) scale(${k * (1 - 0.75 * s)}) rotate(${(i - 1) * 3})`} opacity={1 - s}>
+              <text x={0} y={40} textAnchor="middle" style={{ ...displayCut(800, 75), fontSize: 140 }} fill={C.red}>{b}</text>
+            </g>
+            {s > 0 && <g opacity={s} transform={`translate(${x} ${y}) rotate(${(i - 1) * -3})`}>
+              <Ink pts={[[-170, -46], [170, -46], [170, 46], [-170, 46]]} seed={3300 + i} w={4} fill={C.note} close />
+              <Hand x={0} y={18} size={56} c={C.ink}>{small[i]}</Hand>
+            </g>}
+          </g>
+        );
+      })}
+    </g>
+  );
+};
+
+export const PANELS: Record<string, React.FC<PanelProps>> = { duel: DuelPanel, race: RacePanel, class: ClassPanel, bin: BinPanel, shop: ShopPanel, pile: PilePanel, drafts: DraftsPanel, versions: VersionsPanel, rule: RulePanel, plane: PlanePanel, gym: GymPanel, stage: StagePanel, tryout: TryoutPanel, nos: NosPanel, late: LatePanel, shrink: ShrinkPanel };
 export { joints };

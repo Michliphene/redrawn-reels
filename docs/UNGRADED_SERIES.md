@@ -43,6 +43,7 @@ for what works / lessons, coral (`#FF5A6E`) for mistakes and grades.
 |---|---|---|---|
 | 001 | `fail-ten-times` (3D) · `fail-ten-times-doodle` (notebook) | D. myth-bust | rendered, reviewed |
 | 002 | `first-draft` (notebook) | D. myth-bust, Rule Flip | rendered, reviewed |
+| 004 | `legends` (notebook) | D. myth-bust, three stories | rendered, 64 s |
 | 003 | `planes-doodle` (notebook, younger audience) · alt. `planes-came-back` (blueprint) | A. explainer + C. counted game | rendered, 68.8 s / 67 s |
 
 ## Second art direction: the notebook (`composition: "Doodle"`, `src/doodle/`)
@@ -64,6 +65,10 @@ Fonts: house fonts + Caveat Bold (handwriting on the page, OFL, `public/fonts/Ca
 | `plane` | a doodled bomber, top view | `holes` {dur} · `patch` {part: wings/tail} (masking tape) · `circle` (red pen on the engines) · `ghost` (a plane that never came back) |
 | `gym` | 1,024 students, a coin game | `spawn` · `rounds` {dur} · `winner` (the last one grows into a crowned figure) |
 | `stage` | the winner gives a talk (`secret`, `secretSmall`, `crowdLabel`) | `secret` · `crowd` |
+| `tryout` | a team list, a short kid and a tall friend (`colA`, `colB`, `name`, `truth`, `heightA`, `heightB`, `quote`) | `stamp` · `unstamp` · `height` · `cry` · `practice` · `bubble` |
+| `nos` | a writer, rejection letters, a kid who wants more (`moreText`, `bookA`, `bookB`) | `nos` {count, dur} · `kid` · `more` · `book` |
+| `late` | an age line, a contract, a number with no source (`age`, `contract`, `year`, `mythText`, `mythNote`) | `age` {dur} · `sign` · `myth` |
+| `shrink` | big legends that shrink into the small true versions (`big`, `small`) | `legends` · `shrink` (×3) |
 Labels of `duel` (`leftLabel`, `leftLit`, `rightLabel`, `rightDim`, `badge`, `bubble`, `leftProp: pages`) and `bin` (`binLabel`, `ignoreLabel`, `worksLabel`) are set in the scene def.
 Episode: `fail-ten-times-doodle` (same voice as `fail-ten-times` via `audio`).
 
