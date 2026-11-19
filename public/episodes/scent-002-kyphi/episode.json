@@ -1,0 +1,115 @@
+{
+ "id": "scent-002-kyphi",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 2,
+ "da": 2,
+ "composition": "Episode",
+ "title": "The 2,000-year-old perfume",
+ "whisper": "kyphi, a recipe carved in stone",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "kyphi": "KEE-fee",
+   "Edfu": "ED-foo"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-002-kyphi (map fields unused; this file holds the script and the voice)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "This perfume is over {2,000|two thousand} years old. You cannot buy it. But its recipe is carved into a temple wall.",
+   "actions": []
+  },
+  {
+   "id": "egypt",
+   "say": "Egypt. The temple of Edfu, built more than {2,000|two thousand} years ago. Its priests call this perfume kyphi.",
+   "actions": []
+  },
+  {
+   "id": "lab",
+   "say": "In one room, the walls list the recipes, step by step. Scholars call it the laboratory.",
+   "actions": []
+  },
+  {
+   "id": "dusk",
+   "say": "A Greek writer, Plutarch, says they burned incense three times a day: frankincense at dawn, myrrh at noon, and kyphi at dusk.",
+   "actions": []
+  },
+  {
+   "id": "sixteen",
+   "say": "His recipe has {16|sixteen} ingredients. Honey. Wine. Raisins. Myrrh. Resin. Juniper berries. Even bitumen.",
+   "actions": []
+  },
+  {
+   "id": "sacred",
+   "say": "It is mixed while sacred texts are read aloud to the perfumers. And it is not only burned: it is also a drink, and a balm.",
+   "actions": []
+  },
+  {
+   "id": "twist",
+   "say": "But here is the problem. Nobody agrees on the list.",
+   "actions": []
+  },
+  {
+   "id": "counts",
+   "say": "One ancient doctor, Dioscorides, counts ten ingredients. Galen, fifteen. A later recipe, thirty-six.",
+   "actions": []
+  },
+  {
+   "id": "unknown",
+   "say": "And some of the Egyptian plant names? Scholars still cannot say what they were.",
+   "actions": []
+  },
+  {
+   "id": "today",
+   "say": "So anyone who makes kyphi today is reconstructing it, one guess at a time.",
+   "actions": []
+  },
+  {
+   "id": "payoff",
+   "say": "The recipe survived more than {2,000|two thousand} years. The exact smell did not.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "All we really have is the wall.",
+   "actions": []
+  }
+ ]
+}

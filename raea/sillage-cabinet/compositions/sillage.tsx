@@ -432,8 +432,8 @@ function Captions({ t, light }: { t: number; light: boolean }) {
   const i = SEGMENTS.findIndex((p, k) => t >= p[0].start - 0.08 && t < (SEGMENTS[k + 1]?.[0].start ?? 1e9) - 0.08 && t < p[p.length - 1].end + 0.7);
   if (i < 0 || t > DUR - 0.4) return null;
   const p = SEGMENTS[i];
-  const bg = light ? "#FFF2DD" : "rgba(25,15,24,0.9)";
-  const base = light ? C.ink : C.ivory, active = light ? "#A3405D" : C.rose, pending = light ? "#7E5F70" : "#BFAFBA";
+  const bg = "rgba(25,15,24,0.92)"; void light;
+  const base = C.ivory, active = C.rose, pending = "#BFAFBA";
   return (
     <div style={abs(L.left - 22, L.capTop, { width: L.capW + 44, display: "flex", justifyContent: "flex-start" })}>
       <div style={{ background: bg, borderRadius: 18, padding: "16px 22px 18px", display: "flex", flexWrap: "wrap", columnGap: 16, rowGap: 2, maxWidth: L.capW + 44 }}>
@@ -541,7 +541,6 @@ function ShotText({ t, s, end, cam }: { t: number; s: Shot; end: number; cam: Ca
 function Overlay({ t, cam }: { t: number; cam: Cam }) {
   const { s, end } = shotAt(t);
   const light = s.kind === "monument" || s.kind === "duel" || s.kind === "heap" || s.kind === "specimen";
-  const ai = AI_SHOTS.has(s.id);
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <style>{FONTS}</style>
@@ -552,7 +551,6 @@ function Overlay({ t, cam }: { t: number; cam: Cam }) {
         <div style={{ fontFamily: "JBMono", fontWeight: 700, fontSize: 26, letterSpacing: "0.24em", color: C.ink, background: C.rose, padding: "8px 14px 7px 17px", borderRadius: 4 }}>SILLAGE</div>
         <div style={{ fontFamily: "JBMono", fontWeight: 700, fontSize: 26, letterSpacing: "0.12em", color: light ? C.plum : C.rose }}>N°1</div>
       </div>
-      {ai && <div style={abs(0, L.badgeY - 8, { right: W - L.right, left: "auto", ...label(light ? C.plum : C.ivory), fontSize: 24, opacity: 0.92, background: light ? "rgba(255,242,221,0.85)" : "rgba(25,15,24,0.7)", padding: "6px 10px", borderRadius: 6 })}>AI illustration</div>}
       <ShotText t={t} s={s} end={end} cam={cam} />
       <Captions t={t} light={light} />
     </AbsoluteFill>

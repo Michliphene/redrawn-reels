@@ -1,0 +1,117 @@
+{
+ "episode": "scent-002-kyphi",
+ "date": "2026-11-19",
+ "rule": "All images are AI illustrations (said in the post description). Temple walls show illegible reliefs, never invented text. No faces. The flask is imagined.",
+ "items": [
+  {
+   "id": "nb_wall",
+   "original": "media/plates/nb_wall.jpg",
+   "size": "1536,2752",
+   "used_as": "s_wall.jpg",
+   "tool": "Nano Banana",
+   "role": "hook + loop",
+   "prompt_summary": "ancient Egyptian temple wall at dusk, eroded illegible reliefs, incense smoke",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_pylon",
+   "original": "media/plates/nb_pylon.jpg",
+   "size": "1536,2752",
+   "used_as": "s_pylon.jpg",
+   "tool": "Nano Banana",
+   "role": "\"The temple of Edfu\"",
+   "prompt_summary": "pylon gateway of the temple of Edfu at dusk, braziers, no people",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_lab_room",
+   "original": "media/plates/nb_lab_room.jpg",
+   "size": "1536,2752",
+   "used_as": "s_lab_room.jpg",
+   "tool": "Nano Banana",
+   "role": "\"Scholars call it the laboratory\"",
+   "prompt_summary": "small temple chamber, walls of illegible carved signs, jars, resins, brazier",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_censer",
+   "original": "media/plates/nb_censer.jpg",
+   "size": "1536,2752",
+   "used_as": "s_censer.jpg",
+   "tool": "Nano Banana",
+   "role": "Plutarch, incense three times a day",
+   "prompt_summary": "hands (no face) raising a bronze arm-shaped censer at dusk",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_papyrus",
+   "original": "media/plates/nb_papyrus.jpg",
+   "size": "1536,2752",
+   "used_as": "s_papyrus.jpg",
+   "tool": "Nano Banana",
+   "role": "\"mixed while sacred texts are read\"",
+   "prompt_summary": "workshop at night, faded illegible papyrus, mortar of resins, hands grinding",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_smoke",
+   "original": "media/plates/nb_smoke.jpg",
+   "size": "1536,2752",
+   "used_as": "s_smoke.jpg",
+   "tool": "Nano Banana",
+   "role": "payoff \"the exact smell did not\"",
+   "prompt_summary": "a thread of incense smoke from a kyphi pellet dissolving in the dark",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_frankincense",
+   "original": "media/plates/gpt_frankincense.png",
+   "size": "1024,1536",
+   "used_as": "c_frankincense.jpg",
+   "tool": "gpt-image",
+   "role": "triptych: dawn",
+   "prompt_summary": "frankincense tears on a brass dish, specimen plate on ivory parchment",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_myrrh",
+   "original": "media/plates/gpt_myrrh.png",
+   "size": "1024,1536",
+   "used_as": "c_myrrh.jpg",
+   "tool": "gpt-image",
+   "role": "triptych: noon",
+   "prompt_summary": "myrrh tears on a brass dish, specimen plate",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_kyphi_pellets",
+   "original": "media/plates/gpt_kyphi_pellets.png",
+   "size": "1024,1536",
+   "used_as": "c_kyphi.jpg",
+   "tool": "gpt-image",
+   "role": "triptych: dusk",
+   "prompt_summary": "kyphi pellets with smoke, specimen plate",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_ingredients",
+   "original": "media/plates/gpt_ingredients.png",
+   "size": "1024,1536",
+   "used_as": "c_ingredients.jpg",
+   "tool": "gpt-image",
+   "role": "\"not only burned: a drink, a balm\"",
+   "prompt_summary": "honey, wine, raisins, juniper, bitumen, specimen plate",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_kyphi_flask",
+   "original": "media/plates/gpt_kyphi_flask.png",
+   "size": "1024,1536",
+   "used_as": "f_kyphi_flask.jpg",
+   "tool": "gpt-image",
+   "role": "twist \"Nobody agrees on the list\" (framed)",
+   "prompt_summary": "imagined alabaster kyphi flask, artistic interpretation, not an artefact",
+   "crop": "centred (prep-plates.sh)"
+  }
+ ]
+}

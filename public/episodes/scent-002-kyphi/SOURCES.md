@@ -1,36 +1,44 @@
-# SILLAGE N°2 — The 2,000-year-old perfume (pilot A: Nano Banana "vitrine")
+# SILLAGE N°2 — The 2,000-year-old perfume (kyphi) · raea, DA « cabinet des matières »
 
-Status: **proposal draft**. Format D (myth-bust-ish: "we know the recipe" → "nobody agrees on the list") with a loop.
-Plates: `plates.json` → `scripts/nano-banana.mjs` (Gemini API, Nano Banana Pro). No engine yet (see `docs/SCENT_SERIES.md` §4).
+Status: **scripted, voiced, rendered in `raea/sillage-002-kyphi/`**. Format D (myth-bust: "we have the recipe" → "nobody
+agrees on the list"). Images: AI illustrations (Nano Banana, gpt-image), see `raea/sillage-002-kyphi/media/manifest.json`.
+Earlier draft of this file (pilot A, Nano Banana vitrine) is superseded; `plates.json` is kept for `scripts/nano-banana.mjs`.
 
-Access note: read through search-engine extracts. **The owner ticks every ⚠ line before any voice is recorded.**
+Access note: read through search-engine extracts. **The owner ticks every ⚠ line before posting.**
 
-## Script (voice, 8 beats, ~42 s target)
-1. This perfume is over 2,000 years old. Its recipe is carved into a temple wall.  — plate `kyphi_flask`, label AI ILLUSTRATION
-2. Egypt. The temple of Edfu. The priests call it kyphi.  — real photo of Edfu (Commons, CC) on a card, never an AI "archive"
-3. Plutarch writes that they burn it at dusk, every day.  — plate `dusk_censer`
-4. His version has 16 ingredients. Honey. Wine. Raisins. Myrrh. Juniper…  — the six ingredient plates flip by, then a 4×4 grid
-5. But nobody agrees on the list. Other ancient writers count ten, fifteen, even thirty-six.  — grid reshuffles: 10 → 15 → 36
-6. Some of its plants? Scholars still can't identify them.  — two tiles go blank: "?"
-7. So this bottle is our guess, drawn by AI. The recipe is real.  — the AI ILLUSTRATION label grows to full size (honesty as a beat)
-8. And you can still read it, because…  → loops into line 1 ("this perfume is over 2,000 years old…")
+## Script (12 beats)
+1. This perfume is over 2,000 years old. You cannot buy it. But its recipe is carved into a temple wall.
+2. Egypt. The temple of Edfu, built more than 2,000 years ago. Its priests call this perfume kyphi.
+3. In one room, the walls list the recipes, step by step. Scholars call it the laboratory.
+4. A Greek writer, Plutarch, says they burned incense three times a day: frankincense at dawn, myrrh at noon, and kyphi at dusk.
+5. His recipe has 16 ingredients. Honey. Wine. Raisins. Myrrh. Resin. Juniper berries. Even bitumen.
+6. It is mixed while sacred texts are read aloud to the perfumers. And it is not only burned: it is also a drink, and a balm.
+7. But here is the problem. Nobody agrees on the list.
+8. One ancient doctor, Dioscorides, counts ten ingredients. Galen, fifteen. A later recipe, thirty-six.
+9. And some of the Egyptian plant names? Scholars still cannot say what they were.
+10. So anyone who makes kyphi today is reconstructing it, one guess at a time.
+11. The recipe survived more than 2,000 years. The exact smell did not.
+12. All we really have is the wall.
 
 ## Facts table
 | # | Claim | Source | Status |
 |---|---|---|---|
-| 1 | Kyphi recipes inscribed on the walls of Edfu and Philae temples (Ptolemaic period) → "over 2,000 years" | Wikipedia "Kyphi" <https://en.wikipedia.org/wiki/Kyphi>; ancientegyptonline.co.uk <https://ancientegyptonline.co.uk/kyphi/>; primary: Lise Manniche, *Sacred Luxuries* (1999) | ⚠ tick against Manniche |
-| 2 | Name: Greek κῦφι from Egyptian *kapet* (incense/perfume) | Wikipedia "Kyphi" | ⚠ not on screen, pinned comment only |
-| 3 | Plutarch (*On Isis and Osiris* 80): frankincense at dawn, myrrh at midday, kyphi at dusk | Plutarch, *De Iside et Osiride* §80 (LacusCurtius, Loeb translation) | ⚠ tick the § number |
-| 4 | Plutarch: 16 ingredients (credits Manetho) | same | ⚠ |
-| 5 | Ingredients named on screen: honey, wine, raisins, myrrh, juniper, mastic, calamus, cardamom | Plutarch's list as translated; identities debated | ⚠ use the Loeb wording; drop any not in it |
-| 6 | Dioscorides 10 common ingredients, Galen 15, Paul of Aegina up to 36 ("solar" kyphi) | Wikipedia "Kyphi" (citing the texts) | ⚠ "even thirty-six" only if Paul of Aegina is confirmed |
-| 7 | Several Egyptian ingredient names have uncertain botanical identity | Wikipedia "Kyphi"; Manniche | ⚠ |
+| 1 | Kyphi recipes are inscribed on the walls of the temples of Edfu and Philae (Ptolemaic) | Wikipedia "Kyphi" <https://en.wikipedia.org/wiki/Kyphi>; ancientegyptonline.co.uk <https://ancientegyptonline.co.uk/kyphi/>; Manniche, *Sacred Luxuries* (1999) | ⚠ tick |
+| 2 | Edfu temple built between 237 and 57 BC → "more than 2,000 years ago" | Wikipedia "Temple of Edfu" | ⚠ tick |
+| 3 | The Edfu recipes are in a room often called the "laboratory" | ancientegyptonline.co.uk (Kyphi) | ⚠ tick |
+| 4 | Plutarch: frankincense at dawn, myrrh at midday, kyphi at dusk | Plutarch, *On Isis and Osiris* 79–80 (Loeb, LacusCurtius <https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Plutarch/Moralia/Isis_and_Osiris*/E.html>) | ⚠ section number varies (79/80) |
+| 5 | 16 ingredients: honey, wine, raisins, cyperus, resin, myrrh, aspalathus, seselis, mastic, bitumen, rush, dock, two junipers… | same, Loeb (Babbitt) | ⚠ tick the list |
+| 6 | Mixed while the sacred writings are read to the perfumers | same | ⚠ tick |
+| 7 | Used as a potion and a salve as well as burned | same; Philip Harland blog translation (2024) | ⚠ tick |
+| 8 | Dioscorides 10 ingredients, Galen 15, a later (Paul of Aegina) "solar" kyphi 36 | Wikipedia "Kyphi" | ⚠ tick against the texts |
+| 9 | Several Egyptian ingredient names have uncertain botanical identity | Wikipedia "Kyphi"; Manniche | ⚠ tick |
+| 10 | Modern kyphi are reconstructions | follows from 8–9 (wording: "reconstructing it") | editorial |
 
-## Image rules for this episode
-- Every Nano Banana plate carries **AI ILLUSTRATION** in `Mono` at the plate's foot, and the script says it (beat 7).
-- No AI image of the temple, the wall or any real artefact. Edfu = a real photo (Commons, credited) or the 3D set.
-- No hieroglyphs in the generated images (the prompt forbids text: fake glyphs would read as fake evidence).
+## Images
+All AI illustrations, painterly; the temple wall shows eroded, illegible reliefs (no invented hieroglyph text).
+No person's face. The kyphi vessel is imagined, never presented as an artefact.
 
 ## Pinned comment (draft)
-The bottle and ingredient still lifes are AI illustrations (Google Nano Banana) of a recipe documented by Plutarch
-and carved at Edfu and Philae. Ingredient lists differ between ancient sources; we show Plutarch's.
+Sources: Plutarch, On Isis and Osiris 79–80 (frankincense at dawn, myrrh at noon, kyphi at dusk; 16 ingredients; mixed
+while sacred texts are read); Wikipedia "Kyphi" (Edfu and Philae recipes, Dioscorides 10, Galen 15, a later recipe 36,
+uncertain plant names); ancientegyptonline.co.uk. Images: AI illustrations (Nano Banana, gpt-image). Bottle: 3D.
