@@ -1,4 +1,4 @@
-# EP 7 — The split nobody voted for (Czechoslovakia, 1989–1993) · sources & fact sheet
+# EP 7 — The split nobody was asked about (Czechoslovakia, 1989–1993) · sources & fact sheet
 
 Format: **A · explainer with a stake hook** ("nobody asked them") and a payoff twist (the flag both sides promised
 not to keep — the Czechs kept it). Topic #20 of the bible ("How Czechoslovakia split without a shot"), angle
@@ -38,13 +38,15 @@ referendum was held (sourced); the 1992 elections are not presented as a vote on
 | Shared two to one | most federal assets (army equipment, rail, aircraft) divided 2:1, roughly the population ratio | Wikipedia, Dissolution of Czechoslovakia (Constitutional Act 541/1992) |
 | "2 : 1 · by population" | as above | — |
 | Gold until 1999 | protocol signed 24 Nov 1999; the Czech National Bank returned 4.1 t of gold to the National Bank of Slovakia | Czech National Bank press release; Slovak Spectator (Sept/Oct 1999) |
-| "last gold handed back · Nov 1999" | protocol of 24 Nov 1999 (the handover itself followed) — label wording kept general | as above |
+| "4.1 t returned · protocol 24 Nov 1999" | 4.1 t of gold returned under the protocol of 24 Nov 1999 | Czech National Bank press release |
 | No old symbols: Constitutional Act 542/1992, Art. 3 | both successor states barred from using the federation's state symbols | Wikipedia, Dissolution of Czechoslovakia / Flag of the Czech Republic |
 | The Czechs keep it anyway | the Czech Republic adopted the Czechoslovak flag (Act 3/1993); Slovakia adopted its own | Wikipedia, Flag of the Czech Republic |
 
 Other figures on screen: 1, 3 (1 in 3), 2 : 1, 2 and 1 (tanks), 542, 1992, 3 (Art. 3), 1989, 1990, 1992, 1993, 1999, 17 Nov, 29 Mar, 6 Jun, 1 Sep, 1 Jan, 24 Nov.
 
 ## Debated / limits (logged)
+- Title "nobody was asked about" = no referendum. The split itself was voted by the Federal Assembly (Constitutional Act 542/1992, 25 Nov 1992) — so the title never says "nobody voted".
+- Names: "Czech Republic" (the 1993 name) rather than "Czechia" (English short name adopted 2016).
 - Causes of the split: debated → no cause stated.
 - Poll figures: 36/37 % swapped between sources → shown as "1 in 3".
 - Hyphen War dates differ slightly between sources → only "1990" in voice; header 29 Mar 1990.

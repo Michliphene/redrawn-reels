@@ -9,7 +9,7 @@ import { geoBounds } from 'd3-geo';
 const require = createRequire(import.meta.url);
 const topo = require('world-atlas/countries-50m.json');
 const fc = feature(topo, topo.objects.countries);
-const FOCUS = { '203': ['CZE', 'Czechia', [15.3, 49.8]], '703': ['SVK', 'Slovakia', [19.6, 48.75]] };
+const FOCUS = { '203': ['CZE', 'Czech Republic', [15.3, 49.8]], '703': ['SVK', 'Slovakia', [19.6, 48.75]] };
 const out = [];
 for (const f of fc.features) {
   const b = geoBounds(f);

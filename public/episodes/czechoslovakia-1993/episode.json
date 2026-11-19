@@ -4,7 +4,7 @@
  "seriesId": "redrawn",
  "episode": 7,
  "da": 2,
- "title": "The split nobody voted for",
+ "title": "The split nobody was asked about",
  "whisper": "Czechoslovakia, 1993",
  "data": "data/czechoslovakia1993.geojson",
  "world": {
@@ -86,7 +86,7 @@
     },
     {
      "type": "label",
-     "text": "Czechia",
+     "text": "Czech Republic",
      "at": [
       15.3,
       49.8
@@ -162,7 +162,7 @@
      "spread": 130,
      "size": 46,
      "atWord": "Revolution",
-     "hold": 3.4,
+     "hold": 2.9,
      "caption": "Wenceslas Square",
      "offset": [
       0,
@@ -177,7 +177,7 @@
       49.0
      ],
      "atWord": "Czechoslovakia.",
-     "hold": 1.6
+     "hold": 1.1
     },
     {
      "type": "chapter",
@@ -200,7 +200,7 @@
     {
      "type": "chapter",
      "text": "the Hyphen War",
-     "atWord": "hyphen"
+     "atWord": "fights"
     },
     {
      "type": "label",
@@ -209,8 +209,8 @@
       15.3,
       49.8
      ],
-     "atWord": "hyphen",
-     "hold": 1.9
+     "atWord": "First,",
+     "hold": 1.5
     },
     {
      "type": "label",
@@ -221,6 +221,19 @@
      ],
      "atWord": "country's",
      "hold": 1.5
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE",
+      "SVK"
+     ],
+     "atWord": "fights"
+    },
+    {
+     "type": "shake",
+     "amount": 4,
+     "atWord": "fights"
     }
    ]
   },
@@ -278,6 +291,22 @@
      "type": "chapter",
      "text": "two winners, two plans",
      "atWord": "Klaus"
+    },
+    {
+     "type": "declare",
+     "id": "CZE",
+     "atWord": "Klaus",
+     "noLabel": true,
+     "quiet": true,
+     "color": "#7FA6D9"
+    },
+    {
+     "type": "declare",
+     "id": "SVK",
+     "atWord": "Mečiar",
+     "noLabel": true,
+     "quiet": true,
+     "color": "#D98A8E"
     }
    ]
   },
@@ -286,12 +315,12 @@
    "say": "They agree to split. No referendum.",
    "camera": {
     "center": [
-     17.3,
-     49.2
+     17.6,
+     48.95
     ],
-    "span": 9,
-    "pitch": 38,
-    "yaw": 18,
+    "span": 3.6,
+    "pitch": 28,
+    "yaw": 62,
     "cut": true
    },
    "actions": [
@@ -304,8 +333,14 @@
      "hold": 1.6,
      "stamp": "NEVER ASKED",
      "stampWord": "referendum."
+    },
+    {
+     "type": "chapter",
+     "text": "no referendum",
+     "atWord": "No"
     }
-   ]
+   ],
+   "hideDate": true
   },
   {
    "id": "poll",
@@ -316,16 +351,17 @@
     "pitch": 56,
     "yaw": 0
    },
-   "date": "1992-09-01",
+   "date": "1992-09",
    "actions": [
     {
      "type": "bigNumber",
      "value": 1,
      "suffix": " in 3",
-     "label": "backed the split · Sept 1992 poll",
+     "label": "backed the split, on each side · Sept 1992 poll",
      "y": 930,
      "atWord": "one",
-     "hold": 2.4
+     "hold": 2.0,
+     "prefix": "~"
     },
     {
      "type": "pulse",
@@ -337,8 +373,8 @@
     },
     {
      "type": "chapter",
-     "text": "no referendum",
-     "atWord": "In"
+     "text": "what the polls said",
+     "atWord": "polls,"
     }
    ]
   },
@@ -379,8 +415,18 @@
       17.3,
       49.0
      ],
-     "atWord": "January",
-     "hold": 1.6
+     "hold": 1.5,
+     "atTime": 27.0
+    },
+    {
+     "type": "label",
+     "text": "Czechoslovakia",
+     "at": [
+      17.3,
+      49.0
+     ],
+     "atWord": "Czechoslovakia",
+     "hold": 0.8
     }
    ]
   },
@@ -401,50 +447,48 @@
      "type": "units",
      "kind": "tanks",
      "at": [
-      14.42,
-      50.09
+      15.0,
+      49.7
      ],
      "count": 2,
      "size": 72,
      "approach": [
-      -200,
-      -80
+      160,
+      30
      ],
      "offset": [
       0,
-      -90
+      0
      ],
      "atWord": "two",
-     "hold": 3.0,
-     "caption": "2"
+     "hold": 3.0
     },
     {
      "type": "units",
      "kind": "tanks",
      "at": [
-      17.11,
-      48.15
+      19.3,
+      48.75
      ],
      "count": 1,
      "size": 72,
      "approach": [
-      200,
-      80
+      -160,
+      -30
      ],
      "offset": [
       0,
-      -90
+      0
      ],
      "atWord": "one:",
-     "hold": 2.6,
-     "caption": "1"
+     "hold": 2.6
     },
     {
      "type": "label",
      "text": "2 : 1 · by population",
      "at": [
-      16.6,
-      48.5
+      16.9,
+      48.2
      ],
      "atWord": "tanks,",
      "hold": 1.8
@@ -466,14 +510,34 @@
    "date": "1999-11-24",
    "actions": [
     {
-     "type": "label",
-     "text": "last gold handed back · Nov 1999",
+     "type": "marker",
+     "text": "Prague · Czech National Bank",
      "at": [
-      17.0,
-      49.3
+      14.42,
+      50.09
      ],
      "atWord": "gold",
-     "hold": 2.0
+     "hold": 1.9
+    },
+    {
+     "type": "marker",
+     "text": "Bratislava · National Bank of Slovakia",
+     "at": [
+      17.11,
+      48.15
+     ],
+     "atWord": "until",
+     "hold": 1.4
+    },
+    {
+     "type": "label",
+     "text": "4.1 t returned · protocol 24 Nov 1999",
+     "at": [
+      16.6,
+      49.0
+     ],
+     "atWord": "until",
+     "hold": 1.5
     }
    ]
   },
@@ -535,7 +599,7 @@
      "size": 160,
      "atWord": "keep",
      "hold": 2.4,
-     "text": "CZECHIA"
+     "text": "CZECH REPUBLIC"
     },
     {
      "type": "pulse",
