@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Fills media/ for UNGRADED #004 "Never cut" (episode `legends`) in raea: the voice, word timings and music bed of
+# the Remotion episode (only the text and the facts are kept), the sfx kit and the fonts converted to TTF (raea's
+# page engine loads TTF). The episode lives on branch claude/exciting-gauss-kqc425; if it is not checked out here,
+# its files are read from that branch with `git show`.
+# Windows (Git Bash): needs `python` with fonttools + brotli (pip install fonttools brotli).
+set -euo pipefail
+cd "$(dirname "$0")"
+R=../..
+EP=legends
+BR="${UNGRADED_BRANCH:-origin/claude/exciting-gauss-kqc425}"
+PY=python3; [ "$(python3 -c 'print(42)' 2>/dev/null)" = 42 ] || PY=python
+mkdir -p media/fonts media/sfx out
+get() { # get <repo path> <dest>
+  if [ -f "$R/$1" ]; then cp "$R/$1" "$2"; else git -C "$R" show "$BR:$1" > "$2"; fi
+}
+get "public/episodes/$EP/voice.wav" media/voice.wav
+get "public/episodes/$EP/music.wav" media/music.wav
+get "public/episodes/$EP/timings.json" compositions/timings.json
+get "public/fonts/Caveat-latin-700.woff2" media/fonts/Caveat-latin-700.woff2
+cp "$R"/public/sfx/*.wav media/sfx/
+cp "$R/public/fonts/OFL.txt" "$R/public/fonts/LICENSES.md" media/fonts/
+for f in BricolageGrotesque-latin InstrumentSerif-Italic-latin JetBrainsMono-latin; do
+  $PY -c "from fontTools.ttLib import TTFont; f=TTFont('$R/public/fonts/$f.woff2'); f.flavor=None; f.save('media/fonts/$f.ttf')"
+done
+$PY -c "from fontTools.ttLib import TTFont; f=TTFont('media/fonts/Caveat-latin-700.woff2'); f.flavor=None; f.save('media/fonts/Caveat-latin-700.ttf')"
+rm -f media/fonts/Caveat-latin-700.woff2
+$PY make-glyphs.py media/fonts compositions/glyphs.json
+rm -rf compositions/media; ln -sfn ../media compositions/media 2>/dev/null || cp -r media compositions/media
+echo "media ready"
