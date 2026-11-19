@@ -34,10 +34,11 @@ Texas line; the Rio Grande and Red River / Sabine sides predate it.
 | Claim to the Rio Grande's source, due north to 42°N (Wyoming) | Republic of Texas Boundary Act, 19 Dec 1836 | Wikipedia, Republic of Texas / Boundaries of Texas; Compromise of 1850 references (ceded land included small parts of Wyoming) |
 | Santa Fe never controlled | Texan Santa Fe Expedition (1841) captured by New Mexican forces; Texas never administered Santa Fe | Wikipedia, Texan Santa Fe Expedition; TSHA Handbook |
 | 1845, joins the United States | admitted as the 28th state, 29 Dec 1845 | Wikipedia, Texas annexation; TSL timeline |
-| 28th state (sticker) | as above | — |
+| 28th state (label) | as above | — |
 | 1850, gives up western claims for $10 million to pay its debts | Compromise of 1850 (Texas and New Mexico Act, 9 Sep 1850; accepted by Texas Nov 1850): $10 million (in US bonds) to cover the Republic's debts | Britannica / History.com / Encyclopedia.com, Compromise of 1850 — sources describe it as payment or debt relief → on screen "debt relief" |
 | Half of New Mexico, a third of Colorado, slices of Kansas, Oklahoma, Wyoming | land Texas ceded | New World Encyclopedia / Wikipedia, Compromise of 1850 ("half of present-day New Mexico, a third of Colorado, and small portions of Kansas, Oklahoma, and Wyoming") |
-| "It's never been used" | no new state has been formed from Texas | Wikipedia, Texas divisionism |
+| "It's never been used" / "never used · never tested in court" | no new state has been formed from Texas; the clause has never been tested in court | Wikipedia, Texas divisionism; Smithsonian (2017) |
+| "1845 annexation deal" (hook label) | Joint Resolution, 1 Mar 1845 | TSL |
 | Still valid? DISPUTED | yes: Kesavan & Paulsen, "Let's Mess with Texas", Texas Law Review 82 (2004); no: U.S. Constitution Art. IV §3 (Congress must admit new states), equal-footing doctrine; never tested in court | Wikipedia, Texas divisionism; Smithsonian (2017); Snopes |
 | Map: claimed area | our drawing: Boundary Act line through river towns, **approximate** (on screen "claimed · approximate") | `scripts/prep-texas.mjs` — Republic total from our drawing 1,005,533 km² vs 1,007,935 km² (389,166 sq mi) usually given — 0.2 % apart; no area figure is shown |
 | The five-way split | **illustration only** (on screen "illustration"); no official division exists | — |
@@ -56,7 +57,7 @@ us-atlas@3 states (US Census, PD), Natural Earth 1:50m for Mexico/Canada (PD). C
 Boundary Act (see script). Projection: azimuthal equal-area centred on 101°W 33°N. No contested modern border.
 
 ## Images
-None. Flags: US flag (flag-icons, MIT) on the 1845 sticker (today's 50-star flag used as a symbol).
+None. No flags.
 
 ## References
 - Texas State Library & Archives, annexation documents: https://www.tsl.texas.gov/ref/abouttx/annexation/index.html

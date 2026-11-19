@@ -91,6 +91,16 @@
      ],
      "atWord": "states.",
      "hold": 1.8
+    },
+    {
+     "type": "label",
+     "text": "1845 annexation deal",
+     "at": [
+      -99.0,
+      32.2
+     ],
+     "atWord": "deal",
+     "hold": 1.5
     }
    ]
   },
@@ -413,7 +423,7 @@
      "label": "debt relief · Compromise of 1850",
      "y": 900,
      "atWord": "million",
-     "hold": 1.5
+     "hold": 1.2
     }
    ]
   },
@@ -529,17 +539,18 @@
     {
      "type": "callout",
      "text": "STILL VALID?",
-     "sub": "for: Kesavan & Paulsen (2004) · against: Art. IV §3 · never tested in court",
+     "sub": "for: Kesavan & Paulsen · against: Art. IV §3",
      "size": 64,
      "y": 960,
      "atWord": "valid?",
      "hold": 2.4,
      "stamp": "DISPUTED",
-     "stampWord": "disagree."
+     "stampWord": "disagree.",
+     "stampSize": 34
     },
     {
      "type": "label",
-     "text": "never used · 1845 → today",
+     "text": "never used · never tested in court",
      "at": [
       -99.5,
       27.4
@@ -554,8 +565,8 @@
       -99.6,
       26.4
      ],
-     "atWord": "valid?",
-     "hold": 1.6
+     "atWord": "four-state",
+     "hold": 1.5
     }
    ]
   },
@@ -576,5 +587,16 @@
     }
    ]
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "On paper since 1845",
+  "main": "Texas could split in five",
+  "mainSize": 118,
+  "mainSizeV": 140,
+  "badge": "+4",
+  "badgeSub": "new states if Texas agrees · lines: illustration",
+  "fit": [
+   "TX"
+  ]
+ }
 }
