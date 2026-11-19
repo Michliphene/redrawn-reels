@@ -56,13 +56,13 @@ const w = (beat: string, word: string, n = 1) => {
 const B = (beat: string) => BEATS[beat].start;
 
 /* ------------------------------------------------------------------ the money: per $10, rounded so it adds to $10.00 */
-type Piece = { id: string; len: number; color: string; name: string; label: string; nameAt: number; amountAt: number; amount: string | null; up: boolean; keep?: boolean; rest?: boolean };
+type Piece = { id: string; len: number; color: string; name: string; label: string; nameAt: number; labelAt?: number; amountAt: number; amount: string | null; up: boolean; keep?: boolean; rest?: boolean };
 const PIECES: Piece[] = [
   { id: "food", len: 2.96, color: P.amber, name: "food", label: "food, drinks, packaging", nameAt: w("food", "Food"), amountAt: w("food", "$2.96"), amount: "$2.96", up: true },
   { id: "crew", len: 2.51, color: P.red, name: "crew", label: "the crew", nameAt: w("crew", "crew"), amountAt: w("crew", "$2.51"), amount: "$2.51", up: false, rest: true },
   { id: "rent", len: 0.52, color: P.blue, name: "rent", label: "rent", nameAt: w("rent", "Rent"), amountAt: w("rent", "52¢"), amount: "52¢", up: true, rest: true },
-  { id: "store", len: 1.47, color: P.violet, name: "store", label: "delivery, ads, card fees", nameAt: w("store", "store:"), amountAt: w("store", "$1.47"), amount: "$1.47", up: false, rest: true },
-  { id: "office", len: 0.92, color: P.grey, name: "office", label: "head office, gear", nameAt: w("office", "head"), amountAt: w("office", "92¢"), amount: "92¢", up: true, rest: true },
+  { id: "store", len: 1.47, color: P.violet, name: "store", label: "delivery, ads, card fees", nameAt: w("store", "$1.47"), labelAt: w("store", "store:"), amountAt: w("store", "$1.47"), amount: "$1.47", up: false, rest: true },
+  { id: "office", len: 0.92, color: P.grey, name: "office", label: "head office, gear", nameAt: w("office", "92¢"), labelAt: w("office", "head"), amountAt: w("office", "92¢"), amount: "92¢", up: true, rest: true },
   { id: "keep", len: 1.62, color: P.lime, name: "keep", label: "profit, before tax", nameAt: w("keep", "keeps"), amountAt: w("keep", "$1.62"), amount: null, up: false, keep: true },
 ];
 const CUM = PIECES.map((_, i) => PIECES.slice(0, i).reduce((s, p) => s + p.len, 0));
@@ -89,7 +89,7 @@ const shot = (t: number, target: V3, yaw: number, pitch: number, dist: number, f
   const y = (yaw * Math.PI) / 180, p = (pitch * Math.PI) / 180;
   return { t, look: target, fov, pos: [target[0] + dist * Math.sin(y) * Math.cos(p), target[1] + dist * Math.sin(p), target[2] + dist * Math.cos(y) * Math.cos(p)] };
 };
-const HERO = shot(0, [0.2, -0.45, 0.1], 24, 14, 19.5, 30);
+const HERO = shot(0, [0.2, 0.4, 0.1], 24, 14, 19.5, 30);
 const SHOTS: Shot[] = [
   HERO,
   shot(B("open") - 0.3, [CUT_X, 0.1, 0], -5, 26, 47, 30),
@@ -97,7 +97,7 @@ const SHOTS: Shot[] = [
   shot(B("year") - 0.3, [YEAR_X, 1.2, 0], -12, 11, 31, 34),
   shot(B("point") - 0.3, [CUT_X - 0.2, 1.4, 0], -10, 12, 30, 32),
 ];
-const OPEN: Shot = { t: 0, pos: [HERO.look[0] + (HERO.pos[0] - HERO.look[0]) * 1.25, HERO.look[1] + (HERO.pos[1] - HERO.look[1]) * 1.25, HERO.look[2] + (HERO.pos[2] - HERO.look[2]) * 1.25], look: HERO.look, fov: HERO.fov };
+const OPEN: Shot = { t: 0, pos: [HERO.look[0] + (HERO.pos[0] - HERO.look[0]) * 0.95, HERO.look[1] + (HERO.pos[1] - HERO.look[1]) * 0.95, HERO.look[2] + (HERO.pos[2] - HERO.look[2]) * 0.95], look: HERO.look, fov: HERO.fov };
 SHOTS.push({ ...OPEN, t: DUR - 1.15 });
 function cameraAt(t: number) {
   let k = 0;
@@ -263,7 +263,8 @@ function PieceLabel({ t, cam, p, i }: { t: number; cam: ReturnType<typeof camera
   const parted = out3(ramp(t, CUT_AT, 0.55));
   const gone = ramp(t, w("year", "Across") - 0.3, 0.25); // the labels leave with the pieces' station and never return
   const o = Math.min(ramp(t, p.nameAt, 0.2), 1 - gone);
-  if (o <= 0) return null;
+  if (o <= 0 || p.keep) return null; // the meter already says "Chipotle keeps $1.62": no second label
+  const labelO = ramp(t, p.labelAt ?? p.nameAt, 0.2);
   const x = lyingX(i, parted);
   const hop = 0.7 * Math.sin(Math.PI * ramp(t, p.nameAt, 0.45));
   const wdt = 270;
@@ -272,9 +273,9 @@ function PieceLabel({ t, cam, p, i }: { t: number; cam: ReturnType<typeof camera
   const s = p.amount ? Math.min(1.08, outBack(ramp(t, p.amountAt, 0.3), 2)) : 1;
   return (
     <div style={abs(clampX(px, wdt / 2) - wdt / 2, 0, { width: wdt, textAlign: "center", opacity: o, ...(p.up ? { top: py - 142 } : { top: py + 6 }) })}>
-      {!p.up && <div style={{ ...mono(25), lineHeight: 1.15 }}>{p.label}</div>}
+      {!p.up && <div style={{ ...mono(25), lineHeight: 1.15, opacity: labelO }}>{p.label}</div>}
       {p.amount && <div style={{ ...display(76, p.color), opacity: amountO, transform: `scale(${s})`, transformOrigin: p.up ? "center bottom" : "center top", height: 76 }}>{p.amount}</div>}
-      {p.up && <div style={{ ...mono(25), lineHeight: 1.15, marginTop: 8 }}>{p.label}</div>}
+      {p.up && <div style={{ ...mono(25), lineHeight: 1.15, marginTop: 8, opacity: labelO }}>{p.label}</div>}
     </div>
   );
 }
@@ -346,8 +347,8 @@ function YearLabels({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> })
 
 function Overlay({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
   const hookEnd = BEATS.hook.end;
-  const titleO = Math.max(1 - ramp(t, hookEnd - 0.25, 0.25), ramp(t, DUR - 0.5, 0.35));
-  const figO = Math.max(life(t, 0.35, hookEnd - 0.35 + 0.3, 0.2), ramp(t, B("loop") - 0.05, 0.25) * (1 - ramp(t, DUR - 0.3, 0.3)));
+  const titleO = Math.max(1 - ramp(t, hookEnd - 0.25, 0.25), ramp(t, DUR - 1.3, 0.35));
+  const figO = Math.max(life(t, 0.35, hookEnd - 0.35 + 0.3, 0.2), ramp(t, DUR - 1.15, 0.25) * (1 - ramp(t, DUR - 0.3, 0.3)));
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       <style>{FONTS}</style>
@@ -368,7 +369,7 @@ function Overlay({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
 
       {/* hook: the $10 is the only figure; the "under $3" is the amber band on the burrito itself */}
       {figO > 0.01 && (
-        <div style={abs(SAFE.left, 880, { opacity: figO, transform: `scale(${Math.min(1.05, outBack(ramp(t, 0.35, 0.35), 2))})`, transformOrigin: "left center" })}>
+        <div style={abs(SAFE.left, 930, { opacity: figO, transform: `scale(${Math.min(1.05, outBack(ramp(t, 0.35, 0.35), 2))})`, transformOrigin: "left center" })}>
           <div style={display(214, P.lime)}>$10</div>
         </div>
       )}
@@ -379,7 +380,7 @@ function Overlay({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
       <Point t={t} cam={cam} />
 
       <Captions t={t} />
-      <div style={abs(SAFE.left, 1412, { ...mono(24, P.muted), letterSpacing: "0.05em", width: SAFE.railX - SAFE.left })}>Source: Chipotle 10-K (SEC filing), fiscal 2025 · per $10: our calc.</div>
+      <div style={abs(SAFE.left, 1372, { ...mono(26, P.muted), letterSpacing: "0.04em", width: SAFE.railX - SAFE.left, whiteSpace: "nowrap" })}>Chipotle 10-K FY2025 (SEC) · per $10: our calc.</div>
     </AbsoluteFill>
   );
 }
@@ -390,7 +391,12 @@ const PHRASES: Word[][] = (() => {
   const out: Word[][] = [];
   for (const b of TIMINGS.beats as any[]) {
     let cur: Word[] = [], len = 0;
-    for (const x of (b.words as Word[]).filter((x) => !HIDE.has(`${b.id}:${x.w.replace(/[.,…]$/, "")}`))) {
+    for (const x of b.words as Word[]) {
+      if (HIDE.has(`${b.id}:${x.w.replace(/[.,…]$/, "")}`)) {
+        // a hidden figure that ends a sentence still ends the phrase ("You pay Chipotle $10." | "The food?")
+        if (/[.,…:?]$/.test(x.w) && cur.length) { out.push(cur); cur = []; len = 0; }
+        continue;
+      }
       if (cur.length && len + x.w.length > 20) { out.push(cur); cur = []; len = 0; }
       cur.push(x); len += x.w.length + 1;
       if (/[.,…:?]$/.test(x.w) && len > 9) { out.push(cur); cur = []; len = 0; }
@@ -399,9 +405,9 @@ const PHRASES: Word[][] = (() => {
   }
   return out;
 })();
-const KEYWORDS = ["food", "crew", "rent", "keeps", "restaurant", "third", "twice"];
+const KEYWORDS = ["keeps", "restaurant", "third", "twice"];
 function Captions({ t }: { t: number }) {
-  const i = PHRASES.findIndex((p, k) => t >= p[0].start - 0.05 && t < (PHRASES[k + 1]?.[0].start ?? 1e9) - 0.05 && t < p[p.length - 1].end + 0.6);
+  const i = PHRASES.findIndex((p, k) => t >= p[0].start - 0.05 && t < (PHRASES[k + 1]?.[0].start ?? 1e9) - 0.05 && t < p[p.length - 1].end + 0.6 && t < DUR - 0.5);
   if (i < 0) return null;
   const p = PHRASES[i];
   return (
