@@ -1,4 +1,4 @@
-# EP 8 — The land nobody wants (Bir Tawil) · sources & fact sheet
+# EP 8 — The land no country claims (Bir Tawil) · sources & fact sheet
 
 Format: **A · explainer with a logic twist** (each country's own line gives the patch to the other one) and a
 human coda (the 2014 "princess" flag). Not in the bible's backlog: chosen as a follow-up to EP 5 (Antarctica's

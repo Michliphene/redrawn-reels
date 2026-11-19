@@ -4,7 +4,7 @@
  "seriesId": "redrawn",
  "episode": 8,
  "da": 2,
- "title": "The land nobody wants",
+ "title": "The land no country claims",
  "whisper": "Bir Tawil, between Egypt and Sudan",
  "data": "data/birtawil.geojson",
  "world": {
@@ -86,21 +86,48 @@
      "noLabel": true
     },
     {
+     "type": "pulse",
+     "ids": [
+      "BIRT"
+     ],
+     "atWord": "claim"
+    },
+    {
      "type": "label",
      "text": "Bir Tawil",
      "at": [
       33.75,
       21.87
      ],
-     "atWord": "desert,",
-     "hold": 2.2
+     "atTime": 0,
+     "hold": 3.9
+    },
+    {
+     "type": "label",
+     "text": "Egypt",
+     "at": [
+      33.4,
+      22.6
+     ],
+     "atTime": 0,
+     "hold": 1.7
+    },
+    {
+     "type": "label",
+     "text": "Sudan",
+     "at": [
+      33.6,
+      21.3
+     ],
+     "atTime": 0,
+     "hold": 1.7
     },
     {
      "type": "pulse",
      "ids": [
       "BIRT"
      ],
-     "atWord": "claim"
+     "atWord": "desert,"
     }
    ]
   },
@@ -276,6 +303,33 @@
      ],
      "atWord": "straight",
      "hold": 2.6
+    },
+    {
+     "type": "label",
+     "text": "Egypt",
+     "at": [
+      32.6,
+      23.0
+     ],
+     "atWord": "Egypt",
+     "hold": 1.6
+    },
+    {
+     "type": "label",
+     "text": "Sudan",
+     "at": [
+      32.6,
+      21.2
+     ],
+     "atWord": "Sudan's",
+     "hold": 1.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "BIRT"
+     ],
+     "atWord": "parallel."
     }
    ]
   },
@@ -1386,6 +1440,13 @@
      "type": "shake",
      "amount": 6,
      "atWord": "neither"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "BIRT"
+     ],
+     "atWord": "Sudan."
     }
    ]
   },
@@ -1587,7 +1648,7 @@
      ],
      "atWord": "Two",
      "dur": 0.8,
-     "hold": 2.6,
+     "hold": 2.9,
      "color": "#FFFFFF",
      "width": 5
     },
@@ -1635,7 +1696,7 @@
      ],
      "atWord": "lines.",
      "dur": 0.8,
-     "hold": 2.2,
+     "hold": 2.7,
      "color": "#56CFE1",
      "width": 6
     },
@@ -1957,11 +2018,38 @@
      ],
      "atWord": "lines.",
      "dur": 0.8,
-     "hold": 2.2,
+     "hold": 2.7,
      "color": "#56CFE1",
      "width": 6
     }
    ]
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "Egypt vs Sudan",
+  "main": "No country claims this",
+  "mainSize": 130,
+  "mainSizeV": 140,
+  "badge": "~800 sq mi",
+  "badgeSub": "of desert",
+  "fit": [
+   "BIRT"
+  ],
+  "center": [
+   33.75,
+   21.87
+  ],
+  "mapBox": [
+   1180,
+   360,
+   1680,
+   720
+  ],
+  "mapBoxV": [
+   330,
+   900,
+   750,
+   1180
+  ]
+ }
 }
