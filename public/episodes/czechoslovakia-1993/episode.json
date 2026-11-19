@@ -1,0 +1,591 @@
+{
+ "id": "czechoslovakia-1993",
+ "series": "REDRAWN",
+ "seriesId": "redrawn",
+ "episode": 7,
+ "da": 2,
+ "title": "The split nobody voted for",
+ "whisper": "Czechoslovakia, 1993",
+ "data": "data/czechoslovakia1993.geojson",
+ "world": {
+  "center": [
+   17.3,
+   49.2
+  ],
+  "thickness": 1.0
+ },
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Mečiar": "MEH-chee-ar",
+   "Václav": "VAHTS-lahv"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "palette": {
+  "start": "#9C89B8",
+  "startStroke": "#C8B6FF",
+  "ids": {
+   "CZE": "#4F8FE0",
+   "SVK": "#E0565B"
+  }
+ },
+ "timeline": {
+  "from": "1989-01-01",
+  "to": "2000-01-01",
+  "step": 2
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "Velvet",
+  "Revolution",
+  "hyphen",
+  "Klaus",
+  "Mečiar",
+  "referendum.",
+  "flag.",
+  "anyway.",
+  "gold",
+  "peacefully."
+ ],
+ "beats": [
+  {
+   "id": "hook",
+   "say": "{15 million|Fifteen million} people. One country. Split in two, and nobody asked them.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "CZE",
+     "atTime": 0,
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "SVK",
+     "atTime": 0,
+     "noLabel": true
+    },
+    {
+     "type": "label",
+     "text": "Czechia",
+     "at": [
+      15.3,
+      49.8
+     ],
+     "atWord": "Split",
+     "hold": 1.8
+    },
+    {
+     "type": "label",
+     "text": "Slovakia",
+     "at": [
+      19.6,
+      48.75
+     ],
+     "atWord": "two,",
+     "hold": 1.6
+    },
+    {
+     "type": "shake",
+     "amount": 6,
+     "atWord": "Split"
+    }
+   ]
+  },
+  {
+   "id": "velvet",
+   "say": "{1989|Nineteen eighty-nine}: the Velvet Revolution ends communist rule in Czechoslovakia.",
+   "camera": {
+    "center": [
+     14.6,
+     50.0
+    ],
+    "span": 5,
+    "pitch": 40,
+    "yaw": -12
+   },
+   "date": "1989-11-17",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "CZE",
+     "atTime": 4.85,
+     "noLabel": true,
+     "color": "#9C89B8",
+     "quiet": true
+    },
+    {
+     "type": "declare",
+     "id": "SVK",
+     "atTime": 4.85,
+     "noLabel": true,
+     "color": "#9C89B8",
+     "quiet": true
+    },
+    {
+     "type": "marker",
+     "text": "Prague",
+     "at": [
+      14.42,
+      50.09
+     ],
+     "atWord": "Velvet",
+     "hold": 3.6
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      14.42,
+      50.09
+     ],
+     "count": 22,
+     "spread": 130,
+     "size": 46,
+     "atWord": "Revolution",
+     "hold": 3.4,
+     "caption": "Wenceslas Square",
+     "offset": [
+      0,
+      150
+     ]
+    },
+    {
+     "type": "label",
+     "text": "Czechoslovakia",
+     "at": [
+      17.3,
+      49.0
+     ],
+     "atWord": "Czechoslovakia.",
+     "hold": 1.6
+    },
+    {
+     "type": "chapter",
+     "text": "the Velvet Revolution",
+     "atWord": "Velvet"
+    }
+   ]
+  },
+  {
+   "id": "hyphen",
+   "say": "In {1990|nineteen ninety}, the fights begin. First, over a hyphen in the country's name.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.1,
+    "pitch": 52,
+    "yaw": 8
+   },
+   "date": "1990-03-29",
+   "actions": [
+    {
+     "type": "chapter",
+     "text": "the Hyphen War",
+     "atWord": "hyphen"
+    },
+    {
+     "type": "label",
+     "text": "Czechoslovak?",
+     "at": [
+      15.3,
+      49.8
+     ],
+     "atWord": "hyphen",
+     "hold": 1.9
+    },
+    {
+     "type": "label",
+     "text": "Czecho-Slovak?",
+     "at": [
+      19.6,
+      48.75
+     ],
+     "atWord": "country's",
+     "hold": 1.5
+    }
+   ]
+  },
+  {
+   "id": "leaders",
+   "say": "{1992|Ninety-two}: Václav Klaus wins in Prague, Vladimír Mečiar in Bratislava. Their plans don't fit.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 46,
+    "yaw": -14
+   },
+   "date": "1992-06-06",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Prague · Václav Klaus",
+     "at": [
+      14.42,
+      50.09
+     ],
+     "atWord": "Klaus",
+     "hold": 3.4
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE"
+     ],
+     "atWord": "Klaus"
+    },
+    {
+     "type": "marker",
+     "text": "Bratislava · Vladimír Mečiar",
+     "at": [
+      17.11,
+      48.15
+     ],
+     "atWord": "Mečiar",
+     "hold": 2.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "SVK"
+     ],
+     "atWord": "Mečiar"
+    },
+    {
+     "type": "shake",
+     "amount": 4,
+     "atWord": "fit."
+    },
+    {
+     "type": "chapter",
+     "text": "two winners, two plans",
+     "atWord": "Klaus"
+    }
+   ]
+  },
+  {
+   "id": "noref",
+   "say": "They agree to split. No referendum.",
+   "camera": {
+    "center": [
+     17.3,
+     49.2
+    ],
+    "span": 9,
+    "pitch": 38,
+    "yaw": 18,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NO REFERENDUM",
+     "size": 72,
+     "y": 980,
+     "atWord": "No",
+     "hold": 1.6,
+     "stamp": "NEVER ASKED",
+     "stampWord": "referendum."
+    }
+   ]
+  },
+  {
+   "id": "poll",
+   "say": "In polls, only about one in three, on either side, wants it.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08,
+    "pitch": 56,
+    "yaw": 0
+   },
+   "date": "1992-09-01",
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 1,
+     "suffix": " in 3",
+     "label": "backed the split · Sept 1992 poll",
+     "y": 930,
+     "atWord": "one",
+     "hold": 2.4
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE",
+      "SVK"
+     ],
+     "atWord": "either"
+    },
+    {
+     "type": "chapter",
+     "text": "no referendum",
+     "atWord": "In"
+    }
+   ]
+  },
+  {
+   "id": "jan1",
+   "say": "{January 1, 1993|January first, nineteen ninety-three}: Czechoslovakia ends. Peacefully.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.04,
+    "pitch": 50,
+    "yaw": 12
+   },
+   "date": "1993-01-01",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "CZE",
+     "atWord": "ends.",
+     "flag": "cz",
+     "date": "1993-01-01"
+    },
+    {
+     "type": "declare",
+     "id": "SVK",
+     "atWord": "ends.",
+     "flag": "sk",
+     "date": "1993-01-01"
+    },
+    {
+     "type": "chapter",
+     "text": "the Velvet Divorce",
+     "atWord": "ends."
+    },
+    {
+     "type": "label",
+     "text": "midnight, 31 Dec 1992",
+     "at": [
+      17.3,
+      49.0
+     ],
+     "atWord": "January",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "share",
+   "say": "Everything is shared two to one: tanks, planes, trains.",
+   "camera": {
+    "center": [
+     16.4,
+     49.3
+    ],
+    "span": 8,
+    "pitch": 40,
+    "yaw": -10
+   },
+   "actions": [
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      14.42,
+      50.09
+     ],
+     "count": 2,
+     "size": 72,
+     "approach": [
+      -200,
+      -80
+     ],
+     "offset": [
+      0,
+      -90
+     ],
+     "atWord": "two",
+     "hold": 3.0,
+     "caption": "2"
+    },
+    {
+     "type": "units",
+     "kind": "tanks",
+     "at": [
+      17.11,
+      48.15
+     ],
+     "count": 1,
+     "size": 72,
+     "approach": [
+      200,
+      80
+     ],
+     "offset": [
+      0,
+      -90
+     ],
+     "atWord": "one:",
+     "hold": 2.6,
+     "caption": "1"
+    },
+    {
+     "type": "label",
+     "text": "2 : 1 · by population",
+     "at": [
+      16.6,
+      48.5
+     ],
+     "atWord": "tanks,",
+     "hold": 1.8
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "say": "The gold takes until {1999|nineteen ninety-nine}.",
+   "camera": {
+    "center": [
+     16.0,
+     49.6
+    ],
+    "span": 10,
+    "pitch": 44,
+    "yaw": 8
+   },
+   "date": "1999-11-24",
+   "actions": [
+    {
+     "type": "label",
+     "text": "last gold handed back · Nov 1999",
+     "at": [
+      17.0,
+      49.3
+     ],
+     "atWord": "gold",
+     "hold": 2.0
+    }
+   ]
+  },
+  {
+   "id": "rule",
+   "say": "One rule: neither side keeps the old flag.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08,
+    "pitch": 54,
+    "yaw": -6,
+    "cut": true
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "callout",
+     "text": "NO OLD SYMBOLS",
+     "sub": "Constitutional Act 542/1992, Art. 3",
+     "size": 64,
+     "y": 980,
+     "atWord": "rule:",
+     "hold": 2.0
+    },
+    {
+     "type": "sticker",
+     "flag": "cz",
+     "x": 540,
+     "y": 700,
+     "size": 150,
+     "atWord": "flag.",
+     "hold": 1.0,
+     "text": "CZECHOSLOVAKIA"
+    }
+   ]
+  },
+  {
+   "id": "kept",
+   "say": "The Czechs keep it anyway.",
+   "camera": {
+    "center": [
+     15.3,
+     49.8
+    ],
+    "span": 7,
+    "pitch": 42,
+    "yaw": 10
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "sticker",
+     "flag": "cz",
+     "at": [
+      15.3,
+      49.8
+     ],
+     "dy": -60,
+     "size": 160,
+     "atWord": "keep",
+     "hold": 2.4,
+     "text": "CZECHIA"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE"
+     ],
+     "atWord": "anyway."
+    },
+    {
+     "type": "shake",
+     "amount": 5,
+     "atWord": "anyway."
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "Two countries. One old flag. All decided for…",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.08
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "CZE",
+      "SVK"
+     ],
+     "atWord": "Two"
+    },
+    {
+     "type": "sticker",
+     "flag": "cz",
+     "at": [
+      15.3,
+      49.8
+     ],
+     "dy": -50,
+     "size": 120,
+     "atWord": "flag.",
+     "hold": 1.6
+    },
+    {
+     "type": "shake",
+     "amount": 3,
+     "atWord": "decided"
+    }
+   ]
+  }
+ ]
+}
