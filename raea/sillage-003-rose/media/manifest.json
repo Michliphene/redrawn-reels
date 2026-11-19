@@ -1,0 +1,88 @@
+{
+ "episode": "scent-003-rose",
+ "date": "2026-11-19",
+ "rule": "All images are AI illustrations (said in the post description). No faces, no text in images. Never presented as photos of a real farm, town or distillery. The flacon and the oil are 3D.",
+ "items": [
+  {
+   "id": "nb_valley",
+   "original": "media/plates/nb_valley.jpg",
+   "used_as": "s_valley.jpg",
+   "tool": "Nano Banana",
+   "role": "\"The Rose Valley\"",
+   "prompt_summary": "Bulgarian rose valley at dawn, rows of Damask roses, Balkan mountains, no people",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_pickers",
+   "original": "media/plates/nb_pickers.jpg",
+   "used_as": "s_pickers.jpg",
+   "tool": "Nano Banana",
+   "role": "\"Pickers start before sunrise\"",
+   "prompt_summary": "rose field before sunrise, distant pickers seen from behind as silhouettes, no faces",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_still",
+   "original": "media/plates/nb_still.jpg",
+   "used_as": "s_still.jpg",
+   "tool": "Nano Banana",
+   "role": "\"copper stills\"",
+   "prompt_summary": "old stone distillery, copper alembics, steam, basket of petals, no people",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_festival",
+   "original": "media/plates/nb_festival.jpg",
+   "used_as": "s_festival.jpg",
+   "tool": "Nano Banana",
+   "role": "\"a festival for the harvest\"",
+   "prompt_summary": "small Balkan town street with rose garlands and bunting, tiny far figures, no faces, no signs",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "nb_drop",
+   "original": "media/plates/nb_drop.png",
+   "used_as": "s_drop.jpg",
+   "tool": "Nano Banana (preview size 572×1024: the full-size download failed)",
+   "role": "\"For a single gram\"",
+   "prompt_summary": "macro of a rose petal holding one golden drop of oil",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_hands",
+   "original": "media/plates/gpt_hands.png",
+   "used_as": "f_hands.jpg",
+   "tool": "gpt-image",
+   "role": "\"picked by hand\"",
+   "prompt_summary": "weathered hands cupping Damask roses over a wicker basket, no face",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_damask",
+   "original": "media/plates/gpt_damask.png",
+   "used_as": "c_damask.jpg",
+   "tool": "gpt-image",
+   "role": "\"the Damask rose\"",
+   "prompt_summary": "botanical still life of one Damask rose with buds on ivory paper",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_scale",
+   "original": "media/plates/gpt_scale.png",
+   "used_as": "c_scale.jpg",
+   "tool": "gpt-image",
+   "role": "\"And the farmer?\"",
+   "prompt_summary": "brass farm scale weighing a burlap sack of rose blossoms in a barn, no people, no numbers",
+   "crop": "centred (prep-plates.sh)"
+  },
+  {
+   "id": "gpt_heap",
+   "original": "media/plates/gpt_heap.png",
+   "used_as": "c_heap.jpg",
+   "tool": "gpt-image",
+   "role": "\"three and a half tonnes of flowers\"",
+   "prompt_summary": "mountain of rose petals with one tiny vial of golden oil in front",
+   "crop": "centred (prep-plates.sh)"
+  }
+ ]
+}
