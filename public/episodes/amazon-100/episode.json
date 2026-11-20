@@ -1,0 +1,92 @@
+{
+ "id": "amazon-100",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "seriesId": "receipts",
+ "episode": 7,
+ "da": 2,
+ "title": "Where $100 at Amazon goes",
+ "whisper": "most of the profit isn’t in the boxes",
+ "source": "Source: Amazon 10-K, fiscal 2025 (SEC) · per $100: our calc.",
+ "engine": "raea",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.1
+  },
+  "maxPause": 0.3,
+  "respell": { "AWS": "A-W-S" }
+ },
+ "keywords": ["shopping", "AWS", "keeps", "cloud", "boxes", "never"],
+ "scenes": {
+  "box": { "type": "product", "art": "phone", "price": "$717B", "tag": "AMAZON · 2025", "ghostSafe": true },
+  "split": { "type": "bars", "max": 100 },
+  "year": { "type": "bars", "max": 50 },
+  "point": { "type": "lines", "rect": { "top": 930, "bottom": 1150 } }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "box",
+   "say": "Amazon took in {$717B|seven hundred and seventeen billion dollars} last year. Most of the profit came from something you never see.",
+   "actions": [
+    { "type": "pulse", "target": "price", "atWord": "$717B" },
+    { "type": "ghost", "text": "?", "label": "MOST OF THE PROFIT", "atWord": "never", "hold": 1.0 }
+   ]
+  },
+  { "id": "take", "scene": "split", "say": "Take {$100|a hundred dollars} of it.", "actions": [] },
+  {
+   "id": "shop",
+   "say": "{$82|Eighty-two dollars} is shopping: the store, the sellers, the ads, Prime.",
+   "actions": [ { "type": "bar", "label": "shopping", "value": 82, "color": "#FFB648", "atWord": "$82" } ]
+  },
+  {
+   "id": "cloud",
+   "say": "{$18|Eighteen} is AWS: computing power it rents to other companies.",
+   "actions": [ { "type": "bar", "label": "AWS", "value": 18, "color": "#7FB2FF", "atWord": "$18" } ]
+  },
+  {
+   "id": "ship",
+   "say": "Shopping is the expensive part. Shipping alone cost {$103B|a hundred and three billion dollars}.",
+   "actions": [ { "type": "big", "value": "$103B", "label": "shipping costs · 2025", "atWord": "$103B" } ]
+  },
+  {
+   "id": "shopkeep",
+   "say": "So of its {$82|eighty-two}, shopping keeps {$4.79|four seventy-nine}.",
+   "actions": [ { "type": "bar", "label": "shopping keeps", "value": 4.79, "color": "#C8F53C", "atWord": "$4.79" } ]
+  },
+  {
+   "id": "cloudkeep",
+   "say": "Of its {$18|eighteen}, AWS keeps {$6.36|six thirty-six}.",
+   "actions": [ { "type": "bar", "label": "AWS keeps", "value": 6.36, "color": "#C8F53C", "atWord": "$6.36" } ]
+  },
+  {
+   "id": "share",
+   "scene": "year",
+   "say": "The smaller slice makes {57%|fifty-seven percent} of Amazon's operating profit.",
+   "actions": [ { "type": "big", "value": "57%", "label": "of operating profit · AWS", "atWord": "57%" } ]
+  },
+  {
+   "id": "year",
+   "say": "That's {$45.6B|forty-five point six billion dollars} in 2025, from renting computers.",
+   "actions": [ { "type": "bar", "label": "AWS operating income", "value": 45.6, "color": "#7FB2FF", "atWord": "$45.6B" } ]
+  },
+  {
+   "id": "point",
+   "scene": "point",
+   "say": "You see the boxes. The money is in the cloud.",
+   "actions": [
+    { "type": "line", "small": "WHAT YOU SEE", "text": "THE BOXES", "strike": true, "atWord": "boxes.", "size": 130 },
+    { "type": "line", "small": "", "text": "THE CLOUD", "color": "#C8F53C", "atWord": "cloud.", "size": 130 }
+   ]
+  },
+  { "id": "loop", "scene": "box", "say": "So next time a box lands on your doorstep…", "actions": [] }
+ ]
+}

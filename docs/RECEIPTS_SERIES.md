@@ -1,10 +1,10 @@
 # RECEIPTS — series bible (3rd account, "where the money goes")
 
-**Working name:** RECEIPTS (owner can rename: it is only the `series` field of `episode.json`).
+**Name and tagline:** `public/studio.json` is the source of truth; rename there, keep the stable series id.
 **Tagline (bio):** "Follow the money in under a minute. Every number from the filing."
 **Format:** 1080×1920 · 30 fps · 45–60 s · EN voice-over · word-by-word captions · no photos, no logos.
 **Engine:** composition `Money`, selected by `"composition": "Money"` in `episode.json`. `"da": 2` plays the cue sheet on
-the 3D counter (`src/money/Money3D.tsx`, template `costco-hotdog-v2`); without `da` an episode keeps its flat DA 1 look
+  the 3D counter (`src/money/Money3D.tsx`, syntax example `costco-hotdog-v2`); without `da` an episode keeps its flat DA 1 look
 (`src/money/Money.tsx`). Shared art direction rules: `docs/STUDIO.md`. Series id in `public/studio.json`: `receipts`.
 Same pipeline as REDRAWN: `pipeline/render.sh <id>` → `out/<id>.mp4`.
 
@@ -71,8 +71,9 @@ The source line never leaves the screen (bottom of the caption band, y 1416).
 | 003 | McDonald's is a landlord | "McDonald's collected $10.4 billion in rent last year." | McDonald's 10-K — **produced** |
 | 004 | The iPhone is a storefront | "Spend $1,000 on Apple devices, and about $390 is left once they're built." | Apple 10-K FY2026 — **produced** (DA 2) |
 | 005 | Delta's $8.2B check isn't a ticket | "Delta got $8.2 billion last year. Not from your ticket. From your credit card." | Delta 10-K FY2025 (+ Amex 10-K) — **produced** (`delta-amex`) |
-| 006 | Where your airline ticket goes | "The airline keeps about $9 of every $100." (Delta FY2025: 9.2 % operating margin — reuse `delta-amex` facts) | Delta/United 10-K, A4A |
-| 007 | Where $100 at Amazon goes | AWS share of operating income (verify) | Amazon 10-K |
+| 006 | Inside a Chipotle bill | "You pay Chipotle $10. The food? Under $3." | Chipotle 10-K FY2025 — **produced** (`chipotle-10`, raea) |
+| 006b | Where your airline ticket goes | "The airline keeps about $9 of every $100." (Delta FY2025: 9.2 % operating margin — reuse `delta-amex` facts) | Delta/United 10-K, A4A |
+| 007 | Where $100 at Amazon goes | "Amazon took in $717 billion last year. Most of the profit came from something you never see." (AWS: $18 of $100, 57 % of operating income) | Amazon 10-K FY2025 — **in production** (`amazon-100`, raea 0.1.8-rc11) |
 | 008 | What a $5 latte really pays for | store costs split (verify) | Starbucks 10-K |
 | 009 | The fee is the business (Live Nation) | ticketing ≈ $3.1B revenue, ≈ $1.1B AOI vs concerts $20.9B revenue, $0.7B AOI (FY2025, verify; AOI is non-GAAP; open DOJ case → neutral wording) | Live Nation 10-K FY2025 |
 Hooks containing a claim are drafts: verify at scripting time, drop the angle if the filing does not support it.
