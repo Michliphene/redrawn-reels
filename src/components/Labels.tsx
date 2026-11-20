@@ -13,8 +13,8 @@ const fmt = (d?: string) => {
   return new Date(Date.UTC(y, m - 1, day)).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 };
 
-const Tag: React.FC<{ x: number; y: number; t: number; t0: number; hold: number; children: React.ReactNode; size?: number; sub?: string; dot?: boolean }> =
-  ({ x, y, t, t0, hold, children, size = 44, sub, dot }) => {
+const Tag: React.FC<{ x: number; y: number; t: number; t0: number; hold: number; children: React.ReactNode; size?: number; sub?: string; dot?: boolean; plate?: boolean }> =
+  ({ x, y, t, t0, hold, children, size = 44, sub, dot, plate }) => {
     if (t < t0 || t > t0 + hold + 0.4) return null;
     const s = t0 <= 0.05 ? 1 : spring({ frame: (t - t0) * FPS, fps: FPS, config: { damping: 14, stiffness: 160 } });
     const out = interpolate(t, [t0 + hold, t0 + hold + 0.4], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
@@ -22,6 +22,7 @@ const Tag: React.FC<{ x: number; y: number; t: number; t0: number; hold: number;
       <div style={{ position: 'absolute', left: Math.min(Math.max(x, 230), 850), top: y, transform: `translate(-50%,-50%) scale(${0.6 + 0.4 * s})`, opacity: s * out, textAlign: 'center', pointerEvents: 'none' }}>
         {dot && <div style={{ width: 18, height: 18, borderRadius: 9, background: theme.accent, margin: '0 auto 10px', boxShadow: `0 0 0 ${6 + 10 * (1 - s)}px rgba(255,201,77,0.25)` }} />}
         <div style={{ fontFamily: theme.font, fontWeight: 800, fontSize: size, color: theme.text, letterSpacing: 1, whiteSpace: 'nowrap',
+          ...(plate ? { background: 'rgba(8,12,22,0.86)', padding: '4px 14px', borderRadius: theme.radius ? 8 : 0 } : {}),
           textShadow: '0 3px 12px rgba(0,0,0,0.85), 0 0 2px #000' }}>{children}</div>
         {sub && <div style={{ fontFamily: theme.font, fontWeight: 600, fontSize: size * 0.55, color: theme.accent, marginTop: 2, textShadow: '0 2px 8px #000', whiteSpace: 'nowrap' }}>{sub}</div>}
       </div>
@@ -62,7 +63,7 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
         <span style={{ verticalAlign: 'middle' }}>{(f!.properties as any).name}</span></Tag>);
     } else if (a.type === 'label') {
       const [x, y] = pt(a.at);
-      nodes.push(<Tag key={i} x={x} y={y} t={t} t0={a.t} hold={a.hold ?? 2.5} size={a.size === 'xl' ? 120 : 48}>{a.flag && <Flag code={a.flag} h={a.size === 'xl' ? 90 : 40} t={t} style={{ marginRight: 20, verticalAlign: 'middle' }} />}<span style={{ verticalAlign: 'middle' }}>{a.text}</span></Tag>);
+      nodes.push(<Tag key={i} x={x} y={y} t={t} t0={a.t} hold={a.hold ?? 2.5} size={a.size === 'xl' ? 120 : 48} plate={(a as any).plate}>{a.flag && <Flag code={a.flag} h={a.size === 'xl' ? 90 : 40} t={t} style={{ marginRight: 20, verticalAlign: 'middle' }} />}<span style={{ verticalAlign: 'middle' }}>{a.text}</span></Tag>);
     } else if (a.type === 'marker') {
       const [x, y] = pt(a.at);
       nodes.push(<Tag key={i} x={x} y={y + 22} t={t} t0={a.t} hold={a.hold ?? 2.5} size={42} dot>{a.text}</Tag>);
