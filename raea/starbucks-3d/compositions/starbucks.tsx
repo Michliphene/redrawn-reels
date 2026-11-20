@@ -8,7 +8,12 @@
  *                 cup & food 3.23 · baristas 2.69 · rent 0.80 · store 1.05 · office 1.26 · foam (profit) 0.97
  *                 each layer takes its colour on its beat, its amount lands on the spoken number in a LEDGER hung from
  *                 the left margin, a hairline from each row to its layer.
- *   year  (x 24)  a field of cups; their foam lights in a wave (41,000 coffeehouses, $3.7B: in the captions).
+ *   tax           the foam shrinks to 67¢ (after interest and tax), then grows back.
+ *   year  (x 24)  a field of cups; their foam lights in a wave (41,000 coffeehouses, $3.7B: in the captions);
+ *                 then a third stay lit (13,000 run by Starbucks), the rest turn blue (28,000 licensed).
+ *   ask           the foam alone lit: "how much did you think they kept?"
+ *   BACKDROPS     AI illustrations (Canva generate-image, art/) on unlit planes behind each scene: a coffeehouse
+ *                 street in profile, baristas at the counter (wages → tax), a night street of coffeehouses (year).
  *   point (x 0)   back at the drink: the cup layer, then the three coffeehouse layers, light up; the rest dims.
  *
  * Layout change after #006 (owner): no horizontal slices, no meter. Redundancy rule: a figure is on screen ONCE at a
@@ -78,7 +83,10 @@ const rAt = (y: number) => RB + ((RT - RB) * y) / HT;
 const SHELL_H = HT - 0.18, SHELL_RB = RB + 0.07, SHELL_RT = RB + 0.07 + ((RT - RB) * SHELL_H) / HT;
 const POUR_AT = w("open", "pour");
 const LOOP_BACK = DUR - 1.9;    // the cup comes back down for the loop (camera settled before the title returns)
-const layerMid = (i: number) => BASE + (CUM[i] + LAYERS[i].len / 2) * U;
+const TAX_AT = w("tax", "67¢");
+/** The foam's height factor: 97¢ → 67¢ after interest and tax, back to 97¢ for the year. */
+const foamK = (t: number) => lerp(1, 0.67 / 0.97, inOut3(ramp(t, TAX_AT, 0.5)) * (1 - inOut3(ramp(t, B("year") - 0.3, 0.5))));
+const layerMid = (i: number, t = 0) => BASE + (CUM[i] + (LAYERS[i].len * (LAYERS[i].keep ? foamK(t) : 1)) / 2) * U;
 
 /* ------------------------------------------------------------------ camera */
 type Shot = { t: number; pos: V3; look: V3; fov: number };
@@ -91,7 +99,7 @@ const SHOTS: Shot[] = [
   HERO,
   shot(POUR_AT - 0.2, [CUP_X - 2.0, 1.6, 0], -8, 10, 34, 30),
   shot(B("keep") - 0.3, [CUP_X - 1.7, 1.9, 0], -12, 12, 30, 30),
-  shot(B("year") - 0.3, [YEAR_X, 0.6, -1.0], -14, 36, 25, 32),
+  shot(B("year") - 0.3, [YEAR_X, 1.5, -1.0], -14, 20, 25, 32),
   shot(B("point") - 0.3, [CUP_X - 2.0, 1.6, 0], 8, 9, 34, 30),
   { ...HERO, t: LOOP_BACK + 0.1 },
 ];
@@ -131,6 +139,8 @@ function emphasis(t: number, i: number) {
   let k = 1;
   if (third > 0) k = lerp(1, i === 0 ? 1.6 : 0.35, third * end);
   if (half > 0) k = lerp(k, L.house ? 1.6 : i === 0 ? 1 : 0.35, half * end);
+  const ask = ramp(t, B("ask"), 0.4);
+  if (ask > 0) k = lerp(k, L.keep ? 1.6 : 0.35, ask * end);
   return k;
 }
 
@@ -149,6 +159,7 @@ function Cup({ t }: { t: number }) {
       {/* the drink: one frustum per layer; brown until its beat, then its own colour */}
       {LAYERS.map((L, i) => {
         const y0 = CUM[i] * U, y1 = (CUM[i] + L.len) * U;
+        const sy = L.keep ? foamK(t) : 1;
         const col = L.keep ? Math.max(ramp(t, w("hook", "97¢"), 0.3), ramp(t, L.colorAt, 0.3)) : ramp(t, L.colorAt, 0.3);
         const back = 1 - ramp(t, LOOP_BACK, 0.6); // the colours drain back for the loop
         const c = col * back; // all drain back to brown, the foam too: the last frame is frame 0
@@ -159,7 +170,7 @@ function Cup({ t }: { t: number }) {
         const rehook = L.keep ? Math.sin(Math.PI * ramp(t, w("crew", "three"), 1.1)) : 0;
         const e = (L.keep ? 1.4 * c : 0.35 * c) * Math.max(em, 0.3) + (em > 1 ? 0.6 * (em - 1) : 0) + 2.2 * rehook;
         return (
-          <Mesh3d key={L.id} name={`layer-${L.id}`} allowOverlap transform={Transform.fromXyz(CUP_X, BASE + (y0 + y1) / 2, 0).withScale([pop, 1, pop])}>
+          <Mesh3d key={L.id} name={`layer-${L.id}`} allowOverlap transform={Transform.fromXyz(CUP_X, BASE + y0 + ((y1 - y0) * sy) / 2, 0).withScale([pop, sy, pop])}>
             <ConicalFrustum radius_bottom={rAt(y0)} radius_top={rAt(y1)} height={y1 - y0 - 0.02} />
             <StandardMaterial base_color={color} perceptual_roughness={L.keep ? 0.8 : 0.35} metallic={0.05} emissive={glow(L.color, e)} />
           </Mesh3d>
@@ -190,6 +201,32 @@ function Cup({ t }: { t: number }) {
   );
 }
 
+/** AI backdrops (art/, Canva generate-image), unlit planes behind each scene. The counter rises over the street for
+ *  the money that pays the store (wages → tax) and sinks back for the point and the loop (frame 0 = the street). */
+// the floor stops just behind the cup (FLOOR_BACK) so the picture fills the frame behind it, not only the sky band
+const BG_Z = -14, BG_W = 26, BG_H = (BG_W * 16) / 9, FLOOR_BACK = -2.6;
+function Card({ name, src, w: cw, pos }: { name: string; src: string; w: number; pos: V3 }) {
+  return (
+    <Mesh3d name={name} allowOverlap transform={Transform.fromXyz(...pos)}>
+      <Cuboid half_size={[cw / 2, (cw * 8) / 9, 0.02]} />
+      <StandardMaterial base_color="#FFFFFF" base_color_texture={staticFile(src)} unlit />
+    </Mesh3d>
+  );
+}
+function Backdrops({ t }: { t: number }) {
+  const up = inOut3(ramp(t, B("crew") - 0.15, 0.9)) * (1 - inOut3(ramp(t, B("year") - 0.3, 0.6)));
+  // street: its lit window sits at world y≈5; counter: the baristas' hands at y≈5, faces in frame.
+  // Opaque unlit cards (a thin Cuboid wears the picture on its front face): an ImagePlane neither moves in a continuous
+  // render nor shows up if mounted after frame 0, and blended planes sort by centre distance.
+  return (
+    <>
+      <Card name="bg-street" src="art/bg-street.png" w={BG_W} pos={[CUP_X - 4.3, 9, BG_Z]} />
+      <Card name="bg-counter" src="art/bg-counter.png" w={BG_W} pos={[CUP_X - 4.3, 6 - (1 - up) * (BG_H + 4), BG_Z + 0.4]} />
+      <Card name="bg-night" src="art/bg-night.png" w={30} pos={[YEAR_X, 10, -13]} />
+    </>
+  );
+}
+
 /** A field of cups: their foam lights in a wave on "$3.7B". */
 function Field({ t }: { t: number }) {
   const show = out3(ramp(t, B("year") - 0.4, 0.6));
@@ -200,6 +237,10 @@ function Field({ t }: { t: number }) {
     const x = YEAR_X - 6 + gx * 1.5, z = -7.5 + gz * 1.5, k = gx * 7 + gz;
     const d = Math.hypot(gx - 4, gz - 5);
     const lit = ramp(t, wave + d * 0.08, 0.25);
+    // licensed beat: the first three columns (21 of 63 ≈ 13,397 of 41,607) are run by Starbucks; the rest turn blue
+    const own = gx < 3;
+    const ownPulse = own ? Math.sin(Math.PI * ramp(t, w("licensed", "13,000"), 0.8)) : 0;
+    const lic = own ? 0 : ramp(t, w("licensed", "28,000") + (gx - 3) * 0.05, 0.3);
     const rise = out3(ramp(t, B("year") - 0.4 + d * 0.04, 0.5));
     cups.push(
       <Entity key={k} transform={Transform.fromXyz(x, 0, z).withScale([1, Math.max(0.001, rise), 1])}>
@@ -209,7 +250,7 @@ function Field({ t }: { t: number }) {
         </Mesh3d>
         <Mesh3d name={`ff-${k}`} allowOverlap transform={Transform.fromXyz(0, 1.235, 0)}>
           <Cylinder radius={0.45} half_height={0.02} />
-          <StandardMaterial base_color={hexMix(P.coffee, P.lime, lit)} emissive={glow(P.lime, 1.8 * lit)} />
+          <StandardMaterial base_color={hexMix(hexMix(P.coffee, P.lime, lit), P.blue, lic)} emissive={glow(lic > 0 ? P.blue : P.lime, 1.8 * lit * (1 - 0.6 * lic) + 2.4 * ownPulse)} />
         </Mesh3d>
       </Entity>,
     );
@@ -244,7 +285,7 @@ function Ledger({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
   const gone = Math.max(ramp(t, B("year") - 0.35, 0.25) * (1 - ramp(t, B("point") + 0.75, 0.3)), ramp(t, LOOP_BACK - 0.2, 0.35));
   if (gone >= 1) return null;
   // targets: each layer's centre on screen, then pushed apart so rows never touch (bottom row first)
-  const ys = LAYERS.map((_, i) => project(cam, [CUP_X, layerMid(i), 0])[1]);
+  const ys = LAYERS.map((_, i) => project(cam, [CUP_X, layerMid(i, t), 0])[1]);
   const rows = ys.slice();
   for (let i = 1; i < rows.length; i++) rows[i] = Math.min(rows[i], rows[i - 1] - ROW_GAP);
   const lift = Math.max(0, LEDGER_TOP - rows[rows.length - 1]);
@@ -259,15 +300,18 @@ function Ledger({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
         const amountO = ramp(t, L.amountAt, 0.12);
         const s = Math.min(1.08, outBack(ramp(t, L.amountAt, 0.3), 2));
         const y = rows[i], ly = ys[i];
-        const [ex] = project(cam, [CUP_X - rAt(layerMid(i) - BASE) * 1.02, layerMid(i), 0.0]);
+        // tax beat: the keep row reads 67¢ while the foam is short (one figure at a time)
+        const tax = L.keep ? ramp(t, TAX_AT, 0.01) * (1 - ramp(t, B("point"), 0.01)) : 0;
+        const ts = Math.min(1.08, outBack(ramp(t, TAX_AT, 0.3), 2));
+        const [ex] = project(cam, [CUP_X - rAt(layerMid(i, t) - BASE) * 1.02, layerMid(i, t), 0.0]);
         const lineCol = em > 1 ? L.color : P.muted;
         return (
           <div key={L.id}>
             <div style={abs(SAFE.left, y - 56, { width: JOIN_X - SAFE.left - 14, opacity: ro })}>
               {/* the payoff row (what Starbucks keeps) is the loud one; each label wears its layer's colour */}
-              <div style={{ ...display(L.keep ? 92 : 66, L.color), opacity: amountO, transform: `scale(${s})`, transformOrigin: "left bottom", height: L.keep ? 88 : 64, marginTop: L.keep ? -24 : 0 }}>{L.amount}</div>
+              <div style={{ ...display(L.keep ? 92 : 66, L.color), opacity: amountO, transform: `scale(${L.keep && tax > 0 ? ts : s})`, transformOrigin: "left bottom", height: L.keep ? 88 : 64, marginTop: L.keep ? -24 : 0 }}>{L.keep && tax > 0.5 ? "67¢" : L.amount}</div>
               {/* the layer colour lightened toward ink + a shadow: 3:1 over the green floor (red alone measured 2.5:1) */}
-              <div style={{ ...mono(27, hexMix(L.color, P.ink, 0.45)), marginTop: 6, whiteSpace: "nowrap", textShadow: "0 2px 0 rgba(0,0,0,0.6)" }}>{L.label}</div>
+              <div style={{ ...mono(27, hexMix(L.color, P.ink, 0.45)), marginTop: 6, whiteSpace: "nowrap", textShadow: "0 2px 0 rgba(0,0,0,0.6)" }}>{L.keep && tax > 0.5 ? "after interest & tax" : L.label}</div>
             </div>
             {line(JOIN_X - 6, y, 18, 2, lineCol, ro)}
             {line(JOIN_X + 12, Math.min(y, ly), 2, Math.abs(ly - y) + 2, lineCol, ro)}
@@ -318,6 +362,7 @@ function Overlay({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
       {yearO > 0.01 && <div style={abs(SAFE.left, 330, { ...mono(28, P.muted), opacity: yearO })}>all of Starbucks · fiscal 2026</div>}
 
       <Ledger t={t} cam={cam} />
+      <Licensed t={t} cam={cam} />
 
       <Captions t={t} />
       <div style={abs(SAFE.left, 1372, { ...mono(28, P.muted), letterSpacing: "0.02em", width: SAFE.railX - SAFE.left, whiteSpace: "nowrap" })}>Starbucks 10-K FY2026 (SEC) · per $10: our calc.</div>
@@ -325,8 +370,33 @@ function Overlay({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
   );
 }
 
+/** Licensed beat: the two groups of the field, each with its count (hidden from the captions). */
+function Licensed({ t, cam }: { t: number; cam: ReturnType<typeof cameraAt> }) {
+  const end = 1 - ramp(t, B("point") - 0.35, 0.25);
+  const groups = [
+    { at: w("licensed", "13,000"), x: YEAR_X - 4.5, n: "13,000", label: "run by Starbucks", color: P.lime },
+    { at: w("licensed", "28,000"), x: YEAR_X + 2.25, n: "28,000", label: "licensed", color: P.blue },
+  ];
+  return (
+    <>
+      {groups.map((g) => {
+        const o = Math.min(ramp(t, g.at, 0.15), end);
+        if (o <= 0.01) return null;
+        const [x, y] = project(cam, [g.x, 1.4, -1]);
+        const s = Math.min(1.08, outBack(ramp(t, g.at, 0.3), 2));
+        return (
+          <div key={g.n} style={abs(Math.max(SAFE.left, Math.min(SAFE.right - 330, x - 165)), y - 210, { width: 330, textAlign: "center", opacity: o, transform: `scale(${s})`, transformOrigin: "center bottom", background: "rgba(3,16,11,0.78)", borderRadius: 14, padding: "14px 0 16px" })}>
+            <div style={display(92, g.color)}>{g.n}</div>
+            <div style={{ ...mono(27, hexMix(g.color, P.ink, 0.45)), marginTop: 6, textShadow: "0 2px 0 rgba(0,0,0,0.6)" }}>{g.label}</div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
 /** Captions from the transcript. Figures already on screen are NOT repeated here (one figure, one place). */
-const HIDE = new Set(["hook:$10", "hook:97¢", "cup:$3.23", "crew:$2.69", "rent:80¢", "store:$1.05", "office:$1.26", "keep:97¢"]);
+const HIDE = new Set(["hook:$10", "hook:97¢", "cup:$3.23", "crew:$2.69", "rent:80¢", "store:$1.05", "office:$1.26", "keep:97¢", "tax:67¢", "licensed:13,000", "licensed:28,000"]);
 const PHRASES: Word[][] = (() => {
   const out: Word[][] = [];
   for (const b of TIMINGS.beats as any[]) {
@@ -346,7 +416,7 @@ const PHRASES: Word[][] = (() => {
   }
   return out;
 })();
-const KEYWORDS = ["keep", "keeps", "three", "third", "half"];
+const KEYWORDS = ["keep", "keeps", "kept", "three", "third", "half", "18¢", "licensed"];
 function Captions({ t }: { t: number }) {
   const i = PHRASES.findIndex((p, k) => t >= p[0].start - 0.05 && t < (PHRASES[k + 1]?.[0].start ?? 1e9) - 0.05 && t < p[p.length - 1].end + 0.6 && t < DUR - 0.5);
   if (i < 0) return null;
@@ -371,7 +441,8 @@ function Starbucks008() {
   const focus = Math.hypot(cam.pos[0] - cam.look[0], cam.pos[1] - cam.look[1], cam.pos[2] - cam.look[2]);
   const sfx: [number, string, number][] = [[0, "boom", 0.35], ...SHOTS.slice(1, -1).map((s) => [s.t + 0.1, "whoosh", 0.32] as [number, string, number]),
     [w("hook", "97¢"), "stamp", 0.5], [POUR_AT, "whoosh", 0.5], ...LAYERS.filter((l) => !l.keep).map((l) => [l.amountAt, "pop", 0.45] as [number, string, number]),
-    [LAYERS[5].amountAt, "stamp", 0.6], [w("year", "$3.7B"), "rumble", 0.4], [THIRD_AT, "pop", 0.45], [w("point", "half."), "stamp", 0.5], [LOOP_BACK, "whoosh", 0.35]];
+    [LAYERS[5].amountAt, "stamp", 0.6], [w("year", "$3.7B"), "rumble", 0.4], [TAX_AT, "stamp", 0.5], [B("crew") - 0.15, "whoosh", 0.3],
+    [w("licensed", "13,000"), "pop", 0.45], [w("licensed", "28,000"), "pop", 0.45], [B("ask"), "pop", 0.4], [THIRD_AT, "pop", 0.45], [w("point", "half."), "stamp", 0.5], [LOOP_BACK, "whoosh", 0.35]];
   return (
     <AbsoluteFill style={{ background: P.bg }}>
       <Camera3d transform={Transform.fromXyz(...cam.pos).lookingAt(cam.look)} projection={{ Perspective: { fov: (cam.fov * Math.PI) / 180 } }}>
@@ -385,22 +456,23 @@ function Starbucks008() {
       <SpotLight transform={Transform.fromXyz(CUP_X + 2, 12, 6).lookingAt([CUP_X, 3, 0])} intensity={7000000} outer_angle={0.5} inner_angle={0.24} color="#FFF4E0" shadow_maps_enabled />
       <PointLight transform={Transform.fromXyz(YEAR_X - 2, 9, 6)} intensity={2200000} color="#E4FFB0" range={24} />
       <Fog color={P.bg} near={focus * 1.2} far={focus * 2.8} />
-      <Mesh3d name="floor" transform={Transform.fromXyz(12, -0.05, 0)}>
-        <Cuboid half_size={[200, 0.05, 200]} />
+      <Mesh3d name="floor" transform={Transform.fromXyz(12, -0.05, FLOOR_BACK + 100)}>
+        <Cuboid half_size={[200, 0.05, 100]} />
         <StandardMaterial base_color={P.glow} perceptual_roughness={0.38} />
       </Mesh3d>
       {Array.from({ length: 24 }, (_, k) => (
-        <Mesh3d key={`sx-${k}`} name={`seam-x-${k}`} transform={Transform.fromXyz(-12 + k * 2.5, 0.002, 0)}>
-          <Cuboid half_size={[0.012, 0.002, 30]} />
+        <Mesh3d key={`sx-${k}`} name={`seam-x-${k}`} transform={Transform.fromXyz(-12 + k * 2.5, 0.002, FLOOR_BACK + 16)}>
+          <Cuboid half_size={[0.012, 0.002, 16]} />
           <StandardMaterial base_color="#1D5740" perceptual_roughness={0.6} />
         </Mesh3d>
       ))}
       {Array.from({ length: 12 }, (_, k) => (
-        <Mesh3d key={`sz-${k}`} name={`seam-z-${k}`} transform={Transform.fromXyz(12, 0.002, -15 + k * 2.5)}>
+        <Mesh3d key={`sz-${k}`} name={`seam-z-${k}`} transform={Transform.fromXyz(12, 0.002, FLOOR_BACK + 0.1 + k * 2.5)}>
           <Cuboid half_size={[60, 0.002, 0.012]} />
           <StandardMaterial base_color="#1D5740" perceptual_roughness={0.6} />
         </Mesh3d>
       ))}
+      <Backdrops t={t} />
       <Cup t={t} />
       <Field t={t} />
 

@@ -12,18 +12,21 @@ Layout change after #006 (owner: "pas de redondance", change the layout every ti
 One cup, a vertical stack of layers (1 unit = $1), a ledger hung from the left margin with a hairline to each layer;
 the profit is the foam on top.
 
-## Script (voice)
+## Script (voice) — 62 s cut (owner, 20 Nov 2026: one minute minimum, themed AI backdrops)
 1. Of every $10 you pay Starbucks, they keep 97 cents.
 2. So where does the rest go? Let's pour it out.
 3. The cup, the milk, the beans, the food, and getting it all there: $3.23.
 4. The baristas' pay and benefits: $2.69. Almost three times what Starbucks keeps.
 5. Rent on the coffeehouse: 80 cents.
 6. $1.05 for ads, delivery apps and the rest of the store.
-7. $1.26 for the head office, equipment and closing stores.
+7. $1.26 for the head office, equipment and closing stores. The closures alone: 18 cents.
 8. That leaves Starbucks 97 cents on top.
-9. Across 41,000 coffeehouses, that's $3.7 billion of operating profit.
-10. So what's in your cup is about a third. Running the coffeehouse costs almost half.
-11. Next time you pay… → (loop) Of every $10 you pay Starbucks…
+9. And after interest and tax? Just 67 cents. And that's with a one-off gain from its China deal.
+10. Across 41,000 coffeehouses, that's $3.7 billion of operating profit.
+11. But Starbucks runs only 13,000 of them. The other 28,000 are licensed.
+12. So what's in your cup is about a third. Running the coffeehouse costs almost half.
+13. Before you watched, how much did you think they kept? Tell me in the comments.
+14. Next time you pay… → (loop) Of every $10 you pay Starbucks…
 
 ## Facts table (consolidated statements of earnings, fiscal year ended 27 Sep 2026, US$ millions, GAAP)
 | Line | FY2026 | Per $10 exact | Per $10 on screen (our calculation) |
@@ -52,6 +55,10 @@ Every on-screen amount is plain rounding of the exact value, and the six add up 
 | "$1.26 for the head office, equipment and closing stores" | G&A ("corporate headquarters and regional offices") + D&A + restructuring and impairments (coffeehouse closures, impairments) + other operating expenses, net of income from equity investees | 10-K — our grouping |
 | "41,000 coffeehouses" | 41,607 coffeehouses open on 27 Sep 2026 (13,397 company-operated + 28,210 licensed) | 10-K, Item 1 |
 | "$3.7 billion of operating profit" | operating income 3,691.1 | 10-K |
+| "The closures alone: 18 cents" | restructuring and impairments 688.6 ÷ 37,910.6 × 10 = 0.1816 (coffeehouse and office closures and impairments; part of the $1.26) | 10-K, Note 18 — our calculation |
+| "After interest and tax? Just 67 cents" | net earnings attributable to Starbucks 2,526.7 ÷ 37,910.6 × 10 = 0.6665 | 10-K, statements of earnings — our calculation |
+| "a one-off gain from its China deal" | $536.3M gain on the China divestiture (retail operations converted to licensed in Q3 FY2026), below operating income | 10-K |
+| "Starbucks runs only 13,000 of them. The other 28,000 are licensed" | 13,397 company-operated + 28,210 licensed = 41,607 (rounded down); on screen 21 of 63 cups ≈ 32 % | 10-K, Item 1 |
 | "what's in your cup is about a third" | product and distribution 32.3 % of revenue | 10-K — our calculation |
 | "Running the coffeehouse costs almost half" | coffeehouse operating expenses 17,189.8 = 45.3 % of revenue | 10-K — our calculation |
 
@@ -75,6 +82,15 @@ product & distribution (cups, milk, coffee, food, logistics) $3.23 · coffeehous
 rent $0.80 · other coffeehouse costs (marketing, delivery commissions…) $1.05 · head office, depreciation, closures &
 other, net $1.26 · operating profit $0.97 (before interest & tax). FY2026 revenue $37.9B, operating income $3.7B,
 41,607 coffeehouses. Which receipt should we open next?
+
+## Backdrops (AI images, provenance)
+Generated 20 Nov 2026 with Canva generate-image (Nano Banana / GPT Image unavailable on the connected accounts: plan or
+credits), exported at 1080×1920, in `art/`. Illustrations only, no logo, no brand mark, no text; they show "a
+coffeehouse", not Starbucks property. Prompts (abridged): `bg-street.png` side-profile street at blue hour, a coffeehouse
+with a green awning, a barista handing a takeaway cup, a commuter walking past with a cup · `bg-counter.png` two baristas
+in profile at an espresso machine, cups on the counter · `bg-night.png` a night street of coffeehouses with green awnings,
+people carrying cups, a delivery scooter. All: flat graphic shapes, soft grain, dark forest green / teal / amber, "No logos,
+no brand marks, no text, no lettering anywhere."
 
 ## Verification status
 Figures read directly from the 10-K on sec.gov (20 Nov 2026). Owner: tick each line once before posting.

@@ -237,3 +237,21 @@ A render uses all four cores: do not run stills at the same time.
 - No recurring character yet. A mascot or a "you" pawn is the next step for formats B and C.
 - Stippled light is fine detail: check one upload per platform for compression artefacts before a batch.
 - 3D needs WebGL: on a machine with a GPU set `REMOTION_GL=angle` (or `angle-egl` on Linux) for speed.
+
+## 12. Owner rules, 20 Nov 2026 (every reel from now on)
+
+1. **A themed backdrop behind every scene.** Each episode shows its subject in the background (Amazon: a delivery van
+   on a street, seen in profile, a courier with a parcel or not; Starbucks: a coffeehouse street, the baristas at the
+   counter, a night street of coffeehouses). The data stays in front; the backdrop is darkened by the scene's fog and the
+   top/bottom gradients so text keeps 3:1.
+2. **AI images in the reels.** Backdrops (and other plates) are generated images: Nano Banana or GPT Image when an account
+   allows it, else Canva's generate-image. Prompts: stylised flat illustration, side profile, the house palette (dark
+   forest green, teal, warm amber), calm areas where the title and captions sit, **no logos, no brand marks, no text**.
+   The PNGs live in `public/episodes/<id>/art/` (committed) with their prompts and tool in SOURCES.md (provenance).
+   In raea: an opaque unlit card behind the scene, `<Mesh3d><Cuboid half_size={[w/2, h/2, 0.02]} />
+   <StandardMaterial base_color_texture={staticFile(...)} unlit /></Mesh3d>`, with the picture flipped top-bottom in
+   setup (the front face maps it upside down); the floor stops just behind the subject so the picture fills the frame.
+   Not `ImagePlane`: in a continuous render it never moves and, mounted after frame 0, never appears (single stills
+   hide both), and its blended planes sort by centre distance. See `raea/starbucks-3d`.
+3. **One minute or more.** Every reel is at least 60 s (the TikTok Creator Rewards threshold), target 61–65 s:
+   lengthen with sourced beats (a second figure, a twist, a comment question), never with padding.

@@ -11,6 +11,11 @@ cp "$R/public/episodes/starbucks-10/music.wav" media/
 cp "$R/public/episodes/starbucks-10/voice.wav" media/voice.wav
 cp "$R/public/episodes/starbucks-10/timings.json" compositions/timings.json
 cp "$R"/public/sfx/*.wav media/sfx/
+# AI backdrops (Canva generate-image), flipped top-bottom: a Cuboid's front face maps the picture upside down
+mkdir -p media/art
+for f in "$R"/public/episodes/starbucks-10/art/*.png; do
+  $PY -c "import sys; from PIL import Image; Image.open(sys.argv[1]).transpose(Image.FLIP_TOP_BOTTOM).save(sys.argv[2])" "$f" "media/art/$(basename "$f")"
+done
 cp "$R/public/fonts/OFL.txt" "$R/public/fonts/LICENSES.md" media/fonts/
 for f in BricolageGrotesque-latin InstrumentSerif-Italic-latin JetBrainsMono-latin; do
   $PY -c "from fontTools.ttLib import TTFont; f=TTFont('$R/public/fonts/$f.woff2'); f.flavor=None; f.save('media/fonts/$f.ttf')"
