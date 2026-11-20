@@ -80,3 +80,119 @@ Biggest problems:
   colour flip is the reel's signature image.
 - Camera: one idea per beat, cuts at `both` and `trap` work as re-hooks, and the cost pull-back reveals the 9× scale.
 - Safe area clean; numbers labelled "our calculation"; captions never covered.
+
+---
+
+# Virality — bir-tawil (REDRAWN EP 8, DA 2) · v2 full redo, pass 1
+
+Final render `out/bir-tawil.mp4` (50.5 s container, 49.95 s video), with the clarity review's P0–P2 fixes applied, plus dark
+plates and silent recolours. Evidence: `pipeline/virality_metrics.py` (6 hook frames, loop image), and the 11 beat sheets plus
+`cues.md`. Both were **regenerated from this render**, because the earlier sheets predated the last cue-sheet edit. Also read:
+`episode.json`, `SOURCES.md` (script v2), `timings.json`, `src/Thumb.tsx`, and the v1 virality pass (git `6ff5316`).
+Metrics: 138 words, **2.94 w/s**, first word 0.25 s, hook sentence 2.85 s, 42 cues = **8.3 cues/10 s**. Longest gaps: 2.40 s
+(38.64, 9× → "nobody's"), 2.39 s (29.61, inside the trap), 2.32 s (14.09, the 1902 travel). 1 of 25 two-second windows has
+no cue, and every beat has a camera travel or cut. **Loop SSIM 0.943** (v1 0.903); −14.4 LUFS.
+The `say` is locked, so every fix below is cue sheet or packaging only. Each `atWord` was checked against `timings.json`.
+*This is a pattern-based estimate, not a prediction. The account's size and history are the biggest factor, and we can't control it.*
+
+## Scorecard
+| Block | Pts | Why |
+|---|---|---|
+| A. Hook 0–3 s | **22/25** | Frame 0 is a low crane on the amber slab under "THE LAND NO COUNTRY CLAIMS", with Egypt (purple) and Sudan (green) **labelled on frame 0**, and Halaib now quiet. The slab is the only bright thing. But it fills only ~¼ of the width, and the lower 55 % of the frame is empty green (6/8). Sentence 1 is a crisp contradiction ("Neither will claim it" at 2.1 s, v1 2.7 s), but it has no number now: "800" moved to 5.6 s (6/7). The place is clear in under 1.5 s: country labels at 0 s, and the whisper "Bir Tawil, between Egypt and Sudan" at about 1.0 s (5/5). The title is 5 words and *is* the hook (3/3). No intro (2/2). |
+| B. Retention | **23/25** | 8.3 cues/10 s, the longest gap is 2.4 s, and the camera moves on every beat (8/8). Real but/therefore spine: straight line → line two → gives → both want the coast → **here's the trap** → **so** claiming = losing → **and** 9× → **so** nobody's → human coda. The 1899/1902 exposition (8–18 s) is still the plateau risk, and the camera yaw flips (Red Sea right in `line1`, top in `line2`), which can disorient non-map viewers (5/6). Re-hook: a cut at 23.1 s (46 %) plus "Here's the trap" with a cut and shake at 27.9 s (56 %) (4/4). The why is paid at 29–41 s and the coda keeps a second payoff, but "nobody's" lands at 82 % (3/4). 2.94 w/s, word-by-word captions with keywords (3/3). |
+| C. Rewatch & loop | **9/10** | "Nobody's land. Even though…" → "Two countries border this desert. Neither will claim it." This is a true grammatical loop (5/5). SSIM 0.943, with the same crane, the same amber slab and the title back on (3/3). Frames are clean but sparse, with moderate pause value (1/2). |
+| D. Shareability & saves | **12/15** | Send fact: *each country's own line hands the patch to the other*. The trap beat (patch green under line 1, lavender under line 2) now **shows** it. It is a mental model, but Bir Tawil is a well-worn map topic (5/6). Save value: the series and a two-line diagram, but no reference map (2/4). Honest comment triggers: "what would you call your country?" and "why doesn't someone just take it?" (3/3). The princess dad gives a human stake (2/2). |
+| E. Packaging | **9/10** | The in-reel cover at about 1.9 s works: title, whisper, labels, slab, and the caption "TWO COUNTRIES BORDER THIS DESERT." The current `thumb` is still weak on context (see below) (3/4). Caption written below (3/3). REDRAWN · EP 8 bar and series look (3/3). |
+| F. Niche codes & trust | **11/15** | One visible transformation: line two cuts the two pieces out of the 1899 map, then the trap colour flip, then amber "claimed by nobody". Each step is labelled on a plate (4/4). Scale is "~800 sq mi" and an internal 9×, with no familiar US/UK anchor (1/3). Human stake without a face, which is right for rights. But "plants a flag" shows a small white pawn, not a flag (2/3). Hedged and sourced: "about", "our calc.", "our calculation · 18,208 vs 2,025 km²", year-only 2014, dates hidden over present-day beats (3/3). One minor §8 hit: the "KINGDOM OF NORTH SUDAN" caption is Mono 24 px (tiny), and "Egypt: line 1" is pale while it fades in over light green (1/2). |
+| **TOTAL** | **86/100 → 8.6/10** | **Tier: strong breakout odds** (borderline, so treat it as "can break out" with an upside) |
+
+**What improved vs v1 (83 → 86):** the place is named on frame 0, which v1 lacked (+2 A). The cue gaps are ≤ 2.4 s (v1 2.7 s) (+1 B).
+The loop SSIM is 0.94, and the loop is now the exact frame-0 shot. The logic is *visible*: the trap colour flip with plated labels
+replaces v1's puzzle of four unlabelled recolours (+1 F). The 1899 dates are hidden over present-day claims (a trust fix).
+**Lost:** the number in sentence 1 (−1 A). It was the price of a sharper contradiction, and the trade is right.
+
+## Top 5 changes, ranked by expected gain (no `say` change)
+1. **+1 (A frame 0) · Bigger slab on frame 0 *and* on the last frame.** Tighten the crane so the amber slab fills about half the
+   width and sits lower, away from the empty bottom. Apply the **same** camera to `hook` and `loop`, or the SSIM loop breaks:
+   ```json
+   "camera": {"center": [33.85, 22.2], "span": 2.8, "pitch": 62, "yaw": 28}
+   ```
+   Starting values only: check stills at 0 / 1.0 / 2.0 / 49.8 s. The "Egypt" label (`[33.9,22.4]`) must stay below the whisper.
+   Drop it to `[33.95,22.3]` if it touches the whisper. Re-run `virality_metrics.py`; SSIM must stay ≥ 0.85.
+2. **+1 (B gaps, DA 2 in-world) · Land the 9× and the trap in the world, not only in widgets.** Add:
+   - `size`: `{"type":"pulse","ids":["HALAIB"],"atWord":"bigger."}` (39.23 s). This splits the 2.40 s gap, and the big piece throbs while the 9× is on screen.
+   - `trap`: `{"type":"pulse","ids":["BIRT"],"atWord":"Sudan's."}` (30.51 s). This splits the 2.39 s gap on the word where line 1 lands the patch in Sudan.
+3. **+1 (E cover) · Replace the `thumb`.** See "Thumb" below.
+4. **+1 (F trust / tiny labels) · Make the Heaton beat read.** On the `heaton` `units` action set `"size": 110` (the pawn is
+   ~20 px tall now). If the shared `marker` renders in DA 2, use it instead:
+   `{"type":"marker","text":"\"Kingdom of North Sudan\"","at":[33.75,21.87],"atWord":"plants","hold":2.9}`. Check on a still at 44.5 s.
+   Never draw the micronation's flag (no image is sourced or licensed). Also give the `name` beat's "~800 sq mi…" label
+   `"hold": 1.7`. It currently runs under the "1899" date at 8.1 s.
+5. **+1 (F scale anchor), conditional on a source.** Bir Tawil, 2,025 km² (our calc.), is about **1.3× Greater London**
+   (1,572 km²). **The Greater London figure is NOT in SOURCES.md.** Add it with a source (ONS / London Datastore), plus the line
+   "1.3× = our calculation", before using it. Then put it in the caption/pinned comment, or as the `name` label text:
+   `"~800 sq mi · ≈1.3× Greater London (our calc.)"`. Without the source line, skip it.
+
+Projected after 1–4: about 89/100 (estimate, not a promise).
+
+## 3 alternative hooks (for a remaster or re-cut only: each needs a new voice line; all true per SOURCES.md)
+| Archetype | Verbal line | Frame-0 visual | On-screen text |
+|---|---|---|---|
+| Big number | "About 800 square miles, and no country on Earth claims it." | Crane on the amber slab, label "~800 sq mi (our calc.)" already on | NO COUNTRY CLAIMS THIS |
+| Comparison | "Egypt and Sudan both claim this coast. Neither claims this desert." | Wide two-piece shot: pink Halaib "claimed by both", amber Bir Tawil "claimed by nobody" | BOTH WANT THIS. NOBODY WANTS THIS. |
+| Human / in media res | "In 2014, an American planted a flag here so his daughter could be a princess." | The pawn already on the amber slab, caption "Kingdom of North Sudan" | THE LAND NO COUNTRY CLAIMS |
+
+Title-only A/B with no voice change: `"title": "Neither country wants it"` is weaker. Keep "The land no country claims", which matches
+the sourced word "claim".
+
+## Thumb (current config judged, then proposed)
+**Current:** `fit:["BIRT"]` into small boxes (vertical 420×280, landscape 500×360). That frames only the patch, so the coast,
+Halaib and the Red Sea are off-canvas. In the frame-0 palette Halaib (#3A3552) also melts into Egypt (#463D63), and Thumb draws
+no place labels. What remains is an amber shape under a straight line between a purple field and a green field. The kicker
+"EGYPT VS SUDAN" is the only context, and it reads as if the two fight over *this* land. That is the opposite of the story (they
+fight over Halaib). `mainSizeV 140` wraps "NO / COUNTRY / CLAIMS THIS" onto 3 lines and eats the map's height.
+**Proposed:**
+```json
+"thumb": {
+  "kicker": "Between Egypt & Sudan",
+  "main": "No country claims this",
+  "mainSize": 124,
+  "mainSizeV": 130,
+  "badge": "~800 sq mi",
+  "badgeSub": "of desert · Bir Tawil",
+  "fit": ["BIRT"],
+  "center": [33.75, 21.87],
+  "mapBox": [1100, 300, 1820, 760],
+  "mapBoxV": [240, 860, 840, 1240]
+}
+```
+Why: the kicker places it honestly. At 130 the main text breaks as "NO COUNTRY / CLAIMS THIS" on 2 lines (it ends at about
+y 725). That frees room for a 600 px-wide slab at y ≈ 900–1180 in the clear band of the gradient (46–72 %). The landscape map
+starts after the text fade (x > 1075). `badgeSub` adds the searchable name. Keeping `fit` on BIRT keeps the subject big: adding
+Halaib would shrink the patch to ~200 px and add only a dark shape. Check: the kicker (21 chars at 64 px) must fit the 980 px
+vertical column. If it wraps, use `"Egypt–Sudan border"`.
+
+## Cover, caption, hashtags, pinned comment
+- **Cover:** the `Thumb` render (above), or **1.9 s** in-reel (title, whisper, Egypt/Sudan labels, amber slab, caption "TWO
+  COUNTRIES BORDER THIS DESERT."). Cover text: **NO COUNTRY CLAIMS THIS**.
+- **Caption (IG / TikTok / YT Shorts):**
+  > Two countries border this desert. Neither will claim it. Here's the trap that keeps Bir Tawil nobody's land.
+  > Bir Tawil, the unclaimed land between Egypt and Sudan: the 1899 border (22nd parallel) vs the 1902 line, and the Halaib Triangle.
+  > Why claiming it means losing the coast, and the 2014 "Kingdom of North Sudan" flag.
+- **Hashtags (5):** #birtawil #maps #geography #history #africa
+- **Pinned comment** (SOURCES.md text, no emoji):
+  "Sources: Anglo-Egyptian agreement (1899, 22°N) and the 1902 administrative line, via Wikipedia/WorldAtlas; Time and CBS News
+  (2014) for the flag. Areas are our calculation from Natural Earth (Bir Tawil 2,025 km², Halaib 18,208 km²); published figures vary.
+  If you could claim Bir Tawil, what would you call your country?"
+
+## Platform notes
+- **TikTok:** post the 50 s cut as is. The loop and rewatch are the levers, so don't add an end card. Use the in-reel frame
+  at 1.9 s or the vertical Thumb as the cover. The caption's first line is the hook, and the keywords "Bir Tawil Egypt Sudan"
+  feed search. A 61–70 s Creator Rewards cut would be a different edit (e.g. a Halaib "who runs it today" beat, already sourced). Don't slow this one down.
+- **Instagram Reels:** sends drive non-follower reach, so lead the caption with the paradox (line 1 as above). Set the cover
+  in the 3:4 grid crop (Thumb vertical is built for it). Hashtags don't add reach, so 3 are enough
+  (#birtawil #maps #geography). No watermark from other apps.
+- **YouTube Shorts:** "viewed vs swiped" is decided in frame 0–1, so fix #1 (bigger slab) matters most here. Title:
+  "The land no country claims (Bir Tawil)". Put the sources in the description as well as in the pinned comment.
+
+VIRALITY SCORE: 86/100 (8.6/10) — strong breakout odds
