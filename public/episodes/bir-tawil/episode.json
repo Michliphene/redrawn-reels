@@ -4,16 +4,7 @@
  "seriesId": "redrawn",
  "episode": 8,
  "da": 2,
- "title": "The land no country claims",
- "whisper": "Bir Tawil, between Egypt and Sudan",
  "data": "data/birtawil.geojson",
- "world": {
-  "center": [
-   34.3,
-   22.0
-  ],
-  "thickness": 0.8
- },
  "voice": {
   "engine": "elevenlabs",
   "voice_id": "nPczCjzI2devNBz1zQrb",
@@ -36,6 +27,15 @@
   },
   "maxPause": 0.28
  },
+ "title": "The land no country claims",
+ "whisper": "Bir Tawil, between Egypt and Sudan",
+ "world": {
+  "center": [
+   34.3,
+   22.0
+  ],
+  "thickness": 0.25
+ },
  "palette": {
   "start": "#E8D9B5",
   "startStroke": "#B9A77E",
@@ -44,8 +44,8 @@
    "HALAIB": "#FF4FA3"
   },
   "static": {
-   "EGY": "#2F4F7A",
-   "SDN": "#3E5E3E"
+   "EGY": "#3A3552",
+   "SDN": "#2C3D35"
   }
  },
  "timeline": {
@@ -58,25 +58,53 @@
  "keywords": [
   "Egypt",
   "Sudan",
-  "nobody",
-  "neither",
-  "princess.",
-  "coast",
-  "Tawil",
-  "Halaib",
-  "recognises"
+  "Neither",
+  "one",
+  "two",
+  "trap.",
+  "coast.",
+  "nobody's",
+  "princess."
  ],
+ "thumb": {
+  "kicker": "Egypt vs Sudan",
+  "main": "No country claims this",
+  "mainSize": 130,
+  "mainSizeV": 140,
+  "badge": "~800 sq mi",
+  "badgeSub": "of desert",
+  "fit": [
+   "BIRT"
+  ],
+  "center": [
+   33.75,
+   21.87
+  ],
+  "mapBox": [
+   1180,
+   360,
+   1680,
+   720
+  ],
+  "mapBoxV": [
+   330,
+   900,
+   750,
+   1180
+  ]
+ },
  "beats": [
   {
    "id": "hook",
-   "say": "About {800|eight hundred} square miles of desert, and no country on Earth will claim it.",
+   "say": "Two countries border this desert. Neither will claim it.",
    "camera": {
     "center": [
-     34.2,
+     34.0,
      22.05
     ],
-    "span": 3.8,
-    "pitch": 54
+    "span": 3.4,
+    "pitch": 62,
+    "yaw": 28
    },
    "actions": [
     {
@@ -86,12 +114,52 @@
      "noLabel": true
     },
     {
+     "type": "label",
+     "text": "Egypt",
+     "at": [
+      33.6,
+      22.75
+     ],
+     "atTime": 0,
+     "hold": 2.6
+    },
+    {
+     "type": "label",
+     "text": "Sudan",
+     "at": [
+      33.6,
+      21.35
+     ],
+     "atTime": 0,
+     "hold": 2.6
+    },
+    {
      "type": "pulse",
      "ids": [
       "BIRT"
      ],
-     "atWord": "claim"
+     "atWord": "desert."
     },
+    {
+     "type": "shake",
+     "amount": 5,
+     "atWord": "Neither"
+    }
+   ]
+  },
+  {
+   "id": "name",
+   "say": "It's called Bir Tawil: about {800|eight hundred} square miles of sand and rock.",
+   "camera": {
+    "center": [
+     33.75,
+     22.0
+    ],
+    "span": 2.6,
+    "pitch": 56,
+    "yaw": 20
+   },
+   "actions": [
     {
      "type": "label",
      "text": "Bir Tawil",
@@ -99,103 +167,50 @@
       33.75,
       21.87
      ],
-     "atTime": 0,
-     "hold": 3.9
-    },
-    {
-     "type": "label",
-     "text": "Egypt",
-     "at": [
-      33.4,
-      22.6
-     ],
-     "atTime": 0,
-     "hold": 1.7
-    },
-    {
-     "type": "label",
-     "text": "Sudan",
-     "at": [
-      33.6,
-      21.3
-     ],
-     "atTime": 0,
-     "hold": 1.7
+     "atWord": "Bir",
+     "hold": 2.6
     },
     {
      "type": "pulse",
      "ids": [
       "BIRT"
      ],
-     "atWord": "desert,"
+     "atWord": "square"
+    },
+    {
+     "type": "label",
+     "text": "~800 sq mi · 2,025 km² (our calc.)",
+     "at": [
+      33.75,
+      21.55
+     ],
+     "atWord": "square",
+     "hold": 2.0
     }
    ]
   },
   {
-   "id": "neighbors",
-   "say": "Not even Egypt or Sudan, right next door.",
+   "id": "line1",
+   "say": "{1899|Eighteen ninety-nine}: the border is a straight line, the 22nd parallel. Line one.",
    "camera": {
     "center": [
-     31.5,
-     22.0
+     34.5,
+     22.15
     ],
-    "span": 20,
-    "pitch": 60,
-    "yaw": -8,
-    "dur": 1.4
+    "span": 6.0,
+    "pitch": 64,
+    "yaw": 30
    },
+   "date": "1899-01-19",
    "actions": [
     {
      "type": "declare",
      "id": "BIRT",
-     "atTime": 4.2,
+     "atTime": 7.95,
      "noLabel": true,
      "quiet": true,
      "color": "#E8D9B5"
     },
-    {
-     "type": "label",
-     "text": "Egypt",
-     "at": [
-      30.0,
-      26.5
-     ],
-     "atWord": "Egypt",
-     "hold": 1.8
-    },
-    {
-     "type": "label",
-     "text": "Sudan",
-     "at": [
-      30.0,
-      16.0
-     ],
-     "atWord": "Sudan,",
-     "hold": 1.6
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "BIRT"
-     ],
-     "atWord": "next"
-    }
-   ]
-  },
-  {
-   "id": "l1899",
-   "say": "{1899|Eighteen ninety-nine}: Britain and Egypt draw Sudan's northern border. A straight line: the 22nd parallel.",
-   "camera": {
-    "center": [
-     34.2,
-     22.195
-    ],
-    "span": 6.5,
-    "pitch": 56,
-    "yaw": 8
-   },
-   "date": "1899-01-19",
-   "actions": [
     {
      "type": "path",
      "coords": [
@@ -288,62 +303,45 @@
        22
       ]
      ],
-     "atWord": "draw",
-     "dur": 2.0,
-     "hold": 13.5,
+     "atWord": "straight",
+     "dur": 1.6,
+     "hold": 14.0,
      "color": "#FFFFFF",
-     "width": 6
+     "width": 7
     },
     {
      "type": "label",
      "text": "22°N",
      "at": [
       31.9,
-      22.35
+      22.3
      ],
-     "atWord": "straight",
-     "hold": 2.6
+     "atWord": "22nd",
+     "hold": 1.8
     },
     {
      "type": "label",
-     "text": "Egypt",
+     "text": "LINE 1 · 1899",
      "at": [
-      32.6,
-      23.0
+      32.4,
+      22.3
      ],
-     "atWord": "Egypt",
-     "hold": 1.6
-    },
-    {
-     "type": "label",
-     "text": "Sudan",
-     "at": [
-      32.6,
-      21.2
-     ],
-     "atWord": "Sudan's",
-     "hold": 1.6
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "BIRT"
-     ],
-     "atWord": "parallel."
+     "atWord": "one.",
+     "hold": 2.4
     }
    ]
   },
   {
-   "id": "l1902",
-   "say": "{1902|Nineteen-oh-two}: a second line, drawn around who actually uses the land.",
+   "id": "line2",
+   "say": "{1902|Nineteen-oh-two}: Britain draws line two, around the tribes who graze the land.",
    "camera": {
     "center": [
-     34.9,
-     22.206
+     35.0,
+     22.2
     ],
     "span": 5.2,
-    "pitch": 52,
-    "yaw": -8
+    "pitch": 62,
+    "yaw": -26
    },
    "date": "1902-11-04",
    "actions": [
@@ -375,11 +373,11 @@
        21.90302
       ]
      ],
-     "atWord": "second",
-     "dur": 1.0,
-     "hold": 7.4,
+     "atWord": "two,",
+     "dur": 0.8,
+     "hold": 9.6,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
     },
     {
      "type": "path",
@@ -697,58 +695,68 @@
        22.00674
       ]
      ],
-     "atWord": "line,",
-     "dur": 1.6,
-     "hold": 7.1,
+     "atWord": "two,",
+     "dur": 1.4,
+     "hold": 9.3,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
     },
     {
      "type": "label",
-     "text": "for the grazing tribes",
+     "text": "LINE 2 · 1902",
+     "at": [
+      35.9,
+      22.95
+     ],
+     "atWord": "two,",
+     "hold": 2.6
+    },
+    {
+     "type": "label",
+     "text": "grazing lands",
      "at": [
       34.9,
-      21.2
+      21.45
      ],
-     "atWord": "uses",
-     "hold": 1.2
+     "atWord": "graze",
+     "hold": 1.4
     }
    ]
   },
   {
    "id": "gives",
-   "say": "It hands this desert patch to Egypt, and this coastal triangle to Sudan.",
+   "say": "Line two gives this patch to Egypt, and this triangle on the coast to Sudan.",
    "camera": {
     "center": [
-     34.9,
-     22.206
+     35.0,
+     22.2
     ],
     "span": 5.2,
-    "pitch": 56,
-    "yaw": 4
+    "pitch": 64,
+    "yaw": -22
    },
    "actions": [
     {
      "type": "declare",
      "id": "BIRT",
-     "atWord": "desert",
+     "atWord": "patch",
      "noLabel": true,
-     "color": "#4F8FE0"
+     "color": "#9C89B8"
     },
     {
      "type": "label",
      "text": "→ Egypt",
      "at": [
       33.75,
-      21.87
+      21.55
      ],
      "atWord": "Egypt,",
-     "hold": 1.5
+     "hold": 1.6
     },
     {
      "type": "declare",
      "id": "HALAIB",
-     "atWord": "coastal",
+     "atWord": "triangle",
      "noLabel": true,
      "color": "#7FB77E"
     },
@@ -757,27 +765,26 @@
      "text": "→ Sudan",
      "at": [
       35.6,
-      22.35
+      22.75
      ],
      "atWord": "Sudan.",
-     "hold": 1.5
+     "hold": 1.4
     }
    ]
   },
   {
    "id": "both",
-   "say": "Today, each country picks the line that gives it the coast. Egypt says the first line. Sudan says the second.",
+   "say": "Now both want the coast. Egypt says line one counts. Sudan says line two.",
    "camera": {
     "center": [
-     35.3,
-     22.3
+     35.4,
+     22.45
     ],
-    "span": 4.2,
-    "pitch": 50,
-    "yaw": 14,
+    "span": 3.6,
+    "pitch": 58,
+    "yaw": 32,
     "cut": true
    },
-   "hideDate": true,
    "actions": [
     {
      "type": "label",
@@ -787,7 +794,7 @@
       22.35
      ],
      "atWord": "coast.",
-     "hold": 1.3
+     "hold": 1.4
     },
     {
      "type": "path",
@@ -881,19 +888,29 @@
        22
       ]
      ],
-     "atWord": "Egypt",
-     "dur": 0.6,
-     "hold": 1.4,
+     "atWord": "one",
+     "dur": 0.5,
+     "hold": 1.8,
      "color": "#FFFFFF",
-     "width": 6
+     "width": 7
     },
     {
      "type": "declare",
      "id": "HALAIB",
-     "atWord": "Egypt",
+     "atWord": "one",
      "noLabel": true,
-     "quiet": true,
-     "color": "#4F8FE0"
+     "color": "#9C89B8",
+     "quiet": true
+    },
+    {
+     "type": "label",
+     "text": "Egypt: line 1",
+     "at": [
+      35.6,
+      22.75
+     ],
+     "atWord": "one",
+     "hold": 1.4
     },
     {
      "type": "path",
@@ -1211,16 +1228,16 @@
        22.00674
       ]
      ],
-     "atWord": "Sudan",
+     "atWord": "two.",
      "dur": 0.6,
-     "hold": 1.2,
+     "hold": 1.6,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
     },
     {
      "type": "declare",
      "id": "HALAIB",
-     "atWord": "Sudan",
+     "atWord": "two.",
      "noLabel": true,
      "color": "#FF4FA3"
     },
@@ -1229,28 +1246,32 @@
      "text": "claimed by both",
      "at": [
       35.6,
-      22.7
+      22.75
      ],
-     "atWord": "second.",
-     "hold": 1.0
+     "atWord": "two.",
+     "hold": 1.5
     }
    ]
   },
   {
-   "id": "catch",
-   "say": "But Egypt's line puts the desert patch in Sudan. Sudan's line puts it in Egypt. So neither claims it.",
+   "id": "trap",
+   "say": "Here's the trap. Under line one, the patch is Sudan's. Under line two, it's Egypt's.",
    "camera": {
     "center": [
-     33.7,
-     21.94
+     33.75,
+     22.0
     ],
-    "span": 2.0,
-    "pitch": 42,
-    "yaw": -14,
+    "span": 2.2,
+    "pitch": 54,
+    "yaw": 24,
     "cut": true
    },
-   "hideDate": true,
    "actions": [
+    {
+     "type": "shake",
+     "amount": 4,
+     "atWord": "trap."
+    },
     {
      "type": "path",
      "coords": [
@@ -1343,29 +1364,29 @@
        22
       ]
      ],
-     "atWord": "Egypt's",
-     "dur": 0.6,
-     "hold": 2.6,
+     "atWord": "one,",
+     "dur": 0.4,
+     "hold": 2.0,
      "color": "#FFFFFF",
-     "width": 6
+     "width": 7
     },
     {
      "type": "declare",
      "id": "BIRT",
-     "atWord": "Egypt's",
+     "atWord": "one,",
      "noLabel": true,
-     "quiet": true,
-     "color": "#7FB77E"
+     "color": "#7FB77E",
+     "quiet": true
     },
     {
      "type": "label",
-     "text": "Egypt's line → Sudan",
+     "text": "line 1 → Sudan",
      "at": [
       33.45,
-      22.2
+      22.3
      ],
-     "atWord": "Egypt's",
-     "hold": 2.4
+     "atWord": "one,",
+     "hold": 1.9
     },
     {
      "type": "path",
@@ -1395,34 +1416,111 @@
        21.90302
       ]
      ],
-     "atWord": "Sudan's",
-     "dur": 0.6,
-     "hold": 1.9,
+     "atWord": "two,",
+     "dur": 0.4,
+     "hold": 2.0,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
     },
     {
      "type": "declare",
      "id": "BIRT",
-     "atWord": "Sudan's",
+     "atWord": "two,",
      "noLabel": true,
-     "quiet": true,
-     "color": "#4F8FE0"
+     "color": "#9C89B8",
+     "quiet": true
     },
     {
      "type": "label",
-     "text": "Sudan's line → Egypt",
+     "text": "line 2 → Egypt",
      "at": [
       33.75,
       21.55
      ],
-     "atWord": "Sudan's",
-     "hold": 1.8
+     "atWord": "two,",
+     "hold": 1.9
+    }
+   ]
+  },
+  {
+   "id": "cost",
+   "say": "So claiming the patch means accepting the other side's line, and losing the coast.",
+   "camera": {
+    "center": [
+     34.6,
+     22.2
+    ],
+    "span": 5.0,
+    "pitch": 62,
+    "yaw": -28
+   },
+   "actions": [
+    {
+     "type": "declare",
+     "id": "BIRT",
+     "atWord": "claiming",
+     "noLabel": true,
+     "color": "#FFC94D",
+     "quiet": true
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "BIRT"
+     ],
+     "atWord": "claiming"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "HALAIB"
+     ],
+     "atWord": "losing"
+    },
+    {
+     "type": "label",
+     "text": "lose this",
+     "at": [
+      35.6,
+      22.35
+     ],
+     "atWord": "losing",
+     "hold": 1.6
+    },
+    {
+     "type": "shake",
+     "amount": 5,
+     "atWord": "coast."
+    }
+   ]
+  },
+  {
+   "id": "size",
+   "say": "And the coast is about nine times bigger. So the patch stays nobody's.",
+   "camera": {
+    "center": [
+     34.6,
+     22.2
+    ],
+    "span": 5.0,
+    "pitch": 64,
+    "yaw": 26
+   },
+   "actions": [
+    {
+     "type": "bigNumber",
+     "value": 9,
+     "suffix": "×",
+     "from": 0.6,
+     "label": "our calculation · 18,208 vs 2,025 km²",
+     "y": 980,
+     "atWord": "nine",
+     "hold": 1.6
     },
     {
      "type": "declare",
      "id": "BIRT",
-     "atWord": "neither",
+     "atWord": "nobody's.",
      "noLabel": true,
      "color": "#FFC94D"
     },
@@ -1431,79 +1529,24 @@
      "text": "claimed by nobody",
      "at": [
       33.75,
-      21.87
+      21.55
      ],
-     "atWord": "neither",
-     "hold": 1.0
-    },
-    {
-     "type": "shake",
-     "amount": 6,
-     "atWord": "neither"
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "BIRT"
-     ],
-     "atWord": "Sudan."
-    }
-   ]
-  },
-  {
-   "id": "size",
-   "say": "The coast is about nine times bigger. Egypt runs it today.",
-   "camera": {
-    "center": [
-     34.9,
-     22.25
-    ],
-    "span": 5.0,
-    "pitch": 58,
-    "yaw": 6
-   },
-   "hideDate": true,
-   "actions": [
-    {
-     "type": "bigNumber",
-     "value": 9,
-     "suffix": "×",
-     "label": "our calculation · 18,208 vs 2,025 km²",
-     "y": 930,
-     "atWord": "nine",
-     "hold": 1.8,
-     "from": 0.6
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "HALAIB"
-     ],
-     "atWord": "bigger."
-    },
-    {
-     "type": "label",
-     "text": "run by Egypt",
-     "at": [
-      35.6,
-      22.35
-     ],
-     "atWord": "runs",
-     "hold": 1.4
+     "atWord": "nobody's.",
+     "hold": 1.8
     }
    ]
   },
   {
    "id": "heaton",
-   "say": "In {2014|twenty fourteen}, an American plants a flag there, so his daughter can be a princess. No government recognises it.",
+   "say": "In {2014|twenty fourteen}, an American plants a flag there, to make his daughter a princess. No country recognises it.",
    "camera": {
     "center": [
-     33.7,
-     21.952
+     33.75,
+     22.0
     ],
     "span": 2.4,
-    "pitch": 44,
-    "yaw": 16
+    "pitch": 52,
+    "yaw": -20
    },
    "date": "2014",
    "actions": [
@@ -1518,7 +1561,7 @@
      "spread": 10,
      "size": 70,
      "atWord": "plants",
-     "hold": 4.0,
+     "hold": 3.6,
      "caption": "\"Kingdom of North Sudan\""
     },
     {
@@ -1531,11 +1574,11 @@
     {
      "type": "callout",
      "text": "NOT RECOGNISED",
-     "sub": "by any government",
+     "sub": "by any country",
      "size": 64,
-     "y": 960,
+     "y": 980,
      "atWord": "No",
-     "hold": 1.4,
+     "hold": 1.5,
      "stamp": "VOID",
      "stampWord": "recognises"
     }
@@ -1543,14 +1586,15 @@
   },
   {
    "id": "loop",
-   "say": "Two lines. One coast. And stuck in between…",
+   "say": "Nobody's land. Even though…",
    "camera": {
     "center": [
-     34.2,
+     34.0,
      22.05
     ],
-    "span": 3.8,
-    "pitch": 54
+    "span": 3.4,
+    "pitch": 62,
+    "yaw": 28
    },
    "hideDate": true,
    "actions": [
@@ -1646,25 +1690,11 @@
        22
       ]
      ],
-     "atWord": "Two",
-     "dur": 0.8,
-     "hold": 2.9,
+     "atWord": "Nobody's",
+     "dur": 0.6,
+     "hold": 2.6,
      "color": "#FFFFFF",
-     "width": 5
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "HALAIB"
-     ],
-     "atWord": "coast."
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "BIRT"
-     ],
-     "atWord": "stuck"
+     "width": 7
     },
     {
      "type": "path",
@@ -1694,11 +1724,11 @@
        21.90302
       ]
      ],
-     "atWord": "lines.",
-     "dur": 0.8,
-     "hold": 2.7,
+     "atWord": "land.",
+     "dur": 0.5,
+     "hold": 2.3,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
     },
     {
      "type": "path",
@@ -2016,40 +2046,20 @@
        22.00674
       ]
      ],
-     "atWord": "lines.",
+     "atWord": "land.",
      "dur": 0.8,
-     "hold": 2.7,
+     "hold": 2.3,
      "color": "#56CFE1",
-     "width": 6
+     "width": 7
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "BIRT"
+     ],
+     "atWord": "though…"
     }
    ]
   }
- ],
- "thumb": {
-  "kicker": "Egypt vs Sudan",
-  "main": "No country claims this",
-  "mainSize": 130,
-  "mainSizeV": 140,
-  "badge": "~800 sq mi",
-  "badgeSub": "of desert",
-  "fit": [
-   "BIRT"
-  ],
-  "center": [
-   33.75,
-   21.87
-  ],
-  "mapBox": [
-   1180,
-   360,
-   1680,
-   720
-  ],
-  "mapBoxV": [
-   330,
-   900,
-   750,
-   1180
-  ]
- }
+ ]
 }

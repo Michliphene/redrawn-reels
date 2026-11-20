@@ -4,21 +4,22 @@ Format: **A · explainer with a logic twist** (each country's own line gives the
 human coda (the 2014 "princess" flag). Not in the bible's backlog: chosen as a follow-up to EP 5 (Antarctica's
 unclaimed land) — same "nobody claims it" code, new place.
 
-## Script (as spoken)
-1. About 800 square miles of desert, and no country on Earth will claim it.
-2. Not even Egypt or Sudan, right next door.
-3. 1899: Britain and Egypt draw Sudan's northern border. A straight line: the 22nd parallel.
-4. 1902: a second line, drawn around who actually uses the land.
-5. It hands this desert patch to Egypt, and this coastal triangle to Sudan.
-6. Today, each country picks the line that gives it the coast. Egypt says the first line. Sudan says the second.
-7. But Egypt's line puts the desert patch in Sudan. Sudan's line puts it in Egypt. So neither claims it.
-8. The coast is about nine times bigger. Egypt runs it today.
-9. In 2014, an American plants a flag there, so his daughter can be a princess. No government recognises it.
-10. Two lines. One coast. And stuck in between… → (loop) "About 800 square miles of desert…"
+## Script (as spoken) — v2 (full redo)
+1. Two countries border this desert. Neither will claim it.
+2. It's called Bir Tawil: about 800 square miles of sand and rock.
+3. 1899: the border is a straight line, the 22nd parallel. Line one.
+4. 1902: Britain draws line two, around the tribes who graze the land.
+5. Line two gives this patch to Egypt, and this triangle on the coast to Sudan.
+6. Now both want the coast. Egypt says line one counts. Sudan says line two.
+7. Here's the trap. Under line one, the patch is Sudan's. Under line two, it's Egypt's.
+8. So claiming the patch means accepting the other side's line, and losing the coast.
+9. And the coast is about nine times bigger. So the patch stays nobody's.
+10. In 2014, an American plants a flag there, to make his daughter a princess. No country recognises it.
+11. Nobody's land. Even though… → (loop) "Two countries border this desert. Neither will claim it."
 
-Wording: "each country picks the line that gives it the coast" describes the two positions (Egypt: 1899 line;
-Sudan: 1902 line), not a motive stated by either government; the Halaib Triangle is the larger, coastal area at
-stake in the dispute (Wikipedia; Time; WorldAtlas).
+Wording: "Now both want the coast" = both states claim the Halaib Triangle (sourced); no motive beyond that is stated.
+"Claiming the patch means accepting the other side's line, and losing the coast" = the logic given by WorldAtlas,
+Wikipedia and Time (2014): a claim to Bir Tawil would imply giving up the claim to Halaib.
 
 ## Facts used
 | Claim (screen / voice) | Value | Source / note |
@@ -33,8 +34,12 @@ stake in the dispute (Wikipedia; Time; WorldAtlas).
 | About nine times bigger | **our calculation**: Halaib 18,208 km² vs Bir Tawil 2,025 km² = 9.0× (NE 10m). Published Halaib figures vary: ~18,000 km² (Wikipedia) to 20,580 km² (TheTravel) → 8.7–10× | `scripts/prep-birtawil.mjs` |
 | 18,208 vs 2,025 km² | our calculation | as above |
 | Egypt runs it today | Halaib Triangle governed and controlled by Egypt | Wikipedia, Halaib Triangle; NE note "Admin. by Egypt; Claimed by Sudan" |
+| Two countries border it, neither claims it | Egypt and Sudan; see the two lines | Wikipedia, Bir Tawil |
+| 1902 line drawn by Britain ("line two") | British administrative boundary of 4 Nov 1902 | Wikipedia, Bir Tawil |
+| Claiming the patch = accepting the other side's line and losing the coast | "if either claimed the Bir Tawil, they lost their claim on the Triangle" | WorldAtlas, "The Egypt-Sudan border dispute"; Wikipedia, Halaib Triangle; Time (2014) |
+| "~800 sq mi · 2,025 km² (our calc.)" label | our calculation | `scripts/prep-birtawil.mjs` |
 | 2014, an American, flag, daughter a princess | Jeremiah Heaton (Virginia) planted a flag in Bir Tawil in June 2014 ("Kingdom of North Sudan") so his daughter Emily could be a princess — date reported as 16 June (most) or 16 July (Time) → screen shows 2014 only | CBS News; Time; UPI; Slate (all July 2014) |
-| No government recognises it | micronation claims to Bir Tawil have not been recognised by any state | Wikipedia, Bir Tawil |
+| No country recognises it | micronation claims to Bir Tawil have not been recognised by any state | Wikipedia, Bir Tawil |
 
 Other figures on screen: 22°N, 1899, 1902, 2014, 19 Jan, 4 Nov, 9×.
 
@@ -55,6 +60,7 @@ None. No flag of the micronation is shown; no portrait.
 ## References
 - Wikipedia, Bir Tawil: https://en.wikipedia.org/wiki/Bir_Tawil
 - Wikipedia, Halaib Triangle: https://en.wikipedia.org/wiki/Halaib_Triangle
+- WorldAtlas, The Egypt–Sudan border dispute: https://www.worldatlas.com/geography/the-egypt-sudan-border-dispute.html
 - WorldAtlas, The Story of Bir Tawil: https://www.worldatlas.com/articles/the-story-of-bir-tawil.html
 - Time, Jeremiah Heaton, Bir Tawil (2014): https://time.com/2982905/jeremiah-heaton-bir-tawil-north-sudan
 - CBS News, "Virginia man claims kingdom so his daughter can be a princess" (2014): https://www.cbsnews.com/news/virginia-man-claims-kingdom-so-his-daughter-can-be-a-princess

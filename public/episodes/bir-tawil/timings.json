@@ -1,762 +1,774 @@
 {
- "duration": 48.503,
+ "duration": 49.945,
  "engine": "elevenlabs",
  "beats": [
   {
    "id": "hook",
    "start": 0.25,
-   "end": 4.012,
+   "end": 3.096,
    "words": [
     {
-     "w": "About",
+     "w": "Two",
      "start": 0.25,
-     "end": 0.54
+     "end": 0.447
     },
     {
-     "w": "800",
-     "start": 0.598,
-     "end": 1.063
+     "w": "countries",
+     "start": 0.517,
+     "end": 0.877
     },
     {
-     "w": "square",
-     "start": 1.098,
-     "end": 1.353
+     "w": "border",
+     "start": 0.923,
+     "end": 1.179
     },
     {
-     "w": "miles",
-     "start": 1.399,
-     "end": 1.678
+     "w": "this",
+     "start": 1.237,
+     "end": 1.365
     },
     {
-     "w": "of",
-     "start": 1.724,
-     "end": 1.783
+     "w": "desert.",
+     "start": 1.411,
+     "end": 1.864
     },
     {
-     "w": "desert,",
-     "start": 1.841,
-     "end": 2.247
-    },
-    {
-     "w": "and",
-     "start": 2.305,
-     "end": 2.421
-    },
-    {
-     "w": "no",
-     "start": 2.491,
-     "end": 2.607
-    },
-    {
-     "w": "country",
-     "start": 2.688,
-     "end": 3.002
-    },
-    {
-     "w": "on",
-     "start": 3.06,
-     "end": 3.141
-    },
-    {
-     "w": "Earth",
-     "start": 3.187,
-     "end": 3.361
+     "w": "Neither",
+     "start": 2.144,
+     "end": 2.411
     },
     {
      "w": "will",
-     "start": 3.408,
-     "end": 3.536
+     "start": 2.446,
+     "end": 2.597
     },
     {
      "w": "claim",
-     "start": 3.57,
-     "end": 3.768
+     "start": 2.631,
+     "end": 2.829
     },
     {
      "w": "it.",
-     "start": 3.814,
-     "end": 4.012
+     "start": 2.875,
+     "end": 3.096
     }
    ]
   },
   {
-   "id": "neighbors",
-   "start": 4.292,
-   "end": 6.963,
+   "id": "name",
+   "start": 3.376,
+   "end": 7.799,
    "words": [
     {
-     "w": "Not",
-     "start": 4.292,
-     "end": 4.454
+     "w": "It's",
+     "start": 3.376,
+     "end": 3.573
     },
     {
-     "w": "even",
-     "start": 4.501,
-     "end": 4.675
+     "w": "called",
+     "start": 3.62,
+     "end": 3.968
     },
     {
-     "w": "Egypt",
-     "start": 4.78,
-     "end": 5.058
+     "w": "Bir",
+     "start": 4.119,
+     "end": 4.305
     },
     {
-     "w": "or",
-     "start": 5.093,
-     "end": 5.139
+     "w": "Tawil:",
+     "start": 4.351,
+     "end": 5.001
     },
     {
-     "w": "Sudan,",
-     "start": 5.186,
-     "end": 5.766
+     "w": "about",
+     "start": 5.222,
+     "end": 5.512
     },
     {
-     "w": "right",
-     "start": 6.046,
-     "end": 6.255
+     "w": "800",
+     "start": 5.57,
+     "end": 6.046
     },
     {
-     "w": "next",
-     "start": 6.313,
-     "end": 6.498
+     "w": "square",
+     "start": 6.093,
+     "end": 6.348
     },
     {
-     "w": "door.",
-     "start": 6.545,
-     "end": 6.963
-    }
-   ]
-  },
-  {
-   "id": "l1899",
-   "start": 7.243,
-   "end": 13.907,
-   "words": [
-    {
-     "w": "1899:",
-     "start": 7.243,
-     "end": 8.496
+     "w": "miles",
+     "start": 6.395,
+     "end": 6.673
     },
     {
-     "w": "Britain",
-     "start": 8.682,
-     "end": 8.972
+     "w": "of",
+     "start": 6.72,
+     "end": 6.789
+    },
+    {
+     "w": "sand",
+     "start": 6.859,
+     "end": 7.161
     },
     {
      "w": "and",
-     "start": 9.019,
-     "end": 9.1
+     "start": 7.219,
+     "end": 7.312
     },
     {
-     "w": "Egypt",
-     "start": 9.205,
-     "end": 9.495
-    },
-    {
-     "w": "draw",
-     "start": 9.518,
-     "end": 9.692
-    },
-    {
-     "w": "Sudan's",
-     "start": 9.75,
-     "end": 10.203
-    },
-    {
-     "w": "northern",
-     "start": 10.342,
-     "end": 10.679
-    },
-    {
-     "w": "border.",
-     "start": 10.726,
-     "end": 11.19
-    },
-    {
-     "w": "A",
-     "start": 11.41,
-     "end": 11.469
-    },
-    {
-     "w": "straight",
-     "start": 11.538,
-     "end": 11.817
-    },
-    {
-     "w": "line:",
-     "start": 11.863,
-     "end": 12.246
-    },
-    {
-     "w": "the",
-     "start": 12.526,
-     "end": 12.63
-    },
-    {
-     "w": "22nd",
-     "start": 12.688,
-     "end": 13.28
-    },
-    {
-     "w": "parallel.",
-     "start": 13.338,
-     "end": 13.907
+     "w": "rock.",
+     "start": 7.37,
+     "end": 7.799
     }
    ]
   },
   {
-   "id": "l1902",
-   "start": 14.187,
-   "end": 18.82,
+   "id": "line1",
+   "start": 8.079,
+   "end": 13.806,
    "words": [
     {
-     "w": "1902:",
-     "start": 14.187,
-     "end": 15.255
-    },
-    {
-     "w": "a",
-     "start": 15.441,
-     "end": 15.499
-    },
-    {
-     "w": "second",
-     "start": 15.603,
-     "end": 15.894
-    },
-    {
-     "w": "line,",
-     "start": 15.94,
-     "end": 16.323
-    },
-    {
-     "w": "drawn",
-     "start": 16.603,
-     "end": 16.87
-    },
-    {
-     "w": "around",
-     "start": 16.905,
-     "end": 17.172
-    },
-    {
-     "w": "who",
-     "start": 17.218,
-     "end": 17.346
-    },
-    {
-     "w": "actually",
-     "start": 17.45,
-     "end": 17.88
-    },
-    {
-     "w": "uses",
-     "start": 17.95,
-     "end": 18.263
+     "w": "1899:",
+     "start": 8.079,
+     "end": 9.449
     },
     {
      "w": "the",
-     "start": 18.31,
-     "end": 18.379
+     "start": 9.729,
+     "end": 9.833
+    },
+    {
+     "w": "border",
+     "start": 9.892,
+     "end": 10.182
+    },
+    {
+     "w": "is",
+     "start": 10.251,
+     "end": 10.356
+    },
+    {
+     "w": "a",
+     "start": 10.402,
+     "end": 10.426
+    },
+    {
+     "w": "straight",
+     "start": 10.472,
+     "end": 10.762
+    },
+    {
+     "w": "line,",
+     "start": 10.809,
+     "end": 11.215
+    },
+    {
+     "w": "the",
+     "start": 11.495,
+     "end": 11.599
+    },
+    {
+     "w": "22nd",
+     "start": 11.657,
+     "end": 12.249
+    },
+    {
+     "w": "parallel.",
+     "start": 12.296,
+     "end": 12.818
+    },
+    {
+     "w": "Line",
+     "start": 13.098,
+     "end": 13.365
+    },
+    {
+     "w": "one.",
+     "start": 13.412,
+     "end": 13.806
+    }
+   ]
+  },
+  {
+   "id": "line2",
+   "start": 14.086,
+   "end": 18.499,
+   "words": [
+    {
+     "w": "1902:",
+     "start": 14.086,
+     "end": 15.107
+    },
+    {
+     "w": "Britain",
+     "start": 15.387,
+     "end": 15.712
+    },
+    {
+     "w": "draws",
+     "start": 15.759,
+     "end": 16.049
+    },
+    {
+     "w": "line",
+     "start": 16.119,
+     "end": 16.362
+    },
+    {
+     "w": "two,",
+     "start": 16.409,
+     "end": 16.815
+    },
+    {
+     "w": "around",
+     "start": 16.838,
+     "end": 17.094
+    },
+    {
+     "w": "the",
+     "start": 17.129,
+     "end": 17.198
+    },
+    {
+     "w": "tribes",
+     "start": 17.245,
+     "end": 17.581
+    },
+    {
+     "w": "who",
+     "start": 17.605,
+     "end": 17.698
+    },
+    {
+     "w": "graze",
+     "start": 17.744,
+     "end": 17.965
+    },
+    {
+     "w": "the",
+     "start": 17.988,
+     "end": 18.057
     },
     {
      "w": "land.",
-     "start": 18.426,
-     "end": 18.82
+     "start": 18.104,
+     "end": 18.499
     }
    ]
   },
   {
    "id": "gives",
-   "start": 19.1,
-   "end": 23.165,
+   "start": 18.779,
+   "end": 22.796,
    "words": [
     {
-     "w": "It",
-     "start": 19.1,
-     "end": 19.205
+     "w": "Line",
+     "start": 18.779,
+     "end": 19.07
     },
     {
-     "w": "hands",
-     "start": 19.251,
-     "end": 19.472
+     "w": "two",
+     "start": 19.116,
+     "end": 19.302
+    },
+    {
+     "w": "gives",
+     "start": 19.383,
+     "end": 19.569
     },
     {
      "w": "this",
-     "start": 19.506,
-     "end": 19.657
-    },
-    {
-     "w": "desert",
-     "start": 19.762,
-     "end": 20.087
+     "start": 19.592,
+     "end": 19.72
     },
     {
      "w": "patch",
-     "start": 20.133,
-     "end": 20.377
+     "start": 19.766,
+     "end": 19.975
     },
     {
      "w": "to",
-     "start": 20.424,
-     "end": 20.482
+     "start": 20.022,
+     "end": 20.08
     },
     {
      "w": "Egypt,",
-     "start": 20.586,
-     "end": 21.004
+     "start": 20.161,
+     "end": 20.579
     },
     {
      "w": "and",
-     "start": 21.284,
-     "end": 21.412
+     "start": 20.73,
+     "end": 20.881
     },
     {
      "w": "this",
-     "start": 21.459,
-     "end": 21.586
-    },
-    {
-     "w": "coastal",
-     "start": 21.668,
-     "end": 22.062
+     "start": 20.927,
+     "end": 21.055
     },
     {
      "w": "triangle",
-     "start": 22.109,
-     "end": 22.538
+     "start": 21.101,
+     "end": 21.566
+    },
+    {
+     "w": "on",
+     "start": 21.601,
+     "end": 21.67
+    },
+    {
+     "w": "the",
+     "start": 21.705,
+     "end": 21.775
+    },
+    {
+     "w": "coast",
+     "start": 21.821,
+     "end": 22.088
     },
     {
      "w": "to",
-     "start": 22.573,
-     "end": 22.631
+     "start": 22.123,
+     "end": 22.181
     },
     {
      "w": "Sudan.",
-     "start": 22.678,
-     "end": 23.165
+     "start": 22.228,
+     "end": 22.796
     }
    ]
   },
   {
    "id": "both",
-   "start": 23.445,
-   "end": 29.09,
+   "start": 23.076,
+   "end": 27.617,
    "words": [
     {
-     "w": "Today,",
-     "start": 23.445,
-     "end": 23.84
+     "w": "Now",
+     "start": 23.076,
+     "end": 23.226
     },
     {
-     "w": "each",
-     "start": 23.886,
-     "end": 24.06
+     "w": "both",
+     "start": 23.296,
+     "end": 23.47
     },
     {
-     "w": "country",
-     "start": 24.118,
-     "end": 24.432
-    },
-    {
-     "w": "picks",
-     "start": 24.513,
-     "end": 24.734
+     "w": "want",
+     "start": 23.517,
+     "end": 23.668
     },
     {
      "w": "the",
-     "start": 24.78,
-     "end": 24.85
-    },
-    {
-     "w": "line",
-     "start": 24.908,
-     "end": 25.14
-    },
-    {
-     "w": "that",
-     "start": 25.175,
-     "end": 25.279
-    },
-    {
-     "w": "gives",
-     "start": 25.326,
-     "end": 25.5
-    },
-    {
-     "w": "it",
-     "start": 25.546,
-     "end": 25.616
-    },
-    {
-     "w": "the",
-     "start": 25.639,
-     "end": 25.709
+     "start": 23.702,
+     "end": 23.772
     },
     {
      "w": "coast.",
-     "start": 25.755,
-     "end": 26.22
+     "start": 23.819,
+     "end": 24.248
     },
     {
      "w": "Egypt",
-     "start": 26.5,
-     "end": 26.755
+     "start": 24.528,
+     "end": 24.818
     },
     {
      "w": "says",
-     "start": 26.79,
-     "end": 26.941
+     "start": 24.853,
+     "end": 25.004
     },
     {
-     "w": "the",
-     "start": 26.976,
-     "end": 27.045
+     "w": "line",
+     "start": 25.062,
+     "end": 25.259
     },
     {
-     "w": "first",
-     "start": 27.092,
-     "end": 27.301
+     "w": "one",
+     "start": 25.306,
+     "end": 25.433
     },
     {
-     "w": "line.",
-     "start": 27.347,
-     "end": 27.661
+     "w": "counts.",
+     "start": 25.48,
+     "end": 25.921
     },
     {
      "w": "Sudan",
-     "start": 27.941,
-     "end": 28.347
+     "start": 26.201,
+     "end": 26.665
     },
     {
      "w": "says",
-     "start": 28.405,
-     "end": 28.567
+     "start": 26.723,
+     "end": 26.886
     },
     {
-     "w": "the",
-     "start": 28.614,
-     "end": 28.684
+     "w": "line",
+     "start": 26.944,
+     "end": 27.153
     },
     {
-     "w": "second.",
-     "start": 28.73,
-     "end": 29.09
+     "w": "two.",
+     "start": 27.188,
+     "end": 27.617
     }
    ]
   },
   {
-   "id": "catch",
-   "start": 29.37,
-   "end": 35.154,
+   "id": "trap",
+   "start": 27.897,
+   "end": 33.02,
    "words": [
     {
-     "w": "But",
-     "start": 29.37,
-     "end": 29.521
-    },
-    {
-     "w": "Egypt's",
-     "start": 29.625,
-     "end": 29.962
-    },
-    {
-     "w": "line",
-     "start": 30.008,
-     "end": 30.252
-    },
-    {
-     "w": "puts",
-     "start": 30.298,
-     "end": 30.484
+     "w": "Here's",
+     "start": 27.897,
+     "end": 28.153
     },
     {
      "w": "the",
-     "start": 30.531,
-     "end": 30.6
+     "start": 28.188,
+     "end": 28.257
     },
     {
-     "w": "desert",
-     "start": 30.682,
-     "end": 30.983
+     "w": "trap.",
+     "start": 28.304,
+     "end": 28.733
     },
     {
-     "w": "patch",
-     "start": 31.018,
-     "end": 31.25
-    },
-    {
-     "w": "in",
-     "start": 31.297,
-     "end": 31.355
-    },
-    {
-     "w": "Sudan.",
-     "start": 31.425,
-     "end": 32.063
-    },
-    {
-     "w": "Sudan's",
-     "start": 32.343,
-     "end": 32.819
+     "w": "Under",
+     "start": 29.013,
+     "end": 29.256
     },
     {
      "w": "line",
-     "start": 32.866,
-     "end": 33.11
+     "start": 29.315,
+     "end": 29.558
     },
     {
-     "w": "puts",
-     "start": 33.156,
-     "end": 33.342
+     "w": "one,",
+     "start": 29.605,
+     "end": 29.918
     },
     {
-     "w": "it",
-     "start": 33.377,
-     "end": 33.446
+     "w": "the",
+     "start": 30.023,
+     "end": 30.127
     },
     {
-     "w": "in",
-     "start": 33.493,
-     "end": 33.551
+     "w": "patch",
+     "start": 30.174,
+     "end": 30.383
     },
     {
-     "w": "Egypt.",
-     "start": 33.609,
-     "end": 33.922
+     "w": "is",
+     "start": 30.417,
+     "end": 30.464
     },
+    {
+     "w": "Sudan's.",
+     "start": 30.51,
+     "end": 31.172
+    },
+    {
+     "w": "Under",
+     "start": 31.452,
+     "end": 31.65
+    },
+    {
+     "w": "line",
+     "start": 31.708,
+     "end": 31.952
+    },
+    {
+     "w": "two,",
+     "start": 31.998,
+     "end": 32.277
+    },
+    {
+     "w": "it's",
+     "start": 32.311,
+     "end": 32.428
+    },
+    {
+     "w": "Egypt's.",
+     "start": 32.532,
+     "end": 33.02
+    }
+   ]
+  },
+  {
+   "id": "cost",
+   "start": 33.3,
+   "end": 37.282,
+   "words": [
     {
      "w": "So",
-     "start": 34.202,
-     "end": 34.33
+     "start": 33.3,
+     "end": 33.416
     },
     {
-     "w": "neither",
-     "start": 34.376,
-     "end": 34.608
+     "w": "claiming",
+     "start": 33.474,
+     "end": 33.776
     },
     {
-     "w": "claims",
-     "start": 34.655,
-     "end": 34.933
+     "w": "the",
+     "start": 33.822,
+     "end": 33.892
     },
     {
-     "w": "it.",
-     "start": 34.98,
-     "end": 35.154
+     "w": "patch",
+     "start": 33.938,
+     "end": 34.194
+    },
+    {
+     "w": "means",
+     "start": 34.252,
+     "end": 34.461
+    },
+    {
+     "w": "accepting",
+     "start": 34.496,
+     "end": 34.949
+    },
+    {
+     "w": "the",
+     "start": 34.995,
+     "end": 35.065
+    },
+    {
+     "w": "other",
+     "start": 35.111,
+     "end": 35.274
+    },
+    {
+     "w": "side's",
+     "start": 35.308,
+     "end": 35.587
+    },
+    {
+     "w": "line,",
+     "start": 35.634,
+     "end": 36.04
+    },
+    {
+     "w": "and",
+     "start": 36.226,
+     "end": 36.377
+    },
+    {
+     "w": "losing",
+     "start": 36.435,
+     "end": 36.69
+    },
+    {
+     "w": "the",
+     "start": 36.736,
+     "end": 36.806
+    },
+    {
+     "w": "coast.",
+     "start": 36.853,
+     "end": 37.282
     }
    ]
   },
   {
    "id": "size",
-   "start": 35.434,
-   "end": 38.697,
+   "start": 37.562,
+   "end": 41.593,
    "words": [
     {
-     "w": "The",
-     "start": 35.434,
-     "end": 35.55
+     "w": "And",
+     "start": 37.562,
+     "end": 37.702
+    },
+    {
+     "w": "the",
+     "start": 37.748,
+     "end": 37.818
     },
     {
      "w": "coast",
-     "start": 35.596,
-     "end": 35.805
+     "start": 37.864,
+     "end": 38.131
     },
     {
      "w": "is",
-     "start": 35.852,
-     "end": 35.933
+     "start": 38.178,
+     "end": 38.259
     },
     {
      "w": "about",
-     "start": 35.979,
-     "end": 36.212
+     "start": 38.305,
+     "end": 38.538
     },
     {
      "w": "nine",
-     "start": 36.316,
-     "end": 36.525
+     "start": 38.642,
+     "end": 38.886
     },
     {
      "w": "times",
-     "start": 36.56,
-     "end": 36.804
+     "start": 38.921,
+     "end": 39.176
     },
     {
      "w": "bigger.",
-     "start": 36.85,
-     "end": 37.233
+     "start": 39.234,
+     "end": 39.641
     },
     {
-     "w": "Egypt",
-     "start": 37.513,
-     "end": 37.85
+     "w": "So",
+     "start": 39.921,
+     "end": 40.037
     },
     {
-     "w": "runs",
-     "start": 37.896,
-     "end": 38.094
+     "w": "the",
+     "start": 40.083,
+     "end": 40.153
     },
     {
-     "w": "it",
-     "start": 38.14,
-     "end": 38.221
+     "w": "patch",
+     "start": 40.211,
+     "end": 40.513
     },
     {
-     "w": "today.",
-     "start": 38.268,
-     "end": 38.697
+     "w": "stays",
+     "start": 40.699,
+     "end": 40.966
+    },
+    {
+     "w": "nobody's.",
+     "start": 41.036,
+     "end": 41.593
     }
    ]
   },
   {
    "id": "heaton",
-   "start": 38.848,
-   "end": 45.04,
+   "start": 41.873,
+   "end": 47.819,
    "words": [
     {
      "w": "In",
-     "start": 38.848,
-     "end": 38.976
+     "start": 41.873,
+     "end": 42.001
     },
     {
      "w": "2014,",
-     "start": 39.022,
-     "end": 39.835
+     "start": 42.048,
+     "end": 42.918
     },
     {
      "w": "an",
-     "start": 40.056,
-     "end": 40.172
+     "start": 43.034,
+     "end": 43.151
     },
     {
      "w": "American",
-     "start": 40.218,
-     "end": 40.578
+     "start": 43.197,
+     "end": 43.545
     },
     {
      "w": "plants",
-     "start": 40.625,
-     "end": 40.88
+     "start": 43.592,
+     "end": 43.847
     },
     {
      "w": "a",
-     "start": 40.915,
-     "end": 40.938
+     "start": 43.87,
+     "end": 43.894
     },
     {
      "w": "flag",
-     "start": 40.985,
-     "end": 41.252
+     "start": 43.94,
+     "end": 44.172
     },
     {
      "w": "there,",
-     "start": 41.298,
-     "end": 41.635
+     "start": 44.219,
+     "end": 44.486
     },
     {
-     "w": "so",
-     "start": 41.915,
-     "end": 42.031
+     "w": "to",
+     "start": 44.766,
+     "end": 44.87
+    },
+    {
+     "w": "make",
+     "start": 44.928,
+     "end": 45.103
     },
     {
      "w": "his",
-     "start": 42.101,
-     "end": 42.182
+     "start": 45.149,
+     "end": 45.265
     },
     {
      "w": "daughter",
-     "start": 42.217,
-     "end": 42.438
-    },
-    {
-     "w": "can",
-     "start": 42.484,
-     "end": 42.577
-    },
-    {
-     "w": "be",
-     "start": 42.623,
-     "end": 42.705
+     "start": 45.323,
+     "end": 45.637
     },
     {
      "w": "a",
-     "start": 42.739,
-     "end": 42.774
+     "start": 45.695,
+     "end": 45.718
     },
     {
      "w": "princess.",
-     "start": 42.821,
-     "end": 43.39
+     "start": 45.764,
+     "end": 46.333
     },
     {
      "w": "No",
-     "start": 43.67,
-     "end": 43.798
+     "start": 46.577,
+     "end": 46.693
     },
     {
-     "w": "government",
-     "start": 43.856,
-     "end": 44.228
+     "w": "country",
+     "start": 46.751,
+     "end": 47.03
     },
     {
      "w": "recognises",
-     "start": 44.274,
-     "end": 44.831
+     "start": 47.088,
+     "end": 47.599
     },
     {
      "w": "it.",
-     "start": 44.878,
-     "end": 45.04
+     "start": 47.645,
+     "end": 47.819
     }
    ]
   },
   {
    "id": "loop",
-   "start": 45.32,
-   "end": 48.503,
+   "start": 48.099,
+   "end": 49.945,
    "words": [
     {
-     "w": "Two",
-     "start": 45.32,
-     "end": 45.494
+     "w": "Nobody's",
+     "start": 48.099,
+     "end": 48.435
     },
     {
-     "w": "lines.",
-     "start": 45.563,
-     "end": 45.993
+     "w": "land.",
+     "start": 48.482,
+     "end": 48.842
     },
     {
-     "w": "One",
-     "start": 46.273,
-     "end": 46.447
+     "w": "Even",
+     "start": 49.062,
+     "end": 49.294
     },
     {
-     "w": "coast.",
-     "start": 46.493,
-     "end": 46.923
-    },
-    {
-     "w": "And",
-     "start": 47.203,
-     "end": 47.342
-    },
-    {
-     "w": "stuck",
-     "start": 47.388,
-     "end": 47.62
-    },
-    {
-     "w": "in",
-     "start": 47.667,
-     "end": 47.725
-    },
-    {
-     "w": "between…",
-     "start": 47.771,
-     "end": 48.503
+     "w": "though…",
+     "start": 49.341,
+     "end": 49.945
     }
    ]
   }
  ],
- "say_hash": "ff2d7ea417e94cc0"
+ "say_hash": "a6def240d3103ee5"
 }
