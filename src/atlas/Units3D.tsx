@@ -132,7 +132,7 @@ export const UnitCaptions: React.FC<{ groups: UnitGroup[]; toPx: (p: Vec3) => [n
       const [x, y] = toPx([G.pos[0], G.y + G.u * (civil ? 0 : 2.4), G.pos[1]]);
       return (
         <div key={i} style={{ position: 'absolute', left: Math.min(Math.max(x, SAFE.left + 150), SAFE.right - 150), top: civil ? y + 54 : y - 64, transform: 'translateX(-50%)', opacity: G.fade }}>
-          <Mono size={24} track={0.1} color={civil ? '#05070c' : '#fff'} style={{ background: civil ? '#F4F1EA' : '#05070c', padding: '8px 12px 7px', border: civil ? 'none' : '2px solid #fff', textShadow: 'none', boxShadow: '5px 5px 0 rgba(0,0,0,0.45)' }}>{G.g.caption}</Mono>
+          <Mono size={28} track={0.1} color={civil ? '#05070c' : '#fff'} style={{ background: civil ? '#F4F1EA' : '#05070c', padding: '8px 12px 7px', border: civil ? 'none' : '2px solid #fff', textShadow: 'none', boxShadow: '5px 5px 0 rgba(0,0,0,0.45)' }}>{G.g.caption}</Mono>
         </div>
       );
     })}
