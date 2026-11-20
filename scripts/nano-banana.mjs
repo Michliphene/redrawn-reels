@@ -4,8 +4,8 @@
 // Reads public/episodes/<id>/plates.json:
 //   { "model": "...", "aspect": "3:4", "style": "shared art-direction prompt",
 //     "plates": [ { "key": "kyphi", "prompt": "...", "ref": "assets/...jpg" (optional reference image), "aspect": "9:16" } ] }
-// Writes public/assets/ai/<id>/<key>.png and public/assets/ai/<id>/plates.log.json (model, prompt, date, label).
-// Every plate is an AI ILLUSTRATION (CLAUDE.md): the log carries the label the episode must show on screen.
+// Writes public/assets/ai/<id>/<key>.png and plates.log.json (model, prompt, date, provenance).
+// Provenance is production metadata, never an automatic visual badge (docs/STUDIO.md §9).
 // Key: GEMINI_API_KEY in the environment or in .env (never committed). Existing plates are kept unless --force.
 import fs from 'node:fs';
 import path from 'node:path';
@@ -69,7 +69,7 @@ for (const p of spec.plates) {
   const data = img?.inlineData?.data ?? img?.inline_data?.data;
   if (!data) { console.error(`✗ ${p.key}: no image in the answer (${json.candidates?.[0]?.finishReason ?? 'no candidate'})`); process.exitCode = 1; continue; }
   fs.writeFileSync(out, Buffer.from(data, 'base64'));
-  log[p.key] = { model, prompt, ref: p.ref ?? null, date: new Date().toISOString(), label: 'AI ILLUSTRATION · NANO BANANA' };
+  log[p.key] = { model, prompt, ref: p.ref ?? null, date: new Date().toISOString(), provenance: 'synthetic illustration' };
   fs.writeFileSync(logPath, JSON.stringify(log, null, 1));
   made++;
   console.log(`✓ ${p.key} → ${path.relative(ROOT, out)} (${((Date.now() - t0) / 1000).toFixed(1)}s)`);

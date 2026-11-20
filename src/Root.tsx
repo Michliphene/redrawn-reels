@@ -8,6 +8,11 @@ import type { EpisodeProps } from './lib/types';
 import { W, H, FPS } from './lib/theme';
 
 const getJson = async (p: string) => (await fetch(staticFile(p))).json();
+const checkedWebGL = (props: any, spec: any) => {
+  const webgl = probeWebGL();
+  if (!webgl && props.requireWebgl && (props.da ?? spec.da ?? 1) >= 2) throw new Error('DA 2 preview requires WebGL; refusing a misleading DA 1 fallback. Check REMOTION_GL.');
+  return webgl;
+};
 
 export const Root: React.FC = () => (
   <>
@@ -36,7 +41,7 @@ export const Root: React.FC = () => (
       const p = props as any;
       const spec = await getJson(`episodes/${p.episodeId}/episode.json`);
       const timings = await getJson(`episodes/${spec.audio ?? p.episodeId}/timings.json`);
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, webgl: probeWebGL() } };
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, webgl: checkedWebGL(p, spec) } };
     }}
   />
   <Composition
@@ -73,7 +78,7 @@ export const Root: React.FC = () => (
         b.actions = b.actions.filter((a: any) => a.type !== 'flagSwap' || (okF.has(a.from) && okF.has(a.to)));
         for (const a of b.actions) if (a.flag && !okF.has(a.flag)) delete a.flag;
       }
-      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys, webgl: probeWebGL() } };
+      return { durationInFrames: Math.ceil((timings.duration + 0.5) * FPS), props: { ...p, spec, timings, geo, credits, lottieKeys: (p as any).lottieKeys, webgl: checkedWebGL(p, spec) } };
     }}
   />
   </>

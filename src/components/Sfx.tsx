@@ -4,7 +4,7 @@ import type { TimedAction } from '../lib/types';
 import { FPS } from '../lib/theme';
 
 /** Sound design derived from the same cue list as the visuals: no manual placement. */
-export const Sfx: React.FC<{ actions: TimedAction[] }> = ({ actions }) => {
+export const Sfx: React.FC<{ actions: TimedAction[]; sparse?: boolean }> = ({ actions, sparse }) => {
   const cues: { t: number; f: string; v: number }[] = [{ t: 0, f: 'boom', v: 0.7 }];
   for (const a of actions) {
     if (a.type === 'declare') cues.push({ t: a.t, f: 'pop', v: 0.45 });
@@ -18,7 +18,7 @@ export const Sfx: React.FC<{ actions: TimedAction[] }> = ({ actions }) => {
   }
   return (
     <>
-      {cues.map((c, i) => (
+      {(sparse ? cues.filter((c) => c.t > 0 && ['stamp', 'boom'].includes(c.f)).map((c) => ({ ...c, v: c.v * 0.6 })) : cues).map((c, i) => (
         <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none">
           <Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} />
         </Sequence>

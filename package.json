@@ -8,12 +8,17 @@
     "validate": "node scripts/validate.mjs",
     "stills": "node scripts/stills.mjs",
     "render": "pipeline/render.sh",
-    "studio": "remotion studio src/index.ts"
+    "studio": "remotion studio src/index.ts",
+    "direct": "node scripts/direct.mjs",
+    "preview": "node scripts/preview.mjs",
+    "test:unit": "tsx --test tests/*.test.ts",
+    "test:posting": "python -m unittest discover -s tests -p test_posting_kit.py"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@elevenlabs/elevenlabs-js": "^2.79.0",
     "@react-three/fiber": "^8.17.10",
     "@remotion/cli": "^4.0.542",
     "@remotion/google-fonts": "^4.0.542",

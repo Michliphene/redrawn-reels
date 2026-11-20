@@ -1,0 +1,286 @@
+{
+  "id": "delta-amex-evidence",
+  "composition": "Money",
+  "series": "RECEIPTS",
+  "seriesId": "receipts",
+  "episode": 5,
+  "da": 2,
+  "title": "Delta's $8.2B card business",
+  "whisper": "a payment, not a profit figure",
+  "source": "Delta + Amex filings · FY2025 · our calc.",
+  "voice": {
+    "engine": "elevenlabs",
+    "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+    "voice_name": "George (ElevenLabs premade)",
+    "model": "eleven_multilingual_v2",
+    "settings": {
+      "stability": 0.45,
+      "similarity_boost": 0.8,
+      "style": 0.25,
+      "use_speaker_boost": true,
+      "speed": 1.1
+    },
+    "maxPause": 0.3
+  },
+  "keywords": [
+    "credit",
+    "card",
+    "swipe",
+    "miles",
+    "profit"
+  ],
+  "scenes": {
+    "plane": {
+      "type": "product",
+      "art": "plane",
+      "price": "$8.2B",
+      "tag": "PAID BY AMEX · 2025",
+      "ghostSafe": true,
+      "camera": {
+        "pitch": 48,
+        "yaw": -18,
+        "fov": 32,
+        "dur": 0.7
+      },
+      "rect": {
+        "left": 500,
+        "right": 910,
+        "top": 650,
+        "bottom": 1020
+      },
+      "layout": {
+        "priceTop": 730,
+        "priceSize": 150,
+        "tagTop": 1070
+      },
+      "motion": {
+        "bob": 0,
+        "spin": 0
+      }
+    },
+    "hundred": {
+      "type": "grid",
+      "camera": {
+        "pitch": 70,
+        "yaw": 0,
+        "fov": 28,
+        "dur": 0.65
+      }
+    },
+    "bars": {
+      "type": "bars",
+      "max": 9,
+      "camera": {
+        "pitch": 16,
+        "yaw": 0,
+        "fov": 28,
+        "cut": true,
+        "dur": 0
+      }
+    },
+    "card": {
+      "type": "card",
+      "cardTitle": "SKYMILES",
+      "cardSub": "AMEX × DELTA",
+      "cardText": true,
+      "camera": {
+        "pitch": 25,
+        "yaw": -8,
+        "fov": 32,
+        "dur": 0.7
+      }
+    },
+    "point": {
+      "type": "lines",
+      "rect": {
+        "top": 930,
+        "bottom": 1150
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "hook",
+      "scene": "plane",
+      "say": "Delta got {$8.2B|eight point two billion dollars} last year. Not from your ticket. From your credit card.",
+      "actions": [
+        {
+          "type": "pulse",
+          "target": "price",
+          "atWord": "$8.2B"
+        },
+        {
+          "type": "ghost",
+          "text": "TICKET",
+          "label": "NOT THE SOURCE",
+          "atWord": "ticket.",
+          "hold": 0.8
+        },
+        {
+          "type": "pulse",
+          "target": "tag",
+          "atWord": "credit"
+        }
+      ]
+    },
+    {
+      "id": "who",
+      "kicker": "Who pays?",
+      "say": "American Express pays Delta for the miles you earn on every swipe.",
+      "actions": []
+    },
+    {
+      "id": "hundred",
+      "scene": "hundred",
+      "kicker": "Where $100 goes",
+      "say": "First, follow {$100|a hundred dollars} Delta takes in.",
+      "actions": []
+    },
+    {
+      "id": "costs",
+      "say": "About {$91|ninety-one dollars} pays for fuel, crews, planes and everything else.",
+      "actions": [
+        {
+          "type": "fill",
+          "count": 91,
+          "color": "#FF6B5E",
+          "amount": "$91",
+          "label": "fuel, crews, planes… (our calc.)",
+          "atWord": "$91",
+          "dur": 2.4
+        }
+      ]
+    },
+    {
+      "id": "keep",
+      "say": "Delta keeps about {$9|nine dollars}.",
+      "actions": [
+        {
+          "type": "hint",
+          "atWord": "keeps"
+        },
+        {
+          "type": "rest",
+          "color": "#FFB648",
+          "amount": "$9",
+          "label": "operating profit (our calc.)",
+          "atWord": "$9"
+        }
+      ]
+    },
+    {
+      "id": "year",
+      "scene": "bars",
+      "kicker": "Profit vs. the card",
+      "say": "For the whole year, that's {$5.8B|five point eight billion dollars} of operating profit.",
+      "actions": [
+        {
+          "type": "big",
+          "value": "$63.4B",
+          "label": "revenue · fiscal 2025"
+        },
+        {
+          "type": "bar",
+          "label": "Operating profit",
+          "value": 5.822,
+          "color": "#FFB648",
+          "atWord": "$5.8B"
+        }
+      ]
+    },
+    {
+      "id": "twist",
+      "say": "Now the card. American Express paid {$8.2B|eight point two billion}. More than Delta's entire profit.",
+      "actions": [
+        {
+          "type": "bar",
+          "label": "Paid by American Express",
+          "value": 8.2,
+          "color": "#C8F53C",
+          "atWord": "$8.2B"
+        }
+      ],
+      "kicker": "Payment ≠ profit"
+    },
+    {
+      "id": "both",
+      "scene": "card",
+      "kicker": "And Amex needs Delta",
+      "say": "And it works both ways. Delta cards are {13%|thirteen percent} of all spending on Amex cards, and {21%|twenty-one percent} of everything Amex lends.",
+      "actions": [
+        {
+          "type": "stat",
+          "value": "13%",
+          "label": "of Amex card spending",
+          "sub": "worldwide · 2025",
+          "atWord": "13%"
+        },
+        {
+          "type": "stat",
+          "value": "21%",
+          "label": "of Amex card loans",
+          "sub": "Dec 31, 2025",
+          "atWord": "21%"
+        }
+      ]
+    },
+    {
+      "id": "target",
+      "say": "Delta is now aiming for {$10B|ten billion dollars} a year.",
+      "actions": []
+    },
+    {
+      "id": "point",
+      "scene": "point",
+      "kicker": "The real product",
+      "say": "So to Delta, you're not just a seat. You're a swipe.",
+      "actions": [
+        {
+          "type": "line",
+          "small": "TO DELTA, YOU ARE",
+          "text": "JUST A SEAT",
+          "strike": true,
+          "atWord": "seat.",
+          "size": 130
+        },
+        {
+          "type": "line",
+          "small": "",
+          "text": "A SWIPE",
+          "color": "#C8F53C",
+          "atWord": "swipe.",
+          "size": 140
+        }
+      ]
+    },
+    {
+      "id": "loop",
+      "scene": "plane",
+      "say": "Which is how…",
+      "actions": []
+    }
+  ],
+  "audio": "delta-amex",
+  "remasterOf": "delta-amex",
+  "print": 28,
+  "whisperAt0": true,
+  "direction": {
+    "opening": "hold",
+    "drift": 0,
+    "light": {
+      "azimuth": -75,
+      "elevation": 36
+    },
+    "sound": "sparse"
+  },
+  "creative": {
+    "direction": "evidence-bench",
+    "thesis": "Hold the evidence still enough to distinguish the Amex payment from Delta operating profit; the familiar plane is context, not the explanation.",
+    "opening": "A held high three-quarter view, amount above the object, no crane.",
+    "composition": "Amount on the left, familiar plane on the right; common-scale bars held together at the comparison.",
+    "rhythm": "Readable held shots, short travel into the cost grid, hard cut into the comparison.",
+    "payoff": "The larger payment bar is not a profit bar; preserve the distinction in the labels.",
+    "sound": "Sparse dry stamps on evidence reveals; retain existing voice and music.",
+    "references": []
+  }
+}

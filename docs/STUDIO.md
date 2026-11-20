@@ -2,10 +2,10 @@
 
 Applies to every series of `public/studio.json`. Series-specific rules stay in the bibles
 (`01_SERIES_AND_TOPICS.md` for REDRAWN, `RECEIPTS_SERIES.md` for RECEIPTS); this document is what they share.
-`CLAUDE.md` is the short version; when the two disagree, fix both.
+`AGENTS.md` is the entry point; `CLAUDE.md` points to it. This manual owns shared editorial policies.
 
 ## 1. Why the art direction changed (the diagnosis)
-Compared frame by frame with the reels that out-perform ours in the same "explain one thing" niche:
+Original design rationale (visual observations, not measured audience outperformance):
 
 | What they do | What DA 1 did | DA 2 answer |
 |---|---|---|
@@ -109,9 +109,9 @@ A shot is five numbers, so the cue sheet can direct it.
 
 | Move | How | When |
 |---|---|---|
-| Opening crane | automatic on frame 0: low and close, rising to the reading angle in 1.5 s | every reel — frame 0 shows a 3D object, not a diagram |
+| Opening | explicit `direction.opening`: `hold`, `reveal` or `crane` | choose for the subject; the old crane remains the fallback for existing episodes |
 | Reading angle | wide view = steep (`pitch` ≈ 55–60), close view = low (≈ 35–45); automatic from `span`, override with `pitch` | default |
-| Orbit | `yaw` ±10–25 between beats; a slow drift is added for free | give depth without changing the subject |
+| Orbit | `yaw` between beats; `direction.drift` scales automatic motion (0 = locked) | use only when the change of angle explains something |
 | Cut | `"cut": true` on a camera | a re-hook: new place, new idea, usually around 40–60 % of the reel |
 | Pull back | next camera with a larger `span` / a `fit` | reveal the whole after a detail |
 | Dolly zoom | `dollyZoom(shot, fov)` (kit function, not yet a cue) | one per reel at most, on the turning point |
@@ -119,6 +119,32 @@ A shot is five numbers, so the cue sheet can direct it.
 
 One move per beat. A camera that moves on every word is as flat as one that never moves.
 After a cut, everything pinned to the previous place (labels, markers, units, paths) is ended automatically.
+
+### Decide a direction before producing assets
+Brand invariants: the three fonts, factual rigour, safe area, crisp readable text, one continuous 3D world.
+The bands allocate reading space, not a universal arrangement of objects. Opening, framing, scale, lighting,
+rhythm, transition and sound are episode choices. A palette change is not a new direction.
+
+Run `npm run direct -- <id>` on a draft cue sheet. It proposes a direction from the subject and existing cues,
+compares the last three same-series episodes (episode number, then id; remasters grouped), and reports structural
+overlap. `--recent id1,id2,id3` overrides that order when production order differs. No model/API call.
+The report is a starting point, not an automatic art director: explain the subject-specific choice in `creative`.
+
+| Direction | Suitable subjects | Real staging difference |
+|---|---|---|
+| Evidence bench | surprising comparison, accounting or disputed claim | held overview, evidence arranged together, direct cut at the comparison, dry accents |
+| Follow one object | price breakdown, journey through a system | close detail first, reveal the whole, spatial travel follows the object, one tactile sound motif |
+| Pressure / countdown | a sourced deadline, accumulation or fragmentation | wide setup, progressive compression of frame and beat lengths, hold before the reveal |
+
+These are prompts for decisions, not presets or a required rotation. A justified repeat is allowed.
+Store `creative: {direction, thesis, opening, composition, rhythm, payoff, sound, references?: [{source, principle}]}`.
+For references, record transferable principles (e.g. a held wide shot before a hard cut), never copy a sequence.
+Without references, use the subject's object, scale, contradiction and reveal as the source of those decisions.
+
+Opt-in controls (absent fields preserve old renders): `direction: {opening, openingSeconds, drift,
+light: {azimuth, elevation}, sound: "sparse"}`. Money also supports `scenes.<id>.camera` `{pitch,yaw,fov,cut,dur}`,
+`rect` for object framing, `layout: {priceTop,priceSize,tagTop}` for the product text, and
+`motion: {bob,spin}` for the product. No random choices. Inspect stills and an excerpt after changing them.
 
 ## 5. The two worlds
 **REDRAWN — the table map (`src/atlas/`).** Every GeoJSON feature is projected once (azimuthal equal-area centred
@@ -181,10 +207,28 @@ Pilots worth scripting first (one per format, existing data and engines):
 1. `npm run validate <id>` — no `✗`. Every `!` is either fixed or explained in `docs/REVIEW_<id>.md`.
 2. `npm run stills <id> -- --n 12 --cols 6` — look at the sheet. Frame 0 must work paused and muted.
 3. One still with `--props '{"guides":true}'` — nothing readable in the red zones.
-4. `pipeline/render.sh <id>`.
+4. `npm run preview -- <id> --from <turning-point> --seconds 8`, then `pipeline/render.sh <id>` once the excerpt works.
 5. `reel-reviewer` agent (clarity, sync, layout, accuracy) then `virality-reviewer` (hook, retention, loop, packaging).
-6. `python3 pipeline/virality_metrics.py <id>`: no gap > 3 s without a new cue, loop SSIM reported, −14 LUFS ±1.5.
+6. `python3 pipeline/virality_metrics.py <id>`: report cue gaps (review holds in context, do not add decoration
+   solely to satisfy a timer), loop SSIM and −14 LUFS ±1.5. These are technical/editorial diagnostics, not audience metrics.
 7. The owner listens once (names, numbers) and ticks the source lines before posting.
+
+## 9. Packaging and image provenance (canonical policy)
+- Reels/TikTok descriptions: 1–2 short English sentences, target 120–220 characters excluding hashtags;
+  one strong idea or precise question, never the script transcript. 0–3 relevant hashtags. No automatic generic CTA.
+- Detailed sources, calculations and credits belong in the pinned comment where the licence and platform allow.
+  Preserve any required in-video attribution or disclosure. Check the particular licence, not a blanket rule.
+- `python pipeline/posting_kit.py <id> --check` checks the local copy before expensive rendering. Empty or
+  overlong descriptions and >3 hashtags stop kit export; copy is never silently truncated. Below 120 is a warning.
+- No decorative AI badge, acronym or watermark is automatically added to images or video. The former internal
+  obligation to stamp every illustration is withdrawn. Keep model, prompt, origin and licence in production manifests.
+- Never present a synthetic illustration as an authentic archive, document or real person's portrait. Use clear
+  contextual wording if needed to prevent that misunderstanding; it is not a universal corner badge.
+- Keep legally required credits and platform-required disclosures in their proper places. At posting time,
+  check the current platform rules and use its native disclosure control where applicable. Do not remove third-party watermarks.
+- Public domain / CC BY preferred; CC BY-SA needs the owner's agreement. No Higgsfield.
+- Historical published episodes/masters are preserved. New edits use a new id; old production notes describe old assets,
+  not instructions to regenerate their badges. Never publish, schedule or push without an explicit request.
 
 ## 8. Resilience — what can fail and what happens
 | Failure | Behaviour | Where |

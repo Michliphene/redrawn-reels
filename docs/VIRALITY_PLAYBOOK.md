@@ -2,7 +2,7 @@
 
 Evidence levels: **[OFFICIAL]** stated by the platform · **[RESEARCH]** peer-reviewed / academic ·
 **[PRACTITIONER]** consensus of creators/agencies (pattern, not proof). Nothing here guarantees virality;
-the agent scores *odds*, never promises.
+the agent gives an editorial assessment, never audience probabilities.
 
 ## 1. What the platforms actually rank on
 | Platform | Signals | Level |
@@ -24,7 +24,7 @@ the agent scores *odds*, never promises.
 
 ## 3. Retention (3 s → end)
 - Spine **Hook → Escalation → Payoff → (loop)**; link beats with "but / therefore", not "and then". [PRACTITIONER]
-- **Something new on screen every ≤2–3 s** (camera move, label, sticker, card). On a single-map video, cue density replaces cuts. [PRACTITIONER]
+- **Review holds longer than 3 s in context.** A new fact, transformation or purposeful camera move may renew attention; adding decorative cues to hit a timer is not a quality goal. [PRACTITIONER]
 - **Mid-video re-hook** around 40–60 % ("But here's the twist…") where curves sag. [PRACTITIONER]
 - **Front-load:** second-strongest moment early, strongest as payoff; never bury the payoff. [PRACTITIONER]
 - **Dual narrative:** voice says one thing, visuals add a complementary layer. [PRACTITIONER]
@@ -41,7 +41,7 @@ the agent scores *odds*, never promises.
 - **Comment triggers (honest):** a genuine question tied to the payoff ("Which border should we redraw next?"), a debated point flagged neutrally. Never rage-bait with false claims.
 
 ## 6. Packaging (outside the video)
-- **Cover frame** readable as a thumbnail (big shape + 3–5 words). **Caption**: keywords people search (Reels/TikTok search = caption + on-screen text, not hashtags); 3–5 relevant hashtags max. [OFFICIAL Mosseri on hashtags + PRACTITIONER]
+- **Cover frame** readable as a thumbnail (big shape + 3–5 words). **Caption**: keywords people search (Reels/TikTok search = caption + on-screen text, not hashtags); 0–3 relevant hashtags; description policy: STUDIO §9. [OFFICIAL Mosseri on hashtags + PRACTITIONER]
 - **Series cue** ("REDRAWN #2") builds follow intent; part-2 hooks for follow-ups.
 - **Trust signals** for our niche: sources in pinned comment, "approximate"/"disputed" tags — protects against "this is wrong" comment pile-ons that kill shares.
 
@@ -54,18 +54,18 @@ the agent scores *odds*, never promises.
 - **US/UK audience:** imperial units first (miles), US/UK reference points.
 
 ## 8. Anti-patterns (score penalties)
-Title card without visual on frame 0 · logo/intro · vague tease · >3 s with nothing new · wall of text · tiny labels ·
+Title card without visual on frame 0 · logo/intro · vague tease · unmotivated long holds · wall of text · tiny labels ·
 captions covering the subject · fact that viewers can't verify (no source) · politically loaded framing on a disputed
 topic · hook promise not paid off · ending with "follow for more" instead of a loop · music louder than voice.
 
 ## 9. DA 2 codes (all series) — what the reviewers check on top of the above
-- **Frame 0 shows depth**: the opening crane shot reads as an object in a space, with the title on it. A flat
+- **Frame 0 shows depth**: the chosen opening reads as an object in a space, with the title on it. A flat
   diagram on frame 0 is an anti-pattern in DA 2.
 - **Safe area**: nothing readable above y=250, below y=1440, or right of x=930 under y=860 (platform header,
   description and action buttons). A hook hidden under the interface is a lost hook.
 - **One accent**: only keywords and the number that matters take the series accent. Two accents = no accent.
-- **Camera as retention**: one move per beat, one cut as the mid-video re-hook, a pull back before the payoff.
-  A camera move counts as "something new on screen" for the ≤ 3 s rule; a caption does not.
+- **Camera as retention**: purposeful holds, moves and cuts chosen for the subject (STUDIO §4), not a required repeated shot list.
+  A camera move matters when it reveals information; cue counts alone do not measure attention.
 - **In-world information**: if a fact is shown as a floating widget where a piece of the world could show it
   (a stack, a pawn, a piece that moves), score it down.
 - **Formats**: second-person ("you are…") and guess-before-the-count reels must pay off in the world, on screen.

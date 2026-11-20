@@ -24,6 +24,7 @@ import { FlagSwap } from '../components/FlagSwap';
 import { Sfx } from '../components/Sfx';
 import { BigNumbers, Archives, Callouts, GeoTexts } from '../components/Overlays';
 import { Stickers, Pointers } from '../components/Stickers';
+import { directedShot } from '../studio/direction';
 
 /**
  * REDRAWN, DA v2 ("tabletop"): the same cue sheet as the flat engine, played on a 3D table with a real camera.
@@ -73,12 +74,13 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   let shot = crane(shotAt(t, keys), k0);
   const back = ease.inOut3(ramp(t, end - 0.62, 0.5));
   if (back > 0) shot = lerpShot(shot, open, back);
+  if (sx.direction) shot = directedShot(shotAt(t, keys), keys[0].shot, t, end, sx.direction, cover);
   const impacts = sched.actions.filter((a) => a.type === 'shake' || a.type === 'dissolve');
   const amp = impacts.reduce((m, a) => Math.max(m, shake(t, a.t, ((a as any).amount ?? 14) / 14)), 0);
   shot = {
     ...shot,
-    yaw: shot.yaw + drift(t, 1, 0.8) * 2.2 * (1 - back) + Math.sin(t * 61) * amp * 0.8,
-    pitch: shot.pitch + drift(t, 2, 0.8) * 1.2 * (1 - back) + Math.cos(t * 53) * amp * 0.7,
+    yaw: shot.yaw + (sx.direction ? 0 : drift(t, 1, 0.8) * 2.2 * (1 - back)) + Math.sin(t * 61) * amp * 0.8,
+    pitch: shot.pitch + (sx.direction ? 0 : drift(t, 2, 0.8) * 1.2 * (1 - back)) + Math.cos(t * 53) * amp * 0.7,
     roll: (shot.roll ?? 0) + Math.sin(t * 47) * amp * 1.0,
   };
   const cam = makeCamera(shot);
@@ -99,7 +101,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   return (
     <AbsoluteFill style={{ background: pal.bg }}>
       <PixelStage look={series.look} camera={cam} bg={pal.bg} fog={[shot.dist * 1.12, shot.dist * 3.1]}>
-        <TableLight shot={shot} />
+        <TableLight shot={shot} {...sx.direction?.light} />
         <Map3D world={world} geo={geo!} t={t} actions={sched.actions} pal={pal} shot={shot} lift={lift} />
         <Units3D groups={groups} t={t} />
       </PixelStage>
@@ -127,7 +129,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}
-      <Sfx actions={sched.actions} />
+      <Sfx actions={sched.actions} sparse={sx.direction?.sound === 'sparse'} />
       <Audio src={staticFile(`episodes/${audioId}/voice.wav`)} />
       <Audio src={staticFile(`episodes/${audioId}/music.wav`)} volume={musicVol} />
     </AbsoluteFill>

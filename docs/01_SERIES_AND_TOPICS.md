@@ -42,10 +42,10 @@ Recommended publishing order (data risk ↑ slowly): 1, 4, 20, 8, 16, 14, 9, 5, 
 > ⚠️ Every hook containing a figure is a draft to verify at scripting time: "39 Germanies" (German Confederation: 39 members at creation, number varied 1815–66), "3 cents an acre" (≈$15M / ≈530M acres), "30 minutes" (Dean Rusk's own account of the 38th-parallel decision), "vanished in a week" (late Oct–early Nov 1918), Partition displacement (estimates 10–20 million).
 
 ## DA 2 — what changes for the script
-- **Frame 0 is an object, not a diagram.** The reel opens on a low crane shot across the subject; the title sits on
-  it. Write the first sentence so it works over that image (a number or a stake, never "this is…" over a map).
-- **Direct the camera in the cue sheet.** One angle per beat (`pitch`, `yaw`), one `cut` around 40–60 % as the
-  re-hook, a pull back before the payoff. Close views go low, wide views go steep.
+- **Frame 0 has a readable subject and stake.** Choose the opening and visual device using STUDIO §4;
+  a crane is one option. Write the first sentence to work over that image.
+- **Direct the camera in the cue sheet.** Select angles, holds, cuts and reveals for the argument;
+  no mandatory cut at a fixed percentage. Keep geography legible and the world continuous.
 - **One header block.** Title and `whisper` on the hook; then date + year + the `chapter` line. No emoji chips.
 - **`keywords`**: the names the reel is about (the countries that leave, the buyer, the price). Numbers highlight
   themselves. Five to fifteen words, not every noun.

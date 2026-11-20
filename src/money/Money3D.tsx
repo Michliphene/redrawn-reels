@@ -16,6 +16,7 @@ import { Kicker, ReadabilityBands, SeriesBar, TitleBlock } from '../studio/ui/Hu
 import { Captions } from '../studio/ui/Captions';
 import { Grain, Guides } from '../studio/ui/Finish';
 import { PRODUCTS } from './props3d';
+import { directedShot } from '../studio/direction';
 
 /**
  * RECEIPTS, DA v2 ("the counter"): the same cue sheet as the flat engine (`Money.tsx`), staged in ONE
@@ -46,7 +47,7 @@ const ProductStation: React.FC<StationProps> = ({ t, def, ox, series }) => {
       <mesh geometry={cyl} position={[0, PLINTH / 2, 0]} scale={[2.7, PLINTH, 2.7]} receiveShadow castShadow><meshLambertMaterial color={pal(series).surface} /></mesh>
       <mesh geometry={cyl} position={[0, PLINTH + 0.02, 0]} scale={[2.45, 0.04, 2.45]}><meshBasicMaterial color={pal(series).accent} /></mesh>
       <mesh geometry={cyl} position={[0, PLINTH + 0.03, 0]} scale={[2.32, 0.05, 2.32]} receiveShadow><meshLambertMaterial color={shade(pal(series).surface, 0.08)} /></mesh>
-      <group position={[0, PLINTH + 0.06 + Math.sin(t * 1.7) * 0.06, 0]} rotation={[0, -0.5 + Math.sin(t * 0.55) * 0.3, 0]}><P.El /></group>
+      <group position={[0, PLINTH + 0.06 + Math.sin(t * 1.7) * (def.motion?.bob ?? 0.06), 0]} rotation={[0, -0.5 + Math.sin(t * 0.55) * (def.motion?.spin ?? 0.3), 0]}><P.El /></group>
       {/* dressing: a stack of coins and the receipt, so the counter reads as a counter */}
       {[[3.5, 1.5, 5], [4.3, 2.2, 3], [3.2, 2.5, 1]].map(([x, z, n], k) => Array.from({ length: n }, (_, j) => (
         <mesh key={`${k}-${j}`} geometry={cyl} position={[x, 0.07 + j * 0.14, z]} scale={[0.42, 0.12, 0.42]} castShadow><meshLambertMaterial color={j % 2 ? '#E8B93A' : '#F4CE57'} /></mesh>
@@ -168,10 +169,10 @@ const printer = (min?: number) => (px: number) => (min ? Math.max(px, min) : px)
 
 const ProductOverlay: React.FC<OverlayProps> = ({ t, acts, def, series, print }) => (
   <>
-    <div style={{ position: 'absolute', left: SAFE.left, top: 870, transform: `scale(${bump(t, acts, 'price')})`, transformOrigin: 'left center' }}>
-      <Display size={Math.min(214, (def.priceSize ?? 270) * 0.8)} color={pal(series).accent} style={{ letterSpacing: '-0.02em' }}>{def.price}</Display>
+    <div style={{ position: 'absolute', left: SAFE.left, top: def.layout?.priceTop ?? 870, transform: `scale(${bump(t, acts, 'price')})`, transformOrigin: 'left center' }}>
+      <Display size={def.layout?.priceSize ?? Math.min(214, (def.priceSize ?? 270) * 0.8)} color={pal(series).accent} style={{ letterSpacing: '-0.02em' }}>{def.price}</Display>
     </div>
-    <div style={{ position: 'absolute', left: SAFE.left, top: 1078, transform: `scale(${bump(t, acts, 'tag')})`, transformOrigin: 'left center' }}>
+    <div style={{ position: 'absolute', left: SAFE.left, top: def.layout?.tagTop ?? 1078, transform: `scale(${bump(t, acts, 'tag')})`, transformOrigin: 'left center' }}>
       <Pill bg={pal(series).ink} color={pal(series).bg} size={print(32)}>{def.tag}</Pill>
     </div>
     {acts.filter((a) => a.type === 'ghost').map((a, i) => {
@@ -307,7 +308,12 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
       return fitShot(f.pts, { ...f.base, ...(def.camera ?? {}) }, { ...f.rect, ...(def.rect ?? {}) });
     };
     const keys: ShotKey[] = [];
-    segs.forEach((s, i) => { if (i === 0 || segs[i - 1].id !== s.id) keys.push({ t: Math.max(0, s.from - (i ? 0.3 : 0)), dur: 0.95, shot: shotOf(s.id) }); });
+    segs.forEach((s, i) => {
+      if (i === 0 || segs[i - 1].id !== s.id) {
+        const camera = spec.scenes[s.id].camera;
+        keys.push({ t: Math.max(0, s.from - (i && !camera?.cut ? 0.3 : 0)), dur: camera?.dur ?? 0.95, cut: camera?.cut, shot: shotOf(s.id) });
+      }
+    });
     return { segs, byScene, acts, origin, keys };
   }, [spec, timings, end]);
 
@@ -323,6 +329,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
   if (back > 0) shot = lerpShot(shot, open, back);
   const orbit = segType === 'grid' ? 3 : 7;
   shot = { ...shot, yaw: shot.yaw + (drift(t, 3, 0.7) * 2 + Math.sin((t - seg.from) * 0.5) * orbit) * (1 - back), pitch: shot.pitch + drift(t, 5, 0.7) * 0.8 * (1 - back) };
+  if (spec.direction) shot = directedShot(shotAt(t, keys), keys[0].shot, t, end, spec.direction, cover);
   const cam = makeCamera(shot);
   const toPx = projector(cam);
 
@@ -331,13 +338,15 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
   const sfx: { t: number; f: string; v: number }[] = [{ t: 0, f: 'boom', v: 0.6 }];
   segs.slice(1).forEach((s, i) => { if (s.id !== segs[i].id) sfx.push({ t: s.from, f: 'whoosh', v: 0.35 }); });
   for (const a of acts) if (a.type !== 'pulse' && a.type !== 'hint') sfx.push({ t: a.t, f: a.type === 'ghost' || a.type === 'rest' ? 'stamp' : 'pop', v: a.type === 'rest' ? 0.7 : 0.45 });
+  const soundCues = spec.direction?.sound === 'sparse'
+    ? acts.filter((a) => ['rest', 'bar', 'ghost'].includes(a.type)).map((a) => ({ t: a.t, f: 'stamp', v: 0.28 })) : sfx;
   const firstFrom = (id: string) => segs.find((x) => x.id === id)?.from ?? 0;
   const dim = segs.reduce((m, s) => (spec.scenes[s.id].type === 'lines' ? Math.max(m, Math.min(ramp(t, s.from, 0.3), 1 - ramp(t, s.to - 0.05, 0.25))) : m), 0);
 
   return (
     <AbsoluteFill style={{ background: P.bg }}>
       <PixelStage look={series.look} camera={cam} bg={P.bg} fog={[shot.dist * 1.25, shot.dist * 3.6]}>
-        <TableLight shot={shot} azimuth={-42} elevation={50} />
+        <TableLight shot={shot} azimuth={spec.direction?.light?.azimuth ?? -42} elevation={spec.direction?.light?.elevation ?? 50} />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[shot.target[0], 0, 0]} receiveShadow>
           <planeGeometry args={[900, 900]} />
           <meshLambertMaterial color={P.bgGlow} />
@@ -386,7 +395,7 @@ export const Money3D: React.FC<Money3DProps> = ({ episodeId, spec, timings, cove
 
       <Grain amount={series.look.grain} />
       {guides && <Guides />}
-      {sfx.map((c, i) => (
+      {soundCues.map((c, i) => (
         <Sequence key={i} from={Math.max(0, Math.round(c.t * FPS))} durationInFrames={FPS * 3} layout="none"><Audio src={staticFile(`sfx/${c.f}.wav`)} volume={c.v} /></Sequence>
       ))}
       <Audio src={staticFile(`episodes/${audioId}/voice.wav`)} />

@@ -169,6 +169,24 @@ export function validate(id) {
     if (timings.duration < 28 || timings.duration > 75) Wn(`voice lasts ${timings.duration.toFixed(1)} s (aim for 40–58 s, or 61–70 s for a monetised TikTok cut)`);
   }
   if ((spec.da ?? 1) >= 2 && spec.keywords && !Array.isArray(spec.keywords)) E('"keywords" must be a list of words');
+  if (spec.direction) {
+    const d = spec.direction;
+    if ((spec.da ?? 1) < 2) E('direction controls require da: 2');
+    if (!['hold', 'reveal', 'crane'].includes(d.opening)) E('direction.opening must be hold, reveal or crane');
+    for (const [key, value, min, max] of [['drift', d.drift, 0, 15], ['openingSeconds', d.openingSeconds, 0.1, 5], ['light.elevation', d.light?.elevation, 10, 85], ['light.azimuth', d.light?.azimuth, -180, 180]]) {
+      if (value !== undefined && (typeof value !== 'number' || !Number.isFinite(value) || value < min || value > max)) E(`direction.${key} must be ${min}–${max}`);
+    }
+    if (d.sound && d.sound !== 'sparse') E('direction.sound must be sparse or omitted');
+    if (!spec.creative) Wn('direction selected without a creative brief: run npm run direct -- ' + id);
+  }
+  if (spec.creative) {
+    for (const key of ['direction', 'thesis', 'opening', 'composition', 'rhythm', 'payoff', 'sound']) if (typeof spec.creative[key] !== 'string' || !spec.creative[key].trim()) E(`creative.${key} must explain the episode choice`);
+    if (spec.creative.references !== undefined && (!Array.isArray(spec.creative.references) || spec.creative.references.some((r) => !r.source || !r.principle))) E('creative.references must list source + observed principle');
+  }
+  for (const [scene, def] of Object.entries(spec.scenes ?? {})) {
+    if (def.camera?.dur !== undefined && (!Number.isFinite(def.camera.dur) || def.camera.dur < 0 || def.camera.dur > 5)) E(`scene ${scene}: camera.dur must be 0–5 seconds`);
+    if (def.camera?.cut !== undefined && typeof def.camera.cut !== 'boolean') E(`scene ${scene}: camera.cut must be boolean`);
+  }
   return { id, errors, warnings, series: sid, composition: comp, da: spec.da ?? 1 };
 }
 

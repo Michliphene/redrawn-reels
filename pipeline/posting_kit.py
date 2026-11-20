@@ -1,80 +1,108 @@
-"""Copy-paste posting kit for one reel.
-
-Usage: python3 pipeline/posting_kit.py <episode_id | EP number>
-Reads deliverables/<id>/POSTING.md (sections: Title, Caption + **Hashtags**, Pinned comment,
-YouTube Shorts description, Platform notes — missing ones are derived) and writes
-deliverables/<id>/POST.md: the exact texts to paste, in a fixed order. Prints it too.
+"""Build a local copy/paste kit; never publish or silently shorten authored copy.
+python pipeline/posting_kit.py <id> [--check]
+Canonical policy: docs/STUDIO.md, Packaging and image provenance.
 """
-import json, os, re, sys, glob
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+
+def read_json(p):
+    return json.loads(Path(p).read_text(encoding='utf-8'))
 
 def resolve(arg):
     if not arg.isdigit():
+        if not re.fullmatch(r'[a-z0-9][a-z0-9-]*', arg):
+            raise ValueError('Use an episode id, not a path.')
         return arg
-    for p in glob.glob(os.path.join(ROOT, "public/episodes/*/episode.json")):
-        ep = json.load(open(p))
-        if ep.get("episode") == int(arg):
-            return ep["id"]
-    sys.exit(f"no episode with number {arg}")
+    hits = [read_json(p)['id'] for p in Path(ROOT, 'public/episodes').glob('*/episode.json')
+            if read_json(p).get('episode') == int(arg)]
+    if len(hits) != 1:
+        raise ValueError(f'Episode {arg}: use an id ({", ".join(sorted(hits)) or "no match"}).')
+    return hits[0]
 
 def sections(md):
     out, cur = {}, None
     for line in md.splitlines():
-        m = re.match(r"^## (.+)", line)
+        m = re.match(r'^## (.+)', line)
         if m:
-            cur = m.group(1).split(" (")[0].strip().lower(); out[cur] = []
+            cur = m.group(1).split(' (')[0].strip().lower()
+            out[cur] = []
         elif cur:
             out[cur].append(line)
-    return {k: "\n".join(v).strip() for k, v in out.items()}
+    return {k: '\n'.join(v).strip() for k, v in out.items()}
 
 def strip_fence(s):
-    m = re.search(r"```\w*\n(.*?)```", s, re.S)
+    m = re.search(r'```\w*\n(.*?)```', s, re.S)
     return (m.group(1) if m else s).strip()
 
-def main():
-    ep_id = resolve(sys.argv[1])
-    ep = json.load(open(os.path.join(ROOT, "public/episodes", ep_id, "episode.json")))
-    kit_dir = os.path.join(ROOT, "deliverables", ep_id)
-    S = sections(open(os.path.join(kit_dir, "POSTING.md")).read())
-    cap_block = S.get("caption", "")
-    m = re.search(r"\*\*Hashtags[^*]*\*\*\s*(.+)", cap_block)
-    hashtags = m.group(1).strip() if m else ""
-    caption = strip_fence(re.split(r"\n\*\*Hashtags", cap_block)[0]).strip()
-    pinned = strip_fence(S.get("pinned comment", ""))
-    # title: Title section (first numbered/bold item) > YouTube title in platform notes > episode title
-    title = None
-    if "title" in S:
-        m = re.search(r"\*\*(.+?)\*\*", S["title"]) or re.search(r"^\d+\.\s*(.+)$", S["title"], re.M)
-        title = m.group(1).strip() if m else None
-    if not title:
-        m = re.search(r'YouTube Shorts:\*\*\s*title\s+"([^"]+)"', S.get("platform notes", ""))
-        title = m.group(1) if m else ep["title"]
-    yt = strip_fence(S["youtube shorts description"]) if "youtube shorts description" in S else None
-    if not yt:
-        src_line = pinned.split("\n")[0]
-        tags = " ".join(hashtags.split()[:3])
-        yt = f"{caption.splitlines()[0]}\n\n{src_line}\n\nREDRAWN: map history in under a minute.\n\n#Shorts {tags}".strip()
-    n = ep.get("episode", "?")
-    out = f"""# REDRAWN EP {n} — post kit ({ep_id})
+def caption_from(s):
+    key = next((k for k in s if k == 'caption' or 'caption' in k or k == 'description'), None)
+    block = s.get(key, '')
+    parts = re.split(r'\n\*\*Hashtags[^\n]*\*\*\s*', block, maxsplit=1, flags=re.I)
+    body = strip_fence(parts[0])
+    tags = re.findall(r'(?<!\w)#[\w]+', body + '\n' + (parts[1] if len(parts) > 1 else s.get('hashtags', '')))
+    body = re.sub(r'(?<!\w)#[\w]+', '', body).strip()
+    return body, ' '.join(dict.fromkeys(tags))
 
-Video: out/{ep_id}.mp4 · Covers: deliverables/{ep_id}/cover_3x4.jpg (Instagram), cover_9x16.png (TikTok/Shorts)
+def check_caption(caption, hashtags):
+    # 120 is a target, 220 the default export ceiling. Never truncate qualifiers or credits.
+    if not caption or len(caption) > 220:
+        raise ValueError(f'Caption is {len(caption)} characters; write 1–2 short sentences, target 120–220, excluding hashtags. Copy was not truncated.')
+    if len(re.findall(r'#[\w]+', hashtags)) > 3:
+        raise ValueError('Use 0–3 relevant hashtags. Copy was not changed.')
+    return ['Caption below the 120-character target; keep it if the idea is complete.'] if len(caption) < 120 else []
+
+def build_kit(ep, s):
+    caption, hashtags = caption_from(s)
+    check_caption(caption, hashtags)
+    pinned = strip_fence(s.get('pinned comment', ''))
+    if not pinned:
+        raise ValueError('Pinned comment missing: preserve sources, calculations and required credits here.')
+    registry = read_json(Path(ROOT, 'public/studio.json'))['series']
+    slug = lambda v: re.sub(r'[^a-z0-9]', '', str(v or '').lower())
+    series = registry.get(ep.get('seriesId')) or next((v for k, v in registry.items()
+        if slug(ep.get('series')) in [slug(k), slug(v['name']), *map(slug, v.get('legacyNames', []))]), None)
+    if series is None:
+        raise ValueError('Unknown series; set seriesId from public/studio.json.')
+    title_block = strip_fence(s.get('title', ep['title']))
+    m = re.search(r'\*\*(.+?)\*\*', title_block) or re.search(r'^\d+\.\s*(.+)$', title_block, re.M)
+    title = m.group(1).strip() if m else title_block.splitlines()[0]
+    yt = strip_fence(s.get('youtube shorts description', '')) or f'{caption}\n\n{pinned}\n\n{series["tagline"]}'
+    return f'''# {series["name"]} EP {ep.get("episode", "?")} — post kit ({ep["id"]})
 
 ## TITLE (YouTube Shorts)
 {title}
 
 ## DESCRIPTION (TikTok / Instagram)
-{caption}
+{caption}{chr(10) + chr(10) + hashtags if hashtags else ""}
 
-{hashtags}
-
-## PINNED COMMENT (post it right after publishing, then pin)
+## PINNED COMMENT
 {pinned}
 
 ## YOUTUBE SHORTS DESCRIPTION
 {yt}
-"""
-    open(os.path.join(kit_dir, "POST.md"), "w").write(out)
-    print(out)
+'''
 
-if __name__ == "__main__":
-    main()
+def main():
+    ep_id = resolve(sys.argv[1])
+    ep = read_json(Path(ROOT, 'public/episodes', ep_id, 'episode.json'))
+    kit_dir = Path(ROOT, 'deliverables', ep_id)
+    s = sections((kit_dir / 'POSTING.md').read_text(encoding='utf-8'))
+    out = build_kit(ep, s)
+    caption, tags = caption_from(s)
+    for warning in check_caption(caption, tags):
+        print('! ' + warning, file=sys.stderr)
+    if '--check' in sys.argv:
+        print(f'{ep_id}: {len(caption)} characters, {len(tags.split())} hashtags; local kit valid')
+    else:
+        (kit_dir / 'POST.md').write_text(out, encoding='utf-8')
+        print(out)
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (ValueError, OSError, IndexError) as e:
+        sys.exit(str(e))

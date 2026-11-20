@@ -5,3 +5,5 @@ data/raw/
 *.part
 public/episodes/*/voice_raw.wav
 public/episodes/*/.el_*.json
+# Local secrets written by `elevenlabs onboard`
+/.env
