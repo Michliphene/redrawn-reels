@@ -1,0 +1,569 @@
+{
+ "id": "poland-1945",
+ "series": "REDRAWN",
+ "seriesId": "redrawn",
+ "episode": 8,
+ "da": 2,
+ "title": "The country that moved west",
+ "whisper": "Poland, 1945",
+ "data": "data/poland1945.geojson",
+ "world": {
+  "center": [
+   20.5,
+   52.0
+  ],
+  "thickness": 0.8
+ },
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Wrocław": "Vrots-wahf",
+   "Lwów": "Lvoof",
+   "Szczecin": "Shcheh-cheen",
+   "Gdańsk": "G-dainsk",
+   "Ossolineum": "Osso-LIN-eh-um",
+   "Wilno": "Veel-no",
+   "Lviv": "Lveev",
+   "Neisse": "Nye-seh",
+   "Breslau": "Bress-lau",
+   "Danzig": "Dan-tsig"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "palette": {
+  "start": "#E0565B",
+  "startStroke": "#F28482",
+  "ids": {
+   "CORE": "#E0565B",
+   "EAST": "#E0565B",
+   "WEST": "#E0565B"
+  }
+ },
+ "timeline": {
+  "from": "1935-01-01",
+  "to": "1995-01-01",
+  "step": 10
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "half",
+  "Soviet",
+  "Union.",
+  "Lviv.",
+  "Vilnius.",
+  "Wrocław.",
+  "Szczecin.",
+  "Gdańsk.",
+  "expelled",
+  "Ossolineum,",
+  "1990."
+ ],
+ "beats": [
+  {
+   "id": "hook",
+   "say": "In {1945|nineteen forty-five}, Poland loses almost half its land. Then it's handed new land, somewhere else.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 56
+   },
+   "actions": [
+    {
+     "type": "reveal",
+     "ids": [
+      "WEST"
+     ],
+     "atTime": 0
+    },
+    {
+     "type": "declare",
+     "id": "EAST",
+     "noLabel": true,
+     "color": "#5C6170",
+     "atTime": 0
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "EAST"
+     ],
+     "atWord": "half"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "WEST"
+     ],
+     "atWord": "new"
+    },
+    {
+     "type": "label",
+     "text": "lost",
+     "at": [
+      26.0,
+      51.3
+     ],
+     "atWord": "half",
+     "hold": 1.6,
+     "plate": true
+    },
+    {
+     "type": "label",
+     "text": "gained",
+     "at": [
+      16.3,
+      52.6
+     ],
+     "atWord": "new",
+     "hold": 1.6,
+     "plate": true
+    }
+   ]
+  },
+  {
+   "id": "before",
+   "say": "This is Poland in {1938|nineteen thirty-eight}.",
+   "camera": {
+    "center": [
+     22.5,
+     51.8
+    ],
+    "span": 17,
+    "pitch": 54,
+    "yaw": -10
+   },
+   "date": "1938",
+   "actions": [
+    {
+     "type": "conceal",
+     "ids": [
+      "WEST"
+     ],
+     "atTime": 5.7
+    },
+    {
+     "type": "declare",
+     "id": "EAST",
+     "noLabel": true,
+     "color": "#E0565B",
+     "atTime": 5.7,
+     "quiet": true
+    },
+    {
+     "type": "label",
+     "text": "Germany",
+     "at": [
+      12.0,
+      51.8
+     ],
+     "atWord": "Poland",
+     "hold": 2.0
+    },
+    {
+     "type": "label",
+     "text": "Soviet Union",
+     "at": [
+      30.0,
+      53.5
+     ],
+     "atWord": "Poland",
+     "hold": 2.0
+    },
+    {
+     "type": "label",
+     "text": "Warsaw",
+     "at": [
+      21.01,
+      52.23
+     ],
+     "atWord": "1938.",
+     "hold": 1.4
+    }
+   ]
+  },
+  {
+   "id": "yalta",
+   "say": "{1945|Forty-five}, at Yalta, the Allies agree: the east goes to the Soviet Union.",
+   "camera": {
+    "center": [
+     25.0,
+     52.0
+    ],
+    "span": 12,
+    "pitch": 50,
+    "yaw": 14
+   },
+   "date": "1945-02-11",
+   "actions": [
+    {
+     "type": "chapter",
+     "text": "Yalta Conference",
+     "atWord": "Yalta,"
+    },
+    {
+     "type": "declare",
+     "id": "EAST",
+     "atWord": "east",
+     "noLabel": true,
+     "color": "#5C6170"
+    },
+    {
+     "type": "shake",
+     "amount": 6,
+     "atWord": "Soviet"
+    },
+    {
+     "type": "label",
+     "text": "−187,000 km² · ~48%",
+     "at": [
+      26.0,
+      51.3
+     ],
+     "atWord": "Soviet",
+     "hold": 2.2,
+     "plate": true
+    }
+   ]
+  },
+  {
+   "id": "cities_e",
+   "say": "Lwów becomes Lviv. Wilno becomes Vilnius.",
+   "camera": {
+    "center": [
+     25.2,
+     52.3
+    ],
+    "span": 10,
+    "pitch": 46,
+    "yaw": -12
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Lwów → Lviv",
+     "at": [
+      24.03,
+      49.84
+     ],
+     "atWord": "Lwów",
+     "hold": 1.9
+    },
+    {
+     "type": "marker",
+     "text": "Wilno → Vilnius",
+     "at": [
+      25.28,
+      54.69
+     ],
+     "atWord": "Wilno",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "potsdam",
+   "say": "In return, Poland gets Germany's east, up to the Oder and Neisse rivers.",
+   "camera": {
+    "center": [
+     16.5,
+     52.6
+    ],
+    "span": 11,
+    "pitch": 50,
+    "yaw": 12,
+    "cut": true
+   },
+   "date": "1945-08-02",
+   "actions": [
+    {
+     "type": "chapter",
+     "text": "Potsdam Conference",
+     "atWord": "return,"
+    },
+    {
+     "type": "reveal",
+     "ids": [
+      "WEST"
+     ],
+     "atWord": "gets"
+    },
+    {
+     "type": "declare",
+     "id": "WEST",
+     "atWord": "Germany's",
+     "noLabel": true,
+     "color": "#E0565B"
+    },
+    {
+     "type": "label",
+     "text": "+112,000 km²",
+     "at": [
+      16.3,
+      52.6
+     ],
+     "atWord": "east,",
+     "hold": 2.0,
+     "plate": true
+    },
+    {
+     "type": "label",
+     "text": "Oder–Neisse line",
+     "at": [
+      14.2,
+      51.8
+     ],
+     "atWord": "Oder",
+     "hold": 2.0
+    }
+   ]
+  },
+  {
+   "id": "cities_w",
+   "say": "Breslau becomes Wrocław. Stettin, Szczecin. Danzig, Gdańsk.",
+   "camera": {
+    "center": [
+     16.5,
+     52.8
+    ],
+    "span": 9,
+    "pitch": 46,
+    "yaw": -14
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Breslau → Wrocław",
+     "at": [
+      17.04,
+      51.11
+     ],
+     "atWord": "Breslau",
+     "hold": 1.8
+    },
+    {
+     "type": "marker",
+     "text": "Stettin → Szczecin",
+     "at": [
+      14.55,
+      53.43
+     ],
+     "atWord": "Stettin,",
+     "hold": 1.4
+    },
+    {
+     "type": "marker",
+     "text": "Danzig → Gdańsk",
+     "at": [
+      18.65,
+      54.35
+     ],
+     "atWord": "Danzig,",
+     "hold": 1.5
+    }
+   ]
+  },
+  {
+   "id": "people",
+   "say": "Then the people move. Millions of Germans are expelled west. Poles from the lost east are resettled in their place.",
+   "camera": {
+    "center": [
+     19.5,
+     52.2
+    ],
+    "span": 15,
+    "pitch": 54,
+    "yaw": 8,
+    "cut": true
+   },
+   "actions": [
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      15.4,
+      52.2
+     ],
+     "count": 14,
+     "spread": 90,
+     "size": 44,
+     "approach": [
+      260,
+      0
+     ],
+     "atWord": "Germans",
+     "hold": 3.0,
+     "caption": "Germans expelled"
+    },
+    {
+     "type": "units",
+     "kind": "crowd",
+     "at": [
+      17.3,
+      51.4
+     ],
+     "count": 12,
+     "spread": 80,
+     "size": 44,
+     "approach": [
+      420,
+      90
+     ],
+     "atWord": "Poles",
+     "hold": 3.0,
+     "caption": "Poles resettled"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "EAST"
+     ],
+     "atWord": "lost"
+    },
+    {
+     "type": "chapter",
+     "text": "the great resettlement",
+     "atWord": "people"
+    }
+   ]
+  },
+  {
+   "id": "library",
+   "say": "Even Lwów's great library, the Ossolineum, ends up in Wrocław.",
+   "camera": {
+    "center": [
+     20.5,
+     50.8
+    ],
+    "span": 12,
+    "pitch": 50,
+    "yaw": -6
+   },
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Lwów",
+     "at": [
+      24.03,
+      49.84
+     ],
+     "atWord": "Lwów's",
+     "hold": 3.4
+    },
+    {
+     "type": "path",
+     "coords": [
+      [
+       24.03,
+       49.84
+      ],
+      [
+       17.04,
+       51.11
+      ]
+     ],
+     "atWord": "library,",
+     "dur": 1.4,
+     "hold": 2.6,
+     "color": "#FFC94D",
+     "width": 5
+    },
+    {
+     "type": "marker",
+     "text": "Ossolineum → Wrocław",
+     "at": [
+      17.04,
+      51.11
+     ],
+     "atWord": "Wrocław.",
+     "hold": 1.6
+    },
+    {
+     "type": "chapter",
+     "text": "the Ossolineum, 1946–47",
+     "atWord": "library,"
+    }
+   ]
+  },
+  {
+   "id": "treaty",
+   "say": "And Germany only accepts this border for good in {1990|nineteen ninety}.",
+   "camera": {
+    "center": [
+     15.5,
+     52.3
+    ],
+    "span": 8,
+    "pitch": 46,
+    "yaw": 16
+   },
+   "date": "1990-11-14",
+   "actions": [
+    {
+     "type": "callout",
+     "text": "BORDER TREATY",
+     "sub": "Germany–Poland · 14 Nov 1990",
+     "size": 64,
+     "y": 980,
+     "atWord": "accepts",
+     "hold": 2.4,
+     "stamp": "FINAL",
+     "stampWord": "1990."
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "WEST"
+     ],
+     "atWord": "border"
+    },
+    {
+     "type": "chapter",
+     "text": "German–Polish Border Treaty",
+     "atWord": "accepts"
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "It never left home. And yet…",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06,
+    "pitch": 56
+   },
+   "hideDate": true,
+   "actions": [
+    {
+     "type": "pulse",
+     "ids": [
+      "CORE",
+      "WEST"
+     ],
+     "atWord": "never"
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "EAST"
+     ],
+     "atWord": "yet…"
+    }
+   ]
+  }
+ ]
+}

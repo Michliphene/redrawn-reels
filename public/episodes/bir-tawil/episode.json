@@ -2,7 +2,6 @@
  "id": "bir-tawil",
  "series": "REDRAWN",
  "seriesId": "redrawn",
- "episode": 8,
  "da": 2,
  "data": "data/birtawil.geojson",
  "voice": {
@@ -1687,5 +1686,6 @@
     }
    ]
   }
- ]
+ ],
+ "shelved": "2026-11-20: not kept by the owner (replaced as EP 8)"
 }

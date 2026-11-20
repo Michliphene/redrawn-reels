@@ -104,6 +104,7 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
     const evs = actions.filter((a) => (a.type === 'reveal' || a.type === 'conceal') && (a as any).ids.includes(id) && a.t <= t).sort((a, b) => a.t - b.t);
     const last = evs[evs.length - 1];
     if (!last) return f.properties?.hidden ? 0 : 1;
+    if (last.t <= 0.05) return last.type === 'reveal' ? 1 : 0; // frame-0 state: already there
     return last.type === 'reveal' ? ease.back(ramp(t, last.t, 0.6), 1.2) : 1 - ease.in3(ramp(t, last.t + 0.35, 0.5));
   };
 
