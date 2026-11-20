@@ -1,0 +1,55 @@
+{
+ "id": "starbucks-10",
+ "composition": "Money",
+ "series": "RECEIPTS",
+ "seriesId": "receipts",
+ "episode": 8,
+ "da": 2,
+ "title": "Inside a Starbucks cup",
+ "whisper": "every cent from the 2026 annual report",
+ "source": "Starbucks 10-K FY2026 (SEC) · per $10: our calc.",
+ "renderer": "raea/starbucks-3d (this cue sheet holds the voice text; the picture is the raea composition)",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "JBFqnCBsd6RMkjVDRZzb",
+  "voice_name": "George (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.25,
+   "use_speaker_boost": true,
+   "speed": 1.04
+  },
+  "maxPause": 0.3
+ },
+ "keywords": ["keep", "third", "half"],
+ "scenes": {
+  "cup": { "type": "product", "art": "cup", "price": "$10", "tag": "YOU PAY", "ghostSafe": true },
+  "pour": { "type": "slice", "total": 10, "meterLabel": "Left of your $10", "keepLabel": "Starbucks keeps" },
+  "year": { "type": "bars", "max": 4 },
+  "point": { "type": "lines", "rect": { "top": 930, "bottom": 1150 } }
+ },
+ "beats": [
+  { "id": "hook", "scene": "cup", "say": "Of every {$10|ten dollars} you pay Starbucks, they keep {97¢|ninety-seven cents}.", "actions": [] },
+  { "id": "open", "scene": "pour", "say": "So where does the rest go? Let's pour it out.", "actions": [] },
+  { "id": "cup", "say": "The cup, the milk, the beans, the food, and getting it all there: {$3.23|three twenty-three}.",
+    "actions": [{ "type": "cut", "share": 32.3, "value": 3.23, "amount": "$3.23", "label": "cup, milk, beans, food, delivery", "color": "#FFB648", "atWord": "$3.23" }] },
+  { "id": "crew", "say": "The baristas' pay and benefits: {$2.69|two sixty-nine}. Almost three times what Starbucks keeps.",
+    "actions": [{ "type": "cut", "share": 26.9, "value": 2.69, "amount": "$2.69", "label": "baristas", "color": "#FF6B5E", "atWord": "$2.69" }] },
+  { "id": "rent", "say": "Rent on the coffeehouse: {80¢|eighty cents}.",
+    "actions": [{ "type": "cut", "share": 8.0, "value": 0.80, "amount": "80¢", "label": "rent", "color": "#7FB2FF", "atWord": "80¢" }] },
+  { "id": "store", "say": "{$1.05|A dollar oh-five} for ads, delivery apps and the rest of the store.",
+    "actions": [{ "type": "cut", "share": 10.5, "value": 1.05, "amount": "$1.05", "label": "ads, delivery apps", "color": "#B98CFF", "atWord": "$1.05" }] },
+  { "id": "office", "say": "{$1.26|A dollar twenty-six} for the head office, equipment and closing stores.",
+    "actions": [{ "type": "cut", "share": 12.6, "value": 1.26, "amount": "$1.26", "label": "head office, gear, closures", "color": "#9AA89F", "atWord": "$1.26" }] },
+  { "id": "keep", "say": "That leaves Starbucks {97¢|ninety-seven cents} on top.",
+    "actions": [{ "type": "cut", "share": 9.7, "value": 0.97, "amount": "97¢", "label": "operating profit", "keep": true, "atWord": "97¢" }] },
+  { "id": "year", "scene": "year", "say": "Across {41,000|forty-one thousand} coffeehouses, that's {$3.7B|three point seven billion dollars} of operating profit.",
+    "actions": [{ "type": "bar", "label": "operating profit", "value": 3.7, "color": "#C8F53C", "atWord": "$3.7B" }] },
+  { "id": "point", "scene": "point", "say": "So what's in your cup is about a third. Running the coffeehouse costs almost half.",
+    "actions": [{ "type": "line", "small": "", "text": "ABOUT A THIRD", "atWord": "third.", "size": 110 },
+                { "type": "line", "small": "", "text": "ALMOST HALF", "color": "#C8F53C", "atWord": "half.", "size": 110 }] },
+  { "id": "loop", "scene": "cup", "say": "Next time you pay…", "actions": [] }
+ ]
+}
