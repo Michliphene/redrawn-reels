@@ -243,6 +243,7 @@ function sheetDoodle(x: number, y: number, w: number, h: number, o: { seed: numb
 }
 
 /* duel: ten copies on the left, one blank page on the right (frame 0 and the end, which loops back to frame 0) */
+let COVER = false; // the thumbnail composition: a "vs." between the two sides
 function duelPage(t: number, mode: "open" | "end" | "still"): string {
   const live = mode !== "still";
   const at = (x: number) => (live ? x : NEVER);
@@ -267,6 +268,7 @@ function duelPage(t: number, mode: "open" | "end" | "still"): string {
   s += ink([[780, 955], [900, 955], [890, 790], [790, 790]], { seed: 4053, w: 4, fill: "#FFFFFF", close: true, amp: 0.6 });
   s += guy(700 + shiver, GROUND, { s: 1.3, c: C.pencil, seed: 4060, pose: { ...POSE.desk(t >= vZero ? 0.5 : 0.15), armR: 70, armL: 80, mood: t >= vZero ? "sad" : "o" } });
   if (t >= scared) s += g(ink([[722, 842], [714, 860], [730, 860]], { seed: 4061, w: 3, c: "#4A8FD9", fill: "#BFE0FF", close: true, amp: 0.4 }), "", ramp(t, scared, 0.2) * reset);
+  if (COVER) s += hand("vs.", 545, 1010, { size: 70, c: C.red });
   // the numbers
   if (t >= vTen) {
     const k = Math.min(1.1, pop(t, vTen, 0.35));
@@ -274,7 +276,7 @@ function duelPage(t: number, mode: "open" | "end" | "still"): string {
   }
   if (t >= vZero) {
     const k = Math.min(1.1, pop(t, vZero, 0.35));
-    s += g(cut("0", 0, 0, 150, C.red) + hand("blank page", 0, 58, { size: 54 }), `translate(780 ${GROUND - 410}) scale(${k.toFixed(3)})`, reset);
+    s += g(cut("0", 0, 0, 150, C.red) + hand("blank page", 0, 58, { size: 54 }), `translate(${COVER ? 840 : 780} ${GROUND - 410}) scale(${k.toFixed(3)})`, reset);
   }
   return s;
 }
@@ -686,4 +688,42 @@ function Copy() {
   );
 }
 
-registerRoot(() => <Composition id="copy" component={Copy} width={W} height={H} fps={FPS} durationInFrames={Math.ceil(DUR * FPS)} />);
+/* ================================================================== the thumbnail (9:16; the 3:4 grid crop is y 240–1680)
+   The end page at "Zero." (10 lessons vs 0), seen from straight above, with the series tag, the title and a question. */
+const COVER_T = CUE.endZero + 0.6;
+function Cover() {
+  COVER = true;
+  const look: V3 = [0, TOP, 0.25], dist = REST * 1.0, p = rad(88.5);
+  const pos: V3 = [look[0], look[1] + dist * Math.sin(p), look[2] + dist * Math.cos(p)];
+  return (
+    <AbsoluteFill style={{ background: "#2B2B33" }}>
+      <Camera3d transform={Transform.fromXyz(...pos).lookingAt(look)} projection={{ Perspective: { fov: rad(FOV) } }} />
+      <ToneMapping mode="tony" exposure={0.6} />
+      <AmbientLight brightness={520} color="#FFF4E6" />
+      <DirectionalLight transform={Transform.fromXyz(-6, 16, 8).lookingAt([0, 0, 0])} illuminance={5200} color="#FFF3E2" shadow_maps_enabled soft_shadow_size={2} />
+      <SpotLight transform={Transform.fromXyz(-9, 15, -6).lookingAt([0, TOP, 0])} intensity={9000000} outer_angle={0.75} inner_angle={0.35} color="#FFE7C2" shadow_maps_enabled />
+      <PointLight transform={Transform.fromXyz(8, 9, 14)} intensity={1200000} color="#E8EEFF" range={40} />
+      <Notebook t={COVER_T} frame={0} />
+      <AbsoluteFill style={{ pointerEvents: "none" }}>
+        <style>{FONTS}</style>
+        <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 58%, rgba(60,40,15,0.22) 100%)" }} />
+        <div style={abs(SAFE.left - 8, ZONES.hud.top + 40, { height: 56, display: "flex", flexDirection: "row", alignItems: "center", columnGap: 14, paddingLeft: 18, paddingRight: 18, background: C.tape, transform: "rotate(-1.5deg)" })}>
+          <div style={{ fontFamily: "JBMono", fontWeight: 800, fontSize: 30, letterSpacing: "0.2em", color: C.ink }}>UNGRADED</div>
+          <div style={{ fontFamily: "JBMono", fontWeight: 700, fontSize: 30, letterSpacing: "0.14em", color: C.red }}>#005</div>
+        </div>
+        <div style={abs(SAFE.left, ZONES.title.top + 50, { width: SAFE.railX - SAFE.left })}>
+          <div style={{ ...display(116), whiteSpace: "pre-line" }}>{"Ten copies vs.\none blank page"}</div>
+          <div style={{ fontFamily: "Instrument", fontStyle: "italic", fontSize: 60, color: C.red, marginTop: 14 }}>Which one teaches you more?</div>
+        </div>
+        <div style={abs(SAFE.left, 1330, { width: SAFE.railX - SAFE.left, fontFamily: "JBMono", fontWeight: 600, fontSize: 28, letterSpacing: "0.04em", textTransform: "uppercase", color: C.ink, opacity: 0.75 })}>Ben Franklin's method · his Autobiography</div>
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+}
+
+registerRoot(() => (
+  <>
+    <Composition id="copy" component={Copy} width={W} height={H} fps={FPS} durationInFrames={Math.ceil(DUR * FPS)} />
+    <Composition id="cover" component={Cover} width={W} height={H} fps={FPS} durationInFrames={1} />
+  </>
+));

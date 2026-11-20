@@ -32,7 +32,7 @@ is the one of #001 (itself inspired by a TikTok by @cryothum, script rewritten f
 ## Facts table
 | On screen / spoken | Status | Source |
 |---|---|---|
-| Franklin leaves school at ten | his own account: grammar school at eight (under a year), then a writing and arithmetic school; "at ten years old I was taken home to assist my father in his business" | Franklin, *Autobiography* (written 1771–1790, first full English edition 1791/1818), Part 1; same in the Franklin Institute FAQ (fi.edu/benjamin-franklin-faq) |
+| Franklin leaves school at ten | his own account: grammar school at eight (under a year), then a writing and arithmetic school; "at ten years old I was taken home to assist my father in his business" | Franklin, *Autobiography* (written 1771–1790; Part 1 first printed in French in 1791, in English from 1793, fuller English text 1818), Part 1; same in the Franklin Institute FAQ (fi.edu/benjamin-franklin-faq) |
 | "As a young apprentice" | apprenticed to his brother James, a printer, at twelve (1718); the *Spectator* passage comes in that period, before he turns "about sixteen" (next paragraph). No exact age on screen for that reason | *Autobiography*, Part 1 |
 | "a volume of The Spectator, a London paper" | "an odd volume of the Spectator. It was the third." The *Spectator*: daily London paper by Addison and Steele, 1711–1712 | *Autobiography*, Part 1 (text checked at library.cscc.edu/franklin, "Beginning Life as a Printer"); Wikipedia "The Spectator (1711)" |
 | "He loves the writing, and wants to write like that" | "I thought the writing excellent, and wished, if possible, to imitate it." | *Autobiography*, Part 1 |
