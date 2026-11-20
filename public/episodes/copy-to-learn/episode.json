@@ -1,0 +1,128 @@
+{
+ "id": "copy-to-learn",
+ "composition": "Doodle",
+ "engine": "raea",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 5,
+ "title": "Ten copies beat one blank page",
+ "whisper": "Copy it. Compare it. Fix it.",
+ "source": "Franklin, Autobiography (1791) · Wikipedia",
+ "keywords": [
+  "copies",
+  "blank",
+  "cheating.",
+  "zero.",
+  "flip.",
+  "copy",
+  "faults,",
+  "fixes",
+  "tolerable",
+  "practice.",
+  "lessons.",
+  "Zero."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "_note": "Rendered in raea (raea/ungraded-005-copy); the beats carry the script and the page, cues live in the composition.",
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "duel",
+   "say": "Ten copies teach you more than one blank page."
+  },
+  {
+   "id": "belief",
+   "scene": "rule",
+   "say": "Most people think copying is cheating."
+  },
+  {
+   "id": "school",
+   "scene": "rule",
+   "say": "And at school, they're right. Copy a friend's homework, and you get a zero."
+  },
+  {
+   "id": "flip",
+   "scene": "rule",
+   "say": "But out here, the rules flip."
+  },
+  {
+   "id": "rule",
+   "scene": "rule",
+   "say": "Nobody grades your copies. They only see what you make after them."
+  },
+  {
+   "id": "real",
+   "scene": "spectator",
+   "say": "Here's a real one. Benjamin Franklin leaves school at ten."
+  },
+  {
+   "id": "find",
+   "scene": "spectator",
+   "say": "As a young apprentice, he finds a volume of The Spectator, a London paper. He loves the writing, and wants to write like that."
+  },
+  {
+   "id": "notes",
+   "scene": "spectator",
+   "say": "So he makes short notes on each sentence, and puts the book away."
+  },
+  {
+   "id": "rewrite",
+   "scene": "compare",
+   "say": "Days later, he rewrites the essays from his notes alone."
+  },
+  {
+   "id": "compare",
+   "scene": "compare",
+   "say": "Then he compares his copy with the original, finds his faults, and fixes them."
+  },
+  {
+   "id": "when",
+   "scene": "compare",
+   "say": "At night, after work. Early in the morning. On Sundays."
+  },
+  {
+   "id": "goal",
+   "scene": "compare",
+   "say": "His goal? In his own words, to become a \"tolerable\" English writer."
+  },
+  {
+   "id": "later",
+   "scene": "compare",
+   "say": "Later, he writes and prints Poor Richard's Almanack."
+  },
+  {
+   "id": "line",
+   "scene": "practice",
+   "say": "Copy someone's work and sign it? Still cheating. Copy to learn? That's practice."
+  },
+  {
+   "id": "picture",
+   "scene": "practice",
+   "say": "Picture learning to draw. Copy a sketch. Copy it again, from memory. Then change one thing, and sign that."
+  },
+  {
+   "id": "count",
+   "scene": "end",
+   "say": "Ten copies? Ten lessons. A blank page you're scared of? Zero."
+  },
+  {
+   "id": "loop",
+   "scene": "end",
+   "say": "So the next time you're stuck, copy something. Because…"
+  }
+ ]
+}

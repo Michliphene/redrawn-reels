@@ -72,11 +72,12 @@ const CUE = {
   stamp: w("hook", "cut"), unstamp: w("twist", "twist."), height: w("jv", "five"), cry: w("friend", "crushed."),
   practice: w("practice", "practises."), bubble: w("told", "got"),
   nos: w("book2", "Publisher"), kid: w("book3", "gives"), more: w("book4", "rest."), book: w("book5", "Harry"),
-  age: w("late1", "man"), sign: w("late1", "deal."), myth: w("late2", "1,009"), callout: w("late3", "counted."),
+  junior: w("jv", "junior"), friend: w("friend", "six"), varsity: w("friend", "varsity."),
+  age: w("late1", "man"), sign: w("late1", "deal."), myth: w("late2", "1,009"), callout: w("late3", "started"),
   legends: w("good", "failures"), shrink: [w("small", "junior"), w("small", "pile"), w("small", "late")],
   turn: w("you", "It's"),
 };
-const NOS = { count: 12, dur: 2.6 }, AGE = { to: 62, dur: 1.8 }, CALLOUT = { text: "late still counts", hold: 1.6, at: [560, 420] as Pt };
+const NOS = { count: 12, dur: 2.6 }, AGE = { to: 62, dur: 1.8 }, CALLOUT = { text: "late still counts", hold: 1.6, at: [90, 770] as Pt };
 
 /* ================================================================== pages (one scene = one page; a page turn between) */
 type PageId = "open" | "nos" | "late" | "shrink" | "rule" | "end";
@@ -233,6 +234,7 @@ const BOARD = { x: 560, y: 650, w: 370, h: 300 };
 function tryoutPage(t: number, live: boolean): string {
   const at = (x: number) => (live ? x : NEVER);
   const stamp = at(CUE.stamp), unstamp = at(CUE.unstamp), height = at(CUE.height), cry = at(CUE.cry), practice = at(CUE.practice), bubble = at(CUE.bubble);
+  const junior = at(CUE.junior), friend = at(CUE.friend), varsity = at(CUE.varsity);
   const on = (x: number) => t >= x;
   const sad = on(cry) && !on(practice), shooting = on(practice);
   const ph = shooting ? ((t - practice) % 1.1) / 1.1 : 0;
@@ -246,8 +248,14 @@ function tryoutPage(t: number, live: boolean): string {
   s += hand("Varsity", bx + 30, by + 64, { size: 46, anchor: "start" }) + hand("JV", bx + 210, by + 64, { size: 46, anchor: "start" });
   for (let k = 0; k < 5; k++) s += ink([[bx + 30, by + 110 + k * 42], [bx + 150 - (k % 2) * 20, by + 110 + k * 42]], { seed: 3010 + k, w: 3, c: C.pencil, amp: 0.5 });
   for (let k = 0; k < 5; k++)
-    s += k === 2 ? hand("Michael", bx + 210, by + 122 + k * 42, { size: 40, anchor: "start", hl: on(unstamp) ? C.hl : undefined })
+    s += k === 2 ? g(hand("Michael", bx + 210, by + 122 + k * 42, { size: 40, anchor: "start", hl: on(unstamp) ? C.hl : undefined }),
+        `translate(${bx + 270} ${by + 110 + k * 42}) scale(${(1 + 0.18 * hit(t, junior, 0.12, 0.6)).toFixed(3)}) translate(${-(bx + 270)} ${-(by + 110 + k * 42)})`)
       : ink([[bx + 210, by + 110 + k * 42], [bx + 330 - (k % 2) * 25, by + 110 + k * 42]], { seed: 3020 + k, w: 3, c: C.pencil, amp: 0.5 });
+  if (on(varsity)) { // the friend's line in the Varsity column: highlighted and ticked as the voice says "varsity."
+    const vy = by + 110 + 4 * 42, d = ramp(t, varsity, 0.3);
+    s += `<rect x="${bx + 22}" y="${vy - 16}" width="${f1(136 * d)}" height="24" rx="5" fill="${C.mint}" opacity="0.85"/>`;
+    s += ink([[bx + 150, vy - 4], [bx + 162, vy + 10], [bx + 184, vy - 20]], { seed: 3025, w: 6, c: C.red, draw: ramp(t, varsity + 0.15, 0.25) });
+  }
   if (on(stamp)) {
     const k = Math.min(1.15, pop(t, stamp, 0.25)), x = on(unstamp) ? ease.out3(ramp(t, unstamp, 0.3)) : 0;
     const body = `<rect x="-140" y="-62" width="280" height="124" rx="12" fill="none" stroke="${C.red}" stroke-width="10" opacity="0.9"/>` +
@@ -257,7 +265,7 @@ function tryoutPage(t: number, live: boolean): string {
   if (on(unstamp)) s += hand("not cut: JV", bx + bw / 2, by + bh + 70, { size: 64, hl: C.mint, opacity: ramp(t, unstamp + 0.3, 0.2) });
   s += guy(190, GROUND, { s: 1.3, hero: true, seed: 3040, pose: hero });
   s += guy(390, GROUND, { s: 1.75, c: C.pencil, seed: 3050, pose: { ...POSE.stand(t, 1), mood: "smile" } });
-  if (on(height)) s += hand(`5'9"`, 190, 790, { size: 52, c: C.red, opacity: ramp(t, height, 0.2) }) + hand(`6'7"`, 330, 668, { size: 52, opacity: ramp(t, height + 0.3, 0.2) });
+  if (on(height)) s += hand(`5'9"`, 190, 790, { size: 52, c: C.red, opacity: ramp(t, height, 0.2) }) + (on(friend) ? hand(`6'7"`, 330, 668, { size: 52, opacity: ramp(t, friend, 0.2) }) : "");
   if (sad) for (let k = 0; k < 2; k++) { const p = ((t - cry) * 0.9 + k * 0.5) % 1; s += ink([[205 + k * 18, 860 + p * 60], [200 + k * 18, 878 + p * 60], [210 + k * 18, 878 + p * 60]], { seed: 3060 + k, w: 3, c: "#4A8FD9", fill: "#BFE0FF", close: true, amp: 0.4 }); }
   if (shooting) {
     const bxp = lerp(250, 470, ph), byp = 820 - Math.sin(ph * Math.PI) * 330;
@@ -285,7 +293,7 @@ function nosPage(t: number): string {
       ink([[-70, -40], [0, 5], [70, -40]], { seed: 3140 + k, w: 2.5, c: C.pencil, amp: 0.5 }) + cut("NO", 0, 22, 44, C.red);
     s += g(body, `translate(${f1(lerp(900, x, p))} ${f1(lerp(500, y, p))}) rotate(${((k * 29) % 24) - 12})`);
   }
-  if (got > 0 && !kidOn) s += hand(`no. ${got}`, 520, 720, { size: 64, c: C.red });
+  if (got > 0 && !kidOn) s += hand(got < n ? `no. ${got}` : "no. 12?", 520, 720, { size: 64, c: C.red });
   if (kidOn) {
     const k = ease.out3(ramp(t, CUE.kid, 0.6));
     const pages = (j: Joints) => g(ink([[-30, -40], [30, -40], [30, 30], [-30, 30]], { seed: 3175, w: 3.5, fill: "#FFFFFF", close: true, amp: 0.5 }) +
@@ -306,7 +314,7 @@ function nosPage(t: number): string {
 /* late: an age line to 62, a contract, and a number with no source */
 function latePage(t: number): string {
   const a = t >= CUE.age ? AGE.to * ease.inOut3(ramp(t, CUE.age, AGE.dur)) : 0;
-  const X0 = 110, X1 = 960, Y = 1000, ax = X0 + (X1 - X0) * (a / 80);
+  const X0 = 110, X1 = 880, Y = 1000, ax = X0 + (X1 - X0) * (a / 80);
   const signOn = t >= CUE.sign;
   let s = ink(seg([X0, Y], [X1, Y], 12), { seed: 3200, w: 5 });
   for (const k of [0, 10, 20, 30, 40, 50, 60, 70, 80]) {
@@ -321,12 +329,12 @@ function latePage(t: number): string {
     s += g(ink([[-150, -130], [150, -130], [150, 130], [-150, 130]], { seed: 3230, w: 5, fill: "#FFFFFF", close: true }) + hand("franchise deal", 0, -74, { size: 42 }) +
       [-30, -2, 26].map((yy, i) => `<line x1="-110" y1="${yy}" x2="${110 - i * 30}" y2="${yy}" stroke="${C.pencil}" stroke-width="3"/>`).join("") +
       ink([[-100, 90], [-60, 64], [-30, 96], [10, 66], [40, 94], [90, 70]], { seed: 3231, w: 5, draw: ramp(t, CUE.sign + 0.3, 0.5) }) + hand("#1 · 1952", 0, 170, { size: 44, c: C.red }),
-      `translate(780 700) rotate(4) scale(${Math.min(1.08, pop(t, CUE.sign, 0.35)).toFixed(3)})`);
+      `translate(780 560) rotate(4) scale(${Math.min(1.08, pop(t, CUE.sign, 0.35)).toFixed(3)})`);
   if (t >= CUE.myth) {
     const o = ramp(t, CUE.myth, 0.2), q = ramp(t, CUE.myth + 1.2, 0.3);
     s += g(`<rect x="50" y="420" width="575" height="320" fill="${C.paper}"/>` + cut("1,009 NO’S", 80, 560, 130, C.red, { anchor: "start", opacity: 1 - q * 0.45 }) +
-      (q > 0 ? ink([[70, 520], [380, 500], [690, 530]], { seed: 3240, w: 11, draw: q }) : "") +
-      hand("source? nobody can find one", 84, 640, { size: 54, anchor: "start", opacity: q }) +
+      (q > 0 ? ink([[70, 520], [340, 500], [610, 528]], { seed: 3240, w: 11, draw: q }) : "") +
+      hand("source? nobody can find one", 84, 640, { size: 48, anchor: "start", opacity: q }) +
       g(circle(0, 0, 34, { seed: 3241, w: 6 }) + ink([[24, 24], [62, 62]], { seed: 3242, w: 9 }), "translate(560 690)", q), "", o);
   }
   const co = life(t, CUE.callout, CALLOUT.hold);
@@ -338,7 +346,7 @@ function latePage(t: number): string {
 function shrinkPage(t: number): string {
   let s = ground();
   if (t < CUE.legends) return s;
-  const big = ["CUT!", "12 NO’S", "1,009 NO’S"], small = ["JV team", "a pile of no’s", "a late start"];
+  const big = ["CUT!", "~12 NO’S", "1,009 NO’S"], small = ["JV team", "a pile of no’s", "a late start"];
   big.forEach((b, i) => {
     const sh = t >= CUE.shrink[i] ? ease.inOut3(ramp(t, CUE.shrink[i], 0.5)) : 0;
     const y = 640 + i * 170, x = 540, k = Math.min(1.08, pop(t, CUE.legends + i * 0.15, 0.35));
@@ -465,41 +473,55 @@ const display = (size: number, c = C.ink): React.CSSProperties => ({ fontFamily:
 
 /* notebook captions: ink words, keywords and numbers in red under a stroke of highlighter */
 type Page = { words: Word[]; lines: Word[][] };
-const CAP = { size: 90 };
+const CAP = { size: 90, hold: 0.5 };
+/* pages of at most two lines, measured with the overlay's own font (BricolageCut, uppercase, 0.24 em word gap). A page
+   ends on punctuation (a closing quote too); when one would overflow, it ends at the last clause anchor in BREAK_AFTER. */
+const BREAK_AFTER = new Set(["hook:cut", "book1:book", "book3:home,", "late1:62", "late2:rejected", "late2:number", "good:failures", "you:end"]);
+const WEAK_END = new Set(["the", "a", "an", "to", "his", "of", "he", "her", "in", "and", "is", "was", "that"]);
+const PHRASE_END = /[.,:;!?…—]["”’]?$/;
 const PAGES_CAP: Page[] = (() => {
-  const maxChars = Math.floor((SAFE.railX - SAFE.left) / (CAP.size * 0.47));
-  const out: Page[] = [];
-  const close = (ws: Word[]) => {
-    if (!ws.length) return;
-    const lines: Word[][] = [], total = ws.map((x) => x.w).join(" ").length;
-    if (total <= maxChars || ws.length === 1) lines.push(ws);
-    else {
-      let best = 1, bestDiff = Infinity;
-      for (let i = 1; i < ws.length; i++) {
-        const a = ws.slice(0, i).map((x) => x.w).join(" ").length, b = ws.slice(i).map((x) => x.w).join(" ").length;
-        if (a <= maxChars && b <= maxChars && Math.abs(a - b) < bestDiff) { best = i; bestDiff = Math.abs(a - b); }
-      }
-      lines.push(ws.slice(0, best), ws.slice(best));
+  const maxW = SAFE.railX - SAFE.left, gap = CAP.size * 0.24;
+  const wordW = (s: string) => measure(s.toUpperCase(), CAP.size, "cut") - 0.01 * CAP.size * Math.max(0, [...s].length - 1);
+  const lineW = (ws: Word[]) => ws.reduce((a, x) => a + wordW(x.w), 0) + gap * Math.max(0, ws.length - 1);
+  type W2 = Word & { brk: boolean };
+  const split = (ws: W2[]): Word[][] | null => {
+    if (ws.length === 1 || lineW(ws) <= maxW) return [ws];
+    let best = -1, score = Infinity;
+    for (let i = 1; i < ws.length; i++) {
+      const prev = ws[i - 1].w;
+      if (prev.startsWith('"')) continue; // never leave an opening quote at the end of a line
+      const a = lineW(ws.slice(0, i)), b = lineW(ws.slice(i));
+      if (a > maxW || b > maxW) continue;
+      const sc = Math.abs(a - b) - (ws[i - 1].brk ? 400 : 0) - (PHRASE_END.test(prev) ? 150 : 0) + (WEAK_END.has(prev.toLowerCase()) ? 250 : 0);
+      if (sc < score) { score = sc; best = i; }
     }
-    out.push({ words: ws, lines });
+    return best < 0 ? null : [ws.slice(0, best), ws.slice(best)];
   };
+  const out: Page[] = [];
+  const close = (ws: W2[]) => { if (ws.length) out.push({ words: ws, lines: split(ws) ?? [ws] }); };
   for (const b of TIMINGS.beats as any[]) {
-    let cur: Word[] = [];
-    for (const x of b.words as Word[]) {
-      const len = cur.map((y) => y.w).join(" ").length + x.w.length + 1;
-      if (cur.length && len > maxChars * 2 - 2) { close(cur); cur = []; }
+    let cur: W2[] = [];
+    for (const x0 of b.words as Word[]) {
+      const x: W2 = { ...x0, brk: BREAK_AFTER.has(`${b.id}:${x0.w}`) };
+      if (cur.length && !split([...cur, x])) {
+        let j = cur.length - 1;
+        for (let i = cur.length - 1; i >= 0; i--) if (cur[i].brk) { j = i; break; }
+        close(cur.slice(0, j + 1)); cur = cur.slice(j + 1);
+      }
       cur.push(x);
-      if (/[.,:;!?…—]$/.test(x.w)) { close(cur); cur = []; }
+      if (PHRASE_END.test(x.w)) { close(cur); cur = []; }
     }
     close(cur);
   }
   return out;
 })();
+/* page i stays until the next one starts, but is held whole for at least CAP.hold s after its last word */
+const CAP_FROM = PAGES_CAP.map((p, i) => (i === 0 ? p.words[0].start - 0.05 : Math.max(p.words[0].start - 0.05, PAGES_CAP[i - 1].words[PAGES_CAP[i - 1].words.length - 1].start + CAP.hold)));
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9$%]/g, "");
 const KEYS = new Set(KEYWORDS.map(norm));
 function Captions({ t, backing }: { t: number; backing: number }) {
-  if (t > DUR - 0.5) return null;
-  const idx = PAGES_CAP.findIndex((p, i) => t >= p.words[0].start - 0.05 && (i === PAGES_CAP.length - 1 || t < PAGES_CAP[i + 1].words[0].start - 0.05));
+  if (t > DUR - 0.5 || t < B("twist") - 0.05) return null; // the hook line is the title: no caption under it
+  const idx = PAGES_CAP.findIndex((p, i) => t >= CAP_FROM[i] && (i === PAGES_CAP.length - 1 || t < CAP_FROM[i + 1]));
   const page = PAGES_CAP[idx];
   if (!page || t > page.words[page.words.length - 1].end + 0.7) return null;
   const lineH = CAP.size * 1.04;
