@@ -78,3 +78,113 @@ the loop seam (frames 1240–1245), and a scratch copy of the episode with the P
   sentence ends at about 2.8 s.
 - **Pacing**: something new arrives at least every 2 s. The re-hooks are the cuts at Potsdam (15.6 s) and
   people (25.2 s). Each beat has one camera idea.
+
+---
+
+# Virality — poland-1945 (REDRAWN EP 8, DA 2) · pass 1
+
+Final render `out/poland-1945.mp4` (41.6 s), checked after the P0–P3 clarity fixes above. Evidence: `pipeline/virality_metrics.py`
+(hook frames 0–3 s, loop image), the 10 beat sheets and `cues.md` regenerated from the final render, `episode.json`, `SOURCES.md`.
+Metrics: 105 words, 2.75 w/s, first word 0.25 s, hook 5.29 s (stake "half" spoken at 2.36 s), 36 cues = **8.7 cues/10 s**, longest
+gaps 2.71 s (32.1 s, library arc drawing, so motion continues), 2.11 s (hook), 2.03 s (29.2 s). There are 0 of 21 two-second windows without a cue,
+**loop SSIM 0.899**, and loudness is −14.3 LUFS. The voice is recorded, so every fix below is cue sheet, title or packaging only.
+This EP replaces a rejected reel, so the bar is "would a stranger send this?", not "is it clean?".
+*This is a pattern-based estimate, not a prediction. The account's size and history are the biggest factor, and we can't control it.*
+
+## Scorecard
+| Block | Pts | Why |
+|---|---|---|
+| A. Hook 0–3 s | **20/25** | Frame 0 shows depth: a crane over a three-tone slab under a 5-word title. Paused and muted it says "something changed here", but the slab is thin and oblique. No name sits on it, and nothing says what pale vs grey mean until "lost" at 2.4 s (5/8). Sentence 1 carries a real number ("almost half its land"), though it starts with "In 1945" and the stake lands at 2.4 s (6/7). The whisper "Poland, 1945" is on screen by ~0.8 s and the voice says "Poland" at 1.31 s. It is a small serif line and no neighbour is named (4/5). The title is 5 words and its promise is the story (3/3). No throat-clearing (2/2). |
+| B. Retention | **20/25** | 8.7 cues/10 s with a camera move on every beat (7/8). The spine is a clear loss → "in return" → people → "even" the library → "only in 1990". But 12.3–24.9 s is two lists of renamed cities (5 renames in 12 s). For a US/UK viewer, Stettin/Szczecin and Wilno/Vilnius are low-recognition, so the curve sags there (4/6). Two real cuts: Potsdam at 15.6 s (38 %) and "Then the people move" at 25.2 s (61 %). The second is a good verbal re-hook (3/4). The hook's promise ("new land, somewhere else") pays at 16–19 s, and the strongest surprise (1990) sits at 36 s. "It never left home" is a cryptic last statement rather than a payoff (3/4). Pace is 2.75 w/s, with large word-by-word captions (3/3). |
+| C. Rewatch & loop | **9/10** | "…And yet…" → "In 1945, Poland loses almost half its land." is a paradox loop, but it only half-works on first view because "home" is never shown as the core (4/5). SSIM 0.899 with the same crane pose and tones (3/3). The three-tone map is a frame people pause on (2/2). |
+| D. Shareability & saves | **12/15** | Send facts: *Germany only accepted this border for good in 1990*, and the renames (Breslau → Wrocław, Danzig → Gdańsk). There is a strong identity hook for the Polish, German, Ukrainian and Lithuanian diasporas in the UK and US. But no single on-screen comparison sums it up: lost 187k vs gained 112k is never put side by side (4/6). The three-tone map has reference value, and the series is visible (3/4). The pinned question ("does your family come from a city that changed country?") is honest and personal (3/3). Human stake: millions expelled, and a library moved (2/2). |
+| E. Packaging | **9/10** | There is no `thumb` yet. The best in-reel cover (3.0 s) has three tones, "lost" and "POLAND LOSES ALMOST HALF ITS LAND.", but the slab is small (3/4). Caption written below (3/3). REDRAWN · EP 8 bar, title block and timeline give the series look (3/3). |
+| F. Niche codes & trust | **11/15** | One visible transformation: kept/gained/lost tones from frame 0, then 1938 red → Yalta grey → Potsdam pale reveal (4/4). Scale is km² only, with no miles and no US/UK reference ("half" carries it) (1/3). There are no faces; the stake is carried by the crowd pieces and the word "millions" (2/3). Sourced and hedged: "~48%", "millions", dated header, treaty date, approximate map in the pinned comment (3/3). Minor anti-patterns: the BORDER TREATY callout (a floating widget) lingers into the loop line (to 38.98 s vs loop start 38.82 s), and the "Oder–Neisse line" label touches the white line it names (1/2). |
+| **TOTAL** | **81/100 → 8.1/10** | **Tier: can break out** |
+
+## Top 5 changes, ranked by expected gain (no `say` change; no `atWord` inside a `{a|b}` token)
+1. **+2 · Name the subject from the start (A frame 0, A place).** Add to `hook.actions`. It ends at 2.25 s, before "lost" at 2.36 s:
+   ```json
+   {"type":"label","text":"Poland","at":[19.5,52.3],"atTime":0,"hold":2.0,"plate":true}
+   ```
+   A scroller then reads "THE COUNTRY THAT MOVED WEST" + a slab named POLAND inside the first second, sound off. Check on a still that
+   the plate sits on the red core and clear of the title.
+2. **+1 (+1 conditional) · A US/UK scale (F scale anchor).** Put miles first on the two area plates. This is a unit conversion of the published figures
+   (187,000 km² × 0.3861 = 72,200 sq mi; 112,000 km² × 0.3861 = 43,200 sq mi):
+   ```json
+   yalta:   {"type":"label","text":"−72,000 sq mi · ~48%","at":[26.0,51.3],"atWord":"Soviet","hold":1.1,"plate":true}
+   potsdam: {"type":"label","text":"+43,000 sq mi","at":[16.6,52.9],"atWord":"east,","hold":2.0,"plate":true}
+   ```
+   **Before rendering, add a line to SOURCES.md** ("72,000 / 43,000 sq mi = conversions of 187,000 / 112,000 km², rounded"). Otherwise the pre-flight
+   flags the new figures. Keep km² in the pinned comment. A familiar anchor would add +1: the lost land (~187,000 km²) is about the size
+   of Washington State (~71,300 sq mi ≈ 184,700 km² total area; read the exact figure off the US Census table). **That comparison is NOT in SOURCES.md.** Add it with the Census source first, or skip it.
+3. **+1 · Clean the end and the Potsdam labels (F anti-patterns).** The treaty callout must end before the loop line, so the last 2 s are map only
+   (this also helps the loop seam). Change `"hold": 2.4` → `"hold": 2.2` on the treaty `callout` (36.58 + 2.2 = 38.78 s < 38.82 s). Move
+   `"Oder–Neisse line"` one step west, `"at": [11.4, 51.4]`, so the word "line" stops touching the drawn border at 18.1–20.1 s. Check on a still
+   that it stays inside x ≥ 40 and clear of the 2 AUG header.
+4. **+1 · One sendable comparison on screen (D send).** Put the net change where the voice says the core "never left home". Add to `loop.actions`
+   (39.00 s → 39.95 s; the Warsaw label at 39.45 s sits further north):
+   ```json
+   {"type":"label","text":"net: ~1/5 smaller · our calculation","at":[21.0,50.6],"atWord":"never","hold":0.95,"plate":true}
+   ```
+   Arithmetic: 389,720 − 187,000 + 112,000 ≈ 314,700 km², which is 19 % smaller than 1938. Add it to SOURCES.md as "our calculation" before using it. If the
+   still looks busy next to "Warsaw", drop this one. It is the weakest of the five, and the loop must stay clean.
+5. **+1 · Cover and thumb (E cover).** Add this `thumb` block (it uses only sourced facts and the on-screen hedge "~48%"):
+   ```json
+   "thumb": {
+     "kicker": "Poland, 1945",
+     "main": "The country that moved west",
+     "mainSize": 120,
+     "mainSizeV": 120,
+     "badge": "~48%",
+     "badgeSub": "of its land, lost in the east",
+     "fit": ["CORE", "EAST", "WEST"],
+     "mapBoxV": [60, 850, 1020, 1420]
+   }
+   ```
+   At 120 px the main text breaks as "THE COUNTRY / THAT MOVED / WEST": 11 characters per line max, ≈ 950 px. The three-tone slab then reads as
+   pale west, red core, grey east, the whole story in one shape. Default `center` (centroid) and landscape `mapBox` are fine.
+
+Optional, for the rename plateau (B escalation, about +1): give each rename a beat on the slab it belongs to. In `cities_w`, add
+`{"type":"pulse","ids":["WEST"],"atWord":"Stettin,"}`. In `cities_e`, add `{"type":"pulse","ids":["EAST"],"atWord":"Wilno"}`.
+Projected after 1–3 and 5: about 85/100. With 4, the optional pulses and a sourced Washington anchor: about 88. These are estimates, not promises.
+
+**Trust note (sensitive topic, no change to the reel needed):** expect comments that Poles from the east were also forced out, not
+simply "resettled". SOURCES cites *Polish population transfers (1944–1946)*, which describes them as forced. If the owner wants it, add one neutral
+line to the pinned comment ("Poles from the east were also forced to leave; the official term was 'repatriation'"). Add it only after logging it in
+SOURCES.md with that reference. Do not add any number of people moved: sources vary, and the reel rightly says only "millions".
+
+## 3 alternative hooks (for a remaster only: each needs a new voice line; all true per SOURCES.md)
+| Archetype | Verbal line | Frame-0 visual | On-screen text |
+|---|---|---|---|
+| Big number / comparison | "In 1945, Poland loses 187,000 square kilometres in the east and gets 112,000 in the west." | Three-tone slab, "−187,000" pinned on grey, "+112,000" on pale | LOST 187K · GAINED 112K |
+| Delayed twist | "Germany only accepted this border for good in 1990, 45 years after the war." | Slab with the Oder–Neisse line already glowing white, FINAL stamp waiting | ACCEPTED IN 1990 |
+| Question | "Why is the German city of Breslau now Polish Wrocław?" | Low crane on the pale WEST, a marker "Breslau → Wrocław" already on | WHY IS BRESLAU POLISH? |
+Title-only A/B with no voice change: `"title": "Poland moved west"` names the place on frame 0, but it loses the curiosity gap. Keep
+"The country that moved west" and rely on fix 1 for the name.
+
+## Cover, caption, hashtags, pinned comment
+- **Cover:** the vertical `Thumb` (above), or **3.0 s** in-reel (three tones, "lost" plate, caption "POLAND LOSES ALMOST HALF ITS LAND.").
+  Cover text, if the platform adds one: **POLAND LOST ALMOST HALF**.
+- **Caption (IG / TikTok / YT Shorts):**
+  > In 1945 Poland loses almost half its land, then gets new land in the west. Germany only accepts the border for good in 1990.
+  > How Poland's borders moved west after WWII: Yalta and Potsdam, the Oder–Neisse line, Lwów → Lviv, Breslau → Wrocław, Danzig → Gdańsk.
+  > Expulsion and resettlement of millions, the Ossolineum library's move, and the 1990 German–Polish Border Treaty.
+- **Hashtags (4):** #history #poland #maps #ww2
+- **Pinned comment** (SOURCES.md text, no emoji):
+  "Sources: Yalta and Potsdam (1945); USHMM; Britannica; German–Polish Border Treaty (1990); Ossolineum. Areas lost/gained (≈187,000 / 112,000 km²)
+  are published figures; the map is approximate (historical-basemaps 1938 + Natural Earth). Numbers of people moved vary by source, so we only
+  say "millions". Does your family come from a city that changed country in 1945?"
+
+## Platform notes
+- **TikTok:** 41.6 s is in the completion sweet spot. Post as is, with no end card, because the loop does the work. Search runs on caption + on-screen
+  text, so "Breslau Wrocław", "Oder–Neisse" and "Poland borders WW2" are in caption line 2. A 61–70 s Creator Rewards cut would be a
+  different edit (e.g. the 1970 Treaty of Warsaw reservation, already in SOURCES), not this one slowed down.
+- **Instagram Reels:** sends drive non-follower reach. Caption line 1 carries the two sendable facts (half lost, 1990). The vertical Thumb
+  keeps everything inside the 3:4 grid crop. Upload the clean master with no watermark. Three hashtags are enough (#history #poland #maps).
+- **YouTube Shorts:** "viewed vs swiped" is decided in second 1, so fix 1 (POLAND on the slab before 1 s) matters most here.
+  Shorts title: "Poland lost almost half its land in 1945 — then moved west". The SSIM 0.90 loop works on Shorts autoplay.
+- **All:** expect heated comments (expulsions, Lviv/Vilnius, Kresy). Answer with sources from the pinned comment and keep the neutral
+  wording. Don't pin or reply with any casualty or migration number that is not in SOURCES.md.
+
+VIRALITY SCORE: 81/100 (8.1/10) — can break out

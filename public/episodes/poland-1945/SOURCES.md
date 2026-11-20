@@ -25,20 +25,22 @@ cities' names today (in 1945 they went to the Ukrainian and Lithuanian Soviet re
 | Claim (screen / voice) | Value | Source / note |
 |---|---|---|
 | Almost half its land lost | ≈187,000 km² east of the Curzon line, of ≈389,700 km² (1938) = 48 % | Wikipedia, Territorial changes of Poland immediately after World War II; Polish 1938 area 389,720 km² (Mały Rocznik Statystyczny 1939 via Wikipedia, Second Polish Republic) |
-| "−187,000 km² · ~48%" (label) | as above | as above |
-| New land in the west, "+112,000 km²" | ≈112,000 km² of former German territories (+ Danzig) | Wikipedia, Territorial changes of Poland… |
+| "−72,000 sq mi · ~48%" (label) | 187,000 km² = 72,201 sq mi (÷ 2.58999), rounded to 72,000; 187,000 / 389,720 = 48 % | conversion of the published figure |
+| New land in the west, "+43,000 sq mi" (112,000 km² = 43,243 sq mi, rounded) | ≈112,000 km² of former German territories (+ Danzig) | Wikipedia, Territorial changes of Poland… |
 | Yalta, 1945, east to the Soviet Union | Yalta Conference (4–11 Feb 1945): Poland's eastern boundary along the Curzon line | USHMM, "Poland in 1945"; Britannica, Oder–Neisse line |
 | Lwów → Lviv, Wilno → Vilnius | Lwów to the Ukrainian SSR, Wilno to the Lithuanian SSR (Vilnius had been handed to Lithuania in 1939 and annexed with it in 1940; confirmed in the 1945 Polish–Soviet border agreement) | Wikipedia, Polish–Soviet border agreement of August 1945 |
 | Potsdam: Germany's east up to the Oder and Neisse | Potsdam Conference (17 Jul–2 Aug 1945): German territories east of the Oder–Neisse line placed under Polish administration | Britannica, Oder–Neisse line; USHMM |
 | Breslau → Wrocław, Stettin → Szczecin, Danzig → Gdańsk | renamed under Polish administration in 1945 | standard references |
 | Millions of Germans expelled west | flight and expulsion of Germans from the territories east of the Oder–Neisse line (several million) | Wikipedia, Flight and expulsion of Germans from Poland during and after WWII; Britannica |
-| Poles from the lost east resettled in their place | Polish population transfers (1944–46) from the Kresy to the "Recovered Territories" | Wikipedia, Polish population transfers (1944–1946) |
+| Poles from the lost east resettled in their place | Polish population transfers (1944–46) from the Kresy to the "Recovered Territories" — many were forced to leave their homes (the pinned comment says so) | Wikipedia, Polish population transfers (1944–1946) |
 | Ossolineum, Lwów → Wrocław | collections transported from Lwów to Wrocław in 1946–1947 (about 30 % of the pre-war holdings) | Ossolineum, "Ossolineum is reconstituted in Wrocław"; Wrocław city site |
 | Germany accepts the border for good in 1990 | German–Polish Border Treaty, signed 14 Nov 1990 (in force 16 Jan 1992); the 1970 Treaty of Warsaw had accepted it with a reservation | Wikipedia, German–Polish Border Treaty; bpb.de |
 | "14 Nov 1990" | as above | — |
 | Map | **our drawing**, approximate: 1938 Poland from historical-basemaps (generalised), today's Poland from Natural Earth. Our areas: lost 170,088 km², gained 89,987 km², 1938 total 392,275 km², today 312,567 km² — the published figures (187,000 / 112,000) are the ones shown on screen | `scripts/prep-poland.mjs` |
 
 Other figures on screen: 1938, 1945, 1990, 11 Feb (Yalta ends), 2 Aug (Potsdam ends), 14 Nov.
+
+| "net: ~1/5 smaller · our calculation" | 389,720 − 187,000 + 112,000 ≈ 314,700 km² → −19 %; today's Poland 312,696 km² → −20 % | our calculation from the published figures |
 
 ## Debated / limits (logged)
 - Area figures vary by source and method; our map gives 43 % / 23 % with generalised borders → the screen uses the
@@ -67,5 +69,5 @@ None. No portraits, no flags.
 - historical-basemaps: https://github.com/aourednik/historical-basemaps
 
 ## Pinned comment (EN)
-Sources: Yalta and Potsdam (1945); USHMM; Britannica; German–Polish Border Treaty (1990); Ossolineum. Areas lost/gained (≈187,000 / 112,000 km²) are published figures — the map is approximate (historical-basemaps 1938 + Natural Earth). Numbers of people moved vary by source, so we only say "millions".
+Sources: Yalta and Potsdam (1945); USHMM; Britannica; German–Polish Border Treaty (1990); Ossolineum. Areas lost/gained (≈187,000 / 112,000 km²) are published figures — the map is approximate (historical-basemaps 1938 + Natural Earth). Many Poles from the east were also forced to leave their homes. Numbers of people moved vary by source, so we only say "millions".
 👉 Does your family come from a city that changed country in 1945?

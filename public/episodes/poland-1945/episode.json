@@ -142,6 +142,17 @@
      "noLabel": true,
      "color": "#F4A09C",
      "atTime": 0
+    },
+    {
+     "type": "label",
+     "text": "Poland",
+     "at": [
+      19.5,
+      52.3
+     ],
+     "atTime": 0,
+     "hold": 2.0,
+     "plate": true
     }
    ]
   },
@@ -239,7 +250,7 @@
     },
     {
      "type": "label",
-     "text": "−187,000 km² · ~48%",
+     "text": "−72,000 sq mi · ~48%",
      "at": [
       26.0,
       51.3
@@ -282,6 +293,13 @@
      ],
      "atWord": "Wilno",
      "hold": 1.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "EAST"
+     ],
+     "atWord": "Wilno"
     }
    ]
   },
@@ -321,7 +339,7 @@
     },
     {
      "type": "label",
-     "text": "+112,000 km²",
+     "text": "+43,000 sq mi",
      "at": [
       16.6,
       52.9
@@ -334,8 +352,8 @@
      "type": "label",
      "text": "Oder–Neisse line",
      "at": [
-      12.4,
-      51.0
+      11.4,
+      51.4
      ],
      "atWord": "Oder",
      "hold": 2.0
@@ -426,6 +444,13 @@
      ],
      "atWord": "Danzig,",
      "hold": 1.5
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "WEST"
+     ],
+     "atWord": "Stettin,"
     }
    ]
   },
@@ -574,7 +599,7 @@
      "size": 64,
      "y": 1010,
      "atWord": "accepts",
-     "hold": 2.4,
+     "hold": 2.2,
      "stamp": "FINAL",
      "stampWord": "1990."
     },
@@ -670,8 +695,38 @@
       "EAST"
      ],
      "atWord": "yet…"
+    },
+    {
+     "type": "label",
+     "text": "net: ~1/5 smaller · our calculation",
+     "atWord": "never",
+     "at": [
+      21.0,
+      49.4
+     ],
+     "hold": 0.95,
+     "plate": true
     }
    ]
   }
- ]
+ ],
+ "thumb": {
+  "kicker": "Poland, 1945",
+  "main": "The country that moved west",
+  "mainSize": 120,
+  "mainSizeV": 120,
+  "badge": "~48%",
+  "badgeSub": "of its land, lost in the east",
+  "fit": [
+   "CORE",
+   "EAST",
+   "WEST"
+  ],
+  "mapBoxV": [
+   60,
+   850,
+   1020,
+   1420
+  ]
+ }
 }

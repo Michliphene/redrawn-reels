@@ -13,9 +13,9 @@ export type ThumbConfig = {
   mapBoxV?: [number, number, number, number]; mainSizeV?: number;
   center?: [number, number]; // projection centre (default: centroid of the framed features; set it for a polar map)
 };
-/** The map as it stands on frame 0: declares and ghosts the hook gives with atTime 0 (none on older episodes). */
+/** The map as it stands on frame 0: declares, ghosts and reveals the hook gives with atTime 0 (none on older episodes). */
 const frame0 = (spec: EpisodeSpec): TimedAction[] =>
-  ((spec.beats[0]?.actions ?? []) as any[]).filter((a) => (a.type === 'declare' || a.type === 'ghost') && a.atTime === 0).map((a) => (a.type === 'ghost' ? { ...a, t: -1, hold: 99, beat: spec.beats[0].id } : { ...a, t: 0, beat: spec.beats[0].id }));
+  ((spec.beats[0]?.actions ?? []) as any[]).filter((a) => ['declare', 'ghost', 'reveal', 'conceal'].includes(a.type) && a.atTime === 0).map((a) => (a.type === 'declare' ? { ...a, t: 0, beat: spec.beats[0].id } : { ...a, t: -1, hold: 99, beat: spec.beats[0].id }));
 export type ThumbProps = { episodeId: string; spec?: EpisodeSpec & { thumb?: ThumbConfig; episode?: number }; geo?: GeoData };
 
 /** 1920x1080 thumbnail (YouTube / landscape previews): big hook text + the episode's map, same palette as the reel. */
