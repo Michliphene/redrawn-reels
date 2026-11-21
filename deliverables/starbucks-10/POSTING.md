@@ -47,7 +47,7 @@ Source: Starbucks Corporation, Form 10-K for fiscal 2026 (SEC). Per $10 of reven
 - **"Why closing stores?"** → "The 10-K books $688.6M of restructuring and impairments in fiscal 2026, tied to coffeehouse and office closures. We don't speculate on why."
 
 - **"Licensed?"** → "Licensed coffeehouses are run by partner companies, not by Starbucks itself (China moved to licensed in 2026). 28,210 of 41,607 at the end of fiscal 2026, per the 10-K."
-- **Backdrops** → AI illustrations (no logo); the figures all come from the 10-K.
+- **Backdrops** → AI illustrations made with Nano Banana (no logo); the figures all come from the 10-K.
 
 ## Platform notes
 - **YouTube Shorts:** title "Starbucks keeps 97¢ of every $10 you pay".

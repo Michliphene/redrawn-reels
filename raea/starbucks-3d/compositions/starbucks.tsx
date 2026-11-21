@@ -209,7 +209,7 @@ function Card({ name, src, w: cw, pos }: { name: string; src: string; w: number;
   return (
     <Mesh3d name={name} allowOverlap transform={Transform.fromXyz(...pos)}>
       <Cuboid half_size={[cw / 2, (cw * 8) / 9, 0.02]} />
-      <StandardMaterial base_color="#FFFFFF" base_color_texture={staticFile(src)} unlit />
+      <StandardMaterial base_color="#C0C0C0" base_color_texture={staticFile(src)} unlit /> {/* ×0.75: the picture stays behind the data */}
     </Mesh3d>
   );
 }
@@ -220,8 +220,8 @@ function Backdrops({ t }: { t: number }) {
   // render nor shows up if mounted after frame 0, and blended planes sort by centre distance.
   return (
     <>
-      <Card name="bg-street" src="art/bg-street.png" w={BG_W} pos={[CUP_X - 4.3, 9, BG_Z]} />
-      <Card name="bg-counter" src="art/bg-counter.png" w={BG_W} pos={[CUP_X - 4.3, 6 - (1 - up) * (BG_H + 4), BG_Z + 0.4]} />
+      <Card name="bg-street" src="art/bg-street.png" w={BG_W} pos={[CUP_X - 4.3, 4, BG_Z]} />
+      <Card name="bg-counter" src="art/bg-counter.png" w={BG_W} pos={[CUP_X - 4.3, 8 - (1 - up) * (BG_H + 4), BG_Z + 0.4]} />
       <Card name="bg-night" src="art/bg-night.png" w={30} pos={[YEAR_X, 10, -13]} />
     </>
   );

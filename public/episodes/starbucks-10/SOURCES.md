@@ -84,13 +84,15 @@ other, net $1.26 · operating profit $0.97 (before interest & tax). FY2026 reven
 41,607 coffeehouses. Which receipt should we open next?
 
 ## Backdrops (AI images, provenance)
-Generated 20 Nov 2026 with Canva generate-image (Nano Banana / GPT Image unavailable on the connected accounts: plan or
-credits), exported at 1080×1920, in `art/`. Illustrations only, no logo, no brand mark, no text; they show "a
-coffeehouse", not Starbucks property. Prompts (abridged): `bg-street.png` side-profile street at blue hour, a coffeehouse
-with a green awning, a barista handing a takeaway cup, a commuter walking past with a cup · `bg-counter.png` two baristas
-in profile at an espresso machine, cups on the counter · `bg-night.png` a night street of coffeehouses with green awnings,
-people carrying cups, a delivery scooter. All: flat graphic shapes, soft grain, dark forest green / teal / amber, "No logos,
-no brand marks, no text, no lettering anywhere."
+Generated 21 Nov 2026 with **Nano Banana (Google Gemini app, image generation)** in the owner's Gemini account, downloaded
+at full size (1536×2752 JPEG) and cropped to 1080×1920 PNG in `art/`. (A first pass on 20 Nov used Canva generate-image;
+replaced.) Illustrations only, no logo, no brand mark, no text; they show "a coffeehouse", not Starbucks property.
+Prompts (abridged): `bg-street.png` side-profile street at blue hour, a corner coffeehouse with a green awning, a barista
+handing a takeaway cup across the counter, a commuter walking past with a cup · `bg-counter.png` two baristas in profile,
+one steaming milk at an espresso machine, one pouring a latte, cups on the counter · `bg-night.png` a night street of
+coffeehouses with green awnings and warm windows, people carrying cups, a delivery scooter. All: stylised editorial
+illustration, flat shapes, soft grain, dark forest green / teal / amber, "No logos, no brand marks, no text, no lettering
+anywhere." In the reel the pictures are darkened to 75 % behind the data.
 
 ## Verification status
 Figures read directly from the 10-K on sec.gov (20 Nov 2026). Owner: tick each line once before posting.

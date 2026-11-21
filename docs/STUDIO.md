@@ -244,8 +244,9 @@ A render uses all four cores: do not run stills at the same time.
    on a street, seen in profile, a courier with a parcel or not; Starbucks: a coffeehouse street, the baristas at the
    counter, a night street of coffeehouses). The data stays in front; the backdrop is darkened by the scene's fog and the
    top/bottom gradients so text keeps 3:1.
-2. **AI images in the reels.** Backdrops (and other plates) are generated images: Nano Banana or GPT Image when an account
-   allows it, else Canva's generate-image. Prompts: stylised flat illustration, side profile, the house palette (dark
+2. **AI images in the reels.** Backdrops (and other plates) are generated with **Nano Banana in the owner's Gemini app**
+   (gemini.google.com, through the browser; "Télécharger l'image en taille réelle" gives 1536×2752), or GPT Image in
+   ChatGPT; Canva generate-image only as a fallback. Prompts: stylised flat illustration, side profile, the house palette (dark
    forest green, teal, warm amber), calm areas where the title and captions sit, **no logos, no brand marks, no text**.
    The PNGs live in `public/episodes/<id>/art/` (committed) with their prompts and tool in SOURCES.md (provenance).
    In raea: an opaque unlit card behind the scene, `<Mesh3d><Cuboid half_size={[w/2, h/2, 0.02]} />
