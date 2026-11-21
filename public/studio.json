@@ -30,6 +30,16 @@
       ],
       "composition": "Episode",
       "episodeTag": "N°{n}"
+    },
+    "ungraded": {
+      "name": "UNGRADED",
+      "handle": "",
+      "tagline": "The rules school never taught. One idea, one minute.",
+      "legacyNames": [
+        "UNGRADED"
+      ],
+      "composition": "Mindset",
+      "episodeTag": "#{nnn}"
     }
   }
 }

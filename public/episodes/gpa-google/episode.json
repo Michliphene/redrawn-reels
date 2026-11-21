@@ -1,0 +1,125 @@
+{
+ "id": "gpa-google",
+ "composition": "Diorama",
+ "engine": "raea",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 6,
+ "title": "Google graded the grades",
+ "whisper": "Their verdict, in their own words.",
+ "source": "Laszlo Bock to The New York Times, June 2013",
+ "keywords": [
+  "\"Worthless.\"",
+  "correlation",
+  "\"completely",
+  "unrelated\"",
+  "waste",
+  "transcripts.",
+  "line.",
+  "cloud.",
+  "questions.",
+  "Careful:",
+  "show.",
+  "built,",
+  "fixed.",
+  "can."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {
+   "Laszlo": "Lahslo",
+   "GPAs": "G.P.A.s",
+   "GPA,": "G.P.A.,"
+  }
+ },
+ "_note": "Rendered in raea (raea/ungraded-006-gpa): a paper diorama on a desk, pop-up standees, one continuous camera; cues live in the composition.",
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "door",
+   "say": "Google ran the numbers. GPAs? \"Worthless.\""
+  },
+  {
+   "id": "who",
+   "scene": "paper",
+   "say": "That's Laszlo Bock, Google's head of people, in The New York Times, {2013|twenty thirteen}."
+  },
+  {
+   "id": "corr",
+   "scene": "paper",
+   "say": "Grades and test scores? \"No correlation at all.\" Only a slight one for brand-new grads."
+  },
+  {
+   "id": "years",
+   "scene": "paper",
+   "say": "And after two or three years, how you do at Google is \"completely unrelated\" to how you did in school."
+  },
+  {
+   "id": "teaser",
+   "scene": "bin",
+   "say": "Brainteasers? \"A complete waste of time.\" They mostly made the interviewer feel smart."
+  },
+  {
+   "id": "stopped",
+   "scene": "bin",
+   "say": "So Google stopped asking most people for transcripts."
+  },
+  {
+   "id": "teams",
+   "scene": "team",
+   "say": "Some Google teams were {14%|fourteen percent} people with no college background."
+  },
+  {
+   "id": "cloud",
+   "scene": "cloud",
+   "say": "Here's what \"no correlation\" looks like. Line people up by GPA, then by how well they do the job."
+  },
+  {
+   "id": "line",
+   "scene": "cloud",
+   "say": "If grades predicted the job, you'd get a line. Instead, you get a cloud."
+  },
+  {
+   "id": "school",
+   "scene": "cloud",
+   "say": "School grades your answers to someone else's questions. A job asks you to find the questions."
+  },
+  {
+   "id": "careful",
+   "scene": "cloud",
+   "say": "Careful: that's one company, one interview, in {2013|twenty thirteen}. Plenty of employers still check grades."
+  },
+  {
+   "id": "travel",
+   "scene": "show",
+   "say": "But the lesson travels. Out here, people stop asking what you scored. They ask what you can show."
+  },
+  {
+   "id": "picture",
+   "scene": "show",
+   "say": "Picture two applicants. One sends a {4.0|four point oh}. One sends a link to something they built, broke, and fixed."
+  },
+  {
+   "id": "end",
+   "scene": "show",
+   "say": "The grade says you passed. The thing you built says you can."
+  },
+  {
+   "id": "loop",
+   "scene": "door",
+   "say": "So keep your grades. Build something too. Because one day, someone runs the numbers. Like when…"
+  }
+ ]
+}
