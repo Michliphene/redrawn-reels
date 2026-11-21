@@ -1,0 +1,121 @@
+{
+ "id": "scent-005-chanel5",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 5,
+ "da": 2,
+ "composition": "Episode",
+ "title": "Why is it called N°5?",
+ "whisper": "ten vials, one pick, a hundred years",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Beaux": "Boh",
+   "Grasse": "Grahss",
+   "Vendôme": "Von-dohm"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-005-chanel5 (map fields unused; this file holds the script and the voice)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "In {1920|nineteen twenty}, Coco Chanel smells ten little vials. She picks number five. A century later, that is still its name.",
+   "actions": []
+  },
+  {
+   "id": "beaux",
+   "say": "The perfumer is Ernest Beaux. His vials are numbered one to five, and twenty to twenty-four.",
+   "actions": []
+  },
+  {
+   "id": "why",
+   "say": "Why the fifth? Nobody really knows. Some say five was her lucky number.",
+   "actions": []
+  },
+  {
+   "id": "soap",
+   "say": "Others say it reminded her of soap, and clean laundry.",
+   "actions": []
+  },
+  {
+   "id": "vote",
+   "say": "So which is it? The lucky number, or the smell? Pick one.",
+   "actions": []
+  },
+  {
+   "id": "secret",
+   "say": "The trick is a family of molecules: aldehydes. Perfumers used them in tiny doses. Beaux used a lot.",
+   "actions": []
+  },
+  {
+   "id": "grasse",
+   "say": "Its jasmine still comes from Grasse, in the south of France. Since {1987|nineteen eighty-seven}, one family has grown it for Chanel.",
+   "actions": []
+  },
+  {
+   "id": "bottle",
+   "say": "And the bottle? Almost plain. Clear glass, sharp corners, a cut stopper.",
+   "actions": []
+  },
+  {
+   "id": "vendome",
+   "say": "Chanel says the stopper echoes Place Vendôme, in Paris.",
+   "actions": []
+  },
+  {
+   "id": "marilyn",
+   "say": "In {1952|nineteen fifty-two}, Marilyn Monroe tells a magazine she sleeps in a few drops of it.",
+   "actions": []
+  },
+  {
+   "id": "tape",
+   "say": "Decades later, a lost recording of her saying it turns up. Chanel puts it in an ad.",
+   "actions": []
+  },
+  {
+   "id": "moma",
+   "say": "In {1959|nineteen fifty-nine}, the Museum of Modern Art in New York adds the bottle to its collection.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "Not bad, for a sample number.",
+   "actions": []
+  }
+ ]
+}

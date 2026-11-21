@@ -1,0 +1,12 @@
+{
+ "episode": "scent-005-chanel5",
+ "date": "2026-11-20",
+ "rule": "Brand episode. No AI image shows a Chanel bottle, logo, packaging, boutique, ad, Coco Chanel or Marilyn Monroe. No faces, no text in images. The vials, the molecule and the N°5-inspired bottle are our own 3D models (raea), never presented as product photos.",
+ "items": [
+  { "id": "nb_jasmine", "original": "media/plates/nb_jasmine.jpg", "used_as": "s_jasmine.jpg", "tool": "Nano Banana", "role": "\"Its jasmine still comes from Grasse\"", "prompt_summary": "terraced jasmine fields near Grasse at dawn, village far away, no people", "crop": "centred (prep-plates.sh)" },
+  { "id": "nb_paris", "original": "media/plates/nb_paris.jpg", "used_as": "s_paris.jpg", "tool": "Nano Banana", "role": "\"Place Vendôme, in Paris\"", "prompt_summary": "octagonal Paris square at night in the 1920s, column in the centre, no people, no signs (painterly, not a view presented as a photo)", "crop": "centred" },
+  { "id": "nb_nightstand", "original": "media/plates/nb_nightstand.jpg", "used_as": "s_nightstand.jpg", "tool": "Nano Banana", "role": "\"In 1952, Marilyn Monroe tells a magazine…\"", "prompt_summary": "1950s bedroom at night, bedside lamp, an unlabelled glass flask, nobody in the room", "crop": "centred" },
+  { "id": "gpt_soap", "original": "media/plates/gpt_soap.png", "used_as": "c_soap.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"soap, and clean laundry\" (story B)", "prompt_summary": "watercolour still life: white soap bars, folded linen, enamel bowl", "crop": "3:4" },
+  { "id": "gpt_tape", "original": "media/plates/gpt_tape.png", "used_as": "c_tape.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"a lost recording of her\"", "prompt_summary": "watercolour still life: a 1960 portable reel-to-reel recorder and microphone, no brand", "crop": "3:4" }
+ ]
+}
