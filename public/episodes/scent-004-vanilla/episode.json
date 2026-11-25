@@ -1,0 +1,120 @@
+{
+ "id": "scent-004-vanilla",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 4,
+ "da": 2,
+ "composition": "Episode",
+ "title": "The boy behind every vanilla pod",
+ "whisper": "one flower, one day, one thumb",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Réunion": "Ray-yoo-NYON",
+   "Albius": "AL-bee-us"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-004-vanilla (map fields unused; this file holds the script and the voice)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "In {1841|eighteen forty-one}, a {12|twelve}-year-old boy found a trick. Almost every vanilla pod on Earth still depends on it.",
+   "actions": []
+  },
+  {
+   "id": "orchid",
+   "say": "Vanilla is an orchid from Mexico. The bean is its seed pod, picked green.",
+   "actions": []
+  },
+  {
+   "id": "problem",
+   "say": "Planters took the vine to tropical islands. It bloomed. But it gave almost no pods.",
+   "actions": []
+  },
+  {
+   "id": "bee",
+   "say": "In Mexico, a wild bee does the job. Scientists still argue about which one.",
+   "actions": []
+  },
+  {
+   "id": "day",
+   "say": "And each flower opens for a single day. Miss it, and the flower falls.",
+   "actions": []
+  },
+  {
+   "id": "island",
+   "say": "Réunion, an island in the Indian Ocean. Edmond is twelve, and enslaved on a plantation.",
+   "actions": []
+  },
+  {
+   "id": "trick",
+   "say": "With a thin stick, he lifts a tiny flap inside the flower. Then his thumb presses the two parts together.",
+   "actions": []
+  },
+  {
+   "id": "spread",
+   "say": "It works. The trick spreads across the island, then the world.",
+   "actions": []
+  },
+  {
+   "id": "today",
+   "say": "Today, nearly all vanilla is still pollinated like this. By hand.",
+   "actions": []
+  },
+  {
+   "id": "free",
+   "say": "And Edmond? He is free in {1848|eighteen forty-eight}. He takes the name Albius, from the Latin for white.",
+   "actions": []
+  },
+  {
+   "id": "poor",
+   "say": "He never gets rich from it. He dies poor, in {1880|eighteen eighty}.",
+   "actions": []
+  },
+  {
+   "id": "spice",
+   "say": "Vanilla is now the second most expensive spice, after saffron.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "But every real pod still starts with his thumb.",
+   "actions": []
+  }
+ ]
+}

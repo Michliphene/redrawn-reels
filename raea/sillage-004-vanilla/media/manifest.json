@@ -1,0 +1,16 @@
+{
+ "episode": "scent-004-vanilla",
+ "date": "2026-11-20",
+ "rule": "All images are AI illustrations (said in the post description). No faces, never a likeness of Edmond Albius (hands only), no text in images. Never presented as photos or archive pictures of Réunion. The flacon and the extract are 3D.",
+ "items": [
+  { "id": "nb_vines", "original": "media/plates/nb_vines.jpg", "used_as": "s_vines.jpg", "tool": "Nano Banana", "role": "\"It bloomed. But almost no pods.\"", "prompt_summary": "1840s island plantation, vanilla vines on supports, flowers, no pods, volcanic mountains, no people", "crop": "centred (prep-plates.sh)" },
+  { "id": "nb_bee", "original": "media/plates/nb_bee.jpg", "used_as": "s_bee.jpg", "tool": "Nano Banana", "role": "\"a wild bee does the job\"", "prompt_summary": "small wild bee near a pale vanilla flower, dark jungle (species deliberately generic: the pollinator is debated)", "crop": "centred (prep-plates.sh)" },
+  { "id": "nb_island", "original": "media/plates/nb_island.png", "used_as": "s_island.jpg", "tool": "Nano Banana", "role": "\"Réunion, an island in the Indian Ocean\"", "prompt_summary": "volcanic tropical coastline c. 1840, plantation fields, distant house, no people (imagined, not a view of Réunion)", "crop": "centred; 572×1024 preview (full-size Gemini download stalled)" },
+  { "id": "nb_pods", "original": "media/plates/nb_pods.png", "used_as": "s_pods.jpg", "tool": "Nano Banana", "role": "\"It works. The trick spreads\"", "prompt_summary": "vines heavy with green vanilla pods, misty plantation rows, no people", "crop": "centred; 572×1024 preview" },
+  { "id": "nb_today", "original": "media/plates/nb_today.png", "used_as": "s_today.jpg", "tool": "Nano Banana", "role": "\"Today… by hand\"", "prompt_summary": "present-day farmer seen from behind the shoulder, straw hat, pollinating a flower with a stick, face not shown", "crop": "centred; 572×1024 preview" },
+  { "id": "gpt_orchid", "original": "media/plates/gpt_orchid.png", "used_as": "c_orchid.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"Vanilla is an orchid from Mexico\"", "prompt_summary": "botanical plate on cream paper: vanilla vine, one flower, green pods", "crop": "3:4 (prep-plates.sh)" },
+  { "id": "gpt_flower", "original": "media/plates/gpt_flower.png", "used_as": "c_flower.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"each flower opens for a single day\"", "prompt_summary": "botanical plate: one open vanilla flower and the same flower wilted", "crop": "3:4" },
+  { "id": "gpt_hands", "original": "media/plates/gpt_hands.png", "used_as": "f_hands.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"With a thin stick… his thumb\" (gilt frame)", "prompt_summary": "a child's hands only, bamboo sliver lifting the flap of a vanilla flower, plum background", "crop": "3:4" },
+  { "id": "gpt_beans", "original": "media/plates/gpt_beans.png", "used_as": "c_beans.jpg", "tool": "gpt-image (ChatGPT)", "role": "\"the second most expensive spice\"", "prompt_summary": "still life on cream paper: bundle of cured dark vanilla beans tied with string", "crop": "3:4" }
+ ]
+}
