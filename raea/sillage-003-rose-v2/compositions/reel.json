@@ -1,0 +1,112 @@
+{
+  "id": "scent-003-rose-v2",
+  "number": 3,
+  "juice": "#B8741F",
+  "petal": "#E68FA8",
+  "keywords": ["Bulgaria", "Kazanlak", "Damask", "sunrise", "hand", "copper", "tonnes", "gram", "farmer"],
+
+  "checks": {
+    "currency": "USD",
+    "units": { "massOf": ["flowers", "oil", "this", "rose"] },
+    "calcs": [
+      { "what": "price per kg of flowers, converted", "expr": "1.28 * 1.175", "shown": "1.50", "tolerance": 0.01 },
+      { "what": "what 3.5 t of flowers bring", "expr": "3500 * 1.28 * 1.175", "shown": "5,300", "tolerance": 0.02 },
+      { "what": "label line on screen", "expr": "3500 * 1.50", "shown": "5,300", "tolerance": 0.02 }
+    ],
+    "sourcesVary": ["answer"]
+  },
+
+  "flacon": {
+    "level": [["start", 0.86], ["guess:How-0.2", 0.04, 2.2], ["answer:Three-0.1", 0.86, 1.6]],
+    "petals": [["answer:tonnes", 64], ["loop", 0]],
+    "drop": "gram:single-0.3",
+    "sweeps": ["hook:12,000", "answer:Three", "answer:three", "farmer:one", "calc:5,300"]
+  },
+
+  "shots": [
+    { "id": "hook", "kind": "flacon", "camera": "hero", "textFrom": "start-1",
+      "text": [
+        { "t": "stat", "v": "$12,000" },
+        { "t": "label", "v": "one kilo of rose oil" },
+        { "t": "title", "v": "How many\nroses?", "at": "hook:Guess", "gold": "roses?" }
+      ] },
+    { "id": "valley", "at": "valley:Bulgaria.-0.12", "kind": "plate", "img": "s_valley.jpg",
+      "text": [
+        { "t": "title", "v": "Rose Valley" },
+        { "t": "label", "v": "Bulgaria · around Kazanlak", "at": "valley:Kazanlak." },
+        { "t": "stat", "v": "≈ ½", "at": "valley:half" },
+        { "t": "whisper", "v": "of the world's rose oil", "at": "valley:half" }
+      ] },
+    { "id": "rose", "kind": "plate", "img": "s_damask.jpg",
+      "text": [
+        { "t": "title", "v": "Damask rose" },
+        { "t": "label", "v": "Rosa damascena" },
+        { "t": "whisper", "v": "late May → mid-June", "at": "rose:late" }
+      ] },
+    { "id": "dawn", "kind": "plate", "img": "s_pickers.jpg",
+      "text": [
+        { "t": "title", "v": "Before\nsunrise", "gold": "sunrise" },
+        { "t": "whisper", "v": "by late morning, the heat\ntakes the scent away", "at": "dawn:heat" }
+      ] },
+    { "id": "hand", "kind": "plate", "img": "s_hands.jpg", "focus": [50, 55],
+      "text": [
+        { "t": "title", "v": "By hand" },
+        { "t": "whisper", "v": "one flower at a time", "at": "hand:one" },
+        { "t": "label", "v": "no machine", "at": "hand:No" }
+      ] },
+    { "id": "still", "kind": "plate", "img": "s_still.jpg",
+      "text": [
+        { "t": "title", "v": "Copper stills" },
+        { "t": "label", "v": "steam distillation", "at": "still:Steam" },
+        { "t": "whisper", "v": "the oil floats to the top", "at": "still:floats" }
+      ] },
+    { "id": "festival", "kind": "plate", "img": "s_festival.jpg", "textFrom": "festival:1903,-0.12",
+      "text": [
+        { "t": "stat", "v": "1903" },
+        { "t": "label", "v": "Kazanlak Rose Festival" },
+        { "t": "whisper", "v": "every year, for the harvest", "at": "festival:year" }
+      ] },
+    { "id": "guess", "kind": "flacon", "camera": "pushIn", "textFrom": "guess:How-0.12",
+      "text": [
+        { "t": "title", "v": "How many\nflowers?", "gold": "flowers?" },
+        { "t": "label", "v": "for 1 kg of oil" },
+        { "t": "count", "v": "3|2|1", "at": "guess:Three.|guess:Two.|guess:One." }
+      ] },
+    { "id": "answer", "at": "answer-0.04", "kind": "flacon", "camera": "low",
+      "text": [
+        { "t": "count", "v": "3–5 t|≈ 3.5 t", "at": "answer:Three|answer:three" },
+        { "t": "label", "v": "of flowers · for 1 kg of oil" },
+        { "t": "badge", "v": "sources vary", "at": "answer:Sources" }
+      ] },
+    { "id": "gram", "kind": "flacon", "camera": "drop",
+      "text": [
+        { "t": "stat", "v": "1 g" },
+        { "t": "whisper", "v": "more than 1,000 petals", "at": "gram:thousand" }
+      ] },
+    { "id": "farmer", "kind": "plate", "img": "s_scale.jpg",
+      "text": [
+        { "t": "title", "v": "The farmer gets" },
+        { "t": "stat", "v": "≈ $1.50", "at": "farmer:one" },
+        { "t": "label", "v": "per kilo of flowers · 2025", "at": "farmer:kilo" },
+        { "t": "badge", "v": "our conversion", "at": "farmer:kilo" }
+      ] },
+    { "id": "calc", "kind": "flacon", "camera": "wide",
+      "text": [
+        { "t": "badge", "v": "our calculation" },
+        { "t": "label", "v": "3,500 kg of flowers × $1.50", "at": "calc:three" },
+        { "t": "stat", "v": "≈ $5,300", "at": "calc:5,300" },
+        { "t": "whisper", "v": "the oil they make: ≈ $12,000", "at": "calc:bring" }
+      ] },
+    { "id": "loop", "kind": "flacon", "camera": "return", "returnFrom": "wide", "textFrom": "end-0.8",
+      "text": [
+        { "t": "stat", "v": "$12,000" },
+        { "t": "label", "v": "one kilo of rose oil" }
+      ] }
+  ],
+
+  "sfx": [
+    ["hook:12,000", "stamp", 0.35], ["festival:1903,", "stamp", 0.3],
+    ["guess:Three.", "pop", 0.3], ["guess:Two.", "pop", 0.3], ["guess:One.", "pop", 0.34],
+    ["answer:tonnes", "boom", 0.3], ["farmer:one", "stamp", 0.3], ["calc:5,300", "stamp", 0.35]
+  ]
+}

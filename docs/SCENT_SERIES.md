@@ -76,3 +76,8 @@ B: `episode.json` (script + voice only) → `pipeline/tts.py` + `pipeline/music.
 A: `plates.json` → `node scripts/nano-banana.mjs <id>` → look at the plates → `episode.json` → stills → render.
 `node scripts/draft-timings.mjs <id>` gives estimated timings so stills can be made **before** recording a voice
 (no credits spent on a script that may change; `pipeline/tts.py` replaces them at render).
+
+## 7. Kit (from 26 Nov 2026)
+New SILLAGE episodes are built on `raea/sillage-kit/` (tokens, hero flacon, editorial captions, full-frame plates, finish,
+pre-flight `tools/validate.mjs`). An episode = `compositions/reel.json` + a 10-line `sillage.tsx`; worked example
+`raea/sillage-003-rose-v2/`. What changed and what is left: `raea/sillage-kit/CHANGELOG.md`.

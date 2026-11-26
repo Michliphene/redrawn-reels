@@ -1,0 +1,120 @@
+{
+ "id": "scent-003-rose-v2",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 3,
+ "da": 2,
+ "composition": "Episode",
+ "title": "The $12,000 flower",
+ "whisper": "one kilo of rose oil, one valley, one dawn at a time",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Kazanlak": "KAH-zahn-lahk"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-003-rose-v2 on raea/sillage-kit (luxury pass v3)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "One kilo of this oil sells for about {12,000|twelve thousand} dollars. It comes from a single flower. Guess how many it takes.",
+   "actions": []
+  },
+  {
+   "id": "valley",
+   "say": "Bulgaria. The Rose Valley, around Kazanlak. This valley makes about half of the world's rose oil.",
+   "actions": []
+  },
+  {
+   "id": "rose",
+   "say": "The flower is the Damask rose. And its harvest is short: late May to mid-June.",
+   "actions": []
+  },
+  {
+   "id": "dawn",
+   "say": "Pickers start before sunrise. By late morning, the heat drives the scent out of the petals, so they stop.",
+   "actions": []
+  },
+  {
+   "id": "hand",
+   "say": "Every flower is picked by hand, one at a time. No machine does it.",
+   "actions": []
+  },
+  {
+   "id": "still",
+   "say": "Then, copper stills. Steam carries the oil out of the petals, and it floats to the top.",
+   "actions": []
+  },
+  {
+   "id": "festival",
+   "say": "Every year since {1903|nineteen oh three}, Kazanlak throws a festival for the harvest.",
+   "actions": []
+  },
+  {
+   "id": "guess",
+   "say": "So. How many flowers for one kilo of oil? Three. Two. One.",
+   "actions": []
+  },
+  {
+   "id": "answer",
+   "say": "Three to five tonnes of flowers. Sources vary. Most say about three and a half.",
+   "actions": []
+  },
+  {
+   "id": "gram",
+   "say": "For a single gram, more than a thousand petals.",
+   "actions": []
+  },
+  {
+   "id": "farmer",
+   "say": "And the farmer? In {2025|twenty twenty-five}, about one dollar fifty for a kilo of flowers.",
+   "actions": []
+  },
+  {
+   "id": "calc",
+   "say": "Our calculation: three and a half tonnes of flowers bring about {5,300|five thousand three hundred} dollars.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "All those mornings, for one kilo.",
+   "actions": []
+  }
+ ],
+ "remasterOf": "scent-003-rose"
+}
