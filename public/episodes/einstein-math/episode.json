@@ -1,0 +1,110 @@
+{
+ "id": "einstein-math",
+ "composition": "Grades",
+ "engine": "raea",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 8,
+ "title": "He failed. Not math.",
+ "whisper": "Einstein's real report card.",
+ "source": "W. Isaacson, TIME, 2007 · Aarau certificate, 1896",
+ "keywords": [
+  "failed",
+  "laughed.",
+  "never",
+  "calculus.",
+  "sixteen,",
+  "fail.",
+  "six.",
+  "three.",
+  "top",
+  "flipped",
+  "verdict",
+  "list",
+  "parts.",
+  "in."
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {}
+ },
+ "creative": {
+  "direction": "Grade tiles",
+  "thesis": "A fail is a total; the parts tell the story. Einstein failed an entrance exam on languages, never math.",
+  "opening": "the 1935 headline clipping slams onto a big wooden report-card board",
+  "composition": "a giant 1890s report-card board on a school wall: one row per subject, each grade a chunky wooden tile (a cube) that rolls to show its number; a 1-6 scale ruler that can flip",
+  "rhythm": "headline, his reply, the 1895 exam split into parts, the 1896 certificate tiles rolling to 6 6 6 3, a hard flip of the scale ruler, the rule card",
+  "payoff": "the total stamp FAIL breaks into its parts; the viewer is told to read the parts",
+  "sound": "wooden clacks for each tile, a stamp on FAIL, a ruler whoosh on the flip"
+ },
+ "_note": "Rendered in raea (raea/ungraded-008-einstein): a report-card board of rolling grade tiles; cues live in the composition.",
+ "beats": [
+  {
+   "id": "hook",
+   "scene": "board",
+   "say": "\"Greatest living mathematician failed in mathematics.\" A real headline. Einstein read it, and laughed."
+  },
+  {
+   "id": "reply",
+   "scene": "board",
+   "say": "In {1935|nineteen thirty-five} he told a rabbi in Princeton: \"I never failed in mathematics.\" Before fifteen, he had mastered calculus."
+  },
+  {
+   "id": "exam",
+   "scene": "board",
+   "say": "So where's the fail? {1895|Eighteen ninety-five}. He's sixteen, two years early, sitting the entrance exam of Zurich's Polytechnic."
+  },
+  {
+   "id": "parts",
+   "scene": "board",
+   "say": "Math and physics: top marks. Languages and the rest: not enough. Overall: fail."
+  },
+  {
+   "id": "aarau",
+   "scene": "board",
+   "say": "The school's director tells him: finish high school first. So he spends a year at a small school in Aarau."
+  },
+  {
+   "id": "cert",
+   "scene": "board",
+   "say": "His final certificate, {1896|eighteen ninety-six}. Algebra: six. Geometry: six. Physics: six. French: three."
+  },
+  {
+   "id": "scale",
+   "scene": "board",
+   "say": "Six is the top grade."
+  },
+  {
+   "id": "theory",
+   "scene": "board",
+   "say": "One theory for the myth: that year, the school flipped its scale. Read the old way, his sixes look like fails."
+  },
+  {
+   "id": "school",
+   "scene": "board",
+   "say": "At school, a fail sounds like a verdict on you. Out here, it's a list."
+  },
+  {
+   "id": "do",
+   "scene": "board",
+   "say": "So next time you fail a test, don't say: I'm bad at this. Read the parts. Find the one that failed."
+  },
+  {
+   "id": "loop",
+   "scene": "board",
+   "say": "A year later, Einstein got in. French: still a three. And that headline? Still going around."
+  }
+ ]
+}
