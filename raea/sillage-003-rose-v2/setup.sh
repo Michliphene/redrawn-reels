@@ -6,7 +6,6 @@ set -euo pipefail
 cd "$(dirname "$0")"
 R=../..
 EP=scent-003-rose-v2
-SRC=../sillage-003-rose/media/plates
 PY=python3; [ "$(python3 -c 'print(42)' 2>/dev/null)" = 42 ] || PY=python
 mkdir -p media/fonts media/sfx media/plates out
 cp "$R/public/episodes/$EP/music.wav" "$R/public/episodes/$EP/voice.wav" media/
@@ -17,15 +16,16 @@ cp "$R/public/fonts/OFL.txt" "$R/public/fonts/LICENSES.md" media/fonts/
 for f in BricolageGrotesque-latin InstrumentSerif-Italic-latin JetBrainsMono-latin; do
   [ -f "media/fonts/$f.ttf" ] || $PY -c "from fontTools.ttLib import TTFont; f=TTFont('$R/public/fonts/$f.woff2'); f.flavor=None; f.save('media/fonts/$f.ttf')"
 done
-# full-frame 9:16 crops (centred; `focus` in reel.json moves the Ken Burns origin, not the crop)
-s916() { [ -f "$SRC/$1" ] && ffmpeg -y -loglevel error -i "$SRC/$1" -vf "crop='min(iw,ih*9/16)':'min(ih,iw*16/9)',scale=1080:1920:flags=lanczos" -q:v 3 "media/plates/$2" || echo "!! missing $1"; }
-s916 nb_valley.jpg   s_valley.jpg
-s916 nb_pickers.jpg  s_pickers.jpg
-s916 nb_still.jpg    s_still.jpg
-s916 nb_festival.jpg s_festival.jpg
-s916 gpt_damask.png  s_damask.jpg
-s916 gpt_hands.png   s_hands.jpg
-s916 gpt_scale.png   s_scale.jpg
+# full-frame 9:16 crops of the regenerated photoreal plates (plates-src/, prompts in plates.json; kit rule P4)
+SRC=plates-src
+s916() { [ -f "$SRC/$1" ] && ffmpeg -y -loglevel error -i "$SRC/$1" -vf "crop='min(iw,ih*9/16)':'min(ih,iw*16/9)',scale=1080:1920:flags=lanczos" -q:v 2 "media/plates/$2" || echo "!! missing $1"; }
+s916 pv_valley.jpg    s_valley.jpg
+s916 pv_damask.jpg    s_damask.jpg
+s916 pv_pickers.png   s_pickers.jpg
+s916 pv_hands.png     s_hands.jpg
+s916 pv_still.png     s_still.jpg
+s916 pv_festival.png  s_festival.jpg
+s916 pv_scale.png     s_scale.jpg
 # the debug flag file the composition imports (SAFE_ZONES=1 draws the platform's forbidden bands)
 if [ "${SAFE_ZONES:-0}" = 1 ]; then echo '{"safeZones": true}'; else echo '{"safeZones": false}'; fi > compositions/flags.json
 rm -rf compositions/media && cp -r media compositions/media

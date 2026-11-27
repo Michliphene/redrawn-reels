@@ -25,9 +25,7 @@ Not measured on a full render yet. Per still the kit costs about the same as N°
 + environment). Grain/vignette/petals are HTML layers (cheap). Nothing here should double the time.
 
 ## Left to do
-1. Regenerate the 7 N°3 plates in the single photoreal style (`tokens.image.styleSuffix`): the current ones are N°3's
-   painterly/botanical images cropped full-frame. Needs the owner's OK (browser downloads).
-2. Full video render of `scent-003-rose-v2` and a frame grabbed from the MP4 (continuous renders can differ from
-   stills: see the raea geometry/ImagePlane notes) — when the owner asks for videos again.
+1. Done 27 Nov: 7 photoreal plates (prompts and retrieval in raea/sillage-003-rose-v2/plates.json; 5 at 768x1376 via Gemini "Copy image" because Chrome blocked downloads), full render 61.3 s, raea check 0 errors (59 reading warnings from the word-by-word captions), −14.0 LUFS, frames from the MP4 checked (level, petals, drop, loop).
+2. Reading warnings: raea counts each word as shown alone while the next ones fade in; consider revealing a page faster.
 3. Tune: the drop is small in frame; the liquid tint per episode (`juice` in reel.json); a petal mesh with curl.
 4. Port N°4/N°5/N°6 to the kit if they get remasters (new ids; published masters stay as they are).

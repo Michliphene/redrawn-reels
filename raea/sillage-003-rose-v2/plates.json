@@ -1,0 +1,43 @@
+{
+ "note": "N°3-v2 plates, regenerated in the kit single style (tokens.image.styleSuffix). Tool: Nano Banana (Gemini app).",
+ "styleSuffix": "Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces.",
+ "plates": {
+  "pv_valley": {
+   "used_as": "s_valley.jpg",
+   "subject": "A wide Bulgarian valley of Damask rose fields at first light, long rows of pink rose bushes running toward low mountains in soft mist, dew on the petals in the foreground.",
+   "prompt": "Generate an image, vertical 9:16. A wide Bulgarian valley of Damask rose fields at first light, long rows of pink rose bushes running toward low mountains in soft mist, dew on the petals in the foreground. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  },
+  "pv_damask": {
+   "used_as": "s_damask.jpg",
+   "subject": "Macro of a single fresh pink Damask rose in full bloom, dew drops on the petals, a few loose petals around it, dark velvety background.",
+   "prompt": "Generate an image, vertical 9:16. Macro of a single fresh pink Damask rose in full bloom, dew drops on the petals, a few loose petals around it, dark velvety background. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  },
+  "pv_pickers": {
+   "used_as": "s_pickers.jpg",
+   "subject": "A rose field at blue hour just before sunrise, the sky deep violet warming to gold on the horizon, rows of pink rose bushes in the foreground, and far away two tiny figures seen from behind carrying baskets between the rows.",
+   "prompt": "Generate an image, vertical 9:16. Rose field before sunrise, deep blue-violet sky warming to gold on the horizon, a few pickers far away seen from behind as small silhouettes with baskets, no faces visible. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces.",
+   "note": "first prompt (pickers as silhouettes, \"no faces\") returned no image; reworded"
+  },
+  "pv_hands": {
+   "used_as": "s_hands.jpg",
+   "subject": "Close-up of two weathered hands picking a pink Damask rose blossom from the bush at dawn, a woven basket of rose heads below, no face, no body above the wrists.",
+   "prompt": "Generate an image, vertical 9:16. Close-up of two weathered hands picking a pink Damask rose blossom from the bush at dawn, a woven basket of rose heads below, no face, no body above the wrists. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  },
+  "pv_still": {
+   "used_as": "s_still.jpg",
+   "subject": "Inside an old stone distillery, a large hammered copper still glowing in warm window light, soft steam, a basket of rose petals beside it, no people.",
+   "prompt": "Generate an image, vertical 9:16. Inside an old stone distillery, a large hammered copper still glowing in warm window light, soft steam, a basket of rose petals beside it, no people. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  },
+  "pv_festival": {
+   "used_as": "s_festival.jpg",
+   "subject": "A small Bulgarian town street decorated for a rose festival at golden hour, garlands and baskets of pink roses along old houses, petals on the cobblestones, nobody in the street.",
+   "prompt": "Generate an image, vertical 9:16. A small Bulgarian town street decorated for a rose festival at golden hour, garlands and baskets of pink roses along old houses, petals on the cobblestones, nobody in the street. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  },
+  "pv_scale": {
+   "used_as": "s_scale.jpg",
+   "subject": "An old brass hanging scale holding a sack of freshly picked pink rose blossoms in a farm shed, morning light through the door, rose petals on the wooden floor, no people.",
+   "prompt": "Generate an image, vertical 9:16. An old brass hanging scale holding a sack of freshly picked pink rose blossoms in a farm shed, morning light through the door, rose petals on the wooden floor, no people. Cinematic photoreal still, shot on 35mm film, fine film grain, warm golden-hour light, shallow depth of field, soft creamy bokeh, warm rose and amber palette with deep plum shadows, natural textures, luxury fragrance campaign mood. Vertical 9:16 full-frame composition with the subject in the middle third and calm, darker space at the top and bottom for type. No painting, no illustration, no fantasy, no cartoon, no 3D render look, no text, no letters, no logos, no brand marks, no watermark, no faces."
+  }
+ },
+ "retrieval": "Gemini app, 27 Nov 2026. pv_valley, pv_damask: full-size download. The others: Gemini \"Copy image\" (768x1376), because Chrome blocked further downloads."
+}
