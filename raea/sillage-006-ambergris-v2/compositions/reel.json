@@ -1,0 +1,559 @@
+{
+  "id": "scent-006-ambergris",
+  "number": 6,
+  "juice": "#9A6420",
+  "petal": "#CFC3AA",
+  "keywords": [
+    "ambergris",
+    "vomit",
+    "dung",
+    "ambroxide",
+    "illegal",
+    "Yemen"
+  ],
+  "checks": {
+    "currency": "USD",
+    "units": {
+      "massOf": [
+        "whale"
+      ]
+    },
+    "calcs": [
+      {
+        "what": "price per gram of the Yemen piece",
+        "expr": "1500000 / 127000",
+        "shown": "12",
+        "tolerance": 0.02
+      }
+    ],
+    "sourcesVary": [
+      "rare"
+    ]
+  },
+  "flacon": {
+    "level": [
+      [
+        "start",
+        0
+      ],
+      [
+        "molecule:ambroxide-0.05",
+        0.86,
+        1.3
+      ],
+      [
+        "price",
+        0,
+        0.8
+      ]
+    ],
+    "sweeps": [
+      "molecule:ambroxide",
+      "law:illegal"
+    ]
+  },
+  "shots": [
+    {
+      "id": "hook",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_boat.jpg",
+      "textFrom": "start-1",
+      "text": [
+        {
+          "t": "stat",
+          "v": "127 kg"
+        },
+        {
+          "t": "title",
+          "v": "of whale\nvomit?",
+          "gold": "vomit?"
+        },
+        {
+          "t": "label",
+          "v": "280 lb · Yemen, 2021"
+        }
+      ]
+    },
+    {
+      "id": "sold",
+      "petals": false,
+      "at": "hook:It-0.1",
+      "kind": "plate",
+      "img": "s_lump.jpg",
+      "focus": [
+        50,
+        58
+      ],
+      "text": [
+        {
+          "t": "label",
+          "v": "it sold for"
+        },
+        {
+          "t": "stat",
+          "v": "$1.5M",
+          "at": "hook:$1.5"
+        }
+      ]
+    },
+    {
+      "id": "myth",
+      "petals": false,
+      "kind": "plate",
+      "text": [
+        {
+          "t": "label",
+          "v": "one problem"
+        },
+        {
+          "t": "title",
+          "v": "Never\nvomit.",
+          "gold": "vomit.",
+          "at": "myth:It-0.1"
+        }
+      ],
+      "img": "s_lump.jpg",
+      "focus": [
+        50,
+        58
+      ],
+      "kb": {
+        "from": [
+          1.1,
+          0,
+          0
+        ],
+        "to": [
+          1.24,
+          -10,
+          -30
+        ]
+      }
+    },
+    {
+      "id": "name",
+      "petals": false,
+      "kind": "flacon",
+      "camera": "crane",
+      "text": [
+        {
+          "t": "title",
+          "v": "Ambergris"
+        },
+        {
+          "t": "whisper",
+          "v": "ambre gris: grey amber",
+          "at": "name:Old"
+        },
+        {
+          "t": "label",
+          "v": "illegal to own in the US ↓",
+          "at": "name:French"
+        }
+      ],
+      "at": "name:ambergris.-0.15"
+    },
+    {
+      "id": "gut",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_whale.jpg",
+      "text": [
+        {
+          "t": "title",
+          "v": "Made in\nthe gut"
+        },
+        {
+          "t": "label",
+          "v": "of a sperm whale",
+          "at": "gut:sperm"
+        },
+        {
+          "t": "whisper",
+          "v": "a bile-duct secretion",
+          "at": "gut:bile"
+        }
+      ]
+    },
+    {
+      "id": "beak",
+      "petals": false,
+      "at": "gut:Hard-0.1",
+      "kind": "plate",
+      "img": "s_beak.jpg",
+      "text": [
+        {
+          "t": "title",
+          "v": "Squid beaks"
+        },
+        {
+          "t": "label",
+          "v": "often found inside",
+          "at": "gut:often"
+        }
+      ]
+    },
+    {
+      "id": "exit",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_whale.jpg",
+      "kb": {
+        "from": [
+          1.12,
+          -30,
+          -10
+        ],
+        "to": [
+          1.04,
+          0,
+          0
+        ]
+      },
+      "text": [
+        {
+          "t": "label",
+          "v": "it mostly leaves"
+        },
+        {
+          "t": "title",
+          "v": "the other\nway"
+        },
+        {
+          "t": "whisper",
+          "v": "…like dung",
+          "at": "exit:dung"
+        }
+      ]
+    },
+    {
+      "id": "rare",
+      "petals": false,
+      "kind": "plate",
+      "text": [
+        {
+          "t": "stat",
+          "v": "1 in 100",
+          "at": "rare:one"
+        },
+        {
+          "t": "label",
+          "v": "sperm whales · an estimate",
+          "at": "rare:whale"
+        },
+        {
+          "t": "whisper",
+          "v": "Soviet logs 1961–78: 0.4%",
+          "at": "rare:Soviet"
+        },
+        {
+          "t": "badge",
+          "v": "sources vary",
+          "at": "rare:fewer."
+        }
+      ],
+      "img": "s_whale.jpg",
+      "kb": {
+        "from": [
+          1.3,
+          -40,
+          -30
+        ],
+        "to": [
+          1.18,
+          0,
+          0
+        ]
+      },
+      "at": "rare:Only+0.4"
+    },
+    {
+      "id": "float",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_sea.jpg",
+      "text": [
+        {
+          "t": "whisper",
+          "v": "fresh, it smells\nlike what it is"
+        },
+        {
+          "t": "title",
+          "v": "It floats",
+          "at": "float:floats"
+        },
+        {
+          "t": "label",
+          "v": "often for years",
+          "at": "float:years."
+        }
+      ]
+    },
+    {
+      "id": "age",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_sea.jpg",
+      "kb": {
+        "from": [
+          1.35,
+          -60,
+          -40
+        ],
+        "to": [
+          1.42,
+          -70,
+          -50
+        ]
+      },
+      "text": [
+        {
+          "t": "label",
+          "v": "slowly, it turns"
+        },
+        {
+          "t": "title",
+          "v": "sweet &\nearthy",
+          "gold": "earthy"
+        }
+      ]
+    },
+    {
+      "id": "molecule",
+      "petals": false,
+      "kind": "flacon",
+      "camera": "pushIn",
+      "text": [
+        {
+          "t": "label",
+          "v": "scentless",
+          "at": "molecule:scentless"
+        },
+        {
+          "t": "title",
+          "v": "Ambrein",
+          "at": "molecule:ambrein,"
+        },
+        {
+          "t": "title",
+          "v": "→ Ambroxide",
+          "gold": "Ambroxide",
+          "at": "molecule:ambroxide."
+        },
+        {
+          "t": "whisper",
+          "v": "the main smell",
+          "at": "molecule:That"
+        }
+      ]
+    },
+    {
+      "id": "history",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_history.jpg",
+      "text": [
+        {
+          "t": "whisper",
+          "v": "Egypt: incense",
+          "at": "history:incense."
+        },
+        {
+          "t": "whisper",
+          "v": "against the plague",
+          "at": "history:plague."
+        },
+        {
+          "t": "whisper",
+          "v": "Charles II's eggs",
+          "at": "history:Eggs"
+        },
+        {
+          "t": "label",
+          "v": "reportedly",
+          "at": "history:reportedly"
+        }
+      ],
+      "kb": {
+        "from": [
+          1.08,
+          0,
+          0
+        ],
+        "to": [
+          1.2,
+          -10,
+          -20
+        ]
+      }
+    },
+    {
+      "id": "law",
+      "petals": false,
+      "kind": "flacon",
+      "camera": "low",
+      "text": [
+        {
+          "t": "label",
+          "v": "today"
+        },
+        {
+          "t": "title",
+          "v": "USA: illegal\nto own",
+          "gold": "illegal",
+          "at": "law:illegal"
+        },
+        {
+          "t": "whisper",
+          "v": "UK · EU: it can be sold",
+          "at": "law:Britain"
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_boat.jpg",
+      "kb": {
+        "from": [
+          1.16,
+          -30,
+          -20
+        ],
+        "to": [
+          1.08,
+          0,
+          0
+        ]
+      },
+      "text": [
+        {
+          "t": "label",
+          "v": "that piece from Yemen"
+        },
+        {
+          "t": "stat",
+          "v": "$12",
+          "at": "price:$12"
+        },
+        {
+          "t": "whisper",
+          "v": "a gram · $1.5M ÷ 127 kg",
+          "at": "price:a"
+        },
+        {
+          "t": "badge",
+          "v": "our calculation",
+          "at": "price:a"
+        }
+      ]
+    },
+    {
+      "id": "synthetic",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_sage.jpg",
+      "text": [
+        {
+          "t": "label",
+          "v": "the shortcut"
+        },
+        {
+          "t": "title",
+          "v": "Clary sage",
+          "at": "synthetic:clary"
+        },
+        {
+          "t": "whisper",
+          "v": "→ ambroxide · a plant",
+          "at": "synthetic:plant."
+        }
+      ],
+      "at": "synthetic:shortcut.-0.2"
+    },
+    {
+      "id": "loop",
+      "petals": false,
+      "kind": "plate",
+      "img": "s_boat.jpg",
+      "textFrom": "loop:still-0.1",
+      "kb": {
+        "from": [
+          1.12,
+          -30,
+          -12
+        ],
+        "to": [
+          1.06,
+          0,
+          0
+        ]
+      },
+      "text": [
+        {
+          "t": "stat",
+          "v": "127 kg"
+        },
+        {
+          "t": "title",
+          "v": "of whale\nvomit?",
+          "gold": "vomit?"
+        },
+        {
+          "t": "label",
+          "v": "280 lb · Yemen, 2021"
+        }
+      ]
+    }
+  ],
+  "sfx": [
+    [
+      "hook:127",
+      "stamp",
+      0.35
+    ],
+    [
+      "hook:$1.5",
+      "stamp",
+      0.35
+    ],
+    [
+      "myth:never",
+      "stamp",
+      0.4
+    ],
+    [
+      "exit:dung.",
+      "pop",
+      0.3
+    ],
+    [
+      "rare:one",
+      "stamp",
+      0.3
+    ],
+    [
+      "float:floats",
+      "rumble",
+      0.3
+    ],
+    [
+      "molecule:That",
+      "boom",
+      0.3
+    ],
+    [
+      "law:illegal",
+      "stamp",
+      0.35
+    ],
+    [
+      "price:$12",
+      "stamp",
+      0.35
+    ]
+  ],
+  "juiceGlow": 0.12
+}

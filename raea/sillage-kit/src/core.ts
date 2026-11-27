@@ -81,3 +81,18 @@ export function contrast(fg: string, bg: number[]) {
 }
 /** worst case: pure white behind the scrim */
 export const worstContrast = (fg: string, scrim: string, alpha: number) => contrast(fg, blend(scrim, alpha, [1, 1, 1]));
+
+/* ---------------- text stack height and the top scrim fitted to it (composition + validator share this) */
+export type StackEl = { t: string; v: string; size?: number };
+export function lineH(e: StackEl, TOK: any): number {
+  const n = e.v.split("\n").length, ty = TOK.type[e.t === "count" ? "stat" : e.t === "badge" ? "label" : e.t];
+  const size = e.size ?? ty.size;
+  return e.t === "badge" ? 70 : n * size * (ty.line ?? 1.1) + (e.t === "label" ? 12 : e.t === "whisper" ? 10 : 0);
+}
+export const stackBottom = (els: StackEl[], TOK: any) => els.reduce((y, e) => y + lineH(e, TOK), TOK.layout.textTop);
+/** full-strength zone of the top scrim (px) and where its fade ends */
+export function scrimHold(els: StackEl[], TOK: any): { hold: number; fade: number } {
+  const H = TOK.canvas.height, s = TOK.scrim.top;
+  const hold = Math.max(H * s.to, els.length ? stackBottom(els, TOK) + (s.fitPad ?? 0) : 0);
+  return { hold, fade: hold + H * (s.fadeTo - s.to) };
+}

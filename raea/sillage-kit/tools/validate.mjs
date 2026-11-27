@@ -11,7 +11,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { paginate, duplicates, numbersIn, worstContrast } from "../src/core.ts";
+import { paginate, duplicates, numbersIn, worstContrast, scrimHold } from "../src/core.ts";
 import { makeAnchors } from "../src/time.ts";
 
 const KIT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -102,7 +102,7 @@ const lineH = (e) => {
   const size = e.size ?? ty.size;
   return e.t === "badge" ? 70 : n * size * (ty.line ?? 1.1) + (e.t === "label" ? 12 : e.t === "whisper" ? 10 : 0);
 };
-const topAlpha = (y) => { const hold = H * sc.top.to, fade = H * sc.top.fadeTo; return y <= hold ? sc.top.alpha - (sc.top.alpha - sc.top.alpha * 0.92) * (y / hold) : Math.max(0, sc.top.alpha * 0.92 * (1 - (y - hold) / (fade - hold))); };
+const topAlpha = (y, hf) => { const { hold, fade } = hf; return y <= hold ? sc.top.alpha - (sc.top.alpha - sc.top.alpha * 0.92) * (y / hold) : Math.max(0, sc.top.alpha * 0.92 * (1 - (y - hold) / (fade - hold))); };
 const botAlpha = (y) => { const y0 = H * sc.bottom.from, full = Lt.captionTop; return y <= y0 ? 0 : y <= full ? sc.bottom.alpha * 0.93 * ((y - y0) / (full - y0)) : sc.bottom.alpha * 0.93 + (sc.bottom.alpha * 0.07 * (y - full)) / (H - full); };
 if (Lt.textTop < S.top || Lt.logoY < S.top) bad(`text starts above the safe top (${S.top}px)`);
 if (Lt.right > S.right) bad(`text runs into the right band (${Lt.right} > ${S.right})`);
@@ -110,9 +110,10 @@ if (Lt.captionBottom > S.bottom) bad(`captions run into the bottom band (${Lt.ca
 const colors = { stat: "cream", count: "cream", title: "cream", whisper: "cream", label: "goldLight", badge: "gold" };
 for (const s of R.shots) {
   let y = Lt.textTop;
+  const hf = scrimHold(s.text ?? [], TOK);
   for (const e of s.text ?? []) {
     y += lineH(e);
-    const c = worstContrast(TOK.color[colors[e.t]], sc.top.color, topAlpha(y - 10));
+    const c = worstContrast(TOK.color[colors[e.t]], sc.top.color, topAlpha(y - 10, hf));
     if (c < sc.minContrast) bad(`shot ${s.id}: "${e.v.split("\n")[0]}" ends at y≈${Math.round(y)}, contrast on the top scrim ${c.toFixed(2)}:1 < ${sc.minContrast} (worst case)`);
   }
   if (y > Lt.captionTop - 30) warn(`shot ${s.id}: title stack reaches y≈${Math.round(y)}, into the caption band (${Lt.captionTop})`);

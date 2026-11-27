@@ -12,6 +12,7 @@ import { Transform } from "raea/transform";
 import { Camera3d } from "raea/camera";
 import TOK from "../tokens.json";
 import { Captions, makePages } from "./captions";
+import { scrimHold } from "./core";
 import { CAMERAS, Cam, FlaconSet, orbit, PetalTimes, returnTo } from "./flacon";
 import { FloatingPetals, Grain, SafeZones, Vignette } from "./finish";
 import { FullPlate, PlateSpec, Scrims } from "./plate";
@@ -26,7 +27,7 @@ export type ShotData = {
   petals?: boolean; captions?: boolean;
 };
 export type ReelData = {
-  id: string; number: number | string; juice: string; petal?: string; keywords?: string[];
+  id: string; number: number | string; juice: string; juiceGlow?: number; petal?: string; keywords?: string[];
   shots: ShotData[];
   flacon: { level: [A, number, number?][]; petals?: [A, number][]; drop?: A; sweeps?: A[] };
   sfx?: [A, string, number][];
@@ -70,6 +71,7 @@ export function SillageReel({ data, timings, flags = {} }: { data: ReelData; tim
     ? { ...e, at: undefined, ats: String(e.at ?? "").split("|").map((x) => at(x)) }
     : { ...e, at: e.at !== undefined ? at(e.at) : undefined });
   /** a caption page that only repeats what the title already shows is not drawn (anti-duplicate) */
+  const hold = scrimHold(s.text ?? [], TOK);
   const onScreen = els.map((e) => e.v.split("|").join(" ")).join(" ");
 
   /* ---- sound: a soft whoosh on every cut, the drop, the episode's cues; music ducks under the voice */
@@ -92,12 +94,12 @@ export function SillageReel({ data, timings, flags = {} }: { data: ReelData; tim
       <Bloom intensity={TOK.finish.bloom.intensity} threshold={TOK.finish.bloom.threshold} />
       <Environment room blur={0.04} intensity={0.9} />
       <AmbientLight brightness={60} color="#F2D8E2" />
-      <FlaconSet t={t} n={data.number} juice={data.juice} petal={petal} state={state} />
+      <FlaconSet t={t} n={data.number} juice={data.juice} juiceGlow={data.juiceGlow} petal={petal} state={state} />
 
       <AbsoluteFill style={{ pointerEvents: "none" }}>
         <style>{FONTS}</style>
-        {s.kind === "plate" && s.img && <FullPlate spec={{ img: s.img, fg: s.fg, video: s.video, kb: s.kb, focus: s.focus }} k={k} />}
-        {s.kind === "flacon" && <Scrims strength={0.75} />}
+        {s.kind === "plate" && s.img && <FullPlate spec={{ hold, img: s.img, fg: s.fg, video: s.video, kb: s.kb, focus: s.focus }} k={k} />}
+        {s.kind === "flacon" && <Scrims strength={0.75} hold={hold} />}
         <FloatingPetals t={t} dur={DUR} color={petal} on={s.petals !== false} />
         <Vignette />
         <Logotype n={data.number} />

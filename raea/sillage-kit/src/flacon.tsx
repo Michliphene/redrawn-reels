@@ -149,7 +149,7 @@ function Sweep({ t, at }: { t: number; at: number[] }) {
 
 export type FlaconState = { level: number; petals: PetalTimes; drop?: number; sweeps: number[] };
 
-export function FlaconSet({ t, n, juice, petal, state }: { t: number; n: string | number; juice: string; petal: string; state: FlaconState }) {
+export function FlaconSet({ t, n, juice, juiceGlow = 0.4, petal, state }: { t: number; n: string | number; juice: string; juiceGlow?: number; petal: string; state: FlaconState }) {
   const lv = clamp01(state.level);
   const hJ = Math.max(0.01, INNER.h * lv), yJ = INNER.floor + hJ / 2;
   return (
@@ -166,7 +166,7 @@ export function FlaconSet({ t, n, juice, petal, state }: { t: number; n: string 
       {/* unit-height cuboid scaled in y: raea keeps a mesh's first-frame geometry in a continuous render */}
       <Mesh3d name="juice" allowOverlap transform={Transform.fromXyz(0, yJ, 0).withScale([1, hJ, 1])}>
         <Cuboid half_size={[INNER.w / 2, 0.5, INNER.d / 2]} />
-        <StandardMaterial base_color={juice} perceptual_roughness={0.08} reflectance={0.6} emissive={glow(juice, 0.4)} />
+        <StandardMaterial base_color={juice} perceptual_roughness={0.08} reflectance={0.6} emissive={glow(juice, juiceGlow)} />
       </Mesh3d>
       <Mesh3d name="meniscus" allowOverlap transform={Transform.fromXyz(0, yJ + hJ / 2 + 0.004, 0)}><Cuboid half_size={[INNER.w / 2, 0.004, INNER.d / 2]} /><M c="#F3C46A" r={0.05} e={1.1} /></Mesh3d>
       <Mesh3d name="glass-base" allowOverlap shape={BASE} transform={Transform.fromXyz(0, SOCLE_H + 0.12, 0)}><Glass tint="#F6E9EC" /></Mesh3d>

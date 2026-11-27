@@ -1,0 +1,142 @@
+{
+ "id": "scent-006-ambergris",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 6,
+ "da": 2,
+ "composition": "Episode",
+ "title": "It was never whale vomit",
+ "whisper": "the grey amber that floats for years",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "ambergris": "AM-ber-grees",
+   "Ambergris": "AM-ber-grees",
+   "ambrein": "AM-bree-in",
+   "ambroxide": "am-BROX-ide"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-006-ambergris (map fields unused; this file holds the script and the voice)",
+ "keywords": [
+  "ambergris",
+  "vomit",
+  "dung",
+  "ambroxide",
+  "illegal"
+ ],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "Fishermen in Yemen found {127|a hundred and twenty-seven} kilos of whale vomit. It sold for {$1.5 million|one point five million dollars}.",
+   "actions": []
+  },
+  {
+   "id": "myth",
+   "say": "One problem. It was never vomit.",
+   "actions": []
+  },
+  {
+   "id": "name",
+   "say": "It's ambergris. Old French for grey amber.",
+   "actions": []
+  },
+  {
+   "id": "gut",
+   "say": "It forms in the intestine of a sperm whale, from a secretion of the bile duct. Hard squid beaks are often found inside.",
+   "actions": []
+  },
+  {
+   "id": "exit",
+   "say": "And it mostly leaves the other way. Like dung.",
+   "actions": []
+  },
+  {
+   "id": "rare",
+   "say": "Only about one sperm whale in a hundred makes it. Old Soviet whaling logs found even fewer.",
+   "actions": []
+  },
+  {
+   "id": "float",
+   "say": "Fresh, it smells like what it is. Then it floats at sea, often for years.",
+   "actions": []
+  },
+  {
+   "id": "age",
+   "say": "Slowly, it turns sweet and earthy.",
+   "actions": []
+  },
+  {
+   "id": "molecule",
+   "say": "The secret is chemistry. A scentless molecule, ambrein, breaks down into ambroxide. That is the smell.",
+   "actions": []
+  },
+  {
+   "id": "history",
+   "say": "Egyptians burned it as incense. People carried balls of it against the plague. Eggs with ambergris were reportedly a favourite of King Charles the Second.",
+   "actions": []
+  },
+  {
+   "id": "law",
+   "say": "Today, owning it is illegal in the United States. In Britain and the E U, it can be sold.",
+   "actions": []
+  },
+  {
+   "id": "price",
+   "say": "That piece from Yemen? About {$12|twelve dollars} a gram.",
+   "actions": []
+  },
+  {
+   "id": "synthetic",
+   "say": "So perfumers found a shortcut. Ambroxide is now made from clary sage. A plant.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "But the headlines never change. They still say:",
+   "actions": []
+  }
+ ],
+ "creative": {
+  "direction": "Evidence bench",
+  "thesis": "The headline word (vomit) is wrong; the record says gut, dung, chemistry.",
+  "opening": "hold on the grey lump on a plinth with the price",
+  "composition": "one cabinet: lump, beak, molecule, law card, sage sprig",
+  "rhythm": "fast myth/correction cut at 4 s, slower float/ageing middle, fast history list",
+  "payoff": "the bottle fills grey on 'That is the smell'",
+  "sound": "low sea rumble under the float beats; one stamp on 'never vomit'"
+ }
+}

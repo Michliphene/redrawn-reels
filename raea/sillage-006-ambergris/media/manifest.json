@@ -1,0 +1,14 @@
+{
+ "episode": "scent-006-ambergris",
+ "date": "2026-11-26",
+ "rule": "All images are AI illustrations (Nano Banana, Gemini app, owner's account), said in the post description. No people, no faces, no text in images. Never presented as photos of the 2021 Yemen find or as archive pictures. The flacon, the grey lump on its plinth and the 100 pearls are 3D.",
+ "items": [
+  { "id": "nb_boat", "used_as": "s_boat.jpg", "tool": "Nano Banana (Gemini)", "role": "hook, price, loop (\"Fishermen in Yemen…\")", "prompt_summary": "small weathered wooden fishing boat on a calm sea at golden dusk, no people, no flags (not a depiction of the real boat)", "crop": "9:16 centred (prep-plates.sh)" },
+  { "id": "nb_beach", "used_as": "s_beach.jpg", "tool": "Nano Banana (Gemini)", "role": "\"It's ambergris\"", "prompt_summary": "weathered grey-brown waxy lump on wet sand at dawn", "crop": "9:16 centred" },
+  { "id": "nb_whale", "used_as": "s_whale.jpg", "tool": "Nano Banana (Gemini)", "role": "\"the intestine of a sperm whale\", \"the other way\"", "prompt_summary": "sperm whale in deep blue water, light shafts", "crop": "9:16 centred" },
+  { "id": "nb_sea", "used_as": "s_sea.jpg", "tool": "Nano Banana (Gemini)", "role": "\"it floats at sea, often for years\" / \"sweet and earthy\"", "prompt_summary": "pale grey lump floating alone on open sea, overcast", "crop": "9:16 centred" },
+  { "id": "nb_beak", "used_as": "c_beak.jpg", "tool": "Nano Banana (Gemini)", "role": "\"Hard squid beaks are often found inside\"", "prompt_summary": "vintage engraving plate: three squid beaks and a grey waxy fragment, no labels", "crop": "3:4" },
+  { "id": "nb_history", "used_as": "c_history.jpg", "tool": "Nano Banana (Gemini)", "role": "incense, plague, Charles II's eggs", "prompt_summary": "engraving still life: incense burner, pierced pomander ball, two eggs in a porcelain dish (generic objects, not artefacts)", "crop": "3:4" },
+  { "id": "nb_sage", "used_as": "c_sage.jpg", "tool": "Nano Banana (Gemini)", "role": "\"made from clary sage\"", "prompt_summary": "botanical engraving: clary sage (Salvia sclarea), no labels", "crop": "3:4" }
+ ]
+}

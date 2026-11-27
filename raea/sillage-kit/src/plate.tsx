@@ -9,12 +9,12 @@ import TOK from "../tokens.json";
 import { clamp01, inOutSine, lerp } from "./time";
 
 const W = TOK.canvas.width, H = TOK.canvas.height, KB = TOK.motion.kenBurns;
-export type PlateSpec = { img: string; fg?: string; video?: string; kb?: { from?: [number, number, number]; to?: [number, number, number] }; focus?: [number, number] };
+export type PlateSpec = { hold?: { hold: number; fade: number }; img: string; fg?: string; video?: string; kb?: { from?: [number, number, number]; to?: [number, number, number] }; focus?: [number, number] };
 
-export function Scrims({ strength = 1 }: { strength?: number }) {
+export function Scrims({ strength = 1, hold: holdPx }: { strength?: number; hold?: { hold: number; fade: number } }) {
   // the shapes tools/validate.mjs models for the worst-case contrast: keep the two in step
   const s = TOK.scrim, L = TOK.layout, hx = (a: number) => `rgba(20,10,18,${(a * strength).toFixed(3)})`;
-  const topH = H * s.top.fadeTo, hold = (s.top.to / s.top.fadeTo) * 100;
+  const topH = holdPx?.fade ?? H * s.top.fadeTo, hold = ((holdPx?.hold ?? H * s.top.to) / topH) * 100;
   const y0 = H * s.bottom.from, full = ((L.captionTop - y0) / (H - y0)) * 100;
   return (
     <>
@@ -40,7 +40,7 @@ export function FullPlate({ spec, k }: { spec: PlateSpec; k: number }) {
         ? <Video src={staticFile(`plates/${spec.video}`)} style={layer("", 0.4)} muted />
         : <img src={staticFile(`plates/${spec.img}`)} style={layer(spec.img, spec.fg ? 0.55 : 1)} />}
       {spec.fg && !spec.video && <img src={staticFile(`plates/${spec.fg}`)} style={layer(spec.fg, 1.6)} />}
-      <Scrims />
+      <Scrims hold={spec.hold} />
     </AbsoluteFill>
   );
 }

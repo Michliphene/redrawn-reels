@@ -1,0 +1,14 @@
+{
+ "episode": "scent-006-ambergris (kit v3 build)",
+ "date": "2026-11-26",
+ "rule": "All images are AI images (Nano Banana, Gemini app, owner's account), photoreal style from sillage-kit tokens.image.styleSuffix; said in the post description. No people, no faces, no text. Never presented as photos of the 2021 Yemen find or as archive pictures. The flacon is 3D.",
+ "items": [
+  { "id": "nb_boat", "used_as": "s_boat.jpg", "tool": "Nano Banana (Gemini)", "role": "hook, price, loop", "prompt_summary": "small weathered wooden fishing boat alone on a calm sea at dusk, no people, no flags (not the real boat)" },
+  { "id": "nb_lump", "used_as": "s_lump.jpg", "tool": "Nano Banana (Gemini)", "role": "\"It sold for $1.5 million\"", "prompt_summary": "macro: weathered grey-brown waxy lump of ambergris on wet sand at the waterline, sea foam (not the Yemen piece)" },
+  { "id": "nb_whale", "used_as": "s_whale.jpg", "tool": "Nano Banana (Gemini)", "role": "gut, exit", "prompt_summary": "sperm whale in deep blue ocean, side view, sun rays" },
+  { "id": "nb_beak", "used_as": "s_beak.jpg", "tool": "Nano Banana (Gemini)", "role": "\"Hard squid beaks are often found inside\"", "prompt_summary": "macro still life: three squid beaks on slate beside a small grey waxy fragment" },
+  { "id": "nb_sea", "used_as": "s_sea.jpg", "tool": "Nano Banana (Gemini)", "role": "float, age", "prompt_summary": "small pale grey waxy lump floating alone on the open sea, low sun (Gemini A/B: option A kept)" },
+  { "id": "nb_history", "used_as": "s_history.jpg", "tool": "Nano Banana (Gemini)", "role": "incense, plague, Charles II's eggs", "prompt_summary": "candlelit still life: alabaster incense burner with smoke, pierced silver pomander, two eggs in a silver dish (generic objects, not artefacts; carvings on the cup are decorative, not writing)" },
+  { "id": "nb_sage", "used_as": "s_sage.jpg", "tool": "Nano Banana (Gemini)", "role": "\"made from clary sage\"", "prompt_summary": "clary sage (Salvia sclarea) in flower in a field at golden hour" }
+ ]
+}
