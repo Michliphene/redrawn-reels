@@ -151,7 +151,7 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
         const s = 1 + 0.6 * (1 - ease.out3(ramp(t, g.t, 0.6)));
         const c = piece.centroid;
         return <Slab key={`g${i}`} g={geos.get(String(f.id))!} top={g.color ?? '#F2994A'} side={shade(g.color ?? '#F2994A', -0.4)} edge="#FFFFFF"
-          pos={[c[0] * (1 - s), h * 1.5 + h * 0.3 * Math.sin(t * 2.2), c[1] * (1 - s)]} scale={[s, 0.35, s]} opacity={0.62 * o} cast={false} />;
+          pos={[c[0] * (1 - s), h * 1.5 + h * 0.3 * Math.sin(t * 2.2), c[1] * (1 - s)]} scale={[s, 0.35, s]} opacity={((g as any).opacity ?? 0.62) * o} cast={false} />;
       })}
 
       {paths.map((p, i) => {

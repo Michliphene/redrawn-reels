@@ -88,9 +88,10 @@
      "size": 58,
      "y": 1000,
      "atWord": "Two",
-     "hold": 3.2,
+     "hold": 3.6,
      "stamp": "MYTH",
-     "stampWord": "myth."
+     "stampWord": "myth.",
+     "stampSize": 64
     }
    ],
    "hideTimeline": true
@@ -167,13 +168,14 @@
      "src": "assets/images/sykes_picot_map_1916.jpg",
      "caption": "The signed map, 8 May 1916",
      "credit": "UK National Archives MPK 1/426 · public domain",
-     "y": 640,
-     "w": 860,
+     "y": 360,
+     "w": 740,
      "hold": 3.2,
      "focus": "50% 55%",
      "atWord": "Mark"
     }
-   ]
+   ],
+   "hideDate": true
   },
   {
    "id": "zones",
@@ -194,14 +196,16 @@
      "id": "SP_BLUE",
      "color": "#4F86E0",
      "atWord": "Blue",
-     "hold": 5.2
+     "hold": 5.2,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_RED",
-     "color": "#E0565B",
+     "color": "#F59A9C",
      "atWord": "Red",
-     "hold": 4.4
+     "hold": 4.4,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
@@ -211,7 +215,7 @@
     },
     {
      "type": "label",
-     "text": "A",
+     "text": "A · French",
      "at": [
       39.0,
       35.6
@@ -223,7 +227,7 @@
     },
     {
      "type": "label",
-     "text": "B",
+     "text": "B · British",
      "at": [
       39.6,
       32.0
@@ -237,7 +241,8 @@
      "id": "SP_BROWN",
      "color": "#C9A54A",
      "atWord": "Palestine:",
-     "hold": 2.4
+     "hold": 2.4,
+     "opacity": 0.9
     },
     {
      "type": "label",
@@ -265,7 +270,7 @@
     "yaw": 10,
     "cut": true
    },
-   "date": "1917-11-23",
+   "date": "1917-11",
    "actions": [
     {
      "type": "chapter",
@@ -279,7 +284,7 @@
       30.32,
       59.94
      ],
-     "atWord": "Bolshevik",
+     "atWord": "Russia's",
      "hold": 2.6
     },
     {
@@ -310,21 +315,24 @@
      "id": "SP_BLUE",
      "color": "#4F86E0",
      "atWord": "plan",
-     "hold": 1.8
+     "hold": 1.8,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_RED",
-     "color": "#E0565B",
+     "color": "#F59A9C",
      "atWord": "plan",
-     "hold": 1.8
+     "hold": 1.8,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_BROWN",
      "color": "#C9A54A",
      "atWord": "plan",
-     "hold": 1.8
+     "hold": 1.8,
+     "opacity": 0.9
     },
     {
      "type": "shake",
@@ -374,6 +382,17 @@
       "IRQ"
      ],
      "atWord": "Mosul."
+    },
+    {
+     "type": "label",
+     "text": "zone A · French",
+     "at": [
+      40.6,
+      36.2
+     ],
+     "size": "md",
+     "atWord": "France",
+     "hold": 2.6
     }
    ]
   },
@@ -468,10 +487,11 @@
     },
     {
      "type": "ghost",
-     "id": "SP_BLUE",
+     "id": "SP_BLUE_N",
      "color": "#4F86E0",
      "atWord": "France's",
-     "hold": 1.9
+     "hold": 1.9,
+     "opacity": 0.9
     }
    ]
   },
@@ -523,27 +543,41 @@
      "id": "SP_BLUE",
      "color": "#4F86E0",
      "atWord": "plan",
-     "hold": 5.6
+     "hold": 5.6,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_RED",
-     "color": "#E0565B",
+     "color": "#F59A9C",
      "atWord": "plan",
-     "hold": 5.6
+     "hold": 5.6,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_BROWN",
      "color": "#C9A54A",
      "atWord": "plan",
-     "hold": 5.6
+     "hold": 5.6,
+     "opacity": 0.9
     },
     {
      "type": "ghost",
      "id": "SP_LINES",
      "atWord": "plan",
      "hold": 5.6
+    },
+    {
+     "type": "label",
+     "text": "1916 plan",
+     "at": [
+      33.0,
+      37.4
+     ],
+     "size": "md",
+     "atWord": "plan",
+     "hold": 5.0
     }
    ]
   },
@@ -560,11 +594,11 @@
    "actions": [
     {
      "type": "callout",
-     "text": "The idea survived. The lines didn't.",
+     "text": "The idea survived. The lines? Mostly not.",
      "size": 54,
-     "y": 1000,
+     "y": 1040,
      "atWord": "lines?",
-     "hold": 2.6
+     "hold": 1.2
     }
    ]
   },
@@ -581,7 +615,8 @@
      "type": "allLabels",
      "atWord": "Wars,"
     }
-   ]
+   ],
+   "hideDate": true
   }
  ]
 }

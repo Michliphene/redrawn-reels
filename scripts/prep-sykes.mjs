@@ -112,6 +112,9 @@ for (const [id, name, f, label] of SUBJECT) out.push({ type: 'Feature', id, prop
 const outline = merge(topo, geoms.filter((g) => ['792', '760', '376', '275', '422', '400', '368'].includes(g.id)));
 out.push({ type: 'Feature', id: 'FOCUS_OUTLINE', properties: { name: 'Ottoman Arab provinces and Anatolia (approx.)' }, geometry: outline });
 out.push({ type: 'Feature', id: 'SP_BLUE', properties: { name: 'Blue area (France)', ghost: true, label: [37.0, 37.6] }, geometry: d3(blue) });
+// the part of the blue area that ended up in Turkey (1923 beat: "France's northern zone is gone")
+const blueNorth = turf.intersect(turf.featureCollection([blue, tur]));
+out.push({ type: 'Feature', id: 'SP_BLUE_N', properties: { name: 'Blue area, Anatolian part', ghost: true }, geometry: d3(blueNorth) });
 out.push({ type: 'Feature', id: 'SP_RED', properties: { name: 'Red area (Britain)', ghost: true, label: [45.2, 32.0] }, geometry: d3(red) });
 out.push({ type: 'Feature', id: 'SP_BROWN', properties: { name: 'Brown area (international)', ghost: true, label: [34.9, 31.8] }, geometry: d3(brownNet) });
 out.push({ type: 'Feature', id: 'SP_LINES', properties: { name: '1916 A/B line', ghost: true, lines: true },

@@ -50,7 +50,7 @@ function paginate(timings: Timings, maxChars: number, maxLines: number, hidden: 
 export const Captions: React.FC<{ timings: Timings; t: number; accent: string; ink?: string; keywords?: string[]; hidden?: Record<string, string[]>; size?: number; align?: 'left' | 'center' }> =
   ({ timings, t, accent, ink = '#FFFFFF', keywords = [], hidden = {}, size = TYPE.caption, align = 'left' }) => {
     const left = SAFE.left, right = SAFE.railX, width = right - left;
-    const maxChars = Math.floor(width / (size * 0.47));
+    const maxChars = Math.floor(width / (size * 0.54)); // 0.47 let long names (GEORGES-PICOT) run past the rail
     const pages = useMemo(() => paginate(timings, maxChars, 2, hidden), [timings, maxChars, hidden]);
     const keys = useMemo(() => new Set(keywords.map(norm)), [keywords]);
     const idx = pages.findIndex((p, i) => t >= p.words[0].start - 0.05 && (i === pages.length - 1 || t < pages[i + 1].words[0].start - 0.05));

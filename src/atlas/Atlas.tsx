@@ -91,7 +91,7 @@ export const Atlas: React.FC<EpisodeProps & { credits?: Record<string, Credit>; 
   const legendAt = sched.actions.find((a) => a.type === 'allLabels')?.t;
   const legendOn = legendAt != null && t >= legendAt && (spec!.legend ?? true);
   const titleO = cover ? 1 : Math.max(1 - ramp(t, hookEnd - 0.3, 0.3), ramp(t, end - 0.45, 0.35));
-  const headO = cover ? 0 : Math.min(ramp(t, hookEnd, 0.3), 1 - ramp(t, end - 0.5, 0.3)) * (legendOn ? 1 - ramp(t, legendAt!, 0.3) : 1);
+  const headO = cover ? 0 : Math.min(ramp(t, hookEnd, 0.3), 1 - ramp(t, end - 0.8, 0.3)) * (legendOn ? 1 - ramp(t, legendAt!, 0.3) : 1);
   const chapters = useMemo(() => sched.actions.filter((a) => a.type === 'chapter').map((a) => ({ t: a.t, text: (a as any).text as string })), [sched]);
   const musicVol = (f: number) => interpolate(f / FPS, [0, 0.5, end - 3, end], [0.0, 0.22, 0.22, 0.3], { extrapolateRight: 'clamp' });
   const hidden = useMemo(() => Object.fromEntries(spec!.beats.filter((b: any) => b.hideCaptionWords).map((b: any) => [b.id, b.hideCaptionWords])), [spec]);
