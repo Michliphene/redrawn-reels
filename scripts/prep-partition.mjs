@@ -54,7 +54,7 @@ const SUBJECT = [
   ['PAK_W', 'Pakistan', pakW, [69.0, 29.0], false],
   ['PAK_E', 'East Pakistan', bgd, [90.2, 23.9], false],
   ['BGD', 'Bangladesh', bgd, [90.2, 23.9], true],
-  ['KASHMIR', 'Kashmir', kashmir, [75.6, 34.6], false],
+  ['KASHMIR', 'Kashmir (disputed)', kashmir, [75.6, 34.6], false],
 ];
 for (const [id, name, f, label, hidden] of SUBJECT) out.push({ type: 'Feature', id, properties: { name, label, focus: true, ...(hidden ? { hidden: true } : {}), ...(id === 'PAK_E' ? { noAllLabel: true } : {}) }, geometry: d3(f) });
 out.push({ type: 'Feature', id: 'FOCUS_OUTLINE', properties: { name: 'British India (1947)' }, geometry: merge(topo, geoms.filter((g) => [IND, PAK, BGD].includes(g.id))) });

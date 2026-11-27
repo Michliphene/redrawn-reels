@@ -39,7 +39,8 @@
    "IND": "#E07B39",
    "PAK_W": "#2E8B57",
    "PAK_E": "#3A9A64",
-   "BGD": "#C94A4A"
+   "BGD": "#C94A4A",
+   "KASHMIR": "#8E8A9C"
   },
   "static": {}
  },
@@ -63,21 +64,10 @@
    "say": "One line uprooted {10 to 20 million|ten to twenty million} people.",
    "camera": {
     "fit": "FOCUS",
-    "pad": 0.08
+    "pad": 0.14
    },
    "date": null,
    "actions": [
-    {
-     "type": "label",
-     "text": "10–20 million · estimates vary",
-     "at": [
-      76.5,
-      15.5
-     ],
-     "size": "md",
-     "atWord": "uprooted",
-     "hold": 2.4
-    },
     {
      "type": "path",
      "color": "#FFC94D",
@@ -291,6 +281,17 @@
      ],
      "from": 1,
      "dur": 0.1
+    },
+    {
+     "type": "label",
+     "text": "10–20 million",
+     "at": [
+      79.5,
+      21.0
+     ],
+     "size": "xl",
+     "atTime": 0.15,
+     "hold": 2.4
     }
    ],
    "hideTimeline": true
@@ -354,17 +355,6 @@
      "text": "The plan"
     },
     {
-     "type": "sticker",
-     "flag": "gb",
-     "at": [
-      72.5,
-      16.5
-     ],
-     "size": 110,
-     "atWord": "Britain",
-     "hold": 2.4
-    },
-    {
      "type": "pulse",
      "ids": [
       "IND"
@@ -378,6 +368,28 @@
       "PAK_E"
      ],
      "atWord": "Pakistan."
+    },
+    {
+     "type": "label",
+     "text": "INDIA",
+     "at": [
+      78.6,
+      21.5
+     ],
+     "size": "md",
+     "atWord": "India,",
+     "hold": 1.8
+    },
+    {
+     "type": "label",
+     "text": "PAKISTAN",
+     "at": [
+      69.0,
+      28.5
+     ],
+     "size": "md",
+     "atWord": "Pakistan.",
+     "hold": 1.6
     }
    ]
   },
@@ -398,7 +410,7 @@
     {
      "type": "callout",
      "text": "Cyril Radcliffe",
-     "sub": "British lawyer · ~5 weeks · first time in India",
+     "sub": "British lawyer · first time in India",
      "size": 56,
      "y": 1000,
      "atWord": "Cyril",
@@ -983,7 +995,7 @@
     "pitch": 38,
     "yaw": 12
    },
-   "date": "1947-09",
+   "date": "1947",
    "actions": [
     {
      "type": "units",
@@ -997,7 +1009,6 @@
      "size": 44,
      "atWord": "Millions",
      "hold": 4.0,
-     "caption": "Refugees",
      "offset": [
       -150,
       40
@@ -1016,16 +1027,17 @@
      "atWord": "both",
      "hold": 3.2,
      "offset": [
-      150,
-      -40
-     ]
+      160,
+      60
+     ],
+     "caption": "Refugees"
     },
     {
      "type": "label",
      "text": "200,000–2 million dead · estimates vary",
      "at": [
-      74.7,
-      29.9
+      74.0,
+      28.6
      ],
      "size": "md",
      "atWord": "Estimates",
@@ -1046,7 +1058,7 @@
     "yaw": -12,
     "cut": true
    },
-   "date": "1947-10-26",
+   "date": "1947-10",
    "actions": [
     {
      "type": "chapter",
@@ -1066,14 +1078,37 @@
      "atWord": "fighting"
     },
     {
-     "type": "region",
+     "type": "label",
+     "text": "KASHMIR",
+     "at": [
+      75.4,
+      35.2
+     ],
+     "size": "md",
+     "atWord": "Kashmir.",
+     "hold": 2.2
+    },
+    {
+     "type": "date",
+     "date": "1947-10-26",
+     "atWord": "joins"
+    },
+    {
+     "type": "declare",
+     "id": "KASHMIR",
+     "atWord": "joins",
+     "noLabel": true
+    },
+    {
+     "type": "label",
      "text": "DISPUTED",
      "at": [
-      75.6,
-      34.9
+      75.4,
+      34.6
      ],
-     "atWord": "It's",
-     "hold": 1.0
+     "size": "xl",
+     "atWord": "rejects",
+     "hold": 2.6
     }
    ]
   },
@@ -1346,6 +1381,16 @@
      ],
      "from": 1,
      "dur": 0.1
+    },
+    {
+     "type": "recolor",
+     "ids": [
+      "IND",
+      "PAK_W",
+      "BGD",
+      "KASHMIR"
+     ],
+     "atWord": "down"
     }
    ],
    "hideDate": true
