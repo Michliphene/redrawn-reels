@@ -1,0 +1,587 @@
+{
+ "id": "sykes-picot-1916",
+ "episode": 5,
+ "series": "REDRAWN",
+ "seriesId": "redrawn",
+ "da": 2,
+ "title": "Who really drew the Middle East",
+ "whisper": "it wasn't two men in 1916",
+ "format": "myth-bust",
+ "data": "data/sykes1916.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Georges-Picot": "Zhorzh Pee-koh",
+   "François": "Frahn-swah",
+   "Transjordan": "Trans-Jordan"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "1914-01-01",
+  "to": "1927-01-01"
+ },
+ "palette": {
+  "start": "#8E5A3C",
+  "startStroke": "#C08A62",
+  "ids": {
+   "SYR": "#3C6FB4",
+   "LBN": "#5D8FD6",
+   "HATAY": "#4B7DC6",
+   "IRQ": "#B5302F",
+   "PAL": "#D0605E",
+   "TRJ": "#C2443F",
+   "TUR": "#7FB77E"
+  },
+  "static": {}
+ },
+ "counter": false,
+ "legend": false,
+ "keywords": [
+  "France",
+  "Britain",
+  "Mosul",
+  "Syria",
+  "Lebanon",
+  "Iraq",
+  "Palestine",
+  "Transjordan",
+  "Turkey",
+  "Bolsheviks",
+  "myth",
+  "Sykes",
+  "Georges-Picot"
+ ],
+ "beats": [
+  {
+   "id": "hook",
+   "say": "Two men drew these borders in {1916|nineteen sixteen}. That's the myth.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SP_LINES",
+     "atTime": 0,
+     "hold": 3.0
+    },
+    {
+     "type": "callout",
+     "text": "“Two men drew these borders”",
+     "size": 58,
+     "y": 1000,
+     "atWord": "Two",
+     "hold": 3.2,
+     "stamp": "MYTH",
+     "stampWord": "myth."
+    }
+   ],
+   "hideTimeline": true
+  },
+  {
+   "id": "deal",
+   "say": "In {May 1916|May, nineteen sixteen}, Britain and France secretly carve up the Ottoman Empire's Arab lands.",
+   "camera": {
+    "center": [
+     40.2,
+     34.2
+    ],
+    "span": 19,
+    "pitch": 50,
+    "yaw": -8
+   },
+   "date": "1916-05",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "scroll",
+     "text": "The secret deal"
+    },
+    {
+     "type": "sticker",
+     "flag": "gb",
+     "at": [
+      45.5,
+      31.2
+     ],
+     "size": 110,
+     "atWord": "Britain",
+     "hold": 3.4
+    },
+    {
+     "type": "sticker",
+     "flag": "fr",
+     "at": [
+      37.2,
+      37.8
+     ],
+     "size": 110,
+     "atWord": "France",
+     "hold": 3.0
+    },
+    {
+     "type": "region",
+     "text": "OTTOMAN EMPIRE",
+     "at": [
+      38.6,
+      33.2
+     ],
+     "atWord": "Ottoman",
+     "hold": 2.4
+    }
+   ]
+  },
+  {
+   "id": "map",
+   "say": "Mark Sykes and François Georges-Picot sign this map.",
+   "camera": {
+    "center": [
+     39.5,
+     34.2
+    ],
+    "span": 17,
+    "pitch": 46,
+    "yaw": 6
+   },
+   "date": "1916-05-08",
+   "actions": [
+    {
+     "type": "archive",
+     "src": "assets/images/sykes_picot_map_1916.jpg",
+     "caption": "The signed map, 8 May 1916",
+     "credit": "UK National Archives MPK 1/426 · public domain",
+     "y": 640,
+     "w": 860,
+     "hold": 3.2,
+     "focus": "50% 55%",
+     "atWord": "Mark"
+    }
+   ]
+  },
+  {
+   "id": "zones",
+   "say": "Blue for France. Red for Britain. A and B: their zones of influence. Palestine: international.",
+   "camera": {
+    "center": [
+     40.6,
+     34.0
+    ],
+    "span": 20,
+    "pitch": 54,
+    "yaw": -4
+   },
+   "date": "1916-05",
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SP_BLUE",
+     "color": "#4F86E0",
+     "atWord": "Blue",
+     "hold": 5.2
+    },
+    {
+     "type": "ghost",
+     "id": "SP_RED",
+     "color": "#E0565B",
+     "atWord": "Red",
+     "hold": 4.4
+    },
+    {
+     "type": "ghost",
+     "id": "SP_LINES",
+     "atWord": "A",
+     "hold": 3.8
+    },
+    {
+     "type": "label",
+     "text": "A",
+     "at": [
+      39.0,
+      35.6
+     ],
+     "atWord": "A",
+     "hold": 3.2,
+     "occurrence": 1,
+     "size": "xl"
+    },
+    {
+     "type": "label",
+     "text": "B",
+     "at": [
+      39.6,
+      32.0
+     ],
+     "atWord": "B:",
+     "hold": 2.6,
+     "size": "xl"
+    },
+    {
+     "type": "ghost",
+     "id": "SP_BROWN",
+     "color": "#C9A54A",
+     "atWord": "Palestine:",
+     "hold": 2.4
+    },
+    {
+     "type": "label",
+     "text": "international",
+     "at": [
+      33.2,
+      31.5
+     ],
+     "size": "md",
+     "atWord": "international.",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "leak",
+   "say": "{1917|Nineteen seventeen}: Russia's new Bolshevik rulers publish it.",
+   "camera": {
+    "center": [
+     31.5,
+     58.5
+    ],
+    "span": 22,
+    "pitch": 40,
+    "yaw": 10,
+    "cut": true
+   },
+   "date": "1917-11-23",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "newspaper",
+     "text": "The leak"
+    },
+    {
+     "type": "marker",
+     "text": "Petrograd",
+     "at": [
+      30.32,
+      59.94
+     ],
+     "atWord": "Bolshevik",
+     "hold": 2.6
+    },
+    {
+     "type": "sticker",
+     "emoji": "newspaper",
+     "x": 800,
+     "y": 980,
+     "size": 170,
+     "tilt": -8,
+     "atWord": "publish",
+     "hold": 1.6
+    }
+   ]
+  },
+  {
+   "id": "fall",
+   "say": "Then the plan falls apart.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.05,
+    "pitch": 56,
+    "cut": true
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SP_BLUE",
+     "color": "#4F86E0",
+     "atWord": "plan",
+     "hold": 1.8
+    },
+    {
+     "type": "ghost",
+     "id": "SP_RED",
+     "color": "#E0565B",
+     "atWord": "plan",
+     "hold": 1.8
+    },
+    {
+     "type": "ghost",
+     "id": "SP_BROWN",
+     "color": "#C9A54A",
+     "atWord": "plan",
+     "hold": 1.8
+    },
+    {
+     "type": "shake",
+     "amount": 8,
+     "atWord": "apart."
+    }
+   ]
+  },
+  {
+   "id": "mosul",
+   "say": "{1918|Nineteen eighteen}: France lets Britain have Mosul.",
+   "camera": {
+    "center": [
+     43.6,
+     35.6
+    ],
+    "span": 10,
+    "pitch": 40,
+    "yaw": -12
+   },
+   "date": "1918-12",
+   "actions": [
+    {
+     "type": "chapter",
+     "emoji": "oil_drum",
+     "text": "The rewrite"
+    },
+    {
+     "type": "marker",
+     "text": "Mosul",
+     "at": [
+      43.13,
+      36.34
+     ],
+     "atWord": "France",
+     "hold": 3.2
+    },
+    {
+     "type": "ghost",
+     "id": "SP_LINES",
+     "atWord": "France",
+     "hold": 2.6
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "IRQ"
+     ],
+     "atWord": "Mosul."
+    }
+   ]
+  },
+  {
+   "id": "mandates",
+   "say": "{1920|Nineteen twenty}: France gets Syria and Lebanon. Britain gets Iraq, and Palestine too.",
+   "camera": {
+    "center": [
+     39.6,
+     33.4
+    ],
+    "span": 17,
+    "pitch": 52,
+    "yaw": 8
+   },
+   "date": "1920-04-25",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "SYR",
+     "atWord": "Syria"
+    },
+    {
+     "type": "declare",
+     "id": "HATAY",
+     "atWord": "Syria",
+     "noLabel": true
+    },
+    {
+     "type": "declare",
+     "id": "LBN",
+     "atWord": "Lebanon."
+    },
+    {
+     "type": "declare",
+     "id": "IRQ",
+     "atWord": "Iraq,"
+    },
+    {
+     "type": "declare",
+     "id": "PAL",
+     "atWord": "Palestine"
+    }
+   ]
+  },
+  {
+   "id": "trj",
+   "say": "{1921|Nineteen twenty-one}: Britain creates Transjordan. It's not on the map.",
+   "camera": {
+    "center": [
+     36.6,
+     31.3
+    ],
+    "span": 10,
+    "pitch": 42,
+    "yaw": -10
+   },
+   "date": "1921-04",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "TRJ",
+     "atWord": "Transjordan."
+    },
+    {
+     "type": "ghost",
+     "id": "SP_LINES",
+     "atWord": "map",
+     "hold": 2.2
+    }
+   ]
+  },
+  {
+   "id": "turkey",
+   "say": "{1923|Nineteen twenty-three}: Turkey wins its war. France's northern zone is gone.",
+   "camera": {
+    "center": [
+     37.0,
+     38.0
+    ],
+    "span": 15,
+    "pitch": 46,
+    "yaw": 12,
+    "cut": true
+   },
+   "date": "1923-07-24",
+   "actions": [
+    {
+     "type": "declare",
+     "id": "TUR",
+     "atWord": "Turkey"
+    },
+    {
+     "type": "ghost",
+     "id": "SP_BLUE",
+     "color": "#4F86E0",
+     "atWord": "France's",
+     "hold": 1.9
+    }
+   ]
+  },
+  {
+   "id": "mosul2",
+   "say": "{1926|Nineteen twenty-six}: Mosul is confirmed in Iraq.",
+   "camera": {
+    "center": [
+     43.4,
+     35.2
+    ],
+    "span": 11,
+    "pitch": 40,
+    "yaw": -6
+   },
+   "date": "1926-06-05",
+   "actions": [
+    {
+     "type": "marker",
+     "text": "Mosul",
+     "at": [
+      43.13,
+      36.34
+     ],
+     "atWord": "Mosul",
+     "hold": 2.2
+    },
+    {
+     "type": "pulse",
+     "ids": [
+      "IRQ"
+     ],
+     "atWord": "Iraq."
+    }
+   ]
+  },
+  {
+   "id": "overlay",
+   "say": "Lay the plan over the result.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.05,
+    "pitch": 56
+   },
+   "date": "1926-06-05",
+   "actions": [
+    {
+     "type": "ghost",
+     "id": "SP_BLUE",
+     "color": "#4F86E0",
+     "atWord": "plan",
+     "hold": 5.6
+    },
+    {
+     "type": "ghost",
+     "id": "SP_RED",
+     "color": "#E0565B",
+     "atWord": "plan",
+     "hold": 5.6
+    },
+    {
+     "type": "ghost",
+     "id": "SP_BROWN",
+     "color": "#C9A54A",
+     "atWord": "plan",
+     "hold": 5.6
+    },
+    {
+     "type": "ghost",
+     "id": "SP_LINES",
+     "atWord": "plan",
+     "hold": 5.6
+    }
+   ]
+  },
+  {
+   "id": "payoff",
+   "say": "The idea survived: Britain and France split the region. The lines? Mostly not.",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.04,
+    "pitch": 52,
+    "yaw": 10
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "callout",
+     "text": "The idea survived. The lines didn't.",
+     "size": 54,
+     "y": 1000,
+     "atWord": "lines?",
+     "hold": 2.6
+    }
+   ]
+  },
+  {
+   "id": "loop",
+   "say": "Wars, treaties, ten years of deals. Yet the story is still…",
+   "camera": {
+    "fit": "FOCUS",
+    "pad": 0.06
+   },
+   "date": null,
+   "actions": [
+    {
+     "type": "allLabels",
+     "atWord": "Wars,"
+    }
+   ]
+  }
+ ]
+}
