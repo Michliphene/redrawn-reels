@@ -171,7 +171,7 @@ export const Map3D: React.FC<{ world: AtlasWorld; geo: GeoData; t: number; actio
         const prog = from + (1 - from) * ease.inOut3(ramp(t, p.t, p.dur ?? 1.4));
         const o = 1 - ramp(t, end, 0.5);
         const hw = unit * ((p.width ?? 7) / 7) * 0.55;
-        const g = ribbon(pts, hw, h * 1.25 + 0.004), gShadow = ribbon(pts, hw * 1.7, h * 1.25);
+        const g = ribbon(pts, hw, h * 2.2 + 0.004), gShadow = ribbon(pts, hw * 1.7, h * 2.2); // above declared pieces (they stand up to ~1.75 h)
         const n = Math.max(0, Math.floor((pts.length - 1) * clamp01(prog))) * 6;
         g.setDrawRange(0, n); gShadow.setDrawRange(0, n);
         return (

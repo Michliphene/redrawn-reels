@@ -68,7 +68,7 @@ export const Labels: React.FC<{ geo: GeoData; projection: GeoProjection; t: numb
       nodes.push(<Tag key={i} x={x} y={y + 22} t={t} t0={a.t} hold={a.hold ?? 2.5} size={42} dot>{a.text}</Tag>);
     } else if (a.type === 'allLabels') {
       // big polities labelled on the map, all 15 in a legend grid (small ones would collide)
-      const sov = geo.features.filter((f) => isFocus(f) && !isOutline(f));
+      const sov = geo.features.filter((f) => isFocus(f) && !isOutline(f) && !(f.properties as any)?.noAllLabel); // noAllLabel: a piece that has been replaced (e.g. East Pakistan → Bangladesh)
       sov.filter((f) => !legend || ['RUS', 'UKR', 'KAZ'].includes(String(f.id))).forEach((f, j) => {
         const [x, y] = pt((f.properties as any).label);
         nodes.push(<Tag key={`m${j}`} x={x} y={y} t={t} t0={a.t} hold={end - a.t} size={f.id === 'RUS' ? 46 : 30}>{(f.properties as any).name}</Tag>);
