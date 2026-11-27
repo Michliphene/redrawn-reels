@@ -126,3 +126,105 @@ Six P1s block posting. All but one are one-line JSON changes. The other two are 
 | Golan in Syria | ok, as documented |
 | "The lines didn't." | **✗** (#1) |
 | Flags GB/FR | ok for 1916 |
+
+## Virality review
+
+Re-render of 10:03 (55.2 s). Evidence:
+- `pipeline/virality_metrics.py`: hook frames 0–3 s and the loop image.
+- `review_frames.py`: all 14 beat sheets, regenerated from this render. The old sheets showed the pre-fix cut.
+- Extra frames at 3.4, 47.8, 50.0 and 54.9 s.
+- episode.json, SOURCES.md and the reel review above.
+
+Metrics:
+- Voice: 132 words, 2.6 w/s. Hook 3.31 s, first word at 0.25 s.
+- Visual cues: 7.2 per 10 s. 2 of 28 two-second windows have no new cue.
+- Longest gaps: 4.51 s at 50.69 (loop), 3.59 s at 0.25 (hook), 3.42 s at 9.21 (archive card).
+- 3 camera cuts (leak, fall, turkey). LUFS −14.1. Loop SSIM 0.842.
+
+This is a pattern-based estimate, not a prediction. Account size is the biggest factor, and we can't control it.
+
+### Scorecard
+| Block | Pts | Reason |
+|---|---|---|
+| A. Hook 0–3 s | **18/25** | Frame 0 (4/8): it has depth and a readable title, but it is one brown slab with hairline white lines, cropped at the right, and has no colour contrast; paused and muted, it reads as "a map", not "a claim". Payload (6/7): "Two men… 1916. That's the myth" is a strong contradiction with a number, but the turn lands at 3.2 s. Place (4/5): "Middle East" is in the title at frame 0, but no country is named until 50 s. Text (2/3): the "Two men drew these borders" callout is good, but it competes with the title, the whisper and the captions, and the MYTH stamp is small and at the edge. Throat-clearing (2/2): none. |
+| B. Retention | **19/25** | Pacing (6/8): a camera move on every beat and 7.2 cues/10 s, but the loop holds 4.5 s with only allLabels and the archive card is static for 3.4 s. Structure (4/6): "Then the plan falls apart" is a real "but", then 1918/1920/1921/1923/1926 runs as a date list ("and then"). Re-hook (3/4): the cut, the shake and "falls apart" land at 22 s (40 %), but the line is short and only re-shows the ghosts. Payoff (3/4): the overlay at 44.9 s is the best image in the reel, but the payoff callout lasts only 1.2 s. Pace (3/3): 2.6 w/s, captions clean. |
+| C. Rewatch & loop | **8/10** | Line (5/5): "Yet the story is still…" → "Two men drew these borders in 1916" completes cleanly. Last frame (2/3): SSIM 0.84, because the coloured 1926 end meets the brown start. Density (1/2): the labelled 1926 map is worth pausing on, but Palestine and Transjordan collide. |
+| D. Shareability & saves | **12/15** | Send (5/6): busts a myth people repeat in arguments ("send to the friend who always says Sykes-Picot"), but the proof shot passes fast. Save (3/4): plan-vs-result reference map; series EP 5. Comment (3/3): an honestly debated point, hedged ("Mostly not"). Human stake (1/2): identity for viewers from the region, but no people on screen. |
+| E. Packaging | **8/10** | Cover (2/4): frame 0 is title plus brown slab; the 47.8 s overlay is a much better cover. Caption (3/3): none existed; written below. Series identity (3/3): REDRAWN · EP 5 bar throughout. |
+| F. Niche codes & trust | **9/15** | Transformation (3/4): brown 1916 → coloured 1926 plus the plan overlay; the blue-on-green Turkey band reads, the red-on-red Iraq part doesn't. Scale anchor (1/3): Britain and France are familiar actors, but there is no size anchor. Face/stakes (1/3): the signed map is a real artefact; no faces. Sourced/hedged (3/3): on-screen credit, "Nov 1917", "Mostly not", debate logged. Anti-patterns (1/2): an emoji newspaper chip (DA 2 rule 5) leaks into `fall`; >3 s with nothing new in the loop. |
+| **TOTAL** | **74/100 · 7.4/10** | **Tier: "can break out"** |
+
+### Top 5 changes, ranked by expected gain
+Edits are for the producer: this review changes nothing. Every fix keeps the facts in SOURCES.md, and none needs a new voice.
+
+1. **Frame 0 in colour: show the 1916 zones under "these borders" (+4: A frame 0, C loop SSIM).**
+   - Now "these borders" points at faint hairlines on a brown slab.
+   - The borders the two men drew are the 1916 zones. Showing them is more accurate *and* gives a paused, muted frame with real colour contrast.
+   - In `hook.actions`, replace the SP_LINES ghost with:
+   ```json
+   {"type":"ghost","id":"SP_BLUE","color":"#4F86E0","atTime":0,"hold":3.4,"opacity":0.9},
+   {"type":"ghost","id":"SP_RED","color":"#F59A9C","atTime":0,"hold":3.4,"opacity":0.9},
+   {"type":"ghost","id":"SP_BROWN","color":"#C9A54A","atTime":0,"hold":3.4,"opacity":0.9},
+   {"type":"ghost","id":"SP_LINES","atTime":0,"hold":3.4}
+   ```
+   - The MYTH stamp then lands on a coloured "plan", which is the visual contradiction.
+2. **Show the payoff line long enough to read and send (+2: B payoff, D send).** It is the sentence people will quote. Today it is up for 1.2 s.
+   ```json
+   {"type":"callout","text":"The idea survived. The lines? Mostly not.","size":54,"y":1060,"atWord":"lines?","hold":2.6}
+   ```
+   - Check on stills that it clears the loop's allLabels (Palestine/Transjordan sit at about y 1010). If it touches, use `"y":1100`, still above the captions band.
+   - Optional, from reel review #9: `{"type":"pulse","ids":["IRQ","PAL","TRJ"],"atWord":"Britain"}` and `{"type":"pulse","ids":["SYR","LBN","HATAY"],"atWord":"France"}` in `payoff`, so "the idea survived" is shown, not only said.
+3. **Fill the 4.5 s loop hold and close the seam (+2: B pacing, C last frame → SSIM ≥ 0.85 likely with fix 1).** In `loop.actions`:
+   ```json
+   {"type":"pulse","ids":["TUR","SYR","IRQ","TRJ"],"atWord":"treaties,"},
+   {"type":"ghost","id":"SP_BLUE","color":"#4F86E0","atWord":"still…","hold":1.4,"opacity":0.9},
+   {"type":"ghost","id":"SP_LINES","atWord":"still…","hold":1.4}
+   ```
+   - The 1916 plan comes back on the map just as the voice wraps to "Two men drew these borders".
+4. **Remove the emoji chip; show the source in its place (+1: F anti-pattern; it also stops the leak into `fall`).**
+   - In `leak`, replace the newspaper `sticker` with: `{"type":"callout","text":"Printed in Izvestia & Pravda","size":46,"y":1000,"atWord":"publish","hold":0.9}`.
+   - Sourced: SOURCES.md, Marx Memorial Library.
+5. **Cover and caption (+2: E cover).**
+   - Set the platform cover to **47.8 s** (the overlay; frame shown below).
+   - Use the caption below. No render needed.
+
+Projected: about 83–85 if all five land, the edge of "strong breakout odds". No fix changes a fact.
+
+Considered and **rejected**:
+- A size anchor ("the size of …"): SOURCES has no area figure, so we'd be inventing one.
+- "Sykes-Picot didn't draw these borders" without "most": stronger hook, but it overstates the logged debate.
+
+### 3 alternative hooks (all true per SOURCES.md)
+| Archetype | Verbal line | Frame 0 | On-screen text |
+|---|---|---|---|
+| **Comparison / in-media-res** | "Blue is France's 1916 plan. Green is what it got: nothing. That's Turkey." | The overlay shot (1926 map with the blue SP_BLUE_N ghost on green Turkey), camera already moving | `1916 PLAN vs 1926 MAP` |
+| **Contrarian (hedged)** | "Sykes-Picot didn't draw most of these borders. Ten years of deals did." | 1916 zones in colour on the slab (fix 1), MYTH stamp already on | `NOT TWO MEN. TEN YEARS.` |
+| **Question (shaped)** | "Why is France's 1916 zone inside Turkey?" | Green Turkey with the blue northern zone glowing, "1916 plan" label | `France's zone… in Turkey?` |
+
+The "nothing" in the first hook applies only to the Anatolian zone. Voice it as "Green is where that zone ended up: Turkey" if it must not sound absolute. All three would need a re-voice of beat 1, so they are for a v2 or an A/B cut, not this render.
+
+### Cover frame, caption, hashtags, pinned comment
+- **Cover: 47.8 s.**
+  - The 1926 map, with "1916 plan" over the blue band on green Turkey and the red/blue mandates below.
+  - The REDRAWN · EP 5 bar is on it.
+  - If the platform allows a text overlay, add "WHO REALLY DREW THE MIDDLE EAST" in the title band (y 250–500).
+- **Caption:**
+  > Two men didn't draw these borders in 1916. Here is the plan vs what actually happened.
+  > Sykes-Picot Agreement explained · the 1916 map vs the 1926 Middle East · Mosul, Transjordan, Treaty of Lausanne
+  > Ottoman Empire partition · British and French mandates · Syria, Lebanon, Iraq, Palestine history · REDRAWN EP 5
+- **Hashtags:** #SykesPicot #MiddleEast #MapHistory #History #Geography
+- **Pinned comment:** use the SOURCES.md text, which credits the map and logs the debate. End it with: *"Before this, who did you think drew these borders?"* That question is softer than "which border came straight from 1916" and invites stories, not fights.
+- Moderation: this topic touches Palestine/Israel. Expect heated comments.
+  - The pinned sources and the "Mostly not" hedge are the shield.
+  - Do not reply with claims beyond SOURCES.md.
+
+### Platform notes
+- **TikTok:** 55 s is fine. Completion and rewatch are what count, so fixes 1 and 3 (frame 0 and seam) matter most.
+  - Don't stretch this to 61 s for Creator Rewards. A 61–70 s cut would need new sourced content (for example, the 1925 League decision on Mosul), not padding.
+  - Search reads on-screen text, so keep "Sykes-Picot" in the caption's first line.
+- **Instagram Reels:** sends drive reach, and the shareable unit is the overlay plus "The lines? Mostly not." (fix 2).
+  - Set the 47.8 s cover. The grid crops to 3:4, and the title and map band survive the crop.
+  - Hashtags won't add reach; the caption keywords do.
+- **YouTube Shorts:** the first second decides "viewed vs swiped". Use the coloured frame 0 (fix 1).
+  - Title: "Sykes-Picot didn't draw most of the Middle East's borders". This is the hedged form, true per SOURCES.
+  - Shorts loops automatically, so the seam fix (3) also helps here.
