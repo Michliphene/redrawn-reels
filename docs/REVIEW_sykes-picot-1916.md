@@ -1,0 +1,128 @@
+# REVIEW — sykes-picot-1916 (EP 5, DA 2, myth-bust)
+
+## Reel review
+
+Video `out/sykes-picot-1916.mp4` runs 55.2 s; the voice ends at 54.57 s. I looked at all 14 beat sheets (`out/review/sykes-picot-1916/`) and cues.md, plus extra frames at
+0, 3.2, 3.5–3.9, 9.3, 10.5, 15.5, 17.6, 20.0, 21.9, 39.8, 46.0, 49.5, 51.2 and 53.9–55.05 s. `npm run validate` gives `[ ok ]`: no ✗ and no !.
+
+### Verdict: 6/10. Not postable yet.
+The story is clear and well sourced. The 1916 → 1926 progression works: zones, then the leak, then mandates, Transjordan, Turkey, Mosul, the overlay and the loop.
+Six P1s block posting. All but one are one-line JSON changes. The other two are small component fixes: the caption width and the header fade.
+
+**3 biggest problems**
+1. **Neutrality/accuracy.** The payoff callout says "The lines **didn't**." The voice and SOURCES.md only say "Mostly not". The 1917 date block shows "23 NOV". SOURCES.md settled on "November 1917" because the sources disagree (22 vs 23 Nov).
+2. **Layout breaks in the first 15 s.**
+   - The caption "SYKES AND FRANÇOIS GEORGES-PICOT" runs off the right edge ("GEORGES-PIC").
+   - The archive card reaches y≈1545 and x≈970.
+   - The card's caption and credit sit below y=1440, and the credit is 15 px (unreadable).
+   - The captions band covers the map image.
+3. **The hook payoff and the loop seam.**
+   - The MYTH stamp is on screen for only ~0.23 s: the stamp lands at 3.22 s and the callout dies at 3.45 s. It is also small.
+   - In the last ~0.5 s, the returning title cross-fades over the "5 JUN / 1926 / The rewrite" block. At 54.7 s, "WHO REALLY DREW" and "1926" overlap.
+
+### Fixes
+
+1. **[P1] payoff · 49.35 s · The callout "The idea survived. The lines didn't." claims more than the voice and SOURCES ("Mostly not"; the debate is logged). It also stays up to 51.95 s, sits on Iraq, and covers the loop's Palestine/Iraq labels.**
+   `{"type":"callout","text":"The idea survived. The lines? Mostly not.","size":54,"y":1040,"atWord":"lines?","hold":1.2}`
+
+2. **[P1] leak · 18.42 s · The date block shows "23 NOV 1917". SOURCES says "screen date is November 1917" (one source gives 22 Nov).**
+   Beat `leak`: `"date": "1917-11"`.
+
+3. **[P1] map · 10.5–12.3 s · The caption line "SYKES AND FRANÇOIS GEORGES-PICOT" is cut at the right screen edge.** It also runs into the x>930 zone.
+   - Cause: `src/studio/ui/Captions.tsx:53` estimates `maxChars = width/(size*0.47)`. That is too generous for wide uppercase glyphs and hyphenated names.
+   - Fix: use `size*0.54`, or measure the text and wrap at the widest word. Re-check "GEORGES-PICOT" on its own line.
+   - No episode-level workaround exists short of `hideCaptionWords`.
+
+4. **[P1] map · 9.21–12.4 s · The archive card (y=640, w=860) breaks the safe area.**
+   - The card spans y≈645–1545 and its right edge is at x≈970.
+   - Caption "The signed map, 8 May 1916" sits at y≈1490 and the credit at y≈1515: both are below 1440.
+   - The credit is 15 px, so the required credit is unreadable.
+   - The captions band (1170–1410) covers the bottom of the map.
+
+   Fix in the episode: free the header for this beat and lift the card:
+   ```json
+   {"id":"map", "hideDate": true, "actions":[{"type":"archive","src":"assets/images/sykes_picot_map_1916.jpg",
+     "caption":"The signed map, 8 May 1916","credit":"UK National Archives MPK 1/426 · public domain",
+     "y":360,"w":740,"hold":3.0,"focus":"50% 60%","atWord":"Mark"}]}
+   ```
+   The card then spans about 360–1160 and x 170–910. Component fix in `src/components/Overlays.tsx:61-62`: caption `fontSize: 34`, credit `fontSize: 24`.
+
+5. **[P1] loop · ~54.6–54.8 s · The title and the date block overlap.**
+   - Cause: `src/atlas/Atlas.tsx:93-94` fades the date block out over `end-0.5…end-0.2` while the title fades in from `end-0.45`.
+   - Fix (sequential, no overlap): `headO = … * (1 - ramp(t, end - 0.8, 0.3))`, keeping `titleO` from `end - 0.45`.
+   - Cue-only alternative: `"hideDate": true` on beat `loop`. allLabels names every piece there, and the title then returns onto a clean header.
+
+6. **[P1] hook · 3.22 s · The MYTH stamp, the payoff of the hook, is visible for about 0.23 s and is tiny (38 px, at the right end of the callout).**
+   `{"type":"callout","text":"“Two men drew these borders”","size":58,"y":1000,"atWord":"Two","hold":3.6,"stamp":"MYTH","stampWord":"myth.","stampSize":64}`
+
+7. **[P2] zones · 12.63–17.8 s · "Blue for France" shows a lavender shape, because the 62 % ghost blends into the Ottoman brown. The red shape reads salmon.**
+   Component: add an optional `opacity` to `ghost` in `src/atlas/Map3D.tsx:154` (`opacity={(g.opacity ?? 0.62) * o}`). Then use `"opacity":0.9` on SP_BLUE, SP_RED and SP_BROWN in `zones`.
+
+8. **[P2] zones · 14.87 s · The A/B labels are readable and well placed: A in Syria and B under the line. But nothing says whose influence each one is.** The voice only says "their". SOURCES has A = French, B = British:
+   `{"type":"label","text":"A · French","at":[39.0,35.6],"size":"xl","atWord":"A","occurrence":1,"hold":3.2}`,
+   `{"type":"label","text":"B · British","at":[39.6,32.0],"size":"xl","atWord":"B:","hold":2.6}`
+
+9. **[P2] overlay/payoff · 44.87–50.5 s · The 1916 ghosts mostly read over the 1926 pieces.**
+   - The light-blue band over green Anatolia is the clearest evidence in the reel.
+   - The red ghost on red Iraq is weak, and the brown sliver and the A/B line are faint.
+   - Nothing on screen says these shapes are the 1916 plan.
+   - 46.1→49.35 s has no new cue (3.25 s).
+
+   Add:
+   ```json
+   {"type":"label","text":"1916 plan","at":[37.5,39.6],"size":"md","atWord":"plan","hold":1.6},
+   ```
+   in `overlay`. Change SP_RED's colour to `"#F59A9C"` in `overlay`. In `payoff`, add:
+   ```json
+   {"type":"pulse","ids":["IRQ","PAL","TRJ"],"atWord":"Britain"},
+   {"type":"pulse","ids":["SYR","LBN","HATAY"],"atWord":"France"}
+   ```
+
+10. **[P2] turkey · 39.40 s · "France's northern zone is gone" highlights the whole SP_BLUE, including the coastal Syria/Lebanon strip that France kept. That is misleading.**
+    - Data fix: emit `SP_BLUE_N = SP_BLUE ∩ TUR` from `scripts/prep-sykes.mjs`, then use `"id":"SP_BLUE_N"` here.
+    - Wording: "Turkey wins its war" sits on a 24 Jul **1923** date. That is the Lausanne treaty; the fighting ended in 1922. Name it: `{"type":"chapter","emoji":"scroll","text":"Treaty of Lausanne","atWord":"1923:"}`.
+
+11. **[P2] leak · 18.42–20.29 s · About 1.9 s of a dark Russia view with no place named.** Move the Petrograd marker to the word that names Russia and add the sourced fact:
+    - `{"type":"marker","text":"Petrograd","at":[30.32,59.94],"atWord":"Russia's","hold":3.0}`
+    - Replace the newspaper emoji sticker with `{"type":"callout","text":"Printed in Izvestia & Pravda","size":46,"y":1000,"atWord":"publish","hold":0.7}`.
+
+    This also removes an emoji chip (DA 2 rule 5) that leaked across the cut into `fall` (it was up until 22.65 s).
+
+12. **[P2] mosul · 24.59 s · The viewer cannot see why Mosul was France's to give.** It was in zone A (French influence).
+    - Add `{"type":"label","text":"zone A · French","at":[41.6,36.9],"size":"md","atWord":"France","hold":1.8}`.
+    - Drop the `pulse IRQ` at "Mosul.": it outlines modern Iraq in 1918, before Iraq existed.
+    - Set the marker hold to 2.0, so it no longer runs 1.4 s into the 1920 beat.
+
+13. **[P2] loop · 50.7 s on · "Palestine" and "Transjordan" labels touch.**
+    - In `scripts/prep-sykes.mjs`, move the TRJ `properties.label` anchor to about [36.9,30.7], and PAL to [34.9,31.6].
+    - Labels are about 24–26 px; make the allLabels size 30 px if the component allows.
+
+14. **[P2] SOURCES.md · The "Script (as spoken)" section no longer matches the voice** (beats 2, 4, 5, 6, 9, 10, 11, 12 were rewritten). Update it to the episode.json `say` lines. The facts table still covers every on-screen claim; I checked each date and claim against it.
+
+15. **[P3] deal · 9.21 s · The "OTTOMAN EMPIRE" region label shows through the fading-in archive card.** Set `"hold": 1.8`.
+
+16. **[P3] trj · 35.72 s · The SP_LINES ghost (hold 2.2) runs across the cut into `turkey`.** Make "It's not on the map" concrete instead: SOURCES has "its land lay in zone B".
+    - `{"type":"label","text":"1916: inside zone B","at":[37.2,30.4],"size":"md","atWord":"map","hold":0.7}`
+    - Ghost `"hold": 0.7`.
+
+17. **[P3] hook · frame 0 · The opening is a brown slab with a faint white A/B line.** It reads as an object on a table, but "these borders" points at nothing. Brighten the hook ghost so the line reads at frame 0: `{"type":"ghost","id":"SP_LINES","atTime":0,"hold":3.4}`, with a heavier line width in `Map3D` for `lines` ghosts.
+    - Loop seam (SSIM 0.84): the end shows the coloured 1926 map, frame 0 shows brown.
+    - Add `{"type":"ghost","id":"SP_LINES","atWord":"still…","hold":2}` in `loop`, so the same white 1916 line is on both sides of the cut.
+
+18. **[P3] mandates · 28.2 s · The "Syria" label is low-contrast on light blue, and "Lebanon" sits on the lifted Lebanon piece.** Acceptable; it is better once the pieces settle.
+
+### Accuracy checklist (on screen vs SOURCES.md)
+| On screen | Status |
+|---|---|
+| May 1916 | ok |
+| 8 May 1916 (map and card) | ok (MPK 1/426) |
+| 23 NOV 1917 | **✗**, must be November 1917 (#2) |
+| DEC 1918 | ok |
+| 25 APR 1920 | ok (owner to tick) |
+| APR 1921 | ok (owner to tick) |
+| 24 JUL 1923 | ok as the Lausanne date; name it (#10) |
+| 5 JUN 1926 | ok |
+| Alexandretta in French Syria, 1926 | ok |
+| Golan in Syria | ok, as documented |
+| "The lines didn't." | **✗** (#1) |
+| Flags GB/FR | ok for 1916 |
