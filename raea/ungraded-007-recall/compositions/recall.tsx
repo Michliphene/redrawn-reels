@@ -388,7 +388,10 @@ function laneCard(side: "L" | "R", t: number): JSX.Element | null {
   const sure = ph === "five" && t >= CUE.surer - 0.05;
   const feel = t >= (L ? CUE.knowing : CUE.lasts) - 0.1 && t < B("school") + 0.3;
   const quiz = L && t >= CUE.tryIt - 0.05;
-  const state = `${ph}-${lit}-${tests}-${+showPct}-${+sure}-${+feel}-${+quiz}`;
+  // hook: the 14 strokes are drawn on "fourteen", the ×3 lands on "three"
+  const drawn = t >= B("study") ? 14 : Math.round(14 * ease.out3(ramp(t, CUE.fourteen - 0.05, 0.55)));
+  const threeOn = t >= CUE.three - 0.05;
+  const state = `${ph}-${lit}-${tests}-${+showPct}-${+sure}-${+feel}-${+quiz}-${drawn}-${+threeOn}`;
   const k = 1 - 0.85 * ease.inOut3(ramp(t, B("school") - 0.1, 0.3)) * (1 - ease.inOut3(ramp(t, B("do") - 0.2, 0.4)));
   return (
     <Standee key={`card${side}`} d={{ name: `card${side}`, w: CARD.w, h: CARD.h, x: L ? -LANE : LANE, y: CARD.y, z: CARD.z, tilt: L ? 0.03 : -0.03, mode: "scale", k, state, body: (wv, hv) => {
@@ -399,9 +402,9 @@ function laneCard(side: "L" | "R", t: number): JSX.Element | null {
       if (ph === "pre") {
         if (L) {
           s += hand(quiz ? "read it ×?" : "read it ×14", 22, 94, { size: 34, anchor: "start" });
-          if (!quiz) s += tally(18, 104, 14, lit, 740);
+          if (!quiz) s += tally(18, 104, drawn, lit, 740);
         } else {
-          s += hand("read it ×3", 22, 94, { size: 34, anchor: "start" });
+          s += threeOn ? hand("read it ×3", 22, 94, { size: 34, anchor: "start" }) : hand("…", 60, 94, { size: 40, c: C.pencil });
           s += hand(t >= CUE.closes - 0.1 && t < B("five") + 1 ? `then recall it ×${Math.max(1, tests)}` : "", 22, 128, { size: 22, anchor: "start", c: tests ? "#127E5E" : C.pencil });
         }
       } else {
@@ -601,6 +604,38 @@ function cameraAt(t: number): { pos: V3; look: V3 } {
   return { look, pos: [look[0] + dist * Math.sin(yaw) * Math.cos(pitch), look[1] + dist * Math.sin(pitch), look[2] + dist * Math.cos(yaw) * Math.cos(pitch)] };
 }
 
+/* ================================================================== hook and study props: "?" in the jars, the study sheet, the marble key */
+const circ = (cx: number, cy: number, r: number, seed: number, fill: string) =>
+  ink(Array.from({ length: 18 }, (_, i) => [cx + r * Math.cos((i / 18) * Math.PI * 2), cy + r * Math.sin((i / 18) * Math.PI * 2)] as [number, number]), { seed, w: 3, fill, close: true, amp: 0.3 });
+function Props({ t }: { t: number }) {
+  const out: JSX.Element[] = [];
+  const qk = pop(t, CUE.who - 0.1, 0.35) * (1 - ease.inOut3(ramp(t, B("study") + 0.2, 0.3)));
+  if (qk > 0.01) for (const L of [true, false]) out.push(
+    <Standee key={`q${+L}`} d={{ name: `q${+L}`, w: 0.5, h: 0.5, x: L ? -LANE : LANE, y: 0.1, z: JAR.z + 0.05, mode: "scale", k: qk, state: "q", body: (wv, hv) =>
+      circ(wv / 2, hv / 2, wv / 2 - 4, L ? 850 : 851, L ? C.amber : C.teal) + cutTxt("?", wv / 2, hv / 2 + 18, 52, "#FFFFFF") }} />,
+  );
+  // study: who and what, propped in front of the cards
+  const sk = pop(t, CUE.students - 0.1, 0.35) * (1 - ease.inOut3(ramp(t, B("reread") - 0.3, 0.3)));
+  if (sk > 0.01) {
+    const txt = t >= CUE.text - 0.05;
+    out.push(<Standee key="study" d={{ name: "study", w: 1.3, h: 0.8, x: 0, y: 0.22, z: CARD.z + 0.14, tilt: -0.02, mode: "scale", k: sk, state: `${+txt}`, body: (wv, hv) => {
+      let s = ink([[6, 6], [wv - 6, 6], [wv - 6, hv - 6], [6, hv - 6]], { seed: 860, w: 3, fill: "#FFFFFF", close: true, amp: 0.5 });
+      s += cutTxt("180 STUDENTS", wv / 2, 36, 26);
+      if (txt) {
+        s += hand("one short text,", wv / 2, 70, { size: 22 });
+        s += hand("30 ideas to recall", wv / 2, 100, { size: 21, c: "#127E5E", hl: C.mint });
+      }
+      return s;
+    } }} />);
+  }
+  // five: what a marble is
+  const mk = pop(t, CUE.fiveLater - 0.1, 0.35) * (1 - ease.inOut3(ramp(t, CUE.wait - 0.5, 0.3)));
+  if (mk > 0.01) out.push(<Standee key="mkey" d={{ name: "mkey", w: 1.35, h: 0.42, x: 0, y: 0.02, z: CARD.z + 0.22, mode: "scale", k: mk, state: "m", body: (wv, hv) =>
+    ink([[6, 6], [wv - 6, 6], [wv - 6, hv - 6], [6, hv - 6]], { seed: 870, w: 3, fill: "#FFFFFF", close: true, amp: 0.5 }) +
+    circ(28, hv / 2, 12, 871, "#B98A55") + hand("= 1 idea recalled", 48, hv / 2 + 7, { size: 21, anchor: "start" }) }} />);
+  return <>{out}</>;
+}
+
 function World({ t }: { t: number }) {
   return (
     <>
@@ -611,6 +646,7 @@ function World({ t }: { t: number }) {
       {laneCard("R", t)}
       <Rosette t={t} />
       <Calendar t={t} />
+      <Props t={t} />
       <Books t={t} />
       <RuleCard t={t} />
     </>
@@ -765,7 +801,7 @@ function Recall() {
   MT_R.forEach(([a], i) => { if (i % 2 === 1) sfx.push([a + 0.3, "pop", 0.12]); });
   for (let d = 0; d < 7; d++) sfx.push([WEEK.from() + (d / 7) * (WEEK.to() - WEEK.from()), "pop", 0.22]);
   for (const [a, name, v] of [
-    [CUE.fourteen, "pop", 0.3], [CUE.three, "pop", 0.3], [CUE.closes, "pop", 0.3], [CUE.win, "stamp", 0.4], [CUE.p83, "pop", 0.3], [CUE.p71, "pop", 0.3],
+    [CUE.fourteen, "pop", 0.3], [CUE.three, "pop", 0.3], [CUE.who, "pop", 0.3], [CUE.students, "pop", 0.3], [CUE.text, "pop", 0.3], [CUE.fiveLater, "pop", 0.25], [CUE.closes, "pop", 0.3], [CUE.win, "stamp", 0.4], [CUE.p83, "pop", 0.3], [CUE.p71, "pop", 0.3],
     [CUE.wait - 0.2, "rumble", 0.35], [CUE.flips, "stamp", 0.5], [CUE.p40, "pop", 0.35], [CUE.p61, "pop", 0.4],
     [CUE.outHere - 0.2, "whoosh", 0.35], [CUE.careful - 0.2, "whoosh", 0.3], [CUE.review - 0.2, "whoosh", 0.3], [CUE.high, "pop", 0.3], [CUE.low, "stamp", 0.35],
     [CUE.close, "stamp", 0.3], [CUE.check, "pop", 0.35], [CUE.howMany, "pop", 0.3],

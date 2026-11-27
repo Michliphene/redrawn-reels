@@ -20,5 +20,6 @@ Detailed passes: `docs/review/ungraded-007-recall-raea-pass1.md` (reel), `docs/r
 ## Virality (82/100, 8.2/10)
 - Done: cover re-exported from the fixed render, "Reread it 14×. / Remembered less." + "Which one do you do?";
   search caption (active recall / testing effect / how to study); pinned comment ends on a question.
-- Not done (needs a full re-render, offered to the owner): motion in 0–10 s (tally drawn on "fourteen", "?" in the
-  jars, "180 students" and "30 ideas each" pops) and a "1 marble = 1 idea recalled" sign. Estimated +5.
+- Done in a second render (62.0 s, 0 errors): the tally draws itself on "fourteen", the recall card waits on "…"
+  until "3", "?" standees at the jars, the "180 students / one short text / 30 ideas to recall" sheet, and a
+  "1 marble = 1 idea recalled" key.
