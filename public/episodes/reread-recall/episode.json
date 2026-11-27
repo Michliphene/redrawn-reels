@@ -1,0 +1,65 @@
+{
+ "id": "reread-recall",
+ "composition": "Desk",
+ "engine": "raea",
+ "seriesId": "ungraded",
+ "series": "UNGRADED",
+ "da": 2,
+ "episode": 7,
+ "title": "14 reads lost to 3",
+ "whisper": "One week, two ways to study.",
+ "source": "Roediger & Karpicke, Psychological Science, 2006",
+ "keywords": [
+  "fourteen",
+  "three.",
+  "win.",
+  "flips.",
+  "knowing.",
+  "lasts.",
+  "learn.",
+  "Careful:",
+  "high",
+  "low.",
+  "check"
+ ],
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "maxPause": 0.28,
+  "respell": {}
+ },
+ "creative": {
+  "direction": "Evidence bench",
+  "thesis": "Two study methods race on one desk; the same marbles that make the rereaders win at five minutes drain away over a week.",
+  "opening": "hold: close on the open book (14 tally marks) and the closed one (3), then pull back to the two jars",
+  "composition": "one desk under a lamp, two lanes (REREAD left, RECALL right), each with a glass jar of 30 marbles = the 30 idea units of the text",
+  "rhythm": "fast setup, a hold on the 5-minute win, a day/night time-lapse for the week, a hard flip of the jars",
+  "payoff": "the jars drain to 12 and 18 marbles; then the viewer is asked to recall the hook number (retrieval on the viewer = the loop)",
+  "sound": "marble clicks for every unit, a clock tick under the week, one stamp on the flip"
+ },
+ "_note": "Rendered in raea (raea/ungraded-007-recall): a study desk, two glass jars of marbles, a day/night week; cues live in the composition.",
+ "beats": [
+  { "id": "hook", "scene": "desk", "say": "One group read it fourteen times. The other, three. A week later, who remembered more?" },
+  { "id": "study", "scene": "desk", "say": "In {2006|two thousand six}, two psychologists gave {180|a hundred and eighty} students a short science text." },
+  { "id": "reread", "scene": "reread", "say": "Group one reads it for five minutes. Then again. And again. About fourteen reads." },
+  { "id": "recall", "scene": "recall", "say": "Group two reads it once, closes it, and writes down all they remember. Three times. No corrections." },
+  { "id": "five", "scene": "jars", "say": "Five minutes later, the rereaders win. {83%|Eighty-three percent} to {71%|seventy-one}." },
+  { "id": "sure", "scene": "jars", "say": "And they feel surer they'll remember it next week." },
+  { "id": "week", "scene": "jars", "say": "But wait a week before the test, and it flips." },
+  { "id": "flip", "scene": "jars", "say": "Rereaders: {40%|forty percent}. Testers: {61%|sixty-one}." },
+  { "id": "feel", "scene": "jars", "say": "Rereading feels like knowing. Recalling is what lasts." },
+  { "id": "school", "scene": "card", "say": "At school, a test checks what you learned. Out here, the test is how you learn." },
+  { "id": "careful", "scene": "card", "say": "Careful: one lab, college students, short texts. But a big {2013|twenty thirteen} review agrees. Practice tests: high utility. Rereading: low." },
+  { "id": "do", "scene": "desk", "say": "So close the book. Write what you remember. Then check what you missed." },
+  { "id": "loop", "scene": "desk", "say": "Try it now. No scrolling back. How many times did group one read it?" }
+ ]
+}
