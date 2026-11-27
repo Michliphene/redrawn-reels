@@ -1,4 +1,4 @@
-# EP 5 — Who really drew the Middle East (Sykes-Picot myth-bust) · sources & fact sheet
+# EP 11 — Who really drew the Middle East (Sykes-Picot myth-bust) · sources & fact sheet
 
 Topic #11 of the REDRAWN bible ("Sykes-Picot didn't draw these borders"), format D (myth-bust).
 
