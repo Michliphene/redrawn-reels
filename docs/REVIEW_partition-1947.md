@@ -112,3 +112,153 @@ nothing readable is above y=250, below y=1440 or in the right box (x>930, y>860)
   bd tagged "today's flag" ✓.
 - "BRITISH INDIA" label over the whole subcontinent, princely states included: a simplification already logged in
   SOURCES ✓.
+
+## Virality review
+
+Video: `out/partition-1947.mp4` (51.8 s, re-rendered after the reel review's P1s and most P2s).
+Evidence: `python3 pipeline/virality_metrics.py partition-1947` (run for this pass); the 6 hook frames (0–3 s);
+`loop_first_vs_last.jpg`; 12 beat sheets and `cues.md`, regenerated for this pass because the old sheets were older
+than the last `episode.json` edit; `episode.json`; `SOURCES.md`; and the reel review above.
+
+> This is a pattern-based estimate against `docs/VIRALITY_PLAYBOOK.md`, not a prediction. The size of the account
+> and how the first test cohort reacts matter more than anything scored here.
+
+### Key metrics
+| Metric | Value | Read |
+|---|---|---|
+| Duration / words / pace | 51.8 s · 135 words · **2.81 w/s** | inside the 2.5–3.2 band |
+| First word | 0.25 s | no throat-clearing |
+| Hook line | "One line uprooted 10 to 20 million people." (2.53 s) | number + stake in sentence 1 |
+| Visual cues | 37 · **7.1 per 10 s** | good for a single-map reel |
+| Longest gaps without a new cue | 3.52 s @ 6.47 (leave: the camera travels, so it is covered) · 3.27 s @ 33.55 (exodus: the death-toll label holds) · 2.81 s @ 0.25 (hook) | 2 of 26 two-second windows are empty |
+| Loop SSIM, first vs last frame | **0.873** | full marks (≥ 0.85) |
+| Loudness | −14.3 LUFS | on target |
+
+The fixes checked on the new sheets: the Kashmir label shows on "Kashmir.", 26 OCT appears on "joins", the piece turns
+neutral grey with an xl DISPUTED, and the loop label reads "Kashmir (disputed)". The death toll is now readable, with
+REFUGEES moved off it. INDIA/PAKISTAN labels appear in the leave beat, the exodus date is "1947", the UK sticker is
+gone, and the last frame returns to pink.
+
+Still open from the reel review:
+- fix 8: no tag on the published line;
+- fix 9: no Two wings/Independence chapters, and the whisper says "1971" under a 1971 date block;
+- fix 10: the empire pulse still draws today's internal borders;
+- fix 11: the "today's flag" sub-tag is still tiny.
+
+**Frame 0 still has no number.** The xl "10–20 million" fires at `atTime: 0.15`, so it first shows on the 0.5 s frame.
+On the 0.0 s frame the Bengal ribbon is also cut by the right edge.
+
+### Scorecard
+| Block | Pts | Reason |
+|---|---|---|
+| A. Hook 0–3 s | **21/25** | Frame 0 (5/8): a 3D crane on the pink British India slab with "HOW ONE LINE SPLIT BRITISH INDIA". It works paused, but it has no number yet, the Bengal ribbon runs off the right edge, and the two ribbons read as yellow blobs more than as "a line". Payload (7/7): "One line uprooted 10 to 20 million people": a number, a stake and a defined shape. Place (5/5): the title names British India and the outline is iconic. Text (2/3): from 0.5 s there are four text blocks at once (title, whisper, xl number, caption), and the hook number has lost its "estimates vary". No throat-clearing (2/2). |
+| B. Retention | **20/25** | New visual (7/8): 7.1 cues per 10 s, and a camera move or cut every beat. The 3.3 s hold on the death-toll label is the only real plateau. Escalation (4/6): the stakes rise (5 weeks → 1,000 mi apart → line published after independence → exodus → Kashmir → 1971), but the connectives are a list ("Then Kashmir… And in 1971…"). Only one "but" is implied, never spoken. Re-hook (3/4): the cut at 26.75 s (52 %) lands on the best twist in the reel, but the line "made public two days later" undersells it, because the viewer has to work out that this is *after independence*. Payoff (3/4): the human toll comes at 31–36 s, which is right. But the hook's "10–20 million" is never shown again where the crowds cross the line. Pace and captions (3/3). |
+| C. Rewatch & loop | **10/10** | "And it all came down to…" → "One line uprooted…" is a clean verbal loop (5/5). SSIM 0.87 now that the recolor returns to pink (3/3). The final labelled map, with Kashmir (disputed), is worth a pause (2/2). |
+| D. Shareability & saves | **12/15** | Send fact (5/6): "a lawyer who had never been to India got about five weeks" plus "the border was published after independence" are classic "I didn't know that" sends. The second one is only implied. Save (3/4): a clean reference map of 1947 → 1971 with EP 12, but no part-2 or series hook. Comment (2/3): nothing in the video. The pinned question is good and honest. Kashmir will draw comments on its own, so the pinned comment has to steer them toward family stories. Human stake (2/2): 10–20 M uprooted, crowds crossing both ways, and the death toll. |
+| E. Packaging | **9/10** | Cover (3/4): the 1.0 s frame (title + xl "10–20 million" + map) is a strong thumbnail, but frame 0 itself is not. Caption (3/3): none exists; the best version is written below. Series (3/3): REDRAWN · EP 12 badge, title style and timeline are consistent. |
+| F. Niche codes & trust | **12/15** | Transformation (4/4): pink → green/orange, then the green east swaps to Bangladesh. Scale anchor (2/3): "nearly a thousand miles" in miles is good, but there is no US/UK reference point. Face/stakes (2/3): Radcliffe is a text card only, and the crowds are symbolic. Sourcing and hedges (3/3): both figures are ranges with "estimates vary" on the death toll, Kashmir is grey and DISPUTED, the flag is tagged "today's flag", no cause is claimed, and every date matches SOURCES.md. Anti-patterns (0/2): the empire pulse draws today's India/Pakistan/Kashmir borders over "British India" (an anachronism that also gives away the ending), "today's flag" is a ~17 px tag, and the hook has four text blocks. |
+| **TOTAL** | **84/100 · 8.4/10** | **Tier: can break out** (one point short of "strong breakout odds") |
+
+### Top 5 changes, ranked by expected gain
+All facts stay as in SOURCES.md. Nothing here bends neutrality. Changes 1, 3 and 4 do not touch the voice. Changes 2
+and 5b change the script, so the voice is re-recorded.
+
+**1. Put the number on frame 0 and bring Bengal into frame (+3: A frame 0 +2, E cover +1; F trust kept).**
+On Shorts the "viewed vs swiped" decision is made here. Fire the label at t = 0 and restore the hedge under it as a
+small second line. Widen the opening framing so the Bengal ribbon is inside the frame while the camera cranes:
+```json
+"camera": {"fit": "FOCUS", "pad": 0.22},
+{"type": "label", "text": "10–20 million", "at": [79.5, 21.0], "size": "xl", "atTime": 0, "hold": 2.6},
+{"type": "label", "text": "uprooted · estimates vary", "at": [79.5, 18.6], "size": "md", "atTime": 0, "hold": 2.6}
+```
+Check the still at t = 0. If the label's entry animation leaves it invisible on frame 0, its entry in
+`src/components/Labels.tsx` needs to start fully drawn when `a.t === 0`. Drop the whisper from the hook if the four
+blocks still crowd it ("and moved millions of people" repeats the number).
+
+**2. Speak the twist at the cut (+2: B re-hook +1, D send +1).**
+Today: "The line itself is made public two days later." (2.3 s). Rewrite, with the same fact (17 Aug = two days after
+15 Aug; SOURCES: "two days after independence"):
+> **"But the line itself is only made public two days after independence."**
+
+That is about +0.8 s of voice. Pin the fact to the ribbon (reel review fix 8, still open). This also fills the
+2.7 s with nothing new after the ribbon draws:
+```json
+{"type": "label", "text": "published 17 Aug · after independence", "at": [74.0, 30.6], "size": "md", "atWord": "public", "hold": 2.0}
+```
+
+**3. Pay off the hook number on the line itself (+2: B payoff +1, B new visual +1).**
+The hook promises "10–20 million". Show it again where the crowds cross, then let the death toll replace it. The death
+toll now appears on "dead", which also splits its long hold:
+```json
+{"type": "label", "text": "10–20 million uprooted", "at": [74.0, 28.6], "size": "md", "atWord": "Millions", "hold": 2.0},
+{"type": "label", "text": "200,000–2 million dead · estimates vary", "at": [74.0, 28.6], "size": "md", "atWord": "dead", "hold": 2.6}
+```
+Remove the old death-toll label that fires on "Estimates". The two labels never overlap, because the first one has
+faded before "dead" (≈ 34.0 s).
+
+**4. Remove the anachronism and give each beat its own chapter (+2: F anti-patterns +1, B escalation +1).**
+- empire: delete `{"type":"pulse","ids":["IND","PAK_W","PAK_E","KASHMIR"],"atWord":"home"}`. Today's internal borders
+  must not appear on "British India" in 1947.
+- wings: `{"type":"chapter","emoji":"flag","text":"Two wings"}` · indep: `{"type":"chapter","emoji":"flag","text":"Independence"}`
+  · bangla: change `"text": "1971"` to `"text": "The east breaks away"`. That gives a new quiet line on each beat, and
+  the whisper no longer repeats the date block.
+- In `Labels.tsx`, set the `sub` size to at least 28 px (today `size * 0.55` ≈ 17–22 px) so "today's flag" can be read.
+
+**5. A familiar anchor and a face (+1 to +2: F scale +1, F face +1 if an image clears).**
+- a) Scale: the wings path label can carry a US/UK reference.
+  `"label": "~1,000 mi · farther than London–Rome"`. London–Rome is about 890 mi great-circle, and our two wings are
+  943 mi apart on the map. **Add a SOURCES.md row first** (computed great-circle, labelled as our calculation). If that
+  is not done, keep "~1,000 mi".
+- b) Face: a `portrait` of Cyril Radcliffe on "Cyril", in place of the text-only callout, **only if** a public-domain
+  or CC BY photo is found (`python3 scripts/loc_search.py "Cyril Radcliffe"`, then Commons through
+  `fetch_queue.sh`). No AI likeness of a real person. If nothing clears, keep the callout as it is.
+
+Expected after 1–4: about **91/100**, which would put it in "strong breakout odds".
+
+### 3 alternative hooks (all factually true, all in SOURCES.md)
+| Archetype | Verbal line (first sentence) | Frame-0 visual | On-screen text |
+|---|---|---|---|
+| **Contradiction** | "Two countries went independent before anyone was told where the border was." | Pink slab with both ribbons drawn dashed, date block "14–15 AUG 1947" | "BORDER PUBLISHED: 17 AUG" |
+| **Human stake / person** | "A lawyer who had never been to India got about five weeks to split it." | Radcliffe callout card (or a PD portrait) over the slab, Punjab ribbon half-drawn | "~5 WEEKS. FIRST TIME IN INDIA." |
+| **Comparison / in-media-res** | "One empire. One line. Three countries, and millions on the move." | The final labelled map (India · Pakistan · Bangladesh · Kashmir (disputed)) collapsing back to pink | "1 EMPIRE → 3 COUNTRIES" |
+
+The comparison hook makes the loop even tighter, because the last frame *is* the first frame. Keep "Kashmir
+(disputed)" on that frame.
+
+### Cover frame
+Use **t = 1.0 s**: the title "HOW ONE LINE SPLIT BRITISH INDIA", the xl "10–20 million" in the middle of the slab, and
+both ribbons. It reads at thumbnail size, and the title stays inside the Reels 3:4 grid crop. After change 1, frame 0
+works as the cover too. Do not use a Kashmir frame as the cover, because a grey "DISPUTED" thumbnail invites a flame
+war before the viewer has watched.
+
+### Caption, hashtags, pinned comment
+**Caption** (hook line, 111 characters):
+> A lawyer who had never been to India got about 5 weeks to draw this line. 10–20 million people were uprooted.
+>
+> Partition of India 1947 · Radcliffe Line · India, Pakistan and Bangladesh (1971) · Punjab and Bengal · Kashmir dispute
+> REDRAWN EP 12 · history explained on one map · figures are estimates, sources in the pinned comment
+
+**Hashtags (5):** `#Partition1947` `#history` `#maps` `#SouthAsia` `#REDRAWN`
+
+**Pinned comment:** keep the SOURCES.md text (sources, both ranges, Kashmir's status, Natural Earth). End it with the
+question:
+> **Did your family's story cross this line? Tell us where from, and where to.**
+
+It is honest, it is personal and not partisan, and it steers the diaspora, the biggest likely sharing audience, toward
+stories instead of a Kashmir argument. Moderate early and hide slurs. Do not reply on the merits of the Kashmir dispute.
+
+### Platform notes
+- **TikTok:** 51.8 s is right for completion. Do not pad it to 61 s for Creator Rewards; a longer cut would need new
+  sourced content, such as the Boundary Commission or the 1947–48 Kashmir war, not a slower edit. Put the hook line in
+  the caption's first line, because TikTok search reads it. The automatic loop rewards the "came down to…" ending.
+- **Instagram Reels:** sends drive reach, and this topic is sent inside families. Make the cover t = 1.0 s and check
+  the 3:4 grid crop. Turn off "show captions" if the burned-in captions double up. Hashtags matter little here; the
+  caption keywords do the work.
+- **YouTube Shorts:** frame 0 decides "viewed vs swiped", so change 1 matters most here. The title in the upload field:
+  "How one line split British India (Partition 1947)". YouTube may add a context panel on Partition; that is fine.
+- **Sensitive-map risk (all platforms):** the map shows Kashmir as disputed, which is the internationally neutral
+  representation required by CLAUDE.md. Maps that differ from India's official boundary have drawn takedown or
+  geo-restriction requests in India before. The owner should know that reach in India may be limited. Do not change
+  the map to chase that reach.
+
+**VIRALITY SCORE: 84/100 (8.4/10) — can break out**

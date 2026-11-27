@@ -290,8 +290,19 @@
       21.0
      ],
      "size": "xl",
-     "atTime": 0.15,
-     "hold": 2.4
+     "atTime": 0,
+     "hold": 2.5
+    },
+    {
+     "type": "label",
+     "text": "uprooted · estimates vary",
+     "at": [
+      78.8,
+      15.6
+     ],
+     "size": "md",
+     "atTime": 0,
+     "hold": 2.5
     }
    ],
    "hideTimeline": true
@@ -322,16 +333,6 @@
      "size": "xl",
      "atWord": "British",
      "hold": 2.6
-    },
-    {
-     "type": "pulse",
-     "ids": [
-      "IND",
-      "PAK_W",
-      "PAK_E",
-      "KASHMIR"
-     ],
-     "atWord": "home"
     }
    ]
   },
@@ -645,6 +646,11 @@
    "date": "1947-08",
    "actions": [
     {
+     "type": "chapter",
+     "emoji": "world_map",
+     "text": "Two wings"
+    },
+    {
      "type": "declare",
      "id": "PAK_W",
      "atWord": "Pakistan",
@@ -692,6 +698,11 @@
    },
    "date": "1947-08-14",
    "actions": [
+    {
+     "type": "chapter",
+     "emoji": "flag",
+     "text": "Independence"
+    },
     {
      "type": "pulse",
      "ids": [
@@ -944,6 +955,17 @@
       ]
      ],
      "dur": 1.4
+    },
+    {
+     "type": "label",
+     "text": "public 17 Aug · after independence",
+     "at": [
+      80.0,
+      20.5
+     ],
+     "size": "md",
+     "atWord": "public",
+     "hold": 2.0
     }
    ]
   },
@@ -1029,19 +1051,29 @@
      "offset": [
       160,
       60
-     ],
-     "caption": "Refugees"
+     ]
     },
     {
      "type": "label",
      "text": "200,000–2 million dead · estimates vary",
      "at": [
       74.0,
-      28.6
+      28.4
      ],
      "size": "md",
-     "atWord": "Estimates",
-     "hold": 3.4
+     "atWord": "dead",
+     "hold": 2.6
+    },
+    {
+     "type": "label",
+     "text": "10–20 million uprooted",
+     "at": [
+      74.0,
+      29.4
+     ],
+     "size": "md",
+     "atWord": "Millions",
+     "hold": 2.9
     }
    ]
   },
@@ -1130,7 +1162,7 @@
     {
      "type": "chapter",
      "emoji": "flag",
-     "text": "1971"
+     "text": "The east breaks away"
     },
     {
      "type": "conceal",
