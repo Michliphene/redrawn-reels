@@ -1,0 +1,122 @@
+{
+ "id": "scent-007-oud",
+ "seriesId": "scent",
+ "series": "SILLAGE",
+ "episode": 7,
+ "da": 2,
+ "composition": "Episode",
+ "title": "The wood that has to get sick",
+ "whisper": "one wound, one tree in ten, a few drops of oil",
+ "data": "data/scent-001-bottle.geojson",
+ "voice": {
+  "engine": "elevenlabs",
+  "voice_id": "nPczCjzI2devNBz1zQrb",
+  "voice_name": "Brian (ElevenLabs premade)",
+  "model": "eleven_multilingual_v2",
+  "settings": {
+   "stability": 0.45,
+   "similarity_boost": 0.8,
+   "style": 0.2,
+   "use_speaker_boost": true,
+   "speed": 1.12
+  },
+  "respell": {
+   "Aquilaria": "ak-wih-LAIR-ee-uh",
+   "oud": "ood",
+   "agarwood": "AH-gar-wood"
+  },
+  "kokoro_fallback": {
+   "voice": "am_michael",
+   "speed": 1.12
+  },
+  "maxPause": 0.28
+ },
+ "timeline": {
+  "from": "2018-01-01",
+  "to": "2026-01-01"
+ },
+ "counter": false,
+ "legend": false,
+ "renderedWith": "raea/sillage-007-oud on raea/sillage-kit (luxury pass v3)",
+ "keywords": [],
+ "palette": {
+  "start": "#5A3646",
+  "startStroke": "#8A5A6E",
+  "ids": {
+   "FRA": "#EADBB0",
+   "BGR": "#E68FA8",
+   "TUR": "#E68FA8",
+   "HTI": "#93A86C",
+   "MDG": "#C29A6B",
+   "IDN": "#8C6444"
+  }
+ },
+ "beats": [
+  {
+   "id": "hook",
+   "say": "The best oil from this wood is quoted at over {30,000|thirty thousand} dollars a kilo. And the tree only makes it when it gets sick.",
+   "actions": []
+  },
+  {
+   "id": "tree",
+   "say": "The tree is Aquilaria. It grows wild in the forests of South and Southeast Asia.",
+   "actions": []
+  },
+  {
+   "id": "wound",
+   "say": "When a fungus gets into a wound, the tree fights back. It floods its wood with a dark, fragrant resin.",
+   "actions": []
+  },
+  {
+   "id": "name",
+   "say": "That dark wood is agarwood. In Arabic, its name is simply oud: wood.",
+   "actions": []
+  },
+  {
+   "id": "incense",
+   "say": "It has been burned as incense for centuries. Japan's oldest chronicles record a log of it washing ashore.",
+   "actions": []
+  },
+  {
+   "id": "guess",
+   "say": "So. In a wild forest, how many trees actually carry it? Three. Two. One.",
+   "actions": []
+  },
+  {
+   "id": "answer",
+   "say": "About one in ten. Sources vary. And you can't see it from the outside.",
+   "actions": []
+  },
+  {
+   "id": "fell",
+   "say": "So harvesters cut whole trees down, just to look inside.",
+   "actions": []
+  },
+  {
+   "id": "iucn",
+   "say": "The main oud tree is now critically endangered in the wild. Its trade has been controlled since {1995|nineteen ninety-five}.",
+   "actions": []
+  },
+  {
+   "id": "yield",
+   "say": "And the yield? In one trial in Bangladesh, fifteen kilos of wood gave seven millilitres of oil.",
+   "actions": []
+  },
+  {
+   "id": "calc",
+   "say": "Our calculation: about two kilos of wood for every millilitre.",
+   "actions": []
+  },
+  {
+   "id": "farms",
+   "say": "Today, growers drill the trunk and put the fungus in themselves.",
+   "actions": []
+  },
+  {
+   "id": "loop",
+   "say": "All that, from a wound.",
+   "actions": []
+  }
+ ],
+ "remasterOf": "scent-003-rose"
+}

@@ -1,0 +1,109 @@
+{
+  "id": "scent-007-oud",
+  "number": 7,
+  "juice": "#B85400",
+  "juiceGlow": 0.7,
+  "petal": "#6B4528",
+  "keywords": ["Aquilaria", "fungus", "wound", "resin", "agarwood", "oud", "incense", "ten", "endangered", "Bangladesh", "millilitres", "drill"],
+
+  "checks": {
+    "currency": "USD",
+    "units": { "massOf": ["wood"] },
+    "calcs": [
+      { "what": "kg of wood per ml of oil", "expr": "15 / 7", "shown": "2", "tolerance": 0.08 }
+    ],
+    "sourcesVary": ["answer"]
+  },
+
+  "flacon": {
+    "level": [["start", 0.86], ["guess:how-0.2", 0.04, 2.2], ["yield:seven-0.1", 0.14, 1.4], ["loop-0.3", 0.86, 1.6]],
+    "petals": [["yield:fifteen", 48], ["farms", 0]],
+    "drop": "yield:seven-0.3",
+    "sweeps": ["hook:30,000", "answer:About", "iucn:critically", "yield:seven", "calc:two"]
+  },
+
+  "shots": [
+    { "id": "hook", "petals": false, "kind": "flacon", "camera": "hero", "textFrom": "start-1",
+      "text": [
+        { "t": "stat", "v": "$30,000+" },
+        { "t": "label", "v": "one kilo · the best oud oil" },
+        { "t": "title", "v": "Only when\nit's sick", "at": "hook:only", "gold": "sick" }
+      ] },
+    { "id": "tree", "petals": false, "at": "tree-0.12", "kind": "plate", "img": "s_forest.jpg",
+      "text": [
+        { "t": "title", "v": "Aquilaria" },
+        { "t": "label", "v": "South & Southeast Asia", "at": "tree:South" },
+        { "t": "whisper", "v": "it grows wild", "at": "tree:wild" }
+      ] },
+    { "id": "wound", "petals": false, "kind": "plate", "img": "s_wound.jpg", "focus": [50, 55],
+      "text": [
+        { "t": "title", "v": "A wound" },
+        { "t": "label", "v": "a fungus gets in", "at": "wound:fungus" },
+        { "t": "whisper", "v": "the tree floods its wood\nwith resin", "at": "wound:floods" }
+      ] },
+    { "id": "name", "petals": false, "kind": "plate", "img": "s_agarwood.jpg",
+      "text": [
+        { "t": "title", "v": "Agarwood" },
+        { "t": "stat", "v": "Oud", "at": "name:simply" },
+        { "t": "whisper", "v": "Arabic for “wood”", "at": "name:wood." }
+      ] },
+    { "id": "incense", "petals": false, "kind": "plate", "img": "s_incense.jpg",
+      "text": [
+        { "t": "title", "v": "Incense" },
+        { "t": "whisper", "v": "for centuries", "at": "incense:centuries." },
+        { "t": "label", "v": "Japan's oldest chronicles", "at": "incense:Japan's" }
+      ] },
+    { "id": "guess", "petals": false, "kind": "flacon", "camera": "pushIn", "textFrom": "guess:how-0.12",
+      "text": [
+        { "t": "title", "v": "How many\ntrees?", "gold": "trees?" },
+        { "t": "label", "v": "in a wild forest" },
+        { "t": "count", "v": "3|2|1", "at": "guess:Three.|guess:Two.|guess:One." }
+      ] },
+    { "id": "answer", "petals": false, "at": "answer-0.04", "kind": "flacon", "camera": "low",
+      "text": [
+        { "t": "stat", "v": "1 in 10" },
+        { "t": "label", "v": "wild trees carry it" },
+        { "t": "badge", "v": "sources vary", "at": "answer:Sources" },
+        { "t": "whisper", "v": "invisible from outside", "at": "answer:can't" }
+      ] },
+    { "id": "fell", "petals": false, "kind": "plate", "img": "s_felled.jpg",
+      "text": [
+        { "t": "title", "v": "Cut down\nto look", "gold": "look" },
+        { "t": "label", "v": "whole trees", "at": "fell:whole" }
+      ] },
+    { "id": "iucn", "petals": false, "kind": "flacon", "camera": "macroLabel",
+      "text": [
+        { "t": "title", "v": "Critically\nendangered", "at": "iucn:critically", "gold": "endangered" },
+        { "t": "label", "v": "Aquilaria malaccensis · IUCN 2018", "at": "iucn:critically" },
+        { "t": "whisper", "v": "trade controlled since 1995", "at": "iucn:controlled" }
+      ] },
+    { "id": "yield", "petals": false, "kind": "flacon", "camera": "drop",
+      "text": [
+        { "t": "label", "v": "from 15 kg of wood", "at": "yield:fifteen" },
+        { "t": "stat", "v": "7 ml", "at": "yield:seven" },
+        { "t": "whisper", "v": "one trial · Bangladesh", "at": "yield:millilitres" }
+      ] },
+    { "id": "calc", "petals": false, "kind": "flacon", "camera": "wide",
+      "text": [
+        { "t": "badge", "v": "our calculation" },
+        { "t": "stat", "v": "≈ 2 kg", "at": "calc:two" },
+        { "t": "label", "v": "of wood for every ml of oil", "at": "calc:wood" }
+      ] },
+    { "id": "farms", "petals": false, "kind": "plate", "img": "s_plantation.jpg",
+      "text": [
+        { "t": "title", "v": "Drilled\non purpose", "gold": "purpose" },
+        { "t": "whisper", "v": "the fungus, put in by growers", "at": "farms:fungus" }
+      ] },
+    { "id": "loop", "petals": false, "kind": "flacon", "camera": "return", "returnFrom": "wide", "textFrom": "end-0.8",
+      "text": [
+        { "t": "stat", "v": "$30,000+" },
+        { "t": "label", "v": "one kilo · the best oud oil" }
+      ] }
+  ],
+
+  "sfx": [
+    ["hook:30,000", "stamp", 0.35],
+    ["guess:Three.", "pop", 0.3], ["guess:Two.", "pop", 0.3], ["guess:One.", "pop", 0.34],
+    ["answer:About", "boom", 0.3], ["iucn:critically", "stamp", 0.3], ["calc:two", "stamp", 0.35]
+  ]
+}
